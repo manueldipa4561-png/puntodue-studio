@@ -4,6 +4,19 @@
   --olive:#626b43; --panel:#e7eadc; --dark:#292f24; --light:#cbd4b1;
   --radius:5px; --space:clamp(56px,7.5vw,108px);
 }
+/* Typography-only covers for the additional approved demos. */
+.type-cover{aspect-ratio:10/7;padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;justify-content:space-between;color:#f3f0e7;position:relative}
+.cover-category,.cover-caption{font-size:10px;letter-spacing:1.5px;line-height:1.6}
+.cover-category{padding-bottom:16px;border-bottom:1px solid #ffffff40}
+.cover-title{font:clamp(34px,4.5vw,64px)/1.02 Georgia,serif;letter-spacing:-2px}
+.cover-title em{display:block;color:inherit}
+.cover-eden{background:#26352f}
+.cover-bongo{background:#703b2f}
+.cover-malto{background:#55422b}
+.cover-extra{background:#444b36}
+.cover-caption{font-size:8px;letter-spacing:1px}
+.type-cover:hover,.type-cover:focus-visible{box-shadow:inset 0 0 0 3px #f3f0e750}
+@media(max-width:600px){.type-cover{padding:24px}.cover-title{font-size:clamp(38px,11vw,58px)}.cover-category{font-size:9px}.cover-caption{font-size:8px}}
 /* Project context and a clear next step */
 .project-insight{border-top:1px solid #c4c9b6;margin-bottom:22px}
 .project-insight summary{cursor:pointer;min-height:48px;padding:13px 24px 13px 0;font-size:13px;list-style:none;position:relative}
