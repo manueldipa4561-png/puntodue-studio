@@ -8,7 +8,8 @@ doc = html.parse(str(root / 'index.html'))
 ids = doc.xpath('//*[@id]/@id')
 assert len(ids) == len(set(ids)), 'Duplicate IDs'
 assert len(doc.xpath('//h1')) == 1
-assert len(doc.xpath('//details/summary')) == 5
+assert len(doc.xpath('//section[@id="domande"]//details/summary')) == 5
+assert len(doc.xpath('//details[@class="project-insight"]/summary')) == 2
 for href in doc.xpath('//a/@href'):
     if href.startswith('#') and len(href) > 1:
         assert href[1:] in ids, href
