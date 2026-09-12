@@ -4,6 +4,29 @@
   --olive:#626b43; --panel:#e7eadc; --dark:#292f24; --light:#cbd4b1;
   --radius:5px; --space:clamp(56px,7.5vw,108px);
 }
+/* Optional project brief: native radio controls, no collection endpoint. */
+.project-brief[hidden]{display:none}
+.project-brief{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;padding-bottom:var(--space)}
+.brief-intro .section-label{margin-bottom:22px}
+.brief-intro>p:last-child{max-width:340px;margin-top:24px;font-size:15px;color:var(--muted)}
+.brief-panel{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.brief-panel fieldset{border:0;padding:0;margin:0 0 25px;min-width:0}
+.brief-panel legend{font-size:13px;margin-bottom:12px;font-weight:600}
+.brief-options{display:flex;flex-wrap:wrap;gap:8px}
+.brief-options label{position:relative;cursor:pointer;min-width:0}
+.brief-options input{position:absolute;opacity:0;width:1px;height:1px}
+.brief-options span{display:flex;align-items:center;min-height:48px;padding:10px 14px;border:1px solid #aab29b;border-radius:4px;font-size:12px;background:var(--paper)}
+.brief-options input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.brief-options input:focus-visible+span{outline:3px solid var(--olive);outline-offset:3px}
+.brief-preview{padding:20px;background:var(--paper);border-left:2px solid var(--olive)}
+.brief-preview>span{font-size:9px;letter-spacing:1.5px;color:var(--muted)}
+.brief-preview p{font-size:14px;line-height:1.8;margin-top:10px}
+.brief-destination{font-size:13px;margin:22px 0 12px}
+.brief-actions{display:flex;flex-wrap:wrap;gap:10px}
+.brief-actions .button{flex:1;font-size:12px;padding-inline:14px;justify-content:center;min-width:175px}
+.brief-note{font-size:11px;line-height:1.7;color:var(--muted);margin-top:14px}
+@media(max-width:900px){.project-brief{grid-template-columns:1fr;gap:28px}.brief-intro>p:last-child{max-width:none}}
+@media(max-width:600px){.brief-panel{padding:20px 16px}.brief-options{gap:8px}.brief-options span{font-size:12px;padding-inline:12px}.brief-actions{flex-direction:column}.brief-preview{padding:16px}.brief-note{font-size:12px}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
