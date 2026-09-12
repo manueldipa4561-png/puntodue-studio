@@ -59,3 +59,64 @@ button,input{font:inherit}
   .scene-controls button{min-width:64px;min-height:48px}
 }
 @media(prefers-reduced-motion:reduce){.demo-button .arrow-icon{transition:none}}
+/* Editorial polish, accessible FAQ and progressive enhancement */
+body{line-height:1.5;text-rendering:optimizeLegibility}
+.hero{padding-top:54px}
+h1{max-width:1050px;letter-spacing:-.065em}
+.hero-bottom{flex-wrap:wrap;margin-bottom:28px}
+.hero-bottom p{max-width:440px}
+.hero-secondary{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:48px;border-bottom:1px solid var(--line);font-size:13px}
+.hero-secondary:hover{border-color:var(--olive);color:var(--olive)}
+.hero-pillars{display:flex;flex-wrap:wrap;gap:12px 28px;margin:0 0 30px;padding:0;list-style:none;color:var(--muted);font-size:11px;letter-spacing:.3px}
+.hero-pillars li{display:flex;align-items:center;gap:9px}
+.hero-pillars li::before{content:"";height:5px;width:5px;flex:none;border-radius:50%;background:var(--olive)}
+.project-card{border-bottom:1px solid #c3c7b5;padding-bottom:28px}
+.project-description{min-height:3.4em}
+.demo-button{border-radius:3px;font-weight:600}
+.demo-label{display:inline-block;align-self:flex-start;padding:5px 9px;background:#dde1d0;border-radius:3px;font-size:11px;line-height:1.5}
+.project-info span{line-height:1.5}
+.project-preview{border-radius:4px}
+.preview-center .mini-label{font-size:8px}
+.preview-footer{font-size:8px}
+.service-row{transition:background .2s}
+.service-row:hover{background:#e9ecdf70}
+.faq{display:grid;grid-template-columns:1fr 1.15fr;gap:75px}
+.faq-heading .section-label{margin-bottom:24px}
+.faq-heading>p{font-size:14px;color:var(--muted);line-height:1.8;margin-top:24px;max-width:310px}
+.faq-list{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{position:relative;list-style:none;cursor:pointer;font-size:17px;line-height:1.5;padding:23px 32px 23px 0;min-height:64px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:23px;color:var(--olive);font-size:22px;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq summary:focus-visible{outline:2px solid var(--olive);outline-offset:4px}
+.faq details p{padding:0 25px 25px 0;font-size:14px;line-height:1.8;color:var(--muted)}
+.contact{border-top:1px solid var(--line)}
+.contact-grid article{background:#e8eadf;border:1px solid var(--line);border-radius:6px;padding:26px}
+.contact-grid{gap:24px}
+.initials{background:var(--paper)}
+.phone{font-variant-numeric:tabular-nums}
+.reveal{opacity:1;transform:none;transition:none}
+.reveal.visible{animation:gentle-reveal .55s ease-out both}
+@keyframes gentle-reveal{from{transform:translateY(12px)}to{transform:translateY(0)}}
+@media(max-width:900px){.faq{grid-template-columns:1fr;gap:30px}.faq-heading>p{max-width:100%}.hero-bottom{gap:22px}.hero-secondary{font-size:12px}}
+@media(max-width:600px){
+  .hero{padding-top:32px}
+  h1{font-size:clamp(44px,11.5vw,65px);line-height:1.04;letter-spacing:-.06em}
+  .hero-bottom{gap:18px;margin-top:24px}
+  .hero-bottom p{font-size:15px;line-height:1.7}
+  .hero-bottom .button{width:100%;min-height:52px;align-items:center}
+  .hero-secondary{width:100%;min-height:48px;font-size:13px}
+  .hero-pillars{gap:8px 18px;font-size:10px;margin-bottom:24px}
+  .intro-copy p,.service-row p,.process p{font-size:15px;line-height:1.75}
+  .section-label{font-size:9px}
+  .faq{gap:25px}
+  .faq summary{font-size:16px;padding-top:20px;padding-bottom:20px}
+  .faq details p{font-size:14px;padding-right:10px}
+  .contact-grid article{padding:22px 18px}
+  .phone{font-size:24px;overflow-wrap:anywhere}
+  .project-info{align-items:flex-start;flex-direction:column}
+  .project-info span{font-size:9px}
+  .project-description{font-size:14px;min-height:0}
+}
+@media(prefers-reduced-motion:reduce){.reveal.visible{animation:none}}
