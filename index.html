@@ -21,6 +21,7 @@
   <link rel="icon" href="logo-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script src="brief.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -74,6 +75,25 @@
         <details><summary>Quanto tempo richiede?</summary><p>I tempi dipendono dalla complessità e dalla disponibilità di testi, foto e altre informazioni. Li concordiamo nella proposta, prima di iniziare.</p></details>
         <details><summary>Cosa devo preparare?</summary><p>Per il primo confronto bastano il nome della tua attività e la tua idea. Per costruire il sito raccoglieremo le informazioni corrette, i contatti, il logo e le immagini che hai il diritto di utilizzare.</p></details>
         <details><summary>I progetti mostrati sono lavori commissionati?</summary><p>No. Osteria Virgilio e La Corriera sono demo non commissionate, realizzate per mostrare il nostro lavoro. Non rappresentano collaborazioni commerciali né approvazioni delle attività.</p></details>
+      </div>
+    </section>
+    <section class="project-brief container" id="progetto" aria-labelledby="brief-title" hidden>
+      <div class="brief-intro"><p class="section-label">PARTIAMO DALLA TUA IDEA</p><h2 id="brief-title">Il primo passo?<br><em>Bastano due scelte.</em></h2><p>Scegli la tua attività e da dove vuoi partire. Prepariamo un messaggio che puoi modificare su WhatsApp.</p></div>
+      <div class="brief-panel">
+        <fieldset><legend>01 · La tua attività</legend><div class="brief-options">
+          <label><input type="radio" name="business" value="un ristorante" checked><span>Ristorante</span></label>
+          <label><input type="radio" name="business" value="un bar o un pub"><span>Bar / Pub</span></label>
+          <label><input type="radio" name="business" value="un’altra attività locale"><span>Altra attività</span></label>
+        </div></fieldset>
+        <fieldset><legend>02 · Il tuo punto di partenza</legend><div class="brief-options">
+          <label><input type="radio" name="need" value="creare il mio primo sito" checked><span>Un nuovo sito</span></label>
+          <label><input type="radio" name="need" value="rinnovare il sito esistente"><span>Rinnovare il sito</span></label>
+          <label><input type="radio" name="need" value="capire quale sito potrebbe servirmi"><span>Ne parliamo</span></label>
+        </div></fieldset>
+        <div class="brief-preview"><span>IL TUO MESSAGGIO</span><p id="brief-message" aria-live="polite" aria-atomic="true"></p></div>
+        <p class="brief-destination">Con chi vuoi parlarne?</p>
+        <div class="brief-actions"><a id="brief-manuel" class="button" href="https://wa.me/393248423657?text=Ciao%21%20Vorrei%20parlare%20del%20mio%20sito." target="_blank" rel="noopener noreferrer">Apri WhatsApp · Manuel</a><a id="brief-nicolas" class="button" href="https://wa.me/393248165947?text=Ciao%21%20Vorrei%20parlare%20del%20mio%20sito." target="_blank" rel="noopener noreferrer">Apri WhatsApp · Nicolas</a></div>
+        <p class="brief-note">Le scelte restano in questa pagina fino al clic. WhatsApp si aprirà con una bozza: sarai tu a inviarla.</p>
       </div>
     </section>
     <section id="contatti" class="contact container section"><div class="section-label">06 — FACCIAMO IL PRIMO PASSO</div><div class="contact-heading"><h2>Un bel progetto<br>inizia con un <em>ciao.</em></h2><span class="contact-arrow" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><p class="contact-intro">Hai un’attività e stai pensando al tuo sito?<br>Scrivi a Manuel o Nicolas: raccontaci il nome della tua attività<br>e cosa vorresti migliorare online.</p><div class="contact-grid"><article><div class="contact-person"><span class="initials" aria-hidden="true">M.</span><div><h3>Manuel Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248423657">+39 324 842 3657</a><a class="text-link whatsapp-link" href="https://wa.me/393248423657?text=Ciao%20Manuel%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer">Scrivi a Manuel su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article><article><div class="contact-person"><span class="initials" aria-hidden="true">N.</span><div><h3>Nicolas Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248165947">+39 324 816 5947</a><a class="text-link whatsapp-link" href="https://wa.me/393248165947?text=Ciao%20Nicolas%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer">Scrivi a Nicolas su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article></div></section>
