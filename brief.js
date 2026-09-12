@@ -18,4 +18,8 @@
   brief.addEventListener('change', update);
   update();
   brief.hidden = false;
+  // Link to the brief only after enhancement succeeds; HTML retains contact fallbacks.
+  document.querySelectorAll('.hero-secondary, .project-start, .mobile-contact').forEach(link => {
+    link.setAttribute('href', '#progetto');
+  });
 })();
