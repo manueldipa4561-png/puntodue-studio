@@ -4,6 +4,20 @@
   --olive:#626b43; --panel:#e7eadc; --dark:#292f24; --light:#cbd4b1;
   --radius:5px; --space:clamp(56px,7.5vw,108px);
 }
+/* Project context and a clear next step */
+.project-insight{border-top:1px solid #c4c9b6;margin-bottom:22px}
+.project-insight summary{cursor:pointer;min-height:48px;padding:13px 24px 13px 0;font-size:13px;list-style:none;position:relative}
+.project-insight summary::-webkit-details-marker{display:none}
+.project-insight summary::after{content:"+";position:absolute;right:2px;top:11px;font-size:18px;color:var(--olive)}
+.project-insight[open] summary::after{content:"−"}
+.project-insight p{font-size:14px;line-height:1.8;color:var(--muted);padding-bottom:16px}
+.portfolio-cta{margin-top:38px;padding:24px 0;border-block:1px solid #c4c9b6;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.portfolio-cta>p{font-family:Georgia,serif;font-size:25px;line-height:1.4;max-width:480px}
+.project-cover-link:focus-visible{outline-offset:6px}
+.project-cover-link:focus-visible img{transform:scale(1.025)}
+.button:focus-visible,.whatsapp-link:focus-visible,.demo-button:focus-visible{outline-offset:5px}
+.brief-panel:focus-within{border-color:var(--olive)}
+@media(max-width:600px){.portfolio-cta{flex-direction:column;align-items:stretch;gap:12px;margin-top:28px}.portfolio-cta>p{font-size:23px}.portfolio-cta .text-link{width:100%}.project-insight summary{min-height:52px;font-size:14px}}
 /* Optional project brief: native radio controls, no collection endpoint. */
 .project-brief[hidden]{display:none}
 .project-brief{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;padding-bottom:var(--space)}
