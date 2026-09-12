@@ -32,5 +32,5 @@ assert 'https://puntoduestudio.it/' in (root / 'sitemap.xml').read_text()
 etree.parse(str(root / 'sitemap.xml'))
 assert doc.xpath('//meta[@property="og:image"]/@content') == ['https://puntoduestudio.it/assets/social-card.png']
 assert not doc.xpath('//form'), 'Unconfigured form'
-assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 2
+assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 6
 print('PASS HTML links, headings, image dimensions, contact targets, SVG/XML, social metadata')
