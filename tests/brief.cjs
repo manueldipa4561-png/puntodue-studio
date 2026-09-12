@@ -10,7 +10,9 @@ for (const business of ['un ristorante', 'un bar o un pub', 'unâ€™altra attivitÃ
     const nodes = { '#brief-message': message, '#brief-manuel': manuel, '#brief-nicolas': nicolas,
       'input[name="business"]:checked': { value: business }, 'input[name="need"]:checked': choice };
     const brief = { hidden: true, querySelector: s => nodes[s], addEventListener: (_, fn) => change = fn };
-    vm.runInNewContext(source, { document: { querySelector: () => brief }, encodeURIComponent });
+    const links = [0,1,2].map(() => ({ href: '#contatti', setAttribute(_, value) { this.href = value; } }));
+    vm.runInNewContext(source, { document: { querySelector: () => brief, querySelectorAll: () => links }, encodeURIComponent });
+    assert(links.every(link => link.href === '#progetto'));
     assert.equal(brief.hidden, false);
     for (const [link, number] of [[manuel, '393248423657'], [nicolas, '393248165947']]) {
       const url = new URL(link.href);
