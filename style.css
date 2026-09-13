@@ -51,7 +51,7 @@
 .brief-destination{font-size:13px;margin:22px 0 12px}
 .brief-actions{display:flex;flex-wrap:wrap;gap:10px}
 .brief-actions .button{flex:1;font-size:12px;padding-inline:14px;justify-content:center;min-width:175px}
-.brief-note{font-size:11px;line-height:1.7;color:var(--muted);margin-top:14px}
+.brief-note{font-size:13px;line-height:1.7;color:var(--muted);margin-top:14px}
 @media(max-width:900px){.project-brief{grid-template-columns:1fr;gap:28px}.brief-intro>p:last-child{max-width:none}}
 @media(max-width:600px){.brief-panel{padding:20px 16px}.brief-options{gap:8px}.brief-options span{font-size:12px;padding-inline:12px}.brief-actions{flex-direction:column}.brief-preview{padding:16px}.brief-note{font-size:12px}}
 *{box-sizing:border-box}
@@ -135,7 +135,7 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--olive
 .project-cover-link:hover img{transform:scale(1.025)}
 .project-info{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 12px}
 .project-info h3{font-size:23px;letter-spacing:-.6px}
-.project-info span{font-size:9px;letter-spacing:1px}
+.project-info span{font-size:11px;letter-spacing:1px}
 .demo-label{align-self:flex-start;padding:5px 9px;background:#dde1d0;border-radius:3px;font-size:11px;line-height:1.6}
 .project-description{font-size:14px;color:var(--muted);margin:16px 0 20px;line-height:1.8}
 .project-tags{display:flex;gap:8px;flex-wrap:wrap;list-style:none;margin:0 0 24px;padding:0;font-size:11px;color:var(--muted)}
@@ -144,7 +144,7 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--olive
 .demo-button:hover{background:var(--ink);color:var(--paper)}
 .demo-button .arrow-icon{transition:transform .2s}
 .demo-button:hover .arrow-icon{transform:translate(2px,-2px)}
-.portfolio-note{font-size:11px;line-height:1.8;color:var(--muted);max-width:800px;margin-top:30px}
+.portfolio-note{font-size:13px;line-height:1.8;color:var(--muted);max-width:800px;margin-top:30px}
 /* Services and process */
 .service-row{display:grid;grid-template-columns:40px 1fr 1fr 24px;align-items:start;gap:24px;border-top:1px solid var(--line);padding:30px 0}
 .service-row:last-child{border-bottom:1px solid var(--line)}
@@ -283,6 +283,44 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--olive
   .phone{font-size:23px}
   .whatsapp-link{font-size:11px;padding-inline:12px}
 }
+
+/* Editorial composition: copy and identity share the first screen. */
+@media(min-width:1100px){
+  .hero{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);column-gap:44px;padding-top:64px;align-items:start}
+  .hero .eyebrow{grid-column:1;margin-bottom:24px}
+  .hero h1{grid-column:1;font-size:clamp(60px,5.9vw,85px);line-height:1.06}
+  .hero-bottom{grid-column:1;justify-content:flex-start;gap:16px 24px;margin:28px 0}
+  .hero-bottom p{flex-basis:100%;font-size:17px;max-width:440px}
+  .hero-pillars{grid-column:1;font-size:12px;gap:10px 20px;margin-bottom:0}
+  .hero-art{grid-column:2;grid-row:1 / span 4;height:100%;min-height:490px}
+  .hero-art .sphere{top:26%;width:200px;height:200px}
+  .hero-art .sphere-one{left:calc(50% - 175px)}
+  .hero-art .sphere-two{left:calc(50% - 20px)}
+  .hero-art .art-index{bottom:96px}
+}
+.project-grid{row-gap:48px}
+.project-card{position:relative}
+.project-cover-link{outline-offset:5px}
+.project-card:focus-within .project-info h3{color:var(--olive)}
+.project-description{max-width:58ch}
+@media(min-width:901px){
+  .project-grid{column-gap:40px}
+  .project-info h3{font-size:28px}
+  .project-description{font-size:15px}
+}
+@media(max-width:600px){
+  .hero-pillars{font-size:12px;line-height:1.7}
+  .demo-label{font-size:12px}
+  .project-info span,.project-tags{font-size:12px}
+  .project-description{font-size:15px}
+  .portfolio-note{font-size:13px}
+  .brief-options span{font-size:14px}
+  .brief-panel legend{font-size:15px}
+  .brief-note{font-size:13px}
+  .footer-links{font-size:14px}
+  .contact-person div>span{font-size:11px}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
