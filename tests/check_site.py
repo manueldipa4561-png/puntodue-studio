@@ -9,7 +9,7 @@ ids = doc.xpath('//*[@id]/@id')
 assert len(ids) == len(set(ids)), 'Duplicate IDs'
 assert len(doc.xpath('//h1')) == 1
 assert len(doc.xpath('//section[@id="domande"]//details/summary')) == 5
-assert len(doc.xpath('//details[@class="project-insight"]/summary')) == 2
+assert len(doc.xpath('//details[@class="project-insight"]/summary')) == 1
 for href in doc.xpath('//a/@href'):
     if href.startswith('#') and len(href) > 1:
         assert href[1:] in ids, href
@@ -32,5 +32,5 @@ assert 'https://puntoduestudio.it/' in (root / 'sitemap.xml').read_text()
 etree.parse(str(root / 'sitemap.xml'))
 assert doc.xpath('//meta[@property="og:image"]/@content') == ['https://puntoduestudio.it/assets/social-card.png']
 assert not doc.xpath('//form'), 'Unconfigured form'
-assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 6
+assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 4
 print('PASS HTML links, headings, image dimensions, contact targets, SVG/XML, social metadata')
