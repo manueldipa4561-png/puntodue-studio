@@ -329,6 +329,48 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--olive
   .contact-person div>span{font-size:11px}
 }
 
+
+/* Studio-wide finishing: warm surfaces, clear rhythm and tactile links. */
+.header{padding-block:10px}
+.nav-contact{padding:0 16px;border:1px solid var(--line);border-radius:30px}
+.button,.demo-button,.whatsapp-link{transition:background .2s,color .2s,box-shadow .2s}
+.button:hover,.whatsapp-link:hover{box-shadow:0 6px 16px #292c2414}
+.intro-copy p{max-width:42ch}
+.projects .section-heading{padding-bottom:28px;border-bottom:1px solid #c3c7b5}
+.projects .section-heading>p{max-width:34ch}
+.project-card{padding:14px 14px 20px;border-radius:14px;background:#f8f5ed;box-shadow:0 3px 12px #292c2405;transition:border-color .2s,box-shadow .2s}
+.project-card:focus-within{border-color:var(--olive)}
+.project-card .project-cover-link{border-radius:8px}
+.project-card .project-info,.project-card .demo-label,.project-card .project-description,.project-card .project-tags,.project-card .project-insight,.project-card .demo-button{margin-left:10px;margin-right:10px}
+.project-card .project-info{align-items:flex-start;flex-direction:column;gap:5px}
+.project-card .project-info h3{font-size:28px;line-height:1.2;letter-spacing:-.8px}
+.project-card .project-info>span{font-size:10px;letter-spacing:1.4px;color:var(--muted)}
+.project-card .demo-label{background:transparent;padding:0;color:var(--muted);font-size:12px}
+.project-card .project-description{line-height:1.75}
+.project-card .demo-button{border:0;border-top:1px solid var(--line);border-radius:0;padding:16px 0 0;background:transparent;color:var(--ink)}
+.project-card .demo-button:hover{color:var(--olive)}
+.project-cover-link.cover-extra{background:#343c2e}
+.type-cover::before{content:"";position:absolute;right:8%;bottom:12%;width:28%;height:52%;border:1px solid #ffffff14;border-radius:100px 100px 4px 4px;z-index:-1;transform:rotate(18deg);pointer-events:none}
+.type-cover .cover-title{letter-spacing:-2px}
+.type-cover .cover-category>span{font-variant-numeric:tabular-nums;white-space:nowrap;opacity:.75}
+.process-grid article{padding:24px 0 0}
+.process-grid h3{max-width:18ch}
+.contact-grid article{border-radius:12px;background:#e8ebde}
+.contact-person .initials{width:56px;height:56px;border:1px solid #cbd1bc}
+.faq details[open] summary{color:var(--olive)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  .project-card:hover{border-color:#a7af95;box-shadow:0 12px 30px #292c240c}
+}
+@media(max-width:600px){
+  .project-card{padding:10px 10px 16px}
+  .project-card .project-info h3{font-size:26px}
+  .project-card .project-info,.project-card .demo-label,.project-card .project-description,.project-card .project-tags,.project-card .project-insight,.project-card .demo-button{margin-left:8px;margin-right:8px}
+  .projects .section-heading{padding-bottom:22px}
+  .type-cover .cover-title{letter-spacing:-1px}
+  .project-cover-link.type-cover{padding:22px}
+  .contact-person .initials{width:48px;height:48px}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
