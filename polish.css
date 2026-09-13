@@ -1,0 +1,66 @@
+/* Production hardening layered on top of the core Punto Due design system. */
+html,body{max-width:100%;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{min-width:0}
+main,section,footer,.header,.container,.project-card,.project-body,.contact-grid article{min-width:0}
+a,button,input,summary{touch-action:manipulation}
+.brand{display:inline-flex;align-items:center;min-height:48px;max-width:100%}
+.button,.text-link,.demo-button,.whatsapp-link,.mobile-contact{max-width:100%;overflow-wrap:anywhere}
+.preview-chrome>span{min-width:0}
+.preview-chrome>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.preview-chrome>span:first-child,.preview-chrome>span:last-child{flex:0 0 auto}
+.phone{max-width:100%}
+
+/* Keep keyboard focus visible when links sit on clipped/rounded surfaces. */
+.project-cover-link:focus-visible{outline-offset:-4px}
+.brand:focus-visible{outline-offset:4px}
+
+/* Mobile menu becomes a contained dropdown; no background scroll or hidden focus. */
+@media(max-width:600px){
+  .header{position:relative;z-index:20;align-content:start}
+  .menu-ready #navigation.open{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    width:auto;
+    max-height:calc(100dvh - 82px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    padding:10px 16px 18px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-top:0;
+    border-radius:0 0 12px 12px;
+    box-shadow:0 18px 34px #292c2418;
+  }
+  .menu-ready #navigation.open>a{min-height:52px}
+  html.menu-open,html.menu-open body{overflow:hidden}
+  html.menu-open body::before{content:"";position:fixed;inset:0;z-index:15;background:#292c242e}
+  .preview-chrome{gap:8px}
+  .preview-chrome>span:nth-child(2){flex:1 1 auto;text-align:center}
+  .footer>.text-link{max-width:100%}
+}
+
+@media(max-width:360px){
+  .menu-toggle{min-width:auto;gap:12px;padding-left:6px}
+  .preview-chrome{font-size:11px}
+  .eyebrow{font-size:11px;letter-spacing:1.15px}
+}
+
+/* Branded 404 page. */
+.not-found-page{min-height:100dvh;display:flex;flex-direction:column}
+.not-found-page .header{flex:0 0 auto}
+.not-found{flex:1;display:grid;align-content:center;min-height:calc(100dvh - 220px);padding-block:clamp(72px,10vw,140px)}
+.not-found-code{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--olive);margin-bottom:18px}
+.not-found h1{max-width:9ch;font-size:clamp(58px,9vw,118px)}
+.not-found>p{max-width:580px;margin-top:26px;color:var(--muted);font-size:17px;line-height:1.8}
+.not-found-actions{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:34px;align-items:center}
+.not-found-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);padding-block:24px 48px;font-size:12px;color:var(--muted)}
+.not-found-footer a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:600px){
+  .not-found{min-height:auto;padding-block:72px 80px}
+  .not-found>p{font-size:15px}
+  .not-found-actions{align-items:stretch;flex-direction:column}
+  .not-found-actions .button,.not-found-actions .text-link{width:100%}
+  .not-found-footer{align-items:flex-start;flex-direction:column;padding-bottom:36px}
+}
