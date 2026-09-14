@@ -1,27 +1,50 @@
-/* Production hardening layered on top of the core Punto Due design system. */
+/* Punto Due Studio — boutique refinement layered over the core design system. */
 html,body{max-width:100%;text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{min-width:0}
+body{min-width:0;text-rendering:optimizeLegibility}
 main,section,footer,.header,.container,.project-card,.project-body,.contact-grid article{min-width:0}
 a,button,input,summary{touch-action:manipulation}
 .brand{display:inline-flex;align-items:center;min-height:48px;max-width:100%}
 .button,.text-link,.demo-button,.whatsapp-link,.mobile-contact{max-width:100%;overflow-wrap:anywhere}
-.preview-chrome>span{min-width:0}
-.preview-chrome>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.preview-chrome>span:first-child,.preview-chrome>span:last-child{flex:0 0 auto}
 .phone{max-width:100%}
 
-/* Keep keyboard focus visible when links sit on clipped/rounded surfaces. */
+/* Navigation: quiet, persistent, and readable. */
+.header{position:sticky;top:0;z-index:50;background:var(--paper)}
+#navigation>a{position:relative}
+#navigation>a:not(.nav-contact)::after{content:"";position:absolute;left:0;right:100%;bottom:7px;height:1px;background:var(--olive);transition:right .24s ease}
+#navigation>a:not(.nav-contact):hover::after,#navigation>a:not(.nav-contact):focus-visible::after{right:0}
+.nav-contact{transition:color .2s ease,border-color .2s ease}
+.nav-contact .arrow-icon,.text-link .arrow-icon,.demo-button .arrow-icon,.button .arrow-icon{transition:transform .2s ease}
+.nav-contact:hover .arrow-icon,.text-link:hover .arrow-icon,.demo-button:hover .arrow-icon,.button:hover .arrow-icon{transform:translate(3px,-3px)}
+
+/* Keep keyboard focus visible on clipped or image surfaces. */
 .project-cover-link:focus-visible{outline-offset:-4px}
 .brand:focus-visible{outline-offset:4px}
 
-/* Portfolio refresh: current demo imagery + faithful editorial UI cues. */
-.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
-.project-card{overflow:hidden;border:1px solid #cbd0bf;border-radius:14px;background:#f7f4ec;box-shadow:0 16px 45px #39402d0b;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
-.project-card:hover{transform:translateY(-6px);border-color:#aeb79d;box-shadow:0 28px 70px #39402d18}
-.project-cover-link{position:relative;isolation:isolate;display:block;min-height:0;aspect-ratio:1.46/1;overflow:hidden;background:#12130f;box-shadow:inset 0 0 0 1px #ffffff22}
-.project-cover-link::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;transition:opacity .3s ease}
-.project-cover-link img{width:100%;height:100%;object-fit:cover;opacity:1;pointer-events:none;transition:transform .45s ease}
-.project-card:hover .project-cover-link img{transform:scale(1.018)}
+/* Hero: clearer hierarchy, more intentional brand art. */
+.hero h1{max-width:11.5ch}
+.hero-bottom{align-items:flex-end}
+.hero-bottom p{max-width:530px;font-size:17px}
+.hero-pillars{margin-top:4px}
+.hero-art{border:1px solid #c8cdb9;background:#d8dcc0;box-shadow:none}
+.art-caption{font-weight:600;color:#46503a}
+.scene-controls{border:1px solid #c4c9b6;box-shadow:none}
+.scene-logo{filter:drop-shadow(8px 12px 10px #17221928)}
+.sphere{box-shadow:inset -20px -22px 34px #1c241c45,12px 20px 30px #263e3317}
+
+/* Studio copy gets room to breathe without becoming a biography. */
+.intro{border-top:1px solid var(--line)}
+.intro>div:last-child{max-width:900px}
+.intro-copy{gap:44px}
+
+/* Portfolio: curated case studies, not product cards. */
+.projects{background:#e9eadf}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:58px 32px}
+.project-card{overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;transition:none}
+.project-card:hover{transform:none}
+.project-cover-link{position:relative;isolation:isolate;display:block;min-height:0;aspect-ratio:1.46/1;overflow:hidden;background:#12130f;border:1px solid #c4c9b6;border-radius:8px}
+.project-cover-link::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none}
+.project-cover-link img{width:100%;height:100%;object-fit:cover;opacity:1;pointer-events:none;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.project-card:hover .project-cover-link img,.project-cover-link:focus-visible img{transform:scale(1.018)}
 .project-card[data-project="corriera"] .project-cover-link::before{background:linear-gradient(90deg,rgba(35,29,25,.94) 0%,rgba(35,29,25,.78) 40%,rgba(35,29,25,.26) 72%,rgba(35,29,25,.08) 100%)}
 .project-card[data-project="corriera"] .project-cover-link img{object-position:center 49%}
 .project-card[data-project="eden"] .project-cover-link::before{background:linear-gradient(90deg,rgba(10,10,8,.94) 0%,rgba(10,10,8,.73) 44%,rgba(10,10,8,.28) 75%,rgba(10,10,8,.18) 100%),linear-gradient(0deg,rgba(10,10,8,.48),transparent 58%)}
@@ -30,7 +53,10 @@ a,button,input,summary{touch-action:manipulation}
 .project-card[data-project="bongo"] .project-cover-link img{object-position:center 47%}
 .project-card[data-project="beer"] .project-cover-link::before{background:linear-gradient(90deg,rgba(5,7,5,.94) 0%,rgba(5,7,5,.7) 45%,rgba(5,7,5,.25) 78%),linear-gradient(0deg,rgba(5,7,5,.6),transparent 58%)}
 .project-card[data-project="beer"] .project-cover-link img{object-position:center 55%}
-.preview-chrome{position:absolute!important;z-index:4;left:14px;right:14px;top:14px;display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:38px;padding:8px 12px;border:1px solid #ffffff30;border-radius:999px;background:#14171096!important;color:#f4f1e8!important;backdrop-filter:blur(12px);font-size:11px;letter-spacing:.04em;box-shadow:0 10px 28px #00000025}
+.preview-chrome{position:absolute!important;z-index:4;left:14px;right:14px;top:14px;display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:36px;padding:8px 12px;border:1px solid #ffffff30;border-radius:999px;background:rgba(20,23,16,.78)!important;color:#f4f1e8!important;font-size:11px;letter-spacing:.04em}
+.preview-chrome>span{min-width:0}
+.preview-chrome>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.preview-chrome>span:first-child,.preview-chrome>span:last-child{flex:0 0 auto}
 .preview-dots{color:#d9e39f;letter-spacing:2px}
 .preview-site-ui{position:absolute;z-index:3;left:24px;right:24px;bottom:24px;display:flex;flex-direction:column;align-items:flex-start;color:#f5efe5;text-shadow:0 2px 18px rgba(0,0,0,.2);pointer-events:none}
 .preview-kicker{font-size:9px;font-weight:700;letter-spacing:.16em;margin-bottom:10px;opacity:.82}
@@ -38,76 +64,111 @@ a,button,input,summary{touch-action:manipulation}
 .preview-site-ui strong em{font:inherit;font-style:italic;color:inherit}
 .preview-site-ui small{margin-top:12px;font-size:10px;letter-spacing:.08em;opacity:.76}
 .project-card[data-project="corriera"] .preview-kicker,.project-card[data-project="corriera"] .preview-site-ui strong em{color:#d6aa83}
-.project-card[data-project="eden"] .preview-site-ui strong{font-weight:400;max-width:8ch}.project-card[data-project="eden"] .preview-kicker,.project-card[data-project="eden"] .preview-site-ui strong em{color:#b0b45b}
-.project-card[data-project="bongo"] .preview-site-ui strong{max-width:12ch}.project-card[data-project="bongo"] .preview-kicker{color:#e4cfaa}
-.project-card[data-project="beer"] .preview-site-ui strong{max-width:none;font-family:Arial,Helvetica,sans-serif;font-size:clamp(36px,5.1vw,74px);font-weight:800;line-height:.76;letter-spacing:-.075em;text-transform:uppercase}.project-card[data-project="beer"] .preview-kicker,.project-card[data-project="beer"] .preview-site-ui strong em{color:#a8d54a;font-style:normal}
-.project-body{padding:26px 26px 28px}
+.project-card[data-project="eden"] .preview-site-ui strong{font-weight:400;max-width:8ch}
+.project-card[data-project="eden"] .preview-kicker,.project-card[data-project="eden"] .preview-site-ui strong em{color:#b0b45b}
+.project-card[data-project="bongo"] .preview-site-ui strong{max-width:12ch}
+.project-card[data-project="bongo"] .preview-kicker{color:#e4cfaa}
+.project-card[data-project="beer"] .preview-site-ui strong{max-width:none;font-family:Arial,Helvetica,sans-serif;font-size:clamp(36px,5.1vw,74px);font-weight:800;line-height:.76;letter-spacing:-.075em;text-transform:uppercase}
+.project-card[data-project="beer"] .preview-kicker,.project-card[data-project="beer"] .preview-site-ui strong em{color:#a8d54a;font-style:normal}
+.project-body{padding:22px 2px 0}
 .package-level{margin:0 0 8px;color:var(--olive);font-size:10px;font-weight:700;letter-spacing:.18em}
-.project-body h3{font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;letter-spacing:-.035em;margin-bottom:10px}
+.project-body h3{font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.12;letter-spacing:-.035em;margin-bottom:10px}
 .project-description{color:var(--muted);line-height:1.75;max-width:52ch}
-.project-scope{margin-top:12px;font-size:13px;line-height:1.6;color:#454a3f;font-weight:600}
-.demo-label{margin-top:15px;font-size:11px;letter-spacing:.06em;color:#7d8274}
-.demo-button{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px;min-height:48px;padding:12px 16px;border:1px solid #bfc5b1;border-radius:999px;font-size:12px;font-weight:600;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
-.demo-button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+.project-scope{margin-top:10px;font-size:13px;line-height:1.6;color:#454a3f;font-weight:600}
+.demo-label{margin-top:14px;font-size:11px;letter-spacing:.05em;color:#7d8274}
+.demo-button{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;width:fit-content;margin-top:18px;min-height:44px;padding:10px 0;border:0;border-bottom:1px solid #adb49c;border-radius:0;font-size:12px;font-weight:600;transition:color .2s ease,border-color .2s ease}
+.demo-button:hover{background:transparent;color:var(--olive);border-color:var(--olive);transform:none}
+.portfolio-cta{margin-top:58px}
 
-/* Mobile menu becomes a contained dropdown; no background scroll or hidden focus. */
-@media(max-width:600px){
-  .header{position:relative;z-index:20;align-content:start}
-  .menu-ready #navigation.open{
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    width:auto;
-    max-height:calc(100dvh - 82px);
-    overflow-y:auto;
-    overscroll-behavior:contain;
-    padding:10px 16px 18px;
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-top:0;
-    border-radius:0 0 12px 12px;
-    box-shadow:0 18px 34px #292c2418;
-  }
-  .menu-ready #navigation.open>a{min-height:52px}
-  html.menu-open,html.menu-open body{overflow:hidden}
-  html.menu-open body::before{content:"";position:fixed;inset:0;z-index:15;background:#292c242e}
-  .preview-chrome{gap:8px}
-  .preview-chrome>span:nth-child(2){flex:1 1 auto;text-align:center}
-  .footer>.text-link{max-width:100%}
-  .project-grid{grid-template-columns:1fr;gap:22px}
-  .project-card:hover{transform:none}
-  .project-card:hover .project-cover-link img{transform:none}
-  .project-cover-link{aspect-ratio:1.25/1}
-  .preview-site-ui{left:18px;right:18px;bottom:18px}
-  .preview-site-ui strong{font-size:clamp(29px,9vw,42px)}
-  .project-card[data-project="beer"] .preview-site-ui strong{font-size:clamp(40px,13vw,62px)}
-  .project-body{padding:22px}
-  .project-body h3{font-size:27px}
-  .demo-button:hover{transform:none}
-}
+/* Services: precise, useful, and easy to scan. */
+.services .section-heading>p{max-width:430px}
+.service-row{transition:border-color .2s ease}
+.service-row:hover{border-top-color:#aeb69c}
+.service-row h3{max-width:18ch}
+.service-row p{max-width:54ch}
+.service-row .service-symbol{color:var(--olive)}
 
-@media(max-width:360px){
-  .menu-toggle{min-width:auto;gap:12px;padding-left:6px}
-  .preview-chrome{font-size:10px;left:10px;right:10px;top:10px}
-  .eyebrow{font-size:11px;letter-spacing:1.15px}
-  .preview-site-ui{left:14px;right:14px;bottom:14px}
-  .preview-kicker{font-size:8px;margin-bottom:7px}
-  .preview-site-ui small{margin-top:8px;font-size:9px}
-  .project-card[data-project="beer"] .preview-site-ui strong{font-size:clamp(36px,13vw,52px)}
-}
+/* Mid-page conversion moment. */
+.mid-cta{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:clamp(40px,7vw,96px);align-items:end;padding-block:clamp(56px,7vw,92px);border-top:1px solid var(--line)}
+.mid-cta .section-label{margin-bottom:20px}
+.mid-cta h2{font-size:clamp(40px,5.2vw,70px)}
+.mid-cta-copy{display:grid;gap:24px;justify-items:start}
+.mid-cta-copy p{max-width:470px;color:var(--muted);font-size:16px;line-height:1.8}
+.mid-cta .button{min-width:220px}
 
-/* Branded 404 page. */
+/* Process: direct, structured, not corporate. */
+.process-grid article{min-height:220px;display:flex;flex-direction:column}
+.process-grid article p{margin-top:auto}
+.process-grid h3{max-width:17ch}
+
+/* Native FAQ: subtle open state. */
+.faq details[open] p{animation:faqIn .22s ease-out both}
+@keyframes faqIn{from{opacity:.35;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* Brief: helpful conversation starter. */
+.brief-panel{box-shadow:none}
+.brief-options span{transition:background .18s ease,color .18s ease,border-color .18s ease}
+.brief-actions .button{min-height:50px}
+
+/* Contact: founder-direct, editorial rather than boxed. */
+.contact-grid{gap:44px}
+.contact-grid article{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:26px 0 0}
+.initials{background:transparent;border:1px solid var(--line)}
+.whatsapp-link{width:fit-content}
+.contact-intro{max-width:720px}
+.contact-arrow{color:var(--olive)}
+
+/* Footer and 404. */
+.footer{padding-bottom:72px}
 .not-found-page{min-height:100dvh;display:flex;flex-direction:column}
 .not-found-page .header{flex:0 0 auto}
 .not-found{flex:1;display:grid;align-content:center;min-height:calc(100dvh - 220px);padding-block:clamp(72px,10vw,140px)}
 .not-found-code{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--olive);margin-bottom:18px}
-.not-found h1{max-width:9ch;font-size:clamp(58px,9vw,118px)}
-.not-found>p{max-width:580px;margin-top:26px;color:var(--muted);font-size:17px;line-height:1.8}
+.not-found h1{max-width:10ch;font-size:clamp(58px,9vw,118px)}
+.not-found>p{max-width:600px;margin-top:26px;color:var(--muted);font-size:17px;line-height:1.8}
 .not-found-actions{display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:34px;align-items:center}
 .not-found-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);padding-block:24px 48px;font-size:12px;color:var(--muted)}
 .not-found-footer a{min-height:44px;display:inline-flex;align-items:center}
+
+/* Mobile navigation: contained, accessible, with page lock handled in JS. */
 @media(max-width:600px){
+  .header{position:sticky;z-index:50;align-content:start}
+  .menu-ready #navigation.open{
+    position:absolute;top:100%;left:0;right:0;width:auto;
+    max-height:calc(100dvh - 82px);overflow-y:auto;overscroll-behavior:contain;
+    padding:10px 16px calc(18px + env(safe-area-inset-bottom));
+    background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;
+    box-shadow:0 18px 34px #292c2418
+  }
+  .menu-ready #navigation.open>a{min-height:52px}
+  html.menu-open,html.menu-open body{overflow:hidden}
+  html.menu-open body::before{content:"";position:fixed;inset:0;z-index:15;background:#292c242e}
+  .hero{padding-top:34px}
+  .hero h1{max-width:100%}
+  .hero-bottom p{font-size:15px}
+  .hero-art{height:300px}
+  .scene-ready .scene-controls{display:none}
+  .art-caption{max-width:190px}
+  .intro{border-top:0}
+  .intro-copy{gap:16px}
+  .project-grid{grid-template-columns:1fr;gap:44px}
+  .project-cover-link{aspect-ratio:1.25/1}
+  .project-card:hover .project-cover-link img{transform:none}
+  .preview-chrome{gap:8px}
+  .preview-chrome>span:nth-child(2){flex:1 1 auto;text-align:center}
+  .preview-site-ui{left:18px;right:18px;bottom:18px}
+  .preview-site-ui strong{font-size:clamp(29px,9vw,42px)}
+  .project-card[data-project="beer"] .preview-site-ui strong{font-size:clamp(40px,13vw,62px)}
+  .project-body{padding:20px 0 0}
+  .project-body h3{font-size:29px}
+  .portfolio-cta{margin-top:42px}
+  .mid-cta{grid-template-columns:1fr;gap:24px;padding-block:58px}
+  .mid-cta-copy{gap:20px}
+  .mid-cta .button{width:100%;min-width:0}
+  .process-grid article{min-height:0}
+  .contact-grid{gap:30px}
+  .contact-grid article{padding-top:22px}
+  .footer>.text-link{max-width:100%}
   .not-found{min-height:auto;padding-block:72px 80px}
   .not-found>p{font-size:15px}
   .not-found-actions{align-items:stretch;flex-direction:column}
@@ -115,4 +176,22 @@ a,button,input,summary{touch-action:manipulation}
   .not-found-footer{align-items:flex-start;flex-direction:column;padding-bottom:36px}
 }
 
-@media(prefers-reduced-motion:reduce){.project-card,.project-cover-link img,.demo-button{transition:none!important}}
+@media(max-width:360px){
+  .menu-toggle{min-width:auto;gap:12px;padding-left:6px}
+  .eyebrow{font-size:11px;letter-spacing:1.15px}
+  .hero h1{font-size:42px}
+  .hero-art{height:278px}
+  .preview-chrome{font-size:10px;left:10px;right:10px;top:10px}
+  .preview-site-ui{left:14px;right:14px;bottom:14px}
+  .preview-kicker{font-size:8px;margin-bottom:7px}
+  .preview-site-ui small{margin-top:8px;font-size:9px}
+  .project-card[data-project="beer"] .preview-site-ui strong{font-size:clamp(36px,13vw,52px)}
+  .mid-cta h2{font-size:38px}
+  .phone{font-size:22px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .project-cover-link img,.nav-contact .arrow-icon,.text-link .arrow-icon,.demo-button .arrow-icon,.button .arrow-icon,.brief-options span{transition:none!important}
+  .faq details[open] p{animation:none}
+  .scene-depth{transition:none!important}
+}
