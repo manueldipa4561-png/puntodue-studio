@@ -14,6 +14,27 @@ a,button,input,summary{touch-action:manipulation}
 .project-cover-link:focus-visible{outline-offset:-4px}
 .brand:focus-visible{outline-offset:4px}
 
+/* Portfolio refresh: richer covers based on each demo's current visual language. */
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}
+.project-card{overflow:hidden;border:1px solid #cbd0bf;border-radius:14px;background:#f7f4ec;box-shadow:0 16px 45px #39402d0b;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.project-card:hover{transform:translateY(-6px);border-color:#aeb79d;box-shadow:0 28px 70px #39402d18}
+.project-cover-link{position:relative;isolation:isolate;display:block;min-height:0;aspect-ratio:1.46/1;overflow:hidden;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px #ffffff22}
+.project-cover-link::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,9,7,.06) 0%,rgba(8,9,7,.12) 58%,rgba(8,9,7,.78) 100%);transition:background .3s ease}
+.project-card:hover .project-cover-link::before{background:linear-gradient(180deg,rgba(8,9,7,.02) 0%,rgba(8,9,7,.08) 58%,rgba(8,9,7,.68) 100%)}
+.project-cover-link img{width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.project-card:nth-child(1) .project-cover-link{background-image:url('https://images.pexels.com/photos/1267151/pexels-photo-1267151.jpeg?auto=compress&cs=tinysrgb&w=1600');background-position:center 52%}
+.project-card:nth-child(2) .project-cover-link{background-image:url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=82');background-position:center 47%}
+.project-card:nth-child(3) .project-cover-link{background-image:url('https://coffeeland.ch/frontend/images/Italy/Coffee/626/Reviews/1-626.webp');background-position:center 50%}
+.project-card:nth-child(4) .project-cover-link{background-image:url('https://images.unsplash.com/photo-1772758631701-5c5f532f44cf?auto=format&fit=crop&fm=jpg&q=82&w=1800');background-position:center 48%}
+.preview-chrome{position:absolute!important;z-index:3;left:14px;right:14px;top:14px;display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:38px;padding:8px 12px;border:1px solid #ffffff30;border-radius:999px;background:#14171096!important;color:#f4f1e8!important;backdrop-filter:blur(12px);font-size:11px;letter-spacing:.04em;box-shadow:0 10px 28px #00000025}
+.preview-dots{color:#d9e39f;letter-spacing:2px}
+.project-cover-link::after{position:absolute;z-index:3;left:18px;bottom:18px;padding:8px 11px;border:1px solid #ffffff30;border-radius:999px;background:#1417109e;color:#f4f1e8;backdrop-filter:blur(12px);font-size:10px;font-weight:600;letter-spacing:.13em}
+.project-card:nth-child(1) .project-cover-link::after{content:"CRAFT · CLUB · QR"}
+.project-card:nth-child(2) .project-cover-link::after{content:"PUB · ESSENZIALE"}
+.project-card:nth-child(3) .project-cover-link::after{content:"COFFEE · APERITIVO · MIXOLOGY"}
+.project-card:nth-child(4) .project-cover-link::after{content:"PIZZA · ABRUZZO · MENU"}
+.project-body{padding:26px 26px 28px}.project-body h3{font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;letter-spacing:-.035em;margin-bottom:10px}.project-description{color:var(--muted);line-height:1.75;max-width:52ch}.demo-label{margin-top:15px;font-size:11px;letter-spacing:.06em;color:#7d8274}.demo-button{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;margin-top:20px;min-height:48px;padding:12px 16px;border:1px solid #bfc5b1;border-radius:999px;font-size:12px;font-weight:600;transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}.demo-button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px)}
+
 /* Mobile menu becomes a contained dropdown; no background scroll or hidden focus. */
 @media(max-width:600px){
   .header{position:relative;z-index:20;align-content:start}
@@ -39,12 +60,14 @@ a,button,input,summary{touch-action:manipulation}
   .preview-chrome{gap:8px}
   .preview-chrome>span:nth-child(2){flex:1 1 auto;text-align:center}
   .footer>.text-link{max-width:100%}
+  .project-grid{grid-template-columns:1fr;gap:22px}.project-card:hover{transform:none}.project-cover-link{aspect-ratio:1.25/1}.project-body{padding:22px}.project-body h3{font-size:27px}.demo-button:hover{transform:none}
 }
 
 @media(max-width:360px){
   .menu-toggle{min-width:auto;gap:12px;padding-left:6px}
-  .preview-chrome{font-size:11px}
+  .preview-chrome{font-size:10px;left:10px;right:10px;top:10px}
   .eyebrow{font-size:11px;letter-spacing:1.15px}
+  .project-cover-link::after{left:12px;bottom:12px;font-size:9px}
 }
 
 /* Branded 404 page. */
@@ -64,3 +87,5 @@ a,button,input,summary{touch-action:manipulation}
   .not-found-actions .button,.not-found-actions .text-link{width:100%}
   .not-found-footer{align-items:flex-start;flex-direction:column;padding-bottom:36px}
 }
+
+@media(prefers-reduced-motion:reduce){.project-card,.project-cover-link::before,.demo-button{transition:none!important}}
