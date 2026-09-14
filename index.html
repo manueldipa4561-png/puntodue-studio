@@ -9,10 +9,10 @@
   <meta property="og:url" content="https://puntoduestudio.it/">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Punto Due Studio">
-  <title>Punto Due Studio — Web design per attività e professionisti</title>
-  <meta name="description" content="Siti web su misura per attività, imprese e professionisti: design curato, esperienza mobile e contatti chiari. Scopri Punto Due Studio.">
-  <meta property="og:title" content="Punto Due Studio — Siti web, fatti con cura.">
-  <meta property="og:description" content="Siti web su misura per attività, imprese e professionisti: design curato, esperienza mobile e contatti chiari.">
+  <title>Punto Due Studio — Siti web su misura per attività e professionisti</title>
+  <meta name="description" content="Studio web indipendente. Progettiamo siti su misura per attività, imprese e professionisti, seguendo direttamente strategia, design, sviluppo e messa online.">
+  <meta property="og:title" content="Punto Due Studio — Siti web su misura, seguiti direttamente da noi.">
+  <meta property="og:description" content="Studio web indipendente per attività, imprese e professionisti. Strategia, design e sviluppo seguiti direttamente da Manuel e Nicolas.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://puntoduestudio.it/assets/social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -20,8 +20,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Punto Due Studio — siti web su misura per attività, imprese e professionisti.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Punto Due Studio — Siti web, fatti con cura.">
-  <meta name="twitter:description" content="Siti web su misura per attività, imprese e professionisti: design curato, esperienza mobile e contatti chiari.">
+  <meta name="twitter:title" content="Punto Due Studio — Siti web su misura.">
+  <meta name="twitter:description" content="Studio web indipendente. Strategia, design e sviluppo seguiti direttamente da noi.">
   <meta name="twitter:image" content="https://puntoduestudio.it/assets/social-card.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="stylesheet" href="style.css">
@@ -29,10 +29,25 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Punto Due Studio",
-    "url": "https://puntoduestudio.it/",
-    "inLanguage": "it-IT"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Punto Due Studio",
+        "url": "https://puntoduestudio.it/",
+        "inLanguage": "it-IT"
+      },
+      {
+        "@type": "Organization",
+        "name": "Punto Due Studio",
+        "url": "https://puntoduestudio.it/",
+        "description": "Studio web indipendente che progetta siti su misura per attività, imprese e professionisti.",
+        "founder": [
+          {"@type": "Person", "name": "Manuel Di Paolo"},
+          {"@type": "Person", "name": "Nicolas Di Paolo"}
+        ],
+        "sameAs": ["https://www.instagram.com/puntoduestudio/"]
+      }
+    ]
   }
   </script>
   <script src="script.js" defer></script>
@@ -49,17 +64,31 @@
     <section class="hero container" aria-labelledby="hero-title">
       <div class="eyebrow"><span class="status-dot"></span> STUDIO INDIPENDENTE · WEB DESIGN</div>
       <h1 id="hero-title">La tua attività.<br>Il suo spazio <em>online.</em></h1>
-      <div class="hero-bottom"><p>Siti web su misura per imprese, professionisti e attività di ogni settore.<br>Diamo forma alla tua identità, online.</p><a class="button hero-secondary" href="#contatti">Parliamo del tuo sito <span aria-hidden="true">→</span></a><a class="text-link" href="#progetti">Esplora i progetti <span aria-hidden="true">↓</span></a></div>
-      <ul class="hero-pillars" aria-label="Il nostro approccio"><li>Design su misura</li><li>Pensato per smartphone</li><li>Dialogo diretto con noi</li></ul>
+      <div class="hero-bottom">
+        <p>Siti web su misura per attività, imprese e professionisti. Strategia, design e sviluppo seguiti direttamente da noi, dall’idea alla messa online.</p>
+        <a class="button brief-start" href="#contatti">Parliamo del tuo progetto <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="#progetti">Guarda i progetti <span aria-hidden="true">↓</span></a>
+      </div>
+      <ul class="hero-pillars" aria-label="Il nostro approccio"><li>Strategia e design</li><li>Prima di tutto, mobile</li><li>Un rapporto diretto</li></ul>
       <div class="hero-art interactive-scene"><div class="art-grid"></div><span class="art-caption">DUE PUNTI DI VISTA. IN DIALOGO.</span><div class="scene-depth" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="sphere sphere-one"></div><div class="sphere sphere-two"></div><div class="scene-logo"><img src="logo-mark.svg" width="90" height="90" alt=""></div></div><div class="scene-controls"><label for="scene-angle">Ruota la scena</label><input id="scene-angle" type="range" min="-35" max="35" value="0" aria-label="Ruota la composizione 3D"><button id="scene-reset" type="button">Ripristina</button></div><span class="art-index">PUNTO / DUE</span></div>
-      <a class="mobile-contact" href="#contatti">Parliamo del tuo sito <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      <a class="mobile-contact brief-start" href="#contatti">Parliamo del tuo progetto <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
     </section>
+
     <section id="approccio" class="intro container section">
       <div class="section-label">01 — LO STUDIO</div>
-      <div><h2>Piccolo studio.<br><em>Attenzione grande.</em></h2><div class="intro-copy"><p>Siamo Manuel e Nicolas Di Paolo, due fratelli che creano siti web su misura per attività, imprese e professionisti.</p><p>Parli direttamente con noi: mettiamo in ordine contenuti e informazioni, ti mostriamo la proposta e la rivediamo insieme prima della pubblicazione.</p></div><a class="text-link" href="#contatti">Conosciamoci <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+      <div>
+        <h2>Due fratelli.<br><em>Un dialogo diretto.</em></h2>
+        <div class="intro-copy">
+          <p>Siamo Manuel e Nicolas Di Paolo. Seguiamo insieme strategia, design e sviluppo, senza passaggi tra reparti o interlocutori diversi.</p>
+          <p>Ci racconti la tua attività; noi mettiamo in ordine contenuti, priorità e funzioni, poi rivediamo il progetto con te prima di portarlo online.</p>
+        </div>
+        <a class="text-link" href="#contatti">Conosciamoci <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+      </div>
     </section>
+
     <section id="progetti" class="projects section">
-      <div class="container"><div class="section-heading"><div><div class="section-label">02 — PROGETTI SELEZIONATI</div><h2>Dall’identità.<br><em>Al digitale.</em></h2></div><p>Quattro livelli, dalla presenza essenziale a un’esperienza più evoluta.<br>Ogni demo resta curata, riconoscibile e pensata per il suo contesto.</p></div>
+      <div class="container">
+        <div class="section-heading"><div><div class="section-label">02 — PROGETTI SELEZIONATI</div><h2>Dall’identità.<br><em>Al digitale.</em></h2></div><p>Quattro demo mostrano come cambia il progetto quando aumentano contenuti e funzioni.<br>La cura resta la stessa.</p></div>
         <div class="project-grid">
           <article class="project-card" data-project="corriera">
             <a class="project-cover-link" href="https://la-corriera-website.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Apri la demo La Corriera in una nuova scheda">
@@ -101,33 +130,60 @@
             <p class="demo-label">Progetto dimostrativo — non commissionato.</p>
             <a class="demo-button" href="https://joyful-sprinkles-4b402e.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Visualizza demo Beer Hops in una nuova scheda">Visualizza demo <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
           </article>
-        </div><div class="portfolio-cta"><p>Come potrebbe essere il sito della tua attività?</p><a class="text-link project-start" href="#contatti">Parliamo del tuo sito <span aria-hidden="true">→</span></a></div><p class="portfolio-note">Anteprime editoriali costruite con immagini e direzione visiva delle demo correnti: non sono screenshot. Apri i siti per esplorarli e interagire con i contenuti. Le demo non sono commissionate e non implicano collaborazioni o approvazioni delle attività.</p>
+        </div>
+        <div class="portfolio-cta"><p>Non è una questione di pacchetto: è una questione di cosa deve fare il tuo sito.</p><a class="text-link brief-start" href="#contatti">Raccontaci il progetto <span aria-hidden="true">→</span></a></div>
+        <p class="portfolio-note">Anteprime editoriali costruite con immagini e direzione visiva delle demo correnti: non sono screenshot. Apri i siti per esplorarli e interagire con i contenuti. Le demo non sono commissionate e non implicano collaborazioni o approvazioni delle attività.</p>
       </div>
     </section>
-    <section id="servizi" class="services container section"><div class="section-heading"><div><div class="section-label">03 — COSA FACCIAMO</div><h2>Quello che serve.<br><em>Fatto con cura.</em></h2></div><p>Un sito pensato per la tua attività.<br>E per le persone che la cercano.</p></div><div class="service-row"><span class="number">01</span><h3>Siti web su misura</h3><p>Organizziamo pagine, testi e immagini intorno alla tua attività. Dalla presentazione a servizi, cataloghi o menu, ogni contenuto trova un posto chiaro.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><div class="service-row"><span class="number">02</span><h3>Prima di tutto, mobile</h3><p>Contenuti leggibili, navigazione intuitiva e contatti a portata di pollice. Un’esperienza curata anche sugli schermi più piccoli.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><div class="service-row"><span class="number">03</span><h3>Dal progetto alla messa online</h3><p>Ti accompagniamo dal primo confronto alla pubblicazione, con i collegamenti utili per chiamarti, scriverti e trovarti.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div></section>
-    <section class="process section"><div class="container"><div class="section-label">04 — IL METODO</div><h2>Ci parli della tua attività.<br><em>Da lì, costruiamo.</em></h2><div class="process-grid"><article><span>01 / ASCOLTO</span><h3>Prima, conosciamoci.</h3><p>Ci racconti la tua attività, le tue esigenze e cosa vorresti comunicare.</p></article><article><span>02 / DESIGN</span><h3>Diamo forma all’idea.</h3><p>Concordiamo contenuti, funzionalità, costi e tempi. Poi definiamo la struttura e la direzione visiva del sito.</p></article><article><span>03 / REVISIONE</span><h3>Guardiamolo insieme.</h3><p>Rivediamo testi, immagini e navigazione con te, raccogliendo le modifiche prima della pubblicazione.</p></article><article><span>04 / ONLINE</span><h3>Pronti a partire.</h3><p>Verifichiamo il sito su desktop e smartphone, poi lo portiamo online.</p></article></div></div></section>
+
+    <section id="servizi" class="services container section">
+      <div class="section-heading"><div><div class="section-label">03 — COSA FACCIAMO</div><h2>Quello che serve.<br><em>Fatto con cura.</em></h2></div><p>Partiamo da ciò che il sito deve dire, mostrare e far fare.<br>Poi costruiamo intorno a quello.</p></div>
+      <div class="service-row"><span class="number">01</span><h3>Strategia e struttura</h3><p>Mettiamo in ordine contenuti, priorità e percorsi: cosa deve capire una persona, cosa deve trovare e quale azione deve poter fare.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+      <div class="service-row"><span class="number">02</span><h3>Design e sviluppo</h3><p>Disegniamo e costruiamo il sito intorno all’identità dell’attività, senza partire da un template da riempire.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+      <div class="service-row"><span class="number">03</span><h3>Mobile e performance</h3><p>Progettiamo per gli schermi che le persone usano ogni giorno, con navigazione chiara, contenuti leggibili e interazioni leggere.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+      <div class="service-row"><span class="number">04</span><h3>Pubblicazione e supporto</h3><p>Ti accompagniamo nella messa online, dal dominio all’hosting, e restiamo disponibili quando serve intervenire dopo il lancio.</p><span class="service-symbol" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+    </section>
+
+    <section class="mid-cta container" aria-labelledby="mid-cta-title">
+      <div><div class="section-label">DA DOVE PARTIAMO</div><h2 id="mid-cta-title">Non sai ancora<br><em>che sito ti serve?</em></h2></div>
+      <div class="mid-cta-copy"><p>Partiamo dalla tua attività, non da un pacchetto. In due scelte prepari un messaggio e poi ne parli direttamente con noi.</p><a class="button brief-start" href="#contatti">Raccontaci il progetto <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section class="process section">
+      <div class="container"><div class="section-label">04 — IL METODO</div><h2>Chiaro dall’inizio.<br><em>Fino alla messa online.</em></h2>
+        <div class="process-grid">
+          <article><span>01 / CONOSCIAMOCI</span><h3>Partiamo dalla tua attività.</h3><p>Ci racconti cosa fai, chi vuoi raggiungere e cosa dovrebbe rendere più semplice il nuovo sito.</p></article>
+          <article><span>02 / PROGETTO</span><h3>Diamo forma alla direzione.</h3><p>Definiamo struttura, contenuti, funzioni, costi e tempi; poi costruiamo la direzione visiva.</p></article>
+          <article><span>03 / REVISIONE</span><h3>Lo rivediamo insieme.</h3><p>Ti mostriamo il progetto, raccogliamo le modifiche concordate e rifiniamo testi, immagini e navigazione.</p></article>
+          <article><span>04 / ONLINE</span><h3>Lo portiamo online.</h3><p>Controlliamo l’esperienza su desktop e smartphone, colleghiamo ciò che serve e pubblichiamo.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section id="domande" class="faq container section" aria-labelledby="faq-title">
       <div class="faq-heading"><div class="section-label">05 — PRIMA DI INIZIARE</div><h2 id="faq-title">Domande concrete.<br><em>Risposte semplici.</em></h2><p>Qualche punto di partenza, prima di parlare del tuo progetto.</p></div>
       <div class="faq-list">
         <details><summary>Ho già Instagram. A cosa serve un sito?</summary><p>Instagram racconta il quotidiano. Un sito raccoglie in un unico posto le informazioni che le persone cercano: cosa offri, servizi, prodotti o menu, dove sei e come contattarti. I due strumenti possono lavorare insieme.</p></details>
-        <details><summary>Quanto costa un sito?</summary><p>Dipende da pagine, contenuti e funzionalità. Prima definiamo insieme ciò che ti serve, poi ti presentiamo una proposta con attività e costi: concordiamo il perimetro del lavoro prima di iniziare.</p></details>
+        <details><summary>Quanto costa un sito?</summary><p>Dipende da pagine, contenuti e funzionalità. Prima definiamo insieme ciò che serve davvero, poi ti presentiamo una proposta chiara con attività, costi e tempi.</p></details>
+        <details><summary>Con chi parlerò durante il progetto?</summary><p>Direttamente con noi, Manuel e Nicolas. Seguiamo il progetto dal primo confronto alla pubblicazione, senza passaggi tra reparti.</p></details>
         <details><summary>Quanto tempo richiede?</summary><p>I tempi dipendono dalla complessità e dalla disponibilità di testi, foto e altre informazioni. Li concordiamo nella proposta, prima di iniziare.</p></details>
         <details><summary>Cosa devo preparare?</summary><p>Per il primo confronto bastano il nome della tua attività e la tua idea. Per costruire il sito raccoglieremo le informazioni corrette, i contatti, il logo e le immagini che hai il diritto di utilizzare.</p></details>
         <details><summary>I progetti mostrati sono lavori commissionati?</summary><p>No. I progetti presentati sono demo non commissionate, realizzate per mostrare il nostro lavoro. Non rappresentano collaborazioni commerciali né approvazioni delle attività.</p></details>
       </div>
     </section>
+
     <section class="project-brief container" id="progetto" aria-labelledby="brief-title" hidden>
-      <div class="brief-intro"><p class="section-label">PARTIAMO DALLA TUA IDEA</p><h2 id="brief-title">Il primo passo?<br><em>Bastano due scelte.</em></h2><p>Due scelte per preparare una bozza su WhatsApp. Puoi modificarla prima di inviarla.</p><a class="text-link" href="#contatti">Preferisci chiamarci? Vai ai contatti</a></div>
+      <div class="brief-intro"><p class="section-label">PARTIAMO DALLA TUA IDEA</p><h2 id="brief-title">Il primo passo?<br><em>Bastano due scelte.</em></h2><p>Ci bastano due indicazioni per preparare una bozza su WhatsApp. Puoi modificarla prima di inviarla.</p><a class="text-link" href="#contatti">Preferisci chiamarci? Vai ai contatti</a></div>
       <div class="brief-panel">
         <fieldset><legend>01 · La tua attività</legend><div class="brief-options">
           <label><input type="radio" name="business" value="un’attività o un’impresa" checked><span>Attività / Impresa</span></label>
           <label><input type="radio" name="business" value="un’attività professionale"><span>Professionista</span></label>
-          <label><input type="radio" name="business" value="un ristorante o un bar"><span>Ristorante / Bar</span></label>
+          <label><input type="radio" name="business" value="un ristorante o un locale"><span>Ristorante / Locale</span></label>
         </div></fieldset>
         <fieldset><legend>02 · Il tuo punto di partenza</legend><div class="brief-options">
-          <label><input type="radio" name="need" value="creare il mio primo sito" checked><span>Un nuovo sito</span></label>
-          <label><input type="radio" name="need" value="rinnovare il sito esistente"><span>Rinnovare il sito</span></label>
-          <label><input type="radio" name="need" value="capire quale sito potrebbe servirmi"><span>Ne parliamo</span></label>
+          <label><input type="radio" name="need" value="creare un nuovo sito" checked><span>Un nuovo sito</span></label>
+          <label><input type="radio" name="need" value="rinnovare il sito che uso oggi"><span>Rinnovare il sito</span></label>
+          <label><input type="radio" name="need" value="capire quale sito potrebbe servirmi"><span>Non lo so ancora</span></label>
         </div></fieldset>
         <div class="brief-preview"><span>IL TUO MESSAGGIO</span><p id="brief-message" aria-live="polite" aria-atomic="true"></p></div>
         <p class="brief-destination">Con chi vuoi parlarne?</p>
@@ -135,8 +191,18 @@
         <p class="brief-note">Le scelte restano in questa pagina fino al clic. WhatsApp si aprirà con una bozza: sarai tu a inviarla.</p>
       </div>
     </section>
-    <section id="contatti" class="contact container section"><div class="section-label">06 — FACCIAMO IL PRIMO PASSO</div><div class="contact-heading"><h2>Un bel progetto<br>inizia con un <em>ciao.</em></h2><span class="contact-arrow" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div><p class="contact-intro">Scegli con chi parlare. Puoi chiamarci o scriverci direttamente su WhatsApp, anche senza compilare il brief.</p><div class="contact-grid"><article><div class="contact-person"><span class="initials" aria-hidden="true">M.</span><div><h3>Manuel Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248423657">+39 324 842 3657</a><a class="text-link whatsapp-link" href="https://wa.me/393248423657?text=Ciao%20Manuel%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer" aria-label="Scrivi a Manuel su WhatsApp in una nuova scheda">Scrivi a Manuel su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article><article><div class="contact-person"><span class="initials" aria-hidden="true">N.</span><div><h3>Nicolas Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248165947">+39 324 816 5947</a><a class="text-link whatsapp-link" href="https://wa.me/393248165947?text=Ciao%20Nicolas%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer" aria-label="Scrivi a Nicolas su WhatsApp in una nuova scheda">Scrivi a Nicolas su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article></div></section>
+
+    <section id="contatti" class="contact container section">
+      <div class="section-label">06 — FACCIAMO IL PRIMO PASSO</div>
+      <div class="contact-heading"><h2>Un bel progetto<br>inizia con una <em>conversazione.</em></h2><span class="contact-arrow" aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></span></div>
+      <p class="contact-intro">Puoi chiamare o scrivere direttamente a Manuel o Nicolas. Ti rispondiamo noi e da lì capiamo insieme quale può essere il prossimo passo.</p>
+      <div class="contact-grid">
+        <article><div class="contact-person"><span class="initials" aria-hidden="true">M.</span><div><h3>Manuel Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248423657">+39 324 842 3657</a><a class="text-link whatsapp-link" href="https://wa.me/393248423657?text=Ciao%20Manuel%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer" aria-label="Scrivi a Manuel su WhatsApp in una nuova scheda">Scrivi a Manuel su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article>
+        <article><div class="contact-person"><span class="initials" aria-hidden="true">N.</span><div><h3>Nicolas Di Paolo</h3><span>COFONDATORE</span></div></div><a class="phone" href="tel:+393248165947">+39 324 816 5947</a><a class="text-link whatsapp-link" href="https://wa.me/393248165947?text=Ciao%20Nicolas%2C%20vorrei%20parlare%20del%20sito%20per%20la%20mia%20attivit%C3%A0." target="_blank" rel="noopener noreferrer" aria-label="Scrivi a Nicolas su WhatsApp in una nuova scheda">Scrivi a Nicolas su WhatsApp <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M5 19 19 5M5 5h14v14"/></svg></a></article>
+      </div>
+    </section>
   </main>
+
   <footer class="footer container">
     <a class="brand" href="/" aria-label="Punto Due Studio, homepage"><img src="logo.svg" width="205" height="50" alt="Punto Due Studio"></a>
     <nav class="footer-links" aria-label="Navigazione nel piè di pagina"><a href="#approccio">Lo studio</a><a href="#progetti">Progetti</a><a href="#servizi">Servizi</a><a href="#domande">Domande</a><a href="#contatti">Contatti</a></nav>
