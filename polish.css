@@ -6,6 +6,8 @@ a,button,input,summary{touch-action:manipulation}
 .brand{display:inline-flex;align-items:center;min-height:48px;max-width:100%}
 .button,.text-link,.demo-button,.whatsapp-link,.mobile-contact{max-width:100%;overflow-wrap:anywhere}
 .phone{max-width:100%}
+/* The hero already contains the primary contact CTA; keep the legacy mobile duplicate out of layout and the accessibility tree. */
+.mobile-contact{display:none}
 
 /* Navigation: quiet, persistent, and readable. */
 .header{position:sticky;top:0;z-index:50;background:var(--paper)}
