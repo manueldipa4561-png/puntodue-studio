@@ -1,5 +1,6 @@
 /* Punto Due Studio — boutique refinement layered over the core design system. */
 html,body{max-width:100%;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+html{scroll-padding-top:120px}
 body{min-width:0;text-rendering:optimizeLegibility}
 main,section,footer,.header,.container,.project-card,.project-body,.contact-grid article{min-width:0}
 a,button,input,summary{touch-action:manipulation}
@@ -10,7 +11,7 @@ a,button,input,summary{touch-action:manipulation}
 .mobile-contact{display:none}
 
 /* Navigation: quiet, persistent, and readable. */
-.header{position:sticky;top:0;z-index:50;background:var(--paper)}
+.header{position:sticky;top:0;z-index:50;background:var(--paper);isolation:isolate}
 #navigation>a{position:relative}
 #navigation>a:not(.nav-contact)::after{content:"";position:absolute;left:0;right:100%;bottom:7px;height:1px;background:var(--olive);transition:right .24s ease}
 #navigation>a:not(.nav-contact):hover::after,#navigation>a:not(.nav-contact):focus-visible::after{right:0}
@@ -72,6 +73,10 @@ a,button,input,summary{touch-action:manipulation}
 .project-card[data-project="bongo"] .preview-kicker{color:#e4cfaa}
 .project-card[data-project="beer"] .preview-site-ui strong{max-width:none;font-family:Arial,Helvetica,sans-serif;font-size:clamp(36px,5.1vw,74px);font-weight:800;line-height:.76;letter-spacing:-.075em;text-transform:uppercase}
 .project-card[data-project="beer"] .preview-kicker,.project-card[data-project="beer"] .preview-site-ui strong em{color:#a8d54a;font-style:normal}
+/* Historical local viewport captures are used only when a third-party preview image fails. */
+.project-card.preview-fallback .project-cover-link::before{background:linear-gradient(180deg,rgba(10,12,9,.08) 0%,rgba(10,12,9,.18) 72%,rgba(10,12,9,.5) 100%)}
+.project-card.preview-fallback .project-cover-link img{object-fit:cover;object-position:top center;transform:none}
+.project-card.preview-fallback .preview-site-ui{display:none}
 .project-body{padding:22px 2px 0}
 .package-level{margin:0 0 8px;color:var(--olive);font-size:10px;font-weight:700;letter-spacing:.18em}
 .project-body h3{font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.12;letter-spacing:-.035em;margin-bottom:10px}
@@ -134,6 +139,7 @@ a,button,input,summary{touch-action:manipulation}
 
 /* Mobile navigation: contained, accessible, with page lock handled in JS. */
 @media(max-width:600px){
+  html{scroll-padding-top:96px}
   .header{position:sticky;z-index:50;align-content:start}
   .menu-ready #navigation.open{
     position:absolute;top:100%;left:0;right:0;width:auto;

@@ -1,4 +1,4 @@
-"""Structural validation; requires lxml. Does not render a browser viewport."""
+"""Structural validation; requires lxml. Does not render browser viewports."""
 from pathlib import Path
 from urllib.parse import urlsplit, parse_qs
 from lxml import html, etree
@@ -8,8 +8,13 @@ doc = html.parse(str(root / 'index.html'))
 ids = doc.xpath('//*[@id]/@id')
 assert len(ids) == len(set(ids)), 'Duplicate IDs'
 assert len(doc.xpath('//h1')) == 1
-assert len(doc.xpath('//section[@id="domande"]//details/summary')) == 5
-assert len(doc.xpath('//div[@class="project-body"]')) == 4
+assert len(doc.xpath('//section[@id="domande"]//details/summary')) == 6
+
+cards = doc.xpath('//article[contains(concat(" ", normalize-space(@class), " "), " project-card ")]')
+assert [card.get('data-project') for card in cards] == ['corriera', 'eden', 'bongo', 'beer']
+assert [card.xpath('.//*[contains(concat(" ", normalize-space(@class), " "), " package-level ")][1]/text()')[0].strip() for card in cards] == ['ESSENZIALE', 'PRESENZA', 'CRESCITA', 'EVOLUZIONE']
+assert all(card.xpath('.//*[contains(concat(" ", normalize-space(@class), " "), " demo-label ")][contains(., "non commissionato")]') for card in cards)
+
 for href in doc.xpath('//a/@href'):
     if href.startswith('#') and len(href) > 1:
         assert href[1:] in ids, href
@@ -17,20 +22,33 @@ for href in doc.xpath('//a/@href'):
         parsed = urlsplit(href)
         assert parsed.path in ['/393248423657', '/393248165947']
         assert parse_qs(parsed.query).get('text')
+
 for el in doc.xpath('//*[@src] | //link[@href]'):
     path = el.get('src') or el.get('href')
     if not urlsplit(path).scheme:
-        assert (root / path).is_file(), path
+        assert (root / path.lstrip('/')).is_file(), path
+
 for image in doc.xpath('//img'):
     assert image.get('alt') is not None
     assert image.get('width') and image.get('height')
+
+for image in doc.xpath('//a[contains(@class,"project-cover-link")]/img'):
+    assert image.get('loading') == 'lazy'
+    assert image.get('decoding') == 'async'
+
 for link in doc.xpath('//a[@target="_blank"]'):
     assert 'noopener' in link.get('rel', '')
+
+for preview in ['corriera-preview.webp', 'eden-preview.webp', 'bongo-preview.webp', 'beer-preview.webp']:
+    assert (root / 'assets' / preview).is_file(), preview
+
 for cover in ['virgilio', 'corriera']:
     etree.parse(str(root / f'assets/{cover}-cover.svg'))
+
 assert 'https://puntoduestudio.it/' in (root / 'sitemap.xml').read_text()
 etree.parse(str(root / 'sitemap.xml'))
 assert doc.xpath('//meta[@property="og:image"]/@content') == ['https://puntoduestudio.it/assets/social-card.png']
 assert not doc.xpath('//form'), 'Unconfigured form'
 assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 4
-print('PASS HTML links, headings, image dimensions, contact targets, SVG/XML, social metadata')
+assert len(doc.xpath('//a[contains(concat(" ", normalize-space(@class), " "), " brief-start ")]')) >= 3
+print('PASS structure, portfolio order, FAQ count, links, images, fallbacks, contacts, SVG/XML and social metadata')

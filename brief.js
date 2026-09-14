@@ -6,6 +6,7 @@
   const manuel = brief.querySelector('#brief-manuel');
   const nicolas = brief.querySelector('#brief-nicolas');
   if (!message || !manuel || !nicolas) return;
+
   function update() {
     const business = brief.querySelector('input[name="business"]:checked');
     const need = brief.querySelector('input[name="need"]:checked');
@@ -15,11 +16,13 @@
     manuel.href = 'https://wa.me/393248423657?text=' + encodeURIComponent(body);
     nicolas.href = 'https://wa.me/393248165947?text=' + encodeURIComponent(body);
   }
+
   brief.addEventListener('change', update);
   update();
   brief.hidden = false;
-  // Link to the brief only after enhancement succeeds; HTML retains contact fallbacks.
-  document.querySelectorAll('.hero-secondary, .project-start, .mobile-contact').forEach(link => {
+
+  // Route marked CTAs to the enhanced brief only after the composer is ready.
+  document.querySelectorAll('.brief-start').forEach(link => {
     link.setAttribute('href', '#progetto');
   });
 })();

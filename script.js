@@ -70,6 +70,33 @@
     });
   }
 
+  /* Keep case-study previews usable if a third-party hero image becomes unavailable. */
+  const previewFallbacks = {
+    corriera: ['assets/corriera-preview.webp', 'Schermata di riserva della demo La Corriera'],
+    eden: ['assets/eden-preview.webp', 'Schermata di riserva della demo Eden'],
+    bongo: ['assets/bongo-preview.webp', 'Schermata di riserva della demo Mondo Bongo'],
+    beer: ['assets/beer-preview.webp', 'Schermata di riserva della demo Beer Hops']
+  };
+
+  document.querySelectorAll('.project-card[data-project] .project-cover-link img').forEach(image => {
+    const card = image.closest('.project-card[data-project]');
+    const fallback = card ? previewFallbacks[card.dataset.project] : null;
+    if (!fallback) return;
+
+    const applyFallback = () => {
+      if (image.dataset.fallbackApplied === 'true') return;
+      image.dataset.fallbackApplied = 'true';
+      image.src = fallback[0];
+      image.width = 1348;
+      image.height = 926;
+      image.alt = fallback[1];
+      card.classList.add('preview-fallback');
+    };
+
+    image.addEventListener('error', applyFallback, { once: true });
+    if (image.complete && image.naturalWidth === 0) applyFallback();
+  });
+
   const scene = document.querySelector('.interactive-scene');
   const angle = document.querySelector('#scene-angle');
   const reset = document.querySelector('#scene-reset');

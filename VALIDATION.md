@@ -1,17 +1,27 @@
 # Validation scope
 
-## Passed
+## Automated checks available in the repository
 
-- JavaScript syntax (`node --check`) and CSS parsing for the core stylesheet plus the production-hardening layer.
-- HTML parsing for homepage and 404: one H1 each, unique IDs, internal anchor targets, local asset references, external-link isolation, intrinsic image dimensions and alt attributes.
-- Source-level responsive/overflow audit at 320, 375, 390, 430, 768, 1024 and 1440px: grid breakpoints, long-link wrapping, project preview chrome, contact cards, hero scene clipping and mobile-navigation constraints.
-- Mobile navigation state: `aria-expanded` and accessible-label updates, Escape and link closure, viewport-change reset, page scroll lock and background inert state while open.
-- Existing project WebP previews are already compact (roughly 38–117 KB) and remain lazy-loaded with intrinsic dimensions and async decoding.
-- Favicon, canonical/Open Graph/Twitter metadata, WebSite structured data, sitemap/robots references, branded 404, telephone/WhatsApp links and dynamic copyright fallback checked.
-- Reduced-motion behavior retained.
+- `node --check script.js`
+- `node --check brief.js`
+- `node tests/interactions.cjs`
+- `node tests/brief.cjs`
+- `python tests/check_site.py` (requires `lxml`)
 
-## Not externally verified
+The JavaScript interaction suite is dependency-free and simulates the mobile menu, focus restoration, inert background state, hero scene controls, reduced-motion behavior and portfolio-image fallback at 320, 375, 390, 430, 768, 1024 and 1440px. It does **not** render CSS or prove browser layout quality.
 
-The available network/live-page inspection could not fetch `https://puntoduestudio.it/`, and the container's Chromium build could not complete a headless render. Therefore live Netlify propagation, external demo/Instagram/WhatsApp endpoint reachability, screenshots on physical devices, console output from the deployed domain and Core Web Vitals are not claimed as verified here.
+The structural HTML test validates unique IDs, one H1, six FAQ items, the fixed four-project hierarchy (Essenziale → Presenza → Crescita → Evoluzione), demo disclosures, internal anchors, WhatsApp targets, image dimensions, lazy project images, local fallback assets, external-link isolation, sitemap/XML, social metadata and the absence of an unconfigured form.
 
-The repository remains a static HTML/CSS/JavaScript site with `publish = "."`; the new root `404.html` is compatible with Netlify's static 404 handling.
+## Source-level production safeguards
+
+- Sticky-header anchor offsets are explicitly accounted for on desktop and mobile so in-page navigation does not land underneath the persistent header.
+- Third-party portfolio hero images keep their current visual direction, with local historical viewport captures used only as failure fallbacks.
+- Mobile navigation remains progressively enhanced, locks background scrolling only while open and restores focus on Escape.
+- Reduced-motion overrides disable non-essential transitions/animations.
+- The project brief remains local-only: choices are used to compose a WhatsApp URL and are not submitted or stored by the site.
+
+## Not externally verified in this pass
+
+The available live-page/network tools could not fetch `https://puntoduestudio.it/`, so this pass does not claim visual browser QA of the deployed domain, physical-device screenshots, deployed console output, third-party endpoint reachability, Netlify propagation timing or Core Web Vitals.
+
+The repository remains a static HTML/CSS/JavaScript site with `publish = "."`; the root `404.html` remains compatible with Netlify static 404 handling.
