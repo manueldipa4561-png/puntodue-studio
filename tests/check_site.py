@@ -5,6 +5,7 @@ from lxml import html, etree
 
 root = Path(__file__).resolve().parents[1]
 doc = html.parse(str(root / 'index.html'))
+policy = html.parse(str(root / 'cookie-policy.html'))
 ids = doc.xpath('//*[@id]/@id')
 assert len(ids) == len(set(ids)), 'Duplicate IDs'
 assert len(doc.xpath('//h1')) == 1
@@ -23,10 +24,11 @@ for href in doc.xpath('//a/@href'):
         assert parsed.path in ['/393248423657', '/393248165947']
         assert parse_qs(parsed.query).get('text')
 
-for el in doc.xpath('//*[@src] | //link[@href]'):
-    path = el.get('src') or el.get('href')
-    if not urlsplit(path).scheme:
-        assert (root / path.lstrip('/')).is_file(), path
+for parsed_doc in [doc, policy]:
+    for el in parsed_doc.xpath('//*[@src] | //link[@href]'):
+        path = el.get('src') or el.get('href')
+        if not urlsplit(path).scheme and not path.startswith('#'):
+            assert (root / path.lstrip('/')).is_file(), path
 
 for image in doc.xpath('//img'):
     assert image.get('alt') is not None
@@ -45,10 +47,18 @@ for preview in ['corriera-preview.webp', 'eden-preview.webp', 'bongo-preview.web
 for cover in ['virgilio', 'corriera']:
     etree.parse(str(root / f'assets/{cover}-cover.svg'))
 
-assert 'https://puntoduestudio.it/' in (root / 'sitemap.xml').read_text()
+sitemap = (root / 'sitemap.xml').read_text()
+assert 'https://puntoduestudio.it/' in sitemap
+assert 'https://puntoduestudio.it/cookie-policy.html' in sitemap
 etree.parse(str(root / 'sitemap.xml'))
 assert doc.xpath('//meta[@property="og:image"]/@content') == ['https://puntoduestudio.it/assets/social-card.png']
-assert not doc.xpath('//form'), 'Unconfigured form'
+
+forms = doc.xpath('//form') + policy.xpath('//form')
+assert forms and all(form.get('method', '').lower() == 'dialog' and not form.get('action') for form in forms), 'Only native dialog-close forms are allowed'
 assert len(doc.xpath('//a[contains(@class,"project-cover-link")]')) == 4
 assert len(doc.xpath('//a[contains(concat(" ", normalize-space(@class), " "), " brief-start ")]')) >= 3
-print('PASS structure, portfolio order, FAQ count, links, images, fallbacks, contacts, SVG/XML and social metadata')
+assert doc.xpath('//dialog[@id="cookie-settings"]')
+assert policy.xpath('//dialog[@id="cookie-settings"]')
+assert doc.xpath('//link[@href="experience.css"]') and doc.xpath('//script[@src="experience.js"]')
+assert policy.xpath('//link[@rel="canonical" and @href="https://puntoduestudio.it/cookie-policy.html"]')
+print('PASS structure, portfolio order, FAQ, links, images, contacts, cookie policy/dialog, sitemap and social metadata')
