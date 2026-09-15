@@ -1,27 +1,57 @@
 # Validation scope
 
-## Automated checks available in the repository
+## Automated checks
+
+The production upgrade is designed to preserve the existing regression suite while adding tests for the new spatial/privacy layer.
+
+Available checks:
 
 - `node --check script.js`
 - `node --check brief.js`
+- `node --check experience.js`
 - `node tests/interactions.cjs`
 - `node tests/brief.cjs`
+- `node tests/experience.cjs`
 - `python tests/check_site.py` (requires `lxml`)
 
-The JavaScript interaction suite is dependency-free and simulates the mobile menu, focus restoration, inert background state, hero scene controls, reduced-motion behavior and portfolio-image fallback at 320, 375, 390, 430, 768, 1024 and 1440px. It does **not** render CSS or prove browser layout quality.
+The existing interaction suite simulates mobile-menu state, inert regions, focus restoration, hero controls, reduced-motion behavior and portfolio-image fallback at 320, 375, 390, 430, 768, 1024 and 1440px.
 
-The structural HTML test validates unique IDs, one H1, six FAQ items, the fixed four-project hierarchy (Essenziale → Presenza → Crescita → Evoluzione), demo disclosures, internal anchors, WhatsApp targets, image dimensions, lazy project images, local fallback assets, external-link isolation, sitemap/XML, social metadata and the absence of an unconfigured form.
+The new experience test verifies the presence of:
 
-## Source-level production safeguards
+- the signature spatial layer;
+- the convergence brand moment;
+- fine-pointer-only portfolio depth hooks;
+- reduced-motion CSS fallback;
+- native cookie-preferences dialog;
+- Cookie Policy route;
+- sitemap inclusion;
+- absence of known analytics/marketing integrations and optional browser storage in the new implementation.
 
-- Sticky-header anchor offsets are explicitly accounted for on desktop and mobile so in-page navigation does not land underneath the persistent header.
-- Third-party portfolio hero images keep their current visual direction, with local historical viewport captures used only as failure fallbacks.
-- Mobile navigation remains progressively enhanced, locks background scrolling only while open and restores focus on Escape.
-- Reduced-motion overrides disable non-essential transitions/animations.
-- The project brief remains local-only: choices are used to compose a WhatsApp URL and are not submitted or stored by the site.
+The structural Python test validates:
 
-## Not externally verified in this pass
+- unique IDs and heading structure;
+- six FAQ entries;
+- fixed portfolio order: Essenziale → Presenza → Crescita → Evoluzione;
+- non-commissioned demo disclosures;
+- internal anchor validity;
+- phone/WhatsApp targets;
+- local production assets referenced by HTML;
+- project image loading attributes and fallback paths;
+- canonical social metadata;
+- native dialog-only forms;
+- Cookie Policy canonical URL and dialog;
+- sitemap XML including the Cookie Policy route.
 
-The available live-page/network tools could not fetch `https://puntoduestudio.it/`, so this pass does not claim visual browser QA of the deployed domain, physical-device screenshots, deployed console output, third-party endpoint reachability, Netlify propagation timing or Core Web Vitals.
+## Performance safeguards
 
-The repository remains a static HTML/CSS/JavaScript site with `publish = "."`; the root `404.html` remains compatible with Netlify static 404 handling.
+The spatial layer uses CSS transforms/SVG-like DOM geometry and vanilla JavaScript rather than a WebGL framework. Pointer motion is requestAnimationFrame-gated, portfolio depth is fine-pointer only, reduced-motion disables non-essential depth, and no perpetual render loop is introduced.
+
+## Cookie / storage state
+
+A source audit found no current use of analytics, marketing pixels, `document.cookie`, `localStorage` or `sessionStorage`. The cookie UI therefore does not manufacture optional categories and does not present a first-visit consent banner.
+
+## Browser verification limitation
+
+This environment's Chromium process does not successfully complete even a minimal headless render because the container lacks the required system/DBus runtime. Therefore this pass must not be described as visual Chromium QA, physical-device QA, Core Web Vitals measurement or measured frame-rate verification.
+
+The public domain was also not reachable through the available live-page fetch path during this pass. Repository/source validation and simulated interaction tests are the evidence available here.
