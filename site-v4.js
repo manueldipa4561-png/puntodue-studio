@@ -29,6 +29,7 @@
   if(document.body.classList.contains('case-study-page')){
     const root=document.documentElement;
     const supportsCrossDoc='onpageswap' in window&&'onpagereveal' in window;
+    const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!supportsCrossDoc)root.classList.add('no-cross-doc-vt');
 
     const storageKey='pd-case-handoff-v12';
@@ -45,11 +46,15 @@
     const heroTitle=document.querySelector('.case-title-wrap h1');
     const heroMeta=document.querySelector('.case-kicker');
     const incoming=readToken();
-    if(!reduceMotion.matches&&incoming&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
+
+    if(prefersReduced()){
+      clearToken();
+    }else if(incoming&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
       document.body.classList.add('case-handoff-incoming-v12');
       root.dataset.caseHandoff='incoming';
       if(heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
       if(heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
+      clearToken();
 
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
         document.body.classList.add('is-case-handoff-entered-v12');
@@ -59,21 +64,20 @@
       const finishIncoming=()=>{
         if(cleaned)return;
         cleaned=true;
-        clearToken();
         setTimeout(()=>{
           if(heroTitle)heroTitle.style.removeProperty('view-transition-name');
           if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
           document.body.classList.remove('case-handoff-incoming-v12');
           root.removeAttribute('data-case-handoff');
-        },240);
+        },180);
       };
 
       addEventListener('pagereveal',event=>{
         if(event.viewTransition)event.viewTransition.finished.finally(finishIncoming);
-        else setTimeout(finishIncoming,980);
+        else setTimeout(finishIncoming,900);
       },{once:true});
-      setTimeout(finishIncoming,1800);
-    }else if(incoming&&Date.now()-incoming.at>=10000){
+      setTimeout(finishIncoming,1150);
+    }else if(incoming){
       clearToken();
     }
 
@@ -102,7 +106,11 @@
         if(nextLink.target&&nextLink.target!=='_self')return;
         const destination=new URL(nextLink.href,location.href);
         if(destination.origin!==location.origin)return;
-        if(reduceMotion.matches){clearToken();return;}
+        if(prefersReduced()){
+          clearToken();
+          disarmHandoff();
+          return;
+        }
 
         armHandoff(destination);
         if(!supportsCrossDoc){
