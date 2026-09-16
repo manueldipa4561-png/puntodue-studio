@@ -13,6 +13,8 @@ assert 'case-meta-handoff' in shared
 assert 'onpageswap' in shared and 'onpagereveal' in shared
 assert 'prefers-reduced-motion: reduce' in shared
 assert 'isCaseDestination' in shared
+assert "path.endsWith('.html')?path.slice(0,-5):path" in shared
+assert '/^\\/progetti\\/(?:nodo|innesto|trama-zero)$/' in shared
 assert '@media(prefers-reduced-motion:reduce)' in css
 assert '::view-transition-group(case-title-handoff)' in css
 assert 'case-handoff-outgoing-v12' in css
@@ -28,4 +30,4 @@ for filename, href in expected.items():
     links = doc.xpath('//a[contains(concat(" ", normalize-space(@class), " "), " case-next-link ")]/@href')
     assert links == [href], (filename, links)
 
-print('PASS v12 cross-case handoff, route guard, reduced-motion fallback and next-project mapping')
+print('PASS v12 cross-case handoff, pretty-route normalization, route guard, reduced-motion fallback and next-project mapping')
