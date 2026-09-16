@@ -1,0 +1,16 @@
+/* Punto Due Studio v4 QA fixes */
+@media(max-width:760px){
+  .site-nav{
+    transform:none!important;
+    clip-path:inset(0 0 0 100%);
+    visibility:hidden;
+    pointer-events:none;
+    transition:clip-path .35s var(--ease),visibility .35s;
+  }
+  .site-nav.open{
+    transform:none!important;
+    clip-path:inset(0);
+    visibility:visible;
+    pointer-events:auto;
+  }
+}
