@@ -67,27 +67,29 @@
       }
       clearToken();
 
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        document.body.classList.add('is-case-handoff-entered-v12');
-      }));
-
+      let settleStarted=false;
       let cleaned=false;
       const finishIncoming=()=>{
         if(cleaned)return;
         cleaned=true;
-        setTimeout(()=>{
-          if(heroTitle)heroTitle.style.removeProperty('view-transition-name');
-          if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
-          document.body.classList.remove('case-handoff-incoming-v12');
-          root.removeAttribute('data-case-handoff');
-        },220);
+        if(heroTitle)heroTitle.style.removeProperty('view-transition-name');
+        if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
+        document.body.classList.remove('case-handoff-incoming-v12','is-case-handoff-settling-v13','is-case-handoff-entered-v12');
+        root.removeAttribute('data-case-handoff');
+      };
+      const beginIncomingSettle=()=>{
+        if(settleStarted||prefersReduced())return;
+        settleStarted=true;
+        document.body.classList.add('is-case-handoff-settling-v13');
+        requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('is-case-handoff-entered-v12')));
+        setTimeout(finishIncoming,1040);
       };
 
       addEventListener('pagereveal',event=>{
-        if(event.viewTransition)event.viewTransition.finished.finally(finishIncoming);
-        else setTimeout(finishIncoming,1040);
+        if(event.viewTransition)event.viewTransition.finished.finally(beginIncomingSettle);
+        else setTimeout(beginIncomingSettle,90);
       },{once:true});
-      setTimeout(finishIncoming,1320);
+      setTimeout(beginIncomingSettle,1260);
     }else if(incoming){
       clearToken();
     }
