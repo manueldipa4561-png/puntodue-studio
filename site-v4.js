@@ -1,5 +1,8 @@
 /* Punto Due Studio — shared multipage interaction layer */
 (() => {
+  const fixStyles=document.createElement('link');
+  fixStyles.rel='stylesheet'; fixStyles.href='/site-v4-fixes.css?v=20260916'; document.head.appendChild(fixStyles);
+
   const header=document.querySelector('.site-header');
   const menu=document.querySelector('.menu-toggle');
   const nav=document.querySelector('.site-nav');
