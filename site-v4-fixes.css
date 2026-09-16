@@ -5,7 +5,7 @@
     clip-path:inset(0 0 0 100%);
     visibility:hidden;
     pointer-events:none;
-    transition:clip-path .35s var(--ease),visibility .35s;
+    transition:clip-path .35s var(--ease);
   }
   .site-nav.open{
     transform:none!important;
