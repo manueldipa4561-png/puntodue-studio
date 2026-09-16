@@ -34,6 +34,7 @@
 
     const storageKey='pd-case-handoff-v12';
     const normalize=url=>new URL(url,location.href).pathname.replace(/\/$/,'')||'/';
+    const isCaseDestination=pathname=>/^\/progetti\/(?:nodo|innesto|trama-zero)\.html$/.test(pathname);
     const readToken=()=>{
       try{return JSON.parse(sessionStorage.getItem(storageKey)||'null')}catch{return null}
     };
@@ -49,7 +50,7 @@
 
     if(prefersReduced()){
       clearToken();
-    }else if(incoming&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
+    }else if(incoming&&isCaseDestination(currentPath)&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
       document.body.classList.add('case-handoff-incoming-v12');
       root.dataset.caseHandoff='incoming';
       if(heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
@@ -105,7 +106,12 @@
         if(event.defaultPrevented||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
         if(nextLink.target&&nextLink.target!=='_self')return;
         const destination=new URL(nextLink.href,location.href);
-        if(destination.origin!==location.origin)return;
+        const destinationPath=normalize(destination.href);
+        if(destination.origin!==location.origin||!isCaseDestination(destinationPath)){
+          clearToken();
+          disarmHandoff();
+          return;
+        }
         if(prefersReduced()){
           clearToken();
           disarmHandoff();
