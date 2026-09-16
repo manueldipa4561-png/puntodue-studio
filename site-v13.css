@@ -1,0 +1,116 @@
+/* Punto Due Studio v13 — softer incoming case-study settle */
+.case-study-page{
+  --pd-case-entry-soft:cubic-bezier(.16,.88,.24,1);
+  --pd-case-entry-z:-14px;
+  --pd-case-entry-y:12px;
+  --pd-case-entry-tilt:.72deg;
+}
+
+/* Hero elements share one depth envelope instead of settling independently. */
+.case-handoff-incoming-v12 .case-kicker{
+  transform-style:preserve-3d;
+  transform-origin:50% 50%;
+  animation:pd-case-kicker-settle-v13 1.02s .03s var(--pd-case-entry-soft) both;
+}
+.case-handoff-incoming-v12 .case-title-wrap{
+  animation:pd-case-title-settle-v13 1.08s .04s var(--pd-case-entry-soft) both;
+}
+.case-handoff-incoming-v12 .case-deck{
+  animation:pd-case-deck-settle-v13 .96s .15s var(--pd-case-entry-soft) both;
+}
+.case-handoff-incoming-v12 .case-actions{
+  animation:pd-case-actions-settle-v13 .88s .22s var(--pd-case-entry-soft) both;
+}
+
+@keyframes pd-case-kicker-settle-v13{
+  0%{opacity:.34;transform:translate3d(0,8px,-10px) rotateX(.5deg);filter:blur(1.15px)}
+  58%{opacity:1;transform:translate3d(0,-.6px,1.4px) rotateX(-.06deg);filter:none}
+  78%{transform:translate3d(0,.2px,.45px) rotateX(.015deg)}
+  100%{opacity:1;transform:none;filter:none}
+}
+@keyframes pd-case-title-settle-v13{
+  0%{transform:translate3d(0,var(--pd-case-entry-y),var(--pd-case-entry-z)) rotateX(var(--pd-case-entry-tilt));filter:blur(1.6px)}
+  56%{transform:translate3d(0,-1px,2.4px) rotateX(-.08deg);filter:none}
+  78%{transform:translate3d(0,.35px,.7px) rotateX(.02deg)}
+  100%{transform:none;filter:none}
+}
+@keyframes pd-case-deck-settle-v13{
+  0%{opacity:.28;transform:translate3d(0,10px,-10px) rotateX(.46deg)}
+  60%{opacity:1;transform:translate3d(0,-.7px,1.8px) rotateX(-.05deg)}
+  80%{transform:translate3d(0,.2px,.5px) rotateX(.015deg)}
+  100%{opacity:1;transform:none}
+}
+@keyframes pd-case-actions-settle-v13{
+  0%{opacity:.18;transform:translate3d(4px,7px,-8px)}
+  64%{opacity:1;transform:translate3d(-.35px,-.3px,1.2px)}
+  100%{opacity:1;transform:none}
+}
+
+/* The first section remembers the handoff after the hero cleanup and continues the same Z rhythm. */
+.case-first-after-handoff-v13 .case-flow-content-v11{
+  transition:none;
+}
+.case-first-after-handoff-v13.is-case-entered .case-flow-content-v11{
+  animation:pd-case-first-section-settle-v13 1.02s var(--pd-case-entry-soft) both;
+}
+@keyframes pd-case-first-section-settle-v13{
+  0%{opacity:.18;filter:blur(2.2px);transform:translate3d(0,18px,-14px) rotateX(.72deg)}
+  56%{opacity:1;filter:none;transform:translate3d(0,-1px,2.3px) rotateX(-.075deg)}
+  78%{transform:translate3d(0,.3px,.65px) rotateX(.018deg)}
+  100%{opacity:1;filter:none;transform:translate3d(0,var(--pd-flow-y),var(--pd-flow-z)) rotateX(var(--pd-flow-rx))}
+}
+
+/* Soften the named title/kicker morph to match the hero and first-section spring. */
+::view-transition-group(case-title-handoff){
+  animation-duration:1.02s;
+  animation-timing-function:var(--pd-case-entry-soft);
+}
+::view-transition-old(case-title-handoff){animation:pd-case-title-old-v13 1.02s var(--pd-case-entry-soft) both}
+::view-transition-new(case-title-handoff){animation:pd-case-title-new-v13 1.02s var(--pd-case-entry-soft) both}
+::view-transition-group(case-meta-handoff){
+  animation-duration:.94s;
+  animation-timing-function:var(--pd-case-entry-soft);
+}
+::view-transition-old(case-meta-handoff){animation:pd-case-meta-old-v13 .94s var(--pd-case-entry-soft) both}
+::view-transition-new(case-meta-handoff){animation:pd-case-meta-new-v13 .94s var(--pd-case-entry-soft) both}
+
+@keyframes pd-case-title-old-v13{
+  0%{opacity:1;filter:none}
+  64%{opacity:.9;filter:blur(.12px)}
+  100%{opacity:.22;filter:blur(1px)}
+}
+@keyframes pd-case-title-new-v13{
+  0%{opacity:.2;filter:blur(1.55px)}
+  54%{opacity:.82;filter:blur(.28px)}
+  78%{opacity:.98;filter:none}
+  100%{opacity:1;filter:none}
+}
+@keyframes pd-case-meta-old-v13{0%{opacity:1;filter:none}100%{opacity:.2;filter:blur(.75px)}}
+@keyframes pd-case-meta-new-v13{0%{opacity:.16;filter:blur(1px)}58%{opacity:.88;filter:none}100%{opacity:1;filter:none}}
+
+@media(max-width:760px){
+  .case-study-page{--pd-case-entry-z:-8px;--pd-case-entry-y:8px;--pd-case-entry-tilt:.42deg}
+  .case-handoff-incoming-v12 .case-kicker{animation-duration:.88s}
+  .case-handoff-incoming-v12 .case-title-wrap{animation-duration:.94s}
+  .case-first-after-handoff-v13.is-case-entered .case-flow-content-v11{animation-duration:.9s}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .case-handoff-incoming-v12 .case-kicker,
+  .case-handoff-incoming-v12 .case-title-wrap,
+  .case-handoff-incoming-v12 .case-deck,
+  .case-handoff-incoming-v12 .case-actions,
+  .case-first-after-handoff-v13 .case-flow-content-v11{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+    filter:none!important;
+    opacity:1!important;
+  }
+  ::view-transition-group(case-title-handoff),
+  ::view-transition-old(case-title-handoff),
+  ::view-transition-new(case-title-handoff),
+  ::view-transition-group(case-meta-handoff),
+  ::view-transition-old(case-meta-handoff),
+  ::view-transition-new(case-meta-handoff){animation:none!important}
+}
