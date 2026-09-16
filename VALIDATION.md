@@ -2,56 +2,45 @@
 
 ## Automated checks
 
-The production upgrade is designed to preserve the existing regression suite while adding tests for the new spatial/privacy layer.
+The current production architecture is a lightweight static multipage site. The portfolio upgrade preserves the existing interaction/privacy layers and adds source checks for the five-project portfolio.
 
 Available checks:
 
-- `node --check script.js`
+- `node --check site-v4.js`
+- `node --check dual-field-v5.js`
 - `node --check brief.js`
-- `node --check experience.js`
 - `node tests/interactions.cjs`
 - `node tests/brief.cjs`
 - `node tests/experience.cjs`
 - `python tests/check_site.py` (requires `lxml`)
 
-The existing interaction suite simulates mobile-menu state, inert regions, focus restoration, hero controls, reduced-motion behavior and portfolio-image fallback at 320, 375, 390, 430, 768, 1024 and 1440px.
+`tests/check_site.py` now validates the current site rather than the superseded four-package homepage. It checks:
 
-The new experience test verifies the presence of:
+- unique IDs and primary heading structure;
+- the three premium homepage territories: NODO, INNESTO and TRAMA ZERO;
+- the five-project `/progetti.html` architecture;
+- the exact five live-demo destinations;
+- explicit independent-demo disclosure language;
+- local asset/style/script references;
+- `noopener` protection on external blank-target links;
+- lazy/async loading attributes on archive preview media;
+- inclusion of `site-v7.css` and its reduced-motion fallback;
+- native cookie-preferences dialogs and dialog-only forms;
+- canonical/Open Graph metadata;
+- sitemap inclusion for homepage, projects and Cookie Policy.
 
-- the signature spatial layer;
-- the convergence brand moment;
-- fine-pointer-only portfolio depth hooks;
-- reduced-motion CSS fallback;
-- native cookie-preferences dialog;
-- Cookie Policy route;
-- sitemap inclusion;
-- absence of known analytics/marketing integrations and optional browser storage in the new implementation.
+## Portfolio performance safeguards
 
-The structural Python test validates:
+The three new premium project identities are drawn with native CSS/DOM geometry rather than video, WebGL or externally generated media. This keeps the portfolio editable and responsive while avoiding extra network payloads, autoplay media and continuous render loops.
 
-- unique IDs and heading structure;
-- six FAQ entries;
-- fixed portfolio order: Essenziale → Presenza → Crescita → Evoluzione;
-- non-commissioned demo disclosures;
-- internal anchor validity;
-- phone/WhatsApp targets;
-- local production assets referenced by HTML;
-- project image loading attributes and fallback paths;
-- canonical social metadata;
-- native dialog-only forms;
-- Cookie Policy canonical URL and dialog;
-- sitemap XML including the Cookie Policy route.
-
-## Performance safeguards
-
-The spatial layer uses CSS transforms/SVG-like DOM geometry and vanilla JavaScript rather than a WebGL framework. Pointer motion is requestAnimationFrame-gated, portfolio depth is fine-pointer only, reduced-motion disables non-essential depth, and no perpetual render loop is introduced.
+Motion is limited to transform/opacity-style decoration and hover feedback. `prefers-reduced-motion: reduce` disables the non-essential portfolio animation and transition layer.
 
 ## Cookie / storage state
 
-A source audit found no current use of analytics, marketing pixels, `document.cookie`, `localStorage` or `sessionStorage`. The cookie UI therefore does not manufacture optional categories and does not present a first-visit consent banner.
+The source does not intentionally install analytics, advertising or profiling tools and does not use `localStorage`, `sessionStorage` or `document.cookie` for the current portfolio experience. The cookie UI therefore remains informational and does not manufacture optional consent categories.
 
-## Browser verification limitation
+## Browser verification boundary
 
-This environment's Chromium process does not successfully complete even a minimal headless render because the container lacks the required system/DBus runtime. Therefore this pass must not be described as visual Chromium QA, physical-device QA, Core Web Vitals measurement or measured frame-rate verification.
+Repository/source validation and Figma visual review are available in the connected tool environment. A local clone/browser run cannot be claimed when the execution sandbox cannot resolve GitHub over normal network DNS.
 
-The public domain was also not reachable through the available live-page fetch path during this pass. Repository/source validation and simulated interaction tests are the evidence available here.
+Accordingly, do not describe this pass as measured Core Web Vitals testing, physical-device QA or exhaustive cross-browser rendering unless those checks are run separately in an environment with browser/network access.
