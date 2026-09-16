@@ -1,5 +1,12 @@
 /* Punto Due Studio — 2026 interaction layer */
 (() => {
+  /* Focused visual refinement layer. Kept separate so the core redesign remains easy to audit. */
+  const refinementStyles = document.createElement('link');
+  refinementStyles.rel = 'stylesheet';
+  refinementStyles.href = '/studio-refinements.css?v=20260916';
+  document.head.appendChild(refinementStyles);
+  document.documentElement.classList.add('pds-refined');
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = window.matchMedia('(max-width: 760px)');
   const headerShell = document.querySelector('.header-shell');
@@ -65,7 +72,7 @@
       if (!rect.width || !rect.height) return;
       const nx = (event.clientX - rect.left) / rect.width - .5;
       const ny = (event.clientY - rect.top) / rect.height - .5;
-      render(Math.max(-7, Math.min(7, ny * -14)), Math.max(-13, Math.min(13, nx * 26)));
+      render(Math.max(-6, Math.min(6, ny * -12)), Math.max(-10, Math.min(10, nx * 20)));
     });
     scene.addEventListener('pointerleave', () => render(0, 0));
     let ticking = false;
@@ -75,7 +82,7 @@
       requestAnimationFrame(() => {
         const rect = scene.getBoundingClientRect();
         const progress = Math.max(-1, Math.min(1, (window.innerHeight * .55 - rect.top) / (window.innerHeight + rect.height)));
-        scene.style.setProperty('--drift', `${progress * 16}px`);
+        scene.style.setProperty('--drift', `${progress * 12}px`);
         ticking = false;
       });
     };
@@ -83,7 +90,7 @@
     updateDrift();
   }
 
-  /* Accurate project previews: load each real demo only when approaching the viewport. */
+  /* Accurate project previews: keep the real demos, but load them much closer to view. */
   const previewWindows = [...document.querySelectorAll('.preview-window[data-src]')];
   const sizePreview = preview => {
     const iframe = preview.querySelector('iframe');
@@ -113,7 +120,7 @@
         mountPreview(entry.target);
         previewObserver.unobserve(entry.target);
       });
-    }, { rootMargin: '500px 0px', threshold: 0 });
+    }, { rootMargin: mobile.matches ? '40px 0px' : '140px 0px', threshold: 0 });
     previewWindows.forEach(preview => previewObserver.observe(preview));
   } else {
     previewWindows.forEach(mountPreview);
