@@ -1,11 +1,22 @@
 /* Punto Due Studio — 2026 interaction layer */
 (() => {
-  /* Focused visual refinement layer. Kept separate so the core redesign remains easy to audit. */
+  /* Visual layers stay additive so the production foundation remains easy to audit. */
   const refinementStyles = document.createElement('link');
   refinementStyles.rel = 'stylesheet';
   refinementStyles.href = '/studio-refinements.css?v=20260916';
   document.head.appendChild(refinementStyles);
-  document.documentElement.classList.add('pds-refined');
+
+  const signatureStyles = document.createElement('link');
+  signatureStyles.rel = 'stylesheet';
+  signatureStyles.href = '/studio-signature-v3.css?v=20260916';
+  document.head.appendChild(signatureStyles);
+
+  const signatureScript = document.createElement('script');
+  signatureScript.src = '/studio-signature-v3.js?v=20260916';
+  signatureScript.defer = true;
+  document.head.appendChild(signatureScript);
+
+  document.documentElement.classList.add('pds-refined','pds-signature-v3');
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = window.matchMedia('(max-width: 760px)');
@@ -55,42 +66,7 @@
     });
   }
 
-  /* Signature spatial scene — native CSS, pointer driven, no continuous render loop. */
-  const scene = document.querySelector('[data-signature-scene]');
-  if (scene && !reduceMotion.matches) {
-    let raf = 0;
-    const render = (x, y) => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        scene.style.setProperty('--rx', `${x}deg`);
-        scene.style.setProperty('--ry', `${y}deg`);
-      });
-    };
-    scene.addEventListener('pointermove', event => {
-      if (event.pointerType !== 'mouse') return;
-      const rect = scene.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-      const nx = (event.clientX - rect.left) / rect.width - .5;
-      const ny = (event.clientY - rect.top) / rect.height - .5;
-      render(Math.max(-6, Math.min(6, ny * -12)), Math.max(-10, Math.min(10, nx * 20)));
-    });
-    scene.addEventListener('pointerleave', () => render(0, 0));
-    let ticking = false;
-    const updateDrift = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const rect = scene.getBoundingClientRect();
-        const progress = Math.max(-1, Math.min(1, (window.innerHeight * .55 - rect.top) / (window.innerHeight + rect.height)));
-        scene.style.setProperty('--drift', `${progress * 12}px`);
-        ticking = false;
-      });
-    };
-    window.addEventListener('scroll', updateDrift, { passive: true });
-    updateDrift();
-  }
-
-  /* Accurate project previews: keep the real demos, but load them much closer to view. */
+  /* Accurate project previews: keep the real demos, but load them close to view. */
   const previewWindows = [...document.querySelectorAll('.preview-window[data-src]')];
   const sizePreview = preview => {
     const iframe = preview.querySelector('iframe');
