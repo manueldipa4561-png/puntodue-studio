@@ -1,0 +1,122 @@
+/* Punto Due Studio v11 — case-study section choreography */
+.case-study-page .case-main{--pd-case-choreo-ease:cubic-bezier(.18,.78,.2,1)}
+
+.case-flow-v11{
+  --pd-flow-y:0px;
+  --pd-flow-rx:0deg;
+  --pd-flow-z:0px;
+  --pd-bridge-progress:0;
+  position:relative;
+  perspective:1200px;
+  perspective-origin:50% 42%;
+}
+.case-flow-content-v11{
+  position:relative;
+  transform-style:preserve-3d;
+  opacity:.01;
+  transform:translate3d(0,28px,-18px) rotateX(1.8deg);
+  transform-origin:50% 12%;
+  transition:opacity .82s ease,transform 1.02s var(--pd-case-choreo-ease),filter .82s ease;
+  filter:blur(4px);
+}
+.case-flow-v11.is-case-entered .case-flow-content-v11{
+  opacity:1;
+  filter:none;
+  transform:translate3d(0,var(--pd-flow-y),var(--pd-flow-z)) rotateX(var(--pd-flow-rx));
+}
+.case-flow-v11.is-case-current .case-flow-content-v11{
+  transition-duration:.2s;
+}
+
+.case-flow-bridge-v11{
+  position:absolute;
+  z-index:6;
+  left:max(14px,calc((100vw - min(1296px,calc(100vw - 56px)))/2));
+  right:max(14px,calc((100vw - min(1296px,calc(100vw - 56px)))/2));
+  bottom:-1px;
+  height:1px;
+  pointer-events:none;
+  overflow:visible;
+}
+.case-flow-bridge-v11 i{
+  position:absolute;
+  inset:0;
+  display:block;
+  background:linear-gradient(90deg,var(--case-accent,var(--v5-accent)),color-mix(in srgb,var(--case-accent,var(--v5-accent)) 58%,transparent),transparent);
+  transform:scaleX(var(--pd-bridge-progress));
+  transform-origin:left center;
+  opacity:.78;
+  will-change:transform;
+}
+.case-flow-bridge-v11 b{
+  position:absolute;
+  left:calc(var(--pd-bridge-progress) * 100%);
+  top:50%;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--case-accent,var(--v5-accent));
+  transform:translate(-50%,-50%) scale(calc(.55 + var(--pd-bridge-progress) * .45));
+  opacity:calc(.12 + var(--pd-bridge-progress) * .76);
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--case-accent,var(--v5-accent)) 9%,transparent);
+}
+
+.case-next-v11{
+  --pd-next-y:24px;
+  --pd-next-rx:1.65deg;
+  --pd-next-z:0px;
+  --pd-next-line:0;
+  --pd-next-arrow:0px;
+  perspective:1200px;
+  perspective-origin:72% 42%;
+}
+.case-next-link-v11{
+  position:relative;
+  transform-style:preserve-3d;
+  transform-origin:50% 0;
+  opacity:calc(.62 + var(--pd-next-line) * .38);
+  transform:translate3d(calc(var(--pd-tx,0px)),calc(var(--pd-next-y) + var(--pd-ty,0px) + var(--pd-control-lift,0px)),var(--pd-next-z)) rotateX(var(--pd-next-rx)) scale(var(--pd-control-scale,1));
+  transition:opacity .45s ease,padding-left .35s var(--v5-ease),transform .18s linear;
+}
+.case-next-link-v11::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-1px;
+  height:1px;
+  background:linear-gradient(90deg,var(--case-accent,var(--v5-accent)),color-mix(in srgb,var(--case-accent,var(--v5-accent)) 46%,transparent),transparent);
+  transform:scaleX(var(--pd-next-line));
+  transform-origin:left center;
+  pointer-events:none;
+}
+.case-next-link-v11 b{
+  transform:translate3d(var(--pd-next-arrow),0,0);
+  transition:transform .38s var(--pd-case-choreo-ease);
+}
+.case-next-v11.is-case-next-ready .page-index{
+  opacity:1;
+  transform:translateY(0);
+}
+.case-next-v11 .page-index{
+  opacity:.62;
+  transform:translateY(8px);
+  transition:opacity .55s ease,transform .72s var(--pd-case-choreo-ease);
+}
+@media(hover:hover) and (pointer:fine){
+  .case-next-link-v11:hover b{transform:translate3d(calc(var(--pd-next-arrow) + 7px),0,0)}
+}
+
+@media(max-width:760px){
+  .case-flow-content-v11{transform:translate3d(0,18px,-10px) rotateX(1deg);filter:blur(2px)}
+  .case-flow-v11.is-case-entered .case-flow-content-v11{transform:translate3d(0,calc(var(--pd-flow-y) * .55),calc(var(--pd-flow-z) * .45)) rotateX(calc(var(--pd-flow-rx) * .45))}
+  .case-flow-bridge-v11{left:14px;right:14px}
+  .case-flow-bridge-v11 b{width:5px;height:5px;box-shadow:0 0 0 4px color-mix(in srgb,var(--case-accent,var(--v5-accent)) 8%,transparent)}
+  .case-next-link-v11{transform:translate3d(0,calc(var(--pd-next-y) * .55),calc(var(--pd-next-z) * .4)) rotateX(calc(var(--pd-next-rx) * .45))}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .case-flow-content-v11,.case-next-link-v11,.case-next-v11 .page-index,.case-next-link-v11 b{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}
+  .case-flow-bridge-v11 i,.case-next-link-v11::before{transform:scaleX(1)!important}
+  .case-flow-bridge-v11 b{left:100%!important;opacity:.65!important;transform:translate(-50%,-50%)!important}
+}
