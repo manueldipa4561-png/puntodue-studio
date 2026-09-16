@@ -1,8 +1,13 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    const fixes=document.createElement('link');
-    fixes.rel='stylesheet'; fixes.href='/site-v5-fixes.css'; document.head.appendChild(fixes);
+    ['/site-v5-fixes.css','/mobile-menu-hotfix.css'].forEach(href=>{
+      if(document.querySelector(`link[href="${href}"]`))return;
+      const link=document.createElement('link');
+      link.rel='stylesheet';
+      link.href=href;
+      document.head.appendChild(link);
+    });
   }
 
   const header=document.querySelector('.site-header');
@@ -26,18 +31,54 @@
 
   if(menu&&nav){
     const regions=[main,footer].filter(Boolean);
+    let scrollLocked=false;
+    let lockedScrollY=0;
+
+    const setScrollLock=open=>{
+      const shouldLock=open&&mobile.matches;
+      if(shouldLock&&!scrollLocked){
+        lockedScrollY=window.scrollY||window.pageYOffset||0;
+        document.documentElement.classList.add('menu-open');
+        document.body.classList.add('menu-open');
+        document.body.style.position='fixed';
+        document.body.style.top=`-${lockedScrollY}px`;
+        document.body.style.left='0';
+        document.body.style.right='0';
+        document.body.style.width='100%';
+        scrollLocked=true;
+        return;
+      }
+      if(!shouldLock&&scrollLocked){
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
+        document.body.style.removeProperty('position');
+        document.body.style.removeProperty('top');
+        document.body.style.removeProperty('left');
+        document.body.style.removeProperty('right');
+        document.body.style.removeProperty('width');
+        const y=lockedScrollY;
+        scrollLocked=false;
+        window.scrollTo(0,y);
+      }else if(!shouldLock){
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
+      }
+    };
+
     const setMenu=(open,restore=false)=>{
       nav.classList.toggle('open',open);
       menu.setAttribute('aria-expanded',String(open));
       menu.setAttribute('aria-label',open?'Chiudi menu':'Apri menu');
-      document.documentElement.classList.toggle('menu-open',open&&mobile.matches);
       regions.forEach(r=>r.toggleAttribute('inert',open&&mobile.matches));
+      setScrollLock(open);
       if(restore)menu.focus();
     };
+
     menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
     nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true')setMenu(false,true)});
     mobile.addEventListener('change',()=>setMenu(false));
+    window.addEventListener('pageshow',()=>setMenu(false));
   }
 
   if(!reduceMotion.matches&&'IntersectionObserver' in window){
