@@ -1,7 +1,7 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
@@ -24,6 +24,108 @@
   const footer=document.querySelector('footer');
   const mobile=window.matchMedia('(max-width:760px)');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* v12: carry the v11 case-study exit into the next case-study hero. */
+  if(document.body.classList.contains('case-study-page')){
+    const root=document.documentElement;
+    const supportsCrossDoc='onpageswap' in window&&'onpagereveal' in window;
+    if(!supportsCrossDoc)root.classList.add('no-cross-doc-vt');
+
+    const storageKey='pd-case-handoff-v12';
+    const normalize=url=>new URL(url,location.href).pathname.replace(/\/$/,'')||'/';
+    const readToken=()=>{
+      try{return JSON.parse(sessionStorage.getItem(storageKey)||'null')}catch{return null}
+    };
+    const writeToken=value=>{
+      try{sessionStorage.setItem(storageKey,JSON.stringify(value))}catch{}
+    };
+    const clearToken=()=>{try{sessionStorage.removeItem(storageKey)}catch{}};
+
+    const currentPath=normalize(location.href);
+    const heroTitle=document.querySelector('.case-title-wrap h1');
+    const heroMeta=document.querySelector('.case-kicker');
+    const incoming=readToken();
+    if(!reduceMotion.matches&&incoming&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
+      document.body.classList.add('case-handoff-incoming-v12');
+      root.dataset.caseHandoff='incoming';
+      if(heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
+      if(heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
+
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        document.body.classList.add('is-case-handoff-entered-v12');
+      }));
+
+      let cleaned=false;
+      const finishIncoming=()=>{
+        if(cleaned)return;
+        cleaned=true;
+        clearToken();
+        setTimeout(()=>{
+          if(heroTitle)heroTitle.style.removeProperty('view-transition-name');
+          if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
+          document.body.classList.remove('case-handoff-incoming-v12');
+          root.removeAttribute('data-case-handoff');
+        },240);
+      };
+
+      addEventListener('pagereveal',event=>{
+        if(event.viewTransition)event.viewTransition.finished.finally(finishIncoming);
+        else setTimeout(finishIncoming,980);
+      },{once:true});
+      setTimeout(finishIncoming,1800);
+    }else if(incoming&&Date.now()-incoming.at>=10000){
+      clearToken();
+    }
+
+    const nextLink=document.querySelector('.case-next-link');
+    if(nextLink){
+      const nextTitle=nextLink.querySelector('strong');
+      const nextMeta=nextLink.querySelector('span');
+
+      const armHandoff=destination=>{
+        writeToken({from:currentPath,to:normalize(destination.href),at:Date.now()});
+        document.body.classList.add('case-handoff-outgoing-v12');
+        root.dataset.caseHandoff='outgoing';
+        if(nextTitle)nextTitle.style.viewTransitionName='case-title-handoff';
+        if(nextMeta)nextMeta.style.viewTransitionName='case-meta-handoff';
+      };
+
+      const disarmHandoff=()=>{
+        document.body.classList.remove('case-handoff-outgoing-v12');
+        root.removeAttribute('data-case-handoff');
+        if(nextTitle)nextTitle.style.removeProperty('view-transition-name');
+        if(nextMeta)nextMeta.style.removeProperty('view-transition-name');
+      };
+
+      nextLink.addEventListener('click',event=>{
+        if(event.defaultPrevented||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+        if(nextLink.target&&nextLink.target!=='_self')return;
+        const destination=new URL(nextLink.href,location.href);
+        if(destination.origin!==location.origin)return;
+        if(reduceMotion.matches){clearToken();return;}
+
+        armHandoff(destination);
+        if(!supportsCrossDoc){
+          event.preventDefault();
+          setTimeout(()=>location.assign(destination.href),260);
+        }
+      });
+
+      nextLink.addEventListener('keydown',event=>{
+        if(event.key==='Escape'){
+          clearToken();
+          disarmHandoff();
+        }
+      });
+
+      addEventListener('pageshow',event=>{
+        if(event.persisted){
+          clearToken();
+          disarmHandoff();
+        }
+      });
+    }
+  }
 
   document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());
 
