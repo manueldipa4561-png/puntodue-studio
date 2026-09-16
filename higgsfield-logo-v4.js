@@ -20,12 +20,23 @@
   if(!reduced){viewer.setAttribute('autoplay','');viewer.setAttribute('auto-rotate','');viewer.setAttribute('rotation-per-second','8deg');}
   viewer.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:3;background:transparent;--poster-color:transparent;touch-action:pan-y;';
   viewer.setAttribute('aria-label','Logo tridimensionale animato Punto Due: i tracciati P e D si separano nello spazio e tornano a comporre il monogramma');
-  viewer.addEventListener('load',()=>{
+  let activated=false;
+  const activate=()=>{
+    if(activated)return; activated=true;
     stage.classList.add('higgsfield-glb-ready');
     const canvas=stage.querySelector('.logo-orbit-canvas'); if(canvas)canvas.style.opacity='0';
     const fallback=stage.querySelector('.stage-fallback'); if(fallback)fallback.style.opacity='0';
     if(reduced&&typeof viewer.pause==='function')viewer.pause();
-  },{once:true});
+  };
+  viewer.addEventListener('load',activate,{once:true});
   viewer.addEventListener('error',()=>{viewer.remove();stage.classList.add('glb-fallback')},{once:true});
   stage.appendChild(viewer);
+  customElements.whenDefined('model-viewer').then(()=>{
+    if(viewer.loaded){activate();return;}
+    let checks=0;
+    const timer=setInterval(()=>{
+      if(viewer.loaded){clearInterval(timer);activate();}
+      else if(++checks>60)clearInterval(timer);
+    },100);
+  }).catch(()=>stage.classList.add('glb-fallback'));
 })();
