@@ -14,7 +14,13 @@
   const mobile=window.matchMedia('(max-width:760px)');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  document.querySelectorAll('[data-motion-study]').forEach(v=>{if(reduceMotion.matches){v.pause();v.removeAttribute('autoplay');}});
+  document.querySelectorAll('[data-motion-study]').forEach(v=>{
+    if(reduceMotion.matches){v.pause();v.removeAttribute('autoplay');return;}
+    if('IntersectionObserver'in window){
+      const obs=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)v.play().catch(()=>{});else v.pause()}),{rootMargin:'100px'});
+      obs.observe(v);
+    } else v.play().catch(()=>{});
+  });
   document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());
   const updateHeader=()=>header?.classList.toggle('scrolled',window.scrollY>10);
   updateHeader(); window.addEventListener('scroll',updateHeader,{passive:true});
