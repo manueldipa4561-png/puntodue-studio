@@ -1,13 +1,19 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
       link.href=href;
       document.head.appendChild(link);
     });
+    if(!document.querySelector('script[src="/site-v9.js"]')){
+      const script=document.createElement('script');
+      script.src='/site-v9.js';
+      script.defer=true;
+      document.head.appendChild(script);
+    }
   }
 
   const header=document.querySelector('.site-header');
@@ -113,8 +119,8 @@
   const need=[...document.querySelectorAll('input[name="need"]')];
   const stage=[...document.querySelectorAll('input[name="stage"]')];
   const message=document.querySelector('#brief-message');
-  const manuel=document.querySelector('#brief-manuel');
-  const nicolas=document.querySelector('#brief-nicolas');
+  const contactOne=document.querySelector('#brief-manuel');
+  const contactTwo=document.querySelector('#brief-nicolas');
   if(message&&need.length&&stage.length){
     const needPhrases={
       'un nuovo sito':'creare un nuovo sito',
@@ -129,8 +135,8 @@
       const text=`Ciao! Sto valutando di ${action}. Al momento ${s}. Possiamo sentirci per capire quale direzione avrebbe più senso per il progetto?`;
       message.textContent=text;
       const enc=encodeURIComponent(text);
-      if(manuel)manuel.href=`https://wa.me/393248423657?text=${enc}`;
-      if(nicolas)nicolas.href=`https://wa.me/393248165947?text=${enc}`;
+      if(contactOne)contactOne.href=`https://wa.me/393248423657?text=${enc}`;
+      if(contactTwo)contactTwo.href=`https://wa.me/393248165947?text=${enc}`;
     };
     [...need,...stage].forEach(i=>i.addEventListener('change',update));
     update();
