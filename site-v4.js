@@ -33,8 +33,11 @@
     if(!supportsCrossDoc)root.classList.add('no-cross-doc-vt');
 
     const storageKey='pd-case-handoff-v12';
-    const normalize=url=>new URL(url,location.href).pathname.replace(/\/$/,'')||'/';
-    const isCaseDestination=pathname=>/^\/progetti\/(?:nodo|innesto|trama-zero)\.html$/.test(pathname);
+    const normalize=url=>{
+      const path=new URL(url,location.href).pathname.replace(/\/$/,'')||'/';
+      return path.endsWith('.html')?path.slice(0,-5):path;
+    };
+    const isCaseDestination=pathname=>/^\/progetti\/(?:nodo|innesto|trama-zero)$/.test(pathname);
     const readToken=()=>{
       try{return JSON.parse(sessionStorage.getItem(storageKey)||'null')}catch{return null}
     };
