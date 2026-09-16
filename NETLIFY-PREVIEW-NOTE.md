@@ -1,1 +1,0 @@
-This redesign branch is intended to be validated through the repository's existing Netlify deploy-preview integration before merge. It does not change the production domain configuration.
