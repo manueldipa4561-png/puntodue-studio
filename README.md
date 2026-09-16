@@ -21,15 +21,28 @@ Netlify deploys `main` and serves the repository root as configured in `netlify.
 - `site-v7.css`: “Projects as Digital Territories” portfolio system using native CSS/DOM artwork rather than heavy media.
 - `site-v8.css`: case-study layout and progressive portfolio micro-motion.
 - `site-v8-benchmark.css`: editorial proof/benchmark refinements derived from the agency reference study without copying source layouts or code.
-- `site-v9.css`: current typography and spatial-text layer. Instrument Sans is used for editorial/display/UI typography and IBM Plex Mono for technical metadata; both are requested through Google Fonts.
-- `site-v4.js`: shared navigation, reveal, cookie-dialog and contact-flow interactions; it also loads the v9 type/depth layer on current site pages.
-- `site-v9.js`: progressive interactive text depth, founder-name routing and reduced-motion-safe behavior.
+- `site-v9.css`: current typography and v10-refined spatial-text styling. Instrument Sans is used for editorial/display/UI typography and IBM Plex Mono for technical metadata; both are requested through Google Fonts.
+- `site-v4.js`: shared navigation, reveal, cookie-dialog and contact-flow interactions; it also loads the current type/depth layer on site pages.
+- `site-v9.js`: founder-name routing plus the v10 motion system: spring-smoothed 3D typography, pointer-responsive perspective origin, subtle scroll depth, tactile adjacent controls and reduced-motion-safe behavior.
 - `portfolio-v8.js`: case-study/portfolio pointer motion and progress feedback.
 - `dual-field-v5.js`: interactive hero object.
 - `brief.js`: local-only WhatsApp message composer; nothing is submitted or stored by the site.
 - `cookie-policy.html`: factual cookie/storage/external-resource disclosure for the current implementation.
 - `404.html`: branded static 404.
 - `assets/`: local brand/social assets and historical demo previews.
+
+## Motion system
+
+The current typography motion pass uses one shared interaction grammar across homepage, Studio, Contact, Call and case-study pages:
+
+- pointer input is normalized against the surrounding stage instead of the glyph bounds, preventing twitchy edge behavior;
+- spring interpolation provides visible inertia and soft settling instead of direct cursor snapping;
+- perspective origin follows the pointer at a restrained amplitude;
+- the foreground text, depth layer and highlight layer respond at different rates to create tactile depth without becoming an effect showcase;
+- major hero/statement/section/compact headings use different intensity profiles while sharing the same physics;
+- touch devices receive only a low-amplitude scroll-depth response;
+- buttons, direct-contact cards, case-next links and text links receive a small matching physical response;
+- `prefers-reduced-motion: reduce` removes transforms, pseudo-depth layers and motion transitions.
 
 ## Founder identity rule
 
