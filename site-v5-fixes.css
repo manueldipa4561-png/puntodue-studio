@@ -23,6 +23,7 @@ h3{letter-spacing:-.032em}
 .text-link{font-size:13px;line-height:1.5}
 
 /* Hero / spatial object */
+.hero-copy h1{font-size:clamp(56px,7.8vw,124px)}
 .hero-copy .eyebrow{margin-bottom:26px}
 .hero-copy .lead{margin-top:28px}
 .hero-actions{margin-top:28px}
@@ -73,7 +74,7 @@ h3{letter-spacing:-.032em}
   .nav-shell{min-height:68px}
   .brand img{width:150px}
   .menu-toggle{min-height:48px;min-width:82px}
-  h1{font-size:clamp(48px,14.5vw,62px);line-height:.93;letter-spacing:-.046em}
+  h1,.hero-copy h1{font-size:clamp(48px,14.5vw,62px);line-height:.93;letter-spacing:-.046em}
   h2{font-size:clamp(38px,11.5vw,52px);line-height:.96;letter-spacing:-.044em}
   h3{letter-spacing:-.025em}
   .eyebrow,.meta,.project-index,.page-index,.section-label{font-size:10.5px;letter-spacing:.105em}
