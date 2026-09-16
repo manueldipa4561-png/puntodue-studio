@@ -58,7 +58,7 @@
         document.body.style.removeProperty('width');
         const y=lockedScrollY;
         scrollLocked=false;
-        window.scrollTo(0,y);
+        requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:y,left:0,behavior:'auto'})));
       }else if(!shouldLock){
         document.documentElement.classList.remove('menu-open');
         document.body.classList.remove('menu-open');
