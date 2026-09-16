@@ -1,5 +1,10 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
+  if(document.querySelector('link[href="/site-v5.css"]')){
+    const fixes=document.createElement('link');
+    fixes.rel='stylesheet'; fixes.href='/site-v5-fixes.css'; document.head.appendChild(fixes);
+  }
+
   const header=document.querySelector('.site-header');
   const menu=document.querySelector('.menu-toggle');
   const nav=document.querySelector('.site-nav');
