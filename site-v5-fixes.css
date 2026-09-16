@@ -1,2 +1,3 @@
 /* Final v5 responsive corrections */
 @media(max-width:980px){:root{--container:min(calc(100% - 38px),900px)}}
+@media(max-width:760px){.cookie-fab{bottom:calc(76px + env(safe-area-inset-bottom));right:14px}}
