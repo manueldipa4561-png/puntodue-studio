@@ -27,17 +27,28 @@
   if(menu&&nav){
     const regions=[main,footer].filter(Boolean);
     const setMenu=(open,restore=false)=>{
-      nav.classList.toggle('open',open);
-      menu.setAttribute('aria-expanded',String(open));
-      menu.setAttribute('aria-label',open?'Chiudi menu':'Apri menu');
-      document.documentElement.classList.toggle('menu-open',open&&mobile.matches);
-      regions.forEach(r=>r.toggleAttribute('inert',open&&mobile.matches));
-      if(restore)menu.focus();
+      const shouldOpen=Boolean(open&&mobile.matches);
+      nav.classList.toggle('open',shouldOpen);
+      menu.setAttribute('aria-expanded',String(shouldOpen));
+      menu.setAttribute('aria-label',shouldOpen?'Chiudi menu':'Apri menu');
+      document.documentElement.classList.toggle('menu-open',shouldOpen);
+      regions.forEach(r=>r.toggleAttribute('inert',shouldOpen));
+      if(restore)menu.focus({preventScroll:true});
     };
+    const resetMenu=()=>setMenu(false);
+
+    /* Always start closed. This also prevents Safari from restoring an open
+       drawer from the back/forward cache or during a page-to-page navigation. */
+    resetMenu();
     menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
-    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',resetMenu));
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true')setMenu(false,true)});
-    mobile.addEventListener('change',()=>setMenu(false));
+    mobile.addEventListener('change',resetMenu);
+    window.addEventListener('pagehide',resetMenu);
+    window.addEventListener('pageshow',resetMenu);
+    document.addEventListener('visibilitychange',()=>{
+      if(document.visibilityState==='visible'&&mobile.matches)resetMenu();
+    });
   }
 
   if(!reduceMotion.matches&&'IntersectionObserver' in window){
