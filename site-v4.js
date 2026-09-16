@@ -1,7 +1,7 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/mobile-menu-hotfix.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
@@ -110,22 +110,29 @@
     });
   }
 
-  const business=[...document.querySelectorAll('input[name="business"]')];
   const need=[...document.querySelectorAll('input[name="need"]')];
+  const stage=[...document.querySelectorAll('input[name="stage"]')];
   const message=document.querySelector('#brief-message');
   const manuel=document.querySelector('#brief-manuel');
   const nicolas=document.querySelector('#brief-nicolas');
-  if(message&&business.length&&need.length){
+  if(message&&need.length&&stage.length){
+    const needPhrases={
+      'un nuovo sito':'creare un nuovo sito',
+      'un redesign del sito attuale':'ripensare il sito che uso oggi',
+      'un progetto ecommerce':'realizzare un progetto ecommerce',
+      'capire quale soluzione web è più adatta':'capire quale soluzione web sia più adatta'
+    };
     const update=()=>{
-      const b=business.find(x=>x.checked)?.value||'un’attività';
-      const n=need.find(x=>x.checked)?.value||'capire quale sito potrebbe servirmi';
-      const text=`Ciao! Ho ${b} e vorrei ${n}. Possiamo sentirci per capire come impostare il progetto?`;
+      const n=need.find(x=>x.checked)?.value||'capire quale soluzione web è più adatta';
+      const s=stage.find(x=>x.checked)?.value||'sto valutando il punto di partenza';
+      const action=needPhrases[n]||n;
+      const text=`Ciao! Sto valutando di ${action}. Al momento ${s}. Possiamo sentirci per capire quale direzione avrebbe più senso per il progetto?`;
       message.textContent=text;
       const enc=encodeURIComponent(text);
       if(manuel)manuel.href=`https://wa.me/393248423657?text=${enc}`;
       if(nicolas)nicolas.href=`https://wa.me/393248165947?text=${enc}`;
     };
-    [...business,...need].forEach(i=>i.addEventListener('change',update));
+    [...need,...stage].forEach(i=>i.addEventListener('change',update));
     update();
   }
 })();
