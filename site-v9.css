@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap');
 
-/* Punto Due Studio v9 — editorial typography + spatial text + founder identities */
+/* Punto Due Studio v10 — editorial typography + tactile spatial type + founder identities */
 :root{
   --pd-display:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
   --pd-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
   --pd-depth-ink:rgba(28,34,27,.28);
   --pd-depth-accent:rgba(109,122,89,.24);
+  --pd-motion-ease:cubic-bezier(.2,.74,.2,1);
 }
 
 html{font-family:var(--pd-display)}
@@ -14,15 +15,93 @@ body{font-variation-settings:"wdth" 98,"wght" 430;text-rendering:optimizeLegibil
 h1,h2,h3,h4,.case-next-link strong,.territory-meta h3,.archive-meta-v7 h3{font-family:var(--pd-display);font-variation-settings:"wdth" 96,"wght" 520}
 .page-index,.eyebrow,.project-index,.case-kicker,.territory-meta>div>span,.territory-open,.archive-meta-v7 span,.case-stage-label,.case-triptych span,.case-token span,.footer-col>strong,.nav-shell,.button,.text-link,.cookie-state,.founder-role-v9,.founder-number-v9{font-family:var(--pd-mono);font-variation-settings:normal}
 
-/* Spatial typography — depth is pointer-driven, never required for reading. */
-.spatial-stage{perspective:1100px;perspective-origin:50% 50%}
-.spatial-type{--pd-rx:0deg;--pd-ry:0deg;--pd-dx:0px;--pd-dy:0px;position:relative;z-index:1;transform-style:preserve-3d;isolation:isolate;transform:rotateX(var(--pd-rx)) rotateY(var(--pd-ry)) translate3d(var(--pd-dx),var(--pd-dy),0);transition:transform .58s cubic-bezier(.2,.74,.2,1),opacity .7s ease,filter .7s ease;will-change:transform}
-.spatial-type::before,.spatial-type::after{content:attr(data-spatial-text);position:absolute;inset:0;z-index:-1;white-space:pre-line;pointer-events:none;font:inherit;line-height:inherit;letter-spacing:inherit;text-align:inherit;color:transparent;transform-origin:50% 60%}
-.spatial-type::before{-webkit-text-stroke:1px var(--pd-depth-ink);transform:translate3d(calc(var(--pd-dx)*-.55 + 6px),calc(var(--pd-dy)*-.55 + 8px),-26px);opacity:.68}
-.spatial-type::after{-webkit-text-stroke:1px var(--pd-depth-accent);transform:translate3d(calc(var(--pd-dx)*-.28 + 3px),calc(var(--pd-dy)*-.28 + 4px),-12px);opacity:.82}
-.spatial-type[data-spatial-state="idle"]{filter:saturate(.98)}
-.spatial-type.is-spatial-visible{animation:pd-spatial-in .9s cubic-bezier(.18,.78,.22,1) both}
-@keyframes pd-spatial-in{from{opacity:0;filter:blur(8px);transform:translate3d(0,22px,-28px) rotateX(4deg)}to{opacity:1;filter:none}}
+/* Spatial typography v10 — one interaction grammar across hero, studio, contact, call and cases. */
+.spatial-stage-v10{
+  --pd-persp-x:50%;
+  --pd-persp-y:50%;
+  perspective:1320px;
+  perspective-origin:var(--pd-persp-x) var(--pd-persp-y);
+  transition:perspective-origin .36s var(--pd-motion-ease);
+}
+.spatial-type-v10{
+  --pd-rx:0deg;
+  --pd-ry:0deg;
+  --pd-dx:0px;
+  --pd-dy:0px;
+  --pd-z:0px;
+  --pd-scale:1;
+  --pd-scroll-y:0px;
+  --pd-scroll-rx:0deg;
+  --pd-depth-x1:4px;
+  --pd-depth-y1:6px;
+  --pd-depth-x2:2px;
+  --pd-depth-y2:3px;
+  --pd-shine-x:50%;
+  --pd-shine-y:45%;
+  position:relative;
+  z-index:1;
+  isolation:isolate;
+  transform-style:preserve-3d;
+  transform-origin:50% 58%;
+  transform:translate3d(var(--pd-dx),calc(var(--pd-dy) + var(--pd-scroll-y)),var(--pd-z)) rotateX(calc(var(--pd-rx) + var(--pd-scroll-rx))) rotateY(var(--pd-ry)) scale(var(--pd-scale));
+  backface-visibility:hidden;
+  transition:text-shadow .32s ease,filter .32s ease,opacity .5s ease;
+}
+.spatial-type-v10::before,.spatial-type-v10::after{
+  content:attr(data-spatial-text);
+  position:absolute;
+  inset:0;
+  white-space:pre-line;
+  pointer-events:none;
+  font:inherit;
+  font-variation-settings:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  text-align:inherit;
+  transform-origin:50% 58%;
+}
+.spatial-type-v10::before{
+  z-index:-1;
+  color:currentColor;
+  opacity:.075;
+  filter:blur(.15px);
+  transform:translate3d(var(--pd-depth-x1),var(--pd-depth-y1),-22px);
+}
+.spatial-type-v10::after{
+  z-index:2;
+  color:transparent;
+  background:radial-gradient(circle at var(--pd-shine-x) var(--pd-shine-y),rgba(255,255,255,.78) 0,rgba(255,255,255,.22) 18%,rgba(255,255,255,0) 54%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  opacity:.075;
+  transform:translate3d(var(--pd-depth-x2),var(--pd-depth-y2),2px);
+  mix-blend-mode:soft-light;
+}
+.spatial-type-v10[data-spatial-profile="hero"]::before{opacity:.09}
+.spatial-type-v10[data-spatial-profile="compact"]::before{opacity:.055}
+.spatial-type-v10[data-spatial-state="active"]{will-change:transform;text-shadow:0 9px 24px rgba(22,27,21,.075)}
+.spatial-type-v10[data-spatial-state="active"]::before{opacity:.115}
+.spatial-type-v10[data-spatial-state="active"]::after{opacity:.16}
+.spatial-type-v10[data-spatial-state="pressed"]{filter:saturate(.97);text-shadow:0 3px 10px rgba(22,27,21,.06)}
+.spatial-type-v10.is-spatial-visible{animation:pd-spatial-in-v10 .82s cubic-bezier(.16,.8,.22,1) both}
+@keyframes pd-spatial-in-v10{
+  from{opacity:0;filter:blur(6px);transform:translate3d(0,18px,-18px) rotateX(2.4deg)}
+  to{opacity:1;filter:none;transform:translate3d(var(--pd-dx),calc(var(--pd-dy) + var(--pd-scroll-y)),var(--pd-z)) rotateX(calc(var(--pd-rx) + var(--pd-scroll-rx))) rotateY(var(--pd-ry)) scale(var(--pd-scale))}
+}
+
+/* Controls next to spatial type use a small physical response, not a separate gimmick. */
+.tactile-control-v10{
+  --pd-tx:0px;
+  --pd-ty:0px;
+  --pd-control-scale:1;
+  --pd-control-lift:0px;
+  transform:translate3d(var(--pd-tx),calc(var(--pd-ty) + var(--pd-control-lift)),0) scale(var(--pd-control-scale));
+  transition:transform .24s var(--pd-motion-ease),background-color .25s ease,border-color .25s ease,color .25s ease;
+  transform-origin:50% 52%;
+}
+@media(hover:hover) and (pointer:fine){
+  .tactile-control-v10:hover{--pd-control-lift:-1px}
+}
 
 /* Founder identities — names live here, nowhere else in the visible interface. */
 .founders-grid-v4.founders-grid-v9{gap:1px;background:rgba(18,21,17,.16);border:1px solid rgba(18,21,17,.16)}
@@ -48,14 +127,12 @@ h1,h2,h3,h4,.case-next-link strong,.territory-meta h3,.archive-meta-v7 h3{font-f
 /* A calmer technical rhythm for supporting text. */
 .body-lg,.lead,.statement-side,.premium-copy-v7 p,.case-deck p,.case-section-head p,.case-proof p,.footer-note{font-variation-settings:"wdth" 99,"wght" 420}
 
-@media(hover:hover) and (pointer:fine){
-  .spatial-type:hover::before{opacity:.82}
-  .spatial-type:hover::after{opacity:1}
-}
-
 @media(max-width:760px){
-  .spatial-type::before{transform:translate3d(4px,5px,-18px)}
-  .spatial-type::after{transform:translate3d(2px,3px,-9px)}
+  .spatial-stage-v10{perspective:980px}
+  .spatial-type-v10::before{transform:translate3d(3px,4px,-14px);opacity:.055}
+  .spatial-type-v10::after{transform:translate3d(1px,2px,1px);opacity:.055}
+  .spatial-type-v10[data-spatial-state="active"]::before{opacity:.07}
+  .spatial-type-v10[data-spatial-state="active"]::after{opacity:.08}
   .founder-v4.founder-v9{min-height:470px;padding:24px}
   .founder-v9::before{font-size:118px;right:14px;top:14px}
   .founder-head-v9{gap:16px}.founder-role-v9{max-width:210px;font-size:9px}
@@ -63,6 +140,7 @@ h1,h2,h3,h4,.case-next-link strong,.territory-meta h3,.archive-meta-v7 h3{font-f
 }
 
 @media(prefers-reduced-motion:reduce){
-  .spatial-type,.spatial-type::before,.spatial-type::after{animation:none!important;transition:none!important;transform:none!important;filter:none!important}
-  .spatial-type::before,.spatial-type::after{display:none!important}
+  .spatial-stage-v10{perspective:none!important}
+  .spatial-type-v10,.spatial-type-v10::before,.spatial-type-v10::after,.tactile-control-v10{animation:none!important;transition:none!important;transform:none!important;filter:none!important;text-shadow:none!important}
+  .spatial-type-v10::before,.spatial-type-v10::after{display:none!important}
 }
