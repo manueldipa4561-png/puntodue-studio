@@ -2,6 +2,9 @@
 (() => {
   const fixStyles=document.createElement('link');
   fixStyles.rel='stylesheet'; fixStyles.href='/site-v4-fixes.css?v=20260916-v6'; document.head.appendChild(fixStyles);
+  const runtimeMobileFix=document.createElement('style');
+  runtimeMobileFix.textContent='@media(max-width:760px){.page-hero-grid>*{min-width:0}.page-subnav{width:100%;max-width:100%;min-width:0;overscroll-behavior-x:contain}}';
+  document.head.appendChild(runtimeMobileFix);
   if(/\/studio\.html$/.test(location.pathname)){
     const sceneScript=document.createElement('script'); sceneScript.src='/higgsfield-logo-v4.js'; sceneScript.defer=true; document.head.appendChild(sceneScript);
   }
