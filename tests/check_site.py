@@ -10,6 +10,10 @@ from lxml import html, etree
 root = Path(__file__).resolve().parents[1]
 home = html.parse(str(root / 'index.html'))
 projects = html.parse(str(root / 'progetti.html'))
+studio = html.parse(str(root / 'studio.html'))
+contact = html.parse(str(root / 'contatti.html'))
+call = html.parse(str(root / 'prenota-call.html'))
+method = html.parse(str(root / 'metodo.html'))
 policy = html.parse(str(root / 'cookie-policy.html'))
 cases = {
     'nodo': html.parse(str(root / 'progetti' / 'nodo.html')),
@@ -17,7 +21,7 @@ cases = {
     'trama-zero': html.parse(str(root / 'progetti' / 'trama-zero.html')),
 }
 
-docs = [home, projects, policy, *cases.values()]
+docs = [home, projects, studio, contact, call, method, policy, *cases.values()]
 
 for doc in docs:
     ids = doc.xpath('//*[@id]/@id')
@@ -25,6 +29,9 @@ for doc in docs:
 
 assert len(home.xpath('//h1')) == 1
 assert len(projects.xpath('//h1')) == 1
+assert len(studio.xpath('//h1')) == 1
+assert len(contact.xpath('//h1')) == 1
+assert len(call.xpath('//h1')) == 1
 assert all(len(doc.xpath('//h1')) == 1 for doc in cases.values())
 
 premium_projects = projects.xpath('//article[contains(concat(" ", normalize-space(@class), " "), " premium-project-v7 ")]')
@@ -57,6 +64,22 @@ for doc in cases.values():
     assert 'concept digitale indipendente' in text
     assert 'non implica un incarico' in text
 
+# Founder identity: names appear visibly only in the two numbered founder cards.
+founder_cards = studio.xpath('//article[contains(concat(" ", normalize-space(@class), " "), " founder-v9 ")]')
+assert len(founder_cards) == 2
+assert [x.get('data-card-number') for x in founder_cards] == ['01', '02']
+founder_text = [' '.join(x.xpath('.//text()')) for x in founder_cards]
+assert 'Manuel' in founder_text[0] and 'Creative Director' in founder_text[0] and 'Lead Developer' in founder_text[0]
+assert 'Nicolas' in founder_text[1] and 'Strategy' in founder_text[1] and 'Quality' in founder_text[1]
+
+for path in [root / 'index.html', root / 'progetti.html', root / 'metodo.html', root / 'contatti.html', root / 'prenota-call.html', root / 'cookie-policy.html', *sorted((root / 'progetti').glob('*.html'))]:
+    if path.name == 'studio.html':
+        continue
+    doc = html.parse(str(path))
+    body_text = ' '.join(doc.xpath('//body//text()'))
+    assert 'Manuel' not in body_text, f'Visible Manuel reference in {path}'
+    assert 'Nicolas' not in body_text, f'Visible Nicolas reference in {path}'
+
 # Internal anchors resolve inside their document.
 for doc in [home, projects]:
     ids = set(doc.xpath('//*[@id]/@id'))
@@ -87,7 +110,7 @@ for doc in cases.values():
         assert image.get('decoding') == 'async'
         assert image.get('width') and image.get('height')
 
-# v8 motion/case-study layer and reduced-motion fallback.
+# v8 portfolio layer and v9 type/depth system retain reduced-motion fallbacks.
 for doc in [home, projects, *cases.values()]:
     assert doc.xpath('//link[@href="/site-v8.css"]')
     assert doc.xpath('//script[@src="/portfolio-v8.js"]')
@@ -97,6 +120,14 @@ v8_js = (root / 'portfolio-v8.js').read_text(encoding='utf-8')
 assert '@media(prefers-reduced-motion:reduce)' in v8_css
 assert 'prefers-reduced-motion: reduce' in v8_js
 assert '/site-v8-benchmark.css' in v8_js
+
+v9_css = (root / 'site-v9.css').read_text(encoding='utf-8')
+v9_js = (root / 'site-v9.js').read_text(encoding='utf-8')
+shared_js = (root / 'site-v4.js').read_text(encoding='utf-8')
+assert 'Instrument+Sans' in v9_css and 'IBM+Plex+Mono' in v9_css
+assert '.spatial-type' in v9_css and '@media(prefers-reduced-motion:reduce)' in v9_css
+assert 'prefers-reduced-motion: reduce' in v9_js and 'requestAnimationFrame' in v9_js
+assert '/site-v9.css' in shared_js and '/site-v9.js' in shared_js
 
 # Cookie/privacy surfaces remain native and informational.
 for doc in docs:
@@ -125,4 +156,4 @@ for url in [
     assert url in sitemap
 etree.parse(str(root / 'sitemap.xml'))
 
-print('PASS five-project portfolio, three case studies, v8 motion, disclosures, links, assets, cookie surfaces and sitemap')
+print('PASS portfolio, case studies, founder identity, v9 typography/depth, links, assets, cookie surfaces and sitemap')
