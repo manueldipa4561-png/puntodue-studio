@@ -1,7 +1,7 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/mobile-menu-hotfix.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
