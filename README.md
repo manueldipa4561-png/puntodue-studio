@@ -12,18 +12,30 @@ Netlify deploys `main` and serves the repository root as configured in `netlify.
 
 ## Experience architecture
 
-- `index.html`: approved Italian content, public contacts, fixed four-demo portfolio order, signature spatial markup and accessible cookie-preferences dialog.
-- `style.css`: core responsive design system.
-- `polish.css`: production hardening and boutique visual refinement.
-- `experience.css`: typography refinement, spatial hero treatment, portfolio depth, convergence brand moment, cookie/policy UI and mobile/reduced-motion fallbacks.
-- `script.js`: existing progressive navigation, reveal enhancement, portfolio image fallbacks and hero controls.
-- `experience.js`: event-driven spatial enhancement, portfolio pointer depth, convergence/process activation, current-section feedback and native cookie-dialog behavior.
+- `index.html`: cross-sector positioning, interactive Dual Field hero, selected-work portfolio and production contact paths.
+- `progetti.html`: five-project demonstration portfolio. NODO, INNESTO and TRAMA ZERO are the premium featured concepts; Beer Hops and Cultura Tattoo remain visible as additional concept work.
+- `site-v4.css`: shared responsive foundation.
+- `site-v5.css`: current Punto Due visual system and typography layer.
+- `site-v6.css`: positioning/call-experience refinements loaded by `site-v4.js`.
+- `site-v7.css`: "Projects as Digital Territories" portfolio system. It uses native CSS/DOM artwork rather than heavy media so the three premium concepts can have distinct identities without adding runtime dependencies.
+- `site-v4.js`: shared navigation, reveal, cookie-dialog and contact-flow interactions.
+- `dual-field-v5.js`: interactive hero object.
 - `brief.js`: local-only WhatsApp message composer; nothing is submitted or stored by the site.
 - `cookie-policy.html`: factual cookie/storage disclosure for the current implementation.
 - `404.html`: branded static 404.
-- `assets/`: local brand/social assets plus historical demo captures used when third-party preview images fail.
+- `assets/`: local brand/social assets and historical demo previews.
 
-All four portfolio entries are explicitly non-commissioned demonstration projects and do not imply a commercial relationship, approval or endorsement by the represented businesses.
+## Portfolio disclosure
+
+All portfolio entries are explicitly presented as independent demonstration/concept projects. They do not imply a commercial relationship, commission, approval or endorsement by the represented businesses unless that status is separately verified.
+
+Current showcased concepts:
+
+1. NODO — Ortodonzia / Cura Integrata
+2. INNESTO — Ristrutturazione Integrata
+3. TRAMA ZERO — Fashion / Product concept
+4. Beer Hops — Craft Beer concept
+5. Cultura Tattoo — Tattoo Studio concept
 
 ## Privacy / cookie state
 
@@ -36,9 +48,9 @@ If optional analytics/marketing technology is added later, both the policy and c
 Run:
 
 ```bash
-node --check script.js
+node --check site-v4.js
+node --check dual-field-v5.js
 node --check brief.js
-node --check experience.js
 node tests/interactions.cjs
 node tests/brief.cjs
 node tests/experience.cjs
