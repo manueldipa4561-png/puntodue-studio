@@ -1,7 +1,7 @@
 /* Punto Due Studio — shared multipage interaction layer */
 (() => {
   const fixStyles=document.createElement('link');
-  fixStyles.rel='stylesheet'; fixStyles.href='/site-v4-fixes.css?v=20260916-v5'; document.head.appendChild(fixStyles);
+  fixStyles.rel='stylesheet'; fixStyles.href='/site-v4-fixes.css?v=20260916-v6'; document.head.appendChild(fixStyles);
   if(/\/studio\.html$/.test(location.pathname)){
     const sceneScript=document.createElement('script'); sceneScript.src='/higgsfield-logo-v4.js'; sceneScript.defer=true; document.head.appendChild(sceneScript);
   }
@@ -13,6 +13,24 @@
   const footer=document.querySelector('footer');
   const mobile=window.matchMedia('(max-width:760px)');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const cleanMobileGlyphs=()=>{
+    if(!mobile.matches)return;
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];let n;
+    while((n=walker.nextNode())){
+      const p=n.parentElement;if(!p||/^(SCRIPT|STYLE|NOSCRIPT)$/.test(p.tagName))continue;
+      nodes.push(n);
+    }
+    nodes.forEach(node=>{
+      node.nodeValue=node.nodeValue
+        .replaceAll('↔',' / ')
+        .replace(/[↗→←↑↓]/g,'')
+        .replace(/[\uFE0E\uFE0F]/g,'')
+        .replace(/\p{Extended_Pictographic}/gu,'');
+    });
+  };
+  cleanMobileGlyphs();
 
   document.querySelectorAll('[data-motion-study]').forEach(v=>{
     if(reduceMotion.matches){v.pause();v.removeAttribute('autoplay');return;}
@@ -35,7 +53,7 @@
     menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
     nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true')setMenu(false,true)});
-    mobile.addEventListener('change',()=>setMenu(false));
+    mobile.addEventListener('change',()=>{setMenu(false);cleanMobileGlyphs()});
   }
 
   if(!reduceMotion.matches&&'IntersectionObserver'in window){
