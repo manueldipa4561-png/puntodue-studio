@@ -1,7 +1,7 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css','/site-v13.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
@@ -25,7 +25,7 @@
   const mobile=window.matchMedia('(max-width:760px)');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  /* v12: carry the v11 case-study exit into the next case-study hero. */
+  /* v12/v13: carry the case-study exit into a softer, continuous next-case entry. */
   if(document.body.classList.contains('case-study-page')){
     const root=document.documentElement;
     const supportsCrossDoc='onpageswap' in window&&'onpagereveal' in window;
@@ -49,6 +49,7 @@
     const currentPath=normalize(location.href);
     const heroTitle=document.querySelector('.case-title-wrap h1');
     const heroMeta=document.querySelector('.case-kicker');
+    const firstCaseSection=document.querySelector('.case-main > .case-section');
     const incoming=readToken();
 
     if(prefersReduced()){
@@ -58,6 +59,12 @@
       root.dataset.caseHandoff='incoming';
       if(heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
       if(heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
+      if(firstCaseSection){
+        firstCaseSection.classList.add('case-first-after-handoff-v13');
+        firstCaseSection.addEventListener('animationend',event=>{
+          if(event.animationName==='pd-case-first-section-settle-v13')firstCaseSection.classList.remove('case-first-after-handoff-v13');
+        });
+      }
       clearToken();
 
       requestAnimationFrame(()=>requestAnimationFrame(()=>{
@@ -73,14 +80,14 @@
           if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
           document.body.classList.remove('case-handoff-incoming-v12');
           root.removeAttribute('data-case-handoff');
-        },180);
+        },220);
       };
 
       addEventListener('pagereveal',event=>{
         if(event.viewTransition)event.viewTransition.finished.finally(finishIncoming);
-        else setTimeout(finishIncoming,900);
+        else setTimeout(finishIncoming,1040);
       },{once:true});
-      setTimeout(finishIncoming,1150);
+      setTimeout(finishIncoming,1320);
     }else if(incoming){
       clearToken();
     }
