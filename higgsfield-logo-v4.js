@@ -9,7 +9,7 @@
   loader.addEventListener('error',()=>stage.classList.add('glb-fallback'));
   document.head.appendChild(loader);
   const viewer=document.createElement('model-viewer');
-  viewer.src='https://d2ol7oe51mr4n9.cloudfront.net/user_3JN4lq7KBj4c3qEQUgSkbrftgrd/be3bf622-8ee6-439c-aba9-7375257af880.glb';
+  viewer.setAttribute('src','https://d2ol7oe51mr4n9.cloudfront.net/user_3JN4lq7KBj4c3qEQUgSkbrftgrd/be3bf622-8ee6-439c-aba9-7375257af880.glb');
   viewer.setAttribute('camera-controls','');
   viewer.setAttribute('interaction-prompt','none');
   viewer.setAttribute('shadow-intensity','.45');
