@@ -1,0 +1,1 @@
+Do not use normal-font PD, P / D, P/D or P↔D as an animated or decorative identity motif. Any identity derived from the two initials must be abstract, sculptural and unmistakably custom.
