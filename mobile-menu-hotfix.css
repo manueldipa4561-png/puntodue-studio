@@ -1,0 +1,80 @@
+/* Mobile navigation hardening for iOS Safari and dynamic browser chrome */
+@media(max-width:760px){
+  html.menu-open,
+  html.menu-open body{
+    overflow:hidden!important;
+    height:100%!important;
+    overscroll-behavior:none;
+    touch-action:none;
+  }
+
+  html.menu-open .site-header,
+  html.menu-open .site-header.scrolled{
+    background:var(--v5-bg)!important;
+    border-bottom:1px solid var(--v5-line)!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+
+  .site-nav{
+    position:fixed!important;
+    z-index:1001!important;
+    top:68px!important;
+    left:0!important;
+    right:0!important;
+    bottom:auto!important;
+    width:100%!important;
+    height:calc(100vh - 68px)!important;
+    height:calc(100dvh - 68px)!important;
+    min-height:calc(100svh - 68px)!important;
+    max-height:calc(100dvh - 68px)!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    padding:34px 20px max(28px,env(safe-area-inset-bottom))!important;
+    background:var(--v5-dark)!important;
+    color:var(--v5-bg)!important;
+    align-items:stretch!important;
+  }
+
+  .site-nav a{
+    min-height:68px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    font-family:var(--v5-font)!important;
+    font-size:clamp(30px,9vw,42px)!important;
+    font-weight:450!important;
+    line-height:1!important;
+    letter-spacing:-.045em!important;
+    color:var(--v5-bg)!important;
+    border-bottom:1px solid rgba(255,255,255,.16)!important;
+  }
+
+  .site-nav .nav-cta{
+    min-height:58px!important;
+    margin-top:22px!important;
+    padding:16px 18px!important;
+    justify-content:center!important;
+    font-size:15px!important;
+    font-weight:650!important;
+    letter-spacing:.005em!important;
+    color:var(--v5-ink)!important;
+    background:var(--v5-accent)!important;
+    border:1px solid var(--v5-accent)!important;
+  }
+
+  html.menu-open main,
+  html.menu-open footer,
+  html.menu-open .cookie-fab,
+  html.menu-open #nl-badge-frame{
+    visibility:hidden!important;
+    pointer-events:none!important;
+  }
+
+  html.menu-open .site-nav,
+  html.menu-open .site-header{
+    visibility:visible!important;
+    pointer-events:auto!important;
+  }
+}
