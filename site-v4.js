@@ -1,19 +1,20 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(href=>{
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
       link.href=href;
       document.head.appendChild(link);
     });
-    if(!document.querySelector('script[src="/site-v9.js"]')){
+    ['/site-v9.js','/site-v11.js'].forEach(src=>{
+      if(document.querySelector(`script[src="${src}"]`))return;
       const script=document.createElement('script');
-      script.src='/site-v9.js';
+      script.src=src;
       script.defer=true;
       document.head.appendChild(script);
-    }
+    });
   }
 
   const header=document.querySelector('.site-header');
