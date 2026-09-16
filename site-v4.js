@@ -2,6 +2,9 @@
 (() => {
   const fixStyles=document.createElement('link');
   fixStyles.rel='stylesheet'; fixStyles.href='/site-v4-fixes.css?v=20260916'; document.head.appendChild(fixStyles);
+  if(/\/studio\.html$/.test(location.pathname)){
+    const sceneScript=document.createElement('script'); sceneScript.src='/higgsfield-logo-v4.js'; sceneScript.defer=true; document.head.appendChild(sceneScript);
+  }
 
   const header=document.querySelector('.site-header');
   const menu=document.querySelector('.menu-toggle');
