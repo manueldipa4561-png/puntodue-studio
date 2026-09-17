@@ -109,7 +109,7 @@ function fixture(width) {
 
 for (const width of [360, 390, 430, 760, 761, 1024, 1440]) {
   const t = fixture(width);
-  assert.equal(t.year.textContent, String(new Date().getFullYear()));
+  assert.equal(String(t.year.textContent), String(new Date().getFullYear()));
 
   t.menu.emit('click');
   assert.equal(t.menu.getAttribute('aria-expanded'), 'true');
