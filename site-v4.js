@@ -18,6 +18,7 @@
   const caseExperience=document.body.classList.contains('case-study-page');
   const projectsExperience=!caseExperience&&!!document.querySelector('.projects-page-v7');
   const studioExperience=!homeExperience&&!caseExperience&&!!document.querySelector('.founders-grid-v9')&&!!document.querySelector('[data-dual-field]');
+  const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience;
   if(homeExperience)document.body.classList.add('home-experience');
   if(projectsExperience)document.body.classList.add('projects-experience');
   if(studioExperience)document.body.classList.add('studio-experience');
@@ -53,11 +54,17 @@
       appendStyle('/portfolio-refinements.css');
     }
 
-    /* Route art direction is always the final visual layer. */
+    /* Route art direction is always the final visual layer before interaction polish. */
     if(caseExperience)appendStyle('/case-experience.css');
     if(projectsExperience)appendStyle('/projects-experience.css');
     if(studioExperience)appendStyle('/studio-experience.css');
     if(homeExperience)appendStyle('/homepage.css');
+
+    /* Native interaction patterns, adapted from current component-library ideas without adding React. */
+    if(enhancedExperience){
+      appendStyle('/interaction-polish.css');
+      appendScript('/interaction-polish.js');
+    }
   }
 
   const header=document.querySelector('.site-header');
