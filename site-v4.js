@@ -15,20 +15,30 @@
   }
 
   if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css','/site-v13.css'].forEach(href=>{
+    const appendStyle=href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
       const link=document.createElement('link');
       link.rel='stylesheet';
       link.href=href;
       document.head.appendChild(link);
-    });
-    ['/site-v9.js','/site-v11.js'].forEach(src=>{
+    };
+    const appendScript=src=>{
       if(document.querySelector(`script[src="${src}"]`))return;
       const script=document.createElement('script');
       script.src=src;
       script.defer=true;
       document.head.appendChild(script);
-    });
+    };
+
+    /* Shared production layers. Preserve current cascade order during consolidation. */
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(appendStyle);
+    appendScript('/site-v9.js');
+
+    /* v11-v13 only style/animate case-study markup; do not ship them to unrelated routes. */
+    if(document.body.classList.contains('case-study-page')){
+      ['/site-v11.css','/site-v12.css','/site-v13.css'].forEach(appendStyle);
+      appendScript('/site-v11.js');
+    }
   }
 
   const header=document.querySelector('.site-header');
