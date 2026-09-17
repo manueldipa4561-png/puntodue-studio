@@ -15,7 +15,12 @@
   }
 
   const homeExperience=!!document.querySelector('.home-hero');
+  const caseExperience=document.body.classList.contains('case-study-page');
+  const projectsExperience=!caseExperience&&!!document.querySelector('.projects-page-v7');
+  const studioExperience=!homeExperience&&!caseExperience&&!!document.querySelector('.founders-grid-v9')&&!!document.querySelector('[data-dual-field]');
   if(homeExperience)document.body.classList.add('home-experience');
+  if(projectsExperience)document.body.classList.add('projects-experience');
+  if(studioExperience)document.body.classList.add('studio-experience');
 
   if(document.querySelector('link[href="/site-v5.css"]')){
     const appendStyle=href=>{
@@ -38,7 +43,7 @@
     appendScript('/motion.js');
 
     /* Case-only motion and handoff logic remain completely route-scoped. */
-    if(document.body.classList.contains('case-study-page')){
+    if(caseExperience){
       appendStyle('/case-motion.css');
       appendScript('/case-runtime.js');
     }
@@ -48,10 +53,11 @@
       appendStyle('/portfolio-refinements.css');
     }
 
-    /* Homepage art direction is intentionally last and route-scoped. */
-    if(homeExperience){
-      appendStyle('/homepage.css');
-    }
+    /* Route art direction is always the final visual layer. */
+    if(caseExperience)appendStyle('/case-experience.css');
+    if(projectsExperience)appendStyle('/projects-experience.css');
+    if(studioExperience)appendStyle('/studio-experience.css');
+    if(homeExperience)appendStyle('/homepage.css');
   }
 
   const header=document.querySelector('.site-header');
