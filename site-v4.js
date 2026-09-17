@@ -34,9 +34,9 @@
     ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(appendStyle);
     appendScript('/site-v9.js');
 
-    /* v11-v13 only style/animate case-study markup; do not ship them to unrelated routes. */
+    /* Case-only motion stays route-scoped and now ships as one ordered stylesheet. */
     if(document.body.classList.contains('case-study-page')){
-      ['/site-v11.css','/site-v12.css','/site-v13.css'].forEach(appendStyle);
+      appendStyle('/case-motion.css');
       appendScript('/site-v11.js');
     }
   }
