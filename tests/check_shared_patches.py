@@ -6,7 +6,10 @@ shared = (root / 'site-v4.js').read_text(encoding='utf-8')
 css = (root / 'shared-patches.css').read_text(encoding='utf-8')
 
 assert '/shared-patches.css' in shared
-assert '/site-v9.css' in shared
+assert '/typography.css' in shared
+assert '/motion.js' in shared
+assert '/site-v9.css' not in shared
+assert '/site-v9.js' not in shared
 
 # Former v5 correction responsibilities.
 assert '--v5-muted:#555b53' in css
