@@ -15,6 +15,8 @@
 
   const heroEyebrow = document.querySelector('.home-hero .eyebrow');
   if (heroEyebrow) heroEyebrow.textContent = 'Studio web indipendente / strategia + design + sviluppo';
+  const homeHeroTitle = document.querySelector('.home-hero h1');
+  if (homeHeroTitle) homeHeroTitle.textContent = 'Siti digitali che non sembrano già visti.';
 
   document.querySelectorAll('.story-grid .page-index').forEach(n => {
     if (/Manuel\s*\+\s*Nicolas/i.test(n.textContent)) n.textContent = 'Due prospettive / un sistema';
