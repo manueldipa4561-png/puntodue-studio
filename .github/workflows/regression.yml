@@ -63,8 +63,8 @@ jobs:
       - name: Brief behavior regression
         run: node tests/brief.cjs
 
-      - name: Experience behavior regression
-        run: node tests/experience.cjs
+      - name: Privacy dialog regression
+        run: node tests/privacy.cjs
 
       - name: Interaction regression
         run: node tests/interactions.cjs
