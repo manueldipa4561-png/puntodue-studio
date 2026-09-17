@@ -30,8 +30,8 @@
       document.head.appendChild(script);
     };
 
-    /* Shared production layers. Preserve current cascade order during consolidation. */
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(appendStyle);
+    /* Shared production layers. Patch order is preserved inside shared-patches.css. */
+    ['/shared-patches.css','/site-v9.css'].forEach(appendStyle);
     appendScript('/site-v9.js');
 
     /* Case-only motion and handoff logic remain completely route-scoped. */
