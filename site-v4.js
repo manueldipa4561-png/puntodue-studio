@@ -40,9 +40,14 @@
       appendScript('/case-runtime.js');
     }
 
-    /* Portfolio/case refinement CSS is centrally loaded last, preserving its historical cascade position. */
+    /* Portfolio/case refinement CSS is centrally loaded late, preserving its historical cascade position. */
     if(document.querySelector('script[src="/portfolio-v8.js"]')){
       appendStyle('/portfolio-refinements.css');
+    }
+
+    /* Homepage art direction is intentionally last and route-scoped. */
+    if(document.body.classList.contains('home-experience')){
+      appendStyle('/homepage.css');
     }
   }
 
