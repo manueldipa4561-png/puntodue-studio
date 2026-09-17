@@ -96,6 +96,10 @@
 
     const nextLink=document.querySelector('.case-next-link');
     if(nextLink){
+      if(location.protocol==='https:'&&location.hostname==='puntoduestudio.it'){
+        const prettyPath=normalize(nextLink.href);
+        if(isCaseDestination(prettyPath))nextLink.setAttribute('href',prettyPath);
+      }
       const nextTitle=nextLink.querySelector('strong');
       const nextMeta=nextLink.querySelector('span');
 
