@@ -1,5 +1,19 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
+  /* Spatial Experience 2026: one isolated module shared by every page using this runtime. */
+  if(!document.querySelector('link[href="/spatial-2026.css"]')){
+    const spatialCss=document.createElement('link');
+    spatialCss.rel='stylesheet';
+    spatialCss.href='/spatial-2026.css';
+    document.head.appendChild(spatialCss);
+  }
+  if(!document.querySelector('script[src="/experience-field.js"]')){
+    const spatialScript=document.createElement('script');
+    spatialScript.src='/experience-field.js';
+    spatialScript.defer=true;
+    document.head.appendChild(spatialScript);
+  }
+
   if(document.querySelector('link[href="/site-v5.css"]')){
     ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css','/site-v13.css'].forEach(href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
