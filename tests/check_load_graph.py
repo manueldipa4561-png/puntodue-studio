@@ -36,26 +36,20 @@ for required in (
     '/projects-experience.css',
     '/studio-experience.css',
     '/case-experience.css',
+    '/supporting-experience.css',
     '/interaction-polish.css',
     '/interaction-polish.js',
 ):
     assert required in shared, required
 
 for obsolete in (
-    '/site-v5-fixes.css',
-    '/site-v6.css',
-    '/mobile-menu-hotfix.css',
-    '/site-v9.css',
-    '/site-v9.js',
-    '/site-v11.css',
-    '/site-v12.css',
-    '/site-v13.css',
-    '/site-v11.js',
-    '/site-v8-benchmark.css',
+    '/site-v5-fixes.css', '/site-v6.css', '/mobile-menu-hotfix.css',
+    '/site-v9.css', '/site-v9.js', '/site-v11.css', '/site-v12.css',
+    '/site-v13.css', '/site-v11.js', '/site-v8-benchmark.css',
 ):
     assert obsolete not in shared, f'Obsolete shared loader reference: {obsolete}'
 
-# Shared editorial system is limited to the enhanced visual families.
+# Shared editorial system is limited to modern experience routes.
 assert "if(enhancedExperience)appendStyle('/editorial-system.css')" in shared
 assert (ROOT / 'editorial-system.css').is_file()
 editorial_css = (ROOT / 'editorial-system.css').read_text(encoding='utf-8')
@@ -71,7 +65,7 @@ for name in paths:
     if name != 'home':
         assert not docs[name].xpath('//section[contains(concat(" ", normalize-space(@class), " "), " home-hero ")]'), name
 
-# Projects, Studio and case studies each receive their own final art-direction module.
+# Projects, Studio and case studies each receive their own art-direction module.
 assert "document.querySelector('.projects-page-v7')" in shared
 assert "document.body.classList.add('projects-experience')" in shared
 assert "document.querySelector('.founders-grid-v9')" in shared
@@ -86,8 +80,20 @@ for name in ('nodo', 'innesto', 'trama'):
     body_classes = docs[name].xpath('string(/html/body/@class)')
     assert 'case-study-page' in body_classes.split(), name
 
-# Interaction polish is native, dependency-free and limited to the four experience families.
-assert "const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience" in shared
+# Method, Contact and Call share one focused commercial/editorial module.
+assert "document.querySelector('.method-grid')" in shared
+assert "document.querySelector('.contact-page')" in shared
+assert "document.body.classList.contains('call-page')" in shared
+for cls in ('method-experience', 'contact-experience', 'call-experience'):
+    assert f"document.body.classList.add('{cls}')" in shared
+assert "if(supportingExperience)appendStyle('/supporting-experience.css')" in shared
+assert (ROOT / 'supporting-experience.css').is_file()
+assert docs['method'].xpath('//*[contains(concat(" ", normalize-space(@class), " "), " method-grid ")]')
+assert docs['contact'].xpath('//*[contains(concat(" ", normalize-space(@class), " "), " contact-page ")]')
+assert 'call-page' in docs['call'].xpath('string(/html/body/@class)').split()
+
+# Interaction polish is native, dependency-free and only enabled on modern experience routes.
+assert "const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience||supportingExperience" in shared
 assert "if(enhancedExperience)" in shared
 for interaction_file in ('interaction-polish.css', 'interaction-polish.js'):
     assert (ROOT / interaction_file).is_file(), interaction_file
@@ -150,4 +156,4 @@ for obsolete_file in (
 assert (ROOT / 'utility-routes.css').is_file()
 assert (ROOT / 'privacy-dialog.js').is_file()
 
-print('PASS route-scoped production load graph, editorial system, utility-route migration, visual modules and interaction polish boundaries')
+print('PASS route-scoped production load graph, editorial system, supporting routes, utility migration and interaction boundaries')
