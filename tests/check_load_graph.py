@@ -31,6 +31,7 @@ for required in (
     '/case-motion.css',
     '/case-runtime.js',
     '/portfolio-refinements.css',
+    '/editorial-system.css',
     '/homepage.css',
     '/projects-experience.css',
     '/studio-experience.css',
@@ -53,6 +54,13 @@ for obsolete in (
     '/site-v8-benchmark.css',
 ):
     assert obsolete not in shared, f'Obsolete shared loader reference: {obsolete}'
+
+# Shared editorial system is limited to the enhanced visual families.
+assert "if(enhancedExperience)appendStyle('/editorial-system.css')" in shared
+assert (ROOT / 'editorial-system.css').is_file()
+editorial_css = (ROOT / 'editorial-system.css').read_text(encoding='utf-8')
+for token in ('--pd-cream:', '--pd-charcoal:', '--pd-olive:', 'content:"PUNTO DUE"'):
+    assert token in editorial_css, token
 
 # Homepage art direction is detected from the real hero and kept route-scoped.
 assert "document.querySelector('.home-hero')" in shared
@@ -142,4 +150,4 @@ for obsolete_file in (
 assert (ROOT / 'utility-routes.css').is_file()
 assert (ROOT / 'privacy-dialog.js').is_file()
 
-print('PASS route-scoped production load graph, utility-route migration, visual modules and interaction polish boundaries')
+print('PASS route-scoped production load graph, editorial system, utility-route migration, visual modules and interaction polish boundaries')
