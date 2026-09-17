@@ -39,6 +39,9 @@ jobs:
       - name: Structural site regression
         run: python tests/check_site.py
 
+      - name: Shared patch regression
+        run: python tests/check_shared_patches.py
+
       - name: Case choreography regression
         run: python tests/check_case_choreography.py
 
