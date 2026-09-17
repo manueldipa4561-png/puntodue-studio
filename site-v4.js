@@ -18,10 +18,18 @@
   const caseExperience=document.body.classList.contains('case-study-page');
   const projectsExperience=!caseExperience&&!!document.querySelector('.projects-page-v7');
   const studioExperience=!homeExperience&&!caseExperience&&!!document.querySelector('.founders-grid-v9')&&!!document.querySelector('[data-dual-field]');
-  const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience;
+  const methodExperience=!homeExperience&&!caseExperience&&!projectsExperience&&!studioExperience&&!!document.querySelector('.method-grid');
+  const contactExperience=!!document.querySelector('.contact-page');
+  const callExperience=document.body.classList.contains('call-page');
+  const supportingExperience=methodExperience||contactExperience||callExperience;
+  const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience||supportingExperience;
+
   if(homeExperience)document.body.classList.add('home-experience');
   if(projectsExperience)document.body.classList.add('projects-experience');
   if(studioExperience)document.body.classList.add('studio-experience');
+  if(methodExperience)document.body.classList.add('method-experience');
+  if(contactExperience)document.body.classList.add('contact-experience');
+  if(callExperience)document.body.classList.add('call-experience');
 
   if(document.querySelector('link[href="/site-v5.css"]')){
     const appendStyle=href=>{
@@ -62,6 +70,7 @@
     if(projectsExperience)appendStyle('/projects-experience.css');
     if(studioExperience)appendStyle('/studio-experience.css');
     if(homeExperience)appendStyle('/homepage.css');
+    if(supportingExperience)appendStyle('/supporting-experience.css');
 
     /* Native interaction patterns, adapted from current component-library ideas without adding React. */
     if(enhancedExperience){
