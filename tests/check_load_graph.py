@@ -32,6 +32,9 @@ for required in (
     '/case-runtime.js',
     '/portfolio-refinements.css',
     '/homepage.css',
+    '/projects-experience.css',
+    '/studio-experience.css',
+    '/case-experience.css',
 ):
     assert required in shared, required
 
@@ -57,6 +60,21 @@ assert docs['home'].xpath('//section[contains(concat(" ", normalize-space(@class
 for name in paths:
     if name != 'home':
         assert not docs[name].xpath('//section[contains(concat(" ", normalize-space(@class), " "), " home-hero ")]'), name
+
+# Projects, Studio and case studies each receive their own final art-direction module.
+assert "document.querySelector('.projects-page-v7')" in shared
+assert "document.body.classList.add('projects-experience')" in shared
+assert "document.querySelector('.founders-grid-v9')" in shared
+assert "document.body.classList.add('studio-experience')" in shared
+assert "document.body.classList.contains('case-study-page')" in shared
+for visual_file in ('projects-experience.css', 'studio-experience.css', 'case-experience.css'):
+    assert (ROOT / visual_file).is_file(), visual_file
+
+assert docs['projects'].xpath('//section[contains(concat(" ", normalize-space(@class), " "), " projects-page-v7 ")]')
+assert docs['studio'].xpath('//*[contains(concat(" ", normalize-space(@class), " "), " founders-grid-v9 ")]')
+for name in ('nodo', 'innesto', 'trama'):
+    body_classes = docs[name].xpath('string(/html/body/@class)')
+    assert 'case-study-page' in body_classes.split(), name
 
 # Portfolio runtime exists only on Home, Projects and case studies.
 portfolio_routes = {'home', 'projects', 'nodo', 'innesto', 'trama'}
@@ -110,4 +128,4 @@ for obsolete_file in (
 assert (ROOT / 'utility-routes.css').is_file()
 assert (ROOT / 'privacy-dialog.js').is_file()
 
-print('PASS route-scoped production load graph, utility-route migration, homepage visual module and semantic boundaries')
+print('PASS route-scoped production load graph, utility-route migration, visual experience modules and semantic boundaries')
