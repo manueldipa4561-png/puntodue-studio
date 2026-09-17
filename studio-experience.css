@@ -1,0 +1,145 @@
+/* Punto Due Studio — Studio Experience 2026 */
+body.studio-experience{
+  background:#efede4;
+  color:#171a16;
+}
+
+.studio-experience .pd-field{opacity:.82}
+.studio-experience .site-header{background:transparent}
+.studio-experience .site-header.scrolled{background:rgba(239,237,228,.88);backdrop-filter:blur(22px) saturate(1.04)}
+
+.studio-experience .page-hero{
+  position:relative;
+  min-height:min(900px,100svh);
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(150px,17vh,230px) 0 clamp(80px,10vw,140px);
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 76% 28%,rgba(140,158,89,.16),transparent 30%),
+    linear-gradient(180deg,rgba(241,239,230,.60),rgba(241,239,230,.94));
+}
+.studio-experience .page-hero::before{
+  content:"02 / FOUNDERS";
+  position:absolute;
+  right:clamp(24px,4vw,72px);
+  top:clamp(120px,16vh,190px);
+  color:rgba(23,26,22,.28);
+  font:600 9px/1 var(--mono);
+  letter-spacing:.2em;
+}
+.studio-experience .page-hero-grid{grid-template-columns:.3fr 1.7fr;gap:clamp(42px,7vw,112px);align-items:end}
+.studio-experience .page-hero .page-index{color:#6f7e49;padding-bottom:14px}
+.studio-experience .page-hero h1{
+  font-size:clamp(78px,10.2vw,164px);
+  line-height:.83;
+  letter-spacing:-.078em;
+  max-width:1200px;
+}
+.studio-experience .page-hero .body-lg{max-width:760px;margin-top:38px;color:#62675c;font-size:clamp(17px,1.45vw,23px);line-height:1.58}
+
+.studio-experience .story-grid{grid-template-columns:.3fr 1.7fr;gap:clamp(42px,7vw,112px)}
+.studio-experience .story-grid h2{font-size:clamp(58px,7.4vw,116px);line-height:.88;letter-spacing:-.068em;max-width:1100px}
+.studio-experience .story-grid .body-lg{max-width:690px;color:#62675c}
+.studio-experience .principles{margin-top:68px;border-top:1px solid rgba(23,26,22,.16)}
+.studio-experience .principle{display:grid;grid-template-columns:minmax(180px,.42fr) 1.58fr;gap:36px;padding:26px 0;border-bottom:1px solid rgba(23,26,22,.16);background:transparent;backdrop-filter:none}
+.studio-experience .principle strong{font-size:clamp(24px,2.5vw,36px);font-weight:500;letter-spacing:-.04em}
+.studio-experience .principle p{max-width:570px;color:#6c7167}
+
+.studio-experience .founders-grid-v9{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:clamp(10px,2vw,28px);
+}
+.studio-experience .founder-v9{
+  min-height:clamp(640px,62vw,840px);
+  padding:clamp(30px,4vw,58px);
+  border:1px solid rgba(239,237,228,.16);
+  background:#11140f;
+  color:#f1efe6;
+  position:relative;
+  overflow:hidden;
+}
+.studio-experience .founder-v9::before{
+  content:attr(data-initial);
+  position:absolute;
+  right:-.04em;
+  bottom:-.15em;
+  font:400 clamp(260px,30vw,470px)/.75 var(--sans);
+  letter-spacing:-.12em;
+  color:rgba(140,158,89,.09);
+  pointer-events:none;
+}
+.studio-experience .founder-v9:nth-child(2){background:#1c2118}
+.studio-experience .founder-head-v9{border-bottom:1px solid rgba(241,239,230,.15);padding-bottom:20px}
+.studio-experience .founder-number-v9,.studio-experience .founder-role-v9{color:#aeb69b}
+.studio-experience .founder-v9 h3{
+  font-size:clamp(68px,7.6vw,122px);
+  line-height:.82;
+  letter-spacing:-.075em;
+  margin-top:auto;
+  color:#f1efe6;
+  position:relative;
+  z-index:1;
+}
+.studio-experience .founder-scope{font-size:15px;line-height:1.72;color:#a6aa9e;max-width:47ch;position:relative;z-index:1}
+.studio-experience .founder-links{position:relative;z-index:1;border-top:1px solid rgba(241,239,230,.14);padding-top:20px}
+.studio-experience .founder-links a{color:#f1efe6}
+
+.studio-experience .identity-demo{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(260px,.55fr) minmax(0,1.45fr);
+  gap:clamp(50px,7vw,110px);
+  padding:clamp(64px,8vw,118px);
+  background:#10130f;
+  color:#f1efe6;
+  overflow:hidden;
+}
+.studio-experience .identity-demo::before{
+  content:"";
+  position:absolute;
+  width:48vw;
+  aspect-ratio:1;
+  right:-18vw;
+  top:-20vw;
+  background:radial-gradient(circle,rgba(140,158,89,.24),transparent 65%);
+  filter:blur(16px);
+}
+.studio-experience .identity-copy{position:relative;z-index:2;align-self:end}
+.studio-experience .identity-copy .page-index{color:#8c9e59!important}
+.studio-experience .identity-copy h2{font-size:clamp(52px,6vw,96px);line-height:.89;letter-spacing:-.065em;color:#f1efe6}
+.studio-experience .identity-copy .body-lg{color:#a8ac9f;max-width:520px}
+.studio-experience .identity-demo .logo-stage{position:relative;z-index:2;min-height:clamp(560px,52vw,760px);border-color:rgba(241,239,230,.14);background:rgba(255,255,255,.025)}
+
+.studio-experience .site-cta{background:#8c9e59;color:#11140f}
+.studio-experience .site-cta h2,.studio-experience .site-cta p{color:#11140f}
+.studio-experience .site-cta .button{background:#11140f;color:#f1efe6;border-color:#11140f}
+
+@media (max-width:900px){
+  .studio-experience .page-hero{min-height:auto;padding-top:150px}
+  .studio-experience .page-hero-grid,
+  .studio-experience .story-grid{grid-template-columns:1fr}
+  .studio-experience .founders-grid-v9{grid-template-columns:1fr}
+  .studio-experience .founder-v9{min-height:640px}
+  .studio-experience .identity-demo{grid-template-columns:1fr;padding:clamp(34px,7vw,64px)}
+  .studio-experience .identity-demo .logo-stage{min-height:560px}
+}
+
+@media (max-width:620px){
+  .studio-experience .page-hero{padding:126px 0 76px}
+  .studio-experience .page-hero::before{display:none}
+  .studio-experience .page-hero h1{font-size:clamp(58px,18vw,78px);line-height:.88}
+  .studio-experience .story-grid h2{font-size:clamp(50px,14vw,68px)}
+  .studio-experience .principle{grid-template-columns:1fr;gap:12px}
+  .studio-experience .founder-v9{min-height:560px;padding:28px 22px}
+  .studio-experience .founder-v9 h3{font-size:60px}
+  .studio-experience .founder-v9::before{font-size:270px}
+  .studio-experience .identity-demo{margin-inline:-18px;padding:54px 18px}
+  .studio-experience .identity-demo .logo-stage{min-height:470px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .studio-experience .founder-v9::before{opacity:.7}
+}
