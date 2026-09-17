@@ -1,12 +1,5 @@
-/* Punto Due Studio v8 — progressive micro-motion */
+/* Punto Due Studio v8 — progressive portfolio/case micro-motion */
 (() => {
-  if (!document.querySelector('link[href="/site-v8-benchmark.css"]')) {
-    const benchmark = document.createElement('link');
-    benchmark.rel = 'stylesheet';
-    benchmark.href = '/site-v8-benchmark.css';
-    document.head.appendChild(benchmark);
-  }
-
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)');
   const root = document.documentElement;
