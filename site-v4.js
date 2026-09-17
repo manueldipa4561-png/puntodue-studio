@@ -3,7 +3,8 @@
   /* Production loading policy: keep shared essentials global; scope heavy/specialist layers. */
   const isHome = Boolean(document.querySelector('.home-hero'));
   const isCaseStudy = document.body.classList.contains('case-study-page');
-  const hasV5 = Boolean(document.querySelector('link[href="/site-v5.css"]'));
+  const hasCore2026 = Boolean(document.querySelector('link[href="/site-core-2026.css"]'));
+  const hasLegacyV5 = Boolean(document.querySelector('link[href="/site-v5.css"]'));
 
   const loadStyle = href => {
     if (document.querySelector(`link[href="${href}"]`)) return;
@@ -21,7 +22,9 @@
     document.head.appendChild(script);
   };
 
-  if (hasV5) {
+  if (hasCore2026) {
+    loadScript('/site-v9.js');
+  } else if (hasLegacyV5) {
     ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(loadStyle);
     loadScript('/site-v9.js');
   }
