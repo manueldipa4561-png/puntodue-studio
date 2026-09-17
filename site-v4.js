@@ -1,34 +1,46 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
-  /* Spatial Experience 2026: one isolated module shared by every page using this runtime. */
-  if(!document.querySelector('link[href="/spatial-2026.css"]')){
-    const spatialCss=document.createElement('link');
-    spatialCss.rel='stylesheet';
-    spatialCss.href='/spatial-2026.css';
-    document.head.appendChild(spatialCss);
-  }
-  if(!document.querySelector('script[src="/experience-field.js"]')){
-    const spatialScript=document.createElement('script');
-    spatialScript.src='/experience-field.js';
-    spatialScript.defer=true;
-    document.head.appendChild(spatialScript);
+  /* Production loading policy: keep shared essentials global; scope heavy/specialist layers. */
+  const isHome = Boolean(document.querySelector('.home-hero'));
+  const isCaseStudy = document.body.classList.contains('case-study-page');
+  const hasV5 = Boolean(document.querySelector('link[href="/site-v5.css"]'));
+
+  const loadStyle = href => {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  const loadScript = src => {
+    if (document.querySelector(`script[src="${src}"]`)) return;
+    const script = document.createElement('script');
+    script.src = src;
+    script.defer = true;
+    document.head.appendChild(script);
+  };
+
+  if (hasV5) {
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(loadStyle);
+    loadScript('/site-v9.js');
   }
 
-  if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css','/site-v13.css'].forEach(href=>{
-      if(document.querySelector(`link[href="${href}"]`))return;
-      const link=document.createElement('link');
-      link.rel='stylesheet';
-      link.href=href;
-      document.head.appendChild(link);
-    });
-    ['/site-v9.js','/site-v11.js'].forEach(src=>{
-      if(document.querySelector(`script[src="${src}"]`))return;
-      const script=document.createElement('script');
-      script.src=src;
-      script.defer=true;
-      document.head.appendChild(script);
-    });
+  /* Case-study choreography belongs only to case studies. */
+  if (isCaseStudy) {
+    ['/site-v11.css','/site-v12.css','/site-v13.css'].forEach(loadStyle);
+    loadScript('/site-v11.js');
+  }
+
+  /* The spatial field is a homepage signature, not a site-wide runtime dependency. */
+  if (isHome) {
+    loadStyle('/spatial-2026.css');
+    const loadSpatialField = () => loadScript('/experience-field.js');
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadSpatialField, { timeout: 1800 });
+    } else {
+      setTimeout(loadSpatialField, 700);
+    }
   }
 
   const header=document.querySelector('.site-header');
