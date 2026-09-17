@@ -39,6 +39,11 @@
       appendStyle('/case-motion.css');
       appendScript('/case-runtime.js');
     }
+
+    /* Portfolio/case refinement CSS is centrally loaded last, preserving its historical cascade position. */
+    if(document.querySelector('script[src="/portfolio-v8.js"]')){
+      appendStyle('/portfolio-refinements.css');
+    }
   }
 
   const header=document.querySelector('.site-header');
