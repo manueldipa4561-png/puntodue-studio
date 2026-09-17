@@ -283,8 +283,8 @@
   const need=[...document.querySelectorAll('input[name="need"]')];
   const stage=[...document.querySelectorAll('input[name="stage"]')];
   const message=document.querySelector('#brief-message');
-  const contactOne=document.querySelector('#brief-manuel');
-  const contactTwo=document.querySelector('#brief-nicolas');
+  const projectEmail=document.querySelector('#brief-projects');
+  const briefWhatsapp=document.querySelector('#brief-whatsapp');
   if(message&&need.length&&stage.length){
     const needPhrases={
       'un nuovo sito':'creare un nuovo sito',
@@ -299,8 +299,9 @@
       const text=`Ciao! Sto valutando di ${action}. Al momento ${s}. Possiamo sentirci per capire quale direzione avrebbe più senso per il progetto?`;
       message.textContent=text;
       const enc=encodeURIComponent(text);
-      if(contactOne)contactOne.href=`https://wa.me/393248423657?text=${enc}`;
-      if(contactTwo)contactTwo.href=`https://wa.me/393248165947?text=${enc}`;
+      const subject=encodeURIComponent('Nuovo progetto — Punto Due Studio');
+      if(projectEmail)projectEmail.href=`mailto:projects@puntoduestudio.it?subject=${subject}&body=${enc}`;
+      if(briefWhatsapp)briefWhatsapp.href=`https://wa.me/393248423657?text=${enc}`;
     };
     [...need,...stage].forEach(i=>i.addEventListener('change',update));
     update();
