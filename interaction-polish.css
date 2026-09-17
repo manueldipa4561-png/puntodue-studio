@@ -1,0 +1,127 @@
+/* Punto Due Studio — interaction polish inspired by modern component patterns (native CSS/JS) */
+:root{
+  --rb-scroll-shift:0px;
+  --rb-glow-opacity:0;
+}
+
+/* Cursor-following spotlight. Decorative only and pointer-transparent. */
+.rb-spotlight{
+  position:relative;
+  isolation:isolate;
+  --rb-x:50%;
+  --rb-y:50%;
+  --rb-glow:rgba(135,151,87,.11);
+  --rb-ring:rgba(135,151,87,.12);
+}
+.rb-spotlight::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:20;
+  pointer-events:none;
+  opacity:var(--rb-glow-opacity,0);
+  background:
+    radial-gradient(circle 280px at var(--rb-x) var(--rb-y),var(--rb-glow),transparent 64%),
+    radial-gradient(circle 520px at var(--rb-x) var(--rb-y),transparent 60%,var(--rb-ring) 99%,transparent 100%);
+  transition:opacity .28s ease;
+}
+.rb-spotlight:is(:hover,:focus-within){--rb-glow-opacity:1}
+
+.home-experience .territory-card.rb-spotlight,
+.projects-experience .project-territory-v7.rb-spotlight,
+.projects-experience .archive-card-v7.rb-spotlight{
+  --rb-glow:rgba(188,198,146,.12);
+  --rb-ring:rgba(135,151,87,.14);
+}
+.studio-experience .founder-v9.rb-spotlight,
+.studio-experience .identity-demo.rb-spotlight{
+  --rb-glow:rgba(188,198,146,.11);
+  --rb-ring:rgba(135,151,87,.13);
+}
+.case-study-page .case-hero-stage.rb-spotlight,
+.case-study-page .case-media.rb-spotlight,
+.case-study-page .case-token.rb-spotlight{
+  --rb-glow:color-mix(in srgb,var(--case-accent) 17%,transparent);
+  --rb-ring:color-mix(in srgb,var(--case-accent) 16%,transparent);
+}
+
+/* Scroll-velocity response: tiny editorial drift, never navigation. */
+.projects-experience .page-subnav,
+.projects-experience .project-index,
+.studio-experience .founder-head-v9,
+.case-study-page .case-stage-label,
+.case-study-page .case-kicker{
+  transform:translate3d(var(--rb-scroll-shift),0,0);
+  transition:transform .16s cubic-bezier(.2,.7,.2,1);
+  will-change:transform;
+}
+
+/* Scroll Stack translated to the existing static portfolio architecture.
+   Cards stay light and paper-like; project visuals carry the color. */
+@media (min-width:1100px) and (min-height:760px) and (prefers-reduced-motion:no-preference){
+  .projects-experience.rb-stack-ready .premium-projects-v7{
+    gap:0;
+    padding-bottom:clamp(120px,16vh,190px);
+  }
+  .projects-experience.rb-stack-ready .premium-project-v7{
+    position:sticky;
+    top:calc(88px + (var(--rb-stack-index,0) * 13px));
+    z-index:calc(20 + var(--rb-stack-index,0));
+    margin-bottom:clamp(150px,20vh,220px);
+    padding:clamp(28px,3vw,46px) 0 clamp(58px,6vw,86px);
+    background:linear-gradient(180deg,rgba(242,239,230,.995),rgba(242,239,230,.975));
+    border-top:1px solid var(--pd-line,rgba(23,26,21,.15));
+    box-shadow:0 -34px 90px rgba(17,19,15,.07);
+  }
+  .projects-experience.rb-stack-ready .premium-project-v7::after{
+    content:"";
+    position:absolute;
+    inset:0 -2vw auto;
+    height:116px;
+    z-index:-1;
+    background:linear-gradient(180deg,var(--pd-cream,#f2efe6) 42%,transparent);
+    pointer-events:none;
+  }
+  .projects-experience.rb-stack-ready .project-territory-v7,
+  .projects-experience.rb-stack-ready .premium-project-v7:nth-child(2) .project-territory-v7,
+  .projects-experience.rb-stack-ready .premium-project-v7:nth-child(3) .project-territory-v7{
+    min-height:min(54vw,calc(100svh - 210px),760px);
+  }
+}
+
+/* Small specular treatment on primary actions without changing hit area. */
+.button.rb-glare{
+  position:relative;
+  overflow:hidden;
+  --rb-x:50%;
+  --rb-y:50%;
+}
+.button.rb-glare::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(115deg,transparent 22%,rgba(255,255,255,.18) 44%,transparent 66%);
+  transform:translateX(-70%);
+  transition:opacity .2s ease,transform .5s cubic-bezier(.2,.75,.2,1);
+}
+.button.rb-glare:is(:hover,:focus-visible)::before{opacity:.7;transform:translateX(70%)}
+
+@media (hover:none),(pointer:coarse){
+  .rb-spotlight::after{display:none}
+  .projects-experience .page-subnav,
+  .projects-experience .project-index,
+  .studio-experience .founder-head-v9,
+  .case-study-page .case-stage-label,
+  .case-study-page .case-kicker{transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .rb-spotlight::after,.button.rb-glare::before{transition:none}
+  .projects-experience .page-subnav,
+  .projects-experience .project-index,
+  .studio-experience .founder-head-v9,
+  .case-study-page .case-stage-label,
+  .case-study-page .case-kicker{transform:none;transition:none}
+}

@@ -3,18 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f1f0eb">
+  <meta name="theme-color" content="#f1f0e8">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://puntoduestudio.it/cookie-policy.html">
   <title>Cookie Policy - Punto Due Studio</title>
-  <meta name="description" content="Informazioni sulle tecnologie di memorizzazione, sui cookie e sulle risorse esterne utilizzate dal sito Punto Due Studio.">
+  <meta name="description" content="Cookie Policy di Punto Due Studio: stato attuale dei cookie, memoria tecnica temporanea e risorse esterne utilizzate dal sito.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/polish.css">
-  <link rel="stylesheet" href="/experience.css">
+  <link rel="stylesheet" href="/utility-routes.css">
   <link rel="stylesheet" href="/site-v5.css">
-  <link rel="stylesheet" href="/site-v9.css">
-  <script src="/experience.js" defer></script>
+  <link rel="stylesheet" href="/typography.css">
+  <script src="/privacy-dialog.js" defer></script>
 </head>
 <body class="policy-page">
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -22,24 +20,86 @@
     <a class="brand" href="/" aria-label="Punto Due Studio, homepage"><img src="/logo.svg" width="205" height="50" alt="Punto Due Studio"></a>
     <a class="text-link" href="/">Torna al sito</a>
   </header>
+
   <main id="contenuto" class="policy-main container" tabindex="-1">
     <section class="policy-hero" aria-labelledby="policy-title">
-      <div><div class="section-label">Privacy / Cookie</div><h1 id="policy-title">Cookie<br>Policy.</h1></div>
-      <div><p>Questa pagina descrive le tecnologie di memorizzazione e le risorse esterne osservabili nell'attuale versione del sito Punto Due Studio. Non vengono descritti cookie o strumenti che il sito non utilizza.</p><p class="policy-meta">Ultimo aggiornamento: 17 settembre 2026.</p></div>
+      <div>
+        <div class="section-label">Privacy / Cookie</div>
+        <h1 id="policy-title">Cookie<br>Policy.</h1>
+      </div>
+      <div class="policy-hero-side">
+        <p>Questa pagina descrive le tecnologie di memorizzazione e le risorse esterne effettivamente presenti nell’attuale versione di Punto Due Studio. Non vengono elencati strumenti che il sito non utilizza.</p>
+        <div class="policy-status" role="status"><span>Stato attuale</span><strong>Nessun cookie opzionale, analytics o profilazione attivi.</strong></div>
+        <p class="policy-meta">Ultimo aggiornamento: 17 settembre 2026.</p>
+      </div>
     </section>
+
     <div class="policy-grid">
-      <nav class="policy-toc" aria-label="Indice Cookie Policy"><a href="#cosa-sono">Cosa sono i cookie</a><a href="#tecnologie">Tecnologie utilizzate</a><a href="#risorse-esterne">Risorse esterne</a><a href="#preferenze">Preferenze</a><a href="#aggiornamenti">Aggiornamenti</a></nav>
+      <nav class="policy-toc" aria-label="Indice Cookie Policy">
+        <a href="#cosa-sono">Cosa sono i cookie</a>
+        <a href="#tecnologie">Tecnologie utilizzate</a>
+        <a href="#memoria-tecnica">Memoria tecnica temporanea</a>
+        <a href="#risorse-esterne">Risorse esterne</a>
+        <a href="#preferenze">Preferenze</a>
+        <a href="#aggiornamenti">Aggiornamenti</a>
+      </nav>
+
       <div class="policy-content">
-        <section class="policy-section" id="cosa-sono"><h2>Cosa sono i cookie</h2><p>I cookie sono piccole informazioni che un sito o un servizio terzo può memorizzare nel dispositivo del visitatore e rileggere in seguito. Possono essere usati per funzioni tecniche, preferenze, misurazione o profilazione, a seconda di come vengono implementati.</p></section>
-        <section class="policy-section" id="tecnologie"><h2>Tecnologie utilizzate da questo sito</h2><p>Nell'attuale codice del sito non risultano attivi cookie di profilazione, strumenti pubblicitari, piattaforme analytics, pixel di marketing o sistemi di tracciamento equivalenti. Il sito non usa inoltre <code>localStorage</code> o <code>sessionStorage</code> per creare profili o misurare il comportamento dei visitatori.</p><div class="policy-note"><p>Per questo motivo non viene mostrato un banner di consenso al primo accesso: non ci sono categorie opzionali di tracciamento da accettare o rifiutare nella versione attuale.</p></div></section>
-        <section class="policy-section" id="risorse-esterne"><h2>Risorse e collegamenti esterni</h2><p>Il sito può richiamare immagini di anteprima, modelli 3D e la libreria necessaria a visualizzarli da servizi esterni già utilizzati per gli asset e le esperienze interattive. La tipografia principale utilizza inoltre Geist e IBM Plex Mono tramite Google Fonts. Una richiesta a un server esterno comporta normalmente la trasmissione dei dati tecnici necessari alla consegna della risorsa, come indirizzo IP, user agent e informazioni di rete gestite dal browser e dal provider interessato.</p><p>Il sito contiene inoltre collegamenti verso Instagram, WhatsApp e le demo esterne. Questi servizi vengono aperti solo quando il visitatore sceglie di seguirne il collegamento; da quel momento valgono le condizioni e le informative del relativo fornitore.</p></section>
-        <section class="policy-section" id="preferenze"><h2>Come modificare le preferenze</h2><p>Il controllo “Preferenze cookie” permette di verificare in qualsiasi momento lo stato delle categorie attive. Attualmente è presente soltanto la categoria strettamente necessaria e non sono disponibili categorie opzionali.</p><button class="button" type="button" data-cookie-open aria-haspopup="dialog" aria-controls="cookie-settings">Apri preferenze cookie</button></section>
-        <section class="policy-section" id="aggiornamenti"><h2>Aggiornamenti della Cookie Policy</h2><p>Se in futuro verranno introdotti analytics, strumenti di marketing, profilazione o altre tecnologie opzionali, questa pagina e il relativo meccanismo di scelta dovranno essere aggiornati prima della loro attivazione quando richiesto.</p><p>Questa pagina riguarda le tecnologie di memorizzazione e tracciamento del sito e non sostituisce eventuali ulteriori informative privacy necessarie per specifici trattamenti di dati personali.</p></section>
+        <section class="policy-section" id="cosa-sono">
+          <div class="policy-section-index">01</div>
+          <h2>Cosa sono i cookie</h2>
+          <p>I cookie sono piccole informazioni che un sito o un servizio terzo può memorizzare nel dispositivo del visitatore e rileggere in seguito. Possono essere usati per funzioni tecniche, preferenze, misurazione o profilazione, a seconda di come vengono implementati.</p>
+        </section>
+
+        <section class="policy-section" id="tecnologie">
+          <div class="policy-section-index">02</div>
+          <h2>Tecnologie utilizzate da questo sito</h2>
+          <p>Nell’attuale codice di Punto Due Studio non risultano attivi cookie di profilazione, piattaforme analytics, pixel pubblicitari, strumenti di remarketing o sistemi equivalenti destinati a misurare o profilare il comportamento dei visitatori.</p>
+          <div class="policy-note"><p>Per questo motivo non viene mostrato un banner di consenso al primo accesso: nella versione attuale non esistono categorie opzionali di tracciamento da accettare o rifiutare.</p></div>
+        </section>
+
+        <section class="policy-section" id="memoria-tecnica">
+          <div class="policy-section-index">03</div>
+          <h2>Memoria tecnica temporanea</h2>
+          <p>Le pagine dei case study utilizzano <code>sessionStorage</code> esclusivamente per coordinare il passaggio visivo tra un case study e quello successivo. Il dato tecnico contiene il percorso di partenza, il percorso di destinazione e un timestamp; viene letto nel nuovo case study e rimosso dopo l’uso oppure quando non è più valido.</p>
+          <p>Questo stato temporaneo serve al funzionamento dell’interfaccia e non viene usato per analytics, pubblicità, profilazione, identificazione del visitatore o memorizzazione delle preferenze cookie.</p>
+        </section>
+
+        <section class="policy-section" id="risorse-esterne">
+          <div class="policy-section-index">04</div>
+          <h2>Risorse e collegamenti esterni</h2>
+          <p>La tipografia utilizza Geist e IBM Plex Mono tramite Google Fonts. L’esperienza tridimensionale “Dual Field” carica il componente <code>model-viewer</code> da Google Hosted Libraries e il relativo modello 3D da una risorsa CloudFront. Alcune immagini di progetto possono essere distribuite tramite CDN esterne già utilizzate dal sito.</p>
+          <p>Quando il browser richiede una risorsa esterna, il relativo fornitore riceve normalmente i dati tecnici necessari alla consegna della richiesta, come indirizzo IP, user agent, URL richiesto e informazioni di rete. Questo avviene come parte del normale scambio HTTP e non equivale, da parte di Punto Due Studio, all’attivazione di analytics o profilazione.</p>
+          <p>Il sito contiene inoltre collegamenti verso Instagram, WhatsApp e demo ospitate su domini esterni. Tali servizi vengono aperti quando il visitatore sceglie di seguirne il collegamento; da quel momento si applicano le condizioni e le informative del relativo fornitore.</p>
+        </section>
+
+        <section class="policy-section" id="preferenze">
+          <div class="policy-section-index">05</div>
+          <h2>Preferenze cookie</h2>
+          <p>Il controllo “Preferenze cookie” permette di verificare in qualsiasi momento lo stato delle categorie gestite dal sito. Attualmente è mostrata soltanto la categoria strettamente necessaria e non sono disponibili categorie opzionali da attivare, disattivare o salvare.</p>
+          <button class="button" type="button" data-cookie-open aria-haspopup="dialog" aria-controls="cookie-settings">Apri preferenze cookie</button>
+        </section>
+
+        <section class="policy-section" id="aggiornamenti">
+          <div class="policy-section-index">06</div>
+          <h2>Aggiornamenti della Cookie Policy</h2>
+          <p>Se in futuro verranno introdotti analytics, strumenti di marketing, profilazione o altre tecnologie opzionali, questa pagina e il relativo meccanismo di scelta dovranno essere aggiornati prima della loro attivazione quando richiesto.</p>
+          <p>Questa pagina riguarda cookie, memoria tecnica e tecnologie di tracciamento del sito. Non sostituisce eventuali ulteriori informative privacy necessarie per specifici trattamenti di dati personali.</p>
+        </section>
       </div>
     </div>
   </main>
+
   <footer class="not-found-footer container"><span>© 2026 Punto Due Studio</span><span class="footer-privacy"><a href="/">Homepage</a><a href="/prenota-call.html">Prenota una call</a></span></footer>
+
   <button class="cookie-fab" type="button" data-cookie-open aria-haspopup="dialog" aria-controls="cookie-settings"><span class="cookie-mark" aria-hidden="true"></span><span>Preferenze cookie</span></button>
-  <dialog class="cookie-dialog" id="cookie-settings" aria-labelledby="cookie-title"><div class="cookie-panel"><div class="cookie-panel-head"><div><div class="section-label">Privacy / Cookie</div><h2 id="cookie-title">Preferenze cookie.</h2></div><form method="dialog"><button class="cookie-close" aria-label="Chiudi preferenze cookie">×</button></form></div><p>In questa versione del sito non sono attivi cookie opzionali, strumenti di analytics o tecnologie di profilazione.</p><div class="cookie-category"><strong>Strettamente necessari</strong><p>Il codice del sito non imposta attualmente cookie opzionali, analytics o di profilazione. Non ci sono preferenze opzionali da salvare.</p><span class="cookie-state">Sempre attivi</span></div><div class="cookie-actions"><form method="dialog"><button class="button" type="submit">Chiudi</button></form><a class="text-link" href="#tecnologie">Dettagli tecnici</a></div></div></dialog>
+  <dialog class="cookie-dialog" id="cookie-settings" aria-labelledby="cookie-title">
+    <div class="cookie-panel">
+      <div class="cookie-panel-head"><div><div class="section-label">Privacy / Cookie</div><h2 id="cookie-title">Preferenze cookie.</h2></div><form method="dialog"><button class="cookie-close" aria-label="Chiudi preferenze cookie">×</button></form></div>
+      <p>Nella versione attuale non sono attivi cookie opzionali, strumenti di analytics, pubblicità o tecnologie di profilazione.</p>
+      <div class="cookie-category"><strong>Strettamente necessari / tecnici</strong><p>Le sole funzioni tecniche presenti non creano un profilo del visitatore. I case study possono usare memoria di sessione temporanea per coordinare il passaggio visivo tra pagine.</p><span class="cookie-state">Sempre attivi</span></div>
+      <div class="cookie-actions"><form method="dialog"><button class="button" type="submit">Chiudi</button></form><a class="text-link" href="#memoria-tecnica">Dettagli tecnici</a></div>
+    </div>
+  </dialog>
 </body>
 </html>

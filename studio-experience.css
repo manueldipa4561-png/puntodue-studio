@@ -1,0 +1,180 @@
+/* Punto Due Studio — Studio / editorial manifesto 2026 */
+body.studio-experience{
+  background:var(--pd-cream);
+  color:var(--pd-charcoal);
+}
+
+.studio-experience .pd-field{opacity:.24;background:linear-gradient(180deg,#f2efe6,#ece8dd)}
+.studio-experience .pd-field__canvas{opacity:.24;filter:saturate(.55) brightness(1.45);mix-blend-mode:multiply}
+.studio-experience .site-header{background:rgba(242,239,230,.76);color:var(--pd-charcoal);backdrop-filter:blur(12px)}
+.studio-experience .site-header.scrolled{background:rgba(242,239,230,.95);border-color:var(--pd-line);backdrop-filter:blur(20px)}
+.studio-experience .brand img{filter:none}
+.studio-experience .site-nav a,.studio-experience .menu-toggle{color:var(--pd-charcoal)}
+.studio-experience .site-nav a::after{background:var(--pd-olive)}
+.studio-experience .nav-cta{color:var(--pd-cream);background:var(--pd-charcoal);border-color:var(--pd-charcoal)}
+
+.studio-experience .page-hero{
+  position:relative;
+  min-height:min(920px,100svh);
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(150px,18vh,230px) 0 clamp(90px,10vw,150px);
+  overflow:hidden;
+  background:var(--pd-cream);
+}
+.studio-experience .page-hero::before{
+  content:"02 / FOUNDERS";
+  position:absolute;
+  right:var(--pd-editorial-gutter);
+  top:clamp(120px,16vh,190px);
+  color:rgba(23,26,21,.28);
+  font:500 9px/1 var(--pd-technical);
+  letter-spacing:.2em;
+}
+.studio-experience .page-hero::after{
+  content:"";
+  position:absolute;
+  width:46vw;
+  aspect-ratio:1;
+  right:-14vw;
+  bottom:-24vw;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(135,151,87,.15),transparent 67%);
+  pointer-events:none;
+}
+.studio-experience .page-hero-grid{position:relative;z-index:1;grid-template-columns:.24fr 1.76fr;gap:clamp(48px,8vw,128px);align-items:end}
+.studio-experience .page-hero .page-index{color:#6d7656;padding-bottom:14px}
+.studio-experience .page-hero h1{
+  font-size:clamp(86px,11.5vw,184px);
+  line-height:.78;
+  letter-spacing:-.086em;
+  max-width:12ch;
+}
+.studio-experience .page-hero .body-lg{max-width:790px;margin-top:42px;color:var(--pd-muted);font-size:clamp(18px,1.45vw,24px);line-height:1.58}
+
+/* Manifesto chapter. */
+.studio-experience .section.container{padding-top:clamp(110px,12vw,190px);padding-bottom:clamp(110px,12vw,190px)}
+.studio-experience .story-grid{grid-template-columns:.24fr 1.76fr;gap:clamp(48px,8vw,128px)}
+.studio-experience .story-grid .page-index{color:#6d7656}
+.studio-experience .story-grid h2{font-size:clamp(64px,8vw,128px);line-height:.85;letter-spacing:-.075em;max-width:1120px}
+.studio-experience .story-grid .body-lg{max-width:720px;margin-top:42px;color:var(--pd-muted)}
+.studio-experience .principles{margin-top:78px;border-top:1px solid var(--pd-line)}
+.studio-experience .principle{display:grid;grid-template-columns:minmax(210px,.42fr) 1.58fr;gap:42px;padding:29px 0;border-bottom:1px solid var(--pd-line);background:transparent;backdrop-filter:none}
+.studio-experience .principle strong{font-size:clamp(25px,2.4vw,38px);font-weight:500;letter-spacing:-.045em}
+.studio-experience .principle p{max-width:590px;color:#686e62;line-height:1.75}
+
+/* Founders are editorial profiles, not two identical business cards. */
+.studio-experience .founders-grid-v9{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:18px;
+  align-items:start;
+  margin-top:0;
+}
+.studio-experience .founder-v9{
+  min-height:clamp(700px,64vw,900px);
+  padding:clamp(32px,4.2vw,62px);
+  border:1px solid var(--pd-line);
+  background:var(--pd-cream-soft);
+  color:var(--pd-charcoal);
+  position:relative;
+  overflow:hidden;
+}
+.studio-experience .founder-v9:nth-child(2){
+  min-height:clamp(610px,56vw,800px);
+  margin-top:clamp(110px,12vw,190px);
+  background:var(--pd-charcoal);
+  color:var(--pd-cream);
+  border-color:var(--pd-charcoal);
+}
+.studio-experience .founder-v9::before{
+  content:attr(data-initial);
+  position:absolute;
+  right:-.04em;
+  bottom:-.16em;
+  font:500 clamp(270px,31vw,490px)/.74 var(--pd-display);
+  letter-spacing:-.12em;
+  color:rgba(135,151,87,.12);
+  pointer-events:none;
+}
+.studio-experience .founder-v9:nth-child(2)::before{color:rgba(188,198,146,.10)}
+.studio-experience .founder-head-v9{border-bottom:1px solid rgba(23,26,21,.15);padding-bottom:20px}
+.studio-experience .founder-v9:nth-child(2) .founder-head-v9{border-color:var(--pd-line-dark)}
+.studio-experience .founder-number-v9,.studio-experience .founder-role-v9{color:#6e765f}
+.studio-experience .founder-v9:nth-child(2) :is(.founder-number-v9,.founder-role-v9){color:var(--pd-olive-soft)}
+.studio-experience .founder-v9 h3{
+  margin-top:auto;
+  color:var(--pd-charcoal);
+  font-size:clamp(72px,8vw,128px);
+  line-height:.80;
+  letter-spacing:-.08em;
+  position:relative;
+  z-index:1;
+}
+.studio-experience .founder-v9:nth-child(2) h3{color:var(--pd-cream)}
+.studio-experience .founder-scope{font-size:15px;line-height:1.75;color:#666c61;max-width:48ch;position:relative;z-index:1}
+.studio-experience .founder-v9:nth-child(2) .founder-scope{color:rgba(242,239,230,.58)}
+.studio-experience .founder-links{position:relative;z-index:1;border-top:1px solid rgba(23,26,21,.15);padding-top:20px}
+.studio-experience .founder-v9:nth-child(2) .founder-links{border-color:var(--pd-line-dark)}
+.studio-experience .founder-links a{color:inherit}
+
+/* Dual Field becomes one dark conceptual chapter. */
+.studio-experience .identity-demo{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(270px,.56fr) minmax(0,1.44fr);
+  gap:clamp(54px,8vw,126px);
+  padding:clamp(72px,8vw,126px);
+  background:var(--pd-charcoal);
+  color:var(--pd-cream);
+  overflow:hidden;
+}
+.studio-experience .identity-demo::before{
+  content:"";
+  position:absolute;
+  width:54vw;
+  aspect-ratio:1;
+  right:-20vw;
+  top:-24vw;
+  background:radial-gradient(circle,rgba(135,151,87,.24),transparent 66%);
+  filter:blur(16px);
+}
+.studio-experience .identity-copy{position:relative;z-index:2;align-self:end}
+.studio-experience .identity-copy .page-index{color:var(--pd-olive-soft)!important}
+.studio-experience .identity-copy h2{font-size:clamp(58px,7vw,108px);line-height:.86;letter-spacing:-.072em;color:var(--pd-cream)}
+.studio-experience .identity-copy .body-lg{color:rgba(242,239,230,.56);max-width:540px}
+.studio-experience .identity-demo .logo-stage{
+  position:relative;
+  z-index:2;
+  min-height:clamp(600px,54vw,800px);
+  border:1px solid var(--pd-line-dark);
+  background:linear-gradient(135deg,#dfe3d3,#aab98a 48%,#5f6e48);
+}
+
+@media(max-width:950px){
+  .studio-experience .page-hero{min-height:auto;padding-top:150px}
+  .studio-experience .page-hero-grid,.studio-experience .story-grid{grid-template-columns:1fr}
+  .studio-experience .founders-grid-v9{grid-template-columns:1fr}
+  .studio-experience .founder-v9,.studio-experience .founder-v9:nth-child(2){min-height:650px;margin-top:0}
+  .studio-experience .identity-demo{grid-template-columns:1fr;padding:clamp(42px,7vw,72px)}
+  .studio-experience .identity-demo .logo-stage{min-height:560px}
+}
+
+@media(max-width:620px){
+  .studio-experience .site-header{background:rgba(242,239,230,.95)}
+  .studio-experience .page-hero{padding:126px 0 78px}
+  .studio-experience .page-hero::before{display:none}
+  .studio-experience .page-hero h1{font-size:clamp(58px,18vw,80px);line-height:.84}
+  .studio-experience .story-grid h2{font-size:clamp(52px,15vw,70px)}
+  .studio-experience .principle{grid-template-columns:1fr;gap:12px}
+  .studio-experience .founder-v9,.studio-experience .founder-v9:nth-child(2){min-height:570px;padding:28px 22px}
+  .studio-experience .founder-v9 h3{font-size:62px}
+  .studio-experience .founder-v9::before{font-size:280px}
+  .studio-experience .identity-demo{margin-inline:-18px;padding:62px 18px}
+  .studio-experience .identity-copy h2{font-size:clamp(52px,14vw,70px)}
+  .studio-experience .identity-demo .logo-stage{min-height:470px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .studio-experience .founder-v9::before{opacity:.75}
+}

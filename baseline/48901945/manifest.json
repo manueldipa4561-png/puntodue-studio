@@ -1,0 +1,79 @@
+{
+  "commit": "48901945e39fc4f6bd29c7154e887ec87ee13c26",
+  "productionOrigin": "https://puntoduestudio.it",
+  "purpose": "Pre-consolidation visual, route and regression baseline for CSS/JavaScript architecture cleanup.",
+  "routes": [
+    {"id":"R01","path":"/","name":"home"},
+    {"id":"R02","path":"/progetti.html","name":"projects"},
+    {"id":"R03","path":"/progetti/nodo.html","name":"case-nodo"},
+    {"id":"R04","path":"/progetti/innesto.html","name":"case-innesto"},
+    {"id":"R05","path":"/progetti/trama-zero.html","name":"case-trama-zero"},
+    {"id":"R06","path":"/studio.html","name":"studio"},
+    {"id":"R07","path":"/metodo.html","name":"method"},
+    {"id":"R08","path":"/contatti.html","name":"contact"},
+    {"id":"R09","path":"/prenota-call.html","name":"book-call"},
+    {"id":"R10","path":"/cookie-policy.html","name":"cookie-policy"},
+    {"id":"R11","path":"/404.html","name":"404-document"}
+  ],
+  "routeResolutionChecks": [
+    "/progetti/nodo",
+    "/progetti/innesto",
+    "/progetti/trama-zero",
+    "/non-existent-baseline-route"
+  ],
+  "viewports": {
+    "desktop": {"width":1440,"height":1000,"dpr":1},
+    "tablet": {"width":1024,"height":1366,"dpr":1},
+    "mobile": {"width":390,"height":844,"dpr":1},
+    "smallMobile": {"width":360,"height":800,"dpr":1}
+  },
+  "deterministicVisualMode": {
+    "prefersReducedMotion": "reduce",
+    "browserZoom": 1,
+    "locale": "it-IT",
+    "colorScheme": "light",
+    "captureStates": ["top","full-page","bottom"]
+  },
+  "interactiveReferenceStates": [
+    "home-field-idle",
+    "home-pointer-p1",
+    "home-pointer-p2",
+    "home-header-scrolled",
+    "home-project-card-hover",
+    "projects-nodo-idle",
+    "projects-nodo-pointer-active",
+    "projects-innesto-pointer-active",
+    "projects-trama-pointer-active",
+    "studio-dual-field-idle",
+    "studio-dual-field-pointer-active",
+    "contact-brief-initial",
+    "contact-brief-changed",
+    "contact-cookie-dialog-open",
+    "call-object-idle",
+    "call-object-interacted",
+    "case-nodo-hero",
+    "case-nodo-middle-section-active",
+    "case-nodo-next-ready",
+    "case-nodo-outgoing-handoff",
+    "case-innesto-incoming-settle",
+    "mobile-menu-open",
+    "mobile-menu-closed-after-escape",
+    "mobile-cookie-dialog-open"
+  ],
+  "pointerCoordinates": {
+    "P1": {"xViewport":0.25,"yViewport":0.35},
+    "P2": {"xViewport":0.75,"yViewport":0.60},
+    "CARD": {"xLocal":0.72,"yLocal":0.32}
+  },
+  "existingRegressionTests": [
+    "python tests/check_site.py",
+    "python tests/check_case_choreography.py",
+    "python tests/check_case_entry_settle.py",
+    "python tests/check_case_page_handoff.py",
+    "python tests/check_spatial_experience.py",
+    "python tests/check_spatial_loader.py",
+    "node tests/brief.cjs",
+    "node tests/experience.cjs",
+    "node tests/interactions.cjs"
+  ]
+}

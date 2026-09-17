@@ -1,6 +1,5 @@
-/* Punto Due Studio v8.1 — benchmark-derived refinements
-   Transferable principles only: proof-led hierarchy, editorial density,
-   modular trust blocks, restrained interaction feedback. */
+/* Punto Due Studio — portfolio and case-study refinements.
+   Proof-led hierarchy, editorial density and restrained interaction feedback. */
 
 .proof-rail-v8{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--v5-line);border-bottom:1px solid var(--v5-line);margin-top:clamp(72px,8vw,116px)}
 .proof-rail-v8 article{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:28px 28px 30px 0;margin-right:28px;border-right:1px solid var(--v5-line);min-height:170px;align-items:start}
@@ -9,25 +8,21 @@
 .proof-rail-v8 strong{display:block;font-size:15px;font-weight:650;letter-spacing:-.02em;margin-bottom:12px}
 .proof-rail-v8 p{font-size:12px;line-height:1.65;color:var(--v5-muted);max-width:30ch}
 
-/* Clearer case-study affordance and a more editorial project rhythm. */
 .project-territory-v8::after{content:"";position:absolute;inset:0;z-index:7;pointer-events:none;border:1px solid transparent;transition:border-color .35s var(--v5-ease),box-shadow .35s var(--v5-ease)}
 .project-territory-v8:hover::after{border-color:rgba(255,255,255,.22);box-shadow:inset 0 0 0 5px rgba(255,255,255,.025)}
 .premium-project-v7 .project-index{display:flex;align-items:center;gap:12px}
 .premium-project-v7 .project-index::after{content:"";height:1px;flex:1;max-width:72px;background:currentColor;opacity:.28}
 
-/* Graphite-style proof clarity without fabricating client metrics. */
 .case-proof .page-index::after{content:" / evidence";opacity:.55}
 .case-token strong{max-width:24ch}
 .case-next-link{position:relative;overflow:hidden}
 .case-next-link::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--case-accent,var(--v5-accent));transition:right .55s var(--v5-ease)}
 .case-next-link:hover::after{right:0}
 
-/* Notebook-like modular visual language: labels behave as system annotations. */
 .case-kicker,.case-stage-label,.project-index,.page-index{font-variant-numeric:tabular-nums}
 .case-stage-label span:first-child,.territory-meta>div>span{position:relative;padding-left:14px}
 .case-stage-label span:first-child::before,.territory-meta>div>span::before{content:"";position:absolute;left:0;top:.45em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.55}
 
-/* Compatibility for the two newly authored case-study signature scenes. */
 .signature-innesto-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(240,234,223,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(240,234,223,.09) 1px,transparent 1px);background-size:72px 72px}
 .signature-innesto-block{position:absolute;border:1px solid rgba(240,234,223,.2);box-shadow:0 35px 90px rgba(0,0,0,.15)}
 .signature-innesto-block--a{left:14%;top:25%;width:38%;height:40%;background:#a28f71;transform:rotate(-5deg)}

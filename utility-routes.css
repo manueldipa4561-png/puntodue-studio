@@ -1,0 +1,214 @@
+/* Punto Due Studio — focused utility routes (Cookie Policy + 404)
+   Standalone editorial system matching the production art direction without
+   loading the retired marketing CSS/JS island. */
+:root{
+  --paper:#f2efe6;
+  --paper-2:#e8e4d9;
+  --ink:#11130f;
+  --muted:#666b60;
+  --line:rgba(17,19,15,.15);
+  --olive:#879757;
+  --olive-soft:#bcc692;
+  --dark:#11130f;
+  --light:#f2efe6;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --focus-ring:#657044;
+  --font-sans:"Geist","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  --utility-gutter:clamp(18px,4.8vw,72px);
+  --utility-max:1500px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px;text-size-adjust:100%;-webkit-text-size-adjust:100%;max-width:100%;background:var(--paper)}
+body{margin:0;min-width:0;max-width:100%;background:var(--paper);color:var(--ink);font:16px/1.68 var(--font-sans);letter-spacing:-.01em;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-kerning:normal}
+h1,h2,h3,p,figure{margin:0}
+h1,h2{font-weight:500;line-height:.9;letter-spacing:-.062em;text-wrap:balance}
+h1{font-size:clamp(64px,10vw,150px)}
+h2{font-size:clamp(40px,5vw,72px)}
+p,li{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-appearance:none;appearance:none}
+img{max-width:100%;height:auto;display:block}
+code{font-family:var(--font-mono);font-size:.92em}
+::selection{background:var(--olive);color:var(--ink)}
+:where(a,button,input,summary):focus-visible{outline:3px solid var(--focus-ring);outline-offset:5px}
+.container{width:min(var(--utility-max),calc(100% - (var(--utility-gutter) * 2)));margin-inline:auto;min-width:0}
+.section-label,.policy-section-index{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.145em;line-height:1.5;text-transform:uppercase}
+.skip-link{position:fixed;top:-100px;left:16px;padding:14px;background:var(--ink);color:var(--paper);z-index:100}
+.skip-link:focus{top:16px}
+
+/* Utility header mirrors the restrained site chrome. */
+.header{position:sticky;top:0;z-index:50;width:min(var(--utility-max),calc(100% - (var(--utility-gutter) * 2)));margin-inline:auto;min-height:78px;display:flex;justify-content:space-between;align-items:center;gap:24px;border-bottom:1px solid var(--line);background:rgba(242,239,230,.93);backdrop-filter:blur(18px) saturate(1.04);-webkit-backdrop-filter:blur(18px) saturate(1.04);isolation:isolate}
+.brand{display:inline-flex;align-items:center;min-height:48px;max-width:100%;flex-shrink:0}
+.brand img{width:176px;height:auto}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:50px;padding:13px 20px;background:var(--ink);color:var(--paper);font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.065em;text-transform:uppercase;border:1px solid var(--ink);border-radius:999px;transition:background .2s,color .2s,transform .2s}
+.button:hover{background:var(--olive);border-color:var(--olive);color:var(--ink);transform:translateY(-1px)}
+.text-link{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+.text-link:hover{color:#556039;border-color:#556039}
+
+/* Utility signature footer — same ending gesture as the main site, with lighter information density. */
+.not-found-footer{
+  position:relative;
+  width:100%;
+  max-width:none;
+  min-height:clamp(330px,31vw,470px);
+  margin:0;
+  padding:54px var(--utility-gutter) clamp(170px,16vw,235px);
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:20px;
+  overflow:hidden;
+  border:0;
+  background:var(--ink);
+  color:rgba(242,239,230,.62);
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.not-found-footer::before{
+  content:"PUNTO DUE";
+  position:absolute;
+  left:var(--utility-gutter);
+  right:var(--utility-gutter);
+  bottom:48px;
+  color:var(--paper);
+  font-family:var(--font-sans);
+  font-size:clamp(82px,16vw,248px);
+  font-weight:500;
+  line-height:.67;
+  letter-spacing:-.087em;
+  white-space:nowrap;
+  text-transform:none;
+  pointer-events:none;
+}
+.not-found-footer::after{
+  content:"PUNTO DUE STUDIO / PRIVACY + UTILITY";
+  position:absolute;
+  left:var(--utility-gutter);
+  top:24px;
+  color:rgba(242,239,230,.30);
+  font-size:8px;
+  letter-spacing:.15em;
+}
+.not-found-footer>span{position:relative;z-index:1;margin-top:24px}
+.not-found-footer a{min-height:44px;display:inline-flex;align-items:center;color:rgba(242,239,230,.72)}
+.not-found-footer a:hover{color:var(--olive-soft)}
+.footer-privacy{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center}
+
+/* 404 — a designed page, not a technical afterthought. */
+.not-found-page{min-height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.not-found{position:relative;flex:1;display:grid;align-content:center;min-height:calc(100dvh - 170px);padding-block:clamp(100px,14vw,200px)}
+.not-found::before{content:"404";position:absolute;right:-.05em;top:50%;transform:translateY(-52%);font-size:clamp(240px,42vw,660px);font-weight:500;line-height:.7;letter-spacing:-.11em;color:rgba(135,151,87,.09);pointer-events:none}
+.not-found-code{position:relative;z-index:1;font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#667044;margin-bottom:30px}
+.not-found h1{position:relative;z-index:1;max-width:8.5ch;font-size:clamp(72px,11vw,170px);line-height:.80;letter-spacing:-.078em}
+.not-found>p{position:relative;z-index:1;max-width:620px;margin-top:34px;color:var(--muted);font-size:17px;line-height:1.78}
+.not-found-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:38px;align-items:center}
+
+/* Cookie/privacy UI — no first-visit consent banner because no optional tracking is active. */
+.cookie-fab{position:fixed;left:18px;bottom:18px;z-index:70;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:9px 13px;border:1px solid rgba(17,19,15,.18);border-radius:999px;background:rgba(242,239,230,.95);color:var(--ink);box-shadow:0 10px 28px rgba(17,19,15,.10);backdrop-filter:blur(10px);font:500 10px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase}
+.cookie-fab:hover{border-color:var(--olive);color:#56603d}
+.cookie-mark{position:relative;width:19px;height:19px;display:inline-block;transition:transform .45s var(--ease-out)}
+.cookie-mark::before,.cookie-mark::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;top:6px}
+.cookie-mark::before{left:1px;background:var(--olive)}
+.cookie-mark::after{right:1px;background:var(--ink)}
+.cookie-fab:hover .cookie-mark{transform:rotate(180deg)}
+.cookie-dialog{width:min(650px,calc(100% - 32px));max-height:min(780px,calc(100dvh - 32px));padding:0;border:1px solid rgba(17,19,15,.16);border-radius:0;background:var(--paper);color:var(--ink);box-shadow:0 34px 90px rgba(17,19,15,.26)}
+.cookie-dialog::backdrop{background:rgba(17,19,15,.50);backdrop-filter:blur(4px)}
+.cookie-panel{padding:clamp(24px,4vw,42px)}
+.cookie-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.cookie-panel .section-label{color:#657044;margin-bottom:14px}
+.cookie-panel h2{font-size:clamp(42px,6vw,64px);line-height:.88;max-width:9ch}
+.cookie-close{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;font-size:24px;line-height:1}
+.cookie-panel>p{margin-top:24px;color:var(--muted);line-height:1.75;max-width:56ch}
+.cookie-category{display:grid;grid-template-columns:1fr auto;gap:10px 18px;align-items:center;margin-top:30px;padding:20px 0;border-block:1px solid var(--line)}
+.cookie-category strong{font-size:15px;font-weight:500}
+.cookie-category p{grid-column:1;margin:0;color:var(--muted);font-size:13px;line-height:1.65}
+.cookie-state{grid-column:2;grid-row:1 / span 2;align-self:center;padding:8px 11px;border-radius:999px;background:#e2e6d4;color:#465037;font-family:var(--font-mono);font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.cookie-actions{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:26px}
+.cookie-actions .button{min-width:120px}
+.cookie-actions .text-link{font-size:10px}
+
+/* Cookie Policy — long-form publication layout. */
+.policy-main{padding-block:clamp(72px,9vw,132px) clamp(128px,14vw,214px)}
+.policy-hero{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(42px,8vw,128px);align-items:end;padding:clamp(42px,5vw,72px) 0 clamp(82px,9vw,136px);border-bottom:1px solid var(--line)}
+.policy-hero .section-label{color:#687255;margin-bottom:26px}
+.policy-hero h1{font-size:clamp(78px,11vw,170px);line-height:.78;letter-spacing:-.076em;max-width:7ch}
+.policy-hero-side{align-self:end;max-width:720px}
+.policy-hero-side>p{max-width:58ch;color:var(--muted);font-size:clamp(17px,1.3vw,21px);line-height:1.76}
+.policy-status{display:grid;grid-template-columns:120px 1fr;gap:20px;margin-top:32px;padding:18px 0;border-block:1px solid var(--line)}
+.policy-status span{font-family:var(--font-mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#697159}
+.policy-status strong{font-size:16px;font-weight:500;line-height:1.45}
+.policy-meta{font-family:var(--font-mono);font-size:9px!important;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)!important;margin-top:22px}
+.policy-grid{display:grid;grid-template-columns:minmax(220px,.42fr) minmax(0,1.58fr);gap:clamp(50px,8vw,128px);padding-top:clamp(72px,9vw,132px)}
+.policy-toc{position:sticky;top:112px;align-self:start;display:grid}
+.policy-toc a{min-height:47px;display:flex;align-items:center;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.policy-toc a:first-child{border-top:1px solid var(--line)}
+.policy-toc a:hover{color:#56603d}
+.policy-content{display:grid;gap:clamp(86px,9vw,138px)}
+.policy-section{position:relative;scroll-margin-top:130px;padding-top:22px;border-top:1px solid var(--line)}
+.policy-section-index{position:absolute;right:0;top:24px;color:#747c65}
+.policy-section h2{font-size:clamp(44px,5.6vw,82px);line-height:.9;max-width:13ch;margin-bottom:32px;padding-right:64px}
+.policy-section p,.policy-section li{max-width:70ch;color:var(--muted);line-height:1.86}
+.policy-section p+p{margin-top:18px}
+.policy-section ul{padding-left:20px;margin:14px 0 0}
+.policy-note{max-width:70ch;margin-top:28px;padding:24px 26px;border-left:2px solid var(--olive);background:var(--paper-2)}
+.policy-section .button{margin-top:28px}
+
+@media(max-width:900px){
+  .policy-hero,.policy-grid{grid-template-columns:1fr}
+  .policy-toc{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .policy-toc a{padding-right:12px}
+}
+
+@media(max-width:700px){
+  .cookie-fab{left:12px;bottom:12px;padding:9px 11px}
+  .cookie-fab>span:last-child{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .cookie-dialog{width:calc(100% - 20px);max-height:calc(100dvh - 20px)}
+  .cookie-panel{padding:24px 18px}
+  .cookie-category{grid-template-columns:1fr}
+  .cookie-state{grid-column:1;grid-row:auto;justify-self:start}
+  .cookie-actions{align-items:stretch;flex-direction:column}
+  .cookie-actions .button,.cookie-actions .text-link{width:100%}
+  .policy-main{padding-top:44px;padding-bottom:110px}
+  .policy-hero{padding-top:26px;padding-bottom:72px}
+  .policy-hero h1{font-size:clamp(68px,20vw,92px)}
+  .policy-status{grid-template-columns:1fr;gap:8px}
+  .policy-toc{grid-template-columns:1fr}
+  .policy-content{gap:78px}
+  .policy-section h2{font-size:clamp(42px,13vw,58px);padding-right:46px}
+}
+
+@media(max-width:600px){
+  :root{--utility-gutter:18px}
+  .header{min-height:72px;gap:12px}
+  .brand img{width:156px}
+  .not-found{min-height:auto;padding-block:94px 108px}
+  .not-found::before{font-size:82vw;right:-.12em;opacity:.9}
+  .not-found h1{font-size:clamp(64px,20vw,88px)}
+  .not-found>p{font-size:15px;line-height:1.72}
+  .not-found-actions{align-items:stretch;flex-direction:column}
+  .not-found-actions .button,.not-found-actions .text-link{width:100%}
+  .not-found-footer{min-height:430px;padding-top:64px;padding-bottom:220px;align-items:flex-start;flex-direction:column;justify-content:flex-start;gap:8px}
+  .not-found-footer::before{content:"PUNTO\A DUE";font-size:clamp(76px,27vw,104px);bottom:54px;white-space:pre;line-height:.68;max-width:5ch}
+  .not-found-footer::after{top:22px;font-size:7px}
+  .not-found-footer>span{margin-top:16px}
+  .footer-privacy{gap:6px 16px}
+}
+
+@media(max-width:360px){
+  body{font-size:15px}
+  :root{--utility-gutter:15px}
+  .brand img{width:148px}
+  .cookie-panel h2{font-size:38px}
+  .not-found-footer::before{font-size:72px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .cookie-mark{transform:none!important}
+}

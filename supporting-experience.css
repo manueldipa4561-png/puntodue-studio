@@ -1,0 +1,165 @@
+/* Punto Due Studio — supporting commercial routes / editorial system 2026 */
+
+:is(.method-experience,.contact-experience,.call-experience){
+  background:var(--pd-cream);
+  color:var(--pd-charcoal);
+}
+:is(.method-experience,.contact-experience,.call-experience) .pd-field{opacity:.20;background:linear-gradient(180deg,#f2efe6,#ece8dd)}
+:is(.method-experience,.contact-experience,.call-experience) .pd-field__canvas{opacity:.22;filter:saturate(.50) brightness(1.5);mix-blend-mode:multiply}
+:is(.method-experience,.contact-experience,.call-experience) .site-header{background:rgba(242,239,230,.78);color:var(--pd-charcoal);backdrop-filter:blur(12px)}
+:is(.method-experience,.contact-experience,.call-experience) .site-header.scrolled{background:rgba(242,239,230,.95);border-color:var(--pd-line);backdrop-filter:blur(20px)}
+:is(.method-experience,.contact-experience,.call-experience) .brand img{filter:none}
+:is(.method-experience,.contact-experience,.call-experience) .site-nav a,
+:is(.method-experience,.contact-experience,.call-experience) .menu-toggle{color:var(--pd-charcoal)}
+:is(.method-experience,.contact-experience,.call-experience) .nav-cta{color:var(--pd-cream);background:var(--pd-charcoal);border-color:var(--pd-charcoal)}
+
+/* Shared page opening. */
+:is(.method-experience,.contact-experience) .page-hero{
+  min-height:min(880px,94svh);
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(150px,18vh,230px) 0 clamp(86px,10vw,148px);
+  background:var(--pd-cream);
+}
+:is(.method-experience,.contact-experience) .page-hero-grid{grid-template-columns:.24fr 1.76fr;gap:clamp(48px,8vw,128px);align-items:end}
+:is(.method-experience,.contact-experience) .page-hero .page-index{color:#6d7656;padding-bottom:14px}
+:is(.method-experience,.contact-experience) .page-hero h1{
+  font-size:clamp(82px,10.8vw,172px);
+  line-height:.79;
+  letter-spacing:-.084em;
+  max-width:12ch;
+}
+:is(.method-experience,.contact-experience) .page-hero .body-lg{max-width:760px;margin-top:42px;color:var(--pd-muted);font-size:clamp(18px,1.4vw,23px)}
+
+/* Method */
+.method-experience .section.container{padding-top:clamp(110px,12vw,185px);padding-bottom:clamp(110px,12vw,185px)}
+.method-experience .method-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--pd-line);
+}
+.method-experience .method-step{
+  min-height:clamp(390px,34vw,520px);
+  display:flex;
+  flex-direction:column;
+  padding:34px 44px 40px 0;
+  border-bottom:1px solid var(--pd-line);
+  border-right:1px solid var(--pd-line);
+  background:transparent;
+}
+.method-experience .method-step:nth-child(even){padding-left:44px;border-right:0}
+.method-experience .method-step .project-index{color:#727b5f}
+.method-experience .method-step h3{margin-top:auto;font-size:clamp(42px,4.7vw,74px);line-height:.92;letter-spacing:-.065em;max-width:11ch}
+.method-experience .method-step p{max-width:42ch;color:var(--pd-muted);line-height:1.75}
+.method-experience .method-detail{padding:clamp(80px,9vw,130px) 0;border-top:1px solid var(--pd-line);grid-template-columns:.72fr 1.28fr;gap:clamp(50px,8vw,120px)}
+.method-experience .method-detail h2{font-size:clamp(58px,7vw,108px);line-height:.87;letter-spacing:-.07em}
+.method-experience .check-grid{border-top:1px solid var(--pd-line);margin-top:46px}
+.method-experience .check-grid span{padding:19px 0;border-bottom:1px solid var(--pd-line);color:#62695c}
+.method-experience .statement-band{background:var(--pd-charcoal);color:var(--pd-cream);padding:clamp(120px,14vw,210px) 0}
+.method-experience .statement-grid{grid-template-columns:.24fr 1.76fr;gap:clamp(48px,8vw,128px)}
+.method-experience .statement-grid .page-index{color:var(--pd-olive-soft)}
+.method-experience .statement-grid h2{color:var(--pd-cream);font-size:clamp(64px,8vw,128px);line-height:.85;letter-spacing:-.074em}
+.method-experience .statement-grid h2 em{color:var(--pd-olive-soft)}
+.method-experience .statement-side{color:rgba(242,239,230,.56);max-width:640px;margin-top:42px}
+
+/* Contact */
+.contact-experience .contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);
+  gap:clamp(54px,8vw,128px);
+  padding-top:clamp(110px,12vw,180px);
+  padding-bottom:clamp(120px,13vw,200px);
+}
+.contact-experience .contact-main h2{font-size:clamp(58px,7vw,108px)!important;line-height:.87;letter-spacing:-.07em!important}
+.contact-experience .contact-main .lead{color:var(--pd-muted);max-width:690px}
+.contact-experience .contact-cards{margin-top:64px;border-top:1px solid var(--pd-line)}
+.contact-experience .contact-card{
+  min-height:96px;
+  padding:20px 0;
+  border:0;
+  border-bottom:1px solid var(--pd-line);
+  background:transparent;
+  border-radius:0;
+}
+.contact-experience .contact-card strong{font-size:clamp(22px,2.2vw,34px);font-weight:500;letter-spacing:-.035em}
+.contact-experience .contact-card span{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#737b64}
+.contact-experience .contact-card-primary{background:var(--pd-charcoal);color:var(--pd-cream);padding-inline:22px;border-color:var(--pd-charcoal)}
+.contact-experience .contact-card-primary span{color:var(--pd-olive-soft)}
+.contact-experience .brief-panel-v4{
+  position:sticky;
+  top:106px;
+  align-self:start;
+  padding:clamp(28px,4vw,48px);
+  background:var(--pd-charcoal);
+  color:var(--pd-cream);
+  border:0;
+  border-radius:0;
+}
+.contact-experience .brief-panel-v4 .page-index{color:var(--pd-olive-soft)}
+.contact-experience .brief-panel-v4 h2{color:var(--pd-cream);font-size:clamp(48px,5vw,76px);line-height:.88}
+.contact-experience .brief-panel-v4 fieldset{border-color:var(--pd-line-dark)}
+.contact-experience .brief-panel-v4 legend{color:rgba(242,239,230,.58)}
+.contact-experience .brief-options label{border-color:var(--pd-line-dark);color:var(--pd-cream)}
+.contact-experience .brief-options label:has(input:checked){background:var(--pd-olive);color:var(--pd-charcoal);border-color:var(--pd-olive)}
+.contact-experience .brief-preview{background:rgba(255,255,255,.04);border-color:var(--pd-line-dark)}
+.contact-experience .brief-panel-v4 .button{background:var(--pd-cream);color:var(--pd-charcoal);border-color:var(--pd-cream)}
+.contact-experience .brief-panel-v4 .button.ghost{background:transparent;color:var(--pd-cream);border-color:var(--pd-line-dark)}
+.contact-experience .method-detail{grid-template-columns:.72fr 1.28fr;gap:clamp(50px,8vw,120px);padding:clamp(90px,10vw,150px) 0;border-top:1px solid var(--pd-line)}
+.contact-experience .method-detail h2{font-size:clamp(58px,7vw,108px);line-height:.87;letter-spacing:-.07em}
+
+/* Call */
+.call-experience .call-hero{min-height:100svh;padding:clamp(145px,17vh,210px) 0 clamp(80px,9vw,130px);display:flex;align-items:center;background:var(--pd-cream)}
+.call-experience .call-hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(400px,.85fr);gap:clamp(54px,8vw,120px);align-items:end}
+.call-experience .call-copy h1{font-size:clamp(76px,9.2vw,148px);line-height:.80;letter-spacing:-.082em;max-width:11ch}
+.call-experience .call-copy .lead{max-width:760px;margin-top:40px;color:var(--pd-muted)}
+.call-experience .call-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.call-experience .call-note{max-width:58ch;color:#6b7164;border-top:1px solid var(--pd-line);padding-top:22px;margin-top:30px}
+.call-experience .call-object-stage{min-height:clamp(590px,54vw,780px);background:linear-gradient(138deg,#e2e5d6,#b9c59a 48%,#778654);border:1px solid var(--pd-line);box-shadow:none}
+.call-experience .call-process{padding-top:clamp(120px,13vw,200px);padding-bottom:clamp(120px,13vw,200px)}
+.call-experience .call-process .home-work-head{grid-template-columns:1.35fr .55fr;gap:clamp(50px,8vw,120px)}
+.call-experience .call-process h2{font-size:clamp(60px,7.2vw,112px);line-height:.86;letter-spacing:-.072em}
+.call-experience .call-steps{border-top:1px solid var(--pd-line)}
+.call-experience .call-steps article{min-height:330px;background:transparent;border-color:var(--pd-line);padding-top:30px}
+.call-experience .call-steps h3{font-size:clamp(28px,3vw,46px);letter-spacing:-.05em}
+.call-experience .call-dark-section{padding:clamp(120px,14vw,210px) 0;background:var(--pd-charcoal);color:var(--pd-cream)}
+.call-experience .call-dark-grid{grid-template-columns:1.35fr .65fr;gap:clamp(54px,8vw,126px)}
+.call-experience .call-dark-section h2{color:var(--pd-cream);font-size:clamp(62px,7.8vw,120px);line-height:.86;letter-spacing:-.073em}
+.call-experience .call-dark-section .page-index{color:var(--pd-olive-soft)}
+.call-experience .call-dark-side .body-lg{color:rgba(242,239,230,.58)}
+.call-experience .call-needs span{border-color:var(--pd-line-dark);color:var(--pd-cream)}
+.call-experience .call-direct{padding-top:clamp(120px,13vw,200px);padding-bottom:clamp(120px,13vw,200px)}
+.call-experience .call-direct-grid{grid-template-columns:1fr 1fr;gap:clamp(54px,8vw,126px)}
+.call-experience .call-direct h2{font-size:clamp(60px,7vw,108px);line-height:.87;letter-spacing:-.07em}
+.call-experience .call-direct-actions{border-top:1px solid var(--pd-line)}
+.call-experience .call-direct .contact-card{min-height:96px;border:0;border-bottom:1px solid var(--pd-line);background:transparent;border-radius:0}
+.call-experience .call-direct .contact-card-primary{background:var(--pd-charcoal);color:var(--pd-cream);padding-inline:22px;border-color:var(--pd-charcoal)}
+
+@media(max-width:960px){
+  :is(.method-experience,.contact-experience) .page-hero{min-height:auto;padding-top:150px}
+  :is(.method-experience,.contact-experience) .page-hero-grid,
+  .method-experience .statement-grid,
+  .method-experience .method-detail,
+  .contact-experience .contact-grid,
+  .contact-experience .method-detail,
+  .call-experience .call-hero-grid,
+  .call-experience .call-process .home-work-head,
+  .call-experience .call-dark-grid,
+  .call-experience .call-direct-grid{grid-template-columns:1fr}
+  .contact-experience .brief-panel-v4{position:relative;top:auto}
+  .call-experience .call-object-stage{min-height:560px}
+}
+
+@media(max-width:620px){
+  :is(.method-experience,.contact-experience,.call-experience) .site-header{background:rgba(242,239,230,.95)}
+  :is(.method-experience,.contact-experience) .page-hero{padding:126px 0 76px}
+  :is(.method-experience,.contact-experience) .page-hero h1{font-size:clamp(58px,18vw,80px);line-height:.84}
+  .method-experience .method-grid{grid-template-columns:1fr}
+  .method-experience .method-step,.method-experience .method-step:nth-child(even){min-height:280px;padding:26px 0;border-right:0}
+  .method-experience .method-detail h2,.contact-experience .method-detail h2{font-size:clamp(50px,14vw,68px)}
+  .contact-experience .contact-grid{padding-top:92px}
+  .contact-experience .brief-panel-v4{margin-inline:-18px;padding:36px 18px}
+  .call-experience .call-hero{padding:126px 0 76px;min-height:auto}
+  .call-experience .call-copy h1{font-size:clamp(58px,17vw,78px)}
+  .call-experience .call-object-stage{min-height:470px}
+  .call-experience .call-process h2,.call-experience .call-dark-section h2,.call-experience .call-direct h2{font-size:clamp(50px,14vw,68px)}
+}

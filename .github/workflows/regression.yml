@@ -1,0 +1,70 @@
+name: Punto Due regression gate
+
+on:
+  push:
+    branches:
+      - main
+      - 'refactor/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Python test dependency
+        run: python -m pip install --disable-pip-version-check lxml
+
+      - name: Semantic pre-consolidation contract
+        run: python tests/check_preconsolidation_contract.py
+
+      - name: Structural site regression
+        run: python tests/check_site.py
+
+      - name: Route load-graph regression
+        run: python tests/check_load_graph.py
+
+      - name: Shared patch regression
+        run: python tests/check_shared_patches.py
+
+      - name: Case choreography regression
+        run: python tests/check_case_choreography.py
+
+      - name: Case entry settle regression
+        run: python tests/check_case_entry_settle.py
+
+      - name: Case page handoff regression
+        run: python tests/check_case_page_handoff.py
+
+      - name: Spatial experience regression
+        run: python tests/check_spatial_experience.py
+
+      - name: Spatial loader regression
+        run: python tests/check_spatial_loader.py
+
+      - name: Brief behavior regression
+        run: node tests/brief.cjs
+
+      - name: Privacy dialog regression
+        run: node tests/privacy.cjs
+
+      - name: Interaction regression
+        run: node tests/interactions.cjs

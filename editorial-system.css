@@ -1,0 +1,267 @@
+/* Punto Due Studio — shared editorial art direction 2026
+   Three-color discipline: warm cream / deep charcoal / muted olive.
+   Shared by the primary experience routes and supporting commercial routes. */
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience){
+  --pd-cream:#f2efe6;
+  --pd-cream-soft:#e8e4d9;
+  --pd-charcoal:#11130f;
+  --pd-charcoal-soft:#191c16;
+  --pd-olive:#879757;
+  --pd-olive-soft:#bcc692;
+  --pd-ink:#171a15;
+  --pd-muted:#666b60;
+  --pd-line:rgba(23,26,21,.15);
+  --pd-line-dark:rgba(242,239,230,.15);
+  --pd-editorial-gutter:clamp(18px,4.8vw,72px);
+  --pd-editorial-max:1600px;
+  --pd-section-space:clamp(108px,11vw,176px);
+  --pd-reading:66ch;
+  background:var(--pd-cream);
+  color:var(--pd-ink);
+}
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) ::selection{
+  background:var(--pd-olive);
+  color:var(--pd-charcoal);
+}
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .container{
+  width:min(var(--pd-editorial-max),calc(100% - (var(--pd-editorial-gutter) * 2)));
+}
+
+/* Final optical typography layer. The font pairing remains Geist + IBM Plex Mono;
+   polish comes from hierarchy, measure and spacing rather than another font swap. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience){
+  font-kerning:normal;
+  font-synthesis:none;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(h1,h2,h3){
+  text-wrap:balance;
+  hanging-punctuation:first last;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.lead,.body-lg,.statement-side,.footer-note,.premium-copy-v7 p,.case-deck p,.case-section-head p,.case-system-copy p){
+  text-wrap:pretty;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.lead,.body-lg){
+  max-inline-size:var(--pd-reading);
+}
+
+/* Navigation is deliberately quiet: the page composition, not chrome, carries the identity. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-header{
+  transition:background .35s var(--v5-ease),color .35s var(--v5-ease),border-color .35s var(--v5-ease);
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .nav-shell{
+  width:min(var(--pd-editorial-max),calc(100% - (var(--pd-editorial-gutter) * 2)));
+  min-height:78px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-nav{
+  gap:clamp(18px,2.1vw,34px);
+  font-size:10px;
+  letter-spacing:.075em;
+  text-transform:uppercase;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .nav-cta{
+  min-height:40px;
+  padding:10px 15px;
+  border-radius:999px;
+}
+
+/* Small labels behave like publication metadata, but remain readable. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.page-index,.eyebrow,.project-index,.case-kicker,.section-label){
+  font-size:10px;
+  line-height:1.45;
+  letter-spacing:.145em;
+  text-transform:uppercase;
+}
+
+/* Premium surfaces should feel printed/material rather than glassy. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.territory-card,.project-territory-v7,.founder-v9,.archive-card-v7,.case-media,.case-hero-stage){
+  border-radius:0;
+  backdrop-filter:none;
+}
+
+/* Shared section rhythm. Route modules can still intentionally override it. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) main>.section.container{
+  scroll-margin-top:96px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.home-work-head,.story-grid,.method-detail,.case-section-head){
+  column-gap:clamp(42px,7vw,112px);
+}
+
+/* Monumental CTA treatment. */
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta{
+  padding:clamp(108px,12vw,190px) 0;
+  border:0;
+  background:var(--pd-olive);
+  color:var(--pd-charcoal);
+}
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta .cta-grid{
+  grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);
+  gap:clamp(48px,8vw,130px);
+  align-items:end;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta h2{
+  color:var(--pd-charcoal);
+  font-size:clamp(58px,7.5vw,120px);
+  line-height:.86;
+  letter-spacing:-.069em;
+  max-width:12ch;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta p{color:rgba(17,19,15,.68);max-width:48ch}
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta .button{
+  color:var(--pd-cream);
+  background:var(--pd-charcoal);
+  border-color:var(--pd-charcoal);
+  border-radius:999px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta .text-link{color:var(--pd-charcoal);border-color:rgba(17,19,15,.35)}
+
+/* Signature footer: functional information first, monumental brand gesture second. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer{
+  position:relative;
+  overflow:hidden;
+  min-height:clamp(720px,70vw,980px);
+  padding:clamp(76px,8vw,122px) var(--pd-editorial-gutter) clamp(300px,24vw,390px);
+  background:var(--pd-charcoal);
+  color:var(--pd-cream);
+  border:0;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer::before{
+  content:"PUNTO DUE STUDIO / DIGITAL DESIGN + DEVELOPMENT";
+  position:absolute;
+  left:var(--pd-editorial-gutter);
+  top:34px;
+  color:rgba(242,239,230,.36);
+  font-family:var(--pd-technical,var(--v5-font));
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  pointer-events:none;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer::after{
+  content:"PUNTO DUE";
+  position:absolute;
+  left:var(--pd-editorial-gutter);
+  right:var(--pd-editorial-gutter);
+  bottom:clamp(66px,6vw,92px);
+  white-space:nowrap;
+  color:var(--pd-cream);
+  font-family:var(--pd-display,var(--v5-font));
+  font-size:clamp(92px,16.4vw,270px);
+  font-weight:500;
+  line-height:.66;
+  letter-spacing:-.088em;
+  pointer-events:none;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-grid-v4{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(280px,1.3fr) repeat(2,minmax(160px,.38fr));
+  gap:clamp(42px,7vw,110px);
+  border-top:1px solid var(--pd-line-dark);
+  padding-top:30px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer .brand img{filter:brightness(0) invert(1);width:min(205px,100%)}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-note{
+  color:rgba(242,239,230,.52);
+  max-width:42ch;
+  margin-top:22px;
+  line-height:1.72;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-col{
+  display:grid;
+  align-content:start;
+  gap:10px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-col strong{
+  color:var(--pd-olive-soft);
+  margin-bottom:8px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer a,
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer button{
+  color:rgba(242,239,230,.84);
+  transition:color .22s ease,opacity .22s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer a:hover,
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer button:hover{color:var(--pd-olive-soft)}
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-bottom-v4{
+  position:absolute;
+  left:var(--pd-editorial-gutter);
+  right:var(--pd-editorial-gutter);
+  bottom:20px;
+  z-index:3;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  border-top:1px solid var(--pd-line-dark);
+  padding-top:15px;
+  color:rgba(242,239,230,.42);
+  font-size:10px;
+  letter-spacing:.045em;
+}
+
+/* Buttons and inline links are restrained, not SaaS-like. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .button{
+  border-radius:999px;
+  padding-inline:20px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .text-link{
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:.105em;
+}
+
+@media(max-width:900px){
+  :is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta .cta-grid{grid-template-columns:1fr;gap:34px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-grid-v4{grid-template-columns:1fr 1fr}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-grid-v4>div:first-child{grid-column:1/-1}
+}
+
+@media(max-width:620px){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience){
+    --pd-editorial-gutter:18px;
+    --pd-section-space:92px;
+  }
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .nav-shell{min-height:72px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) :is(.page-index,.eyebrow,.project-index,.case-kicker,.section-label){font-size:9px;letter-spacing:.13em}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer{
+    min-height:720px;
+    padding-top:72px;
+    padding-bottom:305px;
+  }
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer::before{top:26px;font-size:8px;letter-spacing:.12em}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer::after{
+    content:"PUNTO\A DUE";
+    font-size:clamp(78px,27vw,112px);
+    bottom:74px;
+    white-space:pre;
+    max-width:5ch;
+    line-height:.68;
+    letter-spacing:-.082em;
+  }
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-grid-v4{grid-template-columns:1fr;gap:30px;padding-top:24px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-grid-v4>div:first-child{grid-column:auto}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-note{max-width:34ch;margin-top:18px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .footer-bottom-v4{font-size:8px;gap:12px;flex-direction:column}
+  :is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta{padding:92px 0}
+  :is(.home-experience,.projects-experience,.studio-experience,.method-experience,.contact-experience,.call-experience) .site-cta h2{font-size:clamp(48px,14vw,68px);line-height:.9;letter-spacing:-.062em}
+}
+
+@media(max-width:380px){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer{min-height:700px;padding-bottom:292px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) .site-footer::after{font-size:clamp(72px,25vw,94px)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) *,
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) *::before,
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page,.method-experience,.contact-experience,.call-experience) *::after{scroll-behavior:auto}
+}
