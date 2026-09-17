@@ -31,8 +31,8 @@
     };
 
     /* Shared production layers. Patch order is preserved inside shared-patches.css. */
-    ['/shared-patches.css','/site-v9.css'].forEach(appendStyle);
-    appendScript('/site-v9.js');
+    ['/shared-patches.css','/typography.css'].forEach(appendStyle);
+    appendScript('/motion.js');
 
     /* Case-only motion and handoff logic remain completely route-scoped. */
     if(document.body.classList.contains('case-study-page')){
