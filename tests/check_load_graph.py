@@ -35,6 +35,8 @@ for required in (
     '/projects-experience.css',
     '/studio-experience.css',
     '/case-experience.css',
+    '/interaction-polish.css',
+    '/interaction-polish.js',
 ):
     assert required in shared, required
 
@@ -75,6 +77,18 @@ assert docs['studio'].xpath('//*[contains(concat(" ", normalize-space(@class), "
 for name in ('nodo', 'innesto', 'trama'):
     body_classes = docs[name].xpath('string(/html/body/@class)')
     assert 'case-study-page' in body_classes.split(), name
+
+# Interaction polish is native, dependency-free and limited to the four experience families.
+assert "const enhancedExperience=homeExperience||caseExperience||projectsExperience||studioExperience" in shared
+assert "if(enhancedExperience)" in shared
+for interaction_file in ('interaction-polish.css', 'interaction-polish.js'):
+    assert (ROOT / interaction_file).is_file(), interaction_file
+interaction_js = (ROOT / 'interaction-polish.js').read_text(encoding='utf-8')
+interaction_css = (ROOT / 'interaction-polish.css').read_text(encoding='utf-8')
+assert 'prefers-reduced-motion: reduce' in interaction_js
+assert '(hover:hover) and (pointer:fine)' in interaction_js
+assert 'rb-stack-ready' in interaction_js and 'rb-stack-ready' in interaction_css
+assert 'react' not in interaction_js.lower(), 'Interaction polish must not import React'
 
 # Portfolio runtime exists only on Home, Projects and case studies.
 portfolio_routes = {'home', 'projects', 'nodo', 'innesto', 'trama'}
@@ -128,4 +142,4 @@ for obsolete_file in (
 assert (ROOT / 'utility-routes.css').is_file()
 assert (ROOT / 'privacy-dialog.js').is_file()
 
-print('PASS route-scoped production load graph, utility-route migration, visual experience modules and semantic boundaries')
+print('PASS route-scoped production load graph, utility-route migration, visual modules and interaction polish boundaries')
