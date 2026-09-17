@@ -32,14 +32,25 @@
     loadScript('/site-v11.js');
   }
 
-  /* The spatial field is a homepage signature, not a site-wide runtime dependency. */
+  /* The spatial field is progressive enhancement: static visual first, WebGL after real user intent. */
   if (isHome) {
     loadStyle('/spatial-2026.css');
-    const loadSpatialField = () => loadScript('/experience-field.js');
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadSpatialField, { timeout: 1800 });
-    } else {
-      setTimeout(loadSpatialField, 700);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reduceMotion.matches) {
+      let fieldQueued = false;
+      const activateSpatialField = () => {
+        if (fieldQueued) return;
+        fieldQueued = true;
+        ['pointermove','touchstart','scroll','keydown'].forEach(type => {
+          window.removeEventListener(type, activateSpatialField);
+        });
+        const load = () => loadScript('/experience-field.js');
+        if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1200 });
+        else setTimeout(load, 180);
+      };
+      ['pointermove','touchstart','scroll','keydown'].forEach(type => {
+        window.addEventListener(type, activateSpatialField, { passive: true, once: true });
+      });
     }
   }
 
