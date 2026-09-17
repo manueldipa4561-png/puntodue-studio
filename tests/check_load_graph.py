@@ -73,12 +73,20 @@ for name, doc in docs.items():
     if name != 'call':
         assert not doc.xpath('//script[@src="/call-object.js"]'), name
 
-# Legacy utility pages consume the renamed typography stylesheet directly while
-# their broader migration remains intentionally deferred.
-assert docs['policy'].xpath('//link[@href="/typography.css"]')
-assert docs['404'].xpath('//link[@href="/typography.css"]')
-assert docs['policy'].xpath('//script[@src="/experience.js"]')
-assert not docs['404'].xpath('//script[@src="/experience.js"]')
+# Cookie Policy and 404 share a focused utility stylesheet instead of the retired
+# style.css / polish.css / experience.css island. Only the Policy needs dialog JS.
+for name in ('policy', '404'):
+    doc = docs[name]
+    assert doc.xpath('//link[@href="/utility-routes.css"]'), name
+    assert doc.xpath('//link[@href="/site-v5.css"]'), name
+    assert doc.xpath('//link[@href="/typography.css"]'), name
+    for legacy in ('/style.css', '/polish.css', '/experience.css'):
+        assert not doc.xpath(f'//link[@href="{legacy}"]'), (name, legacy)
+
+assert docs['policy'].xpath('//script[@src="/privacy-dialog.js"]')
+assert not docs['404'].xpath('//script[@src="/privacy-dialog.js"]')
+for name, doc in docs.items():
+    assert not doc.xpath('//script[@src="/experience.js"]'), name
 
 # Historical module files must be physically gone after semantic migration.
 for obsolete_file in (
@@ -88,4 +96,4 @@ for obsolete_file in (
 ):
     assert not (ROOT / obsolete_file).exists(), obsolete_file
 
-print('PASS route-scoped production load graph and semantic module boundaries')
+print('PASS route-scoped production load graph, utility-route migration and semantic module boundaries')
