@@ -1,9 +1,9 @@
-/* Punto Due Studio v10 — identity routing + refined spatial typography */
+/* Punto Due Studio v14 — identity routing + precision-depth spatial typography */
 (() => {
   const root = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)');
-  root.classList.add('identity-v9-ready', 'motion-v10-ready');
+  root.classList.add('identity-v9-ready', 'motion-v10-ready', 'typography-v14-ready');
 
   // Founder names remain visible only inside the two dedicated founder cards.
   document.querySelectorAll('.footer-note').forEach(n => {
@@ -44,7 +44,7 @@
     if (replacements[i]) n.textContent = replacements[i];
   });
 
-  // Spatial typography: a single interaction grammar across all major surfaces.
+  // Precision Depth: one restrained interaction grammar across all major typographic surfaces.
   const selector = [
     '.home-hero h1',
     '.story-grid h2',
@@ -67,10 +67,10 @@
 
   const headings = [...new Set(document.querySelectorAll(selector))];
   const profileFor = node => {
-    if (node.matches('.home-hero h1,.page-hero h1,.call-hero h1,.case-title-wrap h1')) return {name:'hero', intensity:1};
-    if (node.matches('.statement-band h2,.site-cta h2,.call-dark-section h2,.case-proof blockquote')) return {name:'statement', intensity:.74};
-    if (node.matches('.case-next-link strong,.brief-panel-v4 h2,.call-direct h2')) return {name:'compact', intensity:.48};
-    return {name:'section', intensity:.6};
+    if (node.matches('.home-hero h1,.page-hero h1,.call-hero h1,.case-title-wrap h1')) return {name:'hero', intensity:.82};
+    if (node.matches('.statement-band h2,.site-cta h2,.call-dark-section h2,.case-proof blockquote')) return {name:'statement', intensity:.62};
+    if (node.matches('.case-next-link strong,.brief-panel-v4 h2,.call-direct h2')) return {name:'compact', intensity:.4};
+    return {name:'section', intensity:.5};
   };
 
   headings.forEach(node => {
@@ -111,10 +111,10 @@
     node.style.setProperty('--pd-dy', `${s.dy.toFixed(3)}px`);
     node.style.setProperty('--pd-z', `${s.z.toFixed(3)}px`);
     node.style.setProperty('--pd-scale', s.scale.toFixed(4));
-    node.style.setProperty('--pd-depth-x1', `${(4 - s.dx * .28).toFixed(3)}px`);
-    node.style.setProperty('--pd-depth-y1', `${(6 - s.dy * .22).toFixed(3)}px`);
-    node.style.setProperty('--pd-depth-x2', `${(2 - s.dx * .14).toFixed(3)}px`);
-    node.style.setProperty('--pd-depth-y2', `${(3 - s.dy * .12).toFixed(3)}px`);
+    node.style.setProperty('--pd-depth-x1', `${(2.2 - s.dx * .18).toFixed(3)}px`);
+    node.style.setProperty('--pd-depth-y1', `${(3.2 - s.dy * .16).toFixed(3)}px`);
+    node.style.setProperty('--pd-depth-x2', `${(.8 - s.dx * .08).toFixed(3)}px`);
+    node.style.setProperty('--pd-depth-y2', `${(1.2 - s.dy * .07).toFixed(3)}px`);
     node.style.setProperty('--pd-shine-x', `${s.shineX.toFixed(2)}%`);
     node.style.setProperty('--pd-shine-y', `${s.shineY.toFixed(2)}%`);
   };
@@ -133,7 +133,7 @@
     return state;
   };
 
-  const springStep = (state, key, stiffness=.13, damping=.74) => {
+  const springStep = (state, key, stiffness=.11, damping=.78) => {
     const delta = state.target[key] - state.current[key];
     state.velocity[key] = (state.velocity[key] + delta * stiffness) * damping;
     state.current[key] += state.velocity[key];
@@ -149,12 +149,12 @@
       energy += springStep(state,'ry');
       energy += springStep(state,'dx');
       energy += springStep(state,'dy');
-      energy += springStep(state,'z',.16,.72);
-      energy += springStep(state,'scale',.16,.7);
-      energy += springStep(state,'shineX',.11,.78);
-      energy += springStep(state,'shineY',.11,.78);
+      energy += springStep(state,'z',.13,.76);
+      energy += springStep(state,'scale',.13,.74);
+      energy += springStep(state,'shineX',.09,.82);
+      energy += springStep(state,'shineY',.09,.82);
       setVars(state.node,state.current);
-      if (energy > .035) needsNext = true;
+      if (energy > .028) needsNext = true;
     });
     if (needsNext) motionRaf = requestAnimationFrame(runMotion);
   };
@@ -174,18 +174,18 @@
         const nx = clamp((event.clientX-r.left)/r.width-.5, -.5, .5) * 2;
         const ny = clamp((event.clientY-r.top)/r.height-.5, -.5, .5) * 2;
         const i = profile.intensity;
-        state.target.rx = -ny * 2.7 * i;
-        state.target.ry = nx * 3.5 * i;
-        state.target.dx = nx * 3.2 * i;
-        state.target.dy = ny * 2.3 * i;
-        state.target.z = 8 * i;
-        state.target.scale = 1.002 + i * .0025;
-        state.target.shineX = 50 + nx * 25;
-        state.target.shineY = 45 + ny * 20;
+        state.target.rx = -ny * 1.8 * i;
+        state.target.ry = nx * 2.25 * i;
+        state.target.dx = nx * 2.4 * i;
+        state.target.dy = ny * 1.6 * i;
+        state.target.z = 6 * i;
+        state.target.scale = 1.001 + i * .0018;
+        state.target.shineX = 50 + nx * 18;
+        state.target.shineY = 45 + ny * 14;
         state.active = true;
         node.dataset.spatialState = 'active';
-        stage.style.setProperty('--pd-persp-x', `${50 + nx * 10}%`);
-        stage.style.setProperty('--pd-persp-y', `${50 + ny * 8}%`);
+        stage.style.setProperty('--pd-persp-x', `${50 + nx * 7}%`);
+        stage.style.setProperty('--pd-persp-y', `${50 + ny * 5}%`);
         kickMotion();
       };
 
@@ -199,8 +199,8 @@
       };
 
       const press = () => {
-        state.target.z = -2.5 * profile.intensity;
-        state.target.scale = .995;
+        state.target.z = -1.8 * profile.intensity;
+        state.target.scale = .997;
         node.dataset.spatialState = 'pressed';
         kickMotion();
       };
@@ -216,7 +216,7 @@
     headings.forEach(ensureState);
   }
 
-  // Scroll contributes a very small amount of depth, including on touch devices.
+  // Touch and wheel scroll contribute only a very small amount of depth.
   if (!reduceMotion.matches) {
     let scrollRaf = 0;
     const updateScrollDepth = () => {
@@ -227,8 +227,8 @@
         const center = r.top + r.height / 2;
         const progress = clamp((center - vh / 2) / (vh * .7), -1, 1);
         const profile = profileFor(node);
-        node.style.setProperty('--pd-scroll-y', `${(-progress * 3.2 * profile.intensity).toFixed(2)}px`);
-        node.style.setProperty('--pd-scroll-rx', `${(progress * .8 * profile.intensity).toFixed(2)}deg`);
+        node.style.setProperty('--pd-scroll-y', `${(-progress * 2.4 * profile.intensity).toFixed(2)}px`);
+        node.style.setProperty('--pd-scroll-rx', `${(progress * .5 * profile.intensity).toFixed(2)}deg`);
       });
     };
     const onScroll = () => { if (!scrollRaf) scrollRaf = requestAnimationFrame(updateScrollDepth); };
@@ -237,7 +237,7 @@
     updateScrollDepth();
   }
 
-  // Tactile response for the controls that sit next to the spatial type system.
+  // Tactile response for controls next to the type system remains deliberately smaller than typography motion.
   if (finePointer.matches && !reduceMotion.matches) {
     document.querySelectorAll('.button,.contact-card,.case-next-link,.text-link').forEach(control => {
       if (control.closest('.site-nav')) return;
@@ -251,11 +251,11 @@
         const r = control.getBoundingClientRect();
         const nx = clamp((event.clientX-r.left)/Math.max(1,r.width)-.5,-.5,.5);
         const ny = clamp((event.clientY-r.top)/Math.max(1,r.height)-.5,-.5,.5);
-        control.style.setProperty('--pd-tx',`${(nx*3).toFixed(2)}px`);
-        control.style.setProperty('--pd-ty',`${(ny*2).toFixed(2)}px`);
+        control.style.setProperty('--pd-tx',`${(nx*2.2).toFixed(2)}px`);
+        control.style.setProperty('--pd-ty',`${(ny*1.4).toFixed(2)}px`);
       }, {passive:true});
       control.addEventListener('pointerleave', reset, {passive:true});
-      control.addEventListener('pointerdown', () => control.style.setProperty('--pd-control-scale','.988'), {passive:true});
+      control.addEventListener('pointerdown', () => control.style.setProperty('--pd-control-scale','.992'), {passive:true});
       control.addEventListener('pointerup', () => control.style.setProperty('--pd-control-scale','1'), {passive:true});
       control.addEventListener('blur', reset, true);
     });
