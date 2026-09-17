@@ -1,0 +1,172 @@
+/* Punto Due Studio — shared editorial art direction 2026
+   Three-color discipline: warm cream / deep charcoal / muted olive.
+   Loaded only on the four enhanced experience families. */
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page){
+  --pd-cream:#f2efe6;
+  --pd-cream-soft:#e8e4d9;
+  --pd-charcoal:#11130f;
+  --pd-charcoal-soft:#191c16;
+  --pd-olive:#879757;
+  --pd-olive-soft:#bcc692;
+  --pd-ink:#171a15;
+  --pd-muted:#666b60;
+  --pd-line:rgba(23,26,21,.15);
+  --pd-line-dark:rgba(242,239,230,.15);
+  --pd-editorial-gutter:clamp(18px,4.8vw,72px);
+  --pd-editorial-max:1600px;
+  background:var(--pd-cream);
+  color:var(--pd-ink);
+}
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) ::selection{
+  background:var(--pd-olive);
+  color:var(--pd-charcoal);
+}
+
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .container{
+  width:min(var(--pd-editorial-max),calc(100% - (var(--pd-editorial-gutter) * 2)));
+}
+
+/* Navigation is deliberately quiet: the page composition, not chrome, carries the identity. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-header{
+  transition:background .35s var(--v5-ease),color .35s var(--v5-ease),border-color .35s var(--v5-ease);
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .nav-shell{
+  width:min(var(--pd-editorial-max),calc(100% - (var(--pd-editorial-gutter) * 2)));
+  min-height:78px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-nav{
+  gap:clamp(18px,2.1vw,34px);
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .nav-cta{
+  min-height:40px;
+  padding:10px 15px;
+  border-radius:999px;
+}
+
+/* Small labels behave like publication metadata. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) :is(.page-index,.eyebrow,.project-index,.case-kicker){
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+/* Premium surfaces should feel printed/material rather than glassy. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) :is(.territory-card,.project-territory-v7,.founder-v9,.archive-card-v7,.case-media,.case-hero-stage){
+  border-radius:0;
+  backdrop-filter:none;
+}
+
+/* Shared monumental CTA treatment. */
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta{
+  padding:clamp(100px,12vw,190px) 0;
+  border:0;
+  background:var(--pd-olive);
+  color:var(--pd-charcoal);
+}
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta .cta-grid{
+  grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);
+  gap:clamp(48px,8vw,130px);
+  align-items:end;
+}
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta h2{
+  color:var(--pd-charcoal);
+  font-size:clamp(58px,7.5vw,120px);
+  line-height:.86;
+  letter-spacing:-.072em;
+  max-width:12ch;
+}
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta p{color:rgba(17,19,15,.68)}
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta .button{
+  color:var(--pd-cream);
+  background:var(--pd-charcoal);
+  border-color:var(--pd-charcoal);
+  border-radius:999px;
+}
+:is(.home-experience,.projects-experience,.studio-experience) .site-cta .text-link{color:var(--pd-charcoal);border-color:rgba(17,19,15,.35)}
+
+/* Signature footer: functional information first, giant brand gesture second. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer{
+  position:relative;
+  overflow:hidden;
+  min-height:clamp(660px,72vw,960px);
+  padding:clamp(72px,8vw,120px) var(--pd-editorial-gutter) 40px;
+  background:var(--pd-charcoal);
+  color:var(--pd-cream);
+  border:0;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer::after{
+  content:"PUNTO DUE";
+  position:absolute;
+  left:var(--pd-editorial-gutter);
+  right:var(--pd-editorial-gutter);
+  bottom:clamp(54px,6vw,86px);
+  white-space:nowrap;
+  color:var(--pd-cream);
+  font-family:var(--pd-display,var(--v5-font));
+  font-size:clamp(82px,16vw,260px);
+  font-weight:500;
+  line-height:.68;
+  letter-spacing:-.09em;
+  pointer-events:none;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-grid-v4{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:minmax(260px,1.2fr) repeat(2,minmax(150px,.4fr));
+  gap:clamp(42px,8vw,120px);
+  border-top:1px solid var(--pd-line-dark);
+  padding-top:28px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer .brand img{filter:brightness(0) invert(1)}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-note{color:rgba(242,239,230,.55);max-width:44ch}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-col strong{color:var(--pd-olive-soft)}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer a,
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer button{color:var(--pd-cream)}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-bottom-v4{
+  position:absolute;
+  left:var(--pd-editorial-gutter);
+  right:var(--pd-editorial-gutter);
+  bottom:20px;
+  z-index:3;
+  border-top:1px solid var(--pd-line-dark);
+  padding-top:15px;
+  color:rgba(242,239,230,.44);
+}
+
+/* Buttons and inline links are restrained, not SaaS-like. */
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .button{
+  border-radius:999px;
+  padding-inline:20px;
+}
+:is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .text-link{
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:.11em;
+}
+
+@media(max-width:900px){
+  :is(.home-experience,.projects-experience,.studio-experience) .site-cta .cta-grid{grid-template-columns:1fr}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-grid-v4{grid-template-columns:1fr 1fr}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-grid-v4>div:first-child{grid-column:1/-1}
+}
+
+@media(max-width:620px){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page){--pd-editorial-gutter:18px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer{min-height:610px;padding-top:58px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .site-footer::after{font-size:clamp(68px,24vw,100px);bottom:84px;white-space:normal;max-width:5.6ch;line-height:.72}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-grid-v4{grid-template-columns:1fr;gap:34px}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-grid-v4>div:first-child{grid-column:auto}
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) .footer-bottom-v4{font-size:9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) *,
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) *::before,
+  :is(.home-experience,.projects-experience,.studio-experience,.case-study-page) *::after{scroll-behavior:auto}
+}
