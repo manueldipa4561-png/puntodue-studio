@@ -54,6 +54,9 @@
       appendStyle('/portfolio-refinements.css');
     }
 
+    /* Shared reel-led editorial system establishes palette, nav, CTA and signature footer. */
+    if(enhancedExperience)appendStyle('/editorial-system.css');
+
     /* Route art direction is always the final visual layer before interaction polish. */
     if(caseExperience)appendStyle('/case-experience.css');
     if(projectsExperience)appendStyle('/projects-experience.css');
