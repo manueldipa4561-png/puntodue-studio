@@ -110,7 +110,7 @@ for doc in cases.values():
         assert image.get('decoding') == 'async'
         assert image.get('width') and image.get('height')
 
-# v8 portfolio layer and v9 type/depth system retain reduced-motion fallbacks.
+# v8 portfolio layer and v14 typography/depth system retain reduced-motion fallbacks.
 for doc in [home, projects, *cases.values()]:
     assert doc.xpath('//link[@href="/site-v8.css"]')
     assert doc.xpath('//script[@src="/portfolio-v8.js"]')
@@ -124,9 +124,12 @@ assert '/site-v8-benchmark.css' in v8_js
 v9_css = (root / 'site-v9.css').read_text(encoding='utf-8')
 v9_js = (root / 'site-v9.js').read_text(encoding='utf-8')
 shared_js = (root / 'site-v4.js').read_text(encoding='utf-8')
-assert 'Instrument+Sans' in v9_css and 'IBM+Plex+Mono' in v9_css
-assert '.spatial-type' in v9_css and '@media(prefers-reduced-motion:reduce)' in v9_css
-assert 'prefers-reduced-motion: reduce' in v9_js and 'requestAnimationFrame' in v9_js
+assert 'family=Geist' in v9_css and 'IBM+Plex+Mono' in v9_css
+assert 'Instrument+Sans' not in v9_css and '"Instrument Sans"' not in v9_css
+assert '--pd-display:"Geist"' in v9_css and '--pd-technical:var(--pd-mono)' in v9_css
+assert 'pd-spatial-in-v14' in v9_css and '@media(prefers-reduced-motion:reduce)' in v9_css
+assert 'typography-v14-ready' in v9_js and 'prefers-reduced-motion: reduce' in v9_js and 'requestAnimationFrame' in v9_js
+assert "intensity:.82" in v9_js and 'state.target.ry = nx * 2.25 * i' in v9_js
 assert '/site-v9.css' in shared_js and '/site-v9.js' in shared_js
 
 # Cookie/privacy surfaces remain native and informational.
@@ -156,4 +159,4 @@ for url in [
     assert url in sitemap
 etree.parse(str(root / 'sitemap.xml'))
 
-print('PASS portfolio, case studies, founder identity, v9 typography/depth, links, assets, cookie surfaces and sitemap')
+print('PASS portfolio, case studies, founder identity, v14 typography/depth, links, assets, cookie surfaces and sitemap')
