@@ -29,8 +29,9 @@
   if(document.body.classList.contains('case-study-page')){
     const root=document.documentElement;
     const supportsCrossDoc='onpageswap' in window&&'onpagereveal' in window;
+    const nativeCaseHandoff=false;
     const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!supportsCrossDoc)root.classList.add('no-cross-doc-vt');
+    if(!nativeCaseHandoff)root.classList.add('no-cross-doc-vt');
 
     const storageKey='pd-case-handoff-v12';
     const normalize=url=>{
@@ -57,8 +58,8 @@
     }else if(incoming&&isCaseDestination(currentPath)&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
       document.body.classList.add('case-handoff-incoming-v12');
       root.dataset.caseHandoff='incoming';
-      if(heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
-      if(heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
+      if(nativeCaseHandoff&&heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
+      if(nativeCaseHandoff&&heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
       if(firstCaseSection){
         firstCaseSection.classList.add('case-first-after-handoff-v13');
         firstCaseSection.addEventListener('animationend',event=>{
@@ -85,11 +86,15 @@
         setTimeout(finishIncoming,1040);
       };
 
-      addEventListener('pagereveal',event=>{
-        if(event.viewTransition)event.viewTransition.finished.finally(beginIncomingSettle);
-        else setTimeout(beginIncomingSettle,90);
-      },{once:true});
-      setTimeout(beginIncomingSettle,1260);
+      if(nativeCaseHandoff&&supportsCrossDoc){
+        addEventListener('pagereveal',event=>{
+          if(event.viewTransition)event.viewTransition.finished.then(beginIncomingSettle,beginIncomingSettle);
+          else setTimeout(beginIncomingSettle,90);
+        },{once:true});
+        setTimeout(beginIncomingSettle,1260);
+      }else{
+        setTimeout(beginIncomingSettle,90);
+      }
     }else if(incoming){
       clearToken();
     }
@@ -107,8 +112,8 @@
         writeToken({from:currentPath,to:normalize(destination.href),at:Date.now()});
         document.body.classList.add('case-handoff-outgoing-v12');
         root.dataset.caseHandoff='outgoing';
-        if(nextTitle)nextTitle.style.viewTransitionName='case-title-handoff';
-        if(nextMeta)nextMeta.style.viewTransitionName='case-meta-handoff';
+        if(nativeCaseHandoff&&nextTitle)nextTitle.style.viewTransitionName='case-title-handoff';
+        if(nativeCaseHandoff&&nextMeta)nextMeta.style.viewTransitionName='case-meta-handoff';
       };
 
       const disarmHandoff=()=>{
@@ -135,7 +140,7 @@
         }
 
         armHandoff(destination);
-        if(!supportsCrossDoc){
+        if(!nativeCaseHandoff){
           event.preventDefault();
           setTimeout(()=>location.assign(destination.href),260);
         }
