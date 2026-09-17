@@ -1,68 +1,147 @@
-// Dependency-free behavioral tests. These simulate DOM events, not browser layout.
+// Dependency-free behavioral tests for the current shared production runtime.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const source = fs.readFileSync(require('node:path').join(__dirname, '../script.js'), 'utf8');
-function fixture(width, reduced = false) {
+const path = require('node:path');
+
+const source = fs.readFileSync(path.join(__dirname, '../site-v4.js'), 'utf8');
+
+function fixture(width) {
   let document;
+  const windowListeners = {};
+
   class Element {
     constructor(attrs = {}) {
-      this.attrs = attrs; this.listeners = {}; this.children = []; this.value = '0'; this.dataset = {};
-      const set = new Set();
-      this.classList = { add: x => set.add(x), contains: x => set.has(x), toggle: (x, on) => on ? set.add(x) : set.delete(x) };
+      this.attrs = { ...attrs };
+      this.listeners = {};
+      this.children = [];
       this.props = {};
-      this.style = { setProperty: (k,v) => this.props[k] = v, removeProperty: k => delete this.props[k] };
+      const classes = new Set();
+      this.classList = {
+        add: (...names) => names.forEach(name => classes.add(name)),
+        remove: (...names) => names.forEach(name => classes.delete(name)),
+        contains: name => classes.has(name),
+        toggle: (name, force) => {
+          if (force === undefined) force = !classes.has(name);
+          if (force) classes.add(name); else classes.delete(name);
+          return force;
+        }
+      };
+      this.style = {
+        setProperty: (name, value) => { this.props[name] = value; },
+        removeProperty: name => { delete this.props[name]; }
+      };
     }
-    addEventListener(k, fn) { (this.listeners[k] ||= []).push(fn); }
-    emit(k, event = {}) { for (const fn of this.listeners[k] || []) fn({ target: this, ...event }); }
-    getAttribute(k) { return this.attrs[k] ?? null; }
-    setAttribute(k, v) { this.attrs[k] = v; }
-    removeAttribute(k) { delete this.attrs[k]; }
-    toggleAttribute(k, on) { if (on) this.attrs[k] = ''; else delete this.attrs[k]; }
+    addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }
+    emit(type, event = {}) { for (const fn of this.listeners[type] || []) fn({ target: this, ...event }); }
+    getAttribute(name) { return this.attrs[name] ?? null; }
+    setAttribute(name, value) { this.attrs[name] = value; }
+    removeAttribute(name) { delete this.attrs[name]; }
+    toggleAttribute(name, force) { if (force) this.attrs[name] = ''; else delete this.attrs[name]; }
     focus() { document.activeElement = this; }
-    querySelectorAll() { return this.children; }
-    contains(el) { return this === el || this.children.includes(el); }
-    closest(selector) { return selector.includes('project-card') ? this.card || null : null; }
-    getBoundingClientRect() { return { left: 0, top: 0, width: 400, height: 328 }; }
+    querySelectorAll(selector) { return selector === 'a' ? this.children : []; }
   }
-  const menu = new Element({ 'aria-expanded': 'false' }), nav = new Element();
-  const target = new Element(), link = new Element({ href: '#contatti' }); nav.children = [link];
-  const scene = new Element(), angle = new Element(), reset = new Element();
-  const main = new Element(), footer = new Element();
-  const previewCard = new Element(); previewCard.dataset.project = 'corriera';
-  const previewImage = new Element(); previewImage.card = previewCard; previewImage.complete = false; previewImage.naturalWidth = 1;
-  const media = { matches: width <= 600, addEventListener: (_, fn) => media.change = fn };
-  const motion = { matches: reduced, addEventListener: (_, fn) => motion.change = fn };
-  const nodes = { '.menu-toggle': menu, '#navigation': nav, '#contatti': target, '#year': new Element(), '.interactive-scene': scene, '#scene-angle': angle, '#scene-reset': reset, main, footer };
-  document = new Element(); document.documentElement = new Element(); document.hidden = false;
-  document.querySelector = key => nodes[key];
-  document.querySelectorAll = selector => selector.includes('.project-card[data-project]') ? [previewImage] : [];
-  const frames = new Map(); let counter = 0; const observers = [];
-  const context = { document, window: { matchMedia: q => q.includes('reduced') ? motion : media }, Date,
-    requestAnimationFrame: fn => { frames.set(++counter, fn); return counter; }, cancelAnimationFrame: id => frames.delete(id),
-    IntersectionObserver: class { constructor(fn) { this.fn = fn; observers.push(this); } observe() {} unobserve() {} } };
-  context.window.IntersectionObserver = context.IntersectionObserver;
+
+  const menu = new Element({ 'aria-expanded': 'false' });
+  const nav = new Element();
+  const navLink = new Element({ href: '/progetti.html' });
+  nav.children = [navLink];
+  const main = new Element();
+  const footer = new Element();
+  const body = new Element();
+  const root = new Element();
+  const year = new Element();
+
+  const mobile = { matches: width <= 760, listeners: {}, addEventListener(type, fn) { this.listeners[type] = fn; } };
+  const reduced = { matches: false, listeners: {}, addEventListener(type, fn) { this.listeners[type] = fn; } };
+
+  document = new Element();
+  document.body = body;
+  document.documentElement = root;
+  document.activeElement = null;
+  document.hidden = false;
+  document.head = { appendChild() {} };
+  document.createElement = () => new Element();
+  document.querySelector = selector => {
+    if (selector === 'link[href="/spatial-2026.css"]') return new Element();
+    if (selector === 'script[src="/experience-field.js"]') return new Element();
+    if (selector === 'link[href="/site-v5.css"]') return null;
+    if (selector === '.site-header') return null;
+    if (selector === '.menu-toggle') return menu;
+    if (selector === '.site-nav') return nav;
+    if (selector === 'main') return main;
+    if (selector === 'footer') return footer;
+    if (selector === '#cookie-settings') return null;
+    return null;
+  };
+  document.querySelectorAll = selector => {
+    if (selector === '[data-year]') return [year];
+    return [];
+  };
+
+  const window = {
+    matchMedia: query => query.includes('max-width') ? mobile : reduced,
+    scrollY: 240,
+    pageYOffset: 240,
+    addEventListener(type, fn) { (windowListeners[type] ||= []).push(fn); },
+    scrollTo(options) { this.lastScrollTo = options; }
+  };
+
+  const context = {
+    document,
+    window,
+    location: { href: 'https://puntoduestudio.it/metodo.html', protocol: 'https:', hostname: 'puntoduestudio.it', origin: 'https://puntoduestudio.it' },
+    sessionStorage: { getItem() { return null; }, setItem() {}, removeItem() {} },
+    URL,
+    Date,
+    encodeURIComponent,
+    requestAnimationFrame(fn) { fn(); return 1; },
+    cancelAnimationFrame() {},
+    setTimeout(fn) { fn(); return 1; },
+    clearTimeout() {},
+    addEventListener(type, fn) { (windowListeners[type] ||= []).push(fn); },
+    console,
+  };
+
   vm.runInNewContext(source, context);
-  return { document, menu, nav, target, link, scene, angle, reset, media, motion, frames, observers, main, footer, previewCard, previewImage,
-    flush: () => { const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn()); } };
+
+  return { document, window, menu, nav, navLink, main, footer, body, root, mobile, reduced, year, windowListeners };
 }
-for (const width of [320,375,390,430,768,1024,1440]) {
+
+for (const width of [360, 390, 430, 760, 761, 1024, 1440]) {
   const t = fixture(width);
-  assert(t.document.documentElement.classList.contains('menu-ready'));
-  t.menu.emit('click'); assert.equal(t.menu.getAttribute('aria-expanded'), 'true');
-  if (width <= 600) { assert.equal(t.main.getAttribute('inert'), ''); assert.equal(t.footer.getAttribute('inert'), ''); }
-  t.document.emit('keydown', { key: 'Escape' }); assert.equal(t.menu.getAttribute('aria-expanded'), 'false'); assert.equal(t.document.activeElement, t.menu);
-  assert.equal(t.main.getAttribute('inert'), null); assert.equal(t.footer.getAttribute('inert'), null);
-  t.menu.emit('click'); t.link.emit('click'); assert.equal(t.menu.getAttribute('aria-expanded'), 'false');
-  if (width <= 600) { assert.equal(t.document.activeElement, t.target); t.target.emit('blur'); assert.equal(t.target.getAttribute('tabindex'), null); }
-  t.previewImage.emit('error');
-  assert.equal(t.previewImage.src, 'assets/corriera-preview.webp');
-  assert.equal(t.previewImage.width, 1348); assert.equal(t.previewImage.height, 926);
-  assert(t.previewCard.classList.contains('preview-fallback'));
-  t.angle.value = '30'; t.angle.emit('input'); t.flush(); assert.equal(t.scene.props['--scene-y'], '30deg');
-  t.reset.emit('click'); assert.equal(t.angle.value, '0'); assert.equal(t.scene.props['--scene-y'], undefined);
-  t.angle.emit('input'); t.document.hidden = true; t.document.emit('visibilitychange'); assert.equal(t.frames.size, 0);
-  t.document.hidden = false; t.observers.at(-1).fn([{ isIntersecting: false }]); t.angle.emit('input'); assert.equal(t.frames.size, 0);
-  const reduced = fixture(width, true); reduced.angle.value = '30'; reduced.angle.emit('input'); assert.equal(reduced.frames.size, 0);
-  console.log(`PASS simulated controls/fallback at ${width}px; NOT a visual layout test`);
+  assert.equal(t.year.textContent, String(new Date().getFullYear()));
+
+  t.menu.emit('click');
+  assert.equal(t.menu.getAttribute('aria-expanded'), 'true');
+  assert.equal(t.menu.getAttribute('aria-label'), 'Chiudi menu');
+  assert(t.nav.classList.contains('open'));
+
+  if (width <= 760) {
+    assert.equal(t.main.getAttribute('inert'), '');
+    assert.equal(t.footer.getAttribute('inert'), '');
+    assert(t.root.classList.contains('menu-open'));
+    assert(t.body.classList.contains('menu-open'));
+    assert.equal(t.body.props.position, 'fixed');
+    assert.equal(t.body.props.top, '-240px');
+  } else {
+    assert.equal(t.main.getAttribute('inert'), null);
+    assert.equal(t.footer.getAttribute('inert'), null);
+    assert(!t.root.classList.contains('menu-open'));
+  }
+
+  t.document.emit('keydown', { key: 'Escape' });
+  assert.equal(t.menu.getAttribute('aria-expanded'), 'false');
+  assert.equal(t.menu.getAttribute('aria-label'), 'Apri menu');
+  assert.equal(t.document.activeElement, t.menu);
+  assert.equal(t.main.getAttribute('inert'), null);
+  assert.equal(t.footer.getAttribute('inert'), null);
+  assert(!t.root.classList.contains('menu-open'));
+  assert(!t.body.classList.contains('menu-open'));
+
+  t.menu.emit('click');
+  t.navLink.emit('click');
+  assert.equal(t.menu.getAttribute('aria-expanded'), 'false');
+
+  console.log(`PASS shared menu/scroll-lock/focus behavior at ${width}px`);
 }
