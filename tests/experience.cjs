@@ -6,30 +6,39 @@ const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const policy = fs.readFileSync(path.join(root, 'cookie-policy.html'), 'utf8');
 const js = fs.readFileSync(path.join(root, 'experience.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'experience.css'), 'utf8');
+const sharedJs = fs.readFileSync(path.join(root, 'site-v4.js'), 'utf8');
+const typeCss = fs.readFileSync(path.join(root, 'site-v9.css'), 'utf8');
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
-assert(index.includes('experience.css'));
-assert(index.includes('experience.js'));
-assert(index.includes('class="convergence container"'));
+// Homepage uses the current shared production stack; the policy page retains its dedicated privacy shell.
+assert(index.includes('/site-v4.css'));
+assert(index.includes('/site-v4.js'));
 assert(index.includes('id="cookie-settings"'));
 assert(index.includes('data-cookie-open'));
 assert(index.includes('/cookie-policy.html'));
+assert(policy.includes('/experience.css'));
+assert(policy.includes('/experience.js'));
 assert(policy.includes('id="cookie-settings"'));
 assert(policy.includes('non sono attivi cookie opzionali'));
+assert(policy.includes('Geist e IBM Plex Mono tramite Google Fonts'));
 assert(sitemap.includes('https://puntoduestudio.it/cookie-policy.html'));
+assert(sharedJs.includes("'/site-v9.css'"));
+assert(typeCss.includes('family=Geist'));
+assert(typeCss.includes('@media(prefers-reduced-motion:reduce)'));
 assert(js.includes('showModal'));
 assert(js.includes('finePointer'));
 assert(js.includes('prefers-reduced-motion'));
 assert(css.includes('@media(prefers-reduced-motion:reduce)'));
-assert(css.includes('.project-card.spatial-card-active'));
-assert(css.includes('.convergence-stage.is-active'));
-for (const source of [index, policy, js]) {
+assert(css.includes('.cookie-fab'));
+
+for (const source of [index, policy, js, sharedJs]) {
   assert(!/gtag\s*\(|googletagmanager|facebook\.net\/.*pixel|fbq\s*\(/i.test(source), 'unexpected tracking integration');
 }
+// The dedicated privacy shell itself stores no optional visitor state. site-v4.js may use sessionStorage only for case-page choreography.
 for (const source of [js, index]) {
   assert(!/localStorage|sessionStorage|document\.cookie/.test(source), 'optional state storage introduced unexpectedly');
 }
-console.log('PASS 3D/motion hooks, reduced-motion fallback, cookie UI/policy, sitemap and no optional tracking/storage');
+console.log('PASS current production stack, reduced-motion fallback, cookie UI/policy, sitemap and no optional tracking');
 
 // Behavioral smoke test for the native privacy dialog and focus restoration.
 const vm = require('node:vm');
