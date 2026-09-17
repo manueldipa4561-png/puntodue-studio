@@ -7,7 +7,7 @@ const policy = fs.readFileSync(path.join(root, 'cookie-policy.html'), 'utf8');
 const js = fs.readFileSync(path.join(root, 'experience.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'experience.css'), 'utf8');
 const sharedJs = fs.readFileSync(path.join(root, 'site-v4.js'), 'utf8');
-const typeCss = fs.readFileSync(path.join(root, 'site-v9.css'), 'utf8');
+const typeCss = fs.readFileSync(path.join(root, 'typography.css'), 'utf8');
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
 // Homepage uses the current shared production stack; the policy page retains its dedicated privacy shell.
@@ -18,11 +18,13 @@ assert(index.includes('data-cookie-open'));
 assert(index.includes('/cookie-policy.html'));
 assert(policy.includes('/experience.css'));
 assert(policy.includes('/experience.js'));
+assert(policy.includes('/typography.css'));
 assert(policy.includes('id="cookie-settings"'));
 assert(policy.includes('non sono attivi cookie opzionali'));
 assert(policy.includes('Geist e IBM Plex Mono tramite Google Fonts'));
 assert(sitemap.includes('https://puntoduestudio.it/cookie-policy.html'));
-assert(sharedJs.includes("'/site-v9.css'"));
+assert(sharedJs.includes("'/typography.css'"));
+assert(sharedJs.includes("'/motion.js'"));
 assert(typeCss.includes('family=Geist'));
 assert(typeCss.includes('@media(prefers-reduced-motion:reduce)'));
 assert(js.includes('showModal'));
@@ -34,11 +36,11 @@ assert(css.includes('.cookie-fab'));
 for (const source of [index, policy, js, sharedJs]) {
   assert(!/gtag\s*\(|googletagmanager|facebook\.net\/.*pixel|fbq\s*\(/i.test(source), 'unexpected tracking integration');
 }
-// The dedicated privacy shell itself stores no optional visitor state. site-v4.js may use sessionStorage only for case-page choreography.
+// The dedicated privacy shell itself stores no optional visitor state.
 for (const source of [js, index]) {
   assert(!/localStorage|sessionStorage|document\.cookie/.test(source), 'optional state storage introduced unexpectedly');
 }
-console.log('PASS current production stack, reduced-motion fallback, cookie UI/policy, sitemap and no optional tracking');
+console.log('PASS current production stack, semantic typography module, reduced-motion fallback, cookie UI/policy, sitemap and no optional tracking');
 
 // Behavioral smoke test for the native privacy dialog and focus restoration.
 const vm = require('node:vm');
