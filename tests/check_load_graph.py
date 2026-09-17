@@ -54,16 +54,19 @@ for name, doc in docs.items():
     has_portfolio = bool(doc.xpath('//script[@src="/portfolio-v8.js"]'))
     assert has_portfolio == (name in portfolio_routes), (name, has_portfolio)
 
-# Route-specific functional modules must remain local to their consumer.
+# Route-specific functional modules must remain local to their consumers.
 assert docs['contact'].xpath('//script[@src="/contact-brief.js"]')
 for name, doc in docs.items():
     if name != 'contact':
         assert not doc.xpath('//script[@src="/contact-brief.js"]'), name
 
-assert docs['studio'].xpath('//script[@src="/dual-field-v5.js"]')
+# Dual Field is intentionally shared by the Home hero and the Studio identity demo.
+dual_field_routes = {'home', 'studio'}
 for name, doc in docs.items():
-    if name != 'studio':
-        assert not doc.xpath('//script[@src="/dual-field-v5.js"]'), name
+    has_dual_field = bool(doc.xpath('//script[@src="/dual-field-v5.js"]'))
+    assert has_dual_field == (name in dual_field_routes), (name, has_dual_field)
+    has_dual_field_markup = bool(doc.xpath('//*[@data-dual-field]'))
+    assert has_dual_field_markup == (name in dual_field_routes), (name, has_dual_field_markup)
 
 assert docs['call'].xpath('//script[@src="/call-object.js"]')
 for name, doc in docs.items():
