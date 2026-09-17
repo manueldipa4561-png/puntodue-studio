@@ -1,34 +1,60 @@
 /* Punto Due Studio - shared production interaction layer */
 (() => {
-  /* Spatial Experience 2026: one isolated module shared by every page using this runtime. */
-  if(!document.querySelector('link[href="/spatial-2026.css"]')){
-    const spatialCss=document.createElement('link');
-    spatialCss.rel='stylesheet';
-    spatialCss.href='/spatial-2026.css';
-    document.head.appendChild(spatialCss);
-  }
-  if(!document.querySelector('script[src="/experience-field.js"]')){
-    const spatialScript=document.createElement('script');
-    spatialScript.src='/experience-field.js';
-    spatialScript.defer=true;
-    document.head.appendChild(spatialScript);
+  /* Production loading policy: keep shared essentials global; scope heavy/specialist layers. */
+  const isHome = Boolean(document.querySelector('.home-hero'));
+  const isCaseStudy = document.body.classList.contains('case-study-page');
+  const hasCore2026 = Boolean(document.querySelector('link[href="/site-core-2026.css"]'));
+  const hasLegacyV5 = Boolean(document.querySelector('link[href="/site-v5.css"]'));
+
+  const loadStyle = href => {
+    if (document.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+
+  const loadScript = src => {
+    if (document.querySelector(`script[src="${src}"]`)) return;
+    const script = document.createElement('script');
+    script.src = src;
+    script.defer = true;
+    document.head.appendChild(script);
+  };
+
+  if (hasCore2026) {
+    loadScript('/site-v9.js');
+  } else if (hasLegacyV5) {
+    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(loadStyle);
+    loadScript('/site-v9.js');
   }
 
-  if(document.querySelector('link[href="/site-v5.css"]')){
-    ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css','/site-v11.css','/site-v12.css','/site-v13.css'].forEach(href=>{
-      if(document.querySelector(`link[href="${href}"]`))return;
-      const link=document.createElement('link');
-      link.rel='stylesheet';
-      link.href=href;
-      document.head.appendChild(link);
-    });
-    ['/site-v9.js','/site-v11.js'].forEach(src=>{
-      if(document.querySelector(`script[src="${src}"]`))return;
-      const script=document.createElement('script');
-      script.src=src;
-      script.defer=true;
-      document.head.appendChild(script);
-    });
+  /* Case-study choreography belongs only to case studies. */
+  if (isCaseStudy) {
+    ['/site-v11.css','/site-v12.css','/site-v13.css'].forEach(loadStyle);
+    loadScript('/site-v11.js');
+  }
+
+  /* The spatial field is progressive enhancement: static visual first, WebGL after real user intent. */
+  if (isHome) {
+    loadStyle('/spatial-2026.css');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reduceMotion.matches) {
+      let fieldQueued = false;
+      const activateSpatialField = () => {
+        if (fieldQueued) return;
+        fieldQueued = true;
+        ['pointermove','touchstart','scroll','keydown'].forEach(type => {
+          window.removeEventListener(type, activateSpatialField);
+        });
+        const load = () => loadScript('/experience-field.js');
+        if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1200 });
+        else setTimeout(load, 180);
+      };
+      ['pointermove','touchstart','scroll','keydown'].forEach(type => {
+        window.addEventListener(type, activateSpatialField, { passive: true, once: true });
+      });
+    }
   }
 
   const header=document.querySelector('.site-header');
@@ -271,8 +297,8 @@
   const need=[...document.querySelectorAll('input[name="need"]')];
   const stage=[...document.querySelectorAll('input[name="stage"]')];
   const message=document.querySelector('#brief-message');
-  const contactOne=document.querySelector('#brief-manuel');
-  const contactTwo=document.querySelector('#brief-nicolas');
+  const projectEmail=document.querySelector('#brief-projects');
+  const briefWhatsapp=document.querySelector('#brief-whatsapp');
   if(message&&need.length&&stage.length){
     const needPhrases={
       'un nuovo sito':'creare un nuovo sito',
@@ -287,8 +313,9 @@
       const text=`Ciao! Sto valutando di ${action}. Al momento ${s}. Possiamo sentirci per capire quale direzione avrebbe più senso per il progetto?`;
       message.textContent=text;
       const enc=encodeURIComponent(text);
-      if(contactOne)contactOne.href=`https://wa.me/393248423657?text=${enc}`;
-      if(contactTwo)contactTwo.href=`https://wa.me/393248165947?text=${enc}`;
+      const subject=encodeURIComponent('Nuovo progetto — Punto Due Studio');
+      if(projectEmail)projectEmail.href=`mailto:projects@puntoduestudio.it?subject=${subject}&body=${enc}`;
+      if(briefWhatsapp)briefWhatsapp.href=`https://wa.me/393248423657?text=${enc}`;
     };
     [...need,...stage].forEach(i=>i.addEventListener('change',update));
     update();

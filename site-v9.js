@@ -68,6 +68,7 @@
   ].join(',');
 
   const headings = [...new Set(document.querySelectorAll(selector))];
+  const spatialEnabled = finePointer.matches && !reduceMotion.matches;
   const profileFor = node => {
     if (node.matches('.home-hero h1,.page-hero h1,.call-hero h1,.case-title-wrap h1')) return {name:'hero', intensity:.82};
     if (node.matches('.statement-band h2,.site-cta h2,.call-dark-section h2,.case-proof blockquote')) return {name:'statement', intensity:.62};
@@ -76,6 +77,7 @@
   };
 
   headings.forEach(node => {
+    if (!spatialEnabled) return;
     const profile = profileFor(node);
     node.classList.add('spatial-type', 'spatial-type-v10');
     node.dataset.spatialProfile = profile.name;
@@ -89,7 +91,7 @@
     }
   });
 
-  if ('IntersectionObserver' in window && !reduceMotion.matches) {
+  if (spatialEnabled && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -98,8 +100,6 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -7% 0px' });
     headings.forEach(h => observer.observe(h));
-  } else {
-    headings.forEach(h => h.classList.add('is-spatial-visible'));
   }
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -163,7 +163,7 @@
 
   const kickMotion = () => { if (!motionRaf) motionRaf = requestAnimationFrame(runMotion); };
 
-  if (finePointer.matches && !reduceMotion.matches) {
+  if (spatialEnabled) {
     headings.forEach(node => {
       const profile = profileFor(node);
       const state = ensureState(node);
@@ -214,12 +214,10 @@
       stage.addEventListener('pointercancel', reset, { passive:true });
       stage.addEventListener('focusout', reset, true);
     });
-  } else {
-    headings.forEach(ensureState);
   }
 
-  // Touch and wheel scroll contribute only a very small amount of depth.
-  if (!reduceMotion.matches) {
+  // Scroll depth is useful only with the desktop spatial interaction.
+  if (spatialEnabled) {
     let scrollRaf = 0;
     const updateScrollDepth = () => {
       scrollRaf = 0;

@@ -153,7 +153,9 @@
     lastY: innerHeight*.28,
     lastT: performance.now(),
     visible: !document.hidden,
-    quality: 1
+    heroVisible: true,
+    quality: 1,
+    lastFrame: 0
   };
 
   const coarse = matchMedia('(pointer: coarse)').matches;
@@ -167,7 +169,7 @@
   let sampleStart = start;
 
   const resize = () => {
-    const cap = state.quality < 1 ? 1.15 : 1.6;
+    const cap = state.quality < 1 ? 1 : 1.35;
     const dpr = Math.min(devicePixelRatio || 1, cap);
     const w = Math.max(1, Math.round(innerWidth*dpr));
     const h = Math.max(1, Math.round(innerHeight*dpr));
@@ -179,7 +181,13 @@
 
   const draw = now => {
     raf = 0;
-    if (!state.visible) return;
+    if (!state.visible || !state.heroVisible) return;
+    const targetFps = state.quality < 1 ? 30 : 45;
+    if (state.lastFrame && now - state.lastFrame < 1000 / targetFps) {
+      raf = requestAnimationFrame(draw);
+      return;
+    }
+    state.lastFrame = now;
     resize();
     const dt = Math.min(.05,(now-state.lastT)/1000 || .016);
     state.lastT=now;
@@ -213,7 +221,22 @@
     raf=requestAnimationFrame(draw);
   };
 
-  const wake = () => { if (!raf && state.visible) raf=requestAnimationFrame(draw); };
+  const wake = () => { if (!raf && state.visible && state.heroVisible) raf=requestAnimationFrame(draw); };
+
+  const hero = document.querySelector('.home-hero');
+  if (hero && 'IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      state.heroVisible = entry.isIntersecting;
+      if (state.heroVisible) {
+        state.lastT = performance.now();
+        wake();
+      } else if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }, { rootMargin: '160px 0px' });
+    heroObserver.observe(hero);
+  }
   const onPointer = e => {
     state.targetX=e.clientX; state.targetY=e.clientY;
     state.energy=Math.min(1,state.energy+.06);
