@@ -31,6 +31,7 @@ for required in (
     '/case-motion.css',
     '/case-runtime.js',
     '/portfolio-refinements.css',
+    '/homepage.css',
 ):
     assert required in shared, required
 
@@ -47,6 +48,15 @@ for obsolete in (
     '/site-v8-benchmark.css',
 ):
     assert obsolete not in shared, f'Obsolete shared loader reference: {obsolete}'
+
+# Homepage art direction is detected from the real hero and kept route-scoped.
+assert "document.querySelector('.home-hero')" in shared
+assert "document.body.classList.add('home-experience')" in shared
+assert (ROOT / 'homepage.css').is_file()
+assert docs['home'].xpath('//section[contains(concat(" ", normalize-space(@class), " "), " home-hero ")]')
+for name in paths:
+    if name != 'home':
+        assert not docs[name].xpath('//section[contains(concat(" ", normalize-space(@class), " "), " home-hero ")]'), name
 
 # Portfolio runtime exists only on Home, Projects and case studies.
 portfolio_routes = {'home', 'projects', 'nodo', 'innesto', 'trama'}
@@ -100,4 +110,4 @@ for obsolete_file in (
 assert (ROOT / 'utility-routes.css').is_file()
 assert (ROOT / 'privacy-dialog.js').is_file()
 
-print('PASS route-scoped production load graph, utility-route migration and semantic module boundaries')
+print('PASS route-scoped production load graph, utility-route migration, homepage visual module and semantic boundaries')
