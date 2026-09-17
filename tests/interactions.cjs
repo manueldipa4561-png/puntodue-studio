@@ -15,7 +15,6 @@ function fixture(width) {
       this.attrs = { ...attrs };
       this.listeners = {};
       this.children = [];
-      this.props = {};
       const classes = new Set();
       this.classList = {
         add: (...names) => names.forEach(name => classes.add(name)),
@@ -28,8 +27,8 @@ function fixture(width) {
         }
       };
       this.style = {
-        setProperty: (name, value) => { this.props[name] = value; },
-        removeProperty: name => { delete this.props[name]; }
+        setProperty(name, value) { this[name] = value; },
+        removeProperty(name) { delete this[name]; }
       };
     }
     addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }
@@ -122,8 +121,8 @@ for (const width of [360, 390, 430, 760, 761, 1024, 1440]) {
     assert.equal(t.footer.getAttribute('inert'), '');
     assert(t.root.classList.contains('menu-open'));
     assert(t.body.classList.contains('menu-open'));
-    assert.equal(t.body.props.position, 'fixed');
-    assert.equal(t.body.props.top, '-240px');
+    assert.equal(t.body.style.position, 'fixed');
+    assert.equal(t.body.style.top, '-240px');
   } else {
     assert.equal(t.main.getAttribute('inert'), null);
     assert.equal(t.footer.getAttribute('inert'), null);
@@ -138,6 +137,8 @@ for (const width of [360, 390, 430, 760, 761, 1024, 1440]) {
   assert.equal(t.footer.getAttribute('inert'), null);
   assert(!t.root.classList.contains('menu-open'));
   assert(!t.body.classList.contains('menu-open'));
+  assert.equal(t.body.style.position, undefined);
+  assert.equal(t.body.style.top, undefined);
 
   t.menu.emit('click');
   t.navLink.emit('click');
