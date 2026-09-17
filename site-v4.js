@@ -14,6 +14,9 @@
     document.head.appendChild(spatialScript);
   }
 
+  const homeExperience=!!document.querySelector('.home-hero');
+  if(homeExperience)document.body.classList.add('home-experience');
+
   if(document.querySelector('link[href="/site-v5.css"]')){
     const appendStyle=href=>{
       if(document.querySelector(`link[href="${href}"]`))return;
@@ -46,7 +49,7 @@
     }
 
     /* Homepage art direction is intentionally last and route-scoped. */
-    if(document.body.classList.contains('home-experience')){
+    if(homeExperience){
       appendStyle('/homepage.css');
     }
   }
