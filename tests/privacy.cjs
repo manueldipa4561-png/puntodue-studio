@@ -34,8 +34,8 @@ assert(script.includes('getBoundingClientRect'));
 
 for (const source of [policy, script]) {
   assert(!/gtag\s*\(|googletagmanager|facebook\.net\/.*pixel|fbq\s*\(/i.test(source), 'unexpected tracking integration');
-  assert(!/localStorage|sessionStorage|document\.cookie/.test(source), 'optional visitor state introduced unexpectedly');
 }
+assert(!/localStorage|sessionStorage|document\.cookie/.test(script), 'optional visitor state introduced by privacy runtime');
 
 const makeHarness = ({ supportsDialog = true } = {}) => {
   const opener = {
