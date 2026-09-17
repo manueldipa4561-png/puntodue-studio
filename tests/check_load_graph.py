@@ -93,7 +93,11 @@ for obsolete_file in (
     'site-v5-fixes.css', 'site-v6.css', 'mobile-menu-hotfix.css',
     'site-v9.css', 'site-v9.js', 'site-v11.css', 'site-v12.css',
     'site-v13.css', 'site-v11.js', 'site-v8-benchmark.css',
+    'style.css', 'polish.css', 'experience.css', 'experience.js',
 ):
     assert not (ROOT / obsolete_file).exists(), obsolete_file
+
+assert (ROOT / 'utility-routes.css').is_file()
+assert (ROOT / 'privacy-dialog.js').is_file()
 
 print('PASS route-scoped production load graph, utility-route migration and semantic module boundaries')
