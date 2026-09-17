@@ -34,10 +34,10 @@
     ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(appendStyle);
     appendScript('/site-v9.js');
 
-    /* Case-only motion stays route-scoped and now ships as one ordered stylesheet. */
+    /* Case-only motion and handoff logic remain completely route-scoped. */
     if(document.body.classList.contains('case-study-page')){
       appendStyle('/case-motion.css');
-      appendScript('/site-v11.js');
+      appendScript('/case-runtime.js');
     }
   }
 
@@ -48,143 +48,6 @@
   const footer=document.querySelector('footer');
   const mobile=window.matchMedia('(max-width:760px)');
   const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  /* v12/v13: carry the case-study exit into a softer, continuous next-case entry. */
-  if(document.body.classList.contains('case-study-page')){
-    const root=document.documentElement;
-    const supportsCrossDoc='onpageswap' in window&&'onpagereveal' in window;
-    const nativeCaseHandoff=false;
-    const prefersReduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!nativeCaseHandoff)root.classList.add('no-cross-doc-vt');
-
-    const storageKey='pd-case-handoff-v12';
-    const normalize=url=>{
-      const path=new URL(url,location.href).pathname.replace(/\/$/,'')||'/';
-      return path.endsWith('.html')?path.slice(0,-5):path;
-    };
-    const isCaseDestination=pathname=>/^\/progetti\/(?:nodo|innesto|trama-zero)$/.test(pathname);
-    const readToken=()=>{
-      try{return JSON.parse(sessionStorage.getItem(storageKey)||'null')}catch{return null}
-    };
-    const writeToken=value=>{
-      try{sessionStorage.setItem(storageKey,JSON.stringify(value))}catch{}
-    };
-    const clearToken=()=>{try{sessionStorage.removeItem(storageKey)}catch{}};
-
-    const currentPath=normalize(location.href);
-    const heroTitle=document.querySelector('.case-title-wrap h1');
-    const heroMeta=document.querySelector('.case-kicker');
-    const firstCaseSection=document.querySelector('.case-main > .case-section');
-    const incoming=readToken();
-
-    if(prefersReduced()){
-      clearToken();
-    }else if(incoming&&isCaseDestination(currentPath)&&incoming.to===currentPath&&Date.now()-incoming.at<10000){
-      document.body.classList.add('case-handoff-incoming-v12');
-      root.dataset.caseHandoff='incoming';
-      if(nativeCaseHandoff&&heroTitle)heroTitle.style.viewTransitionName='case-title-handoff';
-      if(nativeCaseHandoff&&heroMeta)heroMeta.style.viewTransitionName='case-meta-handoff';
-      if(firstCaseSection){
-        firstCaseSection.classList.add('case-first-after-handoff-v13');
-        firstCaseSection.addEventListener('animationend',event=>{
-          if(event.animationName==='pd-case-first-section-settle-v13')firstCaseSection.classList.remove('case-first-after-handoff-v13');
-        });
-      }
-      clearToken();
-
-      let settleStarted=false;
-      let cleaned=false;
-      const finishIncoming=()=>{
-        if(cleaned)return;
-        cleaned=true;
-        if(heroTitle)heroTitle.style.removeProperty('view-transition-name');
-        if(heroMeta)heroMeta.style.removeProperty('view-transition-name');
-        document.body.classList.remove('case-handoff-incoming-v12','is-case-handoff-settling-v13','is-case-handoff-entered-v12');
-        root.removeAttribute('data-case-handoff');
-      };
-      const beginIncomingSettle=()=>{
-        if(settleStarted||prefersReduced())return;
-        settleStarted=true;
-        document.body.classList.add('is-case-handoff-settling-v13');
-        requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('is-case-handoff-entered-v12')));
-        setTimeout(finishIncoming,1040);
-      };
-
-      if(nativeCaseHandoff&&supportsCrossDoc){
-        addEventListener('pagereveal',event=>{
-          if(event.viewTransition)event.viewTransition.finished.then(beginIncomingSettle,beginIncomingSettle);
-          else setTimeout(beginIncomingSettle,90);
-        },{once:true});
-        setTimeout(beginIncomingSettle,1260);
-      }else{
-        setTimeout(beginIncomingSettle,90);
-      }
-    }else if(incoming){
-      clearToken();
-    }
-
-    const nextLink=document.querySelector('.case-next-link');
-    if(nextLink){
-      if(location.protocol==='https:'&&location.hostname==='puntoduestudio.it'){
-        const prettyPath=normalize(nextLink.href);
-        if(isCaseDestination(prettyPath))nextLink.setAttribute('href',prettyPath);
-      }
-      const nextTitle=nextLink.querySelector('strong');
-      const nextMeta=nextLink.querySelector('span');
-
-      const armHandoff=destination=>{
-        writeToken({from:currentPath,to:normalize(destination.href),at:Date.now()});
-        document.body.classList.add('case-handoff-outgoing-v12');
-        root.dataset.caseHandoff='outgoing';
-        if(nativeCaseHandoff&&nextTitle)nextTitle.style.viewTransitionName='case-title-handoff';
-        if(nativeCaseHandoff&&nextMeta)nextMeta.style.viewTransitionName='case-meta-handoff';
-      };
-
-      const disarmHandoff=()=>{
-        document.body.classList.remove('case-handoff-outgoing-v12');
-        root.removeAttribute('data-case-handoff');
-        if(nextTitle)nextTitle.style.removeProperty('view-transition-name');
-        if(nextMeta)nextMeta.style.removeProperty('view-transition-name');
-      };
-
-      nextLink.addEventListener('click',event=>{
-        if(event.defaultPrevented||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-        if(nextLink.target&&nextLink.target!=='_self')return;
-        const destination=new URL(nextLink.href,location.href);
-        const destinationPath=normalize(destination.href);
-        if(destination.origin!==location.origin||!isCaseDestination(destinationPath)){
-          clearToken();
-          disarmHandoff();
-          return;
-        }
-        if(prefersReduced()){
-          clearToken();
-          disarmHandoff();
-          return;
-        }
-
-        armHandoff(destination);
-        if(!nativeCaseHandoff){
-          event.preventDefault();
-          setTimeout(()=>location.assign(destination.href),260);
-        }
-      });
-
-      nextLink.addEventListener('keydown',event=>{
-        if(event.key==='Escape'){
-          clearToken();
-          disarmHandoff();
-        }
-      });
-
-      addEventListener('pageshow',event=>{
-        if(event.persisted){
-          clearToken();
-          disarmHandoff();
-        }
-      });
-    }
-  }
 
   document.querySelectorAll('[data-year]').forEach(n=>n.textContent=new Date().getFullYear());
 
