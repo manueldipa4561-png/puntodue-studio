@@ -39,6 +39,9 @@ jobs:
       - name: Structural site regression
         run: python tests/check_site.py
 
+      - name: Route load-graph regression
+        run: python tests/check_load_graph.py
+
       - name: Shared patch regression
         run: python tests/check_shared_patches.py
 
