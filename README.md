@@ -21,9 +21,9 @@ Netlify deploys `main` and serves the repository root as configured in `netlify.
 - `site-v7.css`: “Projects as Digital Territories” portfolio system using native CSS/DOM artwork rather than heavy media.
 - `site-v8.css`: case-study layout and progressive portfolio micro-motion.
 - `site-v8-benchmark.css`: editorial proof/benchmark refinements derived from the agency reference study without copying source layouts or code.
-- `site-v9.css`: current typography and v10-refined spatial-text styling. Instrument Sans is used for editorial/display/UI typography and IBM Plex Mono for technical metadata; both are requested through Google Fonts.
+- `site-v9.css`: current v14 typography and Precision Depth styling. Geist is the editorial/display/body family and IBM Plex Mono remains the technical/metadata voice; both are requested through Google Fonts.
 - `site-v4.js`: shared navigation, reveal, cookie-dialog and contact-flow interactions; it also loads the current type/depth layer on site pages.
-- `site-v9.js`: founder-name routing plus the v10 motion system: spring-smoothed 3D typography, pointer-responsive perspective origin, subtle scroll depth, tactile adjacent controls and reduced-motion-safe behavior.
+- `site-v9.js`: founder-name routing plus the current typography motion system: spring-smoothed 3D type, responsive hero wrapping, pointer-responsive perspective origin, subtle scroll depth, tactile adjacent controls and reduced-motion-safe behavior.
 - `portfolio-v8.js`: case-study/portfolio pointer motion and progress feedback.
 - `dual-field-v5.js`: interactive hero object.
 - `brief.js`: local-only WhatsApp message composer; nothing is submitted or stored by the site.
@@ -31,17 +31,29 @@ Netlify deploys `main` and serves the repository root as configured in `netlify.
 - `404.html`: branded static 404.
 - `assets/`: local brand/social assets and historical demo previews.
 
+## Typography system
+
+The v14 pass replaces Instrument Sans with Geist while preserving IBM Plex Mono as the studio's technical voice. The system is defined centrally so old `--sans`, `--serif`, `--v5-font`, `--font-sans` and `--font-serif` paths also resolve into the same production family rather than producing route-specific typography.
+
+The hierarchy is responsive rather than a simple desktop scale-down:
+
+- homepage display, page H1, section H2, project/case headings, lead, body, metadata and controls each have dedicated scale, line-height and tracking behavior;
+- the homepage hero removes its authored line-break composition at runtime and lets the browser balance the sentence against the available measure;
+- mobile rules are tuned for narrow widths and touch, while tablet/desktop rules cap growth on large displays;
+- long-form/supporting copy uses constrained reading measures and `text-wrap: pretty` where supported;
+- Italian diacritics remain normal Unicode text and all production text stays semantic/selectable.
+
 ## Motion system
 
-The current typography motion pass uses one shared interaction grammar across homepage, Studio, Contact, Call and case-study pages:
+The current typography motion pass uses one shared interaction grammar across homepage, Studio, Contact, Call and case-study pages. v14 refines it into a shallower “Precision Depth” language informed by three Higgsfield motion studies rather than embedding generated video in the site:
 
 - pointer input is normalized against the surrounding stage instead of the glyph bounds, preventing twitchy edge behavior;
 - spring interpolation provides visible inertia and soft settling instead of direct cursor snapping;
-- perspective origin follows the pointer at a restrained amplitude;
-- the foreground text, depth layer and highlight layer respond at different rates to create tactile depth without becoming an effect showcase;
-- major hero/statement/section/compact headings use different intensity profiles while sharing the same physics;
+- perspective origin follows the pointer at restrained amplitude;
+- Geist uses a shallower foreground/depth/highlight stack than the previous pass, reducing duplicate-shadow appearance while keeping tactile dimensionality;
+- hero, statement, section and compact headings use different intensity profiles while sharing the same physics;
 - touch devices receive only a low-amplitude scroll-depth response;
-- buttons, direct-contact cards, case-next links and text links receive a small matching physical response;
+- buttons, direct-contact cards, case-next links and text links receive a smaller matching physical response;
 - `prefers-reduced-motion: reduce` removes transforms, pseudo-depth layers and motion transitions.
 
 ## Founder identity rule
@@ -67,9 +79,9 @@ Current showcased concepts:
 
 ## Privacy / cookie state
 
-The current code does not intentionally install analytics, advertising or profiling tools and does not use `localStorage`, `sessionStorage` or `document.cookie`. Because there are no optional tracking categories in the current implementation, the site does not display a first-visit consent banner. The persistent “Preferenze cookie” control opens an informational native dialog and the full disclosure lives at `/cookie-policy.html`.
+The current code does not intentionally install analytics, advertising or profiling tools and does not use `localStorage`, `sessionStorage` or `document.cookie` for profiling or analytics. Because there are no optional tracking categories in the current implementation, the site does not display a first-visit consent banner. The persistent “Preferenze cookie” control opens an informational native dialog and the full disclosure lives at `/cookie-policy.html`.
 
-The visual system currently requests Instrument Sans and IBM Plex Mono from Google Fonts. The cookie policy identifies remote font delivery alongside the site's other external resources. If optional analytics/marketing technology is added later, both the policy and consent mechanism must be reviewed before activation.
+The visual system currently requests Geist and IBM Plex Mono from Google Fonts. The cookie policy identifies remote font delivery alongside the site's other external resources. If optional analytics/marketing technology is added later, both the policy and consent mechanism must be reviewed before activation.
 
 ## Checks
 
@@ -87,4 +99,4 @@ node tests/experience.cjs
 python tests/check_site.py
 ```
 
-`tests/check_site.py` requires `lxml`. JavaScript interaction tests are dependency-free DOM simulations; they are not real browser-layout tests. Browser screenshots should also be checked at desktop and mobile widths before promotion to `main`. See `VALIDATION.md` for the verification boundary.
+`tests/check_site.py` requires `lxml`. JavaScript interaction tests are dependency-free DOM simulations; they are not real browser-layout tests. Browser layout, font resolution, pointer motion and reduced-motion behavior should also be checked at desktop/mobile widths before promotion to `main`. See `VALIDATION.md` for the verification boundary.
