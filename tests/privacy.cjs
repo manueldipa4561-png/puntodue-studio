@@ -8,6 +8,7 @@ const policy = fs.readFileSync(path.join(root, 'cookie-policy.html'), 'utf8');
 const script = fs.readFileSync(path.join(root, 'privacy-dialog.js'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'utility-routes.css'), 'utf8');
 const typography = fs.readFileSync(path.join(root, 'typography.css'), 'utf8');
+const caseRuntime = fs.readFileSync(path.join(root, 'case-runtime.js'), 'utf8');
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 
 assert(policy.includes('/utility-routes.css'));
@@ -20,12 +21,25 @@ assert(!policy.includes('/experience.css'));
 assert(!policy.includes('/experience.js'));
 assert(policy.includes('id="cookie-settings"'));
 assert(policy.includes('data-cookie-open'));
-assert(policy.includes('non sono attivi cookie opzionali'));
+assert(policy.includes('non risultano attivi cookie di profilazione'));
+assert(policy.includes('Nessun cookie opzionale, analytics o profilazione attivi.'));
+assert(policy.includes('sessionStorage'), 'temporary case handoff storage must be disclosed');
+assert(policy.includes('esclusivamente per coordinare il passaggio visivo'), 'technical purpose must be explained');
+assert(policy.includes('rimosso dopo l’uso oppure quando non è più valido'), 'storage lifetime must be explained');
+assert(policy.includes('non viene usato per analytics, pubblicità, profilazione'), 'non-tracking purpose must be explicit');
 assert(policy.includes('Geist e IBM Plex Mono tramite Google Fonts'));
+assert(policy.includes('model-viewer'));
+assert(policy.includes('CloudFront'));
+assert(policy.includes('Instagram'));
+assert(policy.includes('WhatsApp'));
 assert(sitemap.includes('https://puntoduestudio.it/cookie-policy.html'));
 assert(typography.includes('family=Geist'));
+assert(caseRuntime.includes('sessionStorage.setItem'), 'case handoff runtime still uses temporary session storage');
+assert(caseRuntime.includes('sessionStorage.removeItem'), 'case handoff storage must be cleared');
 assert(css.includes('.cookie-dialog'));
 assert(css.includes('.policy-main'));
+assert(css.includes('.policy-status'));
+assert(css.includes('.policy-section-index'));
 assert(css.includes('.not-found'));
 assert(css.includes('@media(prefers-reduced-motion:reduce)'));
 assert(script.includes('showModal'));
@@ -35,7 +49,7 @@ assert(script.includes('getBoundingClientRect'));
 for (const source of [policy, script]) {
   assert(!/gtag\s*\(|googletagmanager|facebook\.net\/.*pixel|fbq\s*\(/i.test(source), 'unexpected tracking integration');
 }
-assert(!/localStorage|sessionStorage|document\.cookie/.test(script), 'optional visitor state introduced by privacy runtime');
+assert(!/localStorage|sessionStorage|document\.cookie/.test(script), 'privacy dialog must not introduce optional visitor state');
 
 const makeHarness = ({ supportsDialog = true } = {}) => {
   const opener = {
@@ -84,4 +98,4 @@ const makeHarness = ({ supportsDialog = true } = {}) => {
   assert.equal(opener.hidden, true, 'cookie opener should hide when native dialog is unsupported');
 }
 
-console.log('PASS utility privacy route, native dialog behavior, focus restoration, fallback and no optional tracking');
+console.log('PASS utility privacy route, accurate temporary-storage disclosure, native dialog behavior, focus restoration and no optional tracking');
