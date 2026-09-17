@@ -1,0 +1,182 @@
+/* Punto Due Studio — Case Study Experience 2026 */
+.case-study-page{
+  background:var(--case-bg);
+  color:var(--case-ink);
+}
+
+.case-study-page .pd-field{opacity:.34}
+.case-study-page .pd-field__canvas{filter:saturate(.75) contrast(1.05)}
+.case-study-page .site-header{background:transparent}
+.case-study-page .site-header.scrolled{backdrop-filter:blur(20px) saturate(1.03)}
+
+.case-study-page .case-hero{
+  min-height:min(980px,100svh);
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(150px,17vh,230px) 0 clamp(90px,10vw,150px);
+  position:relative;
+}
+.case-study-page .case-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 78% 24%,color-mix(in srgb,var(--case-accent) 18%,transparent),transparent 31%);
+}
+.case-study-page .case-hero .container{position:relative;z-index:1}
+.case-study-page .case-hero-grid{grid-template-columns:.28fr 1.72fr;gap:clamp(42px,7vw,112px)}
+.case-study-page .case-kicker{font-family:var(--mono);letter-spacing:.16em;padding-top:18px}
+.case-study-page .case-title-wrap h1{
+  font-size:clamp(92px,13vw,210px);
+  line-height:.76;
+  letter-spacing:-.086em;
+  max-width:none;
+}
+.case-study-page .case-title-wrap .case-deck{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(30px,5vw,80px);
+  margin-top:56px;
+  padding-top:26px;
+}
+.case-study-page .case-deck p{max-width:760px;font-size:clamp(17px,1.5vw,23px);line-height:1.62}
+.case-study-page .case-actions{align-self:end}
+.case-study-page .case-actions .button{border-radius:999px;padding-inline:22px}
+
+.case-study-page .case-hero-stage{
+  min-height:clamp(640px,68vw,980px);
+  margin-top:clamp(72px,8vw,116px);
+  border-color:var(--case-line);
+  box-shadow:0 40px 120px color-mix(in srgb,var(--case-ink) 12%,transparent);
+}
+.case-study-page .case-stage-label{left:26px;right:26px;top:24px}
+.case-study-page .case-stage-bottom{top:auto;bottom:24px}
+.case-study-page .case-stage-bottom strong{font-size:clamp(34px,4.2vw,64px);line-height:.94}
+
+.case-study-page .case-section{padding:clamp(120px,14vw,220px) 0}
+.case-study-page .case-section-head{grid-template-columns:.28fr 1.72fr;gap:clamp(42px,7vw,112px);margin-bottom:clamp(70px,8vw,118px)}
+.case-study-page .case-section-head h2{font-size:clamp(58px,7.6vw,120px);line-height:.88;letter-spacing:-.072em;max-width:1120px}
+.case-study-page .case-section-head p{font-size:16px;line-height:1.8;max-width:650px;margin-top:34px}
+
+.case-study-page .case-triptych{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--case-line);
+  border-bottom:1px solid var(--case-line);
+}
+.case-study-page .case-triptych article{min-height:360px;padding:34px 30px 38px 0;margin-right:30px}
+.case-study-page .case-triptych h3{font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-.05em}
+.case-study-page .case-triptych p{font-size:14px;line-height:1.72}
+
+.case-study-page .case-gallery{grid-template-columns:1.28fr .72fr;gap:16px}
+.case-study-page .case-media:first-child{min-height:clamp(680px,68vw,980px)}
+.case-study-page .case-media-stack{gap:16px}
+.case-study-page .case-media-stack .case-media{min-height:clamp(330px,33vw,482px)}
+.case-study-page .case-media{border-color:var(--case-line)}
+.case-study-page .case-media figcaption{left:18px;bottom:18px;padding:8px 10px;letter-spacing:.14em}
+
+.case-study-page .case-system{
+  padding-top:clamp(130px,15vw,220px);
+  padding-bottom:clamp(130px,15vw,220px);
+  position:relative;
+  overflow:hidden;
+}
+.case-study-page .case-system::before{
+  content:"";
+  position:absolute;
+  width:56vw;
+  aspect-ratio:1;
+  right:-18vw;
+  top:-20vw;
+  border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--case-accent) 24%,transparent),transparent 66%);
+  filter:blur(20px);
+  pointer-events:none;
+}
+.case-study-page .case-system .container{position:relative;z-index:1}
+.case-study-page .case-system-grid{grid-template-columns:.7fr 1.3fr;gap:clamp(60px,8vw,126px)}
+.case-study-page .case-system-copy h2{font-size:clamp(58px,7.2vw,112px);line-height:.88;letter-spacing:-.07em}
+.case-study-page .case-token{grid-template-columns:110px 1fr;padding:26px 0}
+.case-study-page .case-token strong{font-size:clamp(25px,2.5vw,38px);line-height:1.05}
+.case-study-page .case-signature{min-height:clamp(520px,55vw,780px);margin-top:clamp(82px,9vw,130px)}
+
+.case-study-page .case-responsive-grid{grid-template-columns:1.55fr .45fr;gap:26px}
+.case-study-page .device-frame--desktop{padding:22px}
+.case-study-page .device-frame--mobile{padding:14px}
+
+.case-study-page .case-proof{grid-template-columns:.28fr 1.72fr;gap:clamp(42px,7vw,112px)}
+.case-study-page .case-proof blockquote{font-size:clamp(48px,6.4vw,100px);line-height:.92;letter-spacing:-.065em;max-width:1120px}
+.case-study-page .case-proof p{font-size:15px;line-height:1.8}
+.case-study-page .case-disclosure{max-width:900px}
+
+.case-study-page .case-next{grid-template-columns:.28fr 1.72fr;gap:clamp(42px,7vw,112px);padding:clamp(100px,12vw,180px) 0}
+.case-study-page .case-next-link{padding-top:30px}
+.case-study-page .case-next-link strong{font-size:clamp(64px,9vw,142px);letter-spacing:-.075em}
+
+/* Keep each project distinct while preserving the Punto Due master language. */
+.case-study-nodo .case-hero{background:linear-gradient(180deg,#ece7db 0%,#e4ded0 100%)}
+.case-study-nodo .case-hero-stage{border-radius:0;background:#ddd7c6}
+.case-study-nodo .case-system{background:#141a14}
+
+.case-study-innesto .case-hero{background:linear-gradient(180deg,#e7e0d3 0%,#dad0bf 100%)}
+.case-study-innesto .case-hero-stage{box-shadow:0 50px 120px rgba(71,61,49,.18)}
+.case-study-innesto .case-system{background:#191713}
+
+.case-study-trama .case-hero{background:linear-gradient(180deg,#151516 0%,#0e0e0f 100%);color:#f3efe7}
+.case-study-trama .case-hero .case-kicker,
+.case-study-trama .case-deck p{color:rgba(243,239,231,.62)}
+.case-study-trama .case-title-wrap .case-deck{border-color:rgba(243,239,231,.15)}
+.case-study-trama .case-actions .button.ghost{color:#f3efe7;border-color:rgba(243,239,231,.25)}
+.case-study-trama .site-header:not(.scrolled){color:#f3efe7}
+.case-study-trama .site-header:not(.scrolled) .brand img{filter:brightness(0) invert(1)}
+.case-study-trama .site-header:not(.scrolled) .site-nav a,
+.case-study-trama .site-header:not(.scrolled) .menu-toggle{color:#f3efe7}
+.case-study-trama .case-system{background:#09090a}
+
+@media (max-width:900px){
+  .case-study-page .case-hero{min-height:auto;padding-top:150px}
+  .case-study-page .case-hero-grid,
+  .case-study-page .case-section-head,
+  .case-study-page .case-proof,
+  .case-study-page .case-next{grid-template-columns:1fr}
+  .case-study-page .case-title-wrap h1{font-size:clamp(86px,18vw,150px)}
+  .case-study-page .case-title-wrap .case-deck{grid-template-columns:1fr}
+  .case-study-page .case-actions{justify-content:flex-start}
+  .case-study-page .case-system-grid{grid-template-columns:1fr}
+  .case-study-page .case-responsive-grid{grid-template-columns:1fr .42fr}
+}
+
+@media (max-width:700px){
+  .case-study-page .case-hero{padding:126px 0 76px}
+  .case-study-page .case-title-wrap h1{font-size:clamp(78px,24vw,108px);line-height:.78}
+  .case-study-page .case-title-wrap .case-deck{margin-top:34px}
+  .case-study-page .case-deck p{font-size:17px}
+  .case-study-page .case-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .case-study-page .case-actions .button{width:100%;padding-inline:14px}
+  .case-study-page .case-hero-stage{min-height:520px;margin-top:56px}
+  .case-study-page .case-stage-label{left:14px;right:14px;top:14px;gap:12px}
+  .case-study-page .case-stage-bottom{top:auto;bottom:14px;align-items:end}
+  .case-study-page .case-stage-bottom strong{font-size:30px;max-width:230px}
+  .case-study-page .case-section{padding:92px 0}
+  .case-study-page .case-section-head h2{font-size:clamp(48px,14vw,66px)}
+  .case-study-page .case-triptych{grid-template-columns:1fr}
+  .case-study-page .case-triptych article{min-height:0;margin:0;padding:28px 0;border-right:0;border-bottom:1px solid var(--case-line)}
+  .case-study-page .case-triptych article:last-child{border-bottom:0}
+  .case-study-page .case-gallery{grid-template-columns:1fr;gap:12px}
+  .case-study-page .case-media:first-child,.case-study-page .case-media-stack .case-media{min-height:440px}
+  .case-study-page .case-media-stack{gap:12px}
+  .case-study-page .case-system{padding:96px 0}
+  .case-study-page .case-system-copy h2{font-size:clamp(50px,14vw,68px)}
+  .case-study-page .case-token{grid-template-columns:82px 1fr}
+  .case-study-page .case-signature{min-height:460px}
+  .case-study-page .case-responsive-grid{grid-template-columns:1fr;gap:18px}
+  .case-study-page .device-frame--mobile{justify-self:start;width:min(78%,320px)}
+  .case-study-page .case-proof blockquote{font-size:clamp(44px,13vw,62px)}
+  .case-study-page .case-next-link strong{font-size:clamp(58px,18vw,82px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .case-study-page .case-hero-stage,
+  .case-study-page .case-media img,
+  .case-study-page .case-next-link{transition:none}
+}
