@@ -1,4 +1,6 @@
 /* Punto Due Studio v13 — softer incoming case-study settle */
+@view-transition{navigation:none}
+
 .case-study-page{
   --pd-case-entry-soft:cubic-bezier(.16,.88,.24,1);
   --pd-case-entry-z:-10px;
@@ -6,7 +8,7 @@
   --pd-case-entry-tilt:.5deg;
 }
 
-/* Keep the live hero still while the named cross-document snapshots are morphing. */
+/* Keep the live hero still until the outgoing page has handed control to the destination. */
 .case-handoff-incoming-v12:not(.is-case-handoff-settling-v13) .case-kicker,
 .case-handoff-incoming-v12:not(.is-case-handoff-settling-v13) .case-title-wrap,
 .case-handoff-incoming-v12:not(.is-case-handoff-settling-v13) .case-deck,
@@ -17,7 +19,7 @@
   opacity:1;
 }
 
-/* Once the cross-document morph ends, all hero elements use the same shallow depth envelope. */
+/* Once the new page is ready, all hero elements use the same shallow depth envelope. */
 .case-handoff-incoming-v12.is-case-handoff-settling-v13 .case-kicker{
   transform-style:preserve-3d;
   transform-origin:50% 50%;
@@ -69,7 +71,7 @@
   100%{opacity:1;filter:none;transform:translate3d(0,var(--pd-flow-y),var(--pd-flow-z)) rotateX(var(--pd-flow-rx))}
 }
 
-/* Soften the named title/kicker morph so it leads naturally into the live hero settle. */
+/* Kept as a progressive enhancement definition if native cross-document VT is re-enabled later. */
 ::view-transition-group(case-title-handoff){
   animation-duration:1.02s;
   animation-timing-function:var(--pd-case-entry-soft);
