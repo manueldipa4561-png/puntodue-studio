@@ -1,0 +1,1 @@
+Spatial production baseline recorded in ENGINEERING-SPATIAL-2026.md.
