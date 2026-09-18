@@ -32,8 +32,7 @@
   };
 
   if (hasCore2026) {
-    if (isHome) afterInitialLoad(() => loadScript('/site-v9.js'));
-    else loadScript('/site-v9.js');
+    loadScript('/site-v9.js');
   } else if (hasLegacyV5) {
     ['/site-v5-fixes.css','/site-v6.css','/mobile-menu-hotfix.css','/site-v9.css'].forEach(loadStyle);
     loadScript('/site-v9.js');
