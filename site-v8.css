@@ -190,3 +190,78 @@
   .signature-nodo-orbit{animation:none}
   .case-progress{display:none}
 }
+
+
+/* Premium cover system / 2026 */
+.cover-system-card{
+  background:#f3f0e7!important;
+  color:#252821!important;
+}
+.territory-cover-art{
+  background:#f3f0e7!important;
+}
+.territory-cover-art img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:saturate(.94) contrast(1.015);
+  transform:scale(1.001);
+  transition:transform .7s var(--v5-ease),filter .7s var(--v5-ease);
+}
+.cover-system-card:hover .territory-cover-art img{
+  transform:scale(1.016);
+  filter:saturate(1) contrast(1.01);
+}
+.cover-system-card .territory-art::after{
+  background:linear-gradient(to top,rgba(243,240,231,.96) 0%,rgba(243,240,231,.58) 20%,rgba(243,240,231,0) 52%)!important;
+}
+.cover-system-card .territory-open::after{display:none!important}
+.cover-system-card .territory-open .pd-nav-arrow{
+  background:#252821;
+  color:#f3f0e7;
+  border-color:#252821;
+}
+.cover-system-card .territory-inline-actions{
+  color:#252821!important;
+  background:rgba(243,240,231,.94)!important;
+  border-color:rgba(37,40,33,.16)!important;
+}
+.cover-system-card .territory-inline-actions a+a{
+  border-color:rgba(37,40,33,.16)!important;
+}
+.project-territory-v7.cover-system-card{
+  min-height:clamp(520px,52vw,760px);
+}
+.project-territory-v7.cover-system-card .territory-meta{
+  color:#252821;
+}
+.archive-media-v7{
+  aspect-ratio:16/9;
+  background:#f3f0e7;
+}
+.archive-media-v7 img{
+  filter:saturate(.94) contrast(1.015);
+}
+.archive-card-v7:hover img{
+  filter:saturate(1) contrast(1.01);
+}
+.archive-meta-v7>.pd-nav-arrow{
+  color:var(--v5-bg);
+}
+.territory-open{
+  gap:10px!important;
+}
+@media(max-width:760px){
+  .project-territory-v7.cover-system-card{min-height:0;aspect-ratio:4/3}
+  .cover-system-card .territory-art::after{
+    background:linear-gradient(to top,rgba(243,240,231,.98) 0%,rgba(243,240,231,.66) 22%,rgba(243,240,231,0) 56%)!important;
+  }
+  .archive-media-v7{aspect-ratio:4/3}
+}
+@media(prefers-reduced-motion:reduce){
+  .territory-cover-art img{transition:none!important}
+  .cover-system-card:hover .territory-cover-art img{transform:none}
+}
