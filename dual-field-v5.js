@@ -20,7 +20,7 @@
       ? '<span>Realtime 3D / WebGL</span><span>Trascina per esplorare</span>'
       : '<span>Dual Field / scultura digitale</span><span>Trascina per esplorare</span>';
     if(bottom)bottom.innerHTML=isHero
-      ? '<strong>Strategia.<br>Design. Codice.</strong><span>Interactive object / 2026</span>'
+      ? '<strong>Strategia.<br>Art direction.<br>Sviluppo.</strong><span>Interactive object / 2026</span>'
       : '<strong>Due forme.<br>Un sistema.</strong><span>Interactive object / 2026</span>';
     stage.setAttribute('aria-label',isHero
       ? 'Oggetto tridimensionale astratto e interattivo che rappresenta strategia, design e sviluppo di Punto Due Studio'
@@ -63,10 +63,22 @@
     document.head.appendChild(script);
   };
 
-  if('IntersectionObserver' in window){
-    const obs=new IntersectionObserver(entries=>{
-      if(entries.some(e=>e.isIntersecting)){ensureModelViewer();obs.disconnect();}
-    },{rootMargin:'250px'});
-    stages.forEach(stage=>obs.observe(stage));
-  }else ensureModelViewer();
+  // Keep the 3D sculpture as progressive enhancement. The static fallback is immediate;
+  // model-viewer and the GLB are loaded only after explicit user intent.
+  const armStage=stage=>{
+    if(reduce.matches)return;
+    let activated=false;
+    const activate=()=>{
+      if(activated)return;
+      activated=true;
+      stage.removeEventListener('pointermove',activate);
+      stage.removeEventListener('pointerdown',activate);
+      stage.removeEventListener('touchstart',activate);
+      ensureModelViewer();
+    };
+    stage.addEventListener('pointermove',activate,{passive:true,once:true});
+    stage.addEventListener('pointerdown',activate,{passive:true,once:true});
+    stage.addEventListener('touchstart',activate,{passive:true,once:true});
+  };
+  stages.forEach(armStage);
 })();
