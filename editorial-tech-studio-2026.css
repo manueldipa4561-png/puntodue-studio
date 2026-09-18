@@ -356,3 +356,20 @@
 @media(prefers-reduced-motion:reduce){
   .studio-founder::after{transform:none!important}
 }
+
+
+/* Accessibility QA — contrast corrections / PR #19 */
+.studio-founder-top span:last-child,
+.studio-founder-scope{
+  color:#383d37;
+}
+
+.studio-page .site-cta .page-index,
+.studio-page .site-cta .cta-side p,
+.studio-page .site-cta .cta-secondary{
+  color:#252a22;
+}
+
+.studio-page .site-cta .cta-secondary{
+  border-color:rgba(37,42,34,.44);
+}
