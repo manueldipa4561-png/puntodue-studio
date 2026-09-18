@@ -15,9 +15,16 @@
     stage.querySelectorAll('canvas.logo-orbit-canvas').forEach(n=>n.remove());
     const top=stage.querySelector('.stage-top');
     const bottom=stage.querySelector('.stage-bottom');
-    if(top)top.innerHTML='<span>Dual Field / scultura digitale</span><span>Trascina per esplorare</span>';
-    if(bottom)bottom.innerHTML='<strong>Due forme.<br>Un sistema.</strong><span>Interactive object / 2026</span>';
-    stage.setAttribute('aria-label','Scultura tridimensionale astratta e interattiva di Punto Due Studio');
+    const isHero=stage.classList.contains('hero-object-stage');
+    if(top)top.innerHTML=isHero
+      ? '<span>Realtime 3D / WebGL</span><span>Trascina per esplorare</span>'
+      : '<span>Dual Field / scultura digitale</span><span>Trascina per esplorare</span>';
+    if(bottom)bottom.innerHTML=isHero
+      ? '<strong>Strategia.<br>Design. Codice.</strong><span>Interactive object / 2026</span>'
+      : '<strong>Due forme.<br>Un sistema.</strong><span>Interactive object / 2026</span>';
+    stage.setAttribute('aria-label',isHero
+      ? 'Oggetto tridimensionale astratto e interattivo che rappresenta strategia, design e sviluppo di Punto Due Studio'
+      : 'Scultura tridimensionale astratta e interattiva di Punto Due Studio');
 
     const viewer=document.createElement('model-viewer');
     viewer.src=MODEL_URL;
@@ -32,13 +39,13 @@
     viewer.setAttribute('max-camera-orbit','auto 96deg 145%');
     viewer.setAttribute('field-of-view','31deg');
     viewer.setAttribute('touch-action','pan-y');
-    viewer.setAttribute('loading','eager');
+    viewer.setAttribute('loading','lazy');
     viewer.setAttribute('reveal','auto');
     if(!reduce.matches){
       viewer.setAttribute('autoplay','');
       viewer.setAttribute('auto-rotate','');
-      viewer.setAttribute('auto-rotate-delay','1200');
-      viewer.setAttribute('rotation-per-second','8deg');
+      viewer.setAttribute('auto-rotate-delay',isHero?'500':'1200');
+      viewer.setAttribute('rotation-per-second',isHero?'10deg':'8deg');
     }
     viewer.addEventListener('load',()=>stage.classList.add('dual-field-ready'),{once:true});
     stage.appendChild(viewer);
