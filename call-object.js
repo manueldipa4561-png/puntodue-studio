@@ -6,11 +6,24 @@
   const MODEL_URL='https://d2ol7oe51mr4n9.cloudfront.net/user_3JN4lq7KBj4c3qEQUgSkbrftgrd/eeb88167-ca44-469a-b3d4-ddec53991a59.glb';
   const MODEL_VIEWER='https://ajax.googleapis.com/ajax/libs/model-viewer/4.1.0/model-viewer.min.js';
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let viewer=null;
+  let visible=false;
+
+  const syncAutoRotate=()=>{
+    if(!viewer)return;
+    if(!reduce.matches&&visible){
+      viewer.setAttribute('auto-rotate','');
+      viewer.setAttribute('auto-rotate-delay','1500');
+      viewer.setAttribute('rotation-per-second','6deg');
+    }else{
+      viewer.removeAttribute('auto-rotate');
+    }
+  };
 
   const mount=()=>{
     if(stage.dataset.callObjectMounted==='true')return;
     stage.dataset.callObjectMounted='true';
-    const viewer=document.createElement('model-viewer');
+    viewer=document.createElement('model-viewer');
     viewer.src=MODEL_URL;
     viewer.alt='Oggetto tridimensionale astratto ispirato a una conversazione digitale';
     viewer.setAttribute('camera-controls','');
@@ -26,11 +39,7 @@
     viewer.setAttribute('loading','eager');
     viewer.setAttribute('reveal','auto');
     viewer.setAttribute('autoplay','');
-    if(!reduce.matches){
-      viewer.setAttribute('auto-rotate','');
-      viewer.setAttribute('auto-rotate-delay','1500');
-      viewer.setAttribute('rotation-per-second','6deg');
-    }
+    syncAutoRotate();
     viewer.addEventListener('load',()=>stage.classList.add('call-object-ready'),{once:true});
     stage.appendChild(viewer);
 
@@ -66,5 +75,16 @@
       if(entries.some(e=>e.isIntersecting)){loadViewer();obs.disconnect();}
     },{rootMargin:'300px'});
     obs.observe(stage);
-  }else loadViewer();
+
+    const visibilityObserver=new IntersectionObserver(entries=>{
+      visible=entries.some(e=>e.isIntersecting);
+      syncAutoRotate();
+    },{threshold:.05});
+    visibilityObserver.observe(stage);
+  }else{
+    visible=true;
+    loadViewer();
+  }
+
+  reduce.addEventListener?.('change',syncAutoRotate);
 })();
