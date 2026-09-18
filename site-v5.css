@@ -122,7 +122,7 @@ em,.serif{font-family:inherit;font-style:normal;font-weight:450;color:inherit}
 .project-copy h2{font-family:var(--v5-font);font-weight:480;letter-spacing:-.055em}
 .project-tags span{border-radius:0;border-color:rgba(255,255,255,.18)}
 .project-media{border-radius:0;box-shadow:none;border-color:rgba(255,255,255,.12)}
-.project-media::after{content:"↗";border-radius:0;width:42px;height:42px;font-size:16px;background:var(--v5-bg)}
+.project-media::after{content:"";border-radius:0;width:42px;height:42px;font-size:16px;background:var(--v5-bg)}
 .project-copy .text-link{color:var(--v5-bg)}
 
 /* Studio / method / contact */
