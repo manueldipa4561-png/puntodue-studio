@@ -9,7 +9,8 @@
   font-family:var(--pd-editorial);
   font-weight:400;
   font-style:italic;
-  letter-spacing:-.025em;
+  letter-spacing:-.02em;
+  line-height:.92;
 }
 
 .home-hero .hero-copy .eyebrow{
@@ -24,10 +25,15 @@
   color:inherit;
 }
 
+.home-hero .hero-copy h1{
+  font-size:clamp(64px,7.2vw,112px);
+  line-height:.9;
+}
+
 .home-hero .hero-copy h1 .editorial{
   display:inline-block;
-  font-size:1.03em;
-  line-height:.82;
+  font-size:1em;
+  line-height:.92;
 }
 
 .home-principle-note{
@@ -101,7 +107,7 @@
 
 .site-cta .page-index{
   margin-bottom:24px;
-  color:rgba(255,255,255,.72);
+  color:rgba(17,20,17,.68);
 }
 
 .footer-positioning{
@@ -120,9 +126,24 @@
 }
 
 @media(max-width:760px){
-  .home-hero .hero-copy h1 .editorial{font-size:1.05em}
+  .home-hero .hero-copy h1{
+    font-size:clamp(44px,12.5vw,52px);
+    line-height:.94;
+    letter-spacing:-.052em;
+  }
+  .home-hero .hero-copy h1 .editorial{font-size:1.01em;line-height:.94}
+  .statement-band h2,
+  .portfolio-v7-head h2,
+  .home-work-head h2,
+  .home-approach h2,
+  .story-grid h2,
+  .site-cta h2{
+    font-size:clamp(38px,10.8vw,44px);
+    line-height:.97;
+  }
   .home-principle-note{font-size:clamp(25px,8vw,36px)}
   .home-approach{padding:78px 0}
+  .home-approach h2{max-width:100%}
   .home-approach-copy{gap:28px}
   .territory-summary{max-width:none}
 }
