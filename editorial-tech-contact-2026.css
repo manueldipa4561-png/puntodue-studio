@@ -288,7 +288,7 @@
 
 .contact-route-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   margin-top:50px;
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
@@ -449,26 +449,18 @@
     gap:46px;
   }
 
-  .contact-route-grid,
   .contact-after-grid{
     grid-template-columns:1fr 1fr;
   }
 
-  .contact-route:nth-child(2),
   .contact-after-step:nth-child(2){
     border-right:0;
   }
 
-  .contact-route:nth-child(-n+2),
   .contact-after-step:nth-child(-n+2){
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid rgba(37,42,34,.2);
   }
 
-  .contact-after-step:nth-child(-n+2){
-    border-bottom-color:rgba(37,42,34,.2);
-  }
-
-  .contact-route:nth-child(3),
   .contact-after-step:nth-child(3){
     padding-left:0;
   }
