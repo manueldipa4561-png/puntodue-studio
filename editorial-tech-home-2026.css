@@ -1,0 +1,123 @@
+/* Punto Due Studio — Hybrid Editorial + Tech homepage polish / 2026
+   Purpose: add a restrained editorial voice without replacing Geist or IBM Plex Mono.
+*/
+:root{
+  --pd-editorial:"Instrument Serif",Georgia,"Times New Roman",serif;
+}
+
+.editorial{
+  font-family:var(--pd-editorial);
+  font-weight:400;
+  font-style:italic;
+  letter-spacing:-.025em;
+}
+
+.home-hero .hero-copy .eyebrow{
+  font-family:var(--pd-technical);
+}
+
+.home-hero .hero-copy h1 .editorial,
+.statement-band h2 .editorial,
+.home-approach h2 .editorial,
+.story-grid h2 .editorial,
+.site-cta h2 .editorial{
+  color:inherit;
+}
+
+.home-hero .hero-copy h1 .editorial{
+  display:inline-block;
+  font-size:1.03em;
+  line-height:.82;
+}
+
+.home-principle-note{
+  margin-top:28px;
+  font-family:var(--pd-editorial);
+  font-style:italic;
+  font-size:clamp(24px,2.3vw,38px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+  color:var(--olive2);
+}
+
+.portfolio-v7-head .selected-intro{
+  max-width:46ch;
+  margin-bottom:18px;
+}
+
+.territory-summary{
+  margin-top:12px;
+  max-width:40ch;
+  font-size:13px;
+  line-height:1.62;
+  color:var(--muted);
+}
+
+.home-approach{
+  background:var(--dark);
+  color:var(--paper);
+  padding:clamp(88px,10vw,148px) 0;
+}
+
+.home-approach-grid{
+  display:grid;
+  grid-template-columns:.62fr 1.7fr;
+  gap:clamp(44px,8vw,120px);
+  align-items:start;
+}
+
+.home-approach h2{
+  max-width:12ch;
+}
+
+.home-approach-copy{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,.6fr);
+  gap:clamp(32px,6vw,86px);
+  align-items:end;
+}
+
+.home-approach-copy p{
+  max-width:54ch;
+  color:#b9bead;
+  font-size:15px;
+  line-height:1.8;
+}
+
+.home-approach-rule{
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.22);
+  font-family:var(--pd-editorial);
+  font-size:clamp(30px,3.4vw,52px);
+  font-style:italic;
+  line-height:1;
+  letter-spacing:-.04em;
+  color:var(--olive2);
+}
+
+.footer-positioning{
+  margin-top:10px;
+  font-family:var(--pd-technical);
+  font-size:10px;
+  line-height:1.6;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#8f9687;
+}
+
+@media(max-width:1050px){
+  .home-approach-grid,
+  .home-approach-copy{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+  .home-hero .hero-copy h1 .editorial{font-size:1.05em}
+  .home-principle-note{font-size:clamp(25px,8vw,36px)}
+  .home-approach{padding:78px 0}
+  .home-approach-copy{gap:28px}
+  .territory-summary{max-width:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .editorial{font-variation-settings:normal}
+}
