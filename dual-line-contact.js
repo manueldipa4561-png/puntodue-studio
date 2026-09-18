@@ -35,7 +35,7 @@
 
   const syncMotion=()=>{
     if(!viewer)return;
-    if(!reduce.matches&&visible){
+    if(!reduce.matches&&visible&&fine.matches){
       viewer.setAttribute('auto-rotate','');
       viewer.setAttribute('auto-rotate-delay','1100');
       viewer.setAttribute('rotation-per-second','4deg');
