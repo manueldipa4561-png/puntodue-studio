@@ -15,7 +15,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"></noscript>
   <link rel="stylesheet" href="/site-core-2026.css">
   <script src="/site-v4.js" defer></script>
-  <script src="/call-object.js" defer></script>
+  <script src="/call-object.js" defer></script><script src="/dual-line-contact.js" defer></script>
 </head>
 <body class="call-page">
   <header class="site-header">
@@ -61,11 +61,32 @@
       </div>
     </section>
 
-    <section class="section container call-direct">
+    <section class="section container call-direct call-direct-v2" id="contatto-diretto">
       <div class="page-index">Parli direttamente con lo studio</div>
-      <div class="call-direct-grid">
-        <div><h2>Due linee dirette.</h2><p class="body-lg">Nessun account commerciale separato dal lavoro. La prima conversazione è con le stesse persone che poi impostano, disegnano, revisionano e sviluppano il progetto.</p></div>
-        <div class="call-direct-actions"><a class="contact-card contact-card-primary" href="https://wa.me/393248423657?text=Ciao%21%20Vorrei%20prenotare%20una%20call%20per%20parlarvi%20di%20un%20progetto%20web.%20Quando%20potremmo%20sentirci%3F" target="_blank" rel="noopener noreferrer"><strong>Richiedi la call / linea 01</strong><span>WhatsApp ↗</span></a><a class="contact-card" href="https://wa.me/393248165947?text=Ciao%21%20Vorrei%20prenotare%20una%20call%20per%20parlarvi%20di%20un%20progetto%20web.%20Quando%20potremmo%20sentirci%3F" target="_blank" rel="noopener noreferrer"><strong>Richiedi la call / linea 02</strong><span>WhatsApp ↗</span></a><a class="contact-card" href="tel:+393248423657"><strong>+39 324 842 3657</strong><span>Telefono / linea 01</span></a><a class="contact-card" href="tel:+393248165947"><strong>+39 324 816 5947</strong><span>Telefono / linea 02</span></a></div>
+      <div class="call-direct-grid call-direct-grid-v2">
+        <div class="call-direct-copy">
+          <h2>Due linee dirette.</h2>
+          <p class="body-lg">Scegli il canale. La prima conversazione avviene con le stesse persone che impostano, disegnano e sviluppano il progetto.</p>
+        </div>
+
+        <div class="dual-line-contact" data-dual-line-contact aria-label="Contatto diretto con Punto Due Studio">
+          <div class="dual-line-meta" aria-hidden="true"><span>Direct contact / dual signal</span><span class="dual-line-hint">Trascina per esplorare</span></div>
+          <div class="dual-line-stage" data-dual-line-stage>
+            <div class="dual-line-halo" aria-hidden="true"></div>
+            <div class="dual-line-fallback" aria-hidden="true">
+              <span class="dual-line-fallback-shape dual-line-fallback-call"></span>
+              <span class="dual-line-fallback-shape dual-line-fallback-whatsapp"></span>
+            </div>
+            <a class="dual-line-hotspot dual-line-hotspot-call" data-dual-line-route="line01" href="tel:+393248423657" aria-label="Chiama la linea 01 al +39 324 842 3657"><span>Linea 01</span><strong>Chiama</strong></a>
+            <a class="dual-line-hotspot dual-line-hotspot-whatsapp" data-dual-line-route="line02" href="https://wa.me/393248165947?text=Ciao%21%20Vorrei%20richiedere%20una%20call%20per%20parlarvi%20di%20un%20progetto%20web." target="_blank" rel="noopener noreferrer" aria-label="Scrivi alla linea 02 su WhatsApp"><span>Linea 02</span><strong>WhatsApp</strong></a>
+          </div>
+          <div class="dual-line-legend" aria-hidden="true"><span>01&nbsp;&nbsp;+39 324 842 3657</span><span>02&nbsp;&nbsp;WhatsApp</span></div>
+        </div>
+
+        <div class="dual-line-actions" aria-label="Contatti diretti">
+          <a class="dual-line-action" href="tel:+393248423657"><span>01</span><strong>Chiama +39 324 842 3657</strong><small>Telefono / linea 01</small></a>
+          <a class="dual-line-action" href="https://wa.me/393248165947?text=Ciao%21%20Vorrei%20richiedere%20una%20call%20per%20parlarvi%20di%20un%20progetto%20web." target="_blank" rel="noopener noreferrer"><span>02</span><strong>Scrivi su WhatsApp</strong><small>WhatsApp / linea 02</small></a>
+        </div>
       </div>
     </section>
 
