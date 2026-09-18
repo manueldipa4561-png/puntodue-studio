@@ -22,15 +22,6 @@
     document.head.appendChild(script);
   };
 
-  const afterInitialLoad = callback => {
-    const run = () => {
-      if ('requestIdleCallback' in window) requestIdleCallback(callback, { timeout: 700 });
-      else setTimeout(callback, 0);
-    };
-    if (document.readyState === 'complete') run();
-    else window.addEventListener('load', run, { once: true });
-  };
-
   if (hasCore2026) {
     loadScript('/site-v9.js');
   } else if (hasLegacyV5) {
@@ -47,10 +38,6 @@
   /* The spatial field is progressive enhancement: static visual first, WebGL after real user intent. */
   if (isHome) {
     loadStyle('/spatial-2026.css');
-    afterInitialLoad(() => {
-      loadScript('/dual-field-v5.js');
-      loadScript('/portfolio-v8.js');
-    });
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!reduceMotion.matches) {
       let fieldQueued = false;
