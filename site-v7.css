@@ -26,7 +26,7 @@
 .territory-meta span{font-size:10px;font-weight:650;letter-spacing:.14em;text-transform:uppercase}
 .territory-meta h3{font-size:clamp(38px,4.4vw,68px);font-weight:500;line-height:.92;letter-spacing:-.06em;margin-top:8px}
 .territory-open{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:10px!important}
-.territory-open::after{content:"↗";display:grid;place-items:center;width:38px;height:38px;border:1px solid currentColor;font-size:15px;transition:transform .35s var(--v5-ease),background .35s var(--v5-ease),color .35s var(--v5-ease)}
+.territory-open::after{content:"";display:none}
 .territory-card:hover .territory-open::after{transform:translate(2px,-2px)}
 
 /* NODO — calm relational geometry */
