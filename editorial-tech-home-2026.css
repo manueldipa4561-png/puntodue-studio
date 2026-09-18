@@ -40,6 +40,10 @@
   color:var(--olive2);
 }
 
+.evidence-section .page-index{
+  margin-bottom:28px;
+}
+
 .portfolio-v7-head .selected-intro{
   max-width:46ch;
   margin-bottom:18px;
@@ -93,6 +97,11 @@
   line-height:1;
   letter-spacing:-.04em;
   color:var(--olive2);
+}
+
+.site-cta .page-index{
+  margin-bottom:24px;
+  color:rgba(255,255,255,.72);
 }
 
 .footer-positioning{
