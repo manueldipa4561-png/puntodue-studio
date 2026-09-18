@@ -5,19 +5,7 @@
   const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)');
   root.classList.add('identity-v9-ready', 'motion-v10-ready', 'typography-v14-ready');
 
-  // Founder names remain visible only inside the two dedicated founder cards.
-  document.querySelectorAll('.footer-note').forEach(n => {
-    n.textContent = 'Siti web su misura per aziende, professionisti e brand. Strategia, design e sviluppo seguiti direttamente dallo studio.';
-  });
-  document.querySelectorAll('.footer-bottom-v4 > span:last-child').forEach(n => {
-    n.textContent = 'Punto Due Studio / Web design & development';
-  });
-
-  const heroEyebrow = document.querySelector('.home-hero .eyebrow');
-  if (heroEyebrow) heroEyebrow.textContent = 'Studio web indipendente / strategia + design + sviluppo';
-  const homeHeroTitle = document.querySelector('.home-hero h1');
-  if (homeHeroTitle) homeHeroTitle.textContent = 'Siti digitali che non sembrano già visti.';
-
+  // Homepage/footer copy is authored in HTML and must not be mutated at runtime.
   document.querySelectorAll('.story-grid .page-index').forEach(n => {
     if (/Manuel\s*\+\s*Nicolas/i.test(n.textContent)) n.textContent = 'Due prospettive / un sistema';
   });
