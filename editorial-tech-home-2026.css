@@ -151,3 +151,8 @@
 @media(prefers-reduced-motion:reduce){
   .editorial{font-variation-settings:normal}
 }
+
+
+.home-approach .page-index{
+  color:rgba(255,255,255,.72);
+}
