@@ -441,6 +441,23 @@
     margin-top:24px;
   }
 
+  .call-booking-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    align-items:stretch;
+  }
+
+  .call-booking-actions .button,
+  .call-booking-actions .text-link{
+    width:100%;
+    min-height:52px;
+  }
+
+  .call-booking-actions .text-link{
+    justify-content:flex-start;
+  }
+
   .call-relay{
     min-height:440px;
     padding:22px 18px;
