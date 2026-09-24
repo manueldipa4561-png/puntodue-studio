@@ -1,0 +1,134 @@
+---
+interface Props { feats: { t: string; d: string; n: number; r: number }[]; kpi: [string, string, string]; scale?: number; heading: string; lead: string }
+const { feats, kpi, scale = 1, heading, lead } = Astro.props;
+---
+      <section class="sim" id="simula">
+        <span class="lab">/simula</span>
+        <h2>{heading}</h2>
+        <p class="lead">{lead}</p>
+        <div class="sim-grid">
+          <div class="toggles" role="group" aria-label="Funzioni da attivare">
+            {feats.map((f) => (
+              <button type="button" class="tg" aria-pressed="false" data-n={f.n} data-r={f.r}>
+                <span class="sw" aria-hidden="true"></span>
+                <span class="tg-t"><b>{f.t}</b><small>{f.d}</small></span>
+              </button>
+            ))}
+            <button type="button" class="all" id="allBtn">Accendi tutto</button>
+          </div>
+          <figure class="plot" id="plotBox" data-scale={scale}>
+            <div class="kpis">
+              <div><small>{kpi[0]}</small><b id="kA">0</b></div>
+              <div><small>{kpi[1]}</small><b id="kR">0%</b></div>
+              <div><small>{kpi[2]}</small><b id="kN">0</b></div>
+            </div>
+            <svg viewBox="0 0 600 330" role="img" aria-label={`Grafico: ${kpi[0].toLowerCase()}`}>
+              <defs>
+                <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop id="gA1" offset="0" stop-opacity=".55" /><stop id="gA2" offset="1" stop-opacity="0" /></linearGradient>
+                <linearGradient id="gL" x1="0" y1="0" x2="1" y2="0"><stop id="gL1" offset="0" /><stop id="gL2" offset="1" /></linearGradient>
+              </defs>
+              <g class="grid">
+                {[0, 100, 200, 300].map((v) => <g><line x1="50" x2="580" y1={290 - v * 0.75} y2={290 - v * 0.75} /><text x="40" y={294 - v * 0.75} text-anchor="end">{v * scale}</text></g>)}
+                {[0, 3, 6, 9, 12].map((m) => <text x={50 + m * (530 / 12)} y="314" text-anchor={m === 12 ? "end" : "middle"}>{m === 0 ? '' : m === 12 ? '12 mesi' : m}</text>)}
+                <line class="ax" x1="50" x2="50" y1="20" y2="290" /><line class="ax" x1="50" x2="580" y1="290" y2="290" />
+              </g>
+              <path id="pArea" fill="url(#gA)" />
+              <path id="pBase" class="base" />
+              <path id="pLine" fill="none" stroke="url(#gL)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              <g id="pDots"></g>
+            </svg>
+            <figcaption class="note">Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta dalle fonti, non è una promessa di risultato. La linea tratteggiata è il punto di partenza.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+<style is:global>
+      .sim { border-top: 1px solid rgba(255,255,255,.25); }
+      .sim-grid { display: grid; gap: 28px; margin-top: 40px; align-items: start; }
+      .toggles { display: grid; gap: 10px; }
+      .tg { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 16px; text-align: left; font: inherit; color: #fff; background: rgba(0,52,214,.6); border: 1px solid rgba(255,255,255,.3); border-radius: 16px; cursor: pointer; transition: border-color .25s, background .25s, transform .2s; }
+      .tg:hover { border-color: rgba(255,255,255,.7); }
+      .tg:active { transform: scale(.98); }
+      .tg-t { display: grid; gap: 2px; } .tg b { font-size: 1.02rem; letter-spacing: -.01em; } .tg small { color: rgba(255,255,255,.75); font-size: .85rem; }
+      .sw { position: relative; flex: none; width: 42px; height: 24px; border-radius: 999px; background: rgba(255,255,255,.2); transition: background .25s; }
+      .sw::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .3s cubic-bezier(.2,.9,.3,1.3); }
+      .tg[aria-pressed="true"] { border-color: var(--yellow); background: rgba(255,224,0,.1); }
+      .tg[aria-pressed="true"] .sw { background: var(--yellow); }
+      .tg[aria-pressed="true"] .sw::after { transform: translateX(18px); background: var(--blue); }
+      .all { justify-self: start; margin-top: 6px; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--yellow); background: transparent; color: var(--yellow); font: 700 .95rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; transition: background .2s, color .2s; }
+      .all:hover { background: var(--yellow); color: var(--blue); }
+      .plot { margin: 0; padding: clamp(16px, 2.5vw, 28px); border-radius: 20px; border: 1px solid rgba(255,255,255,.3); background: rgba(0,20,90,.55); }
+      .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+      .kpis div { display: grid; gap: 6px; align-content: end; } .kpis small { font-size: .78rem; color: rgba(255,255,255,.7); line-height: 1.25; }
+      .kpis b { font-size: clamp(1.6rem, 3.4vw, 2.6rem); letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--kc, #fff); transition: color .4s; }
+      .plot svg { display: block; width: 100%; height: auto; overflow: visible; }
+      .grid line { stroke: rgba(255,255,255,.12); } .grid .ax { stroke: rgba(255,255,255,.5); }
+      .grid text { fill: rgba(255,255,255,.6); font: 500 11px var(--mono); }
+      .base { fill: none; stroke: rgba(255,255,255,.45); stroke-width: 1.5; stroke-dasharray: 5 6; }
+      #pLine { filter: drop-shadow(0 0 10px var(--glow, transparent)); }
+      #pDots circle { fill: var(--blue); stroke-width: 2.5; }
+      @media (max-width: 1023px) {
+        .plot { order: -1; }
+        .sim-grid { gap: 14px; }
+        .toggles { grid-template-columns: 1fr 1fr; gap: 8px; }
+        .tg { padding: 10px 12px; gap: 10px; border-radius: 14px; }
+        .tg small { display: none; }
+        .tg b { font-size: .9rem; line-height: 1.2; }
+        .sw { width: 34px; height: 20px; } .sw::after { width: 14px; height: 14px; }
+        .tg[aria-pressed="true"] .sw::after { transform: translateX(14px); }
+        .all { grid-column: 1 / -1; justify-self: stretch; margin-top: 0; }
+        .grid text { font-size: 20px; }
+        .kpis small { font-size: .72rem; }
+      }
+      @media (min-width: 1024px) { .sim-grid { grid-template-columns: minmax(280px, .75fr) 1.6fr; } }
+</style>
+
+<script>
+      const $ = (id: string) => document.getElementById(id)!;
+      const SC = +($('plotBox').dataset.scale || 1);
+      const fmt = (v: number) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      const tgs = [...document.querySelectorAll<HTMLButtonElement>('.tg')];
+      const X = (m: number) => 50 + m * (530 / 12), Y = (v: number) => 290 - Math.min(v, 380) * 0.75;
+      const B = { n: 40, r: 0.55 };
+      const tgt = { n: B.n, r: B.r, k: 0 }, cur = { ...tgt };
+      const act = (n: number, r: number, m: number) => n * (1 - Math.pow(r, m)) / (1 - r);
+      const pts = (n: number, r: number) => Array.from({ length: 13 }, (_, m) => [X(m), Y(act(n, r, m))]);
+      const d = (p: number[][]) => p.map((q, i) => (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join('');
+      $('pBase').setAttribute('d', d(pts(B.n, B.r)));
+      $('pDots').innerHTML = '<circle r="4.5"/>'.repeat(13);
+      const dots = [...$('pDots').children];
+      const col = (t: number, dl = 0) => `hsl(${230 + 182 * t} ${18 + 82 * t}% ${66 - 8 * t + dl}%)`;
+      const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let raf = 0;
+      const frame = () => {
+        const e = rm ? 1 : 0.09;
+        cur.n += (tgt.n - cur.n) * e; cur.r += (tgt.r - cur.r) * e; cur.k += (tgt.k - cur.k) * e;
+        const p = pts(cur.n, cur.r), t = cur.k / tgs.length;
+        $('pLine').setAttribute('d', d(p));
+        $('pArea').setAttribute('d', d(p) + 'L580 290L50 290Z');
+        dots.forEach((c, i) => { c.setAttribute('cx', String(p[i][0])); c.setAttribute('cy', String(p[i][1])); c.setAttribute('stroke', col(t * (0.4 + 0.6 * i / 12))); });
+        $('gL1').setAttribute('stop-color', col(t * 0.4)); $('gL2').setAttribute('stop-color', col(t));
+        $('gA1').setAttribute('stop-color', col(t)); $('gA2').setAttribute('stop-color', col(t * 0.5));
+        const box = $('plotBox');
+        box.style.setProperty('--glow', t > 0.05 ? col(t, 4) : 'transparent');
+        box.style.setProperty('--kc', t > 0.05 ? col(t, 8) : '#fff');
+        $('kA').textContent = fmt(act(cur.n, cur.r, 12) * SC);
+        $('kR').textContent = Math.round(cur.r * 100) + '%';
+        $('kN').textContent = fmt(cur.n * SC);
+        raf = Math.abs(tgt.r - cur.r) + Math.abs(tgt.n - cur.n) / 100 + Math.abs(tgt.k - cur.k) > 0.0005 ? requestAnimationFrame(frame) : 0;
+      };
+      const update = () => {
+        const on = tgs.filter((b) => b.getAttribute('aria-pressed') === 'true');
+        tgt.n = B.n * (1 + on.reduce((a, b) => a + +b.dataset.n!, 0));
+        tgt.r = B.r + on.reduce((a, b) => a + +b.dataset.r!, 0);
+        tgt.k = on.length;
+        $('allBtn').textContent = on.length === tgs.length ? 'Spegni tutto' : 'Accendi tutto';
+        if (!raf) raf = requestAnimationFrame(frame);
+      };
+      tgs.forEach((b) => b.addEventListener('click', () => { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); update(); }));
+      $('allBtn').addEventListener('click', () => {
+        const all = tgs.every((b) => b.getAttribute('aria-pressed') === 'true');
+        tgs.forEach((b, i) => setTimeout(() => { b.setAttribute('aria-pressed', String(!all)); update(); }, rm ? 0 : i * 140));
+      });
+      frame();
+</script>

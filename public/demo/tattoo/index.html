@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Concept web dimostrativo per Cultura Tattoo Gallery, Montesilvano. Realizzato da Punto Due Studio.">
+  <meta name="theme-color" content="#eee9df">
+  <title>Cultura Tattoo Gallery — Demo di Punto Due Studio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="evoluzione.css">
+  <link rel="stylesheet" href="share-refine.css">
+  <link rel="stylesheet" href="concept-evolution.css">
+  <link rel="stylesheet" href="mobile.css">
+  <script src="app.js" defer></script>
+  <script src="concept-evolution.js" type="module"></script>
+  <script src="assets/scene.bundle.js" defer></script>
+  <script src="referral.js" type="module"></script>
+  <script src="share-refine.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div class="demo-bar">CONCEPT WEBSITE <span>Una visione di Punto Due Studio · Sito non ufficiale</span></div>
+<header>
+  <a class="brand" href="#" aria-label="Cultura, inizio">CULTURA<span>TATTOO GALLERY</span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span>＋</span></button>
+  <nav id="navigation" aria-label="Principale">
+    <a href="#studio">Lo studio</a>
+    <a href="#concept">Il concept</a>
+    <a href="#referral">Porta un amico</a>
+    <a href="#contatti">Dove trovarci</a>
+    <a class="nav-cta" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Parliamone ↗</a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-top"><span><i></i> MONTESILVANO, ITALIA</span><span>ARTE CHE TI APPARTIENE</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">IL TUO SEGNO. LA TUA STORIA.</p>
+        <h1 id="hero-title">Non solo<br>inchiostro.<br><em>Identità.</em></h1>
+        <p class="intro">Un’idea prende forma.<br>Un segno diventa parte di te.</p>
+        <a class="button" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Scopri Cultura <span>↗</span></a>
+      </div>
+      <figure class="artwork" data-stage="2">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <span class="art-cross cross-one">+</span><span class="art-cross cross-two">+</span>
+        <img id="hero-art" src="assets/sculpture-poster.webp" width="1200" height="1200" alt="Poster illustrativo: una scultura di crisantemo color avorio, con foglie e cerchio in ottone" fetchpriority="high">
+        <span class="art-index">FIG. 01 / METAMORFOSI</span>
+        <div class="scene-tools">
+          <button data-rotate="-1" aria-label="Ruota la scultura a sinistra">←</button>
+          <span>TRASCINA PER ESPLORARE</span>
+          <button data-rotate="1" aria-label="Ruota la scultura a destra">→</button>
+          <button data-reset-scene aria-label="Ripristina la vista iniziale">↺</button>
+        </div>
+        <figcaption>Concept artistico · non un lavoro dello studio</figcaption>
+      </figure>
+      <div class="stage-panel">
+        <p class="eyebrow">ESPLORA<br>LA SCULTURA</p>
+        <div class="stages" role="group" aria-label="Esplora le fasi del concept">
+          <button data-stage="0" aria-pressed="false"><span>01</span> Traccia</button>
+          <button data-stage="1" aria-pressed="false"><span>02</span> Stencil</button>
+          <button data-stage="2" aria-pressed="true"><span>03</span> Inchiostro</button>
+        </div>
+        <p class="stage-description" aria-live="polite">La struttura diventa identità.</p>
+        <button class="play-scene" data-play-scene aria-pressed="false">Riproduci la trasformazione ↗</button>
+      </div>
+    </div>
+    <div class="hero-bottom"><a href="#studio">SCOPRI LO STUDIO <span>↓</span></a><span>CORSO UMBERTO I, 590</span><span>UN’IDEA. INFINITE ESPRESSIONI.</span></div>
+  </section>
+
+  <section class="studio section" id="studio" data-reveal>
+    <div><p class="eyebrow">01 / CULTURA TATTOO GALLERY</p><h2>La tua storia.<br><em>Un altro linguaggio.</em></h2></div>
+    <div class="studio-copy">
+      <p>Cultura Tattoo Gallery è a Montesilvano, in Corso Umberto I, 590.</p>
+      <p>Entra nel mondo dello studio: scopri i tatuaggi, gli artisti e gli aggiornamenti attraverso il suo profilo Instagram.</p>
+      <a class="text-link" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Esplora i lavori reali <span>↗</span></a>
+    </div>
+  </section>
+
+  <section class="concept section concept-evolution" id="concept" data-reveal data-concept-evolution data-stage-0="assets/concept-traccia.webp" data-stage-1="assets/concept-stencil.webp" data-stage-2="assets/concept-inchiostro.webp">
+    <div class="section-heading">
+      <div><p class="eyebrow">02 / ESPLORAZIONE VISIVA</p><h2>Prima della pelle,<br><em>l’immaginazione.</em></h2></div>
+      <p>Traccia, stencil, inchiostro.<br>Un unico concept che evolve davanti a te.</p>
+    </div>
+    <div class="concept-lab">
+      <div class="concept-control-panel">
+        <div>
+          <p class="eyebrow">TRE FASI / UN SOLO SEGNO</p>
+          <div class="concept-stage-nav" role="group" aria-label="Fasi del concept interattivo">
+            <button type="button" data-concept-stage="0" aria-pressed="true"><span>01</span><strong>LA TRACCIA</strong><span>IDEA</span></button>
+            <button type="button" data-concept-stage="1" aria-pressed="false"><span>02</span><strong>LO STENCIL</strong><span>STRUTTURA</span></button>
+            <button type="button" data-concept-stage="2" aria-pressed="false"><span>03</span><strong>L’INCHIOSTRO</strong><span>IDENTITÀ</span></button>
+          </div>
+        </div>
+        <div class="concept-stage-copy">
+          <p class="concept-stage-index">FASE 01 / LA TRACCIA</p>
+          <h3 class="concept-stage-title">La traccia</h3>
+          <p class="concept-stage-description" aria-live="polite">Il gesto nasce leggero: proporzioni, direzione e respiro prima che il segno diventi definitivo.</p>
+          <div class="concept-progress" aria-hidden="true"><span></span></div>
+          <button type="button" class="concept-play" data-concept-play aria-pressed="false">Riproduci evoluzione ↗</button>
+        </div>
+      </div>
+      <div class="concept-visual-shell">
+        <div class="concept-3d-host" tabindex="0" aria-label="Concept 3D interattivo. Trascina per inclinare l’opera; usa le frecce sinistra e destra per cambiare fase."></div>
+        <img class="concept-fallback" src="assets/concept-traccia.webp" alt="Concept illustrativo — La traccia" loading="lazy">
+        <div class="concept-visual-meta"><span>DRAG — INCLINA / TAP — CAMBIA FASE</span><span>FIG. 02 / EVOLUZIONE</span></div>
+      </div>
+    </div>
+    <p class="concept-note">Visual originali generati per questa demo dopo una ricerca del linguaggio visivo pubblico dello studio. Sono concept illustrativi ispirati a quell’atmosfera e non rappresentano tatuaggi realmente eseguiti da Cultura Tattoo Gallery.</p>
+  </section>
+
+  <section class="referral section" id="referral" data-referral-stage="0" data-reveal aria-labelledby="referral-title">
+    <div class="referral-copy">
+      <p class="eyebrow">03 / PORTA UN AMICO — CONCEPT INTERATTIVO</p>
+      <h2 class="referral-title" id="referral-title">Passa<br>il segno.<em>Una storia ne accende un’altra.</em></h2>
+      <p class="referral-lead">Condividi Cultura con una persona che vuoi portare con te. Il tuo segno apre la catena, il suo ne crea un’altra parte e l’opera digitale evolve.</p>
+      <div class="referral-stage-nav" role="group" aria-label="Fasi della referral demo">
+        <button class="referral-stage" aria-pressed="true"><span>01</span>Il tuo segno</button>
+        <button class="referral-stage" aria-pressed="false"><span>02</span>Passalo</button>
+        <button class="referral-stage" aria-pressed="false"><span>03</span>Nuova storia</button>
+      </div>
+      <p class="referral-stage-copy" aria-live="polite">Il tuo segno apre la catena.</p>
+      <div class="referral-progress" aria-hidden="true"><span></span></div>
+      <div class="referral-share" aria-label="Condividi la referral demo">
+        <button type="button" data-share-referral>Condividi</button>
+        <button type="button" data-whatsapp-referral>WhatsApp</button>
+        <button type="button" data-copy-referral>Copia link demo</button>
+      </div>
+      <p class="share-status" aria-live="polite"></p>
+      <p class="referral-disclaimer">Demo funzionale proposta da Punto Due Studio. Non indica che Cultura Tattoo Gallery abbia già un programma referral attivo: benefit, condizioni e validità restano da definire con lo studio.</p>
+    </div>
+    <div class="referral-visual" aria-label="Installazione digitale interattiva Passa il Segno">
+      <div class="referral-media">
+        <video id="referral-motion" class="referral-motion" muted loop playsinline preload="none" poster="assets/concept.webp" aria-hidden="true"></video>
+        <div class="referral-canvas-host" aria-hidden="true"></div>
+      </div>
+      <div class="referral-visual-meta"><span>DRAG / TAP — IL SEGNO SI EVOLVE</span><span>FIG. 02 / INK CHAIN</span></div>
+    </div>
+  </section>
+
+  <section class="contact section" id="contatti" data-reveal>
+    <div><p class="eyebrow">04 / INIZIA UNA CONVERSAZIONE</p><h2>Hai un’idea<br><em>in testa?</em><span class="red-dot">●</span></h2><a class="button light" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Scrivi allo studio su Instagram <span>↗</span></a></div>
+    <div class="contact-details"><p class="eyebrow">CI TROVI A MONTESILVANO</p><address>Corso Umberto I, 590<br>Montesilvano · Pescara</address><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Cultura%20Tattoo%20Gallery%20Corso%20Umberto%20I%20590%20Montesilvano" target="_blank" rel="noopener noreferrer">Ottieni indicazioni ↗</a><a class="social" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">@culturatattoogallery ↗</a></div>
+  </section>
+
+  <section class="configurator-teaser section" data-reveal aria-labelledby="configurator-teaser-title">
+    <div class="configurator-teaser-copy">
+      <p class="eyebrow">05 / CONFIGURATORE 3D — CONCEPT</p>
+      <h2 id="configurator-teaser-title">Il tuo segno,<br><em>prima della pelle.</em></h2>
+      <p class="configurator-teaser-lead">Scegli la zona, prova uno dei concept della demo o carica un tuo disegno, regola dimensioni e orientamento e osservalo su una superficie 3D interattiva. Un modo più concreto per arrivare alla consulenza con un’idea già visibile.</p>
+      <a class="button" href="configuratore.html">Apri il configuratore 3D <span>↗</span></a>
+    </div>
+    <div class="configurator-preview" aria-hidden="true">
+      <div class="configurator-preview-ring"></div>
+      <div class="configurator-preview-ring"></div>
+      <div class="configurator-preview-card"><img src="assets/concept-inchiostro.webp" alt=""></div>
+    </div>
+  </section>
+</main>
+<footer><div class="footer-brand">CULTURA<span>TATTOO GALLERY</span></div><div><p>Demo dimostrativa realizzata da <a href="https://puntoduestudio.it/" target="_blank" rel="noopener noreferrer">Punto Due Studio</a>.<br>Non è il sito ufficiale dell’attività.</p><a href="#main">Torna all’inizio ↑</a></div></footer>
+<dialog id="art-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><h2 id="dialog-title">Esplorazione del concept</h2><button class="close-dialog" aria-label="Chiudi anteprima">Chiudi ×</button></div><img src="assets/concept.webp" width="1200" height="1200" alt="Anteprima del concept illustrativo"><p>Concept generato per la demo · non un tatuaggio dello studio</p></dialog>
+</body>
+</html>

@@ -1,0 +1,45 @@
+---
+import Site from '../layouts/Site.astro';
+---
+<Site title="Privacy & Cookie — Punto Due Studio" description="Informativa privacy e cookie di Punto Due Studio: quali dati raccogliamo, perché, come li custodiamo e i tuoi diritti.">
+  <section class="legal-sec">
+    <span class="lab">/privacy</span>
+    <h1>Privacy &amp; Cookie.</h1>
+    <p class="lead">Trasparenza totale: nessun tracciamento nascosto, nessun dato venduto. Ecco cosa succede quando ci scrivi.</p>
+
+    <div class="legal">
+      <h3>Chi tratta i dati</h3>
+      <p>Titolari del trattamento sono <strong>Manuel Di Paolo</strong> e <strong>Nicolas Di Paolo</strong> (Punto Due Studio). Per qualsiasi richiesta sulla privacy scrivi a <a class="lnk" href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>.</p>
+
+      <h3>Quali dati raccogliamo</h3>
+      <p>Solo i dati che ci fornisci volontariamente per contattarci: nome, nome dell'attività, tipo di progetto e un eventuale messaggio. Il modulo della pagina <a class="lnk" href="/info">/info</a> funziona nel tuo browser: i dati restano sul tuo dispositivo e non vengono inviati né salvati finché non sei tu a premere invia verso WhatsApp o email.</p>
+
+      <h3>Perché li usiamo</h3>
+      <p>Per rispondere alla tua richiesta e, se decidiamo di lavorare insieme, per gestire il progetto. La base giuridica è l'esecuzione di misure precontrattuali e contrattuali su tua richiesta (art. 6.1.b GDPR) e, dove serve, il tuo consenso (art. 6.1.a).</p>
+
+      <h3>Con chi li condividiamo</h3>
+      <p>Con nessuno a fini commerciali. I dati possono transitare solo dai fornitori tecnici necessari a farci arrivare il messaggio (hosting del sito, WhatsApp o il tuo provider email), ciascuno con la propria informativa. Nessun trasferimento è fatto per profilarti o rivenderti.</p>
+
+      <h3>Per quanto li conserviamo</h3>
+      <p>Per il tempo necessario a gestire la tua richiesta e gli obblighi di legge collegati. Puoi chiederci la cancellazione in qualsiasi momento.</p>
+
+      <h3>I tuoi diritti</h3>
+      <p>Hai diritto di accedere ai tuoi dati, correggerli, cancellarli, limitarne o opporti al trattamento e alla portabilità (artt. 15–22 GDPR). Ti basta scriverci. Se ritieni che qualcosa non vada, puoi rivolgerti al Garante per la protezione dei dati personali (<a class="lnk" href="https://www.garanteprivacy.it" target="_blank" rel="noopener">garanteprivacy.it</a>).</p>
+
+      <h3 id="cookie">Cookie</h3>
+      <p>Questo sito <strong>non usa cookie di profilazione né strumenti di analisi o pubblicità</strong>: per questo non vedi un banner di consenso. I font sono ospitati direttamente sul sito, quindi non vengono fatte chiamate a servizi esterni per caricarli. Gli unici cookie possibili sono quelli tecnici del provider di hosting, necessari a far funzionare il sito. Aprendo i nostri link a Instagram, WhatsApp o email verrai portato su servizi esterni che applicano le proprie regole sui cookie.</p>
+
+      <p class="upd">Ultimo aggiornamento: settembre 2026.</p>
+    </div>
+  </section>
+</Site>
+
+<style is:global>
+  .legal-sec { max-width: 60rem; }
+  .legal { margin-top: 40px; display: grid; gap: 6px; }
+  .legal h3 { margin: 26px 0 4px; font-size: 1.25rem; letter-spacing: -.02em; }
+  .legal h3:first-child { margin-top: 0; }
+  .legal p { margin: 0; max-width: 52rem; font-size: 1.02rem; line-height: 1.6; color: rgba(255,255,255,.85); }
+  .legal strong { color: #fff; font-weight: 600; }
+  .legal .upd { margin-top: 30px; font-size: .85rem; color: rgba(255,255,255,.6); }
+</style>

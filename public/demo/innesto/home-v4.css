@@ -1,0 +1,389 @@
+/* INNESTO — Homepage V4 / Structural Ledger
+   Page-scoped visual + typographic redesign. Section House behavior and project content remain untouched. */
+
+:root{
+  --ih-night:#0b100e;
+  --ih-petrol:#102326;
+  --ih-mineral:#282d2a;
+  --ih-paper:#eee7dc;
+  --ih-paper-2:#ddd3c4;
+  --ih-oxide:#cf5830;
+  --ih-steel:#718286;
+  --ih-line:rgba(16,17,14,.18);
+}
+
+/* Statement — architectural drawing sheet */
+.statement{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(16,17,14,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,17,14,.035) 1px,transparent 1px),
+    linear-gradient(135deg,#eee7dc 0%,#e7ddd0 100%);
+  background-size:72px 72px,72px 72px,auto;
+  border-top:0;
+}
+.statement:before{
+  content:"A / 01";
+  position:absolute;
+  top:var(--section-y);
+  right:var(--pad);
+  font:400 8px/1 var(--mono);
+  letter-spacing:.16em;
+  color:#5e5c55;
+}
+.statement-grid{
+  position:relative;
+  z-index:1;
+  grid-template-columns:minmax(0,1.48fr) minmax(300px,.52fr);
+  gap:clamp(62px,10vw,170px);
+  align-items:end;
+}
+.statement h2{
+  max-width:10ch;
+  font-size:clamp(64px,7vw,124px);
+  line-height:.82;
+  letter-spacing:-.069em;
+}
+.statement-grid>p{
+  padding:26px 0 4px 26px;
+  border-left:2px solid var(--ih-oxide);
+  color:#403f3a;
+}
+
+/* Section House — preserve motion/3D, strengthen the architectural frame only */
+.section-house{
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+    #0e100d;
+  background-size:92px 92px,92px 92px,auto;
+}
+.section-house-copy{
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.section-house-copy h2{
+  color:#f0e9de;
+}
+.section-stage{
+  border-radius:2px;
+}
+
+/* Projects — archive wall, darker and more severe than hero */
+.projects{
+  position:relative;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(207,88,48,.13),transparent 21%),
+    linear-gradient(145deg,#0c1110 0%,#122124 58%,#171a18 100%);
+  color:#eee7dc;
+  overflow:hidden;
+}
+.projects:before{
+  content:"ARCHIVE / BUILT MATTER";
+  position:absolute;
+  top:34px;
+  right:var(--pad);
+  font:400 7px/1 var(--mono);
+  letter-spacing:.18em;
+  color:#8f958f;
+}
+.projects .section-heading>p:first-child,
+.projects .section-heading>p:last-child{
+  color:#aeb4ae;
+}
+.projects .section-heading h2{
+  color:#f0e9de;
+  max-width:8ch;
+  font-size:clamp(62px,6.6vw,116px);
+}
+.projects .section-heading{
+  padding-bottom:44px;
+  border-bottom:1px solid rgba(238,231,220,.17);
+}
+.projects .project-meta{
+  border-top-color:rgba(238,231,220,.22);
+}
+.projects .project-meta span{
+  color:#e07049;
+}
+.projects .project-meta p{
+  color:#aeb4ae;
+}
+.projects .project figure{
+  background:#222923;
+  border:1px solid rgba(238,231,220,.10);
+}
+.projects .project figure img{
+  filter:saturate(.64) contrast(1.08) brightness(.78);
+}
+.projects .project--lead figure{
+  position:relative;
+}
+.projects .project--lead figure:after{
+  content:"01 / CASE STUDY";
+  position:absolute;
+  left:18px;
+  top:18px;
+  padding:8px 10px;
+  background:rgba(10,15,13,.76);
+  border:1px solid rgba(238,231,220,.22);
+  font:400 7px/1 var(--mono);
+  letter-spacing:.14em;
+  color:#eee7dc;
+}
+.projects .project-pair{
+  border-top:1px solid rgba(238,231,220,.13);
+  padding-top:clamp(70px,8vw,120px);
+}
+
+/* Material — full technical sample board */
+.material-break{
+  min-height:92svh;
+  grid-template-columns:minmax(0,1.24fr) minmax(360px,.76fr);
+  background:#cfc3b1;
+}
+.material-break figure{
+  min-height:92svh;
+  position:relative;
+}
+.material-break figure:after{
+  content:"DETAIL / 1:1";
+  position:absolute;
+  left:20px;
+  top:20px;
+  padding:8px 10px;
+  border:1px solid rgba(238,231,220,.46);
+  background:rgba(12,16,14,.52);
+  color:#f2ece3;
+  font:400 7px/1 var(--mono);
+  letter-spacing:.15em;
+}
+.material-break figure img{
+  filter:saturate(.68) contrast(1.07);
+}
+.material-copy{
+  position:relative;
+  background:
+    linear-gradient(rgba(16,17,14,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,17,14,.04) 1px,transparent 1px),
+    #d9cebd;
+  background-size:48px 48px;
+}
+.material-copy:after{
+  content:"M / 04";
+  position:absolute;
+  right:20px;
+  top:20px;
+  font:400 7px/1 var(--mono);
+  letter-spacing:.15em;
+  color:#666058;
+}
+.material-copy h2{
+  max-width:7.2ch;
+  font-size:clamp(58px,5.9vw,104px);
+}
+.material-index{
+  grid-template-columns:1fr;
+  border-top-color:rgba(16,17,14,.30);
+}
+.material-index span{
+  display:grid;
+  grid-template-columns:36px 1fr;
+  gap:12px;
+  border-bottom-color:rgba(16,17,14,.28);
+  color:#373733;
+}
+.material-index span:before{
+  content:"—";
+  color:var(--ih-oxide);
+}
+
+/* Method — specification schedule */
+.method{
+  position:relative;
+  background:#eee7dc;
+  overflow:hidden;
+}
+.method:after{
+  content:"SPEC / 04";
+  position:absolute;
+  right:var(--pad);
+  top:var(--section-y);
+  font:400 8px/1 var(--mono);
+  letter-spacing:.16em;
+  color:#5e5c55;
+}
+.section-heading--method h2{
+  max-width:8ch;
+}
+.method-list{
+  margin-top:clamp(52px,7vw,100px);
+  border-top:2px solid #171915;
+}
+.method-list li{
+  grid-template-columns:86px minmax(220px,.7fr) minmax(280px,1fr);
+  min-height:138px;
+  align-items:center;
+  padding:25px 0;
+  transition:padding .25s ease,background .25s ease;
+}
+.method-list li:hover{
+  padding-left:14px;
+  background:rgba(207,88,48,.055);
+}
+.method-list span{
+  color:#a84426;
+}
+.method-list h3{
+  font-size:clamp(34px,3.7vw,64px);
+  letter-spacing:-.055em;
+}
+.method-list p{
+  color:#4d4b45;
+}
+
+/* Studio — construction reality */
+.process-photo{
+  grid-template-columns:minmax(0,1.12fr) minmax(360px,.88fr);
+  min-height:94svh;
+  background:
+    radial-gradient(circle at 83% 20%,rgba(207,88,48,.16),transparent 24%),
+    linear-gradient(145deg,#0f2225 0%,#17373d 62%,#0d1718 100%);
+}
+.process-photo figure{
+  min-height:94svh;
+  position:relative;
+}
+.process-photo figure:after{
+  content:"SITE / OPEN WALL";
+  position:absolute;
+  left:20px;
+  top:20px;
+  font:400 7px/1 var(--mono);
+  letter-spacing:.16em;
+  color:#f1eade;
+  padding:8px 10px;
+  background:rgba(10,15,14,.58);
+}
+.process-photo figure img{
+  filter:saturate(.60) contrast(1.06) brightness(.82);
+}
+.process-copy{
+  border-left:1px solid rgba(255,255,255,.13);
+}
+.process-copy .micro{
+  color:#b4bcb7;
+}
+.process-copy h2{
+  max-width:8.2ch;
+  font-size:clamp(54px,5.4vw,96px);
+  color:#f0e9de;
+}
+.process-copy>p:last-child{
+  color:#c7cfca;
+}
+
+/* Contact — project brief / drawing title block */
+.contact{
+  position:relative;
+  background:
+    linear-gradient(rgba(16,17,14,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,17,14,.035) 1px,transparent 1px),
+    #e9e1d5;
+  background-size:64px 64px;
+  gap:clamp(70px,10vw,180px);
+}
+.contact:before{
+  content:"BRIEF / 00";
+  position:absolute;
+  top:36px;
+  right:var(--pad);
+  font:400 7px/1 var(--mono);
+  letter-spacing:.16em;
+  color:#67645d;
+}
+.contact-copy h2{
+  max-width:7ch;
+  font-size:clamp(62px,6.4vw,112px);
+}
+.contact-copy>p:last-child{
+  padding-left:22px;
+  border-left:2px solid var(--ih-oxide);
+  color:#494841;
+}
+.brief-form{
+  align-self:center;
+  padding:28px;
+  border:1px solid rgba(16,17,14,.18);
+  background:rgba(245,240,232,.64);
+  box-shadow:0 24px 70px rgba(22,22,18,.055);
+}
+.brief-form label{
+  border-bottom-color:rgba(16,17,14,.20);
+}
+.brief-form label span{
+  color:#56544e;
+}
+.brief-form button{
+  background:#111814;
+}
+.brief-form button:hover,
+.brief-form button:focus-visible{
+  background:#cf5830;
+}
+.brief-form input:focus-visible,
+.brief-form select:focus-visible,
+.brief-form textarea:focus-visible{
+  outline:2px solid #b84b29;
+  outline-offset:4px;
+}
+.form-note{
+  color:#5f5c55;
+}
+
+/* Footer — black title block */
+.site-footer{
+  background:#090d0b;
+}
+.footer-brand{
+  color:#eee7dc;
+}
+.footer-grid span,
+.demo-disclosure{
+  color:#9da39e;
+}
+
+@media(max-width:900px){
+  .statement:before,.method:after,.projects:before,.contact:before{display:none}
+  .statement-grid{grid-template-columns:1fr;gap:42px}
+  .statement h2{font-size:clamp(50px,13vw,68px)}
+  .statement-grid>p{padding:20px 0 0;border-left:0;border-top:2px solid var(--ih-oxide)}
+  .section-house-copy{border-right:0}
+  .projects .section-heading h2{font-size:clamp(48px,12vw,62px)}
+  .projects .project-pair{padding-top:70px}
+  .material-break{grid-template-columns:1fr;min-height:auto}
+  .material-break figure{min-height:66svh}
+  .material-copy{min-height:auto}
+  .material-index{grid-template-columns:1fr}
+  .method-list li{
+    grid-template-columns:44px 1fr;
+    min-height:0;
+  }
+  .method-list p{grid-column:2}
+  .method-list li:hover{padding-left:0}
+  .process-photo{grid-template-columns:1fr;min-height:auto}
+  .process-photo figure{min-height:68svh}
+  .process-copy{border-left:0;border-top:1px solid rgba(255,255,255,.13)}
+  .contact{grid-template-columns:1fr}
+  .brief-form{padding:20px 16px 18px}
+}
+@media(max-width:430px){
+  .statement h2{font-size:48px}
+  .projects .section-heading h2{font-size:43px}
+  .material-copy h2{font-size:49px}
+  .process-copy h2{font-size:45px}
+  .contact-copy h2{font-size:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  .method-list li{transition:none}
+}
