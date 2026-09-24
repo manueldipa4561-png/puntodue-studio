@@ -1,0 +1,163 @@
+---
+import '@fontsource-variable/inter-tight';
+interface Props { title: string; description: string; active?: 'web' | 'social' | 'info' }
+const { title, description, active } = Astro.props;
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0034D6" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og.png" />
+  </head>
+  <body>
+    <header class="hdr">
+      <a class="brand" href="/" aria-label="Punto Due Studio">
+        <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><clipPath id="lc"><circle cx="37" cy="50" r="27" /></clipPath></defs>
+          <circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lc)" />
+        </svg>
+        <span class="word"><span class="name">Punto Due</span><span class="sub">STUDIO</span></span>
+      </a>
+      <nav class="nav" aria-label="Principale">
+        <a href="/web" class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
+        <a href="/social" class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
+        <a href="/info" class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
+      </nav>
+    </header>
+
+    <canvas id="bg" aria-hidden="true"></canvas>
+
+    <main>
+      <slot />
+      <footer class="ftr">
+        <span>© 2026 Punto Due Studio</span>
+        <nav class="ftr-links" aria-label="Collegamenti">
+          <a href="https://www.instagram.com/puntoduestudio/" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/privacy#cookie">Cookie</a>
+        </nav>
+      </footer>
+    </main>
+
+    <style is:global>
+      :root { --blue: #0034d6; --yellow: #ffe000; --gut: clamp(16px, 3vw, 40px); --mono: ui-monospace, 'SF Mono', Consolas, Menlo, monospace; }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; color: #fff; font-family: 'Inter Tight Variable', system-ui, sans-serif; background: var(--blue); overflow-x: hidden; }
+      #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+      .phone { transition: transform .25s ease-out; will-change: transform; }
+      :focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
+      a { color: inherit; }
+      .hdr { position: fixed; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 20px var(--gut) 36px; background: linear-gradient(var(--blue) 64%, rgba(0,52,214,0)); }
+      .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+      .mark { width: 44px; height: 44px; }
+      .word { display: flex; flex-direction: column; line-height: 1; }
+      .name { font-weight: 700; font-size: 20px; letter-spacing: -.02em; }
+      .sub { font-weight: 700; font-size: 5.2px; letter-spacing: .32em; margin-top: 3px; }
+      .nav { display: flex; gap: clamp(16px, 3vw, 36px); font-weight: 600; letter-spacing: -.01em; }
+      .nav a { position: relative; text-decoration: none; transition: color .2s; }
+      .nav a:hover, .nav a.on { color: var(--yellow); }
+      .nav a.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--yellow); }
+      main { position: relative; z-index: 1; padding-top: 110px; }
+      main > section { padding: clamp(48px, 9vh, 110px) var(--gut); }
+      .lab { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
+      h1, h2, h3 { margin: 0; letter-spacing: -.045em; }
+      h1 { margin-top: 18px; font-size: clamp(3.2rem, 9vw, 8rem); line-height: .9; }
+      h2 { margin-top: 18px; font-size: clamp(2.3rem, 5.2vw, 4.6rem); line-height: .96; }
+      .lead { margin: 20px 0 0; max-width: 36rem; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.5; color: rgba(255,255,255,.85); }
+      .lnk { font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.4); transition: color .2s; }
+      .lnk:hover { color: var(--yellow); }
+      .btn { display: inline-flex; gap: 12px; background: var(--yellow); color: var(--blue); font-weight: 700; padding: 17px 28px; border-radius: 999px; text-decoration: none; transition: transform .25s, background .25s; }
+      .btn:hover { transform: translateY(-2px); background: #fff; }
+      .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; margin-top: 28px; }
+      .phone { justify-self: center; width: min(320px, 100%); padding: 10px; border-radius: 44px; background: #0a0f24; border: 2px solid rgba(255,255,255,.35); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+      .screen { border-radius: 34px; background: #f6f7fb; color: #0a0f24; padding: 20px 16px 18px; display: grid; gap: 14px; }
+      .phone { transition: transform .25s ease-out; will-change: transform; }
+      .note { margin: 18px 0 0; font-size: .85rem; color: rgba(255,255,255,.7); }
+      .cta-s { border-top: 1px solid rgba(255,255,255,.25); }
+      .src { padding-top: 0 !important; }
+      .src ol { margin: 18px 0 0; padding-left: 1.2em; max-width: 52rem; display: grid; gap: 12px; font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.8); }
+      .src a { color: var(--yellow); }
+      .ftr { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 32px var(--gut) 28px; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+      .ftr-links { display: flex; flex-wrap: wrap; gap: 12px 20px; }
+      .ftr a { text-decoration: none; } .ftr a:hover { color: var(--yellow); }
+      .cta-s .cta { margin-top: 32px; }
+      .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); transition-delay: var(--dl, 0s); }
+      .rv.in { opacity: 1; transform: none; }
+      @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+    </style>
+
+    <script>
+      const cv = document.getElementById('bg') as HTMLCanvasElement;
+      const gl = cv.getContext('webgl', { antialias: false, alpha: false });
+      if (gl) {
+        const sh = (t: number, src: string) => { const o = gl.createShader(t)!; gl.shaderSource(o, src); gl.compileShader(o); return o; };
+        const pr = gl.createProgram()!;
+        gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));
+        gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, `precision mediump float;
+uniform vec2 res,mouse;uniform float t,scroll,dpr;uniform vec3 rip[4];
+void main(){
+  vec2 p=gl_FragCoord.xy; p.y+=scroll;
+  float cell=28.*dpr; vec2 g=mod(p,cell)-cell*.5; vec2 c=p-g;
+  vec2 m=vec2(mouse.x,mouse.y+scroll);
+  float glow=exp(-length(c-m)/(170.*dpr));
+  float r=1.2*dpr*(1.+2.4*glow), wave=0.;
+  for(int i=0;i<4;i++){ float age=t-rip[i].z; if(age>0.&&age<3.){ float d=length(c-vec2(rip[i].x,rip[i].y+scroll))-age*650.*dpr; wave+=exp(-d*d/(2500.*dpr*dpr))*exp(-age*1.3); } }
+  r+=3.4*dpr*wave;
+  float a=clamp(r-length(g)+.5,0.,1.);
+  vec3 blue=vec3(0.,.204,.839);
+  vec3 col=mix(vec3(1.),vec3(1.,.878,0.),clamp(glow+wave,0.,1.));
+  gl_FragColor=vec4(mix(blue,col,a*(.17+.75*glow+.8*wave)),1.);
+}`));
+        gl.linkProgram(pr); gl.useProgram(pr);
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        const al = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(al); gl.vertexAttribPointer(al, 2, gl.FLOAT, false, 0, 0);
+        const U = (n: string) => gl.getUniformLocation(pr, n);
+        const dpr = Math.min(devicePixelRatio || 1, 1.5);
+        const mouse = { x: -9999, y: -9999 };
+        const rips = new Float32Array(12).fill(0); for (let i = 2; i < 12; i += 3) rips[i] = -100;
+        let ri = 0, t0 = performance.now();
+        const size = () => { cv.width = innerWidth * dpr; cv.height = innerHeight * dpr; gl.viewport(0, 0, cv.width, cv.height); };
+        size(); addEventListener('resize', size);
+        addEventListener('pointermove', (e) => { mouse.x = e.clientX * dpr; mouse.y = (innerHeight - e.clientY) * dpr; });
+        addEventListener('pointerdown', (e) => {
+          mouse.x = e.clientX * dpr; mouse.y = (innerHeight - e.clientY) * dpr;
+          rips.set([mouse.x, mouse.y, (performance.now() - t0) / 1000], ri * 3); ri = (ri + 1) % 4;
+        });
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const draw = () => {
+          gl.uniform2f(U('res'), cv.width, cv.height); gl.uniform2f(U('mouse'), mouse.x, mouse.y);
+          gl.uniform1f(U('t'), (performance.now() - t0) / 1000); gl.uniform1f(U('scroll'), scrollY * 0.25 * dpr); gl.uniform1f(U('dpr'), dpr);
+          gl.uniform3fv(U('rip'), rips); gl.drawArrays(gl.TRIANGLES, 0, 3);
+          if (!reduced) requestAnimationFrame(draw);
+        };
+        draw();
+        if (reduced) addEventListener('resize', draw);
+      }
+
+      const ph = document.querySelector<HTMLElement>('.phone');
+      if (ph && matchMedia('(hover: hover)').matches) {
+        ph.addEventListener('pointermove', (e) => {
+          const r = ph.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+          ph.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg)`;
+        });
+        ph.addEventListener('pointerleave', () => (ph.style.transform = ''));
+      }
+
+      const rvEls = document.querySelectorAll<HTMLElement>('main > section > .lab, main h1, main h2, main .lead, .card, .app-txt > :not(.lab), .live-txt > :not(.lab), .phone, .chart, .toggles, .plot, .cta, .bub, .src ol, .adv-c, .pc, .mails, .chatwin, .cform, .note-s');
+      const rio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+      rvEls.forEach((el) => { el.classList.add('rv'); const sib = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0; el.style.setProperty('--dl', Math.min(sib, 5) * 0.07 + 's'); rio.observe(el); });
+    </script>
+  </body>
+</html>

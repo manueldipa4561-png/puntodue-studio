@@ -1,0 +1,471 @@
+---
+import Site from '../layouts/Site.astro';
+import Chat from '../components/Chat.astro';
+const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto la pagina social e vorrei parlarvi del mio profilo.')}`;
+const posts = [
+  { kind: 'Post', cls: 'a', title: 'Piatto del giorno', likes: 214, cap: 'Tagliolini al limone e gamberi. Fino a esaurimento.' },
+  { kind: 'Reel', cls: 'b', title: 'Come nasce', likes: 892, cap: 'Dalla sfoglia al piatto in 15 secondi.', reel: true },
+  { kind: 'Post', cls: 'c', title: 'Menu di sabato', likes: 167, cap: 'Tre novità e una sorpresa. Prenota il tuo tavolo.' },
+  { kind: 'Storia', cls: 'd', title: 'Dietro le quinte', likes: 341, cap: 'La brigata che ogni sera ti aspetta.' },
+];
+const types = [
+  { k: 'reel', t: 'Reel', d: 'Martedì e venerdì', c: '#ffe000' },
+  { k: 'post', t: 'Post', d: 'Lunedì, mercoledì e sabato', c: '#ffffff' },
+  { k: 'story', t: 'Storie', d: 'Ogni giorno, tranne domenica', c: '#ff5fa2' },
+  { k: 'comm', t: 'Community', d: 'Dirette e risposte, giovedì e domenica', c: '#7cf0c9' },
+  { k: 'collab', t: 'Collaborazioni', d: 'Due al mese', c: '#ffb020' },
+];
+const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 3.1 1.7-1.9 3.5-3.1 5.6-3.1 3.6 0 5.5 3.8 4 7.2C19.5 16.4 12 21 12 21z';
+---
+<Site title="Social — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
+  <section class="top">
+    <span class="lab">/social</span>
+    <h1>Follow Me.</h1>
+    <p class="lead">Ti seguono, ti ricordano, ti scelgono. Guarda com'è un profilo curato.</p>
+  </section>
+
+  <section class="live" id="feed">
+    <div class="live-txt">
+      <span class="lab">/feed · dal vivo</span>
+      <h2>Il tuo profilo, dal vivo.</h2>
+      <p class="lead">Tocca, scorri, metti like: i numeri si muovono da soli, come su un profilo vero.</p>
+      <ul class="feat">
+        <li><b>Strategia editoriale</b><span>Cosa dire, quando e a chi.</span></li>
+        <li><b>Reel, foto e grafiche nel tuo stile</b><span>Riconoscibili al primo sguardo.</span></li>
+        <li><b>Community e crescita costante</b><span>Rispondiamo noi, ogni giorno.</span></li>
+      </ul>
+    </div>
+
+    <div class="phone ig" aria-label="Anteprima interattiva di un profilo Instagram">
+      <div class="screen ig-s">
+        <div class="ig-top">
+          <button type="button" class="ig-av" data-story="menu" aria-label="Guarda le storie"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /></svg></button>
+          <div class="ig-id"><b>osteria.marea</b><small>Osteria Marea · Milano</small></div>
+          <span class="livepill"><i></i>Live</span>
+        </div>
+        <div class="ig-stats">
+          <div><b>128</b><small>post</small></div>
+          <div><b id="fol">2.410</b><small>follower</small></div>
+          <div><b>310</b><small>seguiti</small></div>
+        </div>
+        <div class="ig-hl"><button type="button" data-story="menu">Menu</button><button type="button" data-story="oggi">Oggi</button><button type="button" data-story="ordini">Prenota</button><button type="button" data-story="rec">Recensioni</button></div>
+        <div class="ig-feed" tabindex="0" role="region" aria-label="Feed dei post">
+          {posts.map((p) => (
+            <article class="post">
+              <header><span class="mini-av" aria-hidden="true"></span><b>osteria.marea</b><small>{p.kind}</small></header>
+              <div class={`art ${p.cls}`} data-art>
+                <span class="sh s1"></span><span class="sh s2"></span>
+                <span class="art-t">{p.title}</span>
+                {p.reel && <><span class="play" aria-hidden="true"></span><i class="rprog" aria-hidden="true"></i></>}
+              </div>
+              <div class="acts">
+                <button type="button" class="heart" aria-pressed="false" aria-label="Mi piace"><svg viewBox="0 0 24 24"><path d={HEART} /></svg></button>
+                <button type="button" class="cbtn" aria-label="Commenta"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.5A8.5 8.5 0 1 1 21 11.5z" /></svg></button>
+                <button type="button" class="sbtn" aria-label="Condividi"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 3 2 10.5l7.5 3L12.5 21 22 3zM9.5 13.5 22 3" /></svg></button>
+              </div>
+              <p class="likes"><b data-likes={p.likes}>{p.likes}</b> mi piace</p>
+              <p class="cap"><b>osteria.marea</b> {p.cap}</p>
+              <button type="button" class="ccount"></button>
+            </article>
+          ))}
+        </div>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+        <div class="story" id="story" hidden role="dialog" aria-modal="true" aria-label="Storia" data-wa={WA}>
+          <div class="s-bars" id="sBars"></div>
+          <div class="s-head"><span class="mini-av" aria-hidden="true"></span><b id="sName"></b><button type="button" class="x" id="sClose" aria-label="Chiudi">&times;</button></div>
+          <div class="s-body" id="sBody"></div>
+          <button type="button" class="s-zone l" id="sPrev" aria-label="Precedente"></button>
+          <button type="button" class="s-zone r" id="sNext" aria-label="Successiva"></button>
+        </div>
+        <div class="sheet-bg" id="sheetBg" hidden></div>
+        <div class="sheet" id="sheet" hidden role="dialog" aria-modal="true">
+          <div class="sh-h"><b id="shT"></b><button type="button" class="x" id="shX" aria-label="Chiudi">&times;</button></div>
+          <div id="shB"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="perche" id="vantaggi">
+    <span class="lab">/vantaggi</span>
+    <h2>Perché un profilo curato conviene.</h2>
+    <p class="lead">Visibilità, meno lavoro a mano, collaborazioni e una possibile seconda entrata. Numeri da ricerche pubbliche, non risultati garantiti.</p>
+    <div class="adv">
+      <article class="adv-c">
+        <span class="lab">Visibilità</span>
+        <b class="big-n">68%</b>
+        <p class="adv-s">dei consumatori segue i brand sui social per restare aggiornato su prodotti e servizi<sup><a href="#fonti">1</a></sup></p>
+        <p class="adv-t">Il tuo profilo è la vetrina che i clienti guardano prima di scriverti. Se è curato e sempre attivo, ti trovano e ti ricordano.</p>
+      </article>
+      <article class="adv-c">
+        <span class="lab">Automazione</span>
+        <b class="big-n">69%</b>
+        <p class="adv-s">si aspetta una risposta entro la giornata, e il 70% la vuole personalizzata<sup><a href="#fonti">1</a></sup></p>
+        <p class="adv-t">Post pianificati, risposte pronte per le domande più frequenti e report automatici: risposte rapide senza stare sempre sul telefono. Ti serve meno tempo, e le persone non restano senza risposta.</p>
+      </article>
+      <article class="adv-c">
+        <span class="lab">Brand deals</span>
+        <b class="big-n">87,5%</b>
+        <p class="adv-s">dei marketer intervistati prevede di aumentare il budget per l'influencer marketing nel 2026<sup><a href="#fonti">2</a></sup></p>
+        <p class="adv-t">Più budget dai brand significa più occasioni di collaborazione. Un profilo solido e costante è il punto di partenza per essere scelti.</p>
+      </article>
+      <article class="adv-c">
+        <span class="lab">Guadagno extra</span>
+        <b class="big-n">480 mld $</b>
+        <p class="adv-s">il valore stimato della creator economy al 2027, da 250 miliardi di oggi (stima 2023)<sup><a href="#fonti">3</a></sup></p>
+        <p class="adv-t">Collaborazioni pagate, quota dei ricavi delle piattaforme e abbonamenti: un profilo che cresce può diventare una seconda entrata.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cal" id="calendario">
+    <span class="lab">/calendario</span>
+    <h2>Riempi il mese.</h2>
+    <p class="lead">Scegli cosa pubblicare: il calendario si riempie e i giorni si illuminano.</p>
+    <div class="cal-grid">
+      <div class="chips" id="chips" role="group" aria-label="Tipi di contenuto">
+        {types.map((t) => (
+          <button type="button" class="chip-t" aria-pressed="false" data-k={t.k}><i style={`background:${t.c}`}></i><span><b>{t.t}</b><small>{t.d}</small></span></button>
+        ))}
+        <button type="button" class="all" id="calAll">Accendi tutto</button>
+      </div>
+      <figure class="month" id="month">
+        <div class="cal-k">
+          <div><small>Contenuti al mese</small><b id="cN">0</b></div>
+          <div><small>Giorni con contenuto</small><b id="cD">0/30</b></div>
+          <div><small>Crescita stimata</small><b id="cG">+0%</b></div>
+        </div>
+        <div class="days" id="days"></div>
+        <figcaption class="note">Calendario d'esempio: mostra il ritmo di pubblicazione, la crescita è una stima illustrativa e non una promessa di risultato.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="cta-s">
+    <Chat kind="read" />
+    <div class="cta">
+      <a class="btn" href={WA} target="_blank" rel="noopener">Scrivici <span aria-hidden="true">→</span></a>
+      <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
+    </div>
+  </section>
+
+  <section class="src" id="fonti">
+    <span class="lab">/fonti</span>
+    <ol>
+      <li>Sprout Social, «The 2023 Sprout Social Index»: 68% dei consumatori segue i brand per restare aggiornato su prodotti e servizi; 69% si aspetta una risposta entro la giornata; 70% si aspetta risposte personalizzate. <a href="https://sproutsocial.com/insights/press/new-research-indicates-a-shift-in-what-consumers-find-memorable-on-social-media/" target="_blank" rel="noopener">sproutsocial.com</a></li>
+      <li>Influencer Marketing Hub, «Influencer Marketing Benchmark Report 2026»: 87,49% degli intervistati prevede un budget in aumento; il 65,9% si aspetta un ritorno entro un mese. <a href="https://influencermarketinghub.com/influencer-marketing-benchmark-report/" target="_blank" rel="noopener">influencermarketinghub.com</a></li>
+      <li>Goldman Sachs Research, «The creator economy could approach half-a-trillion dollars by 2027», aprile 2023: da 250 a 480 miliardi di dollari; circa 50 milioni di creator nel mondo. <a href="https://www.goldmansachs.com/insights/articles/the-creator-economy-could-approach-half-a-trillion-dollars-by-2027" target="_blank" rel="noopener">goldmansachs.com</a></li>
+      <li>Sull'automazione non citiamo cifre di tempo risparmiato: le fonti che abbiamo verificato non le forniscono in modo affidabile. Il vantaggio descritto si appoggia ai dati sulle aspettative di risposta (fonte 1).</li>
+      <li>Profilo, nome, post e numeri del telefono sono un concept d'esempio. Il calendario è illustrativo: mostra una tendenza, non è una promessa di risultato.</li>
+    </ol>
+  </section>
+</Site>
+
+<style is:global>
+  .top { padding-bottom: 24px; }
+  .perche { border-top: 1px solid rgba(255,255,255,.25); }
+  .adv { display: grid; gap: 18px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .adv-c { display: grid; align-content: start; gap: 12px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); transition: border-color .25s, transform .3s cubic-bezier(.2,.7,.2,1); }
+  .adv-c:hover { border-color: var(--yellow); transform: translateY(-4px); }
+  .big-n { font-size: clamp(2.6rem, 5vw, 3.8rem); letter-spacing: -.05em; line-height: .95; color: var(--yellow); font-variant-numeric: tabular-nums; }
+  .adv-s { margin: 0; font-weight: 600; line-height: 1.35; }
+  .adv-t { margin: 0; font-size: .95rem; line-height: 1.5; color: rgba(255,255,255,.82); }
+  .adv sup { margin-left: 2px; font: 700 .7rem var(--mono); } .adv sup a { color: var(--yellow); text-decoration: none; }
+  .live { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; border-top: 1px solid rgba(255,255,255,.25); }
+  .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
+  .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; }
+  .feat span { color: rgba(255,255,255,.8); }
+  .ig { justify-self: center; width: min(340px, 100%); }
+  .ig-s { position: relative; padding: 16px 14px 14px; gap: 12px; overflow: hidden; }
+  .ig-top { display: flex; align-items: center; gap: 10px; }
+  .ig-av { flex: none; width: 46px; height: 46px; padding: 3px; border-radius: 50%; background: conic-gradient(#ffe000, #ff5fa2, #0034d6, #ffe000); }
+  .ig-av svg { width: 100%; height: 100%; display: block; border-radius: 50%; background: #0034d6; padding: 6px; }
+  .ig-id { display: grid; gap: 1px; min-width: 0; } .ig-id b { font-size: .95rem; letter-spacing: -.01em; } .ig-id small { font-size: 11px; color: #5a6178; }
+  .livepill { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 700 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #d61f4a; padding: 6px 9px; border-radius: 999px; background: rgba(214,31,74,.1); }
+  .livepill i { width: 7px; height: 7px; border-radius: 50%; background: #d61f4a; animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .ig-stats { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
+  .ig-stats div { display: grid; gap: 1px; } .ig-stats b { font-size: 1.1rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; } .ig-stats small { font-size: 11px; color: #5a6178; }
+  .ig-hl { display: flex; gap: 12px; }
+  .ig-hl span { display: grid; justify-items: center; gap: 4px; font-size: 10px; color: #5a6178; }
+  .ig-hl span::before { content: ''; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0034d6, #4d7bff); border: 2px solid #fff; box-shadow: 0 0 0 1.5px #d5d9e6; }
+  .ig-hl span:nth-child(2)::before { background: linear-gradient(135deg, #ffe000, #ff9f1c); } .ig-hl span:nth-child(3)::before { background: linear-gradient(135deg, #ff5fa2, #ffb3d1); } .ig-hl span:nth-child(4)::before { background: linear-gradient(135deg, #1b2a6b, #0034d6); }
+  .ig-feed { height: 340px; margin: 0 -14px -14px; padding: 0 14px 14px; overflow-y: auto; scroll-snap-type: y proximity; scrollbar-width: none; border-top: 1px solid #e3e6f0; }
+  .ig-feed::-webkit-scrollbar { display: none; }
+  .post { padding: 10px 0 14px; scroll-snap-align: start; border-bottom: 1px solid #eceef6; }
+  .post header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; } .post header b { font-size: .85rem; } .post header small { margin-left: auto; font: 500 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #5a6178; }
+  .mini-av { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #ffe000, #0034d6); }
+  .art { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; display: grid; align-content: end; padding: 14px; cursor: pointer; -webkit-user-select: none; user-select: none; }
+  .art.a { background: linear-gradient(160deg, #ffe000, #ff9f1c); } .art.b { background: linear-gradient(160deg, #1b2a6b, #0034d6 60%, #4d7bff); }
+  .art.c { background: linear-gradient(160deg, #f4f6ff, #c9d6ff); } .art.d { background: linear-gradient(160deg, #ff5fa2, #ffb3d1); }
+  .sh { position: absolute; border-radius: 50%; }
+  .art.a .s1 { width: 70%; aspect-ratio: 1; right: -12%; top: -10%; background: #fff; opacity: .85; } .art.a .s2 { width: 34%; aspect-ratio: 1; left: 12%; top: 26%; background: #0034d6; }
+  .art.b .s1 { width: 64%; aspect-ratio: 1; left: 8%; top: 8%; background: #fff; opacity: .95; } .art.b .s2 { width: 64%; aspect-ratio: 1; right: 8%; top: 8%; background: #ffe000; mix-blend-mode: multiply; }
+  .art.c .s1 { width: 52%; aspect-ratio: 1; left: 10%; top: 12%; background: #0034d6; } .art.c .s2 { width: 40%; aspect-ratio: 1; right: 12%; top: 30%; background: #ffe000; }
+  .art.d .s1 { width: 60%; aspect-ratio: 1; right: 6%; top: 6%; background: #ffe000; } .art.d .s2 { width: 30%; aspect-ratio: 1; left: 12%; top: 22%; background: #fff; }
+  .art-t { position: relative; font-weight: 700; font-size: 1.25rem; letter-spacing: -.03em; line-height: 1; color: #0a0f24; }
+  .art.b .art-t { color: #fff; }
+  .play { position: absolute; right: 12px; top: 12px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.9); } .play::after { content: ''; position: absolute; left: 12px; top: 9px; border: 6px solid transparent; border-left: 10px solid #0034d6; }
+  .rprog { position: absolute; left: 0; bottom: 0; height: 3px; background: #ffe000; animation: rp 6s linear infinite; }
+  @keyframes rp { from { width: 0; } to { width: 100%; } }
+  .acts { display: flex; align-items: center; gap: 12px; margin: 10px 0 6px; }
+  .heart { display: inline-flex; padding: 0; border: 0; background: none; cursor: pointer; color: #0a0f24; }
+  .heart svg, .ic { width: 24px; height: 24px; fill: none; stroke: #0a0f24; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .heart[aria-pressed="true"] svg { fill: #ff2d55; stroke: #ff2d55; animation: hp .4s cubic-bezier(.2,1.6,.4,1); }
+  @keyframes hp { from { transform: scale(.6); } }
+  .likes { margin: 0; font-size: .85rem; font-variant-numeric: tabular-nums; } .likes b.up { display: inline-block; animation: up .6s ease-out; }
+  @keyframes up { 30% { color: #ff2d55; transform: scale(1.15); } }
+  .cap { margin: 2px 0 0; font-size: .82rem; line-height: 1.35; color: #2b3150; }
+  .fly { position: absolute; width: 22px; height: 22px; fill: #ff2d55; pointer-events: none; }
+  .toast { position: absolute; left: 12px; right: 12px; top: 12px; padding: 10px 14px; border-radius: 14px; background: #0a0f24; color: #fff; font-size: .82rem; font-weight: 600; transform: translateY(-140%); opacity: 0; transition: transform .45s cubic-bezier(.2,1.2,.4,1), opacity .3s; }
+  .toast.on { transform: none; opacity: 1; }
+  .ig-av { border: 0; cursor: pointer; }
+  .ig-hl button { display: grid; justify-items: center; gap: 4px; padding: 0; border: 0; background: none; font: inherit; font-size: 10px; color: #5a6178; cursor: pointer; }
+  .ig-hl button::before { content: ''; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0034d6, #4d7bff); border: 2px solid #fff; box-shadow: 0 0 0 2px #0034d6; transition: transform .2s; }
+  .ig-hl button:hover::before { transform: scale(1.06); }
+  .ig-hl button:nth-child(2)::before { background: linear-gradient(135deg, #ffe000, #ff9f1c); } .ig-hl button:nth-child(3)::before { background: linear-gradient(135deg, #ff5fa2, #ffb3d1); } .ig-hl button:nth-child(4)::before { background: linear-gradient(135deg, #1b2a6b, #0034d6); }
+  .cbtn, .sbtn { display: inline-flex; padding: 0; border: 0; background: none; cursor: pointer; }
+  .ccount { display: block; margin-top: 4px; padding: 0; border: 0; background: none; font: inherit; font-size: .78rem; color: #5a6178; cursor: pointer; }
+  .x { margin-left: auto; width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(10,15,36,.08); color: inherit; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  .story { position: absolute; inset: 0; z-index: 5; display: grid; grid-template-rows: auto auto 1fr; background: #0a0f24; color: #fff; opacity: 0; transition: opacity .25s; }
+  .story.on { opacity: 1; }
+  .story[hidden], .sheet[hidden], .sheet-bg[hidden] { display: none; }
+  .s-bars { display: flex; gap: 4px; padding: 12px 12px 8px; }
+  .s-bars i { position: relative; flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.3); overflow: hidden; }
+  .s-bars i.done::after, .s-bars i.cur::after { content: ''; position: absolute; inset: 0; background: #fff; }
+  .s-bars i.cur::after { transform-origin: 0 50%; animation: sbar 3.2s linear both; }
+  @keyframes sbar { from { transform: scaleX(0); } }
+  .s-head { position: relative; z-index: 3; display: flex; align-items: center; gap: 8px; padding: 4px 12px 10px; font-size: .9rem; }
+  .s-head .x { background: rgba(255,255,255,.15); color: #fff; }
+  .s-body { position: relative; overflow: hidden; margin: 0 10px 10px; border-radius: 16px; display: grid; align-content: end; gap: 8px; padding: 18px; }
+  .s-body[data-c="a"] { background: linear-gradient(160deg, #ffe000, #ff9f1c); color: #0a0f24; } .s-body[data-c="b"] { background: linear-gradient(160deg, #1b2a6b, #0034d6 60%, #4d7bff); }
+  .s-body[data-c="c"] { background: linear-gradient(160deg, #f4f6ff, #c9d6ff); color: #0a0f24; } .s-body[data-c="d"] { background: linear-gradient(160deg, #ff5fa2, #ffb3d1); color: #0a0f24; }
+  .s-body .sh { opacity: .9; } .s-body .s1 { width: 60%; aspect-ratio: 1; right: -10%; top: -6%; background: rgba(255,255,255,.55); } .s-body .s2 { width: 30%; aspect-ratio: 1; left: 10%; top: 14%; background: #0034d6; }
+  .s-body[data-c="b"] .s2 { background: #ffe000; }
+  .rl-h { position: absolute; right: 14px; bottom: 16px; z-index: 3; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; cursor: pointer; }
+  .rl-h svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linejoin: round; } .rl-h[aria-pressed="true"] svg { fill: #ff2d55; stroke: #ff2d55; }
+  .s-body[data-sc="1"] .s2 { animation: rl1 1.6s ease-in-out infinite alternate; } .s-body[data-sc="2"] .s1 { animation: rl2 3s linear infinite; }
+  .s-body[data-sc="3"] .s1 { animation: rl3 1s ease-in-out infinite alternate; } .s-body[data-sc="4"] .s2 { animation: rl4 1.4s ease-in-out infinite alternate; }
+  @keyframes rl1 { to { transform: translateX(150px) rotate(180deg); } } @keyframes rl2 { to { transform: rotate(360deg); } }
+  @keyframes rl3 { to { transform: scale(1.18) translateY(-6px); } } @keyframes rl4 { to { transform: translateY(40px) scale(1.25); } }
+  .art .play { cursor: pointer; }
+  .s-t { position: relative; font-size: 1.7rem; letter-spacing: -.04em; line-height: 1; } .s-s { position: relative; font-size: .9rem; opacity: .85; }
+  .s-zone { position: absolute; top: 90px; bottom: 0; z-index: 1; border: 0; background: none; cursor: pointer; } .s-zone.l { left: 0; width: 35%; } .s-zone.r { right: 0; width: 65%; }
+  .s-poll, .s-cta { position: relative; z-index: 2; display: grid; gap: 8px; margin-top: 8px; }
+  .s-poll button { position: relative; overflow: hidden; padding: 11px 14px; border: 0; border-radius: 12px; background: #fff; color: #0a0f24; font-family: inherit; font-weight: 700; font-size: .9rem; text-align: left; cursor: pointer; }
+  .s-poll button i { position: absolute; inset: 0 auto 0 0; background: rgba(0,52,214,.18); transition: width .6s cubic-bezier(.2,.7,.2,1); } .s-poll button span { position: relative; display: flex; justify-content: space-between; } .s-poll em { font-style: normal; }
+  .s-cta a { padding: 12px 16px; border-radius: 999px; background: #ffe000; color: #0034d6; font-weight: 700; text-align: center; text-decoration: none; }
+  .sheet-bg { position: absolute; inset: 0; z-index: 6; background: rgba(10,15,36,.5); }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; max-height: 78%; display: flex; flex-direction: column; padding: 14px 14px 16px; border-radius: 22px 22px 0 0; background: #fff; transform: translateY(100%); transition: transform .3s cubic-bezier(.2,.9,.3,1); }
+  .sheet.on { transform: none; }
+  .sh-h { display: flex; align-items: center; margin-bottom: 10px; } .sh-h b { font-size: 1rem; }
+  .cm { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 10px; overflow-y: auto; max-height: 180px; font-size: .85rem; line-height: 1.35; }
+  .cm b { margin-right: 4px; } .cm .me b { color: #0034d6; } .cm .dots-c { display: inline-flex; gap: 4px; } .cm .dots-c i { width: 6px; height: 6px; border-radius: 50%; background: #aab3cc; animation: blink 1s infinite; }
+  .cm-f { display: flex; gap: 8px; } .cm-f input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid #d5d9e6; border-radius: 999px; font: inherit; font-size: .9rem; color: #0a0f24; }
+  .cm-f button { padding: 0 16px; border: 0; border-radius: 999px; background: #0034d6; color: #fff; font-family: inherit; font-weight: 700; font-size: .9rem; cursor: pointer; }
+  .shr { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+  .shr button { display: grid; justify-items: center; gap: 6px; padding: 0; border: 0; background: none; font: inherit; font-size: 11px; color: #2b3150; cursor: pointer; }
+  .shr button::before { content: ''; width: 48px; height: 48px; border-radius: 50%; background: var(--c); }
+  .cal { border-top: 1px solid rgba(255,255,255,.25); }
+  .cal-grid { display: grid; gap: 28px; margin-top: 40px; align-items: start; }
+  .chips { display: grid; gap: 10px; }
+  .chip-t { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 16px; text-align: left; font: inherit; color: #fff; background: rgba(0,52,214,.6); border: 1px solid rgba(255,255,255,.3); border-radius: 16px; cursor: pointer; transition: border-color .25s, background .25s, transform .2s; }
+  .chip-t i { flex: none; width: 14px; height: 14px; border-radius: 50%; opacity: .35; transition: opacity .3s, box-shadow .3s; }
+  .chip-t span { display: grid; gap: 2px; } .chip-t b { font-size: 1.02rem; letter-spacing: -.01em; } .chip-t small { color: rgba(255,255,255,.75); font-size: .85rem; }
+  .chip-t:active { transform: scale(.98); } .chip-t:hover { border-color: rgba(255,255,255,.7); }
+  .chip-t[aria-pressed="true"] { border-color: var(--yellow); background: rgba(255,224,0,.1); } .chip-t[aria-pressed="true"] i { opacity: 1; }
+  .all { justify-self: start; margin-top: 6px; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--yellow); background: transparent; color: var(--yellow); font: 700 .95rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; transition: background .2s, color .2s; } .all:hover { background: var(--yellow); color: var(--blue); }
+  .month { margin: 0; padding: clamp(16px, 2.5vw, 28px); border-radius: 20px; border: 1px solid rgba(255,255,255,.3); background: rgba(0,20,90,.55); }
+  .cal-k { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; } .cal-k div { display: grid; gap: 6px; align-content: end; } .cal-k small { font-size: .78rem; color: rgba(255,255,255,.7); line-height: 1.25; }
+  .cal-k b { font-size: clamp(1.6rem, 3.4vw, 2.6rem); letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--kc, #fff); transition: color .4s; }
+  .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .dh { text-align: center; font: 500 10px/1 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.6); padding-bottom: 4px; }
+  .day { position: relative; aspect-ratio: 1; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); display: grid; align-content: space-between; padding: 5px 6px; transition: background .5s var(--d, 0s), border-color .5s var(--d, 0s); }
+  .day.off { visibility: hidden; }
+  .day small { font: 500 10px/1 var(--mono); color: rgba(255,255,255,.55); }
+  .day .dt { display: flex; flex-wrap: wrap; gap: 3px; }
+  .day .dt i { width: 6px; height: 6px; border-radius: 50%; animation: dpop .4s cubic-bezier(.2,1.6,.4,1) both; }
+  @keyframes dpop { from { transform: scale(0); } }
+  @media (max-width: 1023px) { .chip-t { padding: 10px 12px; gap: 10px; border-radius: 14px; } .chip-t small { display: none; } .chip-t b { font-size: .9rem; } .chips { grid-template-columns: 1fr 1fr; gap: 8px; } .all { grid-column: 1 / -1; justify-self: stretch; margin-top: 0; } .month { order: -1; } .days { gap: 4px; } .day { padding: 3px 4px; border-radius: 8px; } .day .dt i { width: 5px; height: 5px; } .cal-k small { font-size: .72rem; } }
+  @media (min-width: 1024px) { .cal-grid { grid-template-columns: minmax(280px, .75fr) 1.6fr; } }
+  @media (min-width: 1024px) { .live { grid-template-columns: 1.1fr .9fr; } }
+  @media (prefers-reduced-motion: reduce) { .livepill i, .rprog { animation: none; } .heart[aria-pressed="true"] svg, .likes b.up { animation: none; } .toast { transition: none; } .s-bars i.cur::after, .day .dt i, .s-body .sh { animation: none !important; } .sheet { transition: none; } }
+</style>
+
+<script>
+  const $$ = <T extends Element>(s: string) => [...document.querySelectorAll<T>(s)];
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = (v: number) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const screen = document.querySelector<HTMLElement>('.ig-s')!;
+  const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 3.1 1.7-1.9 3.5-3.1 5.6-3.1 3.6 0 5.5 3.8 4 7.2C19.5 16.4 12 21 12 21z';
+
+  const fly = (from: HTMLElement) => {
+    if (rm) return;
+    const s = screen.getBoundingClientRect(), r = from.getBoundingClientRect();
+    const el = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    el.setAttribute('viewBox', '0 0 24 24'); el.setAttribute('class', 'fly');
+    el.innerHTML = `<path d="${HEART}"/>`;
+    el.style.left = r.left - s.left + r.width / 2 - 11 + 'px'; el.style.top = r.top - s.top + r.height / 2 - 11 + 'px';
+    screen.appendChild(el);
+    el.animate([{ transform: 'translateY(0) scale(.6)', opacity: 1 }, { transform: `translate(${(Math.random() - .5) * 60}px,-70px) scale(1.4)`, opacity: 0 }], { duration: 800, easing: 'ease-out' }).onfinish = () => el.remove();
+  };
+  const bump = (p: HTMLElement, by: number) => {
+    const n = p.querySelector<HTMLElement>('[data-likes]')!;
+    n.dataset.likes = String(+n.dataset.likes! + by); n.textContent = fmt(+n.dataset.likes);
+    n.classList.remove('up'); void n.offsetWidth; n.classList.add('up');
+  };
+  const like = (p: HTMLElement, on: boolean) => {
+    const b = p.querySelector<HTMLButtonElement>('.heart')!;
+    if ((b.getAttribute('aria-pressed') === 'true') === on) return;
+    b.setAttribute('aria-pressed', String(on)); bump(p, on ? 1 : -1);
+    if (on) fly(b);
+  };
+  const posts = $$<HTMLElement>('.post');
+  posts.forEach((p) => {
+    p.querySelector('.heart')!.addEventListener('click', () => like(p, p.querySelector('.heart')!.getAttribute('aria-pressed') !== 'true'));
+    const art = p.querySelector<HTMLElement>('[data-art]')!;
+    if (p.querySelector('.play')) { art.setAttribute('role', 'button'); art.setAttribute('tabindex', '0'); art.setAttribute('aria-label', 'Guarda il reel'); art.addEventListener('click', () => openStory('reel')); art.addEventListener('keydown', (e) => { if (e.key === 'Enter') openStory('reel'); }); }
+    else art.addEventListener('dblclick', () => like(p, true));
+  });
+
+  const fol = document.getElementById('fol')!;
+  const toast = document.getElementById('toast')!;
+  const names = ['Marta', 'Luca', 'Giulia', 'Andrea', 'Sara', 'Paolo', 'Elena', 'Davide'];
+  let followers = 2410, tick = 0;
+  setInterval(() => {
+    if (document.hidden) return;
+    tick++;
+    bump(posts[Math.floor(Math.random() * posts.length)], 1 + Math.floor(Math.random() * 3));
+    if (tick % 3 === 0) {
+      followers++; fol.textContent = fmt(followers);
+      toast.textContent = `${names[Math.floor(Math.random() * names.length)]} ha iniziato a seguirti`;
+      toast.classList.add('on'); setTimeout(() => toast.classList.remove('on'), 2200);
+    }
+  }, 2600);
+
+  // ---------- interattività del telefono ----------
+  const $ = (id: string) => document.getElementById(id)!;
+  let tt = 0;
+  const say = (m: string) => { toast.textContent = m; toast.classList.add('on'); clearTimeout(tt); tt = window.setTimeout(() => toast.classList.remove('on'), 2000); };
+
+  type Slide = { c: string; t: string; s: string; poll?: string[]; cta?: boolean; sc?: number };
+  const STORIES: Record<string, { name: string; reel?: boolean; slides: Slide[] }> = {
+    reel: { name: 'Reel', reel: true, slides: [{ c: 'a', t: 'La sfoglia', s: 'Tirata a mano, ogni giorno', sc: 1 }, { c: 'd', t: 'Il taglio', s: 'Sottile, come una volta', sc: 2 }, { c: 'b', t: 'La cottura', s: 'Pochi minuti, fuoco vivo', sc: 3 }, { c: 'c', t: 'Il piatto', s: 'Tagliolini al limone e gamberi', sc: 4 }] },
+    menu: { name: 'Menu', slides: [{ c: 'a', t: 'Menu di oggi', s: 'Tagliolini, risotto allo zafferano, tiramisù' }, { c: 'd', t: 'Novità', s: 'Risotto alla marinara dalle 19' }, { c: 'c', t: 'Sabato ci sei?', s: 'Prenota il tuo tavolo', poll: ['Ci sono', 'Non posso'] }] },
+    oggi: { name: 'Oggi', slides: [{ c: 'b', t: 'Si cucina!', s: 'Dalle 12:00, tutto fresco' }, { c: 'a', t: 'Tavolo pronto', s: 'Prenota e non aspetti' }] },
+    ordini: { name: 'Ordini', slides: [{ c: 'c', t: 'Prenota in 10 secondi', s: 'Scrivici e ti teniamo il tavolo', cta: true }] },
+    rec: { name: 'Recensioni', slides: [{ c: 'a', t: '“Il miglior risotto di Milano”', s: 'Marta R.' }, { c: 'b', t: '“Cortesia e profumo di casa”', s: 'Luca P.' }] },
+  };
+  const sEl = $('story'), sBody = $('sBody'), sBars = $('sBars'), sName = $('sName');
+  let sk = '', si = 0, sTimer = 0;
+  const closeStory = () => { clearTimeout(sTimer); sEl.classList.remove('on'); setTimeout(() => { sEl.hidden = true; }, 250); };
+  const showSlide = () => {
+    const st = STORIES[sk], sl = st.slides[si];
+    sName.textContent = st.name;
+    sBars.innerHTML = st.slides.map((_, i) => `<i class="${i < si ? 'done' : i === si ? 'cur' : ''}"></i>`).join('');
+    sBody.dataset.c = sl.c; sBody.dataset.sc = String(sl.sc || '');
+    sBody.innerHTML = `<span class="sh s1"></span><span class="sh s2"></span><b class="s-t">${sl.t}</b><span class="s-s">${sl.s}</span>`;
+    if (sl.poll) {
+      const w = document.createElement('div'); w.className = 's-poll';
+      sl.poll.forEach((o, k) => {
+        const b = document.createElement('button'); b.type = 'button'; b.innerHTML = `<i style="width:0"></i><span>${o}<em></em></span>`;
+        b.addEventListener('click', () => { const pc = k ? [32, 68] : [68, 32]; [...w.children].forEach((c, n) => { (c.querySelector('i') as HTMLElement).style.width = pc[n] + '%'; c.querySelector('em')!.textContent = pc[n] + '%'; }); clearTimeout(sTimer); });
+        w.appendChild(b);
+      });
+      sBody.appendChild(w);
+    }
+    if (st.reel) { const h = document.createElement('button'); h.type = 'button'; h.className = 'rl-h'; h.setAttribute('aria-label', 'Mi piace'); h.setAttribute('aria-pressed', String(posts[1].querySelector('.heart')!.getAttribute('aria-pressed') === 'true')); h.innerHTML = `<svg viewBox="0 0 24 24"><path d="${HEART}"/></svg>`; h.addEventListener('click', () => { like(posts[1], h.getAttribute('aria-pressed') !== 'true'); h.setAttribute('aria-pressed', posts[1].querySelector('.heart')!.getAttribute('aria-pressed')!); }); sBody.appendChild(h); }
+    if (sl.cta) { const w = document.createElement('div'); w.className = 's-cta'; w.innerHTML = `<a href="${sEl.dataset.wa}" target="_blank" rel="noopener">Prenota su WhatsApp</a>`; sBody.appendChild(w); }
+    clearTimeout(sTimer);
+    if (!rm && !sl.poll && !sl.cta) sTimer = window.setTimeout(nextSlide, 3200);
+  };
+  const nextSlide = () => { if (si < STORIES[sk].slides.length - 1) { si++; showSlide(); } else if (STORIES[sk].reel) { si = 0; showSlide(); } else closeStory(); };
+  const prevSlide = () => { if (si > 0) { si--; showSlide(); } };
+  const openStory = (k: string) => { sk = k; si = 0; sEl.hidden = false; requestAnimationFrame(() => sEl.classList.add('on')); showSlide(); };
+  $$<HTMLElement>('[data-story]').forEach((b) => b.addEventListener('click', () => openStory(b.dataset.story!)));
+  $('sNext').addEventListener('click', nextSlide); $('sPrev').addEventListener('click', prevSlide); $('sClose').addEventListener('click', closeStory);
+
+  const sheet = $('sheet'), sheetBg = $('sheetBg'), shT = $('shT'), shB = $('shB');
+  const openSheet = (title: string, node: HTMLElement) => { shT.textContent = title; shB.replaceChildren(node); sheet.hidden = false; sheetBg.hidden = false; requestAnimationFrame(() => sheet.classList.add('on')); };
+  const closeSheet = () => { sheet.classList.remove('on'); sheetBg.hidden = true; setTimeout(() => { sheet.hidden = true; }, 300); };
+  $('shX').addEventListener('click', closeSheet); sheetBg.addEventListener('click', closeSheet);
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { if (!sEl.hidden) closeStory(); if (!sheet.hidden) closeSheet(); }
+    if (!sEl.hidden && e.key === 'ArrowRight') nextSlide();
+    if (!sEl.hidden && e.key === 'ArrowLeft') prevSlide();
+  });
+
+  const seed: [string, string][][] = [
+    [['marta.r', 'Che profumo, arrivo!'], ['luca_p', 'Prenotato per sabato']],
+    [['giulia_92', 'Guardato tre volte'], ['andrea', 'Bravissimi'], ['sara.b', 'Mi insegnate?']],
+    [['paolo', 'Ci siamo!']],
+    [['elena', 'Il team migliore'], ['davide', 'Sempre una garanzia']],
+  ];
+  const replies = ['Grazie! Ti aspettiamo.', 'Che bello leggerti, passa a trovarci!', 'Grazie mille, ti scriviamo in privato.'];
+  const counts = posts.map((p) => p.querySelector<HTMLElement>('.ccount')!);
+  const label = (i: number) => { counts[i].textContent = `Vedi tutti i ${seed[i].length} commenti`; };
+  posts.forEach((_, i) => label(i));
+  const openComments = (i: number) => {
+    const w = document.createElement('div'); const ul = document.createElement('ul'); ul.className = 'cm';
+    const add = (n: string, t: string, me = false) => { const li = document.createElement('li'); if (me) li.className = 'me'; const b = document.createElement('b'); b.textContent = n; li.append(b, document.createTextNode(t)); ul.appendChild(li); ul.scrollTop = ul.scrollHeight; return li; };
+    seed[i].forEach(([n, t]) => add(n, t));
+    const f = document.createElement('form'); f.className = 'cm-f';
+    f.innerHTML = '<input type="text" maxlength="120" placeholder="Aggiungi un commento" aria-label="Il tuo commento" /><button type="submit">Invia</button>';
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inp = f.querySelector('input')!, t = inp.value.trim(); if (!t) return;
+      inp.value = ''; seed[i].push(['tu', t]); add('tu', t, true); label(i);
+      const typing = document.createElement('li'); typing.innerHTML = '<b>osteria.marea</b><span class="dots-c"><i></i><i></i><i></i></span>'; ul.appendChild(typing); ul.scrollTop = ul.scrollHeight;
+      setTimeout(() => { typing.remove(); const r = replies[Math.floor(Math.random() * replies.length)]; seed[i].push(['osteria.marea', r]); add('osteria.marea', r); label(i); }, 1500);
+    });
+    w.append(ul, f); openSheet('Commenti', w);
+  };
+  const openShare = () => {
+    const w = document.createElement('div'); w.className = 'shr';
+    [['WhatsApp', '#25d366', 'Condiviso su WhatsApp'], ['Storia', '#ff5fa2', 'Aggiunto alla tua storia'], ['Copia link', '#0034d6', 'Link copiato'], ['Invia', '#ffb020', 'Inviato a un amico']].forEach(([n, c, m]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.style.setProperty('--c', c); b.textContent = n;
+      b.addEventListener('click', () => { if (n === 'Copia link') navigator.clipboard?.writeText(location.origin + '/social').catch(() => {}); closeSheet(); setTimeout(() => say(m), 250); });
+      w.appendChild(b);
+    });
+    openSheet('Condividi', w);
+  };
+  posts.forEach((p, i) => {
+    p.querySelector('.cbtn')!.addEventListener('click', () => openComments(i));
+    p.querySelector('.ccount')!.addEventListener('click', () => openComments(i));
+    p.querySelector('.sbtn')!.addEventListener('click', openShare);
+  });
+
+  // ---------- calendario ----------
+  const TYPES: Record<string, { c: string; on: (wd: number, d: number) => boolean }> = {
+    reel: { c: '#ffe000', on: (w) => w === 1 || w === 4 },
+    post: { c: '#ffffff', on: (w) => w === 0 || w === 2 || w === 5 },
+    story: { c: '#ff5fa2', on: (w) => w < 6 },
+    comm: { c: '#7cf0c9', on: (w) => w === 3 || w === 6 },
+    collab: { c: '#ffb020', on: (_w, d) => d === 8 || d === 22 },
+  };
+  const daysEl = $('days');
+  daysEl.innerHTML = ['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((d) => `<span class="dh">${d}</span>`).join('') + Array.from({ length: 35 }, (_, i) => i < 30 ? `<div class="day" style="--d:${i * 0.018}s"><small>${i + 1}</small><span class="dt"></span></div>` : '<div class="day off"></div>').join('');
+  const cells = $$<HTMLElement>('.day:not(.off)');
+  const chips = $$<HTMLButtonElement>('.chip-t');
+  const paintCal = () => {
+    const on = chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.k!);
+    let total = 0, covered = 0;
+    cells.forEach((cell, i) => {
+      const wd = i % 7, d = i + 1, act = on.filter((k) => TYPES[k].on(wd, d));
+      total += act.length; if (act.length) covered++;
+      const dt = cell.querySelector('.dt')!;
+      const key = act.join();
+      if (cell.dataset.k !== key) { dt.innerHTML = act.map((k) => `<i style="background:${TYPES[k].c}"></i>`).join(''); cell.dataset.k = key; }
+      const t = Math.min(act.length / 4, 1);
+      cell.style.background = act.length ? `hsl(${230 + 182 * t} ${30 + 60 * t}% ${30 + 14 * t}% / ${0.35 + 0.5 * t})` : '';
+      cell.style.borderColor = act.length ? `hsl(${230 + 182 * t} ${40 + 50 * t}% ${60 + 10 * t}% / .6)` : '';
+    });
+    const k = on.length / chips.length;
+    $('cN').textContent = String(total); $('cD').textContent = `${covered}/30`; $('cG').textContent = '+' + Math.round(Math.min(total * 1.15, 130)) + '%';
+    $('month').style.setProperty('--kc', k > 0.05 ? `hsl(${230 + 182 * k} ${18 + 82 * k}% ${74 - 6 * k}%)` : '#fff');
+    $('calAll').textContent = on.length === chips.length ? 'Spegni tutto' : 'Accendi tutto';
+  };
+  chips.forEach((c) => c.addEventListener('click', () => { c.setAttribute('aria-pressed', String(c.getAttribute('aria-pressed') !== 'true')); paintCal(); }));
+  $('calAll').addEventListener('click', () => { const all = chips.every((c) => c.getAttribute('aria-pressed') === 'true'); chips.forEach((c, i) => setTimeout(() => { c.setAttribute('aria-pressed', String(!all)); paintCal(); }, rm ? 0 : i * 140)); });
+  paintCal();
+</script>

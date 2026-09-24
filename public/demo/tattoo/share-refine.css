@@ -1,0 +1,106 @@
+/* Mobile-first refinement for Passa il Segno sharing. Keeps the existing concept and art direction. */
+@media(max-width:760px){
+  .referral-copy{display:flex;flex-direction:column}
+  .referral-copy>.eyebrow{order:0}
+  .referral-title{order:1}
+  .referral-lead{order:2;margin-bottom:20px}
+  .referral-share{order:3;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 24px}
+  .share-status{order:4;margin:0 0 22px;min-height:15px}
+  .referral-stage-nav{order:5;margin-top:0}
+  .referral-stage-copy{order:6}
+  .referral-progress{order:7}
+  .referral-disclaimer{order:8}
+
+  .referral-share button{position:relative;overflow:hidden;min-height:48px;border-color:#66655e;background:transparent;color:var(--paper);padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none;font-size:9px;letter-spacing:.1em}
+  .referral-share button::after{font-size:15px;line-height:1;letter-spacing:0;opacity:.9}
+  .referral-share button[data-share-referral]{grid-column:1/-1;min-height:68px;background:var(--paper);border-color:var(--paper);color:var(--ink);padding:15px 17px;text-align:left;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.12);transition:transform .35s var(--ease),background .35s,color .35s,border-color .35s,box-shadow .35s}
+  .referral-share button[data-share-referral]::before{content:'PASSA IL SEGNO';display:block;font-family:CulturaSerif,Georgia,serif;font-size:21px;line-height:1;letter-spacing:-.02em;text-transform:none}
+  .referral-share button[data-share-referral]{font-size:0}
+  .referral-share button[data-share-referral]::after{content:'↗';width:36px;height:36px;border:1px solid #a9a49a;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:0 0 auto;transition:transform .45s var(--ease),border-color .35s}
+  .referral-share button[data-share-referral]:active{transform:scale(.985)}
+  .referral-share button[data-whatsapp-referral]::after{content:'↗'}
+  .referral-share button[data-copy-referral]::after{content:'＋'}
+  .referral-share::before{content:'UN TAP · IL SEGNO PARTE DA QUI';grid-column:1/-1;color:#8f8c84;font-size:8px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:2px;transition:color .35s,letter-spacing .55s var(--ease)}
+
+  .share-status{color:#a9a59b;font-size:9px;line-height:1.45;letter-spacing:.025em;transition:color .3s,transform .45s var(--ease),opacity .35s}
+  .referral.share-feedback .share-status{color:var(--paper);transform:translateY(-1px)}
+  .referral.share-complete .share-status{color:var(--red-bright)}
+
+  .referral.share-active .referral-media{transform:scale(1)!important}
+  .referral.share-active .referral-motion{opacity:.56}
+  .referral.share-active .referral-canvas-host{filter:saturate(1.08)}
+
+  .referral-stage-nav{border-top-color:#4d4e47;border-bottom-color:#4d4e47}
+  .referral-stage{transition:background .45s var(--ease),color .4s,border-color .4s,transform .45s var(--ease)}
+  .referral-stage[aria-pressed=true]{background:#ffffff08}
+
+  /* Post-share reveal: one short cinematic beat, then a quiet final state. */
+  .referral-visual::before,.referral-visual::after{content:'';position:absolute;z-index:5;pointer-events:none;opacity:0}
+  .referral-visual::before{left:50%;top:50%;width:min(60vw,260px);aspect-ratio:1;border:1px solid rgba(197,77,56,.78);border-radius:50%;transform:translate(-50%,-50%) scale(.35)}
+  .referral-visual::after{top:10%;bottom:12%;left:18px;width:1px;background:linear-gradient(to bottom,transparent,rgba(197,77,56,.9) 22%,rgba(238,233,223,.72) 52%,rgba(197,77,56,.75) 78%,transparent);box-shadow:0 0 22px rgba(197,77,56,.22)}
+
+  .referral.share-success-enter .referral-media{transform:scale(.992)!important}
+  .referral.share-success-enter .referral-motion{opacity:.7;filter:grayscale(.15) contrast(1.12) saturate(.95)}
+  .referral.share-success-enter .referral-canvas-host{filter:saturate(1.18) contrast(1.04)}
+  .referral.share-success-enter .share-status{transform:translateY(2px);opacity:.72}
+
+  .referral.share-success-reveal .referral-visual::before{animation:referral-success-ring 1s var(--ease) both}
+  .referral.share-success-reveal .referral-visual::after{animation:referral-success-scan .95s var(--ease) both}
+  .referral.share-success-reveal .referral-media{animation:referral-success-media 1.05s var(--ease) both}
+  .referral.share-success-reveal .referral-motion{animation:referral-success-motion 1.05s var(--ease) both}
+  .referral.share-success-reveal .referral-canvas-host{animation:referral-success-canvas 1.05s var(--ease) both}
+  .referral.share-success-reveal .referral-stage:last-child{color:var(--paper);transform:translateY(-2px)}
+  .referral.share-success-reveal .referral-stage:last-child span{color:var(--red-bright)}
+  .referral.share-success-reveal .share-status{animation:referral-success-copy .85s var(--ease) both}
+
+  .referral.share-success-settled .referral-share::before{content:'03 / NUOVA STORIA';color:var(--red-bright);letter-spacing:.2em}
+  .referral.share-success-settled .referral-share button[data-share-referral]{background:transparent;color:var(--paper);border-color:#77766d;box-shadow:none}
+  .referral.share-success-settled .referral-share button[data-share-referral]::before{content:'PASSA ANCORA'}
+  .referral.share-success-settled .referral-share button[data-share-referral]::after{border-color:#77766d;transform:rotate(12deg)}
+  .referral.share-success-settled .share-status{color:var(--paper);font-family:CulturaSerif,Georgia,serif;font-size:16px;line-height:1.15;letter-spacing:0;max-width:260px}
+  .referral.share-success-settled .referral-stage:last-child{color:var(--paper);background:rgba(197,77,56,.075);box-shadow:inset 0 -1px 0 var(--red-bright)}
+  .referral.share-success-settled .referral-stage:last-child span{color:var(--red-bright)}
+  .referral.share-success-settled .referral-progress span{box-shadow:0 0 14px rgba(197,77,56,.32)}
+  .referral.share-success-settled .referral-media{transform:scale(1)!important}
+  .referral.share-success-settled .referral-motion{opacity:.52;filter:grayscale(.28) contrast(1.1) saturate(.85)}
+
+  @keyframes referral-success-ring{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.32)}
+    24%{opacity:.82}
+    100%{opacity:0;transform:translate(-50%,-50%) scale(1.65)}
+  }
+  @keyframes referral-success-scan{
+    0%{opacity:0;transform:translateX(0)}
+    18%{opacity:.9}
+    100%{opacity:0;transform:translateX(calc(100vw - 76px))}
+  }
+  @keyframes referral-success-media{
+    0%{transform:scale(.988)}
+    42%{transform:scale(1.022)}
+    100%{transform:scale(1)}
+  }
+  @keyframes referral-success-motion{
+    0%{opacity:.56}
+    36%{opacity:.82;filter:grayscale(0) contrast(1.15) saturate(1)}
+    100%{opacity:.52;filter:grayscale(.28) contrast(1.1) saturate(.85)}
+  }
+  @keyframes referral-success-canvas{
+    0%{filter:saturate(1.06);transform:scale(1)}
+    45%{filter:saturate(1.3) contrast(1.08);transform:scale(1.018)}
+    100%{filter:saturate(1.08);transform:scale(1)}
+  }
+  @keyframes referral-success-copy{
+    0%{opacity:.18;transform:translateY(8px)}
+    100%{opacity:1;transform:none}
+  }
+}
+
+@media(max-width:360px){
+  .referral-share{grid-template-columns:1fr}
+  .referral-share button[data-share-referral],.referral-share::before{grid-column:1}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .referral-share button,.share-status,.referral-share::before,.referral-stage{transition:none!important}
+  .referral.share-success-reveal .referral-visual::before,.referral.share-success-reveal .referral-visual::after,.referral.share-success-reveal .referral-media,.referral.share-success-reveal .referral-motion,.referral.share-success-reveal .referral-canvas-host,.referral.share-success-reveal .share-status{animation:none!important}
+}

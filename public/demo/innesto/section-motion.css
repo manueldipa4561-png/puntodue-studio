@@ -1,0 +1,96 @@
+/* INNESTO — Section House motion layer
+   Higgsfield motion is the primary stage visual. Three.js is an optional interaction enhancement. */
+
+.section-stage{position:relative}
+
+.section-motion-poster,
+.section-hf-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  box-sizing:border-box;
+  padding:clamp(18px,2.25vw,38px);
+  object-fit:contain;
+  object-position:center;
+  pointer-events:none;
+}
+
+.section-motion-poster{
+  z-index:1;
+  opacity:.74;
+  filter:saturate(.72) contrast(1.04) brightness(.72);
+  transition:opacity .5s ease,filter .45s ease;
+}
+
+/* The video is visible from HTML alone: the stage never depends on JS to become non-empty. */
+.section-hf-video{
+  z-index:2;
+  opacity:.97;
+  background:transparent;
+  filter:saturate(.86) contrast(1.055) brightness(.88);
+  transition:opacity .45s ease,filter .45s ease,transform .55s cubic-bezier(.2,.7,.2,1);
+}
+
+.section-stage.motion-ready .section-motion-poster{opacity:.03}
+.section-stage.motion-ready .section-fallback{opacity:.03}
+.section-stage.motion-error .section-hf-video{opacity:0!important}
+.section-stage.motion-error .section-motion-poster{opacity:.94}
+.section-stage.motion-error .section-fallback{opacity:.10!important}
+.section-stage.motion-paused .section-hf-video{opacity:.88}
+
+/* Phase selection both seeks the film and subtly re-art-directs the stage. */
+.section-stage[data-motion-phase="1"] .section-hf-video{filter:saturate(.58) contrast(1.04) brightness(.78)}
+.section-stage[data-motion-phase="2"] .section-hf-video{filter:saturate(.70) contrast(1.07) brightness(.82)}
+.section-stage[data-motion-phase="3"] .section-hf-video{filter:saturate(.80) contrast(1.06) brightness(.85)}
+.section-stage[data-motion-phase="4"] .section-hf-video{filter:saturate(.92) contrast(1.055) brightness(.89)}
+
+/* Keep the procedural scene available only as a tactile enhancement. */
+#section-canvas{
+  z-index:3!important;
+  opacity:0!important;
+  pointer-events:none;
+  transition:opacity .28s ease;
+}
+.section-stage.is-live.motion-interacting #section-canvas{opacity:.76!important}
+.section-stage.is-live.motion-interacting .section-hf-video{opacity:.28;filter:saturate(.68) contrast(1.08) brightness(.66)}
+.section-stage.is-live.motion-interacting .section-motion-poster{opacity:0}
+
+.section-fallback{z-index:0}
+.section-stage:before,.stage-axis,.stage-caption{z-index:6!important}
+.section-stage:after{z-index:4!important}
+.section-stage.motion-ready:before{color:#b6aea2}
+.stage-caption{text-shadow:0 1px 12px rgba(0,0,0,.65);backdrop-filter:blur(2px)}
+
+/* Technical field remains visible around the film rather than replacing it. */
+.section-stage{
+  background:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),
+    radial-gradient(circle at 52% 43%,#302f29 0,#1e1f1b 38%,#12130f 72%,#0f100d 100%);
+  background-size:72px 72px,72px 72px,auto;
+}
+
+@media (max-width:900px){
+  .section-motion-poster,.section-hf-video{padding:clamp(12px,4vw,26px)}
+}
+
+@media (max-width:560px){
+  .section-motion-poster,.section-hf-video{padding:10px;object-fit:contain}
+  .section-hf-video{opacity:1}
+  .section-stage.is-live.motion-interacting #section-canvas{opacity:.58!important}
+  .section-stage.is-live.motion-interacting .section-hf-video{opacity:.34}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .section-hf-video,#section-canvas{display:none!important}
+  .section-motion-poster{display:block!important;opacity:.96!important;filter:saturate(.76) contrast(1.04) brightness(.80)!important}
+  .section-fallback{opacity:.04!important}
+  .section-stage{
+    background:
+      linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px),
+      radial-gradient(circle at 50% 42%,#38372f 0,#22231e 35%,#141511 68%,#10110e 100%)!important;
+    background-size:72px 72px,72px 72px,auto!important;
+  }
+}

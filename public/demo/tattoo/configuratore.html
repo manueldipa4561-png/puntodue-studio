@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Configuratore 3D dimostrativo per esplorare un concept tattoo, parte della demo Cultura Tattoo Gallery realizzata da Punto Due Studio.">
+  <meta name="theme-color" content="#eee9df">
+  <title>Configura il tuo segno — Cultura Tattoo Gallery Demo</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="configuratore.css">
+  <link rel="stylesheet" href="mobile.css">
+  <script src="configuratore.js" type="module"></script>
+</head>
+<body class="configurator-page">
+  <div class="cfg-demo-bar"><span>CONCEPT WEBSITE · PUNTO DUE STUDIO</span><span>SIMULAZIONE 3D — NON È UN PREVENTIVO NÉ UNA PREVIEW CLINICA</span></div>
+  <header class="cfg-header">
+    <a class="cfg-brand" href="index.html" aria-label="Cultura Tattoo Gallery, torna alla home">CULTURA<span>TATTOO GALLERY</span></a>
+    <a class="cfg-back" href="index.html#concept">← TORNA ALL’ESPLORAZIONE</a>
+  </header>
+
+  <main class="cfg-shell" data-tattoo-configurator>
+    <section class="cfg-intro" aria-labelledby="cfg-title">
+      <div>
+        <p class="cfg-eyebrow">CONFIGURATORE / IL TUO SEGNO</p>
+        <h1 id="cfg-title">Costruisci l’idea.<br><em>Guardala prendere forma.</em></h1>
+      </div>
+      <p>Un configuratore concettuale ispirato ai migliori flussi di personalizzazione automotive: scegli zona, disegno, dimensioni e finitura mentre la simulazione 3D si aggiorna in tempo reale. Il risultato serve a visualizzare una direzione creativa da discutere poi con l’artista.</p>
+    </section>
+
+    <nav class="cfg-progress-nav" aria-label="Fasi del configuratore">
+      <button type="button" data-step-target="step-area" aria-current="step"><span>01</span><small>ZONA</small></button>
+      <button type="button" data-step-target="step-design" aria-current="false"><span>02</span><small>DESIGN</small></button>
+      <button type="button" data-step-target="step-size" aria-current="false"><span>03</span><small>MISURE</small></button>
+      <button type="button" data-step-target="step-finish" aria-current="false"><span>04</span><small>FINITURA</small></button>
+      <button type="button" data-step-target="step-summary" aria-current="false"><span>05</span><small>RIEPILOGO</small></button>
+    </nav>
+
+    <section class="cfg-workspace" aria-label="Configuratore tattoo 3D">
+      <div class="cfg-viewer">
+        <div class="cfg-viewer-toolbar">
+          <span class="cfg-viewer-label" id="viewer-label">AVAMBRACCIO ESTERNO · RITRATTO</span>
+          <div class="cfg-view-actions" aria-label="Controlli della vista 3D">
+            <button type="button" data-view-left aria-label="Ruota la vista a sinistra">←</button>
+            <button type="button" data-view-reset aria-label="Ripristina la vista">↺</button>
+            <button type="button" data-view-right aria-label="Ruota la vista a destra">→</button>
+          </div>
+        </div>
+        <div id="tattoo-viewport" class="cfg-canvas-host" tabindex="0" aria-label="Anteprima 3D interattiva del tatuaggio. Trascina per ruotare la zona del corpo."></div>
+        <div class="cfg-fallback">L’anteprima 3D viene caricata qui.<br>Se WebGL non è disponibile puoi comunque configurare tutte le opzioni.</div>
+        <div class="cfg-viewer-meta"><span>DRAG — RUOTA LA VISTA</span><span>SIMULAZIONE CONCETTUALE 3D</span></div>
+      </div>
+
+      <div class="cfg-panel">
+        <section class="cfg-step" id="step-area" aria-labelledby="area-title">
+          <div class="cfg-step-head"><h2 id="area-title">Dove</h2><span>01</span></div>
+          <p>Scegli la zona da usare come base della simulazione. Il modello 3D cambia proporzioni e orientamento mantenendo la configurazione.</p>
+          <div class="cfg-option-grid">
+            <button type="button" class="cfg-choice" data-area="forearm" aria-pressed="true"><strong>Avambraccio esterno</strong><small>Verticale · alta leggibilità</small></button>
+            <button type="button" class="cfg-choice" data-area="inner" aria-pressed="false"><strong>Avambraccio interno</strong><small>Più intimo · rotazione interna</small></button>
+            <button type="button" class="cfg-choice" data-area="upper" aria-pressed="false"><strong>Braccio</strong><small>Superficie ampia · composizione forte</small></button>
+            <button type="button" class="cfg-choice" data-area="calf" aria-pressed="false"><strong>Polpaccio</strong><small>Slancio verticale · più spazio</small></button>
+          </div>
+        </section>
+
+        <section class="cfg-step" id="step-design" aria-labelledby="design-title">
+          <div class="cfg-step-head"><h2 id="design-title">Cosa</h2><span>02</span></div>
+          <p>Parti da uno dei concept originali della demo, ispirati al linguaggio black & grey / Chicano osservabile nei lavori dello studio, oppure carica una tua immagine.</p>
+          <div class="cfg-design-grid">
+            <button type="button" class="cfg-design" data-design="portrait" data-label="Ritratto" data-texture="assets/concept-inchiostro.webp" aria-pressed="true"><img src="assets/concept-inchiostro.webp" alt="Concept originale black and grey con ritratto, rosa e arco"><span>RITRATTO</span></button>
+            <button type="button" class="cfg-design" data-design="sacred" data-label="Sacro" data-texture="assets/configurator-sacro.webp" aria-pressed="false"><img src="assets/configurator-sacro.webp" alt="Concept originale black and grey con mani, rosa e arco"><span>SACRO</span></button>
+            <button type="button" class="cfg-design" data-design="ornamental" data-label="Ornamentale" data-texture="assets/configurator-ornamentale.webp" aria-pressed="false"><img src="assets/configurator-ornamentale.webp" alt="Concept originale black and grey con serpente, peonia e filigrana"><span>ORNAMENTALE</span></button>
+          </div>
+          <div class="cfg-upload">
+            <label for="design-upload"><span>Usa un tuo disegno o reference</span><em>CARICA IMMAGINE ↗</em></label>
+            <input id="design-upload" type="file" accept="image/png,image/jpeg,image/webp" aria-label="Carica un tuo disegno per la simulazione">
+          </div>
+        </section>
+
+        <section class="cfg-step" id="step-size" aria-labelledby="size-title">
+          <div class="cfg-step-head"><h2 id="size-title">Come occupa lo spazio</h2><span>03</span></div>
+          <p>Dimensione, posizione e orientamento agiscono direttamente sulla superficie 3D.</p>
+          <div class="cfg-slider"><label for="tattoo-size">Dimensione</label><input id="tattoo-size" type="range" min="25" max="82" value="52"><output id="tattoo-size-output" for="tattoo-size">52%</output></div>
+          <div class="cfg-slider"><label for="tattoo-position">Altezza</label><input id="tattoo-position" type="range" min="-35" max="35" value="0"><output id="tattoo-position-output" for="tattoo-position">Centro</output></div>
+          <div class="cfg-slider"><label for="tattoo-angle">Giro zona</label><input id="tattoo-angle" type="range" min="-180" max="180" value="0"><output id="tattoo-angle-output" for="tattoo-angle">0°</output></div>
+          <div class="cfg-slider"><label for="tattoo-rotation">Rotazione</label><input id="tattoo-rotation" type="range" min="-35" max="35" value="0"><output id="tattoo-rotation-output" for="tattoo-rotation">0°</output></div>
+        </section>
+
+        <section class="cfg-step" id="step-finish" aria-labelledby="finish-title">
+          <div class="cfg-step-head"><h2 id="finish-title">Finitura</h2><span>04</span></div>
+          <p>Regola il contrasto percepito e il tono della superficie per rendere la simulazione più leggibile. Non è una previsione del risultato sulla pelle reale.</p>
+          <div class="cfg-slider"><label for="tattoo-opacity">Intensità</label><input id="tattoo-opacity" type="range" min="55" max="100" value="88"><output id="tattoo-opacity-output" for="tattoo-opacity">88%</output></div>
+          <div class="cfg-tone-row" aria-label="Tono della superficie 3D">
+            <button type="button" class="cfg-tone" data-tone="#efc7a5" style="background:#efc7a5" aria-label="Tono superficie chiaro" aria-pressed="false"></button>
+            <button type="button" class="cfg-tone" data-tone="#cf9d78" style="background:#cf9d78" aria-label="Tono superficie medio chiaro" aria-pressed="true"></button>
+            <button type="button" class="cfg-tone" data-tone="#9f6e50" style="background:#9f6e50" aria-label="Tono superficie medio" aria-pressed="false"></button>
+            <button type="button" class="cfg-tone" data-tone="#6f4737" style="background:#6f4737" aria-label="Tono superficie scuro" aria-pressed="false"></button>
+          </div>
+        </section>
+
+        <section class="cfg-step" id="step-summary" aria-labelledby="summary-title">
+          <div class="cfg-step-head"><h2 id="summary-title">La tua configurazione</h2><span>05</span></div>
+          <dl class="cfg-summary">
+            <div><dt>ZONA</dt><dd id="summary-area">Avambraccio esterno</dd></div>
+            <div><dt>DESIGN</dt><dd id="summary-design">Ritratto</dd></div>
+            <div><dt>SCALA</dt><dd id="summary-size">52% · 0°</dd></div>
+            <div><dt>FINITURA</dt><dd id="summary-finish">Nero & grigio · intensità 88%</dd></div>
+          </dl>
+          <p style="margin-top:18px">Descrivi cosa vorresti cambiare o aggiungere. Questo testo non genera automaticamente un nuovo tattoo: serve come brief da portare alla consulenza.</p>
+          <label class="cfg-eyebrow" for="idea-text">IL TUO BRIEF</label>
+          <textarea class="cfg-idea" id="idea-text" placeholder="Es. ritratto più scuro, rosa meno dominante, composizione più verticale…"></textarea>
+          <div class="cfg-code"><div><span class="cfg-eyebrow">CODICE CONFIGURAZIONE</span><strong id="config-code">CTG-FOR-POR-5220</strong></div><button type="button" data-copy-code>Copia</button></div>
+          <p id="copy-status" aria-live="polite" style="font-size:9px;min-height:14px;margin:8px 0 0"></p>
+          <a class="cfg-primary" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer"><span>Porta l’idea allo studio</span><span>↗</span></a>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cfg-disclaimer">Questa pagina è una demo progettata da Punto Due Studio e non è il sito ufficiale di Cultura Tattoo Gallery. La simulazione 3D è un supporto creativo: anatomia, resa, dimensioni, fattibilità e progetto finale devono essere valutati direttamente dal tatuatore.</footer>
+</body>
+</html>

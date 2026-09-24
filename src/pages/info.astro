@@ -1,0 +1,205 @@
+---
+import Site from '../layouts/Site.astro';
+import Chat from '../components/Chat.astro';
+const people = [
+  { k: 'manuel', name: 'Manuel Di Paolo', ini: 'MD', role: 'Web design', line: 'Guida il reparto web design: siti, e-commerce e app, dal progetto al browser.', num: '393248423657', tel: '+39 324 842 3657' },
+  { k: 'nicolas', name: 'Nicolas Di Paolo', ini: 'ND', role: 'Social media management', line: 'Guida i social: strategia, contenuti e community per il tuo profilo.', num: '393248165947', tel: '+39 324 816 5947' },
+];
+const needs = [
+  { k: 'sito', t: 'Un sito', p: 'un sito' },
+  { k: 'ecom', t: 'E-commerce', p: 'un e-commerce' },
+  { k: 'app', t: 'Un\'app', p: 'un\'app' },
+  { k: 'social', t: 'Social', p: 'la gestione dei social' },
+  { k: 'ai', t: 'Agenti AI', p: 'degli agenti AI' },
+];
+---
+<Site title="Info — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
+  <section class="top">
+    <span class="lab">/info</span>
+    <h1>Premi invio.</h1>
+    <p class="lead">Compila i campi: il messaggio prende forma e lo mandi a chi lavora al tuo progetto.</p>
+  </section>
+
+  <section class="compose" id="scrivici">
+    <form class="cform" id="cform" novalidate>
+      <div class="seg" role="group" aria-label="Chi sei">
+        <button type="button" class="on" aria-pressed="true" data-mode="az">Un'azienda</button>
+        <button type="button" aria-pressed="false" data-mode="pr">Un privato</button>
+      </div>
+
+      <label class="fld"><span>Il tuo nome</span><input id="fName" type="text" autocomplete="given-name" maxlength="40" placeholder="Ottavia" /></label>
+      <label class="fld" data-for="az"><span>Nome dell'azienda</span><input id="fCompany" type="text" autocomplete="organization" maxlength="60" placeholder="Bottega Ferrante" /></label>
+      <label class="fld" data-for="az"><span>Di cosa si occupa</span><input id="fSector" type="text" maxlength="60" placeholder="Ceramiche artigianali" /></label>
+      <label class="fld" data-for="pr" hidden><span>Che lavoro fai</span><input id="fJob" type="text" maxlength="60" placeholder="Architetta d'interni" /></label>
+
+      <fieldset class="needs">
+        <legend>Cosa ti serve</legend>
+        <div class="nchips">
+          {needs.map((n) => <button type="button" class="nc" aria-pressed="false" data-k={n.k} data-p={n.p}>{n.t}</button>)}
+        </div>
+      </fieldset>
+
+      <label class="fld"><span>Qualcosa da aggiungere <em>(facoltativo)</em></span><textarea id="fNote" rows="2" maxlength="200" placeholder="Ad esempio: vorrei partire entro un mese"></textarea></label>
+    </form>
+
+    <div class="chatwin" aria-label="Anteprima del messaggio">
+      <div class="cw-h">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="lensH"><circle cx="37" cy="50" r="27" /></clipPath></defs><circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lensH)" /></svg>
+        <div><b>Punto Due Studio</b><small id="toWho">Scrivi a Manuel · web design</small></div>
+      </div>
+      <div class="cw-b" id="thread" aria-live="polite">
+        <div class="m me" id="preview"><p id="previewText"></p><small>ora</small></div>
+        <div class="m us-t" id="usTyping" hidden><Chat kind="us" /></div>
+        <div class="m us" id="usReply" hidden><span class="us-av" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><clipPath id="lensR"><circle cx="37" cy="50" r="27" /></clipPath></defs><circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lensR)" /></svg></span><p id="usText"></p></div>
+      </div>
+      <div class="cw-f">
+        <div class="who" role="group" aria-label="A chi scrivere">
+          {people.map((p, i) => <button type="button" class={i ? '' : 'on'} aria-pressed={i ? 'false' : 'true'} data-who={p.k} data-num={p.num}>{p.name.split(' ')[0]}</button>)}
+        </div>
+        <a class="btn" id="waSend" href="#" target="_blank" rel="noopener" aria-disabled="true">Invia su WhatsApp <span aria-hidden="true">→</span></a>
+        <a class="lnk" id="mailSend" href="mailto:projects@puntoduestudio.it">oppure per email</a>
+        <p class="hint" id="hint">Aggiungi il nome e cosa ti serve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <span class="lab">/about</span>
+    <h2>About us.</h2>
+    <p class="lead">Due fratelli, un solo studio.</p>
+    <div class="ppl">
+      {people.map((p, i) => (
+        <article class="pc">
+          <span class={`pav ${i ? 'w' : 'y'}`} aria-hidden="true">{p.ini}</span>
+          <span class="lab">{p.role}</span>
+          <h3>{p.name}</h3>
+          <p>{p.line}</p>
+          <div class="pact">
+            <a class="btn" href={`https://wa.me/${p.num}?text=${encodeURIComponent('Ciao ' + p.name.split(' ')[0] + '! Vorrei parlarvi di un progetto.')}`} target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">→</span></a>
+            <a class="lnk" href={`tel:+${p.num}`}>{p.tel}</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <ul class="mails">
+      <li class="main"><span class="lab">Per i progetti</span><a href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a></li>
+      <li><span class="lab">Informazioni</span><a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a></li>
+      <li><span class="lab">Assistenza clienti</span><a href="mailto:care@puntoduestudio.it">care@puntoduestudio.it</a></li>
+    </ul>
+  </section>
+
+  <section class="cta-s end">
+    <Chat kind="us" />
+    <p class="note-e">Quello che scrivi resta nel tuo browser finché non premi invia.</p>
+  </section>
+</Site>
+
+<style is:global>
+  .top { padding-bottom: 24px; }
+  .compose { display: grid; gap: clamp(24px, 4vw, 56px); grid-template-columns: 1fr; align-items: start; padding-top: 24px !important; }
+  .cform { display: grid; gap: 16px; }
+  .seg { display: inline-flex; padding: 4px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); justify-self: start; }
+  .seg button { border: 0; background: none; color: #fff; font: 700 .95rem 'Inter Tight Variable', system-ui, sans-serif; padding: 10px 18px; border-radius: 999px; cursor: pointer; transition: background .25s, color .25s; }
+  .seg button.on { background: var(--yellow); color: var(--blue); }
+  .fld { display: grid; gap: 8px; } .fld[hidden] { display: none; }
+  .fld span, .needs legend { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); } .fld em { font-style: normal; opacity: .7; }
+  .fld input, .fld textarea { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,20,90,.45); color: #fff; font: 500 1.05rem 'Inter Tight Variable', system-ui, sans-serif; resize: vertical; transition: border-color .2s, background .2s; }
+  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.4); }
+  .fld input:focus, .fld textarea:focus { outline: none; border-color: var(--yellow); background: rgba(0,20,90,.7); }
+  .needs { border: 0; margin: 0; padding: 0; } .needs legend { padding: 0; margin-bottom: 10px; }
+  .nchips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .nc { padding: 11px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,52,214,.6); color: #fff; font: 600 .98rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; transition: background .25s, color .25s, border-color .25s, transform .2s; }
+  .nc:hover { border-color: #fff; } .nc:active { transform: scale(.97); }
+  .nc[aria-pressed="true"] { background: var(--yellow); color: var(--blue); border-color: var(--yellow); }
+  .chatwin { display: grid; grid-template-rows: auto 1fr auto; border-radius: 26px; overflow: hidden; background: #e9edfb; color: #0a0f24; box-shadow: 0 30px 80px rgba(0,0,0,.3); min-height: 420px; }
+  .cw-h { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--blue); color: #fff; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .cw-h svg { width: 44px; height: 44px; padding: 6px; border-radius: 50%; background: #0a0f24; } .cw-h div { display: grid; gap: 2px; } .cw-h small { font-size: .78rem; color: rgba(255,255,255,.75); }
+  .cw-b { display: grid; align-content: start; gap: 12px; padding: 18px; }
+  .m { max-width: 88%; } .m p { margin: 0; line-height: 1.4; }
+  .m.me { justify-self: end; padding: 12px 14px 8px; border-radius: 18px 18px 4px 18px; background: var(--blue); color: #fff; } .m.me small { display: block; margin-top: 4px; text-align: right; font-size: 10px; opacity: .7; }
+  .m.us-t[hidden], .m.us[hidden] { display: none; }
+  .m.us { display: flex; align-items: flex-end; gap: 10px; }
+  .m.us p { padding: 14px 16px; border-radius: 18px 18px 18px 4px; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+  .us-av svg { width: 42px; height: 42px; display: block; padding: 6px; border-radius: 50%; background: #0a0f24; }
+  .m.us-t { max-width: 100%; }
+  .cw-f { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 16px 18px 18px; background: #fff; }
+  .cw-f .lnk { color: var(--blue); text-decoration-color: rgba(0,52,214,.4); } .cw-f .lnk:hover { color: #0a0f24; }
+  .who { display: inline-flex; padding: 3px; border-radius: 999px; background: #e9edfb; }
+  .who button { border: 0; background: none; padding: 8px 14px; border-radius: 999px; color: #0a0f24; font: 700 .9rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; } .who button.on { background: var(--blue); color: #fff; }
+  .cw-f .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; } .cw-f .btn[aria-disabled="true"]:hover { transform: none; background: var(--yellow); }
+  .hint { flex-basis: 100%; margin: 0; font-size: .85rem; color: #5a6178; min-height: 1.2em; } .hint.warn { color: #d61f4a; }
+  .team { border-top: 1px solid rgba(255,255,255,.25); }
+  .ppl { display: grid; gap: 20px; margin-top: 36px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  .pc { display: grid; align-content: start; gap: 12px; padding: 26px; border: 1px solid rgba(255,255,255,.3); border-radius: 20px; background: rgba(0,52,214,.55); transition: border-color .25s, transform .3s cubic-bezier(.2,.7,.2,1); }
+  .pc:hover { border-color: var(--yellow); transform: translateY(-4px); }
+  .pc h3 { font-size: 2rem; margin: 0; } .pc p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.45; }
+  .pav { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; font-weight: 700; font-size: 1.3rem; letter-spacing: -.02em; } .pav.y { background: var(--yellow); color: var(--blue); } .pav.w { background: #fff; color: var(--blue); }
+  .pact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 6px; }
+  .mails { list-style: none; margin: 36px 0 0; padding: 0; border-top: 1px solid rgba(255,255,255,.28); }
+  .mails li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .mails a { font-weight: 600; text-decoration: none; transition: color .2s; } .mails a:hover { color: var(--yellow); }
+  .mails .main a { font-size: 1.2rem; color: var(--yellow); }
+  .end { border-top: 1px solid rgba(255,255,255,.25); } .note-e { margin: 22px 0 0; font-size: .85rem; color: rgba(255,255,255,.7); }
+  @media (min-width: 1024px) { .compose { grid-template-columns: 1fr 1fr; } .chatwin { position: sticky; top: 110px; } }
+</style>
+
+<script>
+  const $ = (id: string) => document.getElementById(id)!;
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NUMS: Record<string, [string, string]> = { manuel: ['393248423657', 'Manuel · web design'], nicolas: ['393248165947', 'Nicolas · social media'] };
+  let mode = 'az', who = 'manuel', manual = false;
+
+  const val = (id: string) => (($(id) as HTMLInputElement).value || '').trim();
+  const list = (a: string[]) => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' e ' + a[a.length - 1];
+  const ncs = [...document.querySelectorAll<HTMLButtonElement>('.nc')];
+  const sel = () => ncs.filter((b) => b.getAttribute('aria-pressed') === 'true');
+  const usTyping = $('usTyping'), usReply = $('usReply');
+
+  const build = () => {
+    const name = val('fName');
+    const who_ = mode === 'az'
+      ? [name, val('fCompany') && `di ${val('fCompany')}`, val('fSector') && `(${val('fSector')})`].filter(Boolean).join(' ')
+      : [name, val('fJob')].filter(Boolean).join(', ');
+    const want = list(sel().map((b) => b.dataset.p!));
+    const note = val('fNote');
+    return { name, text: `Ciao! Sono ${who_ || '…'}. Cerco ${want || '…'}.${note ? ' ' + note : ''} Quando potremmo sentirci?`, ok: !!name && sel().length > 0 };
+  };
+
+  const wa = $('waSend') as HTMLAnchorElement, mail = $('mailSend') as HTMLAnchorElement, hint = $('hint');
+  const refresh = () => {
+    if (!manual) { const k = sel().map((b) => b.dataset.k); who = k.length && k.every((x) => x === 'social') ? 'nicolas' : 'manuel'; }
+    document.querySelectorAll<HTMLButtonElement>('.who button').forEach((b) => { const on = b.dataset.who === who; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+    $('toWho').textContent = `Scrivi a ${NUMS[who][1]}`;
+    const { text, ok } = build();
+    $('previewText').textContent = text;
+    wa.href = `https://wa.me/${NUMS[who][0]}?text=${encodeURIComponent(text)}`;
+    mail.href = `mailto:projects@puntoduestudio.it?subject=${encodeURIComponent('Nuovo progetto')}&body=${encodeURIComponent(text)}`;
+    wa.setAttribute('aria-disabled', String(!ok));
+    hint.classList.remove('warn');
+    hint.textContent = ok ? 'Pronto: si apre WhatsApp con il messaggio già scritto.' : 'Aggiungi il nome e cosa ti serve.';
+    usReply.hidden = true; usTyping.hidden = true;
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('.seg button').forEach((b) => b.addEventListener('click', () => {
+    mode = b.dataset.mode!;
+    document.querySelectorAll<HTMLButtonElement>('.seg button').forEach((x) => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); });
+    document.querySelectorAll<HTMLElement>('.fld[data-for]').forEach((f) => { f.hidden = f.dataset.for !== mode; });
+    refresh();
+  }));
+  ncs.forEach((b) => b.addEventListener('click', () => { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); refresh(); }));
+  document.querySelectorAll<HTMLButtonElement>('.who button').forEach((b) => b.addEventListener('click', () => { who = b.dataset.who!; manual = true; refresh(); }));
+  $('cform').addEventListener('input', refresh);
+  $('cform').addEventListener('submit', (e) => e.preventDefault());
+
+  let timer = 0;
+  wa.addEventListener('click', (e) => {
+    const { ok, name } = build();
+    if (!ok) { e.preventDefault(); hint.textContent = 'Serve il nome e almeno una voce in "Cosa ti serve".'; hint.classList.add('warn'); return; }
+    clearTimeout(timer);
+    usReply.hidden = true; usTyping.hidden = false;
+    const person = NUMS[who][1].split(' ')[0];
+    $('usText').textContent = `Ciao ${name}! Ti rispondiamo noi, ${person}, il prima possibile.`;
+    timer = window.setTimeout(() => { usTyping.hidden = true; usReply.hidden = false; }, rm ? 0 : 1800);
+  });
+  refresh();
+</script>
