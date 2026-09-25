@@ -4,552 +4,459 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#161513">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <title>INNESTO — Ristrutturazioni chiavi in mano</title>
-  <meta name="description" content="Concept portfolio per INNESTO: studio di ristrutturazione integrata in Emilia. Un solo interlocutore dal sopralluogo alla consegna delle chiavi.">
+  <meta name="description" content="INNESTO, studio di ristrutturazioni integrate in Emilia: sopralluogo, progetto, cantiere e consegna chiavi con un solo referente. Concept portfolio di Punto Due Studio.">
   <meta property="og:title" content="INNESTO — Ristrutturazioni chiavi in mano">
-  <meta property="og:description" content="Progetto, cantiere e materia come un unico processo. Concept portfolio di Punto Due Studio.">
+  <meta property="og:description" content="Dal grezzo alle chiavi, con un solo filo. Concept portfolio di Punto Due Studio.">
   <meta property="og:image" content="./img/2.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./site.css">
+  <link rel="preload" as="image" href="./img/2.webp">
   <style>
-    :root{
-      --bg:#F4EFE8; --soft:#E8DFD2; --line:#D8CCBB;
-      --ink:#231F1B; --muted:#8A8178; --accent:#B24A2E; --accent-deep:#8F3A22;
-      --paper:#FBF8F3;
-      --r-s:6px; --r-m:14px; --r-l:22px;
-      --pad:clamp(20px,6vw,100px);
-      --fs-display:clamp(2.7rem,8vw,7.4rem);
-      --fs-h2:clamp(1.9rem,5vw,3.9rem);
-      --ease:cubic-bezier(.22,1,.36,1);
-      --font-d:"Space Grotesk",system-ui,sans-serif;
-      --font-b:"Inter",system-ui,sans-serif;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-    body{
-      font-family:var(--font-b);background:var(--bg);color:var(--ink);
-      -webkit-font-smoothing:antialiased;line-height:1.5;
-      overflow-x:hidden;min-height:100dvh;
-    }
-    img{display:block;max-width:100%;height:auto}
-    a{color:inherit;text-decoration:none}
-    h1,h2,h3{font-family:var(--font-d);font-weight:600;line-height:1.02;letter-spacing:-.02em}
-    ::selection{background:var(--accent);color:#fff}
-    .skip-link{position:fixed;left:-999px;top:8px;z-index:200;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--r-s)}
-    .skip-link:focus{left:8px}
-    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-    .micro{font-family:var(--font-d);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
-    .accent{color:var(--accent)}
-    em{font-style:italic;color:var(--accent)}
+    /* HERO */
+    .hero{min-height:100dvh;display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px);align-items:center;padding:120px var(--pad) clamp(40px,5vw,70px)}
+    .hero h1{font-size:clamp(2.9rem,6vw,6.2rem);font-stretch:112%;margin:22px 0 26px}
+    .hero-copy p{max-width:44ch;font-size:1.08rem;color:var(--d-muted)}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .hero-media{position:relative;border-radius:var(--r-l);overflow:hidden;aspect-ratio:4/3;max-height:calc(100dvh - 170px);width:100%;background:#2a2723}
+    .hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-media figcaption{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;gap:10px;font-family:var(--font-d);font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#fff}
+    .hero-media figcaption span{background:rgba(22,21,19,.72);padding:7px 12px;border-radius:100px}
+    .hero-media figcaption span:last-child{background:var(--accent)}
+    .play-toggle{position:absolute;right:14px;top:14px;z-index:2;width:44px;height:44px;border-radius:100px;border:0;background:rgba(22,21,19,.72);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .play-toggle[hidden]{display:none}
+    .play-toggle svg{width:16px;height:16px}
 
-    /* header */
-    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
-      padding:16px var(--pad);transition:background .4s var(--ease),padding .4s var(--ease),border-color .4s;
-      border-bottom:1px solid transparent}
-    .site-header[data-scrolled]{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(12px);border-color:var(--line);padding-top:12px;padding-bottom:12px}
-    .brand{display:flex;flex-direction:column;line-height:1.05;font-family:var(--font-d)}
-    .brand strong{font-size:1.18rem;letter-spacing:.02em}
-    .brand span{font-size:.6rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
-    .desktop-nav{display:flex;gap:30px;font-family:var(--font-d);font-size:.9rem}
-    .desktop-nav a{position:relative;padding:4px 0;color:var(--ink)}
-    .desktop-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--accent);transition:width .35s var(--ease)}
-    .desktop-nav a:hover::after{width:100%}
-    .header-actions{display:flex;align-items:center;gap:14px}
-    .header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:var(--font-d);font-weight:500;
-      font-size:.86rem;padding:11px 20px;border-radius:100px;transition:background .3s,transform .3s var(--ease)}
-    .header-cta:hover{background:var(--accent-deep);transform:translateY(-2px)}
-    .menu-trigger{display:none;width:44px;height:44px;border:1px solid var(--line);background:var(--paper);border-radius:100px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
-    .menu-trigger span:not(.sr-only){width:18px;height:1.6px;background:var(--ink);transition:.3s var(--ease)}
-    .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    /* STRISCIA NUMERI */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0 var(--pad)}
+    .stats div{padding:clamp(28px,4vw,48px) 0;border-left:1px solid var(--s-line);padding-left:clamp(16px,2vw,28px)}
+    .stats div:first-child{border-left:0;padding-left:0}
+    .stats b{display:block;font-family:var(--font-d);font-weight:900;font-stretch:120%;font-size:clamp(2.4rem,5vw,4.2rem);line-height:.9}
+    .stats span{display:block;margin-top:10px;font-size:.92rem;color:var(--s-muted);max-width:22ch}
 
-    /* mobile menu */
-    .mobile-menu{position:fixed;inset:0;z-index:99;background:var(--bg);padding:100px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;
-      transform:translateY(-100%);transition:transform .5s var(--ease);visibility:hidden}
-    .mobile-menu[data-open]{transform:translateY(0);visibility:visible}
-    .mobile-menu nav{display:flex;flex-direction:column;gap:6px}
-    .mobile-menu nav a{font-family:var(--font-d);font-size:clamp(2rem,10vw,3rem);font-weight:600;display:flex;align-items:baseline;gap:16px;padding:8px 0;border-bottom:1px solid var(--line)}
-    .mobile-menu nav a span{font-size:.9rem;color:var(--accent);font-weight:500}
-    .mobile-menu p{color:var(--muted);font-family:var(--font-d);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+    /* PRIMA/DOPO */
+    .compare{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,80px);align-items:center}
+    .compare h2{font-size:var(--fs-h2);margin:20px 0 22px}
 
-    section{position:relative}
-    .pad{padding-left:var(--pad);padding-right:var(--pad)}
-    .section-pad{padding:clamp(70px,11vw,150px) var(--pad)}
+    /* METODO */
+    .steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--s-line);border:1px solid var(--s-line);border-radius:var(--r-l);overflow:hidden}
+    .steps li{background:var(--antracite);padding:clamp(22px,2.6vw,36px);min-height:300px;display:flex;flex-direction:column;transition:background .35s}
+    .steps li:hover{background:#1f1d1a}
+    .steps .big{font-family:var(--font-d);font-weight:900;font-stretch:125%;font-size:clamp(3rem,5vw,4.6rem);line-height:.8;color:transparent;-webkit-text-stroke:1.5px #E07A57}
+    .steps h3{font-size:var(--fs-h3);margin:auto 0 12px;padding-top:28px}
+    .steps p{color:var(--d-muted);font-size:.96rem}
+    .steps small{display:block;margin-top:16px;font-family:var(--font-d);font-weight:600;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#E07A57}
 
-    /* hero */
-    .hero{min-height:100dvh;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;
-      padding:120px var(--pad) 60px}
-    .hero-copy{max-width:640px}
-    .hero h1{font-size:var(--fs-display);margin:18px 0 30px}
-    .hero .reveal-line{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.1em}
-    .hero .reveal-line>span{display:block}
-    .hero-bottom{display:flex;flex-direction:column;gap:22px;max-width:440px}
-    .hero-bottom p{font-size:1.06rem;color:#4a443d}
-    .arrow-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:500;width:fit-content}
-    .arrow-link span{transition:transform .35s var(--ease)}
-    .arrow-link:hover span{transform:translateY(4px)}
-    .hero-stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
-    .hero-stats div b{font-family:var(--font-d);font-size:1.9rem;display:block;line-height:1}
-    .hero-stats div span{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+    /* CASI */
+    .cases{display:flex;flex-direction:column;gap:clamp(70px,10vw,140px)}
+    .case{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4.5vw,72px);align-items:center}
+    .case:nth-child(even) .reveal-media{order:2}
+    .case h3{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:800;font-stretch:112%;margin:14px 0 18px;line-height:.98}
+    .case p{color:#3F3A34;max-width:44ch}
+    .all-projects{margin-top:clamp(56px,8vw,100px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--s-line);padding-top:30px}
+    .all-projects p{font-family:var(--font-d);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.9rem)}
 
-    /* before/after slider */
-    .ba{position:relative;width:100%;aspect-ratio:3/2;border-radius:var(--r-l);overflow:hidden;box-shadow:0 30px 70px -40px rgba(35,31,27,.5);
-      user-select:none;touch-action:pan-y;cursor:ew-resize;background:var(--soft)}
-    .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-    .ba .after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%);will-change:clip-path}
-    .ba-label{position:absolute;top:14px;z-index:3;font-family:var(--font-d);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-      padding:6px 11px;border-radius:100px;background:rgba(20,16,12,.55);color:#fff;backdrop-filter:blur(4px)}
-    .ba-label.before{left:14px}
-    .ba-label.after{right:14px;background:var(--accent)}
-    .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:4;transform:translateX(-1px)}
-    .ba-handle b{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:100px;background:#fff;
-      display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;box-shadow:0 6px 18px -6px rgba(0,0,0,.5)}
-    .ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-    .ba-cap{position:absolute;left:14px;bottom:14px;z-index:3;color:#fff;font-family:var(--font-d);font-size:.72rem;letter-spacing:.08em;
-      background:rgba(20,16,12,.5);padding:6px 12px;border-radius:100px;backdrop-filter:blur(4px)}
+    /* 3D TEASER */
+    .teaser{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+    .teaser h2{font-size:var(--fs-h2);margin:20px 0 22px}
+    .teaser-fig{position:relative;display:block;border-radius:var(--r-l);overflow:hidden;background:#CFC8BD;aspect-ratio:1}
+    .teaser-fig img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+    .teaser-fig:hover img{transform:scale(1.04) rotate(-1deg)}
+    .teaser-fig .chip{position:absolute;left:16px;bottom:16px;background:var(--antracite);color:var(--d-fg);font-family:var(--font-d);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px;border-radius:100px}
+    .ticks{list-style:none;margin:26px 0 32px;display:grid;gap:10px}
+    .ticks li{display:flex;gap:12px;align-items:baseline}
+    .ticks li::before{content:"";width:8px;height:8px;background:var(--accent);flex:none;transform:translateY(-1px)}
 
-    /* statement */
-    .statement{border-top:1px solid var(--line)}
-    .statement-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;margin-top:26px}
-    .statement h2{font-size:var(--fs-h2)}
-    .statement p{font-size:1.1rem;color:#4a443d;max-width:420px}
+    /* MATERIA */
+    .mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .mat{position:relative;aspect-ratio:4/5;border-radius:var(--r-m);overflow:hidden;background:#2a2723}
+    .mat img{position:absolute;left:0;top:-6%;width:100%;height:112%;object-fit:cover}
+    .mat figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 16px;background:linear-gradient(transparent,rgba(12,11,10,.82));color:#fff}
+    .mat figcaption b{display:block;font-family:var(--font-d);font-weight:700;font-size:1.2rem}
+    .mat figcaption span{font-size:.84rem;color:#E9E2D8}
 
-    /* method */
-    .method{background:var(--ink);color:var(--paper)}
-    .method .micro{color:#b7ab9c}
-    .method h2{font-size:var(--fs-h2);color:var(--paper);margin-top:18px;max-width:16ch}
-    .method-list{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:60px}
-    .method-list li{border-top:1px solid rgba(255,255,255,.18);padding-top:20px}
-    .method-list b{font-family:var(--font-d);font-size:.8rem;color:var(--accent);letter-spacing:.1em}
-    .method-list h3{font-size:1.35rem;margin:14px 0 10px;color:var(--paper)}
-    .method-list p{color:#b7ab9c;font-size:.96rem}
+    /* INIZIATIVE */
+    .offers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .offer{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;gap:14px;min-height:290px}
+    .offer .ico{width:44px;height:44px;border-radius:100px;background:var(--accent-soft);color:var(--accent-deep);display:flex;align-items:center;justify-content:center}
+    .offer .ico svg{width:22px;height:22px}
+    .offer h3{font-size:1.3rem}
+    .offer p{color:#3F3A34;font-size:.95rem}
+    .offer .meta{margin-top:auto;font-family:var(--font-d);font-weight:600;font-size:.84rem;color:var(--accent-deep)}
+    .offer .link.meta{border-bottom-color:currentColor;width:fit-content}
+    .progress{height:8px;border-radius:100px;background:#E6DFD4;overflow:hidden}
+    .progress i{display:block;height:100%;width:62%;background:var(--accent);border-radius:inherit}
+    .coupon{margin-top:auto;border:1.5px dashed var(--accent);border-radius:var(--r-m);padding:10px 12px;font-family:var(--font-d);font-weight:700;letter-spacing:.08em;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+    .coupon small{font-weight:500;letter-spacing:0;color:var(--muted)}
+    .offers-note{margin-top:20px;font-size:.84rem;color:var(--muted)}
 
-    /* projects */
-    .projects .section-heading{max-width:640px}
-    .projects h2{font-size:var(--fs-h2);margin:16px 0}
-    .projects .section-heading p{color:#4a443d;font-size:1.05rem}
-    .cases{margin-top:clamp(40px,6vw,80px);display:flex;flex-direction:column;gap:clamp(60px,9vw,130px)}
-    .case{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
-    .case:nth-child(even) .case-visual{order:2}
-    .case-visual{position:relative;aspect-ratio:3/2;border-radius:var(--r-l);overflow:hidden;background:var(--soft);box-shadow:0 30px 70px -45px rgba(35,31,27,.5)}
-    .case-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .case-visual .after{clip-path:inset(0 0 0 100%);will-change:clip-path}
-    .case-visual .tag{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--font-d);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border-radius:100px;background:rgba(20,16,12,.55);color:#fff;backdrop-filter:blur(4px);transition:opacity .4s}
-    .case-num{font-family:var(--font-d);font-size:.85rem;color:var(--accent);letter-spacing:.12em}
-    .case-body h3{font-size:clamp(1.8rem,4vw,2.9rem);margin:12px 0 18px}
-    .case-body>p{color:#4a443d;max-width:44ch;font-size:1.03rem}
-    .case-facts{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
-    .case-facts div span{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.06em;margin-bottom:4px}
-    .case-facts div b{font-family:var(--font-d);font-size:1.12rem;font-weight:500}
+    /* STUDIO */
+    .studio{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+    .studio-pics{display:grid;grid-template-columns:1fr .8fr;gap:14px;align-items:end}
+    .studio-pics figure{position:relative;border-radius:var(--r-l);overflow:hidden;background:#bbb2a5}
+    .studio-pics figure:first-child{aspect-ratio:4/5}
+    .studio-pics figure:last-child{aspect-ratio:3/4;margin-bottom:40px}
+    .studio-pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .studio h2{font-size:var(--fs-h2);margin:20px 0 22px}
+    .guar{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s-line);border:1px solid var(--s-line);border-radius:var(--r-l);overflow:hidden;margin-top:34px}
+    .guar li{background:var(--cemento);padding:20px}
+    .guar b{font-family:var(--font-d);font-weight:700;font-size:1.02rem}
+    .guar p{font-size:.9rem;color:#4F4942;margin-top:6px}
 
-    /* materia */
-    .materia{background:var(--soft)}
-    .materia .section-heading{max-width:620px}
-    .materia h2{font-size:var(--fs-h2);margin:16px 0}
-    .materia .section-heading p{color:#4a443d;font-size:1.05rem}
-    .materia-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px}
-    .mat{position:relative;aspect-ratio:4/5;border-radius:var(--r-m);overflow:hidden;background:var(--bg)}
-    .mat img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-    .mat:hover img{transform:scale(1.06)}
-    .mat figcaption{position:absolute;left:12px;bottom:12px;font-family:var(--font-d);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-      color:#fff;background:rgba(20,16,12,.5);padding:6px 11px;border-radius:100px;backdrop-filter:blur(4px)}
+    /* CONTATTO */
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px)}
+    .contact h2{font-size:var(--fs-h2);margin:20px 0 22px}
+    .contact-info{margin-top:34px;display:grid;gap:14px;font-family:var(--font-d);font-weight:500}
+    .contact-info span{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--d-muted);font-weight:600}
 
-    /* studio + guarantees */
-    .studio{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
-    .studio-figure{aspect-ratio:4/3;border-radius:var(--r-l);overflow:hidden;background:var(--soft)}
-    .studio-figure img{width:100%;height:100%;object-fit:cover}
-    .studio h2{font-size:var(--fs-h2);margin:16px 0 22px}
-    .studio-copy>p{color:#4a443d;font-size:1.05rem;max-width:46ch}
-    .guarantees{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:34px;border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;background:var(--line)}
-    .guarantees li{background:var(--paper);padding:20px}
-    .guarantees b{display:flex;align-items:center;gap:9px;font-family:var(--font-d);font-size:1rem}
-    .guarantees b i{width:7px;height:7px;border-radius:100px;background:var(--accent);flex:none}
-    .guarantees p{font-size:.9rem;color:var(--muted);margin-top:7px}
-
-    /* contact */
-    .contact{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px)}
-    .contact .micro{color:#b7ab9c}
-    .contact h2{font-size:var(--fs-h2);color:var(--paper);margin:16px 0 20px}
-    .contact-copy>p{color:#b7ab9c;font-size:1.05rem;max-width:38ch}
-    .contact-info{margin-top:34px;display:flex;flex-direction:column;gap:6px;font-family:var(--font-d);font-size:.92rem}
-    .contact-info span{color:#b7ab9c;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
-    .brief-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
-    .brief-form label{display:flex;flex-direction:column;gap:7px}
-    .brief-form .wide{grid-column:1/-1}
-    .brief-form span{font-family:var(--font-d);font-size:.78rem;letter-spacing:.06em;color:#b7ab9c}
-    .brief-form input,.brief-form select,.brief-form textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);
-      border-radius:var(--r-s);padding:13px 14px;color:var(--paper);font-family:inherit;font-size:.96rem;transition:border-color .3s}
-    .brief-form input::placeholder,.brief-form textarea::placeholder{color:#7d7266}
-    .brief-form input:focus,.brief-form select:focus,.brief-form textarea:focus{outline:none;border-color:var(--accent)}
-    .brief-form select option{color:#231F1B}
-    .brief-form button{grid-column:1/-1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent);color:#fff;
-      border:none;border-radius:100px;padding:15px;font-family:var(--font-d);font-weight:500;font-size:1rem;cursor:pointer;transition:background .3s,transform .3s var(--ease)}
-    .brief-form button:hover{background:var(--accent-deep);transform:translateY(-2px)}
-    .form-note{grid-column:1/-1;font-size:.82rem;color:#b7ab9c;text-align:center}
-    .form-note[data-sent]{color:#e0a58e;font-weight:500}
-
-    /* footer */
-    .site-footer{padding:clamp(50px,7vw,90px) var(--pad) 120px}
-    .footer-brand{font-family:var(--font-d);font-size:clamp(3.4rem,15vw,10rem);font-weight:700;letter-spacing:-.03em;line-height:.9;color:var(--ink)}
-    .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:44px 0 30px;max-width:760px}
-    .footer-grid span{font-family:var(--font-d);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-    .footer-grid p{margin-top:6px;font-size:.96rem}
-    .demo-disclosure{font-size:.8rem;color:var(--muted);max-width:70ch;border-top:1px solid var(--line);padding-top:22px}
-
-    /* sticky mobile dock */
-    .dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;display:none;gap:10px;
-      background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);
-      border-radius:100px;padding:8px;box-shadow:0 12px 30px -18px rgba(35,31,27,.6)}
-    .dock a{flex:1;text-align:center;padding:13px;border-radius:100px;font-family:var(--font-d);font-weight:500;font-size:.92rem;min-height:44px;display:flex;align-items:center;justify-content:center;gap:7px}
-    .dock a.call{background:var(--soft);color:var(--ink)}
-    .dock a.book{background:var(--accent);color:#fff}
-
-    /* scroll reveal */
-    .fx{opacity:0;transform:translateY(28px)}
-    .fx-in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
-
-    /* responsive */
     @media (max-width:1080px){
-      .hero{grid-template-columns:1fr;gap:40px;padding-top:110px}
-      .ba{max-width:560px}
-      .statement-grid{grid-template-columns:1fr}
-      .method-list{grid-template-columns:1fr 1fr}
-      .materia-grid{grid-template-columns:1fr 1fr}
+      .hero{grid-template-columns:1fr;align-items:start;padding-top:118px}
+      .compare,.teaser,.studio{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .mat-grid,.offers{grid-template-columns:1fr 1fr}
     }
-    @media (max-width:760px){
-      .desktop-nav,.header-cta{display:none}
-      .menu-trigger{display:flex}
+    @media (max-width:820px){
+      .stats{grid-template-columns:1fr 1fr}
+      .stats div:nth-child(3){border-left:0;padding-left:0}
+      .stats div{border-top:1px solid var(--s-line)}
+      .stats div:nth-child(-n+2){border-top:0}
       .case{grid-template-columns:1fr;gap:22px}
-      .case:nth-child(even) .case-visual{order:0}
-      .studio,.contact{grid-template-columns:1fr}
-      .brief-form{grid-template-columns:1fr}
-      .guarantees{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:1fr;gap:18px}
-      .dock{display:flex}
-      .site-footer{padding-bottom:96px}
-      .hero-stats{gap:24px}
+      .case:nth-child(even) .reveal-media{order:0}
+      .contact{grid-template-columns:1fr}
+      .steps li{min-height:220px}
     }
-    @media (prefers-reduced-motion:reduce){
-      .fx{opacity:1;transform:none}
-      .mat img{transition:none}
+    @media (max-width:560px){
+      .steps,.offers,.guar{grid-template-columns:1fr}
+      .mat-grid{gap:10px}
+      .studio-pics figure:last-child{margin-bottom:0}
+      .hero-cta .btn{flex:1 1 100%}
+      .hero-media figcaption span:first-child{display:none}
     }
   </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Salta al contenuto</a>
 
-<header class="site-header" data-header>
-  <a class="brand" href="./" aria-label="INNESTO, homepage"><strong>INNESTO</strong><span>Ristrutturazioni</span></a>
-  <nav class="desktop-nav" aria-label="Navigazione principale">
-    <a href="#metodo">Metodo</a><a href="#progetti">Progetti</a><a href="#materia">Materia</a><a href="#studio">Studio</a>
+<header class="site-header" data-header data-on-dark>
+  <a class="brand" href="./index.html" aria-label="INNESTO, homepage">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="3" fill="#B24A2E"/><path d="M9 23V9h6v7h8v7z" fill="#FFF8F3"/></svg>
+    <span><b>INNESTO</b><small>Ristrutturazioni</small></span>
+  </a>
+  <nav class="nav" aria-label="Navigazione principale">
+    <a href="./index.html" aria-current="page">Studio</a>
+    <a href="./progetti.html">Progetti</a>
+    <a href="./configuratore.html">Casa 3D &amp; preventivo</a>
   </nav>
   <div class="header-actions">
-    <a class="header-cta" href="#contatto">Prenota il sopralluogo <span aria-hidden="true">↗</span></a>
-    <button class="menu-trigger" type="button" data-menu aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span class="sr-only">Apri menu</span></button>
+    <a class="btn btn-accent" href="#contatto">Sopralluogo gratuito <span class="arrow" aria-hidden="true">→</span></a>
+    <button class="menu-btn" type="button" data-menu aria-expanded="false" aria-controls="mobile-menu"><i></i><i></i><span class="sr-only">Menu</span></button>
   </div>
 </header>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav aria-label="Navigazione mobile">
-    <a href="#metodo"><span>01</span>Metodo</a>
-    <a href="#progetti"><span>02</span>Progetti</a>
-    <a href="#materia"><span>03</span>Materia</a>
-    <a href="#studio"><span>04</span>Studio</a>
-    <a href="#contatto"><span>05</span>Sopralluogo</a>
+    <a href="./index.html"><span>01</span>Studio</a>
+    <a href="./progetti.html"><span>02</span>Progetti</a>
+    <a href="./configuratore.html"><span>03</span>Casa 3D</a>
+    <a href="#contatto"><span>04</span>Sopralluogo</a>
   </nav>
-  <p>Ristrutturazioni integrate — Emilia · Concept portfolio</p>
+  <p>Ristrutturazioni chiavi in mano · Bologna, Modena, Parma · Concept portfolio</p>
 </div>
 
 <main id="main">
-  <!-- HERO con slider prima/dopo -->
-  <section class="hero" aria-labelledby="hero-title">
+  <!-- HERO scuro con video cantiere -> casa -->
+  <section class="hero t-dark" aria-labelledby="hero-title">
     <div class="hero-copy">
       <p class="micro">Ristrutturazioni chiavi in mano · Emilia</p>
       <h1 id="hero-title">
-        <span class="reveal-line"><span>Prima e dopo</span></span>
-        <span class="reveal-line"><span>lo stesso</span></span>
-        <span class="reveal-line"><span><em>interlocutore.</em></span></span>
+        <span class="mask"><span>Dal grezzo</span></span>
+        <span class="mask"><span>alle chiavi,</span></span>
+        <span class="mask"><span><em>un solo filo.</em></span></span>
       </h1>
-      <div class="hero-bottom">
-        <p>Sopralluogo, progetto, cantiere e materia seguiti come un unico processo. Tempi e costi concordati prima di iniziare.</p>
-        <a class="arrow-link" href="#progetti">Guarda le trasformazioni <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-stats" aria-hidden="true">
-        <div><b>1</b><span>referente per tutto il progetto</span></div>
-        <div><b>4</b><span>fasi dal rilievo alle chiavi</span></div>
-        <div><b>0</b><span>costo del primo sopralluogo</span></div>
+      <p>Progetto, pratiche, cantiere e finiture con un unico referente. Tempi e costi scritti prima di aprire il primo muro.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#contatto">Prenota il sopralluogo <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="./configuratore.html">Esplora la casa in 3D</a>
       </div>
     </div>
-
-    <figure class="ba" data-ba aria-label="Confronto prima e dopo di un soggiorno ristrutturato. Trascina per rivelare.">
-      <img src="./img/1.webp" alt="Soggiorno al grezzo prima della ristrutturazione, con intonaco a vista e impianti scoperti" fetchpriority="high" width="1400" height="933">
-      <div class="after-wrap">
-        <img src="./img/2.webp" alt="Lo stesso soggiorno ristrutturato, con parquet in rovere, intonaco a calce e cucina in terracotta" width="1400" height="933">
-      </div>
-      <span class="ba-label before">Prima</span>
-      <span class="ba-label after">Dopo</span>
-      <div class="ba-handle" aria-hidden="true"><b>⇆</b></div>
-      <span class="ba-cap">Casa N.07 · Bologna</span>
-      <input type="range" min="0" max="100" value="50" step="0.1" aria-label="Rivela il prima e il dopo" data-ba-range>
+    <figure class="hero-media">
+      <img src="./img/2.webp" alt="Soggiorno ristrutturato con parquet in rovere, pareti a calce e cucina in terracotta" width="1024" height="688" fetchpriority="high">
+      <video data-hero-video muted loop playsinline preload="none" poster="./img/2.webp" aria-hidden="true">
+        <source data-src="./media/cantiere.mp4" type="video/mp4">
+      </video>
+      <button class="play-toggle" type="button" data-play hidden aria-label="Metti in pausa il video">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" fill="currentColor"/><rect x="9.6" y="2" width="3.4" height="12" fill="currentColor"/></svg>
+      </button>
+      <figcaption><span>Casa N.07 · Bologna</span><span>5 mesi in 5 secondi</span></figcaption>
     </figure>
   </section>
 
-  <!-- STATEMENT -->
-  <section class="statement section-pad">
-    <p class="micro fx">Il nostro punto di partenza</p>
-    <div class="statement-grid">
-      <h2 class="fx">Non partiamo dal nuovo.<br>Partiamo da <em>quello che c'è.</em></h2>
-      <p class="fx">Ogni intervento nasce da una lettura precisa dell'esistente: struttura, luce, impianti, abitudini. Il progetto decide cosa mantenere, cosa togliere e dove innestare il nuovo — con un preventivo chiaro, non una sorpresa a fine cantiere.</p>
+  <!-- STRISCIA NUMERI su terracotta -->
+  <section class="t-accent" aria-label="In breve">
+    <div class="stats">
+      <div class="fx"><b>1</b><span>referente dal sopralluogo alle chiavi</span></div>
+      <div class="fx"><b>4</b><span>fasi, ognuna con una data scritta</span></div>
+      <div class="fx"><b>0 €</b><span>il primo sopralluogo, senza impegno</span></div>
+      <div class="fx"><b>48 h</b><span>per ricevere la prima stima dopo la visita</span></div>
     </div>
   </section>
 
-  <!-- METODO -->
-  <section class="method section-pad" id="metodo">
-    <div class="section-heading">
-      <p class="micro fx">Metodo · 4 passaggi</p>
-      <h2 class="fx">Un solo filo dal sopralluogo alla consegna delle chiavi.</h2>
+  <!-- PRIMA / DOPO interattivo -->
+  <section class="section t-light" aria-labelledby="ba-title">
+    <div class="compare">
+      <div>
+        <p class="micro fx">Prima / dopo</p>
+        <h2 id="ba-title" class="fx">Trascina.<br>È <em>la stessa stanza.</em></h2>
+        <p class="lead fx">Stessa inquadratura, stesse finestre. In mezzo: demolizioni, impianti nuovi, massetto, calce, rovere e una cucina su misura.</p>
+        <div class="facts fx">
+          <div><span>Superficie</span><b>128 m²</b></div>
+          <div><span>Cantiere</span><b>5 mesi</b></div>
+          <div><span>Budget indicativo</span><b>da 95.000 €</b></div>
+        </div>
+      </div>
+      <figure class="ba fx" data-ba>
+        <img src="./img/1.webp" alt="Il soggiorno al grezzo: intonaco rovinato, tracce degli impianti e massetto a vista" width="1024" height="688" loading="lazy">
+        <div class="after-wrap"><img src="./img/2.webp" alt="Lo stesso soggiorno finito, con parquet, pareti a calce e cucina in terracotta" width="1024" height="688" loading="lazy"></div>
+        <span class="ba-label before">Prima</span><span class="ba-label after">Dopo</span>
+        <input type="range" min="0" max="100" step="0.5" value="50" aria-label="Confronta prima e dopo: sposta per rivelare">
+        <div class="ba-handle" aria-hidden="true"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></b></div>
+      </figure>
     </div>
-    <ol class="method-list">
-      <li class="fx"><b>01</b><h3>Sopralluogo</h3><p>Rilievo, ascolto, priorità e budget. Gratuito e senza impegno.</p></li>
-      <li class="fx"><b>02</b><h3>Progetto &amp; preventivo</h3><p>Spazi, materiali, impianti, tempi e costi in un unico documento leggibile.</p></li>
-      <li class="fx"><b>03</b><h3>Cantiere</h3><p>Un solo referente, pratiche e permessi, squadre coordinate, avanzamento condiviso.</p></li>
-      <li class="fx"><b>04</b><h3>Consegna chiavi</h3><p>Verifica finale, conformità impianti, garanzie e messa in uso dello spazio.</p></li>
+  </section>
+
+  <!-- METODO su antracite -->
+  <section class="section t-dark" id="metodo" aria-labelledby="metodo-title">
+    <div class="head">
+      <div>
+        <p class="micro fx">Metodo · 4 fasi</p>
+        <h2 id="metodo-title" class="fx">Un cantiere che sai <em>sempre</em> dove si trova.</h2>
+      </div>
+      <p class="lead fx">Ogni fase chiude con un documento e una data. Nessuna telefonata per capire a che punto siamo: lo vedi nell'area cliente.</p>
+    </div>
+    <ol class="steps">
+      <li class="fx"><span class="big">01</span><h3>Sopralluogo</h3><p>Rilievo, foto, ascolto delle priorità e del budget. Gratuito.</p><small>Settimana 1</small></li>
+      <li class="fx"><span class="big">02</span><h3>Progetto e preventivo</h3><p>Pianta, materiali, impianti, costi voce per voce e cronoprogramma.</p><small>Settimane 2–4</small></li>
+      <li class="fx"><span class="big">03</span><h3>Cantiere</h3><p>Pratiche CILA, squadre coordinate, avanzamento condiviso ogni settimana.</p><small>Da 6 settimane</small></li>
+      <li class="fx"><span class="big">04</span><h3>Chiavi</h3><p>Collaudo, certificazioni impianti, pulizia finale e garanzie.</p><small>Giorno di consegna</small></li>
     </ol>
   </section>
 
-  <!-- PROGETTI / casi studio con reveal grezzo->finito -->
-  <section class="projects section-pad" id="progetti">
-    <div class="section-heading">
-      <p class="micro fx">Progetti · 03 casi</p>
-      <h2 class="fx">Trasformazioni,<br>non <em>rendering.</em></h2>
-      <p class="fx">Tre casi fittizi costruiti per mostrare modi diversi di intervenire sull'esistente. Scorri: il grezzo lascia il posto al finito.</p>
+  <!-- CASI: grezzo -> finito allo scroll -->
+  <section class="section t-light" id="progetti" aria-labelledby="casi-title">
+    <div class="head">
+      <div>
+        <p class="micro fx">Progetti · 3 di 7</p>
+        <h2 id="casi-title" class="fx">Trasformazioni,<br>non <em>rendering.</em></h2>
+      </div>
+      <p class="lead fx">Scorri: il grezzo lascia il posto al finito. Progetti fittizi, costruiti per mostrare modi diversi di intervenire sull'esistente.</p>
     </div>
-
     <div class="cases">
       <article class="case">
-        <figure class="case-visual" data-reveal>
-          <img class="before" src="./img/3.webp" alt="Cucina di Casa N.07 al grezzo, con vecchie piastrelle e impianti a vista" loading="lazy">
-          <img class="after" src="./img/4.webp" alt="Cucina di Casa N.07 finita, con ante in terracotta e piano in travertino" loading="lazy">
-          <span class="tag" data-tag>Trascina lo scroll</span>
+        <figure class="reveal-media">
+          <img src="./img/3.webp" alt="Cucina anni '70 prima dei lavori, con piastrelle staccate e tubi a vista" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/4.webp" alt="La stessa cucina finita, con ante in terracotta e piano in travertino" width="1024" height="688" loading="lazy">
+          <span class="tag">Grezzo → finito</span>
         </figure>
-        <div class="case-body fx">
-          <span class="case-num">01 / Appartamento</span>
-          <h3>Casa N.07</h3>
-          <p>Un appartamento anni '60 a Bologna: distribuzione rivista, cucina aperta sul soggiorno, impianti rifatti e una palette calda di rovere e terracotta.</p>
-          <div class="case-facts">
-            <div><span>Superficie</span><b>128 m²</b></div>
-            <div><span>Durata cantiere</span><b>5 mesi</b></div>
-            <div><span>Budget indicativo</span><b>da 95.000 €</b></div>
-          </div>
+        <div class="fx">
+          <span class="num">01 · Cucina</span>
+          <h3>Cucina Saragozza</h3>
+          <p>Una cucina chiusa degli anni '70 diventa uno spazio luminoso: impianti rifatti, ante laccate terracotta e travertino levigato, senza spostare la finestra.</p>
+          <div class="facts"><div><span>Superficie</span><b>14 m²</b></div><div><span>Cantiere</span><b>6 settimane</b></div><div><span>Budget</span><b>da 28.000 €</b></div></div>
         </div>
       </article>
-
       <article class="case">
-        <figure class="case-visual" data-reveal>
-          <img class="before" src="./img/5.webp" alt="Ex laboratorio Officina 14 al grezzo, con mattoni a vista e travi in acciaio arrugginite" loading="lazy">
-          <img class="after" src="./img/6.webp" alt="Officina 14 trasformata in loft, con mattoni restaurati e serramenti in acciaio nero" loading="lazy">
-          <span class="tag" data-tag>Trascina lo scroll</span>
+        <figure class="reveal-media">
+          <img src="./img/5.webp" alt="Ex officina abbandonata con travi arrugginite e vetri rotti" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/6.webp" alt="L'officina trasformata in loft con soppalco in acciaio e microcemento" width="1024" height="688" loading="lazy">
+          <span class="tag">Grezzo → finito</span>
         </figure>
-        <div class="case-body fx">
-          <span class="case-num">02 / Adaptive reuse</span>
+        <div class="fx">
+          <span class="num">02 · Recupero</span>
           <h3>Officina 14</h3>
-          <p>Un ex laboratorio a Parma diventa una casa su due livelli: mattoni recuperati, soppalco in acciaio e microcemento continuo, senza cancellare la memoria dello spazio.</p>
-          <div class="case-facts">
-            <div><span>Superficie</span><b>90 m²</b></div>
-            <div><span>Durata cantiere</span><b>7 mesi</b></div>
-            <div><span>Budget indicativo</span><b>da 140.000 €</b></div>
-          </div>
+          <p>Un laboratorio dismesso a Parma diventa una casa su due livelli: mattoni recuperati, soppalco in acciaio e microcemento continuo.</p>
+          <div class="facts"><div><span>Superficie</span><b>190 m²</b></div><div><span>Cantiere</span><b>7 mesi</b></div><div><span>Budget</span><b>da 210.000 €</b></div></div>
         </div>
       </article>
-
       <article class="case">
-        <figure class="case-visual" data-reveal>
-          <img class="before" src="./img/7.webp" alt="Corte 03, casa rurale emiliana con intonaco ocra sbeccato prima del recupero" loading="lazy">
-          <img class="after" src="./img/8.webp" alt="Corte 03 dopo il recupero, con facciata in calce ocra restaurata e corte in ghiaia" loading="lazy">
-          <span class="tag" data-tag>Trascina lo scroll</span>
+        <figure class="reveal-media">
+          <img src="./img/7.webp" alt="Casa colonica con intonaco crepato, persiane rotte e ponteggio" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/8.webp" alt="La stessa casa colonica restaurata, facciata ocra e persiane verdi" width="1024" height="688" loading="lazy">
+          <span class="tag">Grezzo → finito</span>
         </figure>
-        <div class="case-body fx">
-          <span class="case-num">03 / Casa a corte</span>
+        <div class="fx">
+          <span class="num">03 · Casa a corte</span>
           <h3>Corte 03</h3>
-          <p>Il recupero di una corte rurale in Emilia: facciate in calce, nuovi serramenti in legno e una corte ripensata come stanza all'aperto, tra conservazione e comfort attuale.</p>
-          <div class="case-facts">
-            <div><span>Superficie</span><b>210 m²</b></div>
-            <div><span>Durata cantiere</span><b>11 mesi</b></div>
-            <div><span>Budget indicativo</span><b>su progetto</b></div>
-          </div>
+          <p>Il recupero di una colonica in pianura: intonaci a calce, persiane in legno, tetto rifatto e una corte ripensata come stanza all'aperto.</p>
+          <div class="facts"><div><span>Superficie</span><b>240 m²</b></div><div><span>Cantiere</span><b>11 mesi</b></div><div><span>Budget</span><b>su progetto</b></div></div>
         </div>
       </article>
     </div>
-  </section>
-
-  <!-- MATERIA -->
-  <section class="materia section-pad" id="materia">
-    <div class="section-heading">
-      <p class="micro fx">Dettaglio · 1:1</p>
-      <h2 class="fx">La materia non arriva <em>alla fine.</em></h2>
-      <p class="fx">Le scelte materiche entrano nel progetto insieme a struttura e impianti. Non sono uno strato decorativo applicato dopo.</p>
-    </div>
-    <div class="materia-grid">
-      <figure class="mat fx"><img src="./img/9.webp" alt="Dettaglio del rovere naturale" loading="lazy"><figcaption>Rovere</figcaption></figure>
-      <figure class="mat fx"><img src="./img/10.webp" alt="Dettaglio del travertino" loading="lazy"><figcaption>Travertino</figcaption></figure>
-      <figure class="mat fx"><img src="./img/11.webp" alt="Dettaglio dell'intonaco a calce" loading="lazy"><figcaption>Calce</figcaption></figure>
-      <figure class="mat fx"><img src="./img/12.webp" alt="Dettaglio di acciaio brunito e ottone" loading="lazy"><figcaption>Acciaio &amp; ottone</figcaption></figure>
+    <div class="all-projects fx">
+      <p>Altri 4 progetti, con tempi e costi.</p>
+      <a class="btn btn-ink" href="./progetti.html">Tutti i progetti <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <!-- STUDIO + garanzie -->
-  <section class="studio section-pad" id="studio">
-    <div class="studio-figure fx">
-      <img src="./img/6.webp" alt="Interno di un loft ristrutturato da INNESTO" loading="lazy">
-    </div>
-    <div class="studio-copy">
-      <p class="micro fx">Studio · progetto + cantiere</p>
-      <h2 class="fx">Disegnare è anche sapere cosa succede quando si apre un muro.</h2>
-      <p class="fx">INNESTO è un brand fittizio costruito come concept di studio design-build: una struttura compatta che tiene insieme pensiero progettuale e realtà del cantiere, con un solo interlocutore dall'inizio alla fine.</p>
-      <ul class="guarantees">
-        <li class="fx"><b><i></i>Un solo interlocutore</b><p>Chi progetta segue anche il cantiere. Niente rimpalli tra imprese.</p></li>
-        <li class="fx"><b><i></i>Pratiche e permessi</b><p>Gestione di CILA, autorizzazioni e bonus edilizi inclusa nel percorso.</p></li>
-        <li class="fx"><b><i></i>Tempi e costi prima</b><p>Preventivo e cronoprogramma concordati e messi per iscritto.</p></li>
-        <li class="fx"><b><i></i>Garanzia sugli impianti</b><p>Dichiarazioni di conformità e assistenza dopo la consegna.</p></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CONTATTO -->
-  <section class="contact section-pad" id="contatto">
-    <div class="contact-copy">
-      <p class="micro">Primo incontro</p>
-      <h2>Un progetto da aprire <em>insieme.</em></h2>
-      <p>Raccontaci lo spazio, cosa funziona oggi e cosa deve cambiare. Il primo sopralluogo è gratuito: il resto si costruisce da lì.</p>
-      <div class="contact-info">
-        <div><span>Telefono</span>+39 051 000 0000</div>
-        <div><span>Email</span>studio@innesto.example</div>
-        <div><span>Studio</span>Bologna · Emilia-Romagna</div>
+  <!-- TEASER 3D su cemento -->
+  <section class="section t-concrete" aria-labelledby="casa3d-title">
+    <div class="teaser">
+      <a class="teaser-fig fx" href="./configuratore.html" aria-label="Apri la casa 3D interattiva">
+        <img src="./img/18.webp" alt="Modellino in sezione di una casa su due piani con cucina, soggiorno, camera e bagno" width="1000" height="1000" loading="lazy">
+        <span class="chip">Ruotala in 3D →</span>
+      </a>
+      <div>
+        <p class="micro fx">Casa 3D &amp; preventivo</p>
+        <h2 id="casa3d-title" class="fx">Gira la casa.<br>Scegli la stanza.<br><em>Leggi il prezzo.</em></h2>
+        <ul class="ticks fx">
+          <li>Modello 3D da ruotare e ingrandire, anche dal telefono</li>
+          <li>Costi di esempio per cucina, bagno, soggiorno e camera</li>
+          <li>Stima indicativa in 4 domande, senza lasciare l'email</li>
+        </ul>
+        <a class="btn btn-ink fx" href="./configuratore.html">Apri il configuratore <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
-    <form class="brief-form" data-demo-form novalidate>
-      <label><span>Nome</span><input type="text" name="nome" autocomplete="name" placeholder="Come ti chiami?"></label>
-      <label><span>Tipo di spazio</span><select name="spazio"><option>Abitazione</option><option>Spazio commerciale</option><option>Ufficio / studio</option><option>Casa a corte / rurale</option><option>Altro</option></select></label>
-      <label class="wide"><span>Dove</span><input type="text" name="dove" placeholder="Città o provincia"></label>
-      <label class="wide"><span>Cosa deve cambiare?</span><textarea name="brief" rows="3" placeholder="Due righe bastano."></textarea></label>
-      <button type="submit">Prenota il sopralluogo <span aria-hidden="true">↗</span></button>
-      <p class="form-note" data-form-note role="status">Demo portfolio — l'invio è disattivato.</p>
-    </form>
+  </section>
+
+  <!-- MATERIA su antracite -->
+  <section class="section t-dark" aria-labelledby="materia-title">
+    <div class="head">
+      <div>
+        <p class="micro fx">Materia · scala 1:1</p>
+        <h2 id="materia-title" class="fx">Quattro materiali.<br><em>Nessuna imitazione.</em></h2>
+      </div>
+      <p class="lead fx">Le finiture si scelgono in cantiere, con i campioni in mano e la luce vera della casa. Non da un catalogo a fine lavori.</p>
+    </div>
+    <div class="mat-grid">
+      <figure class="mat fx"><img data-parallax src="./img/9.webp" alt="Dettaglio di parquet in rovere oliato con nodi naturali" width="700" height="875" loading="lazy"><figcaption><b>Rovere</b><span>Oliato, plance larghe</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/10.webp" alt="Bordo di un piano in travertino levigato con i pori naturali" width="700" height="875" loading="lazy"><figcaption><b>Travertino</b><span>Levigato, non stuccato</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/11.webp" alt="Parete in intonaco a calce con segni di spatola" width="700" height="875" loading="lazy"><figcaption><b>Calce</b><span>Traspirante, a spatola</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/12.webp" alt="Telaio in acciaio brunito con maniglia in ottone spazzolato" width="700" height="875" loading="lazy"><figcaption><b>Acciaio e ottone</b><span>Serramenti e dettagli</span></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- INIZIATIVE (le proposte Punto Due) su calce -->
+  <section class="section t-light" aria-labelledby="vantaggi-title">
+    <div class="head">
+      <div>
+        <p class="micro fx">Vantaggi per chi ristruttura</p>
+        <h2 id="vantaggi-title" class="fx">Meno sorprese,<br><em>più certezze.</em></h2>
+      </div>
+      <p class="lead fx">Quattro servizi che rendono il percorso più chiaro, dal primo contatto a dopo la consegna.</p>
+    </div>
+    <div class="offers">
+      <article class="offer fx">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M13 7v12" stroke-dasharray="2 2"/></svg></span>
+        <h3>Sopralluogo gratuito</h3>
+        <p>Prenotando entro fine mese, il sopralluogo tecnico con rilievo è incluso.</p>
+        <div class="coupon">SOPRALLUOGO0 <small>fino al 31/10</small></div>
+      </article>
+      <article class="offer fx">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16M4 12h10M4 19h7"/><circle cx="18" cy="17" r="3"/></svg></span>
+        <h3>Preventivo in 4 domande</h3>
+        <p>Tipo di lavoro, metri quadri, finiture e tempi: una prima forchetta di spesa in un minuto.</p>
+        <a class="meta link" href="./configuratore.html#stima">Prova la stima <span class="arrow" aria-hidden="true">→</span></a>
+      </article>
+      <article class="offer fx">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14h3"/></svg></span>
+        <h3>Area cliente del cantiere</h3>
+        <p>Foto settimanali, documenti e avanzamento sempre consultabili dal telefono.</p>
+        <div style="margin-top:auto"><div class="meta" style="margin-bottom:8px">Casa N.07 · 62% completato</div><div class="progress" role="img" aria-label="Avanzamento di esempio: 62 per cento"><i></i></div></div>
+      </article>
+      <article class="offer fx">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M3 19c0-3 2.5-5 5-5s5 2 5 5M13 19c0-3 1.8-5 4-5s4 2 4 5"/></svg></span>
+        <h3>Porta un vicino</h3>
+        <p>Chi ci presenta un nuovo cliente riceve un buono sulla manutenzione o sulle finiture.</p>
+        <div class="meta">Buono di esempio: 500 €</div>
+      </article>
+    </div>
+    <p class="offers-note fx">Codici, date e importi sono esempi dimostrativi.</p>
+  </section>
+
+  <!-- STUDIO su cemento -->
+  <section class="section t-concrete" aria-labelledby="studio-title">
+    <div class="studio">
+      <div class="studio-pics">
+        <figure class="fx"><img src="./img/17.webp" alt="Un'architetta mostra la pianta su tablet a una coppia durante il sopralluogo" width="896" height="1120" loading="lazy"></figure>
+        <figure class="fx"><img src="./img/16.webp" alt="Due posatori stendono il parquet in rovere in cantiere" width="1024" height="688" loading="lazy"></figure>
+      </div>
+      <div>
+        <p class="micro fx">Lo studio</p>
+        <h2 id="studio-title" class="fx">Chi disegna il progetto <em>entra in cantiere.</em></h2>
+        <p class="lead fx">Architetti, capocantiere e artigiani lavorano nella stessa squadra. Chi prende le misure è chi poi controlla la posa.</p>
+        <ul class="guar">
+          <li class="fx"><b>Un solo referente</b><p>Nessun rimpallo tra imprese e fornitori.</p></li>
+          <li class="fx"><b>Pratiche incluse</b><p>CILA, SCIA e bonus edilizi gestiti dallo studio.</p></li>
+          <li class="fx"><b>Prezzo bloccato</b><p>Il preventivo firmato non cambia senza la tua approvazione.</p></li>
+          <li class="fx"><b>Garanzia impianti</b><p>Certificazioni e assistenza dopo la consegna.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTO su antracite -->
+  <section class="section t-dark" id="contatto" aria-labelledby="contatto-title">
+    <div class="contact">
+      <div>
+        <p class="micro">Primo incontro</p>
+        <h2 id="contatto-title">Raccontaci la casa. <em>Veniamo a vederla.</em></h2>
+        <p class="lead">Il sopralluogo è gratuito e dura circa un'ora. Entro 48 ore ricevi una prima stima scritta.</p>
+        <div class="contact-info">
+          <div><span>Telefono</span>051 000 0000</div>
+          <div><span>Email</span>studio@innesto.example</div>
+          <div><span>Zona</span>Bologna, Modena, Parma e provincia</div>
+        </div>
+      </div>
+      <form class="form" data-demo-form novalidate>
+        <label><span>Nome</span><input type="text" name="nome" autocomplete="name" placeholder="Nome e cognome"></label>
+        <label><span>Telefono</span><input type="tel" name="tel" autocomplete="tel" placeholder="Per fissare la visita"></label>
+        <label><span>Tipo di lavoro</span><select name="tipo"><option>Casa intera</option><option>Cucina</option><option>Bagno</option><option>Locale commerciale</option><option>Casa rurale / recupero</option></select></label>
+        <label><span>Comune</span><input type="text" name="comune" placeholder="Es. Bologna"></label>
+        <label class="wide"><span>Cosa vorresti cambiare?</span><textarea name="brief" placeholder="Due righe bastano."></textarea></label>
+        <button class="btn btn-accent" type="submit">Prenota il sopralluogo gratuito <span class="arrow" aria-hidden="true">→</span></button>
+        <p class="form-note" data-form-note role="status">Demo portfolio: l'invio è disattivato.</p>
+      </form>
+    </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-brand">INNESTO</div>
-  <div class="footer-grid">
-    <div><span>Concept</span><p>Ristrutturazione integrata</p></div>
-    <div><span>Direction</span><p>Sopralluogo · Cantiere · Chiavi</p></div>
-    <div><span>Studio</span><p>Punto Due Studio — portfolio demo</p></div>
+<footer class="site-footer t-light">
+  <div class="footer-top">
+    <div><h4>INNESTO</h4><p>Ristrutturazioni chiavi in mano in Emilia. Un solo filo dal sopralluogo alle chiavi.</p></div>
+    <div><h4>Pagine</h4><a href="./index.html">Studio</a><a href="./progetti.html">Progetti</a><a href="./configuratore.html">Casa 3D &amp; preventivo</a></div>
+    <div><h4>Contatti</h4><p>051 000 0000</p><p>studio@innesto.example</p></div>
+    <div><h4>Orari</h4><p>Lun–Ven 8:30–18:00</p><p>Sabato su appuntamento</p></div>
   </div>
-  <p class="demo-disclosure">Progetto dimostrativo originale. INNESTO, i progetti, i dati (superfici, durate, budget), le località operative e i contatti sono fittizi e creati esclusivamente come concept di portfolio da Punto Due Studio. Il modulo è dimostrativo e non invia alcun dato.</p>
+  <div class="footer-word" aria-hidden="true">INNESTO</div>
+  <p class="disclosure">Progetto dimostrativo di Punto Due Studio. INNESTO, i progetti, i dati (superfici, durate, budget), le offerte, i contatti e le persone ritratte sono fittizi; le immagini e il video sono generati. I moduli non inviano alcun dato.</p>
 </footer>
 
 <nav class="dock" aria-label="Azioni rapide">
-  <a class="call" href="tel:+390510000000">Chiama</a>
-  <a class="book" href="#contatto">Prenota sopralluogo</a>
+  <a href="tel:+390510000000">Chiama</a>
+  <a class="primary" href="#contatto">Sopralluogo gratuito</a>
 </nav>
 
 <script src="./gsap.min.js"></script>
 <script src="./ScrollTrigger.min.js"></script>
+<script src="./site.js"></script>
 <script>
+/* video hero: caricato solo se utile, in pausa fuori schermo */
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  /* header scrolled state */
-  var header = document.querySelector('[data-header]');
-  var onScroll = function(){ header.toggleAttribute('data-scrolled', window.scrollY > 40); };
-  onScroll(); addEventListener('scroll', onScroll, {passive:true});
-
-  /* mobile menu */
-  var menuBtn = document.querySelector('[data-menu]');
-  var menu = document.getElementById('mobile-menu');
-  var toggleMenu = function(open){
-    menu.toggleAttribute('data-open', open);
-    menu.setAttribute('aria-hidden', open ? 'false':'true');
-    menuBtn.setAttribute('aria-expanded', open ? 'true':'false');
-    document.body.style.overflow = open ? 'hidden':'';
-  };
-  menuBtn.addEventListener('click', function(){ toggleMenu(!menu.hasAttribute('data-open')); });
-  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
-
-  /* before/after slider */
-  document.querySelectorAll('[data-ba]').forEach(function(ba){
-    var wrap = ba.querySelector('.after-wrap');
-    var handle = ba.querySelector('.ba-handle');
-    var range = ba.querySelector('[data-ba-range]');
-    var set = function(v){ v = Math.max(0, Math.min(100, v));
-      wrap.style.clipPath = 'inset(0 0 0 ' + v + '%)';
-      handle.style.left = v + '%';
-      if(range && parseFloat(range.value) !== v) range.value = v;
-    };
-    set(50);
-    range.addEventListener('input', function(){ set(parseFloat(range.value)); });
-    var drag = function(e){
-      var rect = ba.getBoundingClientRect();
-      var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-      set(x / rect.width * 100);
-    };
-    var down = function(e){ drag(e); var move = function(ev){ ev.preventDefault(); drag(ev); };
-      var up = function(){ removeEventListener('pointermove', move); removeEventListener('pointerup', up); };
-      addEventListener('pointermove', move, {passive:false}); addEventListener('pointerup', up); };
-    ba.addEventListener('pointerdown', down);
-    /* auto-reveal on first view */
-    if(!reduce && 'IntersectionObserver' in window){
-      var io = new IntersectionObserver(function(en){ en.forEach(function(e){
-        if(e.isIntersecting){ io.disconnect();
-          var start=null, from=78, to=42, dur=1100;
-          var step=function(t){ if(!start)start=t; var p=Math.min((t-start)/dur,1);
-            var ease=1-Math.pow(1-p,3); set(from+(to-from)*ease); if(p<1)requestAnimationFrame(step); };
-          setTimeout(function(){ requestAnimationFrame(step); }, 300);
-        }});}, {threshold:.4});
-      io.observe(ba);
-    }
+  var v = document.querySelector('[data-hero-video]'), btn = document.querySelector('[data-play]');
+  var c = navigator.connection, save = c && (c.saveData || /2g/.test(c.effectiveType || ''));
+  if(!v || matchMedia('(prefers-reduced-motion:reduce)').matches || save){ v && v.remove(); return; }
+  var s = v.querySelector('source'); s.src = s.dataset.src; v.load();
+  var userPaused = false, pause = btn.innerHTML, play = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg>';
+  v.addEventListener('playing', function(){ v.previousElementSibling.style.visibility = 'hidden'; btn.hidden = false; }, {once:true});
+  btn.addEventListener('click', function(){
+    userPaused = !v.paused; userPaused ? v.pause() : v.play();
+    btn.setAttribute('aria-label', userPaused ? 'Riproduci il video' : 'Metti in pausa il video');
+    btn.innerHTML = userPaused ? play : pause;
   });
-
-  /* demo form */
-  document.querySelectorAll('[data-demo-form]').forEach(function(f){
-    f.addEventListener('submit', function(e){ e.preventDefault();
-      var note = f.querySelector('[data-form-note]');
-      note.textContent = 'Questa è una demo: il brief non è stato inviato. Grazie!';
-      note.setAttribute('data-sent','');
-    });
-  });
-
-  /* GSAP scroll: fx reveals + case grezzo->finito */
-  if(window.gsap && window.ScrollTrigger){
-    gsap.registerPlugin(ScrollTrigger);
-
-    if(!reduce){
-      gsap.set('.hero .reveal-line>span', {yPercent:105});
-      gsap.to('.hero .reveal-line>span', {yPercent:0, duration:1, ease:'power3.out', stagger:.12, delay:.15});
-
-      gsap.utils.toArray('.fx').forEach(function(el){
-        ScrollTrigger.create({trigger:el, start:'top 86%', once:true,
-          onEnter:function(){ el.classList.add('fx-in'); }});
-      });
-
-      gsap.utils.toArray('[data-reveal]').forEach(function(fig){
-        var after = fig.querySelector('.after');
-        var tag = fig.querySelector('[data-tag]');
-        gsap.fromTo(after, {clipPath:'inset(0 0 0 100%)'},
-          {clipPath:'inset(0 0 0 0%)', ease:'none',
-           scrollTrigger:{trigger:fig, start:'top 78%', end:'bottom 60%', scrub:.6,
-             onUpdate:function(self){ if(tag) tag.style.opacity = self.progress>.85 ? 0 : 1; }}});
-      });
-    } else {
-      document.querySelectorAll('.fx').forEach(function(el){ el.classList.add('fx-in'); });
-      document.querySelectorAll('.after').forEach(function(el){ el.style.clipPath='inset(0 0 0 0%)'; });
-    }
-  } else {
-    document.querySelectorAll('.fx').forEach(function(el){ el.classList.add('fx-in'); });
-    document.querySelectorAll('.after').forEach(function(el){ el.style.clipPath='inset(0 0 0 0%)'; });
-  }
+  new IntersectionObserver(function(en){ en[0].isIntersecting && !userPaused ? v.play().catch(function(){}) : v.pause(); }).observe(v);
 })();
 </script>
 </body>

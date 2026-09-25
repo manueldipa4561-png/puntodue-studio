@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#161513">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Casa 3D e preventivo — INNESTO Ristrutturazioni</title>
+  <meta name="description" content="Ruota la casa in 3D, scegli la stanza e leggi i costi di esempio. Poi una stima indicativa in 4 domande. Concept portfolio di Punto Due Studio.">
+  <meta property="og:title" content="Casa 3D e preventivo — INNESTO">
+  <meta property="og:image" content="./img/18.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./site.css">
+  <style>
+    /* STAGE 3D */
+    .c-hero{min-height:100dvh;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center;padding:120px var(--pad) clamp(40px,5vw,70px)}
+    .c-hero h1{font-size:clamp(2.6rem,6.4vw,6rem);font-stretch:118%;margin:20px 0 22px}
+    .c-hero .lead{color:var(--d-muted)}
+    .stage{position:relative;aspect-ratio:1;max-height:calc(100dvh - 150px);width:100%;justify-self:center;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#2F2B27 0%,#1B1917 60%,#121110 100%)}
+    .stage img.fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s var(--ease)}
+    .stage canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity .8s var(--ease)}
+    .stage[data-ready] canvas{opacity:1}
+    .stage[data-ready] img.fallback{opacity:0}
+    .stage .floor{position:absolute;left:50%;bottom:9%;width:60%;height:12%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);pointer-events:none;opacity:0;transition:opacity .8s}
+    .stage[data-ready] .floor{opacity:1}
+    .stage-ui{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:3;pointer-events:none}
+    .stage-ui>*{pointer-events:auto}
+    .hint{font-family:var(--font-d);font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(22,21,19,.78);color:var(--d-fg);padding:9px 14px;border-radius:100px}
+    .icon-btn{width:44px;height:44px;border-radius:100px;border:0;background:rgba(22,21,19,.78);color:var(--d-fg);cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .icon-btn[hidden]{display:none}
+    .icon-btn svg{width:18px;height:18px}
+    .touch-gate{position:absolute;inset:0;z-index:2;border:0;background:transparent;cursor:pointer;display:none}
+    .stage[data-touch]:not([data-active]) .touch-gate{display:block}
+    .loading{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--font-d);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(22,21,19,.78);padding:7px 12px;border-radius:100px}
+    .stage[data-ready] .loading{display:none}
+    .progress-line{position:absolute;left:0;top:0;height:3px;background:#E07A57;width:0;z-index:3;transition:width .2s}
+
+    .rooms{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px}
+    .room{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:var(--r-m);border:1.5px solid var(--d-line);background:transparent;cursor:pointer;text-align:left;transition:border-color .25s,background .25s}
+    .room:hover{border-color:rgba(237,231,221,.4)}
+    .room b{font-family:var(--font-d);font-weight:700;font-size:1rem}
+    .room span{font-size:.8rem;color:var(--d-muted)}
+    .room[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
+    .room[aria-pressed=true] span{color:#FBE3D8}
+    .room-card{margin-top:14px;border:1px solid var(--d-line);border-radius:var(--r-l);padding:20px 22px;background:#1D1B18;min-height:150px}
+    .room-card h2{font-size:1.4rem;font-stretch:108%;font-weight:800}
+    .room-card p{color:var(--d-muted);font-size:.94rem;margin:8px 0 14px}
+    .room-card .price{font-family:var(--font-d);font-weight:800;font-size:clamp(1.5rem,2.6vw,2rem);font-stretch:112%}
+    .room-card small{display:block;color:var(--d-muted);font-size:.78rem;margin-top:4px}
+
+    /* STIMA GUIDATA */
+    .estimate{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,70px);align-items:start}
+    .estimate h2{font-size:var(--fs-h2);margin:20px 0 22px}
+    .steps-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:28px 0 22px}
+    .steps-bar i{height:5px;border-radius:100px;background:#D6CEC2;transition:background .3s}
+    .steps-bar i.on{background:var(--accent)}
+    fieldset{border:0;display:grid;gap:14px;min-width:0}
+    fieldset[hidden]{display:none}
+    legend{font-family:var(--font-d);font-weight:800;font-stretch:108%;font-size:clamp(1.35rem,2.4vw,1.8rem);margin-bottom:14px}
+    legend small{display:block;font-family:var(--font-b);font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-stretch:100%}
+    .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .opt{position:relative}
+    .opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+    .opt span{display:flex;flex-direction:column;gap:3px;min-height:74px;justify-content:center;padding:14px 16px;border-radius:var(--r-m);border:1.5px solid var(--line);background:var(--paper);transition:border-color .2s,background .2s}
+    .opt span b{font-family:var(--font-d);font-weight:700}
+    .opt span em{font-style:normal;font-weight:400;color:var(--muted);font-size:.86rem}
+    .opt input:checked+span{border-color:var(--accent);background:#FBEDE6;box-shadow:inset 0 0 0 1px var(--accent)}
+    .opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+    .sqm{display:grid;gap:12px}
+    .sqm output{font-family:var(--font-d);font-weight:900;font-stretch:120%;font-size:clamp(2.6rem,6vw,4rem);line-height:1}
+    .sqm input[type=range]{width:100%;accent-color:var(--accent);height:44px}
+    .sqm .scale{display:flex;justify-content:space-between;color:var(--muted);font-size:.84rem}
+    .nav-steps{display:flex;gap:10px;margin-top:22px}
+    .nav-steps .btn{min-width:130px}
+    .nav-steps [disabled]{opacity:.35;pointer-events:none}
+
+    .result{position:sticky;top:96px;border-radius:var(--r-l);padding:clamp(24px,3vw,36px);background:var(--antracite);color:var(--d-fg);--s-muted:var(--d-muted)}
+    .result .range{font-family:var(--font-d);font-weight:900;font-stretch:115%;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1;margin:18px 0 8px}
+    .result .sub{color:var(--d-muted);font-size:.94rem}
+    .result dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px;margin:22px 0;padding:18px 0;border-top:1px solid var(--d-line);border-bottom:1px solid var(--d-line);font-size:.94rem}
+    .result dt{color:var(--d-muted)}
+    .result dd{font-family:var(--font-d);font-weight:700;text-align:right}
+    .result .coupon{border:1.5px dashed #E07A57;border-radius:var(--r-m);padding:12px 14px;margin-bottom:18px;font-size:.9rem}
+    .result .coupon b{font-family:var(--font-d);letter-spacing:.08em;color:#E07A57}
+    .result .btn{width:100%}
+    .result .fine{margin-top:14px;font-size:.78rem;color:var(--d-muted)}
+
+    @media (max-width:1080px){
+      .c-hero{grid-template-columns:1fr;padding-top:104px}
+      .c-hero .stage{order:-1}
+      .estimate{grid-template-columns:1fr}
+      .result{position:static}
+    }
+    @media (max-width:560px){
+      .opts{grid-template-columns:1fr}
+      .nav-steps .btn{flex:1;min-width:0}
+      .c-hero h1{font-size:clamp(2.4rem,11vw,3.4rem)}
+      .room{padding:10px 12px}
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Salta al contenuto</a>
+
+<header class="site-header" data-header data-on-dark>
+  <a class="brand" href="./index.html" aria-label="INNESTO, homepage">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="3" fill="#B24A2E"/><path d="M9 23V9h6v7h8v7z" fill="#FFF8F3"/></svg>
+    <span><b>INNESTO</b><small>Ristrutturazioni</small></span>
+  </a>
+  <nav class="nav" aria-label="Navigazione principale">
+    <a href="./index.html">Studio</a>
+    <a href="./progetti.html">Progetti</a>
+    <a href="./configuratore.html" aria-current="page">Casa 3D &amp; preventivo</a>
+  </nav>
+  <div class="header-actions">
+    <a class="btn btn-accent" href="./index.html#contatto">Sopralluogo gratuito <span class="arrow" aria-hidden="true">→</span></a>
+    <button class="menu-btn" type="button" data-menu aria-expanded="false" aria-controls="mobile-menu"><i></i><i></i><span class="sr-only">Menu</span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav aria-label="Navigazione mobile">
+    <a href="./index.html"><span>01</span>Studio</a>
+    <a href="./progetti.html"><span>02</span>Progetti</a>
+    <a href="./configuratore.html"><span>03</span>Casa 3D</a>
+    <a href="./index.html#contatto"><span>04</span>Sopralluogo</a>
+  </nav>
+  <p>Ristrutturazioni chiavi in mano · Bologna, Modena, Parma · Concept portfolio</p>
+</div>
+
+<main id="main">
+  <section class="c-hero hero t-dark" aria-labelledby="c-title">
+    <div>
+      <p class="micro">Casa 3D · costi di esempio</p>
+      <h1 id="c-title">
+        <span class="mask"><span>Scegli la stanza.</span></span>
+        <span class="mask"><span><em>Leggi il prezzo.</em></span></span>
+      </h1>
+      <p class="lead">Ruota il modello, poi tocca una stanza: vedi cosa comprende una ristrutturazione tipo e una forchetta di spesa.</p>
+      <div class="rooms" role="group" aria-label="Stanze">
+        <button class="room" type="button" data-room="casa" aria-pressed="true"><b>Tutta la casa</b><span>2 piani</span></button>
+        <button class="room" type="button" data-room="soggiorno" aria-pressed="false"><b>Soggiorno</b><span>piano terra</span></button>
+        <button class="room" type="button" data-room="cucina" aria-pressed="false"><b>Cucina</b><span>piano terra</span></button>
+        <button class="room" type="button" data-room="camera" aria-pressed="false"><b>Camera</b><span>primo piano</span></button>
+        <button class="room" type="button" data-room="bagno" aria-pressed="false"><b>Bagno</b><span>primo piano</span></button>
+        <a class="room" href="#stima"><b>Stima su misura</b><span>4 domande</span></a>
+      </div>
+      <div class="room-card" aria-live="polite" data-room-card>
+        <h2>Tutta la casa</h2>
+        <p>Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.</p>
+        <div class="price">700 – 1.100 €/m²</div>
+        <small>Costo di esempio, IVA esclusa. Il prezzo reale dipende dal sopralluogo.</small>
+      </div>
+    </div>
+
+    <figure class="stage" data-stage aria-label="Modello 3D di una casa su due piani. Trascina per ruotare.">
+      <span class="progress-line" data-progress></span>
+      <span class="loading" data-loading>Carico il modello…</span>
+      <img class="fallback" src="./img/18.webp" alt="Modellino in sezione di una casa su due piani" width="1000" height="1000" fetchpriority="high">
+      <span class="floor" aria-hidden="true"></span>
+      <button class="touch-gate" type="button" data-gate aria-label="Attiva la rotazione del modello"></button>
+      <div class="stage-ui">
+        <span class="hint" data-hint>Trascina per ruotare</span>
+        <button class="icon-btn" type="button" data-reset aria-label="Riporta la vista iniziale" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+      </div>
+    </figure>
+  </section>
+
+  <!-- STIMA GUIDATA -->
+  <section class="section t-light" id="stima" aria-labelledby="stima-title">
+    <div class="estimate">
+      <div>
+        <p class="micro fx">Preventivo guidato</p>
+        <h2 id="stima-title" class="fx">Quattro domande.<br><em>Una prima cifra.</em></h2>
+        <p class="lead fx">Niente email, niente registrazione: una forchetta indicativa per capire se il progetto è nel tuo budget. Il preventivo vero arriva dopo il sopralluogo.</p>
+
+        <form data-estimate novalidate>
+          <div class="steps-bar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+
+          <fieldset data-step="1">
+            <legend><small>Domanda 1 di 4</small>Cosa vuoi ristrutturare?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="tipo" value="casa" checked><span><b>Casa intera</b><em>Appartamento o villetta</em></span></label>
+              <label class="opt"><input type="radio" name="tipo" value="cucina"><span><b>Cucina</b><em>Impianti e arredo su misura</em></span></label>
+              <label class="opt"><input type="radio" name="tipo" value="bagno"><span><b>Bagno</b><em>Rifacimento completo</em></span></label>
+              <label class="opt"><input type="radio" name="tipo" value="locale"><span><b>Locale commerciale</b><em>Negozio, studio, bottega</em></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset data-step="2" hidden>
+            <legend><small>Domanda 2 di 4</small>Quanti metri quadri?</legend>
+            <div class="sqm">
+              <output data-sqm-out for="sqm">90 m²</output>
+              <input id="sqm" type="range" name="mq" min="30" max="300" step="1" value="90" aria-label="Metri quadri">
+              <div class="scale"><span data-sqm-min>30 m²</span><span data-sqm-max>300 m²</span></div>
+            </div>
+          </fieldset>
+
+          <fieldset data-step="3" hidden>
+            <legend><small>Domanda 3 di 4</small>Che livello di finiture?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="fin" value="0.85"><span><b>Essenziale</b><em>Materiali di serie, ottimi prezzi</em></span></label>
+              <label class="opt"><input type="radio" name="fin" value="1" checked><span><b>Curato</b><em>Rovere, calce, rubinetteria di qualità</em></span></label>
+              <label class="opt"><input type="radio" name="fin" value="1.3"><span><b>Su misura</b><em>Pietra, arredi e dettagli disegnati</em></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset data-step="4" hidden>
+            <legend><small>Domanda 4 di 4</small>Quando vorresti iniziare?</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="quando" value="presto" checked><span><b>Entro 3 mesi</b><em>Ho già la casa</em></span></label>
+              <label class="opt"><input type="radio" name="quando" value="anno"><span><b>Entro l'anno</b><em>Sto organizzando</em></span></label>
+              <label class="opt"><input type="radio" name="quando" value="valuto"><span><b>Sto valutando</b><em>Anche un acquisto</em></span></label>
+            </div>
+          </fieldset>
+
+          <div class="nav-steps">
+            <button class="btn btn-ghost" type="button" data-prev disabled>← Indietro</button>
+            <button class="btn btn-ink" type="button" data-next>Avanti <span class="arrow" aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="result fx" aria-live="polite" aria-labelledby="res-title">
+        <p class="micro" id="res-title">La tua stima indicativa</p>
+        <div class="range" data-range>63.000 – 99.000 €</div>
+        <p class="sub" data-sub>Casa intera · 90 m² · finiture curate</p>
+        <dl>
+          <dt>Durata cantiere stimata</dt><dd data-weeks>16–20 settimane</dd>
+          <dt>Pratiche edilizie</dt><dd data-pratica>CILA inclusa</dd>
+          <dt>Sopralluogo</dt><dd>Gratuito</dd>
+        </dl>
+        <div class="coupon">Con il codice <b>SOPRALLUOGO0</b> il rilievo tecnico è incluso fino al 31 ottobre.</div>
+        <a class="btn btn-accent" href="./index.html#contatto">Prenota il sopralluogo <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="fine">Stima di esempio basata su costi medi fittizi, IVA esclusa. Non costituisce un preventivo.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer t-concrete">
+  <div class="footer-top">
+    <div><h4>INNESTO</h4><p>Ristrutturazioni chiavi in mano in Emilia. Un solo filo dal sopralluogo alle chiavi.</p></div>
+    <div><h4>Pagine</h4><a href="./index.html">Studio</a><a href="./progetti.html">Progetti</a><a href="./configuratore.html">Casa 3D &amp; preventivo</a></div>
+    <div><h4>Contatti</h4><p>051 000 0000</p><p>studio@innesto.example</p></div>
+    <div><h4>Orari</h4><p>Lun–Ven 8:30–18:00</p><p>Sabato su appuntamento</p></div>
+  </div>
+  <div class="footer-word" aria-hidden="true">INNESTO</div>
+  <p class="disclosure">Progetto dimostrativo di Punto Due Studio. INNESTO, costi, tempi, codici promozionali e contatti sono fittizi; il modello 3D e le immagini sono generati. Nessun dato viene inviato.</p>
+</footer>
+
+<nav class="dock" aria-label="Azioni rapide">
+  <a href="#stima">Stima</a>
+  <a class="primary" href="./index.html#contatto">Sopralluogo gratuito</a>
+</nav>
+
+<script src="./gsap.min.js"></script>
+<script src="./ScrollTrigger.min.js"></script>
+<script src="./site.js"></script>
+
+<script>
+/* stanze: testi e costi di esempio, condivisi con il 3D */
+window.ROOMS = {
+  /* view = [azimut, polare, distanza relativa, altezza del punto guardato] */
+  casa:      {t:'Tutta la casa', d:'Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.', p:'700 – 1.100 €/m²', view:[1.0, 1.1, 1.0, 0]},
+  soggiorno: {t:'Soggiorno', d:'Pavimento in rovere, pareti a calce, nuovo impianto elettrico e luci, restauro delle finestre.', p:'450 – 750 €/m²', view:[1.5, 1.2, .62, -.32]},
+  cucina:    {t:'Cucina', d:'Impianto idraulico ed elettrico, rivestimenti, cucina su misura con piano in pietra ed elettrodomestici.', p:'18.000 – 32.000 €', view:[1.05, 1.15, .58, -.32]},
+  camera:    {t:'Camera', d:'Parquet, calce, armadio a muro, prese e punti luce nuovi, isolamento acustico del solaio.', p:'350 – 600 €/m²', view:[1.0, 1.0, .58, .3]},
+  bagno:     {t:'Bagno', d:'Demolizione, impianti, doccia a filo pavimento, sanitari sospesi, rivestimenti e mobile su misura.', p:'12.000 – 20.000 €', view:[1.95, 1.0, .58, .3]}
+};
+(function(){
+  var card = document.querySelector('[data-room-card]'), btns = document.querySelectorAll('[data-room]');
+  btns.forEach(function(b){ b.addEventListener('click', function(){
+    var r = ROOMS[b.dataset.room];
+    btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    card.innerHTML = '<h2>' + r.t + '</h2><p>' + r.d + '</p><div class="price">' + r.p + '</div><small>Costo di esempio, IVA esclusa. Il prezzo reale dipende dal sopralluogo.</small>';
+    window.dispatchEvent(new CustomEvent('innesto:room', {detail:b.dataset.room}));
+  }); });
+})();
+
+/* stima guidata */
+(function(){
+  var f = document.querySelector('[data-estimate]'); if(!f) return;
+  var steps = f.querySelectorAll('fieldset'), bar = f.querySelectorAll('.steps-bar i');
+  var prev = f.querySelector('[data-prev]'), next = f.querySelector('[data-next]'), cur = 0;
+  var sqm = f.querySelector('#sqm'), out = f.querySelector('[data-sqm-out]');
+  var RATE = {casa:[700,1100,'Casa intera'], cucina:[1500,2400,'Cucina'], bagno:[1900,2900,'Bagno'], locale:[550,900,'Locale commerciale']};
+  var SIZE = {casa:[30,300,90], cucina:[4,40,12], bagno:[3,20,6], locale:[20,400,60]};
+  var FIN = {'0.85':'finiture essenziali','1':'finiture curate','1.3':'finiture su misura'};
+  var eur = function(n){ return (Math.round(n / 1000) * 1000).toLocaleString('it-IT') + ' €'; };
+  var val = function(n){ return f.querySelector('input[name=' + n + ']:checked').value; };
+  var calc = function(){
+    var t = val('tipo'), m = +sqm.value, k = +val('fin'), r = RATE[t];
+    out.textContent = m + ' m²';
+    document.querySelector('[data-range]').textContent = eur(r[0] * m * k) + ' – ' + eur(r[1] * m * k);
+    document.querySelector('[data-sub]').textContent = r[2] + ' · ' + m + ' m² · ' + FIN[val('fin')];
+    var w = t === 'casa' ? Math.round(6 + m / 9) : t === 'locale' ? Math.round(5 + m / 12) : t === 'cucina' ? 5 : 4;
+    document.querySelector('[data-weeks]').textContent = w + '–' + (w + (t === 'casa' || t === 'locale' ? 4 : 2)) + ' settimane';
+    document.querySelector('[data-pratica]').textContent = t === 'casa' || t === 'locale' ? 'CILA inclusa' : 'Se serve, inclusa';
+  };
+  f.querySelectorAll('input[name=tipo]').forEach(function(i){ i.addEventListener('change', function(){
+    var s = SIZE[i.value]; sqm.min = s[0]; sqm.max = s[1]; sqm.value = s[2];
+    f.querySelector('[data-sqm-min]').textContent = s[0] + ' m²'; f.querySelector('[data-sqm-max]').textContent = s[1] + ' m²';
+    calc(); }); });
+  f.addEventListener('input', calc);
+  var show = function(i){
+    cur = Math.max(0, Math.min(3, i));
+    steps.forEach(function(s, k){ s.hidden = k !== cur; });
+    bar.forEach(function(b, k){ b.classList.toggle('on', k <= cur); });
+    prev.disabled = cur === 0;
+    next.innerHTML = cur === 3 ? 'Vedi il riepilogo <span class="arrow" aria-hidden="true">→</span>' : 'Avanti <span class="arrow" aria-hidden="true">→</span>';
+    var first = steps[cur].querySelector('input:checked') || steps[cur].querySelector('input'); first && first.focus({preventScroll:true});
+  };
+  prev.addEventListener('click', function(){ show(cur - 1); });
+  next.addEventListener('click', function(){
+    if(cur === 3){ document.querySelector('.result').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    show(cur + 1);
+  });
+  calc();
+})();
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+<script type="module">
+/* casa 3D: caricata solo in vista, con fallback statico */
+const stage = document.querySelector('[data-stage]');
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const conn = navigator.connection, save = conn && (conn.saveData || /2g/.test(conn.effectiveType || ''));
+const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e){ return false; } })();
+const staticView = () => { stage.querySelector('[data-loading]')?.remove(); stage.querySelector('[data-progress]')?.remove(); stage.querySelector('[data-hint]').textContent = 'Vista statica'; };
+
+if(!reduce && !save && hasGL){
+  const io = new IntersectionObserver((en) => { if(en[0].isIntersecting){ io.disconnect(); boot().catch((e) => { console.warn('3D non disponibile', e); staticView(); }); } }, {rootMargin:'200px'});
+  io.observe(stage);
+} else staticView();
+
+async function boot(){
+  const THREE = await import('three');
+  const { GLTFLoader } = await import('./vendor/jsm/loaders/GLTFLoader.js');
+  const { OrbitControls } = await import('./vendor/jsm/controls/OrbitControls.js');
+
+  const touch = matchMedia('(pointer:coarse)').matches;
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.localClippingEnabled = true;
+  stage.insertBefore(renderer.domElement, stage.querySelector('.floor'));
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.05, 50);
+  scene.add(new THREE.HemisphereLight(0xfff4e8, 0x2a2521, 1.6));
+  const sun = new THREE.DirectionalLight(0xffe2c4, 2.2); sun.position.set(3, 5, 4); scene.add(sun);
+  const rim = new THREE.DirectionalLight(0xc8d4ff, .6); rim.position.set(-4, 2, -3); scene.add(rim);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = .08;
+  controls.enablePan = false; controls.minDistance = 1.6; controls.maxDistance = 5.5;
+  controls.minPolarAngle = .35; controls.maxPolarAngle = 1.5;
+  controls.autoRotate = true; controls.autoRotateSpeed = .8;
+
+  const bar = stage.querySelector('[data-progress]');
+  const gltf = await new GLTFLoader().loadAsync('./media/casa.glb', (e) => { if(e.total) bar.style.width = (e.loaded / e.total * 100) + '%'; });
+  const model = gltf.scene;
+  const box = new THREE.Box3().setFromObject(model), size = box.getSize(new THREE.Vector3()), center = box.getCenter(new THREE.Vector3());
+  const s = 1.6 / Math.max(size.x, size.y, size.z);
+  model.scale.setScalar(s); model.position.set(-center.x * s, -center.y * s, -center.z * s);
+  const H = size.y * s;
+  const clip = new THREE.Plane(new THREE.Vector3(0, -1, 0), -H / 2);
+  model.traverse((o) => { if(o.isMesh){ o.material.clippingPlanes = [clip]; o.material.side = THREE.DoubleSide; } });
+  scene.add(model);
+  bar.style.width = '100%'; setTimeout(() => bar.remove(), 400);
+
+  const R = 3.4;
+  controls.target.set(0, 0, 0);
+  const [az0, pol0, d0] = ROOMS.casa.view;
+  camera.position.setFromSphericalCoords(R * d0, pol0, az0);
+
+  const resize = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  resize(); new ResizeObserver(resize).observe(stage);
+  stage.setAttribute('data-ready', '');
+
+  /* la casa "si costruisce" dal basso */
+  const build = {h:-H / 2};
+  gsap.to(build, {h:H / 2 + .01, duration:2.4, delay:.2, ease:'power2.inOut', onUpdate:() => { clip.constant = build.h; },
+    onComplete:() => model.traverse((o) => { if(o.isMesh) o.material.clippingPlanes = []; })});
+
+  /* su touch la rotazione si attiva con un tocco, così lo scroll della pagina resta libero */
+  const hint = stage.querySelector('[data-hint]'), reset = stage.querySelector('[data-reset]');
+  if(touch){
+    stage.setAttribute('data-touch', ''); controls.enabled = false; hint.textContent = 'Tocca per ruotare';
+    stage.querySelector('[data-gate]').addEventListener('click', () => { controls.enabled = true; stage.setAttribute('data-active', ''); hint.textContent = 'Trascina per ruotare'; });
+  }
+  controls.addEventListener('start', () => { controls.autoRotate = false; reset.hidden = false; tween && tween.kill(); });
+
+  let tween;
+  const goTo = (key) => {
+    const [az, pol, dist, ty] = ROOMS[key].view, sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+    let dAz = az - sph.theta; dAz = Math.atan2(Math.sin(dAz), Math.cos(dAz));
+    const cur = {az:sph.theta, pol:sph.phi, r:sph.radius, ty:controls.target.y};
+    controls.autoRotate = false; reset.hidden = key === 'casa';
+    tween && tween.kill();
+    tween = gsap.to(cur, {az:sph.theta + dAz, pol, r:R * dist, ty, duration:1.3, ease:'power3.inOut',
+      onUpdate:() => { controls.target.y = cur.ty; camera.position.setFromSphericalCoords(cur.r, cur.pol, cur.az).add(controls.target); },
+      onComplete:() => { if(key === 'casa') controls.autoRotate = true; }});
+  };
+  addEventListener('innesto:room', (e) => goTo(e.detail));
+  reset.addEventListener('click', () => document.querySelector('[data-room=casa]').click());
+
+  /* render solo quando visibile */
+  let visible = true;
+  new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(stage);
+  renderer.setAnimationLoop(() => { if(!visible || document.hidden) return; controls.update(); renderer.render(scene, camera); });
+}
+</script>
+</body>
+</html>
