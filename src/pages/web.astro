@@ -6,7 +6,7 @@ const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Prenotazione'], next: ['Prenotazione con conferma su WhatsApp','Tessera fedeltà: ogni 6 servizi il 7° è in regalo', 'Coupon −15% sulla prima visita', 'Promemoria su WhatsApp prima della visita'] },
   { slug: 'innesto', name: 'INNESTO', kind: 'Ristrutturazioni', line: 'Ristrutturazioni chiavi in mano, con slider prima/dopo.', tags: ['Prima / Dopo', 'Case study', 'Sopralluogo'], next: ['Preventivo guidato in 4 domande', 'Area cliente con avanzamento del cantiere', 'Coupon sopralluogo gratuito a tempo', 'Sconto referral per chi consiglia lo studio'] },
-  { slug: 'tattoo', name: 'Cultura Tattoo', kind: 'Tattoo gallery', line: 'Galleria tattoo con configuratore.', tags: ['Configuratore', 'Referral', '3D'], next: ['Tessera a timbri: la 5ª sessione ha uno sconto', 'Coupon flash per i giorni con più posti liberi', 'Acconto online dal configuratore', 'Statistiche su prenotazioni e ritorni'] },
+  { slug: 'tattoo', name: 'Cultura Tattoo', kind: 'Tattoo studio', line: 'Tatuaggi su misura in bianco e nero, dal lucido alla pelle.', tags: ['Lettore di lucidi', 'Consulenza', 'Acconto'], next: ['Acconto online del 30% scalato dal totale', 'Promemoria WhatsApp 48 ore prima della seduta', 'Tessera a timbri: alla 5ª seduta −15%', 'Porta un amico: −10% a chi presenti'] },
 ];
 const stats = [
   { t: 'Probabilità di vendere', a: { l: 'Nuovo contatto', v: 12.5, r: '5–20%' }, b: { l: 'Cliente già acquisito', v: 65, r: '60–70%' }, max: 100 },
@@ -20,8 +20,139 @@ const feats = [
   { id: 'wa', t: 'Promemoria WhatsApp', d: 'Meno appuntamenti saltati', n: 0, r: 0.06 },
   { id: 'ref', t: 'Referral', d: 'I clienti portano amici', n: 0.2, r: 0.02 },
 ];
+const kstats = [
+  { t: 'Giovani (USA) incerti sul proprio percorso', a: { l: 'Incerti sulla carriera, 18–30 anni', v: 66.7, r: '≈ 2 su 3' }, b: { l: 'Incertezza frequente sui lavori futuri, Gen Z', v: 33.3, r: '≈ 1 su 3' }, max: 100 },
+  { t: 'Le aziende dicono «competenze». Assumono altrimenti.', a: { l: 'Assunzioni per competenze nei ruoli entry-level', v: 70, r: '70%' }, b: { l: "Nuovi assunti senza laurea in aziende che l'hanno tolta", v: 0.14, r: '< 1 su 700' }, max: 100 },
+  { t: 'Disoccupazione, giugno 2026', a: { l: 'Tutti i lavoratori', v: 4, r: '≈ 4%' }, b: { l: 'Neolaureati, 22–27 anni', v: 5.7, r: '5,7%' }, max: 10 },
+];
+const vs = [
+  { who: 'Forage', from: 'Parte da un ruolo', gap: 'Certifica che hai finito. Non dice nulla su di te.' },
+  { who: 'Parker Dewey', from: 'Parte da un campo scelto', gap: 'Guidato dal datore di lavoro. Non è per chi sta ancora scegliendo.' },
+  { who: 'Riipen', from: 'Parte da un corso', gap: 'Serve essere iscritti a una scuola.' },
+  { who: 'Contra, Dribbble', from: 'Parte da un mestiere che hai già', gap: 'Presuppone un portfolio.' },
+  { who: 'Quiz di carriera', from: 'Parte dalle tue risposte', gap: 'Non fai nulla, quindi non resta nessuna prova.' },
+  { who: 'KERN', from: 'Parte dalla persona', gap: 'Lavoro vero come esperimento su di te, con le prove accanto.', me: true },
+];
 ---
-<Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più un'app di fedeltà e coupon in concept: cosa costruiamo per far tornare i clienti." active="web">
+<Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+      <section class="app" id="app">
+        <div class="app-txt">
+          <span class="lab">/app · concept</span>
+          <svg class="icon" viewBox="0 0 100 100" role="img" aria-label="Icona app KERN">
+            <rect width="100" height="100" rx="23" fill="#0F140E" />
+            <g stroke="#E8E6DA"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="#E8E6DA" stroke="none" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="#C9F24A" stroke="none"/></g>
+          </svg>
+          <h2 class="k-h">kern<span>.</span></h2>
+          <p class="lead">Scopri cosa vuoi fare facendo lavoro vero. Missioni reali di aziende vere, tante risposte per ogni missione, e yourKERN: un profilo che nasce da ciò che hai fatto, non da ciò che dici di volere.</p>
+          <dl class="spec">
+            <div><dt>Piattaforme</dt><dd>iOS · Android · Web app</dd></div>
+            <div><dt>Stato</dt><dd>Concept, in sviluppo</dd></div>
+            <div><dt>Lingua</dt><dd>Inglese, poi altre</dd></div>
+            <div><dt>Per chi</dt><dd>Dai 18 ai 35 anni</dd></div>
+            <div><dt>Dati</dt><dd>Mai venduti</dd></div>
+          </dl>
+          <ul class="feat">
+            <li><b>Missioni aperte a tutti</b><span>Nessun blocco e nessun cronometro. Ogni missione accetta più risposte, così provi strade diverse.</span></li>
+            <li><b>Vince chi lo fa meglio</b><span>Non chi arriva prima. La classifica premia la qualità: revisione anonima tra pari e la scelta dell'azienda.</span></li>
+            <li><b>yourKERN</b><span>Tempo passato, interessi e missioni completate, sempre con le prove accanto. Mai una diagnosi.</span></li>
+          </ul>
+        </div>
+
+        <div class="k-wrap">
+          <div class="phone" aria-label="Anteprima interattiva dell'app KERN">
+            <div class="k-scr" id="kScr">
+              <div class="k-load" id="kLoad" aria-hidden="true">
+                <svg viewBox="0 0 100 100"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" class="ks" fill="#E8E6DA"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" class="kl" stroke="#E8E6DA"/><circle cx="66.4" cy="66.4" r="9" class="kc"/></svg>
+                <div class="k-word">kern<i>.</i></div>
+                <div class="k-tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div>
+              </div>
+              <div class="k-app">
+                <div class="k-top">
+                  <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="#E8E6DA" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="#E8E6DA" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="#C9F24A"/></svg>kern<i>.</i></div>
+                  <span class="k-pill">1 of 3 done</span>
+                </div>
+                <div class="k-body">
+                  <div class="k-pane on" id="k-missions">
+                    <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
+                    <div class="k-card k-main"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" data-k-toast="Your answer is saved. Add another one anytime.">Add your answer</button></div>
+                    <div class="k-card"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
+                    <div class="k-card"><div class="k-l">Mission 004 · studio client</div><h5>Work with a partner</h5><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
+                  </div>
+                  <div class="k-pane" id="k-yourkern">
+                    <div><div class="k-l">yourKERN · first signs</div><h4>Your <b>KERN</b><br>so far.</h4></div>
+                    <div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div>
+                    <div class="k-card"><div class="k-l">What you seem drawn to</div><div class="k-chips"><span>Shaping ideas</span><span>Writing</span><span>Solo work</span></div></div>
+                    <div class="k-card"><div class="k-l">A first guess</div><div class="k-sig">You seemed to light up on the open brief and drag on the polish.</div><div class="k-l">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div>
+                      <div class="k-ask"><button type="button" class="k-yes" data-k-msg="Saved. This sharpens your KERN.">That feels right</button><button type="button" data-k-msg="Noted. We'll give this guess less weight.">Not really</button></div><div class="k-l k-fb" id="kFb" aria-live="polite"></div></div>
+                    <div><div class="k-l">Completed</div><div class="k-done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
+                    <div class="k-card"><div class="k-l">Worth trying next</div><h5>Improve an existing product page</h5><p>Tests the part you seemed to drag on.</p></div>
+                  </div>
+                  <div class="k-pane" id="k-trail">
+                    <div><div class="k-l">Your Trail</div><h4>Follow the<br><b>trail.</b></h4></div>
+                    <div class="k-tr">
+                      <div class="k-st fin"><h5>Make somebody care</h5><p>Build from zero · done</p></div>
+                      <div class="k-st now"><h5>Fix what already exists</h5><p>Improve what exists · in progress</p></div>
+                      <div class="k-st"><h5>Work with a partner</h5><p>Pair up · not started</p></div>
+                      <div class="k-st"><h5>Your Kern card</h5><p>What we saw, why, and your next move</p></div>
+                    </div>
+                    <div class="k-card"><div class="k-l">Leave a sign</div><p>After each mission, leave one short tip for the next person.</p></div>
+                  </div>
+                </div>
+                <div class="k-toast" id="kToast" role="status" aria-live="polite"></div>
+                <nav class="k-tabs" aria-label="KERN">
+                  <button type="button" class="on" data-k-tab="missions">Missions</button>
+                  <button type="button" data-k-tab="yourkern">your<span>KERN</span></button>
+                  <button type="button" data-k-tab="trail">Trail</button>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="k-replay" id="kReplay">↻ Rivedi l'apertura</button>
+        </div>
+      </section>
+
+      <section class="why" id="perche">
+        <span class="lab">/perché</span>
+        <h2>Chi non sa cosa vuole non ha una porta d'ingresso.</h2>
+        <p class="lead">Molti giovani sono incerti, le aziende chiedono prove di lavoro e poi assumono per titolo, e i posti di ingresso calano. Dati di ricerca generali, non risultati di KERN.</p>
+        <div class="charts">
+          {kstats.map((s) => (
+            <figure class="chart">
+              <figcaption>{s.t}</figcaption>
+              {[s.a, s.b].map((r, k) => (
+                <div class="row">
+                  <span>{r.l}</span>
+                  <b>{r.r}</b>
+                  <div class="track"><i class={k ? 'y' : 'w'} style={`--v:${Math.max((r.v / s.max) * 100, 1.5)}%`}></i></div>
+                </div>
+              ))}
+            </figure>
+          ))}
+        </div>
+        <p class="note">Le barre mostrano il valore indicato dalle fonti; sono indicative, e alcune cifre vengono da fonti secondarie. Sugli annunci entry-level (−35% dal 2023) le cause sono discusse: KERN non dà la colpa all'AI.</p>
+      </section>
+
+      <section class="vs" id="differenza">
+        <span class="lab">/differenza</span>
+        <h2>Tutti partono da un ruolo. KERN parte da te.</h2>
+        <p class="lead">Le missioni con aziende vere esistono già. Non sono l'idea, sono la materia prima. L'idea è usarle come esperimento su di te.</p>
+        <ul class="vs-l">
+          {vs.map((v) => (
+            <li class={v.me ? 'me' : ''}><b>{v.who}</b><span class="vs-f">{v.from}</span><span>{v.gap}</span></li>
+          ))}
+        </ul>
+        <div class="goal">
+          <span class="lab">L'obiettivo</span>
+          <p>Aiutare chi non sa cosa vuole a scoprirlo facendo lavoro vero, e a capire come lavora. Le missioni sono in contrasto tra loro (partire da zero, poi migliorare qualcosa che esiste), e il segnale sta nel confronto. Tre missioni portano a una Kern card: un'ipotesi su come lavori, con le prove, che puoi confermare o respingere.</p>
+          <ul class="goal-l">
+            <li>Nessun cronometro: il ritmo è tuo, e la fatica è il punto.</li>
+            <li>Nessun blocco: tutte le missioni sono aperte, subito.</li>
+            <li>Più risposte per missione: chi la fa meglio, non chi la fa prima.</li>
+          </ul>
+        </div>
+      </section>
+
+
       <section class="top">
         <span class="lab">/web</span>
         <h1>Nuovo link.</h1>
@@ -53,59 +184,6 @@ const feats = [
           </article>
         ))}
       </section>
-
-      <section class="app" id="app">
-        <div class="app-txt">
-          <span class="lab">/app · concept</span>
-          <svg class="icon" viewBox="0 0 100 100" role="img" aria-label="Icona app Tessera">
-            <rect width="100" height="100" rx="23" fill="#FFE000" />
-            <rect x="19" y="27" width="62" height="46" rx="9" fill="#0034D6" transform="rotate(-6 50 50)" />
-            <circle cx="35" cy="54" r="6" fill="#fff" transform="rotate(-6 50 50)" /><circle cx="50" cy="54" r="6" fill="#fff" transform="rotate(-6 50 50)" /><circle cx="65" cy="54" r="6" fill="none" stroke="#fff" stroke-width="2.5" transform="rotate(-6 50 50)" />
-          </svg>
-          <h2>Tessera</h2>
-          <p class="lead">L'app di fedeltà e coupon per le attività locali: timbri, premi e sconti nel telefono del cliente, numeri chiari per te.</p>
-          <dl class="spec">
-            <div><dt>Piattaforme</dt><dd>iOS · Android · Web app</dd></div>
-            <div><dt>Stato</dt><dd>Concept, in sviluppo</dd></div>
-            <div><dt>Lingua</dt><dd>Italiano</dd></div>
-            <div><dt>Dati</dt><dd>Nessun tracciamento pubblicitario</dd></div>
-          </dl>
-          <ul class="feat">
-            <li><b>Programmi fedeltà</b><span>Tessera a timbri o a punti, premio automatico.</span></li>
-            <li><b>Coupon sconto</b><span>Codici a tempo, per cliente o per giorno.</span></li>
-            <li><b>Statistiche</b><span>Nuovi clienti, ritorni e coupon usati, in un colpo d'occhio.</span></li>
-          </ul>
-        </div>
-
-        <div class="phone" aria-label="Anteprima interattiva dell'app">
-          <div class="screen">
-            <div class="ph-top"><span>Tessera</span></div>
-            <div class="loy">
-              <div class="loy-top" id="loyTop">
-                <p class="loy-t">Ogni 8 visite, la 9ª è in regalo</p>
-                <div class="stamps" id="stamps"></div>
-                <div class="gift" id="gift" aria-hidden="true">
-                  <svg viewBox="0 0 80 84">
-                    <rect x="14" y="44" width="52" height="34" rx="4" fill="#FFE000" /><rect x="36" y="44" width="8" height="34" fill="#0034D6" />
-                    <g class="lid"><rect x="10" y="32" width="60" height="14" rx="4" fill="#FFE000" /><rect x="36" y="32" width="8" height="14" fill="#0034D6" />
-                    <path d="M40 32C30 14 18 22 26 30zM40 32C50 14 62 22 54 30z" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" /></g>
-                  </svg>
-                  <b>Premio sbloccato!</b>
-                </div>
-              </div>
-              <p class="loy-s" id="loyMsg"></p>
-              <button type="button" class="stamp-btn" id="stampBtn">Timbra</button>
-            </div>
-            <button type="button" class="ticket" id="coupon" aria-label="Copia il codice coupon">
-              <span class="tk-l"><b>−15%</b><small>Bentornato</small></span>
-              <span class="tk-r"><code>BENTORNATO15</code><small id="cpMsg">Tocca per copiare</small></span>
-            </button>
-            <div class="mini" aria-hidden="true"><i style="--h:30%"></i><i style="--h:42%"></i><i style="--h:38%"></i><i style="--h:58%"></i><i style="--h:66%"></i><i style="--h:82%"></i></div>
-            <small class="mini-l">Clienti che tornano, ultime 6 settimane · esempio</small>
-          </div>
-        </div>
-      </section>
-
       <section class="why" id="numeri">
         <span class="lab">/numeri</span>
         <h2>Far tornare un cliente vale di più.</h2>
@@ -127,7 +205,6 @@ const feats = [
         <p class="note">Le barre mostrano il centro dell'intervallo indicato dalle fonti.</p>
       </section>
 
-
       <Sim feats={feats} kpi={['Clienti attivi al 12° mese', 'Clienti che tornano', 'Nuovi clienti al mese']} heading="Accendi le funzioni." lead="Aggiungine una alla volta e guarda come cambiano i clienti in un anno." />
 
       <section class="cta-s">
@@ -143,13 +220,17 @@ const feats = [
         <ol>
           <li>Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Review, ottobre 2014: aumentare la retention del 5% aumenta i profitti del 25–95%; acquisire un cliente costa 5–25 volte più che mantenerlo (dati di Fred Reichheld, Bain &amp; Company). <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">hbr.org</a></li>
           <li>P. Farris, N. Bendle, P. Pfeifer, D. Reibstein, <i>Marketing Metrics: The Definitive Guide to Measuring Marketing Performance</i>, Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.</li>
-          <li>Le demo INNESTO, SEZIONE e Cultura Tattoo sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app Tessera è un concept: schermate e numeri sono d'esempio.</li>
+          <li>Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera. <a href="https://www.forbes.com/sites/juliakorn/2025/05/20/new-report-50-of-young-adults-feel-isolated-in-career-planning/" target="_blank" rel="noopener">forbes.com</a> · <a href="https://www.bbbs.org/2025/09/career-confidence-in-crisis-new-report-from-big-brothers-big-sisters-shows-gen-zers-lack-critical-mentorship/" target="_blank" rel="noopener">bbbs.org</a></li>
+          <li>NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari: <a href="https://blog.theinterviewguys.com/the-state-of-skills-based-hiring/" target="_blank" rel="noopener">The Interview Guys</a> · <a href="https://testlify.com/skills-based-hiring-statistics/" target="_blank" rel="noopener">Testlify</a> · <a href="https://www.forbes.com/sites/terdawn-deboe/2026/08/10/employers-are-hiring-for-skills-over-degrees-now-ai-is-why/" target="_blank" rel="noopener">Forbes, agosto 2026</a></li>
+          <li>NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level. <a href="https://www.npr.org/2026/08/18/nx-s1-5910677/recent-college-graduates-employment-job-artificial-intelligence" target="_blank" rel="noopener">npr.org</a> · <a href="https://www.ibisworld.com/blog/2026-job-market-leaves-new-grads-behind/1/1126/" target="_blank" rel="noopener">ibisworld.com</a></li>
+          <li>Forage, Parker Dewey, Riipen, Contra: descrizione dai siti dei prodotti. <a href="https://www.theforage.com/simulations" target="_blank" rel="noopener">theforage.com</a> · <a href="https://www.parkerdewey.com/" target="_blank" rel="noopener">parkerdewey.com</a> · <a href="https://contra.com/" target="_blank" rel="noopener">contra.com</a></li>
+          <li>Le demo INNESTO, SEZIONE e Cultura Tattoo sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.</li>
         </ol>
       </section>
 </Site>
 
 <style is:global>
-      .top { padding-bottom: 24px; }
+      .top { padding-bottom: 24px; border-top: 1px solid rgba(255,255,255,.25); }
       .demos { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); padding-top: 24px; }
       .card { display: flex; flex-direction: column; gap: 18px; }
       .shot { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.35); background: var(--blue); transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.2,1); }
@@ -174,9 +255,9 @@ const feats = [
       .meta p { margin: 0 0 14px; color: rgba(255,255,255,.85); line-height: 1.45; }
       .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0 0 16px; padding: 0; }
       .tags li { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
-
-      .app { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; border-top: 1px solid rgba(255,255,255,.25); }
+      .app { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; }
       .icon { width: 96px; height: 96px; display: block; margin: 22px 0 6px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
+      .k-h { margin-top: 6px; letter-spacing: -.07em; } .k-h span { color: #C9F24A; letter-spacing: 0; }
       .spec { margin: 26px 0 0; border-top: 1px solid rgba(255,255,255,.28); max-width: 34rem; }
       .spec div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.28); }
       .spec dt { font: 500 12px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--yellow); }
@@ -184,45 +265,70 @@ const feats = [
       .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
       .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; }
       .feat span { color: rgba(255,255,255,.8); }
-      .ph-top { display: flex; justify-content: space-between; align-items: baseline; }
-      .ph-top span { font-weight: 700; font-size: 1.3rem; letter-spacing: -.03em; color: var(--blue); }
-      .ph-top small, .mini-l { font-size: 11px; color: #5a6178; }
-      .loy { background: var(--blue); color: #fff; border-radius: 20px; padding: 16px; }
-      .loy { position: relative; }
-      .loy-top { position: relative; }
-      .gift { position: absolute; inset: -6px; display: grid; place-content: center; justify-items: center; gap: 6px; border-radius: 14px; background: var(--blue); opacity: 0; pointer-events: none; transition: opacity .3s; }
-      .gift svg { width: 84px; height: auto; overflow: visible; transform: scale(.4); }
-      .gift .lid { transform-box: fill-box; transform-origin: 0% 100%; }
-      .gift b { font-size: .95rem; letter-spacing: -.01em; color: var(--yellow); opacity: 0; transform: translateY(6px); transition: opacity .4s .5s, transform .4s .5s; }
-      .gift.show { opacity: 1; }
-      .gift.show svg { animation: giftPop .7s cubic-bezier(.2,1.4,.4,1) both, giftBob 1.6s ease-in-out 1.2s infinite; }
-      .gift.show .lid { animation: lidOpen .6s .45s cubic-bezier(.2,1.3,.4,1) both; }
-      .gift.show b { opacity: 1; transform: none; }
-      .conf { position: absolute; left: 50%; top: 45%; width: 7px; height: 11px; border-radius: 2px; pointer-events: none; }
-      @keyframes giftPop { from { transform: scale(.3) rotate(-8deg); } 60% { transform: scale(1.12) rotate(3deg); } to { transform: none; } }
-      @keyframes giftBob { 50% { transform: translateY(-4px); } }
-      @keyframes lidOpen { to { transform: translateY(-16px) rotate(-16deg); } }
-      @media (prefers-reduced-motion: reduce) { .gift.show svg, .gift.show .lid { animation: none; } .gift svg { transform: none; } .gift.show .lid { transform: translateY(-14px); } }
-      .loy-t { margin: 0 0 12px; font-weight: 600; font-size: .95rem; }
-      .stamps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-      .stamps i { aspect-ratio: 1; border-radius: 50%; border: 2px dashed rgba(255,255,255,.5); transition: background .3s, transform .3s, border-color .3s; }
-      .stamps i.on { background: var(--yellow); border: 2px solid var(--yellow); }
-      .stamps i.pop { animation: pop .35s cubic-bezier(.2,.9,.3,1.5); }
-      @keyframes pop { from { transform: scale(.4); } }
-      .loy-s { margin: 12px 0 0; font-size: .85rem; min-height: 1.2em; color: rgba(255,255,255,.9); }
-      .stamp-btn { margin-top: 10px; width: 100%; border: 0; border-radius: 999px; padding: 12px; font: 700 .95rem 'Inter Tight Variable', system-ui, sans-serif; background: var(--yellow); color: var(--blue); cursor: pointer; transition: transform .2s; }
-      .stamp-btn:active { transform: scale(.97); }
-      .ticket { display: flex; align-items: stretch; width: 100%; border: 0; padding: 0; text-align: left; border-radius: 14px; background: #fff; box-shadow: 0 2px 0 rgba(0,52,214,.12); cursor: pointer; font-family: inherit; color: inherit; overflow: hidden; }
-      .tk-l { display: grid; align-content: center; padding: 12px 14px; background: var(--yellow); color: var(--blue); border-right: 2px dashed rgba(0,52,214,.4); }
-      .tk-l b { font-size: 1.5rem; letter-spacing: -.04em; line-height: 1; }
-      .tk-l small { font-size: 10px; font-weight: 600; }
-      .tk-r { display: grid; align-content: center; gap: 4px; padding: 12px 14px; }
-      .tk-r code { font: 700 .9rem var(--mono); letter-spacing: .06em; color: var(--blue); }
-      .tk-r small { font-size: 11px; color: #5a6178; }
-      .mini { display: flex; align-items: flex-end; gap: 8px; height: 64px; }
-      .mini i { flex: 1; height: var(--h); border-radius: 6px 6px 2px 2px; background: var(--blue); opacity: .85; }
-      .mini i:last-child { background: var(--yellow); opacity: 1; }
 
+      /* KERN phone: own palette (night / bone / lime) */
+      .k-wrap { display: grid; justify-items: center; gap: 16px; }
+      .k-replay { background: none; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 9px 16px; font: 600 .85rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
+      .k-replay:hover { border-color: var(--yellow); color: var(--yellow); }
+      .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; background: var(--bg); color: var(--fg); }
+      .k-scr h4, .k-scr h5, .k-scr p { margin: 0; }
+      .k-scr button { font-family: inherit; }
+      .k-app { height: 100%; display: flex; flex-direction: column; }
+      .k-top { padding: 20px 18px 6px; display: flex; justify-content: space-between; align-items: center; }
+      .k-logo { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 21px; letter-spacing: -.07em; }
+      .k-logo svg { width: 22px; } .k-logo i { font-style: normal; color: var(--acc); letter-spacing: 0; }
+      .k-pill { font: 400 10px var(--mono); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: var(--dim); }
+      .k-body { flex: 1; overflow: auto; padding: 10px 18px 12px; scrollbar-width: none; }
+      .k-body::-webkit-scrollbar { display: none; }
+      .k-pane { display: none; flex-direction: column; gap: 12px; }
+      .k-pane.on { display: flex; }
+      .k-l { font: 400 10px var(--mono); color: var(--dim); letter-spacing: .04em; text-transform: uppercase; }
+      .k-scr h4 { margin-top: 6px; font-weight: 800; font-size: 28px; letter-spacing: -.05em; line-height: 1; } .k-scr h4 b { color: var(--acc); }
+      .k-card { border: 1.5px solid var(--fg); border-radius: 14px; padding: 13px; display: flex; flex-direction: column; gap: 8px; }
+      .k-card h5 { font-weight: 800; font-size: 18px; letter-spacing: -.04em; line-height: 1.1; }
+      .k-card p { font-size: 13px; line-height: 1.4; color: rgba(232,230,218,.82); }
+      .k-main { background: var(--fg); color: var(--bg); } .k-main .k-l { color: var(--bg); opacity: .65; } .k-main p { color: var(--bg); opacity: .82; }
+      .k-btn { align-self: flex-start; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--bg); color: var(--acc); }
+      .k-stat { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; } .k-stat b { font-weight: 800; font-size: 36px; letter-spacing: -.06em; line-height: 1; }
+      .k-bar { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; } .k-bar i { display: block; height: 100%; width: 62%; background: var(--acc); }
+      .k-chips { display: flex; flex-wrap: wrap; gap: 6px; } .k-chips span { border: 1px solid var(--fg); border-radius: 999px; padding: 5px 11px; font-size: 12px; font-weight: 500; }
+      .k-sig { border-left: 3px solid var(--acc); padding-left: 12px; font-size: 14px; line-height: 1.4; }
+      .k-ask { display: flex; gap: 8px; flex-wrap: wrap; }
+      .k-ask button { font-size: 12px; font-weight: 800; border: 1.5px solid var(--fg); background: none; color: var(--fg); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+      .k-ask .k-yes { background: var(--acc); color: var(--on); border-color: var(--acc); }
+      .k-fb { min-height: 1.2em; color: var(--acc); }
+      .k-done { display: flex; justify-content: space-between; font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); } .k-done small { font: 400 10px var(--mono); color: var(--dim); }
+      .k-tr { position: relative; display: flex; flex-direction: column; gap: 18px; padding-left: 32px; }
+      .k-tr::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+      .k-st { position: relative; } .k-st::before { content: ''; position: absolute; left: -30px; top: 2px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--fg); background: var(--bg); }
+      .k-st.fin::before { background: var(--fg); } .k-st.now::before { background: var(--acc); border-color: var(--acc); }
+      .k-st h5 { font-weight: 800; font-size: 16px; letter-spacing: -.03em; } .k-st p { font-size: 12px; color: var(--dim); margin-top: 2px; }
+      .k-toast { position: absolute; left: 14px; right: 14px; bottom: 72px; background: var(--fg); color: var(--bg); border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
+      .k-toast.on { opacity: 1; transform: none; }
+      .k-tabs { display: flex; border-top: 1px solid var(--line); padding: 6px 8px 12px; }
+      .k-tabs button { flex: 1; background: none; border: 0; color: var(--dim); font-weight: 800; font-size: 12px; letter-spacing: -.01em; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; padding: 6px 0; }
+      .k-tabs button::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: transparent; }
+      .k-tabs button.on { color: var(--fg); } .k-tabs button.on::before { background: var(--acc); } .k-tabs button.on span { color: var(--acc); }
+      /* launch loader (plays once when the phone scrolls into view) */
+      .k-load { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: var(--bg); transition: opacity .5s; }
+      .k-load.off { opacity: 0; pointer-events: none; }
+      .k-load svg { width: 92px; overflow: visible; }
+      .ks, .kl { transform: translate(0,0); } .kl { fill: none; }
+      .kc { transform-box: fill-box; transform-origin: center; transform: scale(0); fill: var(--acc); }
+      .k-word { font-weight: 800; font-size: 46px; letter-spacing: -.07em; line-height: 1; opacity: 0; transform: translateY(8px); } .k-word i { font-style: normal; color: var(--acc); letter-spacing: 0; }
+      .k-tag { position: absolute; bottom: 44px; text-align: center; display: flex; flex-direction: column; gap: 6px; opacity: 0; }
+      .k-tag span { font-weight: 500; font-size: 16px; letter-spacing: -.02em; line-height: 1; opacity: .6; }
+      .k-tag strong { font-weight: 800; font-size: 27px; letter-spacing: -.06em; line-height: 1; } .k-tag b { color: var(--acc); }
+      .k-load.go .ks { animation: kS .9s .35s cubic-bezier(.65,0,.25,1) forwards; }
+      .k-load.go .kl { animation: kL .9s .35s cubic-bezier(.65,0,.25,1) forwards; }
+      .k-load.go .kc { animation: kC .5s 1.05s cubic-bezier(.3,1.6,.5,1) forwards; }
+      .k-load.go .k-word { animation: kR .6s 1.2s cubic-bezier(.2,.8,.2,1) forwards; }
+      .k-load.go .k-tag { animation: kR .6s 1.6s cubic-bezier(.2,.8,.2,1) forwards; }
+      @keyframes kS { to { transform: translate(-5px,-5px); } } @keyframes kL { to { transform: translate(5px,5px); } }
+      @keyframes kC { to { transform: scale(1); } } @keyframes kR { to { opacity: 1; transform: none; } }
+      @media (prefers-reduced-motion: reduce) { .k-load { display: none; } .k-toast { transition: none; } }
+
+      /* why + difference */
       .why { border-top: 1px solid rgba(255,255,255,.25); }
       .charts { display: grid; gap: 22px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
       .chart { margin: 0; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); }
@@ -233,8 +339,18 @@ const feats = [
       .row i { display: block; height: 100%; width: 0; border-radius: 999px; transition: width 1.1s cubic-bezier(.2,.7,.2,1); }
       .row i.w { background: #fff; } .row i.y { background: var(--yellow); }
       .chart.in .row i { width: var(--v); }
+      .vs { border-top: 1px solid rgba(255,255,255,.25); }
+      .vs-l { list-style: none; margin: 36px 0 0; padding: 0; display: grid; }
+      .vs-l li { display: grid; gap: 4px 24px; grid-template-columns: 1fr; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.28); line-height: 1.4; color: rgba(255,255,255,.85); }
+      .vs-l b { font-size: 1.15rem; letter-spacing: -.02em; color: #fff; }
+      .vs-f { font: 500 12px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--yellow); }
+      .vs-l li.me { background: rgba(255,224,0,.12); padding-left: 16px; padding-right: 16px; border-radius: 12px; border-bottom-color: transparent; margin-top: 6px; }
+      .goal { margin-top: 40px; max-width: 46rem; } .goal p { margin: 14px 0 0; font-size: 1.1rem; line-height: 1.55; color: rgba(255,255,255,.9); }
+      .goal-l { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+      .goal-l li { display: grid; grid-template-columns: 1.1em 1fr; } .goal-l li::before { content: '+'; font: 700 .95rem var(--mono); color: var(--yellow); }
+      @media (min-width: 720px) { .vs-l li { grid-template-columns: 11rem 14rem 1fr; align-items: baseline; } }
       @media (min-width: 1024px) { .app { grid-template-columns: 1.1fr .9fr; } }
-      @media (prefers-reduced-motion: reduce) { .row i { transition: none; } .stamps i.pop { animation: none; } }
+      @media (prefers-reduced-motion: reduce) { .row i { transition: none; } }
 </style>
 
 <script>
@@ -258,50 +374,30 @@ const feats = [
 
       const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.35 });
       document.querySelectorAll('.chart').forEach((c) => io.observe(c));
-
-      const box = document.getElementById('stamps')!;
-      const msg = document.getElementById('loyMsg')!;
-      const btn = document.getElementById('stampBtn')!;
-      const TOTAL = 8;
-      let n = 5;
-      box.innerHTML = '<i></i>'.repeat(TOTAL);
-      const paint = (pop = false) => {
-        [...box.children].forEach((c, i) => { c.classList.toggle('on', i < n); c.classList.remove('pop'); });
-        if (pop && n > 0) { const c = box.children[n - 1] as HTMLElement; void c.offsetWidth; c.classList.add('pop'); }
-        const left = TOTAL - n;
-        msg.textContent = left > 0 ? `Ancora ${left} per il premio` : 'La prossima visita è in regalo';
-        btn.textContent = left > 0 ? 'Timbra' : 'Ricomincia';
+      const kScr = document.getElementById('kScr')!;
+      const kLoad = document.getElementById('kLoad')!;
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let kT = 0;
+      const play = () => {
+        clearTimeout(kT);
+        kLoad.classList.remove('go', 'off'); void kLoad.offsetWidth; kLoad.classList.add('go');
+        kT = window.setTimeout(() => kLoad.classList.add('off'), 3400);
       };
-      const gift = document.getElementById('gift')!;
-      const top = document.getElementById('loyTop')!;
-      const celebrate = () => {
-        gift.classList.add('show');
-        navigator.vibrate?.(60);
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        const cols = ['#FFE000', '#ffffff', '#ff5fa2', '#7cf0c9', '#ffb020'];
-        for (let i = 0; i < 26; i++) {
-          const c = document.createElement('i');
-          c.className = 'conf'; c.style.background = cols[i % cols.length];
-          top.appendChild(c);
-          const a = Math.random() * Math.PI * 2, r = 70 + Math.random() * 90;
-          c.animate([
-            { transform: 'translate(-50%,-50%) rotate(0)', opacity: 1 },
-            { transform: `translate(${Math.cos(a) * r - 3}px,${Math.sin(a) * r - 40}px) rotate(${Math.random() * 540}deg)`, opacity: 1, offset: .55 },
-            { transform: `translate(${Math.cos(a) * r * 1.1}px,${Math.sin(a) * r + 50}px) rotate(${Math.random() * 900}deg)`, opacity: 0 },
-          ], { duration: 1300 + Math.random() * 500, delay: 420, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'both' }).onfinish = () => c.remove();
-        }
-      };
-      btn.addEventListener('click', () => {
-        n = n >= TOTAL ? 0 : n + 1;
-        paint(true);
-        if (n >= TOTAL) celebrate(); else gift.classList.remove('show');
-      });
-      paint();
+      if (still) kLoad.classList.add('off');
+      else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { play(); o.disconnect(); } }, { threshold: 0.5 }).observe(kScr);
+      document.getElementById('kReplay')!.addEventListener('click', () => { if (!still) play(); });
 
-      const cp = document.getElementById('coupon')!;
-      const cpMsg = document.getElementById('cpMsg')!;
-      cp.addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText('BENTORNATO15'); cpMsg.textContent = 'Copiato!'; } catch { cpMsg.textContent = 'Codice: BENTORNATO15'; }
-        setTimeout(() => (cpMsg.textContent = 'Tocca per copiare'), 1800);
-      });
+      const tabs = kScr.querySelectorAll<HTMLElement>('[data-k-tab]');
+      tabs.forEach((t) => t.addEventListener('click', () => {
+        tabs.forEach((x) => x.classList.toggle('on', x === t));
+        kScr.querySelectorAll('.k-pane').forEach((p) => p.classList.toggle('on', p.id === 'k-' + t.dataset.kTab));
+      }));
+      const toast = document.getElementById('kToast')!;
+      let tT = 0;
+      kScr.querySelectorAll<HTMLElement>('[data-k-toast]').forEach((b) => b.addEventListener('click', () => {
+        toast.textContent = b.dataset.kToast!; toast.classList.add('on');
+        clearTimeout(tT); tT = window.setTimeout(() => toast.classList.remove('on'), 2200);
+      }));
+      const fb = document.getElementById('kFb')!;
+      kScr.querySelectorAll<HTMLElement>('[data-k-msg]').forEach((b) => b.addEventListener('click', () => { fb.textContent = b.dataset.kMsg!; }));
 </script>
