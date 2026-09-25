@@ -334,7 +334,7 @@ const kstats = [
       .k-replay { background: none; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 9px 16px; font: 600 .85rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
       .k-replay:hover { border-color: var(--yellow); color: var(--yellow); }
       .k-scr.light { --bg: #E8E6DA; --fg: #141A12; --acc: #2C5A3A; --on: #E8E6DA; --line: #B9B7A8; --dim: #5b6156; }
-      .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; background: var(--bg); color: var(--fg); }
+      .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; contain: layout paint; background: var(--bg); color: var(--fg); }
       .k-scr h4, .k-scr h5, .k-scr p { margin: 0; }
       .k-scr button { font-family: inherit; }
       .k-app { height: 100%; display: flex; flex-direction: column; }
@@ -456,6 +456,7 @@ const kstats = [
       .k-btn, .k-go, .k-ask-btn, .k-ask button, .k-win, .k-tabs button { transition: transform .15s; }
       .k-btn:active, .k-go:active, .k-ask-btn:active, .k-ask button:active, .k-win:active { transform: scale(.95); }
       .k-tabs { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); }
+      @media (hover: none) { .k-tabs { background: color-mix(in srgb, var(--bg) 95%, transparent); backdrop-filter: none; } }
       .k-tabs button::before { transition: width .25s, background .25s; }
       .k-tabs button.on::before { width: 20px; border-radius: 4px; }
       .k-pane.on > * { animation: kUp .45s both cubic-bezier(.2,.8,.2,1); }
@@ -537,7 +538,7 @@ const kstats = [
       .k-tags { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
       .k-tags li { border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: .95rem; background: rgba(255,255,255,.06); }
       .k-wrap > * { position: relative; z-index: 1; }
-      .k-wrap::before { content: ''; position: absolute; inset: 6% -14%; background: radial-gradient(closest-side, rgba(255,224,0,.24), transparent 72%); filter: blur(28px); pointer-events: none; }
+      .k-wrap::before { content: ''; position: absolute; inset: 6% -14%; background: radial-gradient(closest-side, rgba(255,224,0,.22), rgba(255,224,0,.08) 60%, transparent 100%); pointer-events: none; }
       .duo { display: grid; gap: 22px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
       .duo > div { padding: 26px; border-radius: 18px; background: rgba(255,224,0,.12); border: 1px solid rgba(255,224,0,.45); }
       .duo p { margin: 14px 0 0; font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.8rem); letter-spacing: -.03em; line-height: 1.15; }
