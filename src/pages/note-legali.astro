@@ -1,0 +1,45 @@
+---
+import Site from '../layouts/Site.astro';
+---
+<Site title="Note legali — Punto Due Studio" description="Diritti d'autore, marchi e condizioni d'uso dei contenuti di Punto Due Studio e dell'app KERN.">
+  <section class="legal-sec">
+    <span class="lab">/note-legali</span>
+    <h1>Note legali.</h1>
+    <p class="lead">Cosa è nostro, cosa puoi fare con i contenuti di questo sito e come segnalarci un abuso.</p>
+
+    <div class="legal">
+      <h3>Titolari</h3>
+      <p>Il sito e i contenuti sono di <strong>Punto Due Studio</strong> (Manuel Di Paolo e Nicolas Di Paolo). Contatto: <a class="lnk" href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>.</p>
+
+      <h3>Diritti riservati</h3>
+      <p>Testi, immagini, grafica, codice, animazioni, demo, schermate e documentazione di questo sito e dell'app KERN sono opera di Punto Due Studio. <strong>Tutti i diritti sono riservati</strong> ai sensi della legge sul diritto d'autore (L. 633/1941) e della normativa collegata.</p>
+
+      <h3>Marchi</h3>
+      <p><strong>KERN™</strong> e il logo dell'app (il simbolo diviso a metà con il punto centrale) sono segni distintivi usati da Punto Due Studio. Non sono ancora registrati come marchio. «Punto Due Studio» e i nomi delle demo sono usati nello stesso modo.</p>
+
+      <h3>Cosa puoi fare</h3>
+      <p>Visitare il sito, condividerne i link e citarne brevi estratti indicando la fonte.</p>
+
+      <h3>Cosa non puoi fare senza permesso scritto</h3>
+      <p>Copiare, riprodurre, modificare o ridistribuire testi, grafica, codice, demo o schermate; usare il nome KERN, il logo o segni simili per prodotti o servizi analoghi; estrarre i contenuti in modo automatico e massivo (scraping); tentare di ricostruire il funzionamento dell'app a partire dalle demo. Le violazioni saranno perseguite nei modi previsti dalla legge.</p>
+
+      <h3>Demo e concept</h3>
+      <p>Le demo INNESTO, SEZIONE e Cultura Tattoo, e l'app KERN, sono concept realizzati da Punto Due Studio. Nomi, attività, numeri e schermate sono d'esempio. I dati statistici citati sono riportati con le rispettive fonti e restano dei loro autori.</p>
+
+      <h3>Segnalare una violazione</h3>
+      <p>Se trovi una copia di questi contenuti o un uso del nome KERN che ti sembra abusivo, scrivi a <a class="lnk" href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a> con il link e una breve descrizione.</p>
+
+      <p class="upd">Ultimo aggiornamento: settembre 2026.</p>
+    </div>
+  </section>
+</Site>
+
+<style is:global>
+  .legal-sec { max-width: 60rem; }
+  .legal { margin-top: 40px; display: grid; gap: 6px; }
+  .legal h3 { margin: 26px 0 4px; font-size: 1.25rem; letter-spacing: -.02em; }
+  .legal h3:first-child { margin-top: 0; }
+  .legal p { margin: 0; max-width: 52rem; font-size: 1.02rem; line-height: 1.6; color: rgba(255,255,255,.85); }
+  .legal strong { color: #fff; font-weight: 600; }
+  .legal .upd { margin-top: 30px; font-size: .85rem; color: rgba(255,255,255,.6); }
+</style>
