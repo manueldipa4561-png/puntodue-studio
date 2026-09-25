@@ -202,6 +202,24 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .ftr a:hover { color: var(--yellow); }
       .ftr { position: absolute; left: var(--gut); right: var(--gut); bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
       .ftr-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+      @media (hover: none) {
+        .btn:hover { transform: none; background: var(--yellow); }
+        .btn:hover .arr { transform: none; }
+        .chip:hover { color: inherit; background: none; border-color: rgba(255, 255, 255, 0.3); }
+        .chip:hover .dot { background: var(--yellow); }
+        .lnk:hover, .ftr a:hover, .nav a:hover { color: inherit; }
+        .nav a.on { color: var(--yellow); }
+        .band:hover .track { animation-play-state: running; }
+      }
+      @media (pointer: coarse) {
+        html { -webkit-tap-highlight-color: transparent; }
+        .nav a { padding: 12px 0; }
+        .nav a::after { bottom: 6px; }
+        .lnk { display: inline-block; padding: 12px 0; }
+        .ftr a { padding: 12px 0; }
+        .ftr, .ftr-links { gap: 0 20px; }
+        .sec.info { padding-bottom: 150px; }
+      }
       @media (max-width: 1023px) {
         .big { font-size: 32.5vw; }
         h2 { margin: 14px 0 14px; }

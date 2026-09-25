@@ -91,6 +91,19 @@ const { title, description, active } = Astro.props;
       .ftr-links { display: flex; flex-wrap: wrap; gap: 12px 20px; }
       .ftr a { text-decoration: none; } .ftr a:hover { color: var(--yellow); }
       .cta-s .cta { margin-top: 32px; }
+      @media (hover: none) {
+        .btn:hover { transform: none; background: var(--yellow); }
+        .lnk:hover, .ftr a:hover, .nav a:hover { color: inherit; }
+        .nav a.on { color: var(--yellow); }
+      }
+      @media (pointer: coarse) {
+        html { -webkit-tap-highlight-color: transparent; }
+        .nav a { padding: 12px 0; }
+        .nav a.on::after { bottom: 6px; }
+        .lnk { display: inline-block; padding: 12px 0; }
+        .ftr a { padding: 12px 0; }
+        .ftr, .ftr-links { gap: 0 20px; }
+      }
       .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); transition-delay: var(--dl, 0s); }
       .rv.in { opacity: 1; transform: none; }
       @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
