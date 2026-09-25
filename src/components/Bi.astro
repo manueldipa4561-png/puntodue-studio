@@ -1,0 +1,5 @@
+---
+// Bilingual inline text: both languages are rendered, CSS shows the active one (see .ana in pages/web.astro).
+const { it, en } = Astro.props;
+---
+<span lang="it" set:html={it}></span><span lang="en" set:html={en}></span>
