@@ -11,11 +11,14 @@ const { title, description, active } = Astro.props;
     <meta name="theme-color" content="#0034D6" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, "https://puntoduestudio.it")} />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="https://puntoduestudio.it/og.png" />
   </head>
   <body>
     <header class="hdr">

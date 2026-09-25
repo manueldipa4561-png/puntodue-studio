@@ -17,13 +17,16 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <meta name="theme-color" content="#0034D6" />
     <title>Punto Due Studio — Web.2</title>
     <meta name="description" content="Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore." />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://puntoduestudio.it/" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="it_IT" />
     <meta property="og:title" content="Punto Due Studio — Web.2" />
     <meta property="og:description" content="Siti, app, social e agenti AI per la tua attività." />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="https://puntoduestudio.it/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <script is:inline>document.documentElement.classList.add('js')</script>
   </head>
@@ -51,6 +54,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <main>
       <section class="hero" id="top">
         <h1 class="big pre" aria-label="Web.2"><span class="ch" aria-hidden="true"><span class="chi">W</span></span><span class="ch" aria-hidden="true"><span class="chi">e</span></span><span class="ch" aria-hidden="true"><span class="chi">b</span></span><span class="ch dot" aria-hidden="true"><span class="chi">.</span></span><span class="ch" aria-hidden="true"><span class="chi">2</span></span></h1>
+        <p class="hero-sub">Siti, app, social e agenti AI per la tua attività. <a href={contactHref} target={contactExternal ? "_blank" : undefined} rel={contactExternal ? "noopener" : undefined}>Parliamone →</a></p>
       </section>
 
       <div class="stack">
@@ -151,7 +155,9 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .hero { min-height: 100dvh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(16px, 3vw, 40px) clamp(12px, 3vw, 32px); }
       .big { margin: 0; font-weight: 700; font-size: clamp(6rem, 27vw, 24rem); line-height: 0.78; letter-spacing: -0.06em; }
       .big .dot { color: var(--yellow); }
-      .ch { display: inline-block; clip-path: inset(-0.1em -0.1em 0 -0.1em); }
+      .hero-sub { display: none; margin: 20px 0 0; max-width: 22rem; font-size: 1.05rem; line-height: 1.45; opacity: .85; }
+      .hero-sub a { color: var(--yellow); font-weight: 600; white-space: nowrap; }
+      .ch { display: inline-block; clip-path: inset(-0.1em -0.1em 0 -0.1em); padding-bottom: 0.12em; margin-bottom: -0.12em; }
       .chi { display: inline-block; will-change: transform; }
 
       :root { --gut: clamp(16px, 3vw, 40px); }
@@ -223,6 +229,9 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       }
       @media (max-width: 1023px) {
         .big { font-size: 32.5vw; }
+        .hero { justify-content: center; padding-bottom: 12vh; }
+        .big { line-height: 0.9; }
+        .hero-sub { display: block; }
         h2 { margin: 14px 0 14px; }
         .pts { margin-top: 22px; }
         .pts li { padding: 12px 0; font-size: 1rem; }
