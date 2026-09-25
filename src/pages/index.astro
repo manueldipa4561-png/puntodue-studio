@@ -54,7 +54,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <main>
       <section class="hero" id="top">
         <h1 class="big pre" aria-label="Web.2"><span class="ch" aria-hidden="true"><span class="chi">W</span></span><span class="ch" aria-hidden="true"><span class="chi">e</span></span><span class="ch" aria-hidden="true"><span class="chi">b</span></span><span class="ch dot" aria-hidden="true"><span class="chi">.</span></span><span class="ch" aria-hidden="true"><span class="chi">2</span></span></h1>
-        <p class="hero-sub">Siti, app, social e agenti AI per la tua attività. <a href={contactHref} target={contactExternal ? "_blank" : undefined} rel={contactExternal ? "noopener" : undefined}>Parliamone →</a></p>
+        <p class="hero-sub pre">Siti, app, social e agenti AI per la tua attività. <a href={contactHref} target={contactExternal ? "_blank" : undefined} rel={contactExternal ? "noopener" : undefined}>Parliamone →</a></p>
       </section>
 
       <div class="stack">
@@ -155,7 +155,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .hero { min-height: 100dvh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(16px, 3vw, 40px) clamp(12px, 3vw, 32px); }
       .big { margin: 0; font-weight: 700; font-size: clamp(6rem, 27vw, 24rem); line-height: 0.78; letter-spacing: -0.06em; }
       .big .dot { color: var(--yellow); }
-      .hero-sub { display: none; margin: 20px 0 0; max-width: 22rem; font-size: 1.05rem; line-height: 1.45; opacity: .85; }
+      .hero-sub { filter: opacity(var(--in, 1)); display: none; margin: 20px 0 0; max-width: 22rem; font-size: 1.05rem; line-height: 1.45; opacity: .85; }
       .hero-sub a { color: var(--yellow); font-weight: 600; white-space: nowrap; }
       .ch { display: inline-block; clip-path: inset(-0.1em -0.1em 0 -0.1em); padding-bottom: 0.12em; margin-bottom: -0.12em; }
       .chi { display: inline-block; will-change: transform; }
@@ -273,6 +273,9 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         gsap.fromTo('.word, .nav', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, delay: hdrDelay });
         gsap.set('.big', { autoAlpha: 1 });
         gsap.to('.chi', { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.07 });
+        // entrance on --in (filter) so it never fights the scroll fade, which drives opacity
+        gsap.set('.hero-sub', { visibility: 'inherit', '--in': 0 });
+        gsap.to('.hero-sub', { '--in': 1, duration: 0.8, delay: 0.55, ease: 'power2.out' });
       };
       const seen = () => {
         try {
@@ -619,7 +622,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
             yPercent: -45, opacity: 0, ease: 'none', stagger: { each: 0.09 },
             scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 35%', scrub: 0.5 },
           });
-          gsap.to('.hero-sub', { y: -30, autoAlpha: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: 0.5 } });
+          gsap.to('.hero-sub', { y: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: 0.5 } });
         }
 
         const prog = document.querySelector<HTMLElement>('.prog')!;
