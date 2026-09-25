@@ -50,6 +50,7 @@ const kstats = [
             <li><Bi it="Lavoro vero" en="Real work" /></li>
             <li><Bi it="Nessun cronometro" en="No timers" /></li>
             <li><Bi it="Vince chi lo fa meglio" en="Best work wins" /></li>
+            <li><Bi it="AI che fa domande" en="AI that asks questions" /></li>
           </ul>
           <dl class="spec">
             <div><dt><Bi it="Piattaforme" en="Platforms" /></dt><dd>iOS · Android · Web app</dd></div>
@@ -70,6 +71,32 @@ const kstats = [
                 <div class="k-word">kern<i>.</i></div>
                 <div class="k-tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div>
               </div>
+              <div class="k-reward" id="kReward" role="dialog" aria-modal="true" aria-labelledby="kRwT" hidden>
+                <div class="k-conf" id="kConf" aria-hidden="true"></div>
+                <div class="k-rw-in">
+                  <div class="k-medal" aria-hidden="true">#1</div>
+                  <div class="k-l">Voted first</div>
+                  <h4 id="kRwT">Your answer<br>won <b>#1.</b></h4>
+                  <p>Anonymous reviewers ranked it first out of 128.</p>
+                  <div class="k-gain"><b id="kGain">+0</b> <span class="k-l">stones</span></div>
+                  <div class="k-rankup" id="kRU" hidden><div class="k-l">New rank</div><div class="k-rank" id="kRU2"></div></div>
+                  <button type="button" class="k-go" id="kRwOk">Keep going</button>
+                </div>
+              </div>
+              <div class="k-start on" id="kStart">
+                <div id="kS1" class="k-sp">
+                  <div class="k-l">Start here</div>
+                  <h4>What do you want<br>to <b>do?</b></h4>
+                  <button type="button" class="k-go" id="kIdk">I don't know what I want to do</button>
+                  <button type="button" class="k-sk" id="kSkip">Explore missions</button>
+                </div>
+                <div id="kS2" class="k-sp" hidden>
+                  <div class="k-l">Good. Let's find out.</div>
+                  <h4>What are you<br>curious about <b>right now?</b></h4>
+                  <div class="k-chips" id="kPick"><span role="button" tabindex="0">Design</span><span role="button" tabindex="0">Writing</span><span role="button" tabindex="0">Code</span><span role="button" tabindex="0">Video</span><span role="button" tabindex="0">Selling</span><span role="button" tabindex="0">Music</span></div>
+                  <button type="button" class="k-go" id="kGo">Start my first mission</button>
+                </div>
+              </div>
               <div class="k-app">
                 <div class="k-top">
                   <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="currentColor" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="currentColor" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9"/></svg>kern<i>.</i></div>
@@ -78,14 +105,20 @@ const kstats = [
                 <div class="k-body">
                   <div class="k-pane on" id="k-missions">
                     <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
-                    <div class="k-card k-main"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" data-k-toast="Your answer is saved. Add another one anytime.">Add your answer</button></div>
-                    <div class="k-card"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
-                    <div class="k-card"><div class="k-l">Mission 004 · studio client</div><h5>Work with a partner</h5><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
+                    <div class="k-card k-main" id="kM0"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" data-k-toast="Your answer is saved. Add another one anytime.">Add your answer</button></div>
+                    <div class="k-card k-aic"><div class="k-l">Co-pilot · asks, never answers</div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
+                    <div class="k-card k-best"><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
+                    <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
+                    <div class="k-card" id="kM2"><div class="k-l">Mission 004 · studio client</div><h5>Work with a partner</h5><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
                   </div>
                   <div class="k-pane" id="k-yourkern">
                     <div><div class="k-l">yourKERN · first signs</div><h4>Your <b>KERN</b><br>so far.</h4></div>
+                    <div class="k-card k-lvl"><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
+                    <div class="k-card"><div class="k-l">This week's circle</div><div id="kCircle"></div><div class="k-l">No one drops more than one rank in a week.</div></div>
                     <div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div>
                     <div class="k-card"><div class="k-l">What you seem drawn to</div><div class="k-chips"><span>Shaping ideas</span><span>Writing</span><span>Solo work</span></div></div>
+                    <div class="k-card"><div class="k-l">How you work with AI</div><div class="k-sig">You rewrote your question 4 times, and every version got clearer.</div></div>
+                    <div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div>
                     <div class="k-card"><div class="k-l">A first guess</div><div class="k-sig">You seemed to light up on the open brief and drag on the polish.</div><div class="k-l">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div>
                       <div class="k-ask"><button type="button" class="k-yes" data-k-msg="Saved. This sharpens your KERN.">That feels right</button><button type="button" data-k-msg="Noted. We'll give this guess less weight.">Not really</button></div><div class="k-l k-fb" id="kFb" aria-live="polite"></div></div>
                     <div><div class="k-l">Completed</div><div class="k-done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
@@ -95,11 +128,13 @@ const kstats = [
                     <div><div class="k-l">Your Trail</div><h4>Follow the<br><b>trail.</b></h4></div>
                     <div class="k-tr">
                       <div class="k-st fin"><h5>Make somebody care</h5><p>Build from zero · done</p></div>
-                      <div class="k-st now"><h5>Fix what already exists</h5><p>Improve what exists · in progress</p></div>
-                      <div class="k-st"><h5>Work with a partner</h5><p>Pair up · not started</p></div>
+                      <div class="k-st now"><h5 id="kTrNow">Fix what already exists</h5><p>In progress</p></div>
+                      <div class="k-st"><h5 id="kTrNext">Work with a partner</h5><p>Pair up · not started</p></div>
                       <div class="k-st"><h5>Your Kern card</h5><p>What we saw, why, and your next move</p></div>
                     </div>
                     <div class="k-card"><div class="k-l">Leave a sign</div><p>After each mission, leave one short tip for the next person.</p></div>
+                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><div class="k-kt">kern<i>.</i></div><h5>You light up when you start from zero.</h5><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
+                    <div class="k-card"><div class="k-l">Dare a friend</div><p>Send a mission. You both answer, then see the two answers side by side.</p><button type="button" class="k-ask-btn" data-k-toast="Link copied. Your friend answers the same mission.">Send a dare</button></div>
                   </div>
                 </div>
                 <div class="k-toast" id="kToast" role="status" aria-live="polite"></div>
@@ -289,6 +324,75 @@ const kstats = [
       .k-ask button { font-size: 12px; font-weight: 800; border: 1.5px solid var(--fg); background: none; color: var(--fg); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
       .k-ask .k-yes { background: var(--acc); color: var(--on); border-color: var(--acc); }
       .k-fb { min-height: 1.2em; color: var(--acc); }
+      .k-start { position: absolute; inset: 0; z-index: 2; background: var(--bg); padding: 30px 22px; display: none; flex-direction: column; justify-content: center; }
+      .k-start.on { display: flex; }
+      .k-sp { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; } .k-sp[hidden] { display: none; }
+      .k-go { border: 0; border-radius: 999px; padding: 13px 20px; font-weight: 800; font-size: 14px; cursor: pointer; background: var(--acc); color: var(--on); text-align: left; }
+      .k-sk { background: none; border: 0; color: var(--dim); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: underline; padding: 4px 0; }
+      .k-chips span[role="button"] { cursor: pointer; } .k-chips span.sel { background: var(--acc); color: var(--on); border-color: var(--acc); }
+      .k-dots { display: flex; gap: 6px; } .k-dots i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--acc); } .k-dots i.f { background: var(--acc); }
+      .k-kc { border: 1.5px solid var(--acc); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: color-mix(in srgb, var(--acc) 10%, transparent); }
+      .k-kt { font-weight: 800; font-size: 18px; letter-spacing: -.07em; } .k-kt i { font-style: normal; color: var(--acc); letter-spacing: 0; }
+
+      /* v2: modern surfaces, spacing, colour roles (lime = progress, gold = reward, cool blue = thinking / AI) */
+      .k-scr { --gold: #F5C04B; --ai: #7FD1E6; --dim: #b4b7a9; --surf: color-mix(in srgb, var(--fg) 10%, transparent); --edge: color-mix(in srgb, var(--fg) 24%, transparent); background: radial-gradient(120% 55% at 85% -8%, color-mix(in srgb, var(--acc) 15%, transparent), transparent 62%), var(--bg); }
+      .k-scr.light { --gold: #6A4700; --ai: #1F6079; --dim: #454b40; }
+      .k-top { padding: 22px 20px 8px; }
+      .k-body { padding: 12px 20px 18px; }
+      .k-pane { gap: 14px; }
+      .k-scr h4 { font-size: 30px; letter-spacing: -.055em; }
+      .k-l { letter-spacing: .06em; }
+      .k-card { border: 1px solid var(--edge); background: var(--surf); border-radius: 20px; padding: 16px; gap: 10px; transition: border-color .2s, transform .2s; }
+      .k-card:hover { border-color: color-mix(in srgb, var(--acc) 55%, transparent); }
+      .k-main { background: linear-gradient(150deg, var(--fg), color-mix(in srgb, var(--fg) 80%, var(--acc))); border: 0; box-shadow: 0 12px 30px -14px color-mix(in srgb, var(--acc) 60%, transparent); }
+      .k-chips span { border-color: var(--edge); background: var(--surf); }
+      .k-chips span.sel { background: var(--acc); color: var(--on); border-color: var(--acc); }
+      .k-aic > .k-l:first-child { color: var(--ai); }
+      .k-ai { border: 1px solid color-mix(in srgb, var(--ai) 50%, transparent); border-left: 3px solid var(--ai); background: color-mix(in srgb, var(--ai) 20%, transparent); }
+      .k-me { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+      .k-card p { opacity: .92; font-size: 13.5px; }
+      .k-l { font-size: 10.5px; font-weight: 500; }
+      .k-scr .k-card:not(.k-main) { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--fg) 10%, transparent); }
+      .k-scr.light .k-card:not(.k-main) { box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 20px -12px rgba(20,26,18,.4); }
+      .k-btn, .k-go, .k-ask-btn, .k-ask button, .k-win, .k-tabs button { transition: transform .15s; }
+      .k-btn:active, .k-go:active, .k-ask-btn:active, .k-ask button:active, .k-win:active { transform: scale(.95); }
+      .k-tabs { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); }
+      .k-tabs button::before { transition: width .25s, background .25s; }
+      .k-tabs button.on::before { width: 20px; border-radius: 4px; }
+      .k-pane.on > * { animation: kUp .45s both cubic-bezier(.2,.8,.2,1); }
+      .k-pane.on > *:nth-child(2) { animation-delay: .05s; } .k-pane.on > *:nth-child(3) { animation-delay: .1s; } .k-pane.on > *:nth-child(4) { animation-delay: .15s; } .k-pane.on > *:nth-child(n+5) { animation-delay: .2s; }
+      @keyframes kUp { from { opacity: 0; transform: translateY(12px); } }
+      @keyframes kPulse { 50% { opacity: .35; } } @keyframes kFade { from { opacity: 0; } }
+      .k-live::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); margin-right: 6px; animation: kPulse 1.6s infinite; }
+      .k-best .k-done small { color: var(--gold); font-weight: 600; }
+      .k-win { align-self: flex-start; border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--gold); color: var(--bg); box-shadow: 0 8px 22px -10px var(--gold); }
+      .k-rank { font-weight: 800; font-size: 26px; letter-spacing: -.05em; color: var(--gold); line-height: 1.1; }
+      .k-lvl-top { display: flex; justify-content: space-between; align-items: flex-end; }
+      .k-stones b { font-weight: 800; font-size: 26px; letter-spacing: -.05em; }
+      .k-bar-g i { width: 0; background: linear-gradient(90deg, var(--acc), var(--gold)); transition: width 1s cubic-bezier(.2,.8,.2,1); }
+      .k-nx { font: 400 11px var(--mono); color: var(--dim); }
+      .k-ladder { display: flex; flex-wrap: wrap; gap: 5px; }
+      .k-ladder span { font: 600 10px var(--mono); padding: 4px 9px; border-radius: 999px; border: 1px solid var(--edge); color: var(--dim); }
+      .k-ladder span.done { color: var(--fg); border-color: var(--gold); }
+      .k-ladder span.on { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+      .k-rw { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--edge); font-size: 14px; }
+      .k-rw i { font: 700 12px var(--mono); font-style: normal; color: var(--dim); } .k-rw em { font: 600 12px var(--mono); font-style: normal; color: var(--gold); }
+      .k-rw.me { background: color-mix(in srgb, var(--acc) 14%, transparent); border-radius: 10px; padding: 8px; margin: 0 -8px; font-weight: 800; border-bottom-color: transparent; }
+      .k-reward { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; backdrop-filter: blur(6px); background: radial-gradient(90% 50% at 50% 28%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 70%), color-mix(in srgb, var(--bg) 93%, transparent); animation: kFade .3s both; }
+      .k-reward[hidden] { display: none; }
+      .k-rw-in { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .k-medal { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 34px; letter-spacing: -.05em; color: var(--bg); background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.55), transparent 42%), var(--gold); box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 25%, transparent), 0 0 60px color-mix(in srgb, var(--gold) 55%, transparent); animation: kPop .7s cubic-bezier(.3,1.6,.5,1) both; }
+      @keyframes kPop { from { transform: scale(0) rotate(-40deg); } }
+      .k-gain b { font-weight: 800; font-size: 44px; letter-spacing: -.06em; color: var(--gold); }
+      .k-rankup { padding: 10px 18px; border: 1px solid var(--gold); border-radius: 999px; animation: kUp .5s .9s both; } .k-rankup[hidden] { display: none; }
+      .k-conf { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+      .k-conf span { position: absolute; top: -16px; left: var(--l); width: 9px; height: 14px; border-radius: 3px; background: var(--c); opacity: 0; animation: kFall var(--d) var(--dl) cubic-bezier(.3,.6,.6,1) forwards; }
+      @keyframes kFall { 0% { opacity: 1; transform: translate3d(0,0,0) rotate(0); } 100% { opacity: 1; transform: translate3d(var(--x), 800px, 0) rotate(var(--r)); } }
+      @media (prefers-reduced-motion: reduce) { .k-pane.on > *, .k-medal, .k-conf span, .k-rankup, .k-reward, .k-live::before { animation: none; } .k-bar-g i, .k-card, .k-tabs button::before { transition: none; } }
+      .k-card .k-msg { font-size: 13px; line-height: 1.4; opacity: 1; padding: 8px 11px; border-radius: 12px; max-width: 92%; }
+      .k-me { align-self: flex-end; border: 1.5px solid var(--fg); }
+      .k-ai { align-self: flex-start; border-left: 3px solid var(--acc); background: color-mix(in srgb, var(--acc) 16%, transparent); }
+      .k-ask-btn { align-self: flex-start; font-size: 12px; font-weight: 800; border: 1.5px solid var(--fg); background: none; color: var(--fg); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
       .k-done { display: flex; justify-content: space-between; font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); } .k-done small { font: 400 10px var(--mono); color: var(--dim); }
       .k-tr { position: relative; display: flex; flex-direction: column; gap: 18px; padding-left: 32px; }
       .k-tr::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
@@ -370,8 +474,9 @@ const kstats = [
       const kLoad = document.getElementById('kLoad')!;
       const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
       let kT = 0;
+      let resetStart = () => {};
       const play = () => {
-        clearTimeout(kT);
+        clearTimeout(kT); resetStart();
         kLoad.classList.remove('go', 'off'); void kLoad.offsetWidth; kLoad.classList.add('go');
         kT = window.setTimeout(() => kLoad.classList.add('off'), 3400);
       };
@@ -383,6 +488,7 @@ const kstats = [
       tabs.forEach((t) => t.addEventListener('click', () => {
         tabs.forEach((x) => x.classList.toggle('on', x === t));
         kScr.querySelectorAll('.k-pane').forEach((p) => p.classList.toggle('on', p.id === 'k-' + t.dataset.kTab));
+        kScr.querySelector<HTMLElement>('.k-body')!.scrollTop = 0;
       }));
       const toast = document.getElementById('kToast')!;
       let tT = 0;
@@ -433,23 +539,195 @@ const kstats = [
         'Your answer is saved. Add another one anytime.': 'La tua risposta è salvata. Ne puoi aggiungere altre quando vuoi.',
         'Saved. This sharpens your KERN.': 'Salvato. Questo affina il tuo KERN.',
         "Noted. We'll give this guess less weight.": 'Preso nota. Daremo meno peso a questa ipotesi.',
+        'Co-pilot · asks, never answers': 'Co-pilota · chiede, non risponde',
+        'Your idea: a 3-step onboarding with one clear choice at the start.': "La tua idea: un onboarding in 3 passi con una scelta chiara all'inizio.",
+        'What would make the first step easier for someone brand new?': "Cosa renderebbe il primo passo più facile per chi non ha mai visto l'app?",
+        'Which part are you avoiding, and why?': 'Quale parte stai evitando, e perché?',
+        'What is the smallest version you could finish today?': 'Qual è la versione più piccola che potresti finire oggi?',
+        'Another question': "Un'altra domanda",
+        'How you work with AI': "Come lavori con l'AI",
+        'You rewrote your question 4 times, and every version got clearer.': 'Hai riscritto la domanda 4 volte e ogni versione è diventata più chiara.',
+        'Start here': 'Parti da qui',
+        'What do you want<br>to <b>do?</b>': 'Cosa vuoi<br><b>fare?</b>',
+        "I don't know what I want to do": 'Non so cosa voglio fare',
+        'Explore missions': 'Esplora le missioni',
+        "Good. Let's find out.": 'Bene. Scopriamolo.',
+        'What are you<br>curious about <b>right now?</b>': 'Cosa ti incuriosisce<br><b>adesso?</b>',
+        'Code': 'Codice', 'Selling': 'Vendere', 'Music': 'Musica',
+        'Start my first mission': 'Inizia la mia prima missione',
+        'Mission of the week · best answers': 'Missione della settimana · migliori risposte',
+        'Answer #7': 'Risposta #7', 'Answer #31': 'Risposta #31', 'Answer #12': 'Risposta #12',
+        'Ranked by anonymous review, not likes.': 'Classifica da revisione anonima, non dai like.',
+        'Your rhythm · no pressure': 'Il tuo ritmo · nessuna pressione',
+        '3 weeks this month you made something.': 'Per 3 settimane questo mese hai creato qualcosa.',
+        'Your Kern card · preview': 'La tua Kern card · anteprima',
+        'You light up when you start from zero.': 'Ti accendi quando parti da zero.',
+        '3 missions · first guess': '3 missioni · prima ipotesi',
+        'Share my card': 'Condividi la mia card',
+        'Card ready to share. Your friends see what you made, not a test result.': 'Card pronta da condividere. I tuoi amici vedono cosa hai creato, non il risultato di un test.',
+        'Dare a friend': 'Sfida un amico',
+        'Send a mission. You both answer, then see the two answers side by side.': 'Manda una missione. Rispondete entrambi, poi vedete le due risposte affiancate.',
+        'Send a dare': 'Manda la sfida',
+        'Link copied. Your friend answers the same mission.': 'Link copiato. Il tuo amico risponde alla stessa missione.',
       };
       let kLang = 'en';
       const tr = (s: string) => (kLang === 'it' && IT[s]) || s;
-      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-done span, .k-pill, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-tabs button:not(:nth-child(2))');
+      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-done span, .k-pill, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
       kTxt.forEach((e) => { e.dataset.en = e.innerHTML.trim(); });
       const setLang = (l: string) => {
         kLang = l;
         kTxt.forEach((e) => { const en = e.dataset.en!; if (en) e.innerHTML = tr(en); });
         if (fb.dataset.src) fb.textContent = tr(fb.dataset.src);
+        setLvl();
         document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kLang === l)));
       };
       document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.kLang!)));
+      const kStart = document.getElementById('kStart')!;
+      const kS1 = document.getElementById('kS1')!;
+      const kS2 = document.getElementById('kS2')!;
+      let kField = 'Design';
+      const closeStart = () => { kStart.classList.remove('on'); applyField(kField); (kScr.querySelector('[data-k-tab]') as HTMLElement).click(); };
+      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kStart.querySelectorAll('.sel').forEach((c) => c.classList.remove('sel')); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
+      document.getElementById('kIdk')!.addEventListener('click', () => { kS1.hidden = true; kS2.hidden = false; });
+      document.getElementById('kSkip')!.addEventListener('click', closeStart);
+      document.getElementById('kGo')!.addEventListener('click', closeStart);
+      kStart.querySelectorAll<HTMLElement>('#kPick span').forEach((c) => {
+        const flip = () => { kStart.querySelectorAll('#kPick span').forEach((o) => o.classList.toggle('sel', o === c)); kField = c.dataset.en || 'Design'; };
+        c.addEventListener('click', flip);
+        c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+      });
+      const kAi = document.getElementById('kAi')!;
+      let kQs = ['What would make the first step easier for someone brand new?', 'Which part are you avoiding, and why?', 'What is the smallest version you could finish today?'];
+      let kQi = 0;
+      document.getElementById('kAsk')!.addEventListener('click', () => {
+        kQi = (kQi + 1) % kQs.length;
+        kAi.dataset.en = kQs[kQi]; kAi.innerHTML = tr(kQs[kQi]);
+      });
       document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((b) => b.addEventListener('click', () => {
         kScr.classList.toggle('light', b.dataset.kTheme === 'light');
         document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       }));
-            const setAna = (l: string) => {
+            const t2 = (en: string, it: string) => { IT[en] = it; return en; };
+      IT['In progress'] = 'In corso';
+      const small = t2('What is the smallest version you could finish today?', 'Qual è la versione più piccola che potresti finire oggi?');
+      const avoid = t2('Which part are you avoiding, and why?', 'Quale parte stai evitando, e perché?');
+      const KERN3 = ['Mission 003 · KERN', 'Rewrite a confusing email', 'Do it your way. Every answer counts.', '54 answers'];
+      const FIELDS: Record<string, { m: string[][]; idea: string; qs: string[] }> = {
+        Design: { m: [
+          ['Mission 002 · startup partner', 'Fix what already exists', "Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.", '128 answers · judged on quality'],
+          KERN3,
+          ['Mission 004 · studio client', 'Work with a partner', 'Answer together with someone else.', '31 answers'],
+        ], idea: 'Your idea: a 3-step onboarding with one clear choice at the start.', qs: ['What would make the first step easier for someone brand new?', avoid, small] },
+        Writing: { m: [
+          [t2('Mission 002 · newsletter partner', 'Missione 002 · partner newsletter'), t2('Make a hard idea easy', "Rendi facile un'idea difficile"), t2('Take a confusing explanation from a real newsletter and rewrite it so anyone gets it.', 'Prendi una spiegazione confusa di una vera newsletter e riscrivila in modo che chiunque la capisca.'), t2('96 answers · judged on quality', '96 risposte · giudicate sulla qualità')],
+          KERN3,
+          ['Mission 004 · studio client', t2('Write with a partner', 'Scrivi con un partner'), t2('Write one short story together, taking turns.', 'Scrivete insieme un breve racconto, a turno.'), '31 answers'],
+        ], idea: t2('Your idea: a first line that makes a stranger keep reading.', 'La tua idea: una prima riga che fa continuare a leggere uno sconosciuto.'), qs: [t2('Who is this for, exactly?', 'Per chi è, esattamente?'), t2('Which sentence would you cut first?', 'Quale frase taglieresti per prima?'), small] },
+        Code: { m: [
+          ['Mission 002 · startup partner', t2('Fix a small bug', 'Correggi un piccolo bug'), t2("Find why a real app's button does nothing, and fix it. The opposite of building from scratch.", "Scopri perché il pulsante di una vera app non fa nulla e correggilo. L'opposto di costruire da zero."), t2('74 answers · judged on quality', '74 risposte · giudicate sulla qualità')],
+          ['Mission 003 · KERN', t2('Build a tiny tool', 'Costruisci un piccolo strumento'), t2('Solve one small annoyance from your day. Every answer counts.', 'Risolvi un piccolo fastidio della tua giornata. Ogni risposta conta.'), t2('47 answers', '47 risposte')],
+          ['Mission 004 · studio client', t2('Build with a partner', 'Costruisci con un partner'), t2('Split a small feature between two people.', 'Dividetevi una piccola funzione in due.'), t2('22 answers', '22 risposte')],
+        ], idea: t2('Your idea: a tool that removes one repeated step from your day.', 'La tua idea: uno strumento che elimina un passaggio ripetuto della tua giornata.'), qs: [t2('What is the one thing it must do?', "Qual è l'unica cosa che deve fare?"), avoid, small] },
+        Video: { m: [
+          [t2('Mission 002 · brand partner', 'Missione 002 · brand partner'), t2('Cut one clear story', 'Monta una storia chiara'), t2('Turn rough footage from a real brand into one clear, short story.', 'Trasforma il girato grezzo di un vero brand in una storia breve e chiara.'), t2('83 answers · judged on quality', '83 risposte · giudicate sulla qualità')],
+          ['Mission 003 · KERN', t2('Explain something on camera', 'Spiega qualcosa in video'), t2('Explain one thing you know in one short clip.', 'Spiega una cosa che sai in un breve video.'), t2('39 answers', '39 risposte')],
+          ['Mission 004 · studio client', t2('Make it with a partner', 'Fallo con un partner'), t2('One films, one edits.', 'Uno gira, uno monta.'), t2('18 answers', '18 risposte')],
+        ], idea: t2('Your idea: open on the surprise, not on the logo.', 'La tua idea: apri con la sorpresa, non con il logo.'), qs: [t2('What should someone feel in the first second?', 'Cosa dovrebbe sentire qualcuno nel primo secondo?'), avoid, small] },
+        Selling: { m: [
+          [t2('Mission 002 · small business partner', 'Missione 002 · piccola impresa partner'), t2('Get a stranger to say yes', 'Fatti dire di sì da uno sconosciuto'), t2("Pitch a real small business's product to one person and note what they answer.", 'Proponi il prodotto di una vera piccola impresa a una persona e annota cosa risponde.'), t2('61 answers · judged on quality', '61 risposte · giudicate sulla qualità')],
+          ['Mission 003 · KERN', t2('Write a message that gets a reply', 'Scrivi un messaggio che riceve risposta'), 'Do it your way. Every answer counts.', t2('44 answers', '44 risposte')],
+          ['Mission 004 · studio client', t2('Sell with a partner', 'Vendi con un partner'), t2('One talks, one listens.', 'Uno parla, uno ascolta.'), t2('17 answers', '17 risposte')],
+        ], idea: t2('Your idea: lead with the problem, not the product.', 'La tua idea: parti dal problema, non dal prodotto.'), qs: [t2('Who needs this most, by name?', 'Chi ne ha più bisogno, con nome e cognome?'), t2('What would make them say no?', 'Cosa li farebbe dire di no?'), small] },
+        Music: { m: [
+          ['Mission 002 · brand partner', t2('Give a small brand a sound', 'Dai un suono a un piccolo brand'), t2('Write a short sound or jingle for a real small brand.', 'Scrivi un breve suono o jingle per un vero piccolo brand.'), t2('52 answers · judged on quality', '52 risposte · giudicate sulla qualità')],
+          ['Mission 003 · KERN', t2('Remix something you love', 'Remixa qualcosa che ami'), 'Do it your way. Every answer counts.', t2('35 answers', '35 risposte')],
+          ['Mission 004 · studio client', 'Make it with a partner', t2('One writes, one produces.', 'Uno scrive, uno produce.'), t2('14 answers', '14 risposte')],
+        ], idea: t2('Your idea: one repeating sound people remember.', 'La tua idea: un suono che si ripete e che le persone ricordano.'), qs: [t2('What should it feel like in the first two seconds?', 'Che effetto dovrebbe fare nei primi due secondi?'), avoid, small] },
+      };
+      const kCards = ['kM0', 'kM1', 'kM2'].map((id) => document.getElementById(id)!);
+      const kIdea = document.getElementById('kIdea')!;
+      const setT = (el: Element, en: string) => { (el as HTMLElement).dataset.en = en; el.innerHTML = tr(en); };
+      const applyField = (name: string) => {
+        const f = FIELDS[name] || FIELDS.Design;
+        kCards.forEach((card, i) => {
+          const ls = card.querySelectorAll('.k-l');
+          const [lab, title, desc, cnt] = f.m[i];
+          setT(ls[0], lab); setT(card.querySelector('h5')!, title); setT(card.querySelector('p')!, desc); setT(ls[ls.length - 1], cnt);
+        });
+        setT(document.getElementById('kTrNow')!, f.m[0][1]);
+        setT(document.getElementById('kTrNext')!, f.m[2][1]);
+        setT(kIdea, f.idea); kQs = f.qs; kQi = 0; setT(kAi, kQs[0]);
+      };
+      Object.assign(IT, {
+        'Your rank': 'Il tuo grado', 'stones': 'pietre', 'New rank': 'Nuovo grado',
+        "This week's circle": 'Il cerchio di questa settimana',
+        'No one drops more than one rank in a week.': 'Nessuno scende di più di un grado in una settimana.',
+        'See what a win feels like': 'Scopri cosa si prova a vincere',
+        'Voted first': 'Votata al primo posto',
+        'Your answer<br>won <b>#1.</b>': 'La tua risposta<br>è <b>#1.</b>',
+        'Anonymous reviewers ranked it first out of 128.': "I revisori anonimi l'hanno messa al primo posto su 128.",
+        'Keep going': 'Continua',
+      });
+      const RANKS: [string, number][] = [['Pebble', 0], ['Stone', 100], ['Cairn', 300], ['Ridge', 700], ['Summit', 1500]];
+      const RIT: Record<string, string> = { Pebble: 'Ciottolo', Stone: 'Pietra', Cairn: 'Cairn', Ridge: 'Cresta', Summit: 'Vetta' };
+      const rn = (n: string) => (kLang === 'it' && RIT[n]) || n;
+      let stones = 240;
+      const CIRCLE: [string, number][] = [['Maya', 288], ['Leo', 262], ['Ana', 205], ['Sam', 180]];
+      const rankIdx = (s: number) => RANKS.reduce((a, r, i) => (s >= r[1] ? i : a), 0);
+      const setLvl = () => {
+        const i = rankIdx(stones), nx = RANKS[i + 1], it = kLang === 'it';
+        document.getElementById('kRank')!.textContent = rn(RANKS[i][0]);
+        document.getElementById('kSt')!.textContent = String(stones);
+        (document.getElementById('kBar') as HTMLElement).style.width = (nx ? ((stones - RANKS[i][1]) / (nx[1] - RANKS[i][1])) * 100 : 100) + '%';
+        document.getElementById('kNx')!.textContent = nx ? (it ? `${nx[1] - stones} pietre a ${rn(nx[0])}` : `${nx[1] - stones} stones to ${rn(nx[0])}`) : (it ? 'Grado massimo' : 'Top rank');
+        const lad = document.getElementById('kLad')!;
+        lad.innerHTML = '';
+        RANKS.forEach((r, k) => { const s = document.createElement('span'); s.textContent = rn(r[0]); if (k < i) s.className = 'done'; if (k === i) s.className = 'on'; lad.appendChild(s); });
+        const circ = document.getElementById('kCircle')!;
+        circ.innerHTML = '';
+        ([...CIRCLE, [it ? 'Tu' : 'You', stones, 1]] as [string, number, number?][]).sort((a, b) => b[1] - a[1]).forEach((r, k) => {
+          const row = document.createElement('div'); row.className = 'k-rw' + (r[2] ? ' me' : '');
+          const n = document.createElement('i'); n.textContent = String(k + 1);
+          const nm = document.createElement('span'); nm.textContent = r[0];
+          const sc = document.createElement('em'); sc.textContent = String(r[1]);
+          row.append(n, nm, sc); circ.appendChild(row);
+        });
+      };
+      const kRw = document.getElementById('kReward')!;
+      const kWin = document.getElementById('kWin')!;
+      const kConf = document.getElementById('kConf')!;
+      const kGain = document.getElementById('kGain')!;
+      const kRU = document.getElementById('kRU')!;
+      const closeWin = () => { kRw.hidden = true; kWin.focus(); };
+      kWin.addEventListener('click', () => {
+        const before = rankIdx(stones), gain = 200;
+        stones += gain;
+        const after = rankIdx(stones);
+        kRU.hidden = after === before;
+        document.getElementById('kRU2')!.textContent = rn(RANKS[after][0]);
+        kRw.hidden = false;
+        kConf.innerHTML = '';
+        if (still) kGain.textContent = '+' + gain;
+        else {
+          const cols = ['var(--acc)', 'var(--gold)', 'var(--ai)', 'var(--fg)'];
+          for (let i = 0; i < 34; i++) {
+            const s = document.createElement('span');
+            s.style.cssText = `--l:${Math.random() * 100}%;--c:${cols[i % 4]};--x:${(Math.random() - .5) * 160}px;--r:${Math.random() * 720 - 360}deg;--d:${1.6 + Math.random() * 1.4}s;--dl:${Math.random() * .5}s`;
+            if (i % 3 === 0) s.style.borderRadius = '50%';
+            kConf.appendChild(s);
+          }
+          const t0 = performance.now();
+          const step = (t: number) => { const p = Math.min((t - t0) / 900, 1); kGain.textContent = '+' + Math.round(gain * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+          requestAnimationFrame(step);
+        }
+        if ('vibrate' in navigator) navigator.vibrate(30);
+        setLvl();
+        document.getElementById('kRwOk')!.focus();
+      });
+      document.getElementById('kRwOk')!.addEventListener('click', closeWin);
+      kRw.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeWin(); });
+      setLvl();
+      const setAna = (l: string) => {
         document.documentElement.dataset.ana = l;
         document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));
       };
