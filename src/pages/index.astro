@@ -165,7 +165,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .stack { padding: 44px 0 40px; border-block: 1px solid rgba(255, 255, 255, 0.25); }
       .stack .stack-lab { margin: 0 var(--gut) 26px; color: #fff; font: 700 clamp(1.6rem, 3vw, 2.4rem)/1 'Inter Tight Variable', system-ui, sans-serif; letter-spacing: -0.04em; text-transform: none; }
       .band { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-      .track { display: flex; width: max-content; animation: marq 45s linear infinite; }
+      .track { display: flex; width: max-content; will-change: transform; animation: marq 45s linear infinite; }
       .band:hover .track { animation-play-state: paused; }
       .chip { display: inline-flex; align-items: center; gap: 12px; margin-right: 14px; padding: 14px 24px 14px 18px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 999px; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; white-space: nowrap; transition: border-color 0.25s, color 0.25s, background 0.25s; }
       .chip svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
@@ -422,7 +422,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       function initSite(willLoad: boolean, reduced: boolean) {
         const canvas = document.getElementById('bg') as HTMLCanvasElement;
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, premultipliedAlpha: true });
-        const dpr = Math.min(devicePixelRatio, innerWidth < 700 ? 1.5 : 2);
+        const dpr = Math.min(devicePixelRatio, innerWidth < 700 ? 1.25 : 2);
         renderer.setPixelRatio(dpr);
         renderer.setSize(innerWidth, innerHeight, false);
         const u = {
@@ -506,7 +506,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         let freeBottom = innerHeight;
         let segs: { a: number; b: number }[] = [];
         let obs: { t: number; b: number; l: number; r: number }[] = [];
-        let vis = 1;
+        let vis = 1, lastSig = 0, lastDraw = -1;
         let fbs = [230, 230, 230, 230], secTop0 = 0, secH = 1;
         const measure = () => {
           fbs = ['web', 'social', 'ai', 'info'].map((id) => document.getElementById(id)!.querySelector<HTMLElement>('.txt')!.offsetTop);
@@ -538,7 +538,8 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
 
         gsap.ticker.add((time, dt) => {
           const tgt = shapeTarget(scrollY) as Record<string, number>, ease = 1 - Math.exp(-dt / 110);
-          for (const key of keys) st[key] += (tgt[key] - st[key]) * ease;
+          let md = 0;
+          for (const key of keys) { const d = tgt[key] - st[key]; md = Math.max(md, Math.abs(d)); st[key] += d * ease; }
           const w = innerWidth, h = innerHeight, wide = w >= 1024;
           const tt = Math.min(3, Math.max(0, (scrollY - secTop0) / secH)), i0 = Math.floor(tt);
           const fb = fbs[i0] + (fbs[Math.min(3, i0 + 1)] - fbs[i0]) * (tt - i0);
@@ -565,7 +566,10 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           u.uGrid.value = st.grid; u.uLink.value = st.link; u.uAmt.value = st.amt * (wide ? 1 : 0.82) * vis;
           u.uDetB.value = st.det; u.uDetP.value = st.notch; u.uMg.value = st.mg;
           u.uMouse.value.set(gx * dpr, (h - gy) * dpr);
-          renderer.render(scene, camera);
+          const sig = scrollY + md * 1000 + Math.abs(gx - mpx) + (Math.abs(mx - tx) + Math.abs(my - ty)) * 500 + (st.grid + st.mg + vis) * 100;
+          const moving = Math.abs(sig - lastSig) > 0.02;
+          lastSig = sig;
+          if (wide || moving || time - lastDraw >= 0.1) { renderer.render(scene, camera); lastDraw = time; }
         });
 
         if (!reduced) {
