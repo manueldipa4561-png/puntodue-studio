@@ -3,6 +3,7 @@ import Site from '../layouts/Site.astro';
 import Sim from '../components/Sim.astro';
 import Chat from '../components/Chat.astro';
 import Bi from '../components/Bi.astro';
+import '@fontsource-variable/bricolage-grotesque';
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.')}`;
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Prenotazione'], next: ['Prenotazione con conferma su WhatsApp','Tessera fedeltà: ogni 6 servizi il 7° è in regalo', 'Coupon −15% sulla prima visita', 'Promemoria su WhatsApp prima della visita'] },
@@ -71,6 +72,17 @@ const kstats = [
                 <div class="k-word">kern<i>.</i></div>
                 <div class="k-tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div>
               </div>
+              <div class="k-sheet" id="kSheet" role="dialog" aria-modal="true" aria-labelledby="kShT" hidden>
+                <div class="k-sh-in">
+                  <div class="k-grab" aria-hidden="true"></div>
+                  <div class="k-l" id="kShL">Mission 002 · startup partner</div>
+                  <h5 id="kShT">Fix what already exists</h5>
+                  <p class="k-msg k-ai" id="kShQ">What would make the first step easier for someone brand new?</p>
+                  <label class="k-l" for="kTa">Your answer</label>
+                  <textarea id="kTa" rows="4"></textarea>
+                  <div class="k-sh-btns"><button type="button" class="k-go" id="kSub">Submit answer</button><button type="button" class="k-sk" id="kCancel">Not now</button></div>
+                </div>
+              </div>
               <div class="k-reward" id="kReward" role="dialog" aria-modal="true" aria-labelledby="kRwT" hidden>
                 <div class="k-conf" id="kConf" aria-hidden="true"></div>
                 <div class="k-rw-in">
@@ -83,8 +95,21 @@ const kstats = [
                   <button type="button" class="k-go" id="kRwOk">Keep going</button>
                 </div>
               </div>
-              <div class="k-start on" id="kStart">
+              <div class="k-start on" id="kLogin">
+                <div class="k-sp">
+                  <div class="k-l" id="kLlab">Welcome back</div>
+                  <h4 id="kLh">Log in to<br>your <b>trail.</b></h4>
+                  <div class="k-field" id="kNm" hidden><label class="k-l" for="kNmI">Name</label><input id="kNmI" type="text" value="Alex Demo" readonly /></div>
+                  <div class="k-field"><label class="k-l" for="kEm">Email</label><input id="kEm" type="email" value="alex@example.com" readonly /></div>
+                  <div class="k-field"><label class="k-l" for="kPw">Password</label><input id="kPw" type="password" value="demo-password" readonly /></div>
+                  <button type="button" class="k-go" id="kLog">Log in</button>
+                  <button type="button" class="k-sk" id="kSw">Create an account</button>
+                  <div class="k-l">Demo account · nothing is sent or saved</div>
+                </div>
+              </div>
+              <div class="k-start" id="kStart">
                 <div id="kS1" class="k-sp">
+                  <svg class="k-cairn" viewBox="0 0 120 96" aria-hidden="true"><ellipse class="c3" cx="60" cy="82" rx="46" ry="12"/><ellipse class="c2" cx="60" cy="58" rx="34" ry="11"/><ellipse class="c1" cx="60" cy="36" rx="22" ry="9"/><circle class="cd" cx="60" cy="16" r="7"/></svg>
                   <div class="k-l">Start here</div>
                   <h4>What do you want<br>to <b>do?</b></h4>
                   <button type="button" class="k-go" id="kIdk">I don't know what I want to do</button>
@@ -100,12 +125,12 @@ const kstats = [
               <div class="k-app">
                 <div class="k-top">
                   <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="currentColor" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="currentColor" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9"/></svg>kern<i>.</i></div>
-                  <span class="k-pill">1 of 3 done</span>
+                  <div class="k-tp"><span class="k-pill">1 of 3 done</span><button type="button" class="k-av" id="kAv" aria-label="Log out (demo account)">A</button></div>
                 </div>
                 <div class="k-body">
                   <div class="k-pane on" id="k-missions">
                     <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
-                    <div class="k-card k-main" id="kM0"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" data-k-toast="Your answer is saved. Add another one anytime.">Add your answer</button></div>
+                    <div class="k-card k-main" id="kM0"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
                     <div class="k-card k-aic"><div class="k-l">Co-pilot · asks, never answers</div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
                     <div class="k-card k-best"><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
                     <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
@@ -115,10 +140,9 @@ const kstats = [
                     <div><div class="k-l">yourKERN · first signs</div><h4>Your <b>KERN</b><br>so far.</h4></div>
                     <div class="k-card k-lvl"><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
                     <div class="k-card"><div class="k-l">This week's circle</div><div id="kCircle"></div><div class="k-l">No one drops more than one rank in a week.</div></div>
-                    <div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div>
+                    <div class="k-duo"><div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div><div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div></div>
                     <div class="k-card"><div class="k-l">What you seem drawn to</div><div class="k-chips"><span>Shaping ideas</span><span>Writing</span><span>Solo work</span></div></div>
                     <div class="k-card"><div class="k-l">How you work with AI</div><div class="k-sig">You rewrote your question 4 times, and every version got clearer.</div></div>
-                    <div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div>
                     <div class="k-card"><div class="k-l">A first guess</div><div class="k-sig">You seemed to light up on the open brief and drag on the polish.</div><div class="k-l">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div>
                       <div class="k-ask"><button type="button" class="k-yes" data-k-msg="Saved. This sharpens your KERN.">That feels right</button><button type="button" data-k-msg="Noted. We'll give this guess less weight.">Not really</button></div><div class="k-l k-fb" id="kFb" aria-live="polite"></div></div>
                     <div><div class="k-l">Completed</div><div class="k-done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
@@ -140,7 +164,7 @@ const kstats = [
                 <div class="k-toast" id="kToast" role="status" aria-live="polite"></div>
                 <nav class="k-tabs" aria-label="KERN">
                   <button type="button" class="on" data-k-tab="missions">Missions</button>
-                  <button type="button" data-k-tab="yourkern">your<span>KERN</span></button>
+                  <button type="button" data-k-tab="yourkern"><b class="tl">your<span>KERN</span></b></button>
                   <button type="button" data-k-tab="trail">Trail</button>
                 </nav>
               </div>
@@ -354,6 +378,54 @@ const kstats = [
       .k-l { font-size: 10.5px; font-weight: 500; }
       .k-scr .k-card:not(.k-main) { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--fg) 10%, transparent); }
       .k-scr.light .k-card:not(.k-main) { box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 20px -12px rgba(20,26,18,.4); }
+
+      /* v3: display font (self-hosted Bricolage Grotesque), tab icons, tiles, cairn */
+      .k-scr, .k-h { --kd: 'Bricolage Grotesque Variable', 'Inter Tight Variable', system-ui, sans-serif; }
+      .k-scr h4, .k-scr h5, .k-logo, .k-word, .k-tag strong, .k-stat b, .k-rank, .k-stones b, .k-gain b, .k-medal, .k-kt, .k-h { font-family: var(--kd); }
+      .k-scr h4 { font-size: 28px; letter-spacing: -.04em; line-height: 1.02; }
+      .k-scr h5, .k-card h5 { letter-spacing: -.03em; }
+      .k-main { position: relative; overflow: hidden; }
+      .k-main::after { content: ''; position: absolute; right: -34px; top: -34px; width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 50%, transparent), transparent 70%); pointer-events: none; }
+      .k-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .k-duo .k-card { padding: 14px; } .k-duo .k-stat b { font-size: 28px; }
+      .k-tabs { padding-top: 10px; }
+      .k-tabs button { position: relative; gap: 4px; }
+      .k-tabs button::before { position: absolute; top: -11px; left: 50%; margin-left: -3px; }
+      .k-tabs button.on::before { margin-left: -10px; }
+      .k-tabs button::after { content: ''; order: -1; width: 22px; height: 22px; background: currentColor; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+      .k-tabs button:nth-child(1) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E"); }
+      .k-tabs button:nth-child(2) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cellipse cx='12' cy='19' rx='8' ry='2.8'/%3E%3Cellipse cx='12' cy='13' rx='5.6' ry='2.4'/%3E%3Ccircle cx='12' cy='7.4' r='2.2'/%3E%3C/svg%3E"); }
+      .k-tabs button:nth-child(3) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='18' r='2'/%3E%3Ccircle cx='18' cy='6' r='2'/%3E%3Cpath d='M8 18h5a3 3 0 0 0 0-6h-2a3 3 0 0 1 0-6h5'/%3E%3C/svg%3E"); }
+      .k-cairn { width: 92px; overflow: visible; margin-bottom: 4px; } .k-cairn ellipse { fill: var(--fg); transform-box: fill-box; transform-origin: center; }
+      .k-cairn .c2 { opacity: .72; } .k-cairn .c1 { opacity: .5; } .k-cairn .cd { fill: var(--acc); transform-box: fill-box; animation: kBob 2.4s ease-in-out infinite; }
+      .k-cairn .c1 { animation: kBob 2.4s .2s ease-in-out infinite; } .k-cairn .c2 { animation: kBob 2.4s .4s ease-in-out infinite; }
+      @keyframes kBob { 50% { transform: translateY(-3px); } }
+      @media (prefers-reduced-motion: reduce) { .k-cairn .cd, .k-cairn .c1, .k-cairn .c2 { animation: none; } }
+
+      /* v4: login, answer sheet, smoother motion */
+      .k-tp { display: flex; align-items: center; gap: 8px; }
+      .k-tabs .tl { font: inherit; white-space: nowrap; } .k-logo i { margin-left: -6px; }
+      .k-main > * { position: relative; z-index: 1; }
+      .k-sh-in .k-msg { font-size: 13.5px; line-height: 1.4; padding: 10px 12px; border-radius: 12px; align-self: stretch; }
+      .k-sh-in h5 { font-size: 22px; line-height: 1.1; }
+      .k-av { width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--kd); font-weight: 800; font-size: 13px; color: var(--bg); background: linear-gradient(135deg, var(--acc), var(--gold)); }
+      .k-field { display: flex; flex-direction: column; gap: 6px; width: 100%; } .k-field[hidden] { display: none; }
+      .k-field input, .k-sheet textarea { width: 100%; box-sizing: border-box; font: 500 14px/1.4 'Inter Tight Variable', system-ui, sans-serif; color: var(--fg); background: var(--surf); border: 1px solid var(--edge); border-radius: 12px; padding: 12px 14px; }
+      .k-field input:focus-visible, .k-sheet textarea:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
+      .k-go.busy { opacity: .85; pointer-events: none; }
+      .k-go.busy::after { content: ''; display: inline-block; width: 12px; height: 12px; margin-left: 10px; border-radius: 50%; border: 2px solid currentColor; border-top-color: transparent; animation: kSpin .7s linear infinite; vertical-align: -2px; }
+      @keyframes kSpin { to { transform: rotate(360deg); } }
+      .k-start.on { animation: kFade .35s both; } .k-sp:not([hidden]) { animation: kUp .45s both cubic-bezier(.2,.8,.2,1); }
+      .k-sheet { position: absolute; inset: 0; z-index: 4; display: flex; align-items: flex-end; background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(3px); animation: kFade .25s both; } .k-sheet[hidden] { display: none; }
+      .k-sh-in { width: 100%; max-height: 92%; overflow: auto; background: var(--bg); border-top: 1px solid var(--edge); border-radius: 26px 26px 0 0; padding: 12px 20px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 -20px 50px -20px rgba(0,0,0,.5); animation: kSlide .38s cubic-bezier(.2,.9,.3,1) both; }
+      @keyframes kSlide { from { transform: translateY(100%); } }
+      .k-grab { width: 38px; height: 4px; border-radius: 4px; background: var(--edge); align-self: center; }
+      .k-sheet textarea { resize: none; min-height: 96px; }
+      .k-sh-btns { display: flex; align-items: center; gap: 12px; }
+      .k-body { scroll-behavior: smooth; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); }
+      .k-pane.leaving { animation: kOut .14s ease-in both; } @keyframes kOut { to { opacity: 0; transform: translateY(-6px); } }
+      @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+      @media (prefers-reduced-motion: reduce) { .k-sheet, .k-sh-in, .k-start.on, .k-sp, .k-go.busy::after { animation: none; } .k-body { scroll-behavior: auto; } }
       .k-btn, .k-go, .k-ask-btn, .k-ask button, .k-win, .k-tabs button { transition: transform .15s; }
       .k-btn:active, .k-go:active, .k-ask-btn:active, .k-ask button:active, .k-win:active { transform: scale(.95); }
       .k-tabs { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); }
@@ -486,9 +558,14 @@ const kstats = [
 
       const tabs = kScr.querySelectorAll<HTMLElement>('[data-k-tab]');
       tabs.forEach((t) => t.addEventListener('click', () => {
+        const next = 'k-' + t.dataset.kTab, cur = kScr.querySelector<HTMLElement>('.k-pane.on');
         tabs.forEach((x) => x.classList.toggle('on', x === t));
-        kScr.querySelectorAll('.k-pane').forEach((p) => p.classList.toggle('on', p.id === 'k-' + t.dataset.kTab));
-        kScr.querySelector<HTMLElement>('.k-body')!.scrollTop = 0;
+        const swap = () => {
+          kScr.querySelectorAll('.k-pane').forEach((p) => { p.classList.remove('leaving'); p.classList.toggle('on', p.id === next); });
+          kScr.querySelector<HTMLElement>('.k-body')!.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+        };
+        if (still || !cur || cur.id === next) swap();
+        else { cur.classList.add('leaving'); setTimeout(swap, 140); }
       }));
       const toast = document.getElementById('kToast')!;
       let tT = 0;
@@ -587,7 +664,7 @@ const kstats = [
       const kS2 = document.getElementById('kS2')!;
       let kField = 'Design';
       const closeStart = () => { kStart.classList.remove('on'); applyField(kField); (kScr.querySelector('[data-k-tab]') as HTMLElement).click(); };
-      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kStart.querySelectorAll('.sel').forEach((c) => c.classList.remove('sel')); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
+      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.remove('on'); kLogin.classList.add('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => c.classList.remove('sel')); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
       document.getElementById('kIdk')!.addEventListener('click', () => { kS1.hidden = true; kS2.hidden = false; });
       document.getElementById('kSkip')!.addEventListener('click', closeStart);
       document.getElementById('kGo')!.addEventListener('click', closeStart);
@@ -676,6 +753,7 @@ const kstats = [
       const rankIdx = (s: number) => RANKS.reduce((a, r, i) => (s >= r[1] ? i : a), 0);
       const setLvl = () => {
         const i = rankIdx(stones), nx = RANKS[i + 1], it = kLang === 'it';
+        (document.getElementById('kTa') as HTMLTextAreaElement).placeholder = tr('Write it your way. Nothing is sent.');
         document.getElementById('kRank')!.textContent = rn(RANKS[i][0]);
         document.getElementById('kSt')!.textContent = String(stones);
         (document.getElementById('kBar') as HTMLElement).style.width = (nx ? ((stones - RANKS[i][1]) / (nx[1] - RANKS[i][1])) * 100 : 100) + '%';
@@ -727,6 +805,50 @@ const kstats = [
       document.getElementById('kRwOk')!.addEventListener('click', closeWin);
       kRw.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeWin(); });
       setLvl();
+      Object.assign(IT, {
+        'Welcome back': 'Ci rivediamo', 'Log in to<br>your <b>trail.</b>': 'Entra nella<br>tua <b>traccia.</b>',
+        'Name': 'Nome', 'Email': 'Email', 'Password': 'Password', 'Log in': 'Accedi', 'Create an account': 'Crea un account',
+        'New here?': 'Nuovo qui?', 'Create your<br><b>account.</b>': 'Crea il tuo<br><b>account.</b>', 'Create account': 'Crea account',
+        'I already have an account': 'Ho già un account', 'Demo account · nothing is sent or saved': 'Account demo · non viene inviato né salvato nulla',
+        'Signing in…': 'Accesso in corso…', 'Creating your account…': 'Creazione account…',
+        'Your answer': 'La tua risposta', 'Submit answer': 'Invia la risposta', 'Not now': 'Non ora',
+        'Write it your way. Nothing is sent.': 'Scrivila a modo tuo. Non viene inviato nulla.',
+      });
+      const kLogin = document.getElementById('kLogin')!;
+      const kLog = document.getElementById('kLog')!, kSw = document.getElementById('kSw')!, kNm = document.getElementById('kNm')!;
+      let signup = false;
+      const setAuth = () => {
+        setT(document.getElementById('kLlab')!, signup ? 'New here?' : 'Welcome back');
+        setT(document.getElementById('kLh')!, signup ? 'Create your<br><b>account.</b>' : 'Log in to<br>your <b>trail.</b>');
+        setT(kLog, signup ? 'Create account' : 'Log in');
+        setT(kSw, signup ? 'I already have an account' : 'Create an account');
+        kNm.hidden = !signup;
+      };
+      const resetAuth = () => { signup = false; kLog.classList.remove('busy'); setAuth(); };
+      kSw.addEventListener('click', () => { signup = !signup; setAuth(); });
+      kLog.addEventListener('click', () => {
+        if (kLog.classList.contains('busy')) return;
+        kLog.classList.add('busy'); setT(kLog, signup ? 'Creating your account…' : 'Signing in…');
+        window.setTimeout(() => {
+          kLogin.classList.remove('on'); kLog.classList.remove('busy'); setAuth();
+          kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on');
+        }, still ? 0 : 900);
+      });
+      document.getElementById('kAv')!.addEventListener('click', () => resetStart());
+      const kSheet = document.getElementById('kSheet')!;
+      const kTa = document.getElementById('kTa') as HTMLTextAreaElement;
+      const sayK = (en: string) => { toast.textContent = tr(en); toast.classList.add('on'); clearTimeout(tT); tT = window.setTimeout(() => toast.classList.remove('on'), 2200); };
+      const closeSheet = () => { kSheet.hidden = true; document.getElementById('kAdd')!.focus(); };
+      document.getElementById('kAdd')!.addEventListener('click', () => {
+        const m = kCards[0], ls = m.querySelectorAll<HTMLElement>('.k-l');
+        setT(document.getElementById('kShL')!, ls[0].dataset.en!);
+        setT(document.getElementById('kShT')!, m.querySelector<HTMLElement>('h5')!.dataset.en!);
+        setT(document.getElementById('kShQ')!, kAi.dataset.en!);
+        kTa.value = ''; kSheet.hidden = false; kTa.focus();
+      });
+      document.getElementById('kCancel')!.addEventListener('click', closeSheet);
+      document.getElementById('kSub')!.addEventListener('click', () => { closeSheet(); sayK('Your answer is saved. Add another one anytime.'); });
+      kSheet.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
       const setAna = (l: string) => {
         document.documentElement.dataset.ana = l;
         document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));
