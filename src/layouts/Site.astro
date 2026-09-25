@@ -56,6 +56,7 @@ const { title, description, active } = Astro.props;
       #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
       .phone { transition: transform .25s ease-out; will-change: transform; }
       :focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
+      html:not(.kbd) :focus-visible { outline: none; }
       a { color: inherit; }
       .hdr { position: fixed; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 20px var(--gut) 36px; background: linear-gradient(var(--blue) 64%, rgba(0,52,214,0)); }
       .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -110,6 +111,9 @@ const { title, description, active } = Astro.props;
     </style>
 
     <script>
+      // focus ring only for keyboard users: clicking, scrolling or opening a dialog must not light up elements
+      addEventListener('keydown', (e) => { if (e.key === 'Tab') document.documentElement.classList.add('kbd'); });
+      addEventListener('pointerdown', () => document.documentElement.classList.remove('kbd'));
       const cv = document.getElementById('bg') as HTMLCanvasElement;
       const gl = cv.getContext('webgl', { antialias: false, alpha: false });
       if (gl) {

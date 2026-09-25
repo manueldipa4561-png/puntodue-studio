@@ -2,6 +2,7 @@
 import Site from '../layouts/Site.astro';
 import Sim from '../components/Sim.astro';
 import Chat from '../components/Chat.astro';
+import Bi from '../components/Bi.astro';
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.')}`;
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Prenotazione'], next: ['Prenotazione con conferma su WhatsApp','Tessera fedeltà: ogni 6 servizi il 7° è in regalo', 'Coupon −15% sulla prima visita', 'Promemoria su WhatsApp prima della visita'] },
@@ -21,17 +22,23 @@ const feats = [
   { id: 'ref', t: 'Referral', d: 'I clienti portano amici', n: 0.2, r: 0.02 },
 ];
 const kstats = [
-  { t: 'Giovani (USA) incerti sul proprio percorso', a: { l: 'Incerti sulla carriera, 18–30 anni', v: 66.7, r: '≈ 2 su 3' }, b: { l: 'Incertezza frequente sui lavori futuri, Gen Z', v: 33.3, r: '≈ 1 su 3' }, max: 100 },
-  { t: 'Le aziende dicono «competenze». Assumono altrimenti.', a: { l: 'Assunzioni per competenze nei ruoli entry-level', v: 70, r: '70%' }, b: { l: "Nuovi assunti senza laurea in aziende che l'hanno tolta", v: 0.14, r: '< 1 su 700' }, max: 100 },
-  { t: 'Disoccupazione, giugno 2026', a: { l: 'Tutti i lavoratori', v: 4, r: '≈ 4%' }, b: { l: 'Neolaureati, 22–27 anni', v: 5.7, r: '5,7%' }, max: 10 },
+  { t: { it: 'Giovani USA incerti sul percorso', en: 'US young adults unsure about their path' },
+    a: { l: { it: 'Incerti sulla carriera, 18–30', en: 'Unsure about career, 18–30' }, v: 66.7, r: { it: '≈ 2 su 3', en: '≈ 2 in 3' } },
+    b: { l: { it: 'Gen Z, incerti sui lavori futuri', en: 'Gen Z, unsure about future jobs' }, v: 33.3, r: { it: '≈ 1 su 3', en: '≈ 1 in 3' } }, max: 100 },
+  { t: { it: 'Le aziende dicono «competenze». Assumono altrimenti.', en: 'Employers say "skills". They hire otherwise.' },
+    a: { l: { it: 'Assunzioni entry-level per competenze', en: 'Entry-level hires based on skills' }, v: 70, r: { it: '70%', en: '70%' } },
+    b: { l: { it: "Assunti senza laurea dove l'hanno tolta", en: 'Hires without a degree where it was dropped' }, v: 0.14, r: { it: '< 1 su 700', en: '< 1 in 700' } }, max: 100 },
+  { t: { it: 'Disoccupazione, giugno 2026', en: 'Unemployment, June 2026' },
+    a: { l: { it: 'Tutti i lavoratori', en: 'All workers' }, v: 4, r: { it: '≈ 4%', en: '≈ 4%' } },
+    b: { l: { it: 'Neolaureati, 22–27', en: 'Recent graduates, 22–27' }, v: 5.7, r: { it: '5,7%', en: '5.7%' } }, max: 10 },
 ];
 const vs = [
-  { who: 'Forage', from: 'Parte da un ruolo', gap: 'Certifica che hai finito. Non dice nulla su di te.' },
-  { who: 'Parker Dewey', from: 'Parte da un campo scelto', gap: 'Guidato dal datore di lavoro. Non è per chi sta ancora scegliendo.' },
-  { who: 'Riipen', from: 'Parte da un corso', gap: 'Serve essere iscritti a una scuola.' },
-  { who: 'Contra, Dribbble', from: 'Parte da un mestiere che hai già', gap: 'Presuppone un portfolio.' },
-  { who: 'Quiz di carriera', from: 'Parte dalle tue risposte', gap: 'Non fai nulla, quindi non resta nessuna prova.' },
-  { who: 'KERN', from: 'Parte dalla persona', gap: 'Lavoro vero come esperimento su di te, con le prove accanto.', me: true },
+  { who: { it: 'Forage', en: 'Forage' }, from: { it: 'Parte da un ruolo', en: 'Starts from a role' }, gap: { it: 'Certifica che hai finito, non chi sei.', en: 'Certifies you finished, not who you are.' } },
+  { who: { it: 'Parker Dewey', en: 'Parker Dewey' }, from: { it: 'Parte da un campo scelto', en: 'Starts from a chosen field' }, gap: { it: "Guidato dall'azienda; non per chi sta ancora scegliendo.", en: 'Employer-led; not for people still choosing.' } },
+  { who: { it: 'Riipen', en: 'Riipen' }, from: { it: 'Parte da un corso', en: 'Starts from a course' }, gap: { it: 'Serve essere iscritti a una scuola.', en: 'You need to be enrolled in a school.' } },
+  { who: { it: 'Contra, Dribbble', en: 'Contra, Dribbble' }, from: { it: 'Parte da un mestiere che hai già', en: 'Starts from a trade you already have' }, gap: { it: 'Presuppone un portfolio.', en: 'Assumes a portfolio.' } },
+  { who: { it: 'Quiz di carriera', en: 'Career quizzes' }, from: { it: 'Parte dalle tue risposte', en: 'Starts from your answers' }, gap: { it: 'Non fai nulla, quindi nessuna prova.', en: 'You do nothing, so there is no proof.' } },
+  { who: { it: 'KERN', en: 'KERN' }, from: { it: 'Parte dalla persona', en: 'Starts from the person' }, gap: { it: 'Lavoro vero come esperimento su di te, con le prove accanto.', en: 'Real work as an experiment on you, with the evidence attached.' }, me: true },
 ];
 ---
 <Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
@@ -59,16 +66,20 @@ const vs = [
         </div>
 
         <div class="k-wrap">
+          <div class="k-ctl">
+            <div class="k-seg" role="group" aria-label="Lingua"><button type="button" data-k-lang="en" aria-pressed="true">EN</button><button type="button" data-k-lang="it" aria-pressed="false">IT</button></div>
+            <div class="k-seg" role="group" aria-label="Tema"><button type="button" data-k-theme="dark" aria-pressed="true">Dark</button><button type="button" data-k-theme="light" aria-pressed="false">Light</button></div>
+          </div>
           <div class="phone" aria-label="Anteprima interattiva dell'app KERN">
             <div class="k-scr" id="kScr">
               <div class="k-load" id="kLoad" aria-hidden="true">
-                <svg viewBox="0 0 100 100"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" class="ks" fill="#E8E6DA"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" class="kl" stroke="#E8E6DA"/><circle cx="66.4" cy="66.4" r="9" class="kc"/></svg>
+                <svg viewBox="0 0 100 100"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" class="ks" fill="currentColor"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" class="kl" stroke="currentColor"/><circle cx="66.4" cy="66.4" r="9" class="kc"/></svg>
                 <div class="k-word">kern<i>.</i></div>
                 <div class="k-tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div>
               </div>
               <div class="k-app">
                 <div class="k-top">
-                  <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="#E8E6DA" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="#E8E6DA" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="#C9F24A"/></svg>kern<i>.</i></div>
+                  <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="currentColor" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="currentColor" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9"/></svg>kern<i>.</i></div>
                   <span class="k-pill">1 of 3 done</span>
                 </div>
                 <div class="k-body">
@@ -111,46 +122,52 @@ const vs = [
         </div>
       </section>
 
+      <div class="ana" id="ana" data-lang="it">
       <section class="why" id="perche">
-        <span class="lab">/perché</span>
-        <h2>Chi non sa cosa vuole non ha una porta d'ingresso.</h2>
-        <p class="lead">Molti giovani sono incerti, le aziende chiedono prove di lavoro e poi assumono per titolo, e i posti di ingresso calano. Dati di ricerca generali, non risultati di KERN.</p>
+        <div class="ana-top">
+          <span class="lab"><Bi it="/perché" en="/why" /></span>
+          <div class="k-seg" role="group" aria-label="Lingua / Language"><button type="button" data-ana-lang="it" aria-pressed="true">IT</button><button type="button" data-ana-lang="en" aria-pressed="false">EN</button></div>
+        </div>
+        <h2><Bi it="Chi non sa cosa vuole non trova una porta d'ingresso." en="If you don't know what you want, there's no way in." /></h2>
+        <p class="lead"><Bi it="I giovani sono incerti, le aziende dicono di assumere per competenze e i posti d'ingresso calano. Sono dati di ricerca generali, non risultati di KERN." en="Young people are unsure, employers say they hire for skills, and entry-level roles are shrinking. General research, not KERN results." /></p>
         <div class="charts">
           {kstats.map((s) => (
             <figure class="chart">
-              <figcaption>{s.t}</figcaption>
+              <figcaption><Bi it={s.t.it} en={s.t.en} /></figcaption>
               {[s.a, s.b].map((r, k) => (
                 <div class="row">
-                  <span>{r.l}</span>
-                  <b>{r.r}</b>
+                  <span><Bi it={r.l.it} en={r.l.en} /></span>
+                  <b><Bi it={r.r.it} en={r.r.en} /></b>
                   <div class="track"><i class={k ? 'y' : 'w'} style={`--v:${Math.max((r.v / s.max) * 100, 1.5)}%`}></i></div>
                 </div>
               ))}
             </figure>
           ))}
         </div>
-        <p class="note">Le barre mostrano il valore indicato dalle fonti; sono indicative, e alcune cifre vengono da fonti secondarie. Sugli annunci entry-level (−35% dal 2023) le cause sono discusse: KERN non dà la colpa all'AI.</p>
+        <p class="note"><Bi it="Barre indicative, alcune cifre da fonti secondarie. Le cause del calo degli annunci entry-level sono discusse: KERN non incolpa l'AI." en="Bars are indicative; some figures come from secondary sources. The causes of the entry-level drop are debated: KERN doesn't blame AI." /></p>
+        <p class="note"><Bi it='Fonti: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School e Burning Glass Institute · NPR e IBISWorld 2026. <a href="#fonti">Dettagli</a>' en='Sources: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' /></p>
       </section>
 
       <section class="vs" id="differenza">
-        <span class="lab">/differenza</span>
-        <h2>Tutti partono da un ruolo. KERN parte da te.</h2>
-        <p class="lead">Le missioni con aziende vere esistono già. Non sono l'idea, sono la materia prima. L'idea è usarle come esperimento su di te.</p>
+        <span class="lab"><Bi it="/differenza" en="/difference" /></span>
+        <h2><Bi it="Tutti partono da un ruolo. KERN parte da te." en="Everyone starts from a role. KERN starts from you." /></h2>
+        <p class="lead"><Bi it="Le missioni con aziende vere esistono già: sono la materia prima. L'idea è usarle come esperimento su di te." en="Real-company missions already exist. They're the raw material; the idea is to use them as an experiment on you." /></p>
         <ul class="vs-l">
           {vs.map((v) => (
-            <li class={v.me ? 'me' : ''}><b>{v.who}</b><span class="vs-f">{v.from}</span><span>{v.gap}</span></li>
+            <li class={v.me ? 'me' : ''}><b><Bi it={v.who.it} en={v.who.en} /></b><span class="vs-f"><Bi it={v.from.it} en={v.from.en} /></span><span><Bi it={v.gap.it} en={v.gap.en} /></span></li>
           ))}
         </ul>
         <div class="goal">
-          <span class="lab">L'obiettivo</span>
-          <p>Aiutare chi non sa cosa vuole a scoprirlo facendo lavoro vero, e a capire come lavora. Le missioni sono in contrasto tra loro (partire da zero, poi migliorare qualcosa che esiste), e il segnale sta nel confronto. Tre missioni portano a una Kern card: un'ipotesi su come lavori, con le prove, che puoi confermare o respingere.</p>
+          <span class="lab"><Bi it="L'obiettivo" en="The goal" /></span>
+          <p><Bi it="Aiutarti a scoprire cosa vuoi facendo lavoro vero. Tre missioni in contrasto portano a una Kern card: un'ipotesi su come lavori, con le prove, che puoi confermare o respingere." en="Help you find out what you want by doing real work. Three contrasting missions lead to a Kern card: a hypothesis about how you work, with evidence, that you can confirm or reject." /></p>
           <ul class="goal-l">
-            <li>Nessun cronometro: il ritmo è tuo, e la fatica è il punto.</li>
-            <li>Nessun blocco: tutte le missioni sono aperte, subito.</li>
-            <li>Più risposte per missione: chi la fa meglio, non chi la fa prima.</li>
+            <li><Bi it="Nessun cronometro: il ritmo è tuo." en="No timers: your pace." /></li>
+            <li><Bi it="Nessun blocco: tutte le missioni sono aperte." en="No locks: every mission is open." /></li>
+            <li><Bi it="Più risposte per missione: vince chi lo fa meglio, non chi arriva prima." en="Many answers per mission: the best work wins, not the fastest." /></li>
           </ul>
         </div>
       </section>
+      </div>
 
 
       <section class="top">
@@ -268,15 +285,20 @@ const vs = [
 
       /* KERN phone: own palette (night / bone / lime) */
       .k-wrap { display: grid; justify-items: center; gap: 16px; }
+      .k-ctl { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+      .k-seg { display: inline-flex; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; overflow: hidden; }
+      .k-seg button { background: none; border: 0; color: #fff; padding: 8px 14px; font: 600 .8rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
+      .k-seg button[aria-pressed="true"] { background: var(--yellow); color: #000; }
       .k-replay { background: none; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 9px 16px; font: 600 .85rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
       .k-replay:hover { border-color: var(--yellow); color: var(--yellow); }
+      .k-scr.light { --bg: #E8E6DA; --fg: #141A12; --acc: #2C5A3A; --on: #E8E6DA; --line: #B9B7A8; --dim: #5b6156; }
       .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; background: var(--bg); color: var(--fg); }
       .k-scr h4, .k-scr h5, .k-scr p { margin: 0; }
       .k-scr button { font-family: inherit; }
       .k-app { height: 100%; display: flex; flex-direction: column; }
       .k-top { padding: 20px 18px 6px; display: flex; justify-content: space-between; align-items: center; }
       .k-logo { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 21px; letter-spacing: -.07em; }
-      .k-logo svg { width: 22px; } .k-logo i { font-style: normal; color: var(--acc); letter-spacing: 0; }
+      .k-logo svg { width: 22px; } .k-logo circle { fill: var(--acc); } .k-logo i { font-style: normal; color: var(--acc); letter-spacing: 0; }
       .k-pill { font: 400 10px var(--mono); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: var(--dim); }
       .k-body { flex: 1; overflow: auto; padding: 10px 18px 12px; scrollbar-width: none; }
       .k-body::-webkit-scrollbar { display: none; }
@@ -286,8 +308,8 @@ const vs = [
       .k-scr h4 { margin-top: 6px; font-weight: 800; font-size: 28px; letter-spacing: -.05em; line-height: 1; } .k-scr h4 b { color: var(--acc); }
       .k-card { border: 1.5px solid var(--fg); border-radius: 14px; padding: 13px; display: flex; flex-direction: column; gap: 8px; }
       .k-card h5 { font-weight: 800; font-size: 18px; letter-spacing: -.04em; line-height: 1.1; }
-      .k-card p { font-size: 13px; line-height: 1.4; color: rgba(232,230,218,.82); }
-      .k-main { background: var(--fg); color: var(--bg); } .k-main .k-l { color: var(--bg); opacity: .65; } .k-main p { color: var(--bg); opacity: .82; }
+      .k-card p { font-size: 13px; line-height: 1.4; opacity: .82; }
+      .k-main { background: var(--fg); color: var(--bg); } .k-main .k-l { color: var(--bg); opacity: .65; } .k-main p { color: var(--bg); }
       .k-btn { align-self: flex-start; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--bg); color: var(--acc); }
       .k-stat { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; } .k-stat b { font-weight: 800; font-size: 36px; letter-spacing: -.06em; line-height: 1; }
       .k-bar { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; } .k-bar i { display: block; height: 100%; width: 62%; background: var(--acc); }
@@ -312,7 +334,7 @@ const vs = [
       /* launch loader (plays once when the phone scrolls into view) */
       .k-load { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: var(--bg); transition: opacity .5s; }
       .k-load.off { opacity: 0; pointer-events: none; }
-      .k-load svg { width: 92px; overflow: visible; }
+      .k-load svg { width: 92px; overflow: visible; color: var(--fg); }
       .ks, .kl { transform: translate(0,0); } .kl { fill: none; }
       .kc { transform-box: fill-box; transform-origin: center; transform: scale(0); fill: var(--acc); }
       .k-word { font-weight: 800; font-size: 46px; letter-spacing: -.07em; line-height: 1; opacity: 0; transform: translateY(8px); } .k-word i { font-style: normal; color: var(--acc); letter-spacing: 0; }
@@ -340,6 +362,9 @@ const vs = [
       .row i.w { background: #fff; } .row i.y { background: var(--yellow); }
       .chart.in .row i { width: var(--v); }
       .vs { border-top: 1px solid rgba(255,255,255,.25); }
+      .ana-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+      .ana[data-lang="it"] [lang="en"], .ana[data-lang="en"] [lang="it"] { display: none; }
+      .note a { color: inherit; text-decoration: underline; }
       .vs-l { list-style: none; margin: 36px 0 0; padding: 0; display: grid; }
       .vs-l li { display: grid; gap: 4px 24px; grid-template-columns: 1fr; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.28); line-height: 1.4; color: rgba(255,255,255,.85); }
       .vs-l b { font-size: 1.15rem; letter-spacing: -.02em; color: #fff; }
@@ -395,9 +420,73 @@ const vs = [
       const toast = document.getElementById('kToast')!;
       let tT = 0;
       kScr.querySelectorAll<HTMLElement>('[data-k-toast]').forEach((b) => b.addEventListener('click', () => {
-        toast.textContent = b.dataset.kToast!; toast.classList.add('on');
+        toast.textContent = tr(b.dataset.kToast!); toast.classList.add('on');
         clearTimeout(tT); tT = window.setTimeout(() => toast.classList.remove('on'), 2200);
       }));
       const fb = document.getElementById('kFb')!;
-      kScr.querySelectorAll<HTMLElement>('[data-k-msg]').forEach((b) => b.addEventListener('click', () => { fb.textContent = b.dataset.kMsg!; }));
+      kScr.querySelectorAll<HTMLElement>('[data-k-msg]').forEach((b) => b.addEventListener('click', () => { fb.textContent = tr(b.dataset.kMsg!); fb.dataset.src = b.dataset.kMsg!; }));
+      const IT: Record<string, string> = {
+        'Follow the trail.': 'Segui la traccia.',
+        'Find your<b>KERN</b>.': 'Trova il tuo <b>KERN</b>.',
+        '1 of 3 done': '1 su 3 fatte',
+        'All missions open': 'Tutte le missioni aperte',
+        'Pick your<br>next <b>move.</b>': 'Scegli la<br>prossima <b>mossa.</b>',
+        'Mission 002 · startup partner': 'Missione 002 · startup partner',
+        'Fix what already exists': 'Sistema ciò che esiste già',
+        "Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.": "Rendi più chiara la schermata di onboarding di una vera startup. L'opposto di partire da una pagina bianca.",
+        '128 answers · judged on quality': '128 risposte · giudicate sulla qualità',
+        'Add your answer': 'Aggiungi la tua risposta',
+        'Mission 003 · KERN': 'Missione 003 · KERN',
+        'Rewrite a confusing email': "Riscrivi un'email confusa",
+        'Do it your way. Every answer counts.': 'Fallo a modo tuo. Ogni risposta conta.',
+        '54 answers': '54 risposte',
+        'Mission 004 · studio client': 'Missione 004 · cliente dello studio',
+        'Work with a partner': 'Lavora con un partner',
+        'Answer together with someone else.': 'Rispondi insieme a qualcun altro.',
+        '31 answers': '31 risposte',
+        'Missions': 'Missioni',
+        'yourKERN · first signs': 'yourKERN · primi segnali',
+        'Your <b>KERN</b><br>so far.': 'Il tuo <b>KERN</b><br>finora.',
+        'Time on KERN missions': 'Tempo sulle missioni KERN',
+        'this week · only you see this': 'questa settimana · lo vedi solo tu',
+        'What you seem drawn to': 'Cosa sembra attirarti',
+        'Shaping ideas': 'Dare forma alle idee', 'Writing': 'Scrittura', 'Solo work': 'Lavoro in solitaria',
+        'A first guess': 'Una prima ipotesi',
+        'You seemed to light up on the open brief and drag on the polish.': 'Ti sei acceso sul brief aperto e hai faticato sulla rifinitura.',
+        'Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".': 'Perché lo pensiamo: hai provato 3 versioni del brief aperto e hai scritto "il tempo è volato".',
+        'That feels right': 'Mi ci ritrovo', 'Not really': 'Non proprio',
+        'Completed': 'Completate', 'Make somebody care': 'Fai importare a qualcuno', 'MISSION 001': 'MISSIONE 001',
+        'Worth trying next': 'Da provare dopo', 'Improve an existing product page': 'Migliora la pagina di un prodotto esistente',
+        'Tests the part you seemed to drag on.': 'Mette alla prova la parte in cui hai faticato.',
+        'Your Trail': 'La tua traccia', 'Follow the<br><b>trail.</b>': 'Segui la<br><b>traccia.</b>',
+        'Build from zero · done': 'Costruisci da zero · fatta', 'Improve what exists · in progress': 'Migliora ciò che esiste · in corso',
+        'Pair up · not started': 'In coppia · da iniziare', 'Your Kern card': 'La tua Kern card',
+        'What we saw, why, and your next move': 'Cosa abbiamo visto, perché e la tua prossima mossa',
+        'Leave a sign': 'Lascia un segno', 'After each mission, leave one short tip for the next person.': 'Dopo ogni missione, lascia un breve consiglio per la persona dopo di te.',
+        'Your answer is saved. Add another one anytime.': 'La tua risposta è salvata. Ne puoi aggiungere altre quando vuoi.',
+        'Saved. This sharpens your KERN.': 'Salvato. Questo affina il tuo KERN.',
+        "Noted. We'll give this guess less weight.": 'Preso nota. Daremo meno peso a questa ipotesi.',
+      };
+      let kLang = 'en';
+      const tr = (s: string) => (kLang === 'it' && IT[s]) || s;
+      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-done span, .k-pill, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-tabs button:not(:nth-child(2))');
+      kTxt.forEach((e) => { e.dataset.en = e.innerHTML.trim(); });
+      const setLang = (l: string) => {
+        kLang = l;
+        kTxt.forEach((e) => { const en = e.dataset.en!; if (en) e.innerHTML = tr(en); });
+        if (fb.dataset.src) fb.textContent = tr(fb.dataset.src);
+        document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kLang === l)));
+      };
+      document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.kLang!)));
+      document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((b) => b.addEventListener('click', () => {
+        kScr.classList.toggle('light', b.dataset.kTheme === 'light');
+        document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      }));
+      const ana = document.getElementById('ana')!;
+      const setAna = (l: string) => {
+        ana.dataset.lang = l;
+        document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));
+      };
+      document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.addEventListener('click', () => setAna(b.dataset.anaLang!)));
+      if (!navigator.language.toLowerCase().startsWith('it')) setAna('en');
 </script>
