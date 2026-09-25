@@ -22,12 +22,12 @@ const { title, description, active } = Astro.props;
   </head>
   <body>
     <header class="hdr">
-      <a class="brand" href="/" aria-label="Punto Due Studio">
+      <a class="brand" href="/">
         <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
           <defs><clipPath id="lc"><circle cx="37" cy="50" r="27" /></clipPath></defs>
           <circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lc)" />
         </svg>
-        <span class="word"><span class="name">Punto Due</span><span class="sub">STUDIO</span></span>
+        <span class="word"><span class="name">Punto Due</span> <span class="sub">STUDIO</span></span>
       </a>
       <nav class="nav" aria-label="Principale">
         <a href="/web" class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>

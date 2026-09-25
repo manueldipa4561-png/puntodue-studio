@@ -282,7 +282,7 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
   .dh { text-align: center; font: 500 10px/1 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.6); padding-bottom: 4px; }
   .day { position: relative; aspect-ratio: 1; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); display: grid; align-content: space-between; padding: 5px 6px; transition: background .5s var(--d, 0s), border-color .5s var(--d, 0s); }
   .day.off { visibility: hidden; }
-  .day small { font: 500 10px/1 var(--mono); color: rgba(255,255,255,.55); }
+  .day small { font: 500 10px/1 var(--mono); color: rgba(255,255,255,.64); }
   .day .dt { display: flex; flex-wrap: wrap; gap: 3px; }
   .day .dt i { width: 6px; height: 6px; border-radius: 50%; animation: dpop .4s cubic-bezier(.2,1.6,.4,1) both; }
   @keyframes dpop { from { transform: scale(0); } }
@@ -331,9 +331,11 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
   const fol = document.getElementById('fol')!;
   const toast = document.getElementById('toast')!;
   const names = ['Marta', 'Luca', 'Giulia', 'Andrea', 'Sara', 'Paolo', 'Elena', 'Davide'];
-  let followers = 2410, tick = 0;
+  let followers = 2410, tick = 0, phoneOn = false;
+  // the feed only "lives" while the phone is on screen: no off-screen DOM churn or screen-reader toasts
+  new IntersectionObserver(([e]) => { phoneOn = e.isIntersecting; }).observe(fol.closest('.phone')!);
   setInterval(() => {
-    if (document.hidden) return;
+    if (document.hidden || !phoneOn) return;
     tick++;
     bump(posts[Math.floor(Math.random() * posts.length)], 1 + Math.floor(Math.random() * 3));
     if (tick % 3 === 0) {
