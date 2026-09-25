@@ -160,12 +160,25 @@ const kstats = [
                     <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><div class="k-kt">kern<i>.</i></div><h5>You light up when you start from zero.</h5><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
                     <div class="k-card"><div class="k-l">Dare a friend</div><p>Send a mission. You both answer, then see the two answers side by side.</p><button type="button" class="k-ask-btn" data-k-toast="Link copied. Your friend answers the same mission.">Send a dare</button></div>
                   </div>
+                  <div class="k-pane" id="k-copilot">
+                    <div><div class="k-l">KERN.AI ·your co-pilot</div><h4>Your idea.<br>My <b>questions.</b></h4></div>
+                    <div class="k-ait"><span class="k-dot" aria-hidden="true"></span><div class="k-l">You are talking to an AI · replies are a scripted preview</div></div>
+                    <div class="k-card k-chat">
+                      <div class="k-log" id="kChat" aria-live="polite"></div>
+                      <div class="k-cmp" id="kCmp" hidden><div class="k-l">Version 1</div><p id="kV1"></p><div class="k-l">Version 3</div><p id="kV3"></p><button type="button" class="k-ask-btn" data-k-toast="Saved to yourKERN. Every version counts as evidence.">Save to yourKERN</button></div>
+                      <div class="k-comp"><input id="kIn" type="text" maxlength="140" autocomplete="off" aria-label="Your idea" /><button type="button" class="k-send" id="kSend" aria-label="Send">↑</button></div>
+                      <div class="k-chips" id="kEx"><span role="button" tabindex="0">Use an example</span><span role="button" tabindex="0">Start over</span></div>
+                    </div>
+                    <div class="k-card"><div class="k-l">Do it twice</div><p>Make it alone first. Then with the co-pilot. Compare the two.</p></div>
+                    <div class="k-card"><div class="k-l">The rules</div><p>It asks. It never answers.</p><p>Your idea always comes first.</p><p>If it gets heavy, it stops and points you to a person.</p></div>
+                  </div>
                 </div>
                 <div class="k-toast" id="kToast" role="status" aria-live="polite"></div>
                 <nav class="k-tabs" aria-label="KERN">
                   <button type="button" class="on" data-k-tab="missions">Missions</button>
                   <button type="button" data-k-tab="yourkern"><b class="tl">your<span>KERN</span></b></button>
                   <button type="button" data-k-tab="trail">Trail</button>
+                  <button type="button" data-k-tab="copilot">KERN.AI</button>
                 </nav>
               </div>
             </div>
@@ -401,6 +414,20 @@ const kstats = [
       .k-cairn .c1 { animation: kBob 2.4s .2s ease-in-out infinite; } .k-cairn .c2 { animation: kBob 2.4s .4s ease-in-out infinite; }
       @keyframes kBob { 50% { transform: translateY(-3px); } }
       @media (prefers-reduced-motion: reduce) { .k-cairn .cd, .k-cairn .c1, .k-cairn .c2 { animation: none; } }
+
+      /* v5: KERN AI tab */
+      .k-tabs button:nth-child(4) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z'/%3E%3C/svg%3E"); }
+      .k-ait { display: flex; align-items: center; gap: 8px; } .k-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ai); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ai) 25%, transparent); }
+      .k-chat { gap: 12px; }
+      .k-log { display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; scrollbar-width: none; scroll-behavior: smooth; } .k-log::-webkit-scrollbar { display: none; }
+      .k-log .k-msg { max-width: 90%; } .k-log .k-me { align-self: flex-end; } .k-log .k-ai { align-self: flex-start; }
+      .k-typing { display: inline-flex; gap: 4px; } .k-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--ai); animation: kPulse 1s infinite; } .k-typing i:nth-child(2) { animation-delay: .15s; } .k-typing i:nth-child(3) { animation-delay: .3s; }
+      .k-comp { display: flex; gap: 8px; align-items: center; }
+      .k-comp input { flex: 1; min-width: 0; box-sizing: border-box; font: 500 14px/1.4 'Inter Tight Variable', system-ui, sans-serif; color: var(--fg); background: var(--surf); border: 1px solid var(--edge); border-radius: 999px; padding: 11px 14px; }
+      .k-comp input:focus-visible { outline: 2px solid var(--ai); outline-offset: 1px; }
+      .k-send { flex: none; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--ai); color: var(--bg); font-weight: 800; font-size: 18px; cursor: pointer; transition: transform .15s; } .k-send:active { transform: scale(.92); }
+      .k-cmp { display: grid; gap: 6px; border: 1px dashed var(--edge); border-radius: 14px; padding: 12px; } .k-cmp[hidden] { display: none; }
+      .k-cmp p { font-size: 13.5px; border-left: 3px solid var(--gold); padding-left: 10px; margin-bottom: 4px; } .k-cmp .k-ask-btn { justify-self: start; border-color: var(--gold); color: var(--gold); }
 
       /* v4: login, answer sheet, smoother motion */
       .k-tp { display: flex; align-items: center; gap: 8px; }
@@ -655,7 +682,7 @@ const kstats = [
         kLang = l;
         kTxt.forEach((e) => { const en = e.dataset.en!; if (en) e.innerHTML = tr(en); });
         if (fb.dataset.src) fb.textContent = tr(fb.dataset.src);
-        setLvl();
+        setLvl(); renderChat();
         document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kLang === l)));
       };
       document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.kLang!)));
@@ -734,6 +761,7 @@ const kstats = [
         setT(document.getElementById('kTrNow')!, f.m[0][1]);
         setT(document.getElementById('kTrNext')!, f.m[2][1]);
         setT(kIdea, f.idea); kQs = f.qs; kQi = 0; setT(kAi, kQs[0]);
+        resetChat();
       };
       Object.assign(IT, {
         'Your rank': 'Il tuo grado', 'stones': 'pietre', 'New rank': 'Nuovo grado',
@@ -849,6 +877,70 @@ const kstats = [
       document.getElementById('kCancel')!.addEventListener('click', closeSheet);
       document.getElementById('kSub')!.addEventListener('click', () => { closeSheet(); sayK('Your answer is saved. Add another one anytime.'); });
       kSheet.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
+      Object.assign(IT, {
+        'KERN.AI ·your co-pilot': 'KERN.AI ·il tuo co-pilota',
+        'Your idea.<br>My <b>questions.</b>': 'La tua idea.<br>Le mie <b>domande.</b>',
+        'You are talking to an AI · replies are a scripted preview': "Stai parlando con un'AI · le risposte sono un'anteprima scritta",
+        'Use an example': 'Usa un esempio', 'Start over': 'Ricomincia',
+        'Version 1': 'Versione 1', 'Version 3': 'Versione 3', 'Save to yourKERN': 'Salva in yourKERN',
+        'Saved to yourKERN. Every version counts as evidence.': 'Salvato in yourKERN. Ogni versione conta come prova.',
+        'Do it twice': 'Fallo due volte', 'Make it alone first. Then with the co-pilot. Compare the two.': 'Prima da solo. Poi con il co-pilota. Poi confronta le due.',
+        'The rules': 'Le regole', 'It asks. It never answers.': 'Chiede. Non risponde mai.', 'Your idea always comes first.': 'La tua idea viene sempre prima.',
+        'If it gets heavy, it stops and points you to a person.': 'Se la cosa si fa pesante, si ferma e ti indirizza a una persona.',
+        "What is your idea? Write it in your own words first. I won't suggest one.": 'Qual è la tua idea? Scrivila prima con parole tue. Non te ne suggerirò una.',
+        "I won't hand you the idea. What is the first thing that comes to mind, even if it's rough?": "Non ti darò io l'idea. Qual è la prima cosa che ti viene in mente, anche se è grezza?",
+        "This sounds heavy, so I'm pausing the mission. Please talk to someone you trust or a local helpline. If you are in danger, call your local emergency number.": "Sembra una cosa pesante, quindi metto in pausa la missione. Parlane con una persona di cui ti fidi o con un servizio di ascolto locale. Se sei in pericolo, chiama il numero di emergenza.",
+        'You wrote it 3 times and each version changed. That is your evidence. Compare the first and the last.': "L'hai scritta 3 volte e ogni versione è cambiata. Questa è la tua prova. Confronta la prima e l'ultima.",
+        'Save it to yourKERN, or start over with a new idea.': 'Salvala in yourKERN, oppure ricomincia con una nuova idea.',
+        'Your idea, your words…': 'La tua idea, a parole tue…',
+      });
+      type Msg = { who: 'ai' | 'me'; t: string; typing?: boolean };
+      const chatEl = document.getElementById('kChat')!, inEl = document.getElementById('kIn') as HTMLInputElement, cmp = document.getElementById('kCmp')!;
+      let msgs: Msg[] = [], mine: string[] = [], busy = false;
+      const OPEN = "What is your idea? Write it in your own words first. I won't suggest one.";
+      const HEAVY = /(kill myself|suicid|self.?harm|hopeless|want to die|voglio morire|farla finita|non ce la faccio più)/i;
+      const ASKED = /(give me|tell me|what should|write it for me|any ideas|dammi|dimmi|che idea|scrivilo tu|cosa dovrei)/i;
+      const renderChat = () => {
+        chatEl.innerHTML = '';
+        msgs.forEach((m) => {
+          const p = document.createElement('p'); p.className = 'k-msg ' + (m.who === 'me' ? 'k-me' : 'k-ai');
+          if (m.typing) { p.classList.add('k-typing'); p.innerHTML = '<i></i><i></i><i></i>'; p.setAttribute('aria-label', 'typing'); }
+          else p.textContent = m.who === 'ai' ? tr(m.t) : m.t;
+          chatEl.appendChild(p);
+        });
+        chatEl.scrollTop = chatEl.scrollHeight;
+        inEl.placeholder = tr('Your idea, your words…');
+      };
+      const aiSay = (t: string, done?: () => void) => {
+        msgs.push({ who: 'ai', t: '', typing: true }); renderChat();
+        window.setTimeout(() => { msgs.pop(); msgs.push({ who: 'ai', t }); renderChat(); if (done) done(); }, still ? 0 : 750);
+      };
+      const resetChat = () => { msgs = [{ who: 'ai', t: OPEN }]; mine = []; busy = false; cmp.hidden = true; inEl.value = ''; renderChat(); };
+      const sendChat = () => {
+        const v = inEl.value.trim(); if (!v || busy) return;
+        inEl.value = ''; msgs.push({ who: 'me', t: v }); busy = true; renderChat();
+        const free = () => { busy = false; };
+        if (HEAVY.test(v)) return aiSay("This sounds heavy, so I'm pausing the mission. Please talk to someone you trust or a local helpline. If you are in danger, call your local emergency number.", free);
+        if (ASKED.test(v)) return aiSay("I won't hand you the idea. What is the first thing that comes to mind, even if it's rough?", free);
+        mine.push(v);
+        if (mine.length < 3) return aiSay((FIELDS[kField] || FIELDS.Design).qs[mine.length - 1], free);
+        if (mine.length === 3) return aiSay('You wrote it 3 times and each version changed. That is your evidence. Compare the first and the last.', () => {
+          document.getElementById('kV1')!.textContent = mine[0]; document.getElementById('kV3')!.textContent = mine[2]; cmp.hidden = false; free();
+        });
+        aiSay('Save it to yourKERN, or start over with a new idea.', free);
+      };
+      document.getElementById('kSend')!.addEventListener('click', sendChat);
+      inEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendChat(); } });
+      document.querySelectorAll<HTMLElement>('#kEx span').forEach((c, i) => {
+        const go = () => {
+          if (i === 1) return resetChat();
+          const f = FIELDS[kField] || FIELDS.Design;
+          inEl.value = tr(f.idea).replace(/^[^:]+:\s*/, ''); inEl.focus();
+        };
+        c.addEventListener('click', go);
+        c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+      });
+      resetChat();
       const setAna = (l: string) => {
         document.documentElement.dataset.ana = l;
         document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));
