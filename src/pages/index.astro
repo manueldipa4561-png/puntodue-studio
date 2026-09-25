@@ -203,6 +203,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .ftr { position: absolute; left: var(--gut); right: var(--gut); bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
       .ftr-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
       @media (max-width: 1023px) {
+        .big { font-size: 32.5vw; }
         h2 { margin: 14px 0 14px; }
         .pts { margin-top: 22px; }
         .pts li { padding: 12px 0; font-size: 1rem; }
@@ -512,8 +513,8 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           for (const key of keys) st[key] += (tgt[key] - st[key]) * ease;
           const w = innerWidth, h = innerHeight, wide = w >= 1024;
           const top = 92, avail = Math.max(120, freeBottom - top - 20);
-          const cx = wide ? w * 0.7 : w * 0.5, cy = wide ? h * 0.5 : top + avail / 2;
-          const S = wide ? Math.min(w * 0.46, h * 0.86) : Math.min(w * 0.85, avail / 0.82);
+          const cx = wide ? w * 0.7 : w * 0.5, cy = wide ? h * 0.5 : h * 0.31;
+          const S = wide ? Math.min(w * 0.46, h * 0.86) : Math.min(w * 0.6, h * 0.32);
           const k = (S / 100) * dpr;
           mx += (tx - mx) * 0.06; my += (ty - my) * 0.06;
           gx += (mpx - gx) * 0.15; gy += (mpy - gy) * 0.15;
@@ -524,7 +525,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           u.uA.value.set((cx * dpr) + (st.ax + mx * 5) * k, oy + (st.ay + fl - my * 4) * k, st.ahw * k, st.ahh * k);
           u.uB.value.set((cx * dpr) + (st.bx - mx * 5) * k, oy + (st.by - fl - my * 4) * k, st.bhw * k, st.bhh * k);
           u.uR.value.set(st.ar * k, st.br * k);
-          u.uGrid.value = st.grid; u.uLink.value = st.link; u.uAmt.value = st.amt;
+          u.uGrid.value = st.grid; u.uLink.value = st.link; u.uAmt.value = st.amt * (wide ? 1 : 0.82);
           u.uDetB.value = st.det; u.uDetP.value = st.notch; u.uMg.value = st.mg;
           u.uMouse.value.set(gx * dpr, (h - gy) * dpr);
           renderer.render(scene, camera);
