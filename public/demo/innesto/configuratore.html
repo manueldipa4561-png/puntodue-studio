@@ -17,7 +17,7 @@
   <style>
     /* STAGE 3D */
     .c-hero{min-height:100dvh;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,60px);align-items:center;padding:120px var(--pad) clamp(40px,5vw,70px)}
-    .c-hero h1{font-size:clamp(2.6rem,6.4vw,6rem);font-stretch:118%;margin:20px 0 22px}
+    .c-hero h1{font-size:clamp(2.4rem,5vw,4.8rem);font-stretch:114%;margin:18px 0 18px}
     .c-hero .lead{color:var(--d-muted)}
     .stage{position:relative;aspect-ratio:1;max-height:calc(100dvh - 150px);width:100%;justify-self:center;border-radius:var(--r-l);overflow:hidden;background:radial-gradient(120% 90% at 50% 40%,#2F2B27 0%,#1B1917 60%,#121110 100%)}
     .stage img.fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s var(--ease)}
@@ -38,10 +38,10 @@
     .stage[data-ready] .loading{display:none}
     .progress-line{position:absolute;left:0;top:0;height:3px;background:#E07A57;width:0;z-index:3;transition:width .2s}
 
-    .rooms{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px}
+    .rooms{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
     .room{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:var(--r-m);border:1.5px solid var(--d-line);background:transparent;cursor:pointer;text-align:left;transition:border-color .25s,background .25s}
     .room:hover{border-color:rgba(237,231,221,.4)}
-    .room b{font-family:var(--font-d);font-weight:700;font-size:1rem}
+    .room b{font-family:var(--font-d);font-weight:700;font-size:1rem;white-space:nowrap}
     .room span{font-size:.8rem;color:var(--d-muted)}
     .room[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
     .room[aria-pressed=true] span{color:#FBE3D8}
@@ -146,7 +146,7 @@
         <button class="room" type="button" data-room="cucina" aria-pressed="false"><b>Cucina</b><span>piano terra</span></button>
         <button class="room" type="button" data-room="camera" aria-pressed="false"><b>Camera</b><span>primo piano</span></button>
         <button class="room" type="button" data-room="bagno" aria-pressed="false"><b>Bagno</b><span>primo piano</span></button>
-        <a class="room" href="#stima"><b>Stima su misura</b><span>4 domande</span></a>
+        <a class="room" href="#stima"><b>Stima</b><span>4 domande</span></a>
       </div>
       <div class="room-card" aria-live="polite" data-room-card>
         <h2>Tutta la casa</h2>
@@ -228,14 +228,15 @@
 
       <aside class="result fx" aria-labelledby="res-title">
         <p class="micro" id="res-title">La tua stima indicativa</p>
-        <div class="range" data-range aria-live="polite" aria-atomic="true">63.000 – 99.000 €</div>
+        <div class="range" data-range>63.000 – 99.000 €</div>
+        <p class="sr-only" data-sr aria-live="polite"></p>
         <p class="sub" data-sub>Casa intera · 90 m² · finiture curate</p>
         <dl>
           <dt>Durata cantiere stimata</dt><dd data-weeks>16–20 settimane</dd>
           <dt>Pratiche edilizie</dt><dd data-pratica>CILA inclusa</dd>
           <dt>Sopralluogo</dt><dd>Gratuito</dd>
         </dl>
-        <div class="coupon">Con il codice <b>SOPRALLUOGO0</b> il rilievo tecnico è incluso fino al 31 ottobre.</div>
+        <div class="coupon">Con il codice <b>RILIEVO26</b> il rilievo tecnico è incluso fino al 31 ottobre.</div>
         <a class="btn btn-accent" href="./index.html#contatto">Prenota il sopralluogo <span class="arrow" aria-hidden="true">→</span></a>
         <p class="fine">Stima di esempio basata su costi medi fittizi, IVA esclusa. Non costituisce un preventivo.</p>
       </aside>
@@ -293,11 +294,19 @@ window.ROOMS = {
   var SIZE = {casa:[30,300,90], cucina:[4,40,12], bagno:[3,20,6], locale:[20,400,60]};
   var FIN = {'0.85':'finiture essenziali','1':'finiture curate','1.3':'finiture su misura'};
   var eur = function(n){ return (Math.round(n / 1000) * 1000).toLocaleString('it-IT') + ' €'; };
+  /* la cifra scorre verso il nuovo valore; lo screen reader riceve solo il risultato */
+  var shown = {lo:0, hi:0}, first = true, rangeEl = document.querySelector('[data-range]'), srEl = document.querySelector('[data-sr]');
+  var paint = function(){ rangeEl.textContent = eur(shown.lo) + ' – ' + eur(shown.hi); };
+  var setRange = function(lo, hi){
+    srEl.textContent = 'Stima: da ' + eur(lo) + ' a ' + eur(hi);
+    if(first || !window.gsap || matchMedia('(prefers-reduced-motion:reduce)').matches){ first = false; shown.lo = lo; shown.hi = hi; paint(); return; }
+    gsap.to(shown, {lo:lo, hi:hi, duration:.6, ease:'power2.out', overwrite:true, onUpdate:paint});
+  };
   var val = function(n){ return f.querySelector('input[name=' + n + ']:checked').value; };
   var calc = function(){
     var t = val('tipo'), m = +sqm.value, k = +val('fin'), r = RATE[t];
     out.textContent = m + ' m²';
-    document.querySelector('[data-range]').textContent = eur(r[0] * m * k) + ' – ' + eur(r[1] * m * k);
+    setRange(r[0] * m * k, r[1] * m * k);
     document.querySelector('[data-sub]').textContent = r[2] + ' · ' + m + ' m² · ' + FIN[val('fin')];
     var w = t === 'casa' ? Math.round(6 + m / 9) : t === 'locale' ? Math.round(5 + m / 12) : t === 'cucina' ? 5 : 4;
     document.querySelector('[data-weeks]').textContent = w + '–' + (w + (t === 'casa' || t === 'locale' ? 4 : 2)) + ' settimane';

@@ -43,7 +43,7 @@
     .compare h2{font-size:var(--fs-h2);margin:20px 0 22px}
 
     /* METODO */
-    .steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--s-line);border:1px solid var(--s-line);border-radius:var(--r-l);overflow:hidden}
+    .steps{position:relative;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--s-line);border:1px solid var(--s-line);border-radius:var(--r-l);overflow:hidden}
     .steps li{background:var(--antracite);padding:clamp(22px,2.6vw,36px);min-height:300px;display:flex;flex-direction:column;transition:background .35s}
     .steps li:hover{background:#1f1d1a}
     .steps .big{font-family:var(--font-d);font-weight:900;font-stretch:125%;font-size:clamp(3rem,5vw,4.6rem);line-height:.8;color:transparent;-webkit-text-stroke:1.5px #E07A57}
@@ -171,7 +171,7 @@
   <!-- HERO scuro con video cantiere -> casa -->
   <section class="hero t-dark" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="micro">Ristrutturazioni chiavi in mano · Emilia</p>
+      <p class="micro">Chiavi in mano · Emilia</p>
       <h1 id="hero-title">
         <span class="mask"><span>Dal grezzo</span></span>
         <span class="mask"><span>alle chiavi,</span></span>
@@ -184,7 +184,7 @@
       </div>
     </div>
     <figure class="hero-media">
-      <img src="./img/2.webp" alt="Soggiorno ristrutturato con parquet in rovere, pareti a calce e cucina in terracotta" width="1024" height="688" fetchpriority="high">
+      <img src="./img/2.webp" alt="Soggiorno appena consegnato: parquet in rovere, pareti bianche e cucina grigia lungo la parete" width="1024" height="688" fetchpriority="high">
       <video data-hero-video muted loop playsinline preload="none" poster="./img/2.webp" aria-hidden="true">
         <source data-src="./media/cantiere.mp4" type="video/mp4">
       </video>
@@ -211,7 +211,7 @@
       <div>
         <p class="micro fx">Prima / dopo</p>
         <h2 id="ba-title" class="fx">Trascina.<br>È <em>la stessa stanza.</em></h2>
-        <p class="lead fx">Stessa inquadratura, stesse finestre. In mezzo: demolizioni, impianti nuovi, massetto, calce, rovere e una cucina su misura.</p>
+        <p class="lead fx">Stessa inquadratura, stesse finestre, cinque mesi di distanza. In mezzo: demolizioni, tracce per i nuovi impianti, massetto, intonaci, parquet in rovere e la cucina.</p>
         <div class="facts fx">
           <div><span>Superficie</span><b>128 m²</b></div>
           <div><span>Cantiere</span><b>5 mesi</b></div>
@@ -219,8 +219,8 @@
         </div>
       </div>
       <figure class="ba fx" data-ba>
-        <img src="./img/1.webp" alt="Il soggiorno al grezzo: intonaco rovinato, tracce degli impianti e massetto a vista" width="1024" height="688" loading="lazy">
-        <div class="after-wrap"><img src="./img/2.webp" alt="Lo stesso soggiorno finito, con parquet, pareti a calce e cucina in terracotta" width="1024" height="688" loading="lazy"></div>
+        <img src="./img/1.webp" alt="Lo stesso soggiorno durante le demolizioni, con le tracce degli impianti aperte e le macerie a terra" width="1024" height="688" loading="lazy">
+        <div class="after-wrap"><img src="./img/2.webp" alt="Il soggiorno finito, con parquet in rovere e cucina grigia" width="1024" height="688" loading="lazy"></div>
         <span class="ba-label before">Prima</span><span class="ba-label after">Dopo</span>
         <input type="range" min="0" max="100" step="0.5" value="50" aria-label="Confronta prima e dopo: sposta per rivelare">
         <div class="ba-handle" aria-hidden="true"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></b></div>
@@ -239,8 +239,8 @@
     </div>
     <ol class="steps">
       <li class="fx"><span class="big">01</span><h3>Sopralluogo</h3><p>Rilievo, foto, ascolto delle priorità e del budget. Gratuito.</p><small>Settimana 1</small></li>
-      <li class="fx"><span class="big">02</span><h3>Progetto e preventivo</h3><p>Pianta, materiali, impianti, costi voce per voce e cronoprogramma.</p><small>Settimane 2–4</small></li>
-      <li class="fx"><span class="big">03</span><h3>Cantiere</h3><p>Pratiche CILA, squadre coordinate, avanzamento condiviso ogni settimana.</p><small>Da 6 settimane</small></li>
+      <li class="fx"><span class="big">02</span><h3>Progetto e preventivo</h3><p>Pianta, capitolato dei materiali, costi voce per voce e cronoprogramma.</p><small>Settimane 2–4</small></li>
+      <li class="fx"><span class="big">03</span><h3>Cantiere</h3><p>CILA o SCIA, squadre coordinate, stato di avanzamento con foto ogni settimana.</p><small>Da 6 settimane</small></li>
       <li class="fx"><span class="big">04</span><h3>Chiavi</h3><p>Collaudo, certificazioni impianti, pulizia finale e garanzie.</p><small>Giorno di consegna</small></li>
     </ol>
   </section>
@@ -250,47 +250,47 @@
     <div class="head">
       <div>
         <p class="micro fx">Progetti · 3 di 7</p>
-        <h2 id="casi-title" class="fx">Trasformazioni,<br>non <em>rendering.</em></h2>
+        <h2 id="casi-title" class="fx">Il prima lo fotografiamo.<br><em>Il dopo lo consegniamo.</em></h2>
       </div>
-      <p class="lead fx">Scorri: il grezzo lascia il posto al finito. Progetti fittizi, costruiti per mostrare modi diversi di intervenire sull'esistente.</p>
+      <p class="lead fx">Ogni cantiere è documentato dal primo giorno. Scorri: il grezzo lascia il posto al finito. Progetti fittizi, costruiti per la demo.</p>
     </div>
     <div class="cases">
       <article class="case">
         <figure class="reveal-media">
-          <img src="./img/3.webp" alt="Cucina anni '70 prima dei lavori, con piastrelle staccate e tubi a vista" width="1024" height="688" loading="lazy">
-          <img class="after" src="./img/4.webp" alt="La stessa cucina finita, con ante in terracotta e piano in travertino" width="1024" height="688" loading="lazy">
+          <img src="./img/3.webp" alt="La cucina anni '80 prima dei lavori, con ante in legno scuro e piastrelle a fiori" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/4.webp" alt="La stessa cucina finita, con ante verde salvia e piastrelle bianche" width="1024" height="688" loading="lazy">
           <span class="tag">Grezzo → finito</span>
         </figure>
         <div class="fx">
           <span class="num">01 · Cucina</span>
           <h3>Cucina Saragozza</h3>
-          <p>Una cucina chiusa degli anni '70 diventa uno spazio luminoso: impianti rifatti, ante laccate terracotta e travertino levigato, senza spostare la finestra.</p>
+          <p>Una cucina anni '80 stretta e buia: impianti rifatti, ante verde salvia, piastrelle bianche e piano in quarzo chiaro. Finestra e termosifone restano dove sono.</p>
           <div class="facts"><div><span>Superficie</span><b>14 m²</b></div><div><span>Cantiere</span><b>6 settimane</b></div><div><span>Budget</span><b>da 28.000 €</b></div></div>
         </div>
       </article>
       <article class="case">
         <figure class="reveal-media">
           <img src="./img/5.webp" alt="Ex officina abbandonata con travi arrugginite e vetri rotti" width="1024" height="688" loading="lazy">
-          <img class="after" src="./img/6.webp" alt="L'officina trasformata in loft con soppalco in acciaio e microcemento" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/6.webp" alt="L'officina trasformata in loft, con soppalco in acciaio e pavimento in cemento lucidato" width="1024" height="688" loading="lazy">
           <span class="tag">Grezzo → finito</span>
         </figure>
         <div class="fx">
           <span class="num">02 · Recupero</span>
           <h3>Officina 14</h3>
-          <p>Un laboratorio dismesso a Parma diventa una casa su due livelli: mattoni recuperati, soppalco in acciaio e microcemento continuo.</p>
+          <p>Un laboratorio dismesso a Parma diventa una casa su due livelli: mattoni puliti, soppalco in acciaio e il pavimento originale in cemento, lucidato e lasciato con le sue crepe.</p>
           <div class="facts"><div><span>Superficie</span><b>190 m²</b></div><div><span>Cantiere</span><b>7 mesi</b></div><div><span>Budget</span><b>da 210.000 €</b></div></div>
         </div>
       </article>
       <article class="case">
         <figure class="reveal-media">
           <img src="./img/7.webp" alt="Casa colonica con intonaco crepato, persiane rotte e ponteggio" width="1024" height="688" loading="lazy">
-          <img class="after" src="./img/8.webp" alt="La stessa casa colonica restaurata, facciata ocra e persiane verdi" width="1024" height="688" loading="lazy">
+          <img class="after" src="./img/8.webp" alt="La stessa casa colonica restaurata, con facciata ocra e persiane in legno" width="1024" height="688" loading="lazy">
           <span class="tag">Grezzo → finito</span>
         </figure>
         <div class="fx">
           <span class="num">03 · Casa a corte</span>
           <h3>Corte 03</h3>
-          <p>Il recupero di una colonica in pianura: intonaci a calce, persiane in legno, tetto rifatto e una corte ripensata come stanza all'aperto.</p>
+          <p>Il recupero di una colonica nella pianura modenese: intonaco a calce, persiane nuove in legno, tetto rifatto recuperando i coppi ancora buoni.</p>
           <div class="facts"><div><span>Superficie</span><b>240 m²</b></div><div><span>Cantiere</span><b>11 mesi</b></div><div><span>Budget</span><b>su progetto</b></div></div>
         </div>
       </article>
@@ -326,15 +326,15 @@
     <div class="head">
       <div>
         <p class="micro fx">Materia · scala 1:1</p>
-        <h2 id="materia-title" class="fx">Quattro materiali.<br><em>Nessuna imitazione.</em></h2>
+        <h2 id="materia-title" class="fx">La materia si sceglie<br><em>in cantiere.</em></h2>
       </div>
-      <p class="lead fx">Le finiture si scelgono in cantiere, con i campioni in mano e la luce vera della casa. Non da un catalogo a fine lavori.</p>
+      <p class="lead fx">Campioni appoggiati sul massetto, con la luce vera della casa. Non da un catalogo, a lavori finiti.</p>
     </div>
     <div class="mat-grid">
-      <figure class="mat fx"><img data-parallax src="./img/9.webp" alt="Dettaglio di parquet in rovere oliato con nodi naturali" width="700" height="875" loading="lazy"><figcaption><b>Rovere</b><span>Oliato, plance larghe</span></figcaption></figure>
-      <figure class="mat fx"><img data-parallax src="./img/10.webp" alt="Bordo di un piano in travertino levigato con i pori naturali" width="700" height="875" loading="lazy"><figcaption><b>Travertino</b><span>Levigato, non stuccato</span></figcaption></figure>
-      <figure class="mat fx"><img data-parallax src="./img/11.webp" alt="Parete in intonaco a calce con segni di spatola" width="700" height="875" loading="lazy"><figcaption><b>Calce</b><span>Traspirante, a spatola</span></figcaption></figure>
-      <figure class="mat fx"><img data-parallax src="./img/12.webp" alt="Telaio in acciaio brunito con maniglia in ottone spazzolato" width="700" height="875" loading="lazy"><figcaption><b>Acciaio e ottone</b><span>Serramenti e dettagli</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/9.webp" alt="Mano con guanto da lavoro che confronta tre campioni di rovere sul massetto" width="700" height="875" loading="lazy"><figcaption><b>Rovere</b><span>Tre finiture a confronto</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/10.webp" alt="Lastra di travertino tagliata su misura nel laboratorio del marmista" width="700" height="875" loading="lazy"><figcaption><b>Travertino</b><span>Tagliato su misura</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/11.webp" alt="Intonacatore che stende la calce sulla parete con la spatola" width="700" height="875" loading="lazy"><figcaption><b>Calce</b><span>Stesa a mano, in due passate</span></figcaption></figure>
+      <figure class="mat fx"><img data-parallax src="./img/12.webp" alt="Serramento in acciaio nero con maniglia in ottone, pellicola protettiva ancora sul telaio" width="700" height="875" loading="lazy"><figcaption><b>Acciaio e ottone</b><span>Appena posati</span></figcaption></figure>
     </div>
   </section>
 
@@ -343,7 +343,7 @@
     <div class="head">
       <div>
         <p class="micro fx">Vantaggi per chi ristruttura</p>
-        <h2 id="vantaggi-title" class="fx">Meno sorprese,<br><em>più certezze.</em></h2>
+        <h2 id="vantaggi-title" class="fx">Il cantiere,<br><em>più semplice.</em></h2>
       </div>
       <p class="lead fx">Quattro servizi che rendono il percorso più chiaro, dal primo contatto a dopo la consegna.</p>
     </div>
@@ -352,7 +352,7 @@
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M13 7v12" stroke-dasharray="2 2"/></svg></span>
         <h3>Sopralluogo gratuito</h3>
         <p>Prenotando entro fine mese, il sopralluogo tecnico con rilievo è incluso.</p>
-        <div class="coupon">SOPRALLUOGO0 <small>fino al 31/10</small></div>
+        <div class="coupon">RILIEVO26 <small>fino al 31/10</small></div>
       </article>
       <article class="offer fx">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16M4 12h10M4 19h7"/><circle cx="18" cy="17" r="3"/></svg></span>
@@ -380,16 +380,16 @@
   <section class="section t-concrete" aria-labelledby="studio-title">
     <div class="studio">
       <div class="studio-pics">
-        <figure class="fx"><img src="./img/17.webp" alt="Un'architetta mostra la pianta su tablet a una coppia durante il sopralluogo" width="896" height="1120" loading="lazy"></figure>
-        <figure class="fx"><img src="./img/16.webp" alt="Due posatori stendono il parquet in rovere in cantiere" width="1024" height="688" loading="lazy"></figure>
+        <figure class="fx"><img src="./img/17.webp" alt="Un'architetta misura una parete con il distanziometro durante il sopralluogo, mentre i clienti osservano" width="896" height="1120" loading="lazy"></figure>
+        <figure class="fx"><img src="./img/16.webp" alt="Un posatore incolla le doghe di rovere sul massetto" width="1024" height="688" loading="lazy"></figure>
       </div>
       <div>
         <p class="micro fx">Lo studio</p>
         <h2 id="studio-title" class="fx">Chi disegna il progetto <em>entra in cantiere.</em></h2>
-        <p class="lead fx">Architetti, capocantiere e artigiani lavorano nella stessa squadra. Chi prende le misure è chi poi controlla la posa.</p>
+        <p class="lead fx">Architetto, direttore dei lavori e artigiani fanno parte della stessa squadra: chi prende le misure al sopralluogo è chi poi controlla la posa.</p>
         <ul class="guar">
           <li class="fx"><b>Un solo referente</b><p>Nessun rimpallo tra imprese e fornitori.</p></li>
-          <li class="fx"><b>Pratiche incluse</b><p>CILA, SCIA e bonus edilizi gestiti dallo studio.</p></li>
+          <li class="fx"><b>Pratiche incluse</b><p>CILA, SCIA, catasto e pratiche per le detrazioni fiscali.</p></li>
           <li class="fx"><b>Prezzo bloccato</b><p>Il preventivo firmato non cambia senza la tua approvazione.</p></li>
           <li class="fx"><b>Garanzia impianti</b><p>Certificazioni e assistenza dopo la consegna.</p></li>
         </ul>
