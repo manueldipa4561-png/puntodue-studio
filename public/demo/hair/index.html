@@ -108,7 +108,7 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
 .menu .i{font:500 12px var(--b);opacity:.55;letter-spacing:.1em}
 .menu h3{font-size:clamp(24px,2.6vw,38px)}
 .menu p{grid-column:2;opacity:.75;max-width:40ch;font-size:15px}
-.menu .p{font:600 18px var(--d);color:var(--rose);white-space:nowrap}
+.menu .p{font:600 18px var(--d);color:#985160;white-space:nowrap}
 
 /* ---------- work ---------- */
 .work{padding:clamp(70px,10vw,150px) 0;background:var(--blush)}
@@ -208,6 +208,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
 @media (hover:none){.btn:hover{background:var(--plum);transform:none}.btn.ghost:hover{background:transparent;color:var(--plum)}.menu li:hover{padding-left:0}.card:hover img{transform:none}.step:hover{background:rgba(247,237,232,.07);transform:none}.nav a::after{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 span b{transform:none}}
 </style>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
@@ -333,7 +334,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
     <p class="lead">Non lo copiamo. Lo usiamo per capire la direzione e tradurla su di te.</p>
     <div class="info"><span>Via XX Settembre 00, Parma</span><span>Martedì–Sabato, su appuntamento</span><span>ciao@sezione.it</span></div>
   </div>
-  <form id="form" novalidate>
+  <form id="form" action="javascript:void(0)" novalidate>
     <label>Per chi<select name="g" id="fg"><option value="lei">Lei</option><option value="lui">Lui</option><option value="tutti">Preferisco non dirlo</option></select></label>
     <label>Servizio<select name="s" id="fs"></select></label>
     <label>Con chi<select name="p"><option>Chiunque sia libero</option><option>Marta Riva</option><option>Luca Serra</option></select></label>
@@ -431,28 +432,35 @@ $('#fg').addEventListener('change',e=>setMode(e.target.value));
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);texs[n]=t;res(t);}; im.src=`img/${n}.webp`; });
   let cur=0, nxt=0, mix={v:0}, mouse=[.5,.5], tgt=[.5,.5], vel=0, active=0, t0=performance.now(), vis=true, morphing=false;
   const bind=()=>{gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texs[cur]);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,texs[nxt]);};
-  const dpr=Math.min(devicePixelRatio||1, innerWidth<700?1.25:1.5);
-  function size(){const w=frame.clientWidth,h=frame.clientHeight;if(!w||!h)return;cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);gl.viewport(0,0,cv.width,cv.height);gl.uniform1f(uCr,w/h);active=Math.max(active,2);}
+  let dpr=1, lost=false;
+  function size(){dpr=Math.min(devicePixelRatio||1, innerWidth<700?1.25:1.5);const w=frame.clientWidth,h=frame.clientHeight;if(!w||!h)return;cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);gl.viewport(0,0,cv.width,cv.height);gl.uniform1f(uCr,w/h);active=Math.max(active,2);}
   function draw(){ mouse[0]+=(tgt[0]-mouse[0])*.12; mouse[1]+=(tgt[1]-mouse[1])*.12; vel*=.94;
     gl.uniform1f(uT,(performance.now()-t0)/1000);gl.uniform1f(uMx,mix.v);gl.uniform2f(uM,mouse[0],mouse[1]);gl.uniform1f(uV,vel);bind();gl.drawArrays(gl.TRIANGLE_STRIP,0,4); }
-  function loop(){ requestAnimationFrame(loop); if(!vis) return; if(active>0||morphing||vel>.01){ draw(); if(active>0) active-=1/60; } }
+  function loop(){ if(lost) return; requestAnimationFrame(loop); if(!vis) return; if(active>0||morphing||vel>.01){ draw(); if(active>0) active-=1/60; } }
   function poke(e){ const r=frame.getBoundingClientRect(); const nx=(e.clientX-r.left)/r.width, ny=(e.clientY-r.top)/r.height; vel=Math.min(1,vel+Math.hypot(nx-tgt[0],ny-tgt[1])*6+.15); tgt=[nx,ny]; active=Math.max(active,3); }
   frame.addEventListener('pointermove',poke); frame.addEventListener('pointerdown',poke);
   new IntersectionObserver(([e])=>vis=e.isIntersecting).observe(frame);
   addEventListener('resize',size);
-  Promise.all([load(0),load(3),load(9)]).then(()=>{ size(); cur=nxt=0; bind(); draw(); frame.classList.add('gl'); requestAnimationFrame(loop);
+  /* On GPU context loss, stop drawing and show the static photo again. */
+  cv.addEventListener('webglcontextlost',()=>{ lost=true; frame.classList.remove('gl'); heroApi=null; });
+  Promise.all([load(0),load(3),load(9)]).then(()=>{ if(lost) return; size(); cur=nxt=0; bind(); draw(); frame.classList.add('gl'); requestAnimationFrame(loop);
     heroApi={to(n){ if(n===cur&&!morphing) return; nxt=n; mix.v=0; morphing=true; bind();
+      if(!window.gsap){ cur=nxt; morphing=false; bind(); draw(); return; }
       gsap.to(mix,{v:1,duration:1.1,ease:'power2.inOut',onComplete:()=>{cur=nxt;mix.v=0;morphing=false;bind();draw();}}); }}; });
 })();
 
 /* ---------- header, dock ---------- */
 const hd=$('#hd'), dock=$('#dock'), book=$('#prenota');
-const onScroll=()=>{ hd.classList.toggle('on',scrollY>40); dock.classList.toggle('on', scrollY>innerHeight*.8 && book.getBoundingClientRect().top>innerHeight*.6); };
+/* bookBelow comes from an observer, so the scroll handler never forces layout */
+let bookBelow=true;
+const onScroll=()=>{ hd.classList.toggle('on',scrollY>40); dock.classList.toggle('on', scrollY>innerHeight*.8 && bookBelow); };
+new IntersectionObserver(([e])=>{ bookBelow=e.boundingClientRect.top>innerHeight*.6; onScroll(); },{rootMargin:'0px 0px -40% 0px'}).observe(book);
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
 /* ---------- motion ---------- */
-gsap.registerPlugin(ScrollTrigger);
-if(!reduced){
+const G=!!(window.gsap&&window.ScrollTrigger);
+if(G) gsap.registerPlugin(ScrollTrigger);
+if(!reduced&&G){
   gsap.fromTo('.hero h1 span b',{y:0,yPercent:105},{yPercent:0,duration:1.1,ease:'expo.out',stagger:.12,delay:.15});
   gsap.from('.hero .copy > :not(h1)',{opacity:0,y:20,duration:.9,stagger:.08,delay:.5,ease:'power3.out'});
   gsap.from('.frame',{clipPath:'inset(12% 8% 0 8% round 999px 999px 24px 24px)',opacity:0,duration:1.3,ease:'expo.out'});
@@ -476,6 +484,7 @@ if(!reduced){
   $$('.pers img').forEach(im=>gsap.fromTo(im,{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:im,start:'top bottom',end:'bottom 30%',scrub:true}}));
   gsap.fromTo('#spimg',{yPercent:-6},{yPercent:6,ease:'none',scrollTrigger:{trigger:'#spazio',start:'top bottom',end:'bottom top',scrub:true}});
   $$('.sec h2:not(.words h2), .work h2').forEach(h=>gsap.from(h,{opacity:0,y:36,duration:1,ease:'power3.out',scrollTrigger:{trigger:h,start:'top 90%'}}));
+  if(document.fonts) document.fonts.ready.then(()=>ScrollTrigger.refresh());
 } else { $$('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'}); }
 
 /* ---------- rail drag + cursor ---------- */
