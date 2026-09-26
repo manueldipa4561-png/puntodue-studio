@@ -1,0 +1,191 @@
+---
+// Sezione /automazione di /social: le 4 automazioni che consegniamo, collegate in una catena
+// e raccontate da un bot 3D (three.js). Senza WebGL o con animazioni ridotte resta la lista.
+const steps = [
+  { t: 'Post programmati', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' },
+  { t: 'Risposte ai messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' },
+  { t: 'WhatsApp e prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' },
+  { t: 'Report mensile', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' },
+];
+---
+<section class="auto" id="automazione">
+  <span class="lab">/automazione</span>
+  <h2>Il lavoro ripetitivo lo fa il bot.</h2>
+  <p class="lead">Quattro automazioni che impostiamo per te, collegate in una sola catena: dal post alla prenotazione, fino al report.</p>
+  <div class="auto-grid">
+    <ol class="steps" id="aSteps">
+      {steps.map((s, i) => (
+        <li><button type="button" class="step" aria-pressed={i === 0 ? 'true' : 'false'} data-bot={s.bot}><span class="n">0{i + 1}</span><span class="st"><b>{s.t}</b><small>{s.d}</small></span><i class="bar" aria-hidden="true"></i></button></li>
+      ))}
+    </ol>
+    <figure class="bot-stage" id="botStage">
+      <canvas id="botCv" aria-hidden="true"></canvas>
+      <figcaption class="bot-cap"><span class="bot-who">Bot</span><span id="botCap" aria-live="polite">{steps[0].bot}</span></figcaption>
+    </figure>
+  </div>
+  <p class="note">Simulazione illustrativa: mostra come si collegano le automazioni. Messaggi e orari sono d'esempio.</p>
+</section>
+
+<style>
+  .auto { border-top: 1px solid rgba(255,255,255,.25); }
+  .auto-grid { display: grid; gap: 28px; margin-top: 40px; align-items: stretch; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; align-content: start; }
+  .step { position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; width: 100%; min-height: 44px; padding: 16px 18px; text-align: left; font: inherit; color: #fff; background: rgba(0,52,214,.6); border: 1px solid rgba(255,255,255,.3); border-radius: 16px; cursor: pointer; transition: border-color .25s, background .25s; }
+  .step:hover { border-color: rgba(255,255,255,.7); }
+  .step[aria-pressed="true"] { border-color: var(--yellow); background: rgba(255,224,0,.1); }
+  .n { font: 700 12px/1.6 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.6); }
+  .step[aria-pressed="true"] .n { color: var(--yellow); }
+  .st { display: grid; gap: 4px; } .st b { font-size: 1.05rem; letter-spacing: -.01em; } .st small { font-size: .9rem; line-height: 1.4; color: rgba(255,255,255,.78); }
+  .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--yellow); }
+  .auto[data-auto] .step[aria-pressed="true"] .bar { animation: abar 4s linear both; }
+  @keyframes abar { to { width: 100%; } }
+  .bot-stage { position: relative; margin: 0; min-height: 340px; aspect-ratio: 1; border-radius: 20px; border: 1px solid rgba(255,255,255,.3); background: radial-gradient(120% 90% at 50% 20%, rgba(77,123,255,.45), rgba(0,20,90,.6)); overflow: hidden; }
+  .bot-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .bot-cap { position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; gap: 10px; align-items: baseline; padding: 12px 16px; border-radius: 14px; background: #0a0f24; font-size: .92rem; line-height: 1.4; }
+  .bot-who { flex: none; font: 700 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); }
+  .bot-stage.flat { aspect-ratio: auto; min-height: 0; } .bot-stage.flat canvas { display: none; } .bot-stage.flat .bot-cap { position: static; margin: 14px; }
+  @media (min-width: 1024px) { .auto-grid { grid-template-columns: minmax(300px, .8fr) 1.2fr; } .bot-stage { aspect-ratio: 4 / 3; } }
+  @media (prefers-reduced-motion: reduce) { .step { transition: none; } }
+</style>
+
+<script>
+  import * as THREE from 'three';
+
+  const sec = document.getElementById('automazione')!;
+  const stage = document.getElementById('botStage')!;
+  const cv = document.getElementById('botCv') as HTMLCanvasElement;
+  const cap = document.getElementById('botCap')!;
+  const btns = [...document.querySelectorAll<HTMLButtonElement>('#aSteps .step')];
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch = matchMedia('(pointer: coarse)').matches;
+  let cur = 0, auto = !rm, vis = false;
+
+  let go: (i: number) => void = () => {};
+  try { go = initScene(); } catch { stage.classList.add('flat'); }
+
+  const setStep = (i: number) => {
+    cur = i;
+    btns.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+    cap.textContent = btns[i].dataset.bot!;
+    go(i);
+  };
+  btns.forEach((b, i) => b.addEventListener('click', () => { auto = false; sec.removeAttribute('data-auto'); setStep(i); }));
+  if (auto) sec.setAttribute('data-auto', '');
+  // la catena avanza da sola solo mentre è a schermo; un clic dell'utente la ferma
+  setInterval(() => { if (auto && vis && !document.hidden) setStep((cur + 1) % btns.length); }, 4000);
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; }).observe(stage);
+
+  function initScene() {
+    const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(32, 1, .1, 60);
+    const aim = new THREE.Vector3(0, .35, 0), dir = new THREE.Vector3(0, 2.7, 7.4).normalize();
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x1b2a6b, 1.7));
+    const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(3, 6, 4); scene.add(key);
+
+    const M = (color: number, o: THREE.MeshStandardMaterialParameters = {}) => new THREE.MeshStandardMaterial({ color, roughness: .45, metalness: .05, ...o });
+    const white = M(0xf6f7fb), navy = M(0x0a0f24, { roughness: .3 }), blueM = M(0x4d7bff);
+    const glow = M(0xffe000, { emissive: 0xffe000, emissiveIntensity: .45 });
+    const world = new THREE.Group(); scene.add(world);
+
+    const disc = new THREE.Mesh(new THREE.CylinderGeometry(2.95, 2.95, .12, 64), M(0x1b3fd9, { roughness: .85 }));
+    disc.position.y = -.06; world.add(disc);
+    const R = 2.2, ring: THREE.Vector3[] = [];
+    for (let k = 0; k <= 96; k++) { const t = k / 96 * Math.PI * 2; ring.push(new THREE.Vector3(Math.cos(t) * R, .02, Math.sin(t) * R)); }
+    world.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(ring), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: .4 })));
+
+    // le 4 postazioni, a 90° l'una dall'altra, partendo da davanti a sinistra
+    const angle = (i: number) => Math.PI * .75 - i * Math.PI / 2;
+    const box = (w: number, h: number, d: number, m: THREE.Material, x = 0, y = 0, z = 0) => { const o = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); o.position.set(x, y, z); return o; };
+    const ball = (r: number, m: THREE.Material, x = 0, y = 0, z = 0) => { const o = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), m); o.position.set(x, y, z); return o; };
+    const icons: THREE.Group[] = [0, 1, 2, 3].map(() => new THREE.Group());
+    // 1 telefono col post, 2 fumetto dei messaggi, 3 calendario con la spunta verde, 4 grafico del report
+    icons[0].add(box(.46, .8, .06, navy), box(.38, .64, .02, glow, 0, .02, .04));
+    const bub = ball(.34, white); bub.scale.set(1.2, .85, .45); icons[1].add(bub);
+    const tail = new THREE.Mesh(new THREE.ConeGeometry(.1, .22, 12), white); tail.position.set(-.22, -.28, 0); tail.rotation.z = -.6; icons[1].add(tail);
+    [-.14, 0, .14].forEach((x) => icons[1].add(ball(.045, navy, x, 0, .16)));
+    icons[2].add(box(.62, .56, .1, white), box(.62, .14, .12, glow, 0, .21, 0), ball(.1, M(0x25d366, { emissive: 0x25d366, emissiveIntensity: .3 }), .14, -.06, .08));
+    ([[.3, glow], [.52, white], [.78, blueM]] as const).forEach(([h, m], k) => icons[3].add(box(.15, h, .15, m, (k - 1) * .2, h / 2 - .35, 0)));
+    const stations = icons.map((g, i) => {
+      const p = new THREE.Group(), t = angle(i);
+      p.position.set(Math.cos(t) * R, 0, Math.sin(t) * R);
+      const ped = new THREE.Mesh(new THREE.CylinderGeometry(.42, .48, .18, 32), white); ped.position.y = .09;
+      g.position.y = .72; g.rotation.y = Math.atan2(-p.position.x * .35, 7.4 - p.position.z);
+      p.add(ped, g); world.add(p);
+      return { g, s: 1 };
+    });
+
+    // il bot: corpo a capsula, visiera scura, occhi e antenna gialli
+    const bot = new THREE.Group(); world.add(bot);
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(.42, .5, 8, 24), white); body.position.y = .95;
+    const belly = ball(.09, glow, 0, 1.0, .41);
+    const head = new THREE.Group(); head.position.y = 1.8;
+    const skull = ball(.46, white); skull.scale.set(1.12, .92, 1);
+    const visor = new THREE.Mesh(new THREE.CapsuleGeometry(.19, .42, 6, 16), navy); visor.rotation.z = Math.PI / 2; visor.scale.set(1, 1, .55); visor.position.set(0, .02, .33);
+    const eyes = new THREE.Group(); eyes.position.set(0, .03, .43);
+    [-.13, .13].forEach((x) => { const e = new THREE.Mesh(new THREE.CapsuleGeometry(.045, .06, 4, 8), glow); e.position.x = x; eyes.add(e); });
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(.02, .02, .26, 8), navy); stem.position.y = .52;
+    head.add(skull, visor, eyes, stem, ball(.07, glow, 0, .67, 0));
+    const arms = [-1, 1].map((sx) => { const a = new THREE.Mesh(new THREE.CapsuleGeometry(.09, .32, 4, 12), white); a.position.set(sx * .56, 1.02, 0); a.rotation.z = sx * .35; return a; });
+    const shadow = new THREE.Mesh(new THREE.CircleGeometry(.62, 32), new THREE.MeshBasicMaterial({ color: 0x000a3a, transparent: true, opacity: .3 }));
+    shadow.rotation.x = -Math.PI / 2; shadow.position.y = .005;
+    bot.add(body, belly, head, ...arms, shadow);
+
+    // il "pacchetto" giallo viaggia sull'anello da una postazione alla successiva
+    const packet = ball(.1, glow); world.add(packet);
+    let at = 0, a = angle(0), A = a, span = 0;
+    const faceYaw = (i: number) => { const t = angle(i); return Math.atan2(Math.cos(t), Math.sin(t)); };
+    let yaw = faceYaw(0), target = yaw;
+
+    let px = 0, tx = 0;
+    stage.addEventListener('pointermove', (e) => { const r = stage.getBoundingClientRect(); tx = ((e.clientX - r.left) / r.width - .5) * .5; });
+    stage.addEventListener('pointerleave', () => { tx = 0; });
+
+    const update = (dt: number, t: number) => {
+      const k = rm ? 1 : Math.min(1, dt * 3.2);
+      a += (A - a) * k;
+      const prog = span ? 1 - Math.abs(A - a) / span : 1;
+      packet.position.set(Math.cos(a) * R, .3 + Math.sin(prog * Math.PI) * .7, Math.sin(a) * R);
+      let d = target - yaw; d = Math.atan2(Math.sin(d), Math.cos(d)); yaw += d * (rm ? 1 : Math.min(1, dt * 4));
+      bot.rotation.y = yaw;
+      stations.forEach((st, i) => { const on = i === at ? 1.28 : 1; st.s += (on - st.s) * k; st.g.scale.setScalar(st.s); st.g.position.y = .72 + (i === at && !rm ? Math.sin(t * 3) * .05 : 0); });
+      if (!rm) {
+        body.position.y = .95 + Math.sin(t * 2) * .03; head.position.y = 1.8 + Math.sin(t * 2 - .4) * .035;
+        eyes.scale.y = (t % 3.4) < .12 ? .15 : 1;
+        arms[1].rotation.z = .35 + (prog < .98 ? Math.max(0, Math.sin(t * 6)) * .5 : 0);
+        px += (tx - px) * Math.min(1, dt * 3); world.rotation.y = px;
+      }
+    };
+
+    let raf = 0, last = 0, run = true;
+    const frame = (now: number) => {
+      raf = 0; const dt = Math.min(.05, (now - last) / 1000); last = now;
+      update(dt, now / 1000); renderer.render(scene, cam);
+      if (run && vis && !document.hidden && !rm) raf = requestAnimationFrame(frame);
+    };
+    const kick = () => { if (!raf && run) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+
+    const resize = () => {
+      const w = stage.clientWidth, h = stage.clientHeight; if (!w || !h) return;
+      renderer.setSize(w, h, false); cam.aspect = w / h;
+      // su schermi stretti la camera si allontana, così l'anello entra sempre tutto
+      const hf = 2 * Math.atan(Math.tan(cam.fov * Math.PI / 360) * cam.aspect);
+      const dist = Math.max(7.9, 3.6 / Math.tan(hf / 2));
+      cam.position.copy(aim).addScaledVector(dir, dist); cam.lookAt(aim); cam.updateProjectionMatrix();
+      kick();
+    };
+    new ResizeObserver(resize).observe(stage);
+    new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis) kick(); }).observe(stage);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
+    cv.addEventListener('webglcontextlost', () => { run = false; stage.classList.add('flat'); });
+
+    return (i: number) => {
+      const steps = (i - at + 4) % 4; at = i;
+      A += steps * Math.PI / 2 * -1; span = Math.abs(A - a);
+      target = faceYaw(i);
+      kick();
+    };
+  }
+</script>
