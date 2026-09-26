@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-theme="auto"><head><meta charset="utf-8">
+<title>KERN — Project Document</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8E6DA;--panel:#F2F0E6;--fg:#141A12;--muted:#5d6155;--line:#B9B7A8;--acc:#2C5A3A;--on:#E8E6DA;--track:#d6d3c5}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0F140E;--panel:#161d15;--fg:#E8E6DA;--muted:#9ea393;--line:#2b3328;--acc:#C9F24A;--on:#0F140E;--track:#232b21}}
+:root[data-theme=dark]{--bg:#0F140E;--panel:#161d15;--fg:#E8E6DA;--muted:#9ea393;--line:#2b3328;--acc:#C9F24A;--on:#0F140E;--track:#232b21}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 'Bricolage Grotesque',system-ui,sans-serif}
+a{color:var(--acc)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:10px 16px;align-items:center}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:4px 10px;border-radius:999px;font-size:13px}
+nav a:hover{background:var(--panel);color:var(--fg)}
+nav .lg{font-weight:800;letter-spacing:-.06em;color:var(--fg);font-size:18px;display:flex;align-items:center;gap:6px;margin-right:8px}
+nav button{margin-left:auto;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:4px 10px;cursor:pointer;font:inherit;font-size:12px;white-space:nowrap}
+main{max-width:980px;margin:0 auto;padding:0 16px 96px}
+section{padding-top:72px}
+h1{font-weight:800;font-size:clamp(48px,10vw,104px);letter-spacing:-.07em;line-height:.95}
+h2{font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.04em;line-height:1.1;margin-bottom:8px}
+h3{font-weight:600;font-size:18px;margin:24px 0 8px}
+.kick{font:400 12px 'Fragment Mono',monospace;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.lead{font-size:20px;line-height:1.45;max-width:60ch;margin-top:20px}
+.sub{color:var(--muted);max-width:66ch;margin:8px 0 24px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card b{display:block;margin-bottom:4px}
+.big{font-weight:800;font-size:44px;letter-spacing:-.05em;line-height:1;color:var(--acc)}
+.tag{display:inline-block;font:400 11px 'Fragment Mono',monospace;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted)}
+.tag.ok{border-color:var(--acc);color:var(--acc)}
+.chart{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}
+.chart h4{font-size:16px;font-weight:600;margin-bottom:2px}
+.chart .src{font:400 11px 'Fragment Mono',monospace;color:var(--muted);margin-top:12px}
+.row{display:grid;grid-template-columns:minmax(120px,38%) 1fr auto;gap:12px;align-items:center;margin:10px 0;font-size:14px}
+.row .tr{background:var(--track);height:12px;border-radius:0 6px 6px 0;overflow:hidden}
+.row .br{height:100%;background:var(--acc);border-radius:0 4px 4px 0;min-width:3px}
+.row .v{font:400 13px 'Fragment Mono',monospace;min-width:56px;text-align:right}
+@media(max-width:560px){.row{grid-template-columns:1fr auto}.row .tr{grid-column:1/-1;order:3}}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel);border:1px solid var(--line)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:400 11px 'Fragment Mono',monospace;color:var(--muted);text-transform:uppercase}
+tr.me td{background:color-mix(in srgb,var(--acc) 12%,var(--panel));font-weight:600}
+.scroll{overflow-x:auto;border-radius:12px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin-top:8px;color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:16px 0}
+.flow .st{flex:1 1 150px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.flow .st small{display:block;font:400 10px 'Fragment Mono',monospace;color:var(--acc);margin-bottom:4px}
+.flow .st.end{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.flow .st.end small{color:var(--on);opacity:.8}
+.dots{display:flex;gap:6px;margin:6px 0}
+.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--acc)}
+.dots i.f{background:var(--acc)}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.sw div{padding:40px 10px 10px;font:400 11px/1.5 'Fragment Mono',monospace}
+.log{border-left:2px solid var(--acc);padding-left:16px;margin:14px 0}
+.log .d{font:400 12px 'Fragment Mono',monospace;color:var(--acc)}
+ol.src{padding-left:20px;font-size:13px;color:var(--muted)} ol.src li{margin:6px 0}
+svg text{font-family:'Fragment Mono',monospace}
+.cap{font-size:13px;color:var(--muted);margin-top:8px}
+@media print{nav{display:none}section{padding-top:32px;break-inside:avoid-page}}
+</style></head><body>
+<nav><span class="lg"><svg width="22" height="22" viewBox="0 0 100 100"><path fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="10" fill="var(--acc)"/></svg>kern<span style="color:var(--acc)">.</span></span>
+<a href="#summary">Summary</a><a href="#problem">Problem</a><a href="#landscape">Competition</a><a href="#idea">The idea</a><a href="#audience">Audience</a><a href="#challenges">Challenges</a><a href="#brand">Brand</a><a href="#markets">Languages</a><a href="#validate">Validation</a><a href="#next">Next steps</a><a href="#log">Log</a><a href="#growth">Growth</a><a href="#sources">Sources</a>
+<button onclick="const r=document.documentElement;const d=matchMedia('(prefers-color-scheme:dark)').matches;const c=r.dataset.theme==='auto'?(d?'dark':'light'):r.dataset.theme;r.dataset.theme=c==='dark'?'light':'dark'">light / dark</button></nav>
+<main>
+
+<section id="top" style="padding-top:56px">
+<div class="kick">Project document · living · last updated 25 Sep 2026</div>
+<h1>kern<span style="color:var(--acc)">.</span></h1>
+<p class="lead">Find your direction by doing real work. Three real missions, designed as contrasts, end in a short, evidence-backed picture of how you work.</p>
+<p style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="tag ok">pre-product</span><span class="tag">English first</span><span class="tag">name kept: KERN</span><span class="tag">not yet tested with users</span></p>
+</section>
+
+<section id="summary">
+<div class="kick">01 · In one minute</div><h2>The short version</h2>
+<div class="grid" style="margin-top:20px">
+<div class="card"><b>Who it is for</b>People from about 14 to 35 who are capable but do not know what they want to do. Launch with 18 to 35; teens follow in stages (see Audience).</div>
+<div class="card"><b>What is different</b>Other platforms start from a role. KERN starts from the person and uses real tasks as experiments on yourself.</div>
+<div class="card"><b>What you get</b>“Your Kern”: a hypothesis about how you work, with the evidence behind it. You can confirm or reject it.</div>
+<div class="card"><b>Where companies fit</b>They supply the real tasks. That part already exists elsewhere, so it is supply, not the idea.</div>
+</div>
+<h3>Biggest risks right now</h3>
+<div class="grid">
+<div class="card"><span class="tag">risk</span><br><b>Nobody has tested the idea</b>Contrast pairs are a design hypothesis. A 5-person hand-run test comes before more building.</div>
+<div class="card"><span class="tag">risk</span><br><b>The name is crowded</b>Only kern.it is a free domain. Kept for now; a clearance search happens before money is spent.</div>
+<div class="card"><span class="tag">risk</span><br><b>Getting the first tasks</b>Need 3 companies to give one 2-hour task each.</div>
+</div>
+</section>
+
+<section id="problem">
+<div class="kick">02 · The problem, with data</div><h2>Young people are unsure, and the door in is narrowing</h2>
+<p class="sub">Sources are linked at the bottom. Several figures come from secondary summaries and surveys with different samples, so read them as direction, not exact truth.</p>
+
+<div class="chart"><h4>Direction and support among young adults (US)</h4>
+<div class="row"><span>Unsure about future career path (ages 18–30)</span><div class="tr"><div class="br" style="width:66%"></div></div><span class="v">≈ 2 in 3</span></div>
+<div class="row"><span>Frequent or constant uncertainty about future jobs (Gen Z)</span><div class="tr"><div class="br" style="width:33%"></div></div><span class="v">≈ 1 in 3</span></div>
+<div class="row"><span>Lack access to mentorship (young people)</span><div class="tr"><div class="br" style="width:74%"></div></div><span class="v">74%</span></div>
+<div class="src">Tallo report, May 2025; Big Brothers Big Sisters / Harris Poll, 2025. “Two in three” is reported as “nearly”, so the bar is approximate. [1][2]</div></div>
+
+<div class="chart"><h4>Employers say “skills first”, but hire differently</h4>
+<div class="row"><span>Use skills-based hiring for entry-level roles (NACE)</span><div class="tr"><div class="br" style="width:70%"></div></div><span class="v">70%</span></div>
+<div class="row"><span>Publicly removed degree requirements (TestGorilla)</span><div class="tr"><div class="br" style="width:53%"></div></div><span class="v">53%</span></div>
+<div class="row"><span>New hires at those firms without a bachelor's degree</span><div class="tr"><div class="br" style="width:.14%"></div></div><span class="v">&lt; 1 in 700</span></div>
+<div class="src">NACE Job Outlook 2026; TestGorilla 2025; Harvard Business School + Burning Glass Institute. [3][4]</div>
+<p class="cap"><b>Why it matters for KERN:</b> demonstrated work is what employers claim to want, yet degrees still win in practice. Proof of real work has room to matter, but the payoff is not automatic.</p></div>
+
+<div class="chart"><h4>Entry-level squeeze (2026)</h4>
+<div class="grid" style="margin:8px 0 16px">
+<div><div class="big">−35%</div><div class="cap">entry-level job postings since early 2023</div></div>
+<div><div class="big">43%</div><div class="cap">of employed new graduates are underemployed</div></div>
+<div><div class="big">73→42%</div><div class="cap">employers using GPA as a screen, 2019 to 2026</div></div></div>
+<div class="row"><span>Recent graduates (22–27) unemployment, June 2026</span><div class="tr"><div class="br" style="width:57%"></div></div><span class="v">5.7%</span></div>
+<div class="row"><span>All workers</span><div class="tr"><div class="br" style="width:40%;opacity:.55"></div></div><span class="v">≈ 4%</span></div>
+<div class="src">NPR, Aug 2026; IBISWorld; secondary blogs for the postings, underemployment and GPA figures. [5][6]</div>
+<p class="cap"><b>Careful:</b> the cause is disputed. Some studies blame AI, a 2026 LSE study points to remote work, and another finding says entry-level headcount grew 12% at heavy AI investors. KERN's pitch should not lean on “AI took the jobs”.</p></div>
+</section>
+
+<section id="landscape">
+<div class="kick">03 · Competition</div><h2>What already exists</h2>
+<p class="sub">Every player below is real and active. None starts from “I do not know what I want”.</p>
+<div class="scroll"><table>
+<tr><th>Player</th><th>What it does</th><th>Scale (as reported)</th><th>Starts from</th><th>Gap KERN fills</th></tr>
+<tr><td>Forage</td><td>Free job simulations designed by big employers</td><td>2M+ learners, 170+ employer partners, 700+ schools</td><td>A role</td><td>Certifies completion; says nothing about you</td></tr>
+<tr><td>Parker Dewey</td><td>Paid micro-internships, 10 to 40 hours</td><td>3,000+ programs reachable, 25–50 live projects at a time</td><td>A field you chose</td><td>Employer-led; not for people still choosing</td></tr>
+<tr><td>Riipen</td><td>Company projects inside university courses</td><td>Not verified</td><td>A course</td><td>Requires being enrolled</td></tr>
+<tr><td>Contra, Dribbble briefs</td><td>Paid briefs marketplace</td><td>Not verified</td><td>A craft you already have</td><td>Assumes you have a portfolio</td></tr>
+<tr><td>Career quizzes, Google Career Dreamer</td><td>Questions or AI suggestions</td><td>Not verified</td><td>The person</td><td>No making, so no evidence</td></tr>
+<tr class="me"><td>KERN</td><td>3 real, contrasting missions ending in Your Kern</td><td>Pre-product</td><td>The person</td><td>Real work as an experiment on yourself</td></tr>
+</table></div>
+
+<h3>Where each one sits (my assessment, not measured data)</h3>
+<div class="chart">
+<svg viewBox="0 0 640 400" role="img" aria-label="Positioning map: KERN is alone in the top right, starting from the person and producing evidence of how you work" width="100%">
+<line x1="60" y1="20" x2="60" y2="350" stroke="var(--line)"/><line x1="60" y1="350" x2="620" y2="350" stroke="var(--line)"/>
+<line x1="340" y1="20" x2="340" y2="350" stroke="var(--line)" stroke-dasharray="3 5"/><line x1="60" y1="185" x2="620" y2="185" stroke="var(--line)" stroke-dasharray="3 5"/>
+<text x="340" y="382" text-anchor="middle" font-size="11" fill="var(--muted)">starts from a role or craft  ←  →  starts from the person</text>
+<text x="18" y="185" font-size="11" fill="var(--muted)" transform="rotate(-90 18 185)" text-anchor="middle">evidence of how you work</text>
+<g font-size="12" fill="var(--fg)">
+<circle cx="130" cy="280" r="9" fill="var(--muted)"/><text x="146" y="284">Forage</text>
+<circle cx="170" cy="220" r="9" fill="var(--muted)"/><text x="186" y="224">Parker Dewey</text>
+<circle cx="110" cy="240" r="9" fill="var(--muted)"/><text x="70" y="262">Riipen</text>
+<circle cx="230" cy="130" r="9" fill="var(--muted)"/><text x="246" y="134">Contra</text>
+<circle cx="500" cy="300" r="9" fill="var(--muted)"/><text x="400" y="322">Career quizzes</text>
+<circle cx="540" cy="70" r="15" fill="var(--acc)"/><text x="470" y="106" font-weight="700">KERN</text></g>
+</svg>
+<div class="src">Judgment call. Positions are opinions from reading each product, not survey results.</div></div>
+</section>
+
+<section id="idea">
+<div class="kick">04 · The idea</div><h2>Missions as experiments on yourself</h2>
+<p class="sub">A mission is a real task from a real company. It is also built to test one thing about you.</p>
+<div class="flow">
+<div class="st"><small>MISSION 1</small><b>Build from zero</b>An open brief. Tests energy in starting.</div>
+<div class="st"><small>MISSION 2</small><b>Improve what exists</b>A closed task. Tests polish and finishing.</div>
+<div class="st"><small>MISSION 3</small><b>Work with someone</b>Tests solo vs paired.</div>
+<div class="st end"><small>RESULT</small><b>Your Kern</b>A hypothesis about how you work, with evidence.</div>
+</div>
+<div class="grid">
+<div class="card"><b>Contrast, not volume</b>The pattern between missions is the signal, not any single result.</div>
+<div class="card"><b>Two kinds of evidence</b>What you did (finished, abandoned, restarted) plus what you said in your reflection.</div>
+<div class="card"><b>Always a hypothesis</b>“That feels right” or “Not really”. Never a diagnosis or personality type.</div>
+<div class="card"><b>A sign for the next person</b>After a mission you leave one short tip. No feed, no followers.</div>
+<div class="card"><b>No clock, nothing locked</b>Missions show no completion time, because pace is personal and a stated time discourages hard attempts. Every mission is open to everyone immediately, and the 1 to 3 order is only a suggested path.</div>
+<div class="card"><b>Many answers, judged on quality</b>Anyone can add several answers to one mission. The contest is who does it better, never who does it first. Who judges is still open.</div>
+<div class="card"><b>yourKERN</b>The app section showing time spent on KERN missions (private, never a target), your interests, completed missions and suggested next ones, each with its evidence.</div>
+</div>
+<h3>Approaches compared</h3>
+<div class="scroll"><table>
+<tr><th>Option</th><th>Build effort</th><th>What it proves</th><th>Verdict</th></tr>
+<tr><td>A. KERN-written missions only</td><td>Smallest</td><td>The loop works</td><td>No partner story</td></tr>
+<tr class="me"><td>B. KERN Trail, 3 partner missions in contrast pairs</td><td>Small extra on top of A</td><td>The loop and the supply</td><td>Recommended</td></tr>
+<tr><td>C. Marketplace first</td><td>Large</td><td>Nothing new</td><td>Rejected: it copies Contra and Parker Dewey</td></tr>
+</table></div>
+</section>
+
+<section id="audience">
+<div class="kick">05 · Audience</div><h2>Ages 14 to 35: the vision, and the order to reach it</h2>
+<p class="sub">Your reasoning: teenagers are creative and free of big responsibilities, people in their 20s are living the AI boom, and 35 is where AI comfort drops off. Office hours agrees with the vision and changes the order. Two of the three reasons need a correction.</p>
+<div class="scroll"><table>
+<tr><th>Age band</th><th>Why they fit</th><th>What makes it harder</th><th>Plan</th></tr>
+<tr><td>14 to 15</td><td>Most open to trying things; a passion found early compounds</td><td>Parental consent rules, no paid work, schools and safeguarding, companies wary of minors</td><td>Later, as a supervised “Junior” track</td></tr>
+<tr><td>16 to 17</td><td>Same openness, closer to real choices (subjects, first jobs)</td><td>Same consent and labour rules, milder</td><td>Stage 2</td></tr>
+<tr class="me"><td>18 to 24</td><td>Peak “what now?” moment; already using AI tools</td><td>Least; can consent, can be paid</td><td>Launch</td></tr>
+<tr class="me"><td>25 to 35</td><td>Career switchers and stuck-in-a-job people; the problem is real and money exists</td><td>Less time; want faster payoff</td><td>Launch</td></tr>
+</table></div>
+<div class="grid" style="margin-top:16px">
+<div class="card"><span class="tag">correction</span><br><b>The 35 cut-off is not about AI</b>KERN's first version is rule-based, not AI-heavy, so AI comfort does not gate anyone. And older people have the same problem: about a third of employees want to leave their job but do not know what to do next (CVwizard 2025 survey, secondary). Keep 14 to 35 as the target audience for design and marketing, but do not block or push away older users.</div>
+<div class="card"><span class="tag">correction</span><br><b>Teens are not free of pressure</b>School, exams and family are heavy. That is an argument for short missions, not against teens.</div>
+<div class="card"><span class="tag">real constraint</span><br><b>Minors change the rules</b>Age of digital consent varies by country (from my memory, unverified: US under 13 is barred by COPPA; EU countries set 13 to 16, e.g. Italy 14, Germany 16, France 15; Quebec 14). Real company tasks, data on reflections, and any pay all need extra care under 18. A lawyer should confirm before any teen launch.</div>
+</div>
+<h3>Recommended rollout</h3>
+<div class="flow">
+<div class="st"><small>STAGE 1 · LAUNCH</small><b>18 to 35</b>Real partner tasks, can be paid, can consent.</div>
+<div class="st"><small>STAGE 2</small><b>16 to 17</b>Parental sign-off, KERN-vetted missions, no pay.</div>
+<div class="st"><small>STAGE 3</small><b>14 to 15</b>“Junior” track, school or parent-led, KERN-written missions only.</div>
+</div>
+<p class="cap">Why not launch with teens? The idea is untested, and a failed test on minors carries legal and reputational cost. Prove the loop with adults, then extend it. This is a sequencing call, not a rejection of your range.</p>
+</section>
+
+<section id="challenges">
+<div class="kick">06 · Challenges and answers</div><h2>Where the idea was pushed</h2>
+<details><summary>Companies won't post tasks for people with no direction</summary><p>They post a normal small task. KERN wraps it with the experiment design. The company gets an output; KERN gets a signal.</p></details>
+<details><summary>One mission is just noise</summary><p>Agreed. A Kern needs at least 3 contrasting missions. Earlier results are labelled “early”.</p></details>
+<details><summary>Cold start: where do the first missions come from?</summary><p>KERN-written missions, Punto Due Studio's own clients as the first partner, and 2 or 3 small startups. Big names are already with Forage.</p></details>
+<details><summary>Why would a tech company bother?</summary><p>They get outputs and a shortlist by working style instead of CV. Free for them at first; payment comes after early proof.</p></details>
+<details><summary>AI-generated insights will feel fake</summary><p>Rules first, not AI. Every signal shows the answers behind it and can be rejected.</p></details>
+<details><summary>It becomes a marketplace or social network</summary><p>Not built. The only social piece is the short tip per mission.</p></details>
+<details><summary>Signals from 3 missions may still be shallow</summary><p>A signal needs behaviour plus self-report. It stays “early” until a contrast pair is complete. “Not really” lowers its weight.</p></details>
+</section>
+
+<section id="brand">
+<div class="kick">07 · Brand</div><h2>Split stone, kerned type, Moss colour</h2>
+<div class="grid">
+<div class="card"><b>Mark: Cleave</b><svg width="90" height="90" viewBox="0 0 100 100" style="margin-top:8px"><path fill="var(--fg)" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="var(--fg)" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="var(--acc)"/></svg><div class="cap">A stone split open to show the core. Kern is German for core.</div></div>
+<div class="card"><b>Wordmark</b><div style="font-weight:800;font-size:56px;letter-spacing:-.07em;line-height:1">kern<span style="color:var(--acc)">.</span></div><div class="cap">Set tight on purpose. In typography, kerning is the space between letters.</div></div>
+</div>
+<h3>Palette</h3>
+<div class="sw">
+<div style="background:#E8E6DA;color:#141A12">BONE<br>#E8E6DA</div><div style="background:#B9B7A8;color:#141A12">STONE<br>#B9B7A8</div><div style="background:#141A12;color:#E8E6DA">INK<br>#141A12</div><div style="background:#0F140E;color:#E8E6DA">NIGHT<br>#0F140E</div><div style="background:#2C5A3A;color:#E8E6DA">MOSS<br>#2C5A3A</div><div style="background:#C9F24A;color:#0F140E">LIME<br>#C9F24A</div></div>
+<p class="cap">Moss on bone: 6.37:1 contrast. Lime on night: 14.45:1. Use each green only on its own background. The original moss #2F7D3A failed at 4.07:1 and was replaced.</p>
+</section>
+
+<section id="markets">
+<div class="kick">08 · Languages and markets</div><h2>English first</h2>
+<div class="grid">
+<div class="card"><span class="tag ok">wave 1</span><br><b>English</b>US, Canada, UK and Europe. Everything written in English.</div>
+<div class="card"><span class="tag">wave 2</span><br><b>French · Spanish · German</b>French for Canada and France, Spanish for the US and Spain, German for DACH.</div>
+<div class="card"><span class="tag">wave 3</span><br><b>Italian · Portuguese</b>Then others, driven by real sign-ups.</div>
+</div>
+<p class="cap">The order is reasoning from market size and Canada's French expectations, not data. Rules: all text in translation files from day one, and missions are content that also needs translating. Partner tasks are sourced per market.</p>
+</section>
+
+<section id="validate">
+<div class="kick">09 · Validation</div><h2>Test before building more</h2>
+<p class="sub">Run 3 missions by hand with 5 people over about 10 days. A form and a shared doc are enough. The test passes if:</p>
+<div class="grid">
+<div class="card"><b>Completion</b><div class="dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div>at least 3 of 5 finish all three missions</div>
+<div class="card"><b>The signal lands</b><div class="dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div>at least 3 of 5 say “that feels right”</div>
+<div class="card"><b>They pass it on</b><div class="dots"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div>at least 2 of 5 recommend it unprompted</div>
+</div>
+<p class="cap">Miss two of three and the mission design changes before any more app code.</p>
+<h3>The name, and what protects it</h3>
+<div class="grid">
+<div class="card"><b>Domain</b>Register kern.it now. Do not build the brand around it. Other domains are unchecked.</div>
+<div class="card"><b>Trademark</b>No filing yet. Clearance search (EU, US, Canada, in software, education and business services) before the first paying company, an app-store listing, or marketing spend.</div>
+<div class="card"><b>The safer asset</b>The mark and palette outlive the word. If a same-field conflict appears, rename before spending.</div>
+</div>
+</section>
+
+<section id="next">
+<div class="kick">10 · Next steps</div><h2>What happens now</h2>
+<div class="flow">
+<div class="st"><small>1 · THIS WEEK</small><b>Get 3 tasks</b>Ask 10 small tech companies, starting with Punto Due clients, for one 2-hour task each.</div>
+<div class="st"><small>2 · NEXT</small><b>Hand-run the test</b>5 people, 3 missions, about 10 days.</div>
+<div class="st"><small>3 · THEN</small><b>Build v0</b>Landing, onboarding, mission picker, mission, reflection, Your Kern.</div>
+<div class="st"><small>4 · LATER</small><b>Sign-up and languages</b>Only after the loop is proven.</div>
+</div>
+<p class="cap">Build stays capped at the thin v0 until the BuilderCult application is submitted.</p>
+</section>
+
+<section id="log">
+<div class="kick">11 · Office hours log</div><h2>What changed and why</h2>
+<p class="sub">New entries are added at the top each time office hours finds something useful.</p>
+<div class="log"><div class="d">2026-09-25</div><b>Copy pass on the home, mission and sign-up screens.</b> Voice: short, warm, second person, no jargon. Fixes: removed “DAY 3 / 10” and “10 days” from the app because they put a clock back in (the pill now says “1 of 3 done”); fixed “your yourKERN”; “Evidence” became “Why we think so” and “Early hypothesis” became “A first guess”; “Could interest you” became “Worth trying next”; “No timer” became “Your pace”; mission numbers now run in order; the private time stat now says “only you see this”. Left as is: the “2-hour task” and “10 days” in the validation plan, since those are for you and the companies, not shown to users. Term rule: <b>yourKERN</b> is the section, <b>Kern card</b> is the shareable result.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Judging model decided; risks answered; sign-up added.</b> Answers are hidden until you submit; anonymous random peer review on a 3-question rubric; rank by score with a 5-review minimum; the partner picks the official best. Each open risk now has a fix and a stated remainder (see section 12). Sign-up screen built with an 18+ launch gate. All of it is my design and untested.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Mission screen built; growth section added.</b> Mission screen has Brief, Answer and Board steps, with a “Dare a friend” card. New section 12 covers referrals, free-for-people, and partner-paid revenue. Judging is shown as partner pick plus votes, which is my default, not decided.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Home screen built; three product rules from you.</b> Home has three tabs (Missions, yourKERN, Trail). Rules: (1) no completion times on missions, since pace is personal and a stated time makes people feel bad or avoid hard things; (2) every mission is open to everyone at once, no locks; (3) a mission takes many answers, and the contest is who does it better, not who does it first. Catchphrases saved in kern-catchphrases.md. Open: who judges “better” (partner company, other users, KERN staff, or a mix), and whether yourKERN keeps a private time-on-missions stat.</div>
+<div class="log"><div class="d">2026-09-25</div><b>yourKERN section and loader line (from you).</b> A section of the app called <b>yourKERN</b>: where your time goes, what you are actually drawn to, completed missions, and missions that could interest you next. It is the home of the evidence behind the Kern hypothesis, so every claim there links to something you did. Rule kept from the design: it shows what you did and a tentative reading, never a diagnosis. Loader line: “Follow the trail. Find yourKERN.” (trail = the name's cairn meaning, yourKERN = the product). Open question: “time spent” is only measurable inside KERN missions, so it must be labelled as that.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Audience set to 14 to 35, rolled out in stages.</b> Launch with 18 to 35. Teens follow (16 to 17, then 14 to 15) with parental consent, vetted missions and no pay. Two of the reasons were corrected: the 35 cut-off is not about AI (KERN is rule-based first), and older workers have the same problem. Legal ages of consent are from memory and need a lawyer's check.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Research pass added.</b> Sourced figures on young adults' uncertainty, skills-based hiring, and the entry-level market, plus competitor scale for Forage and Parker Dewey. Finding: employers claim skills-first hiring, but almost no hires happen without a degree. Proof of work matters, but do not promise it will replace a degree. Also: the cause of the entry-level squeeze is disputed, so avoid “AI took the jobs” as a pitch.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Name problem resolved for now.</b> KERN stays; clearance search is tied to concrete triggers.</div>
+<div class="log"><div class="d">2026-09-25</div><b>English first.</b> Language waves added.</div>
+<div class="log"><div class="d">2026-09-25</div><b>Core finding.</b> Company tasks already exist (Forage, Parker Dewey). KERN's difference is missions designed as contrast experiments on the person.</div>
+</section>
+
+<section id="growth">
+<div class="kick">12 · Growth and money</div><h2>How KERN grows without becoming a chore</h2>
+<p class="sub">My proposals, none tested. They follow your rules: no clocks, nothing locked, quality over speed.</p>
+<div class="grid">
+<div class="card"><b>Dare a friend</b>Send a mission link. You both answer, then see the two answers side by side. It fits the “who does it better” idea and needs no reward.</div>
+<div class="card"><b>Share your Kern card</b>The finished Trail ends in a card made to be posted. This is the main free loop.</div>
+<div class="card"><b>Mission of the week</b>One featured partner mission a week, with a public “best answers” page. Gives people a reason to return and a page others can find.</div>
+<div class="card"><b>Groups and schools</b>Universities, bootcamps and communities run a mission together with a group board. One partner brings many users.</div>
+<div class="card"><b>Referral rewards: cosmetic only</b>Referring or daring earns things like extra cairn stones or card styles. Never ranking, never access, because the contest must stay about quality. No cash or gifts for under-18s.</div>
+<div class="card"><b>People are always free</b>No paywall for taking missions or seeing your Kern. Charging users would break “open to everyone”.</div>
+</div>
+<h3>Where the money comes from</h3>
+<div class="scroll"><table>
+<tr><th>Source</th><th>How it works</th><th>When</th></tr>
+<tr><td>Partner companies</td><td>Pay to post a featured mission and to see the best answers and a shortlist by working style</td><td>After the first successful missions; free early on</td></tr>
+<tr><td>Sponsored mission of the week</td><td>A company sponsors the weekly mission and gets the visibility</td><td>Later</td></tr>
+<tr><td>Schools and programmes</td><td>A group licence with a group board and reports</td><td>Later</td></tr>
+<tr><td>Not selling user data</td><td>Rejected: it would destroy trust in “your Kern”</td><td>Never</td></tr>
+</table></div>
+<h3>Decision: how “who does it better” is judged</h3>
+<p class="sub">Decided by me, from your rules. Untested, so it goes into the 5-person hand test.</p>
+<div class="grid">
+<div class="card"><b>1. Answers stay hidden until you submit your own</b>You cannot copy what you have not seen. After you submit, the Board opens.</div>
+<div class="card"><b>2. Anonymous peer review with a rubric</b>Each person rates 3 random answers, author hidden, on three questions: found the real problem, explained the choice, usable by someone new. Reviewers cannot pick who they review, so friends cannot boost friends.</div>
+<div class="card"><b>3. Rank is the rubric score, not popularity</b>No like counts. A rank appears only after at least 5 reviews. Random assignment means an early answer has no advantage, so speed never matters.</div>
+<div class="card"><b>4. Reviewers earn weight</b>People whose ratings tend to agree with the crowd and with partner picks count more. Careless or one-sided reviewers count less.</div>
+<div class="card"><b>5. The partner picks the official best</b>The company chooses its favourites with a one-line reason. That is the badge, and the only thing that can lead to a shortlist.</div>
+<div class="card"><b>6. Improving an answer re-enters review</b>Revise it and it is rated again. That rewards the struggle you described.</div>
+</div>
+<h3>The risks, and the fix for each</h3>
+<div class="scroll"><table>
+<tr><th>Risk</th><th>Fix</th><th>What is left</th></tr>
+<tr><td>Votes can be gamed</td><td>Random anonymous assignment, rubric instead of likes, weighted reviewers</td><td>Rings of fake accounts; needs account checks at scale</td></tr>
+<tr><td>Copying the top answer</td><td>Hidden until you submit; flag near-identical answers for review</td><td>Similarity checking is later work</td></tr>
+<tr><td>Referrals and minors</td><td>Launch 18 and over only; rewards are cosmetic; no under-18 referral until a lawyer approves</td><td>Legal check per country</td></tr>
+<tr><td>Not enough reviewers early on</td><td>Partner picks carry the early days; ranks show “not ranked yet” until 5 reviews</td><td>Watch it in the hand test</td></tr>
+<tr><td>Stronger people always win</td><td>Rank is per mission, and yourKERN shows your own change, not only your place</td><td>Some people will still feel behind</td></tr>
+<tr><td>Nobody tested any of this</td><td>Run it by hand with 5 people before building</td><td>Real results</td></tr>
+</table></div>
+</section>
+
+<section id="sources">
+<div class="kick">13 · Sources</div><h2>Where the numbers come from</h2>
+<p class="sub">Quality varies. Company and news sources are stronger; blog aggregators are marked and should be treated as directional.</p>
+<ol class="src">
+<li>Forbes on the Tallo report, May 2025: <a href="https://www.forbes.com/sites/juliakorn/2025/05/20/new-report-50-of-young-adults-feel-isolated-in-career-planning/">young adults and career planning</a></li>
+<li>Big Brothers Big Sisters / Harris Poll, 2025: <a href="https://www.bbbs.org/2025/09/career-confidence-in-crisis-new-report-from-big-brothers-big-sisters-shows-gen-zers-lack-critical-mentorship/">Career confidence in crisis</a></li>
+<li>Skills-based hiring research summary (blog, secondary): <a href="https://blog.theinterviewguys.com/the-state-of-skills-based-hiring/">The State of Skills-Based Hiring in 2025</a></li>
+<li>Skills-based hiring statistics (aggregator, secondary): <a href="https://testlify.com/skills-based-hiring-statistics/">Testlify</a>; Forbes, Aug 2026: <a href="https://www.forbes.com/sites/terdawn-deboe/2026/08/10/employers-are-hiring-for-skills-over-degrees-now-ai-is-why/">Skills over degrees</a></li>
+<li>NPR, Aug 2026: <a href="https://www.npr.org/2026/08/18/nx-s1-5910677/recent-college-graduates-employment-job-artificial-intelligence">Recent grads, AI and jobs</a></li>
+<li>IBISWorld: <a href="https://www.ibisworld.com/blog/2026-job-market-leaves-new-grads-behind/1/1126/">2026 job market for new grads</a>; <a href="https://www.digitalapplied.com/blog/ai-and-jobs-2026-what-the-labor-data-shows-analysis">Digital Applied</a> (secondary)</li>
+<li>Forage: <a href="https://www.theforage.com/simulations">theforage.com</a>; university career pages, e.g. <a href="https://careers.unc.edu/students/step-3-gain-experience/forage-virtual-work-experiences-platform/">UNC</a></li>
+<li>Parker Dewey: <a href="https://www.parkerdewey.com/">parkerdewey.com</a>; <a href="https://careerhub.ufl.edu/blog/2026/01/26/no-internship-no-problem-these-tools-can-help-you-get-ahead/">University of Florida career blog</a></li>
+<li>Contra: <a href="https://contra.com/">contra.com</a></li>
+</ol>
+<p class="cap" style="margin-top:20px">Not yet checked: competitor revenue, Riipen and Contra scale, mission completion benchmarks, any real trademark search, and the legal age-of-consent rules for minors (stated from memory).</p>
+</section>
+</main></body></html>

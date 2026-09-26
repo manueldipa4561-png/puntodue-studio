@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KERN sign-up</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#0b0b0c;color:#E8E6DA;font-family:'Bricolage Grotesque',system-ui,sans-serif;padding:32px 16px}
+h1{font-weight:800;font-size:24px}
+.sub{font:400 12px/1.6 'Fragment Mono',monospace;opacity:.6;margin:6px 0 24px;max-width:72ch}
+.row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+
+/* ---- sign-up ---- */
+.phone{width:320px;height:680px;border-radius:38px;border:6px solid #1c1f1b;overflow:hidden;flex:none}
+.light{--bg:#E8E6DA;--fg:#141A12;--acc:#2C5A3A;--on:#E8E6DA;--line:#B9B7A8;--dim:#5b6156}
+.dark{--bg:#0F140E;--fg:#E8E6DA;--acc:#C9F24A;--on:#0F140E;--line:#2a3128;--dim:#9a9d8e}
+.app{height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--fg)}
+.top{padding:22px 20px 8px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:22px;letter-spacing:-.07em}
+.logo svg{width:24px}.logo i{font-style:normal;color:var(--acc);letter-spacing:0}
+.lbl{font:400 10px 'Fragment Mono',monospace;color:var(--dim);letter-spacing:.04em;text-transform:uppercase}
+.seg{display:flex;margin:0 20px;border:1.5px solid var(--fg);border-radius:999px;overflow:hidden}
+.seg button{flex:1;background:none;border:0;color:var(--fg);font:800 12px 'Bricolage Grotesque',sans-serif;padding:8px 0;cursor:pointer}
+.seg button.on{background:var(--fg);color:var(--bg)}
+.screen{flex:1;overflow:auto;padding:22px 20px;display:none;flex-direction:column;gap:14px}
+.screen.on{display:flex}
+h2{font-weight:800;font-size:32px;letter-spacing:-.05em;line-height:1}
+h2 b{color:var(--acc)}
+p{font-size:13px;line-height:1.45}
+.btn{border:0;border-radius:999px;padding:13px 18px;font:800 14px 'Bricolage Grotesque',sans-serif;cursor:pointer;background:var(--acc);color:var(--on);text-align:center}
+.ghost{background:none;color:var(--fg);border:1.5px solid var(--fg)}
+.or{text-align:center}
+input{width:100%;background:none;color:var(--fg);border:1.5px solid var(--line);border-radius:12px;padding:12px;font:500 14px 'Bricolage Grotesque',sans-serif}
+input::placeholder{color:var(--dim)}
+.card{border:1.5px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card b{font-weight:800;letter-spacing:-.02em}
+.push{margin-top:auto}
+small{font:400 10px/1.5 'Fragment Mono',monospace;color:var(--dim)}
+</style></head><body>
+<h1>KERN sign-up</h1>
+<p class="sub">Three short steps: Welcome, Age, You. No CV, no quiz, nothing about your job. Launch is for ages 18 and over; younger people join a waitlist until parental consent is built and checked by a lawyer. Buttons are static in this mock-up.</p>
+<div class="row" id="row"></div>
+<script>
+const mark=`<svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="var(--acc)"/></svg>`;
+const welcome=`
+<div><h2>Follow<br>the <b>trail.</b></h2></div>
+<p>Real missions from real companies. You find out what you like by doing, not by guessing.</p>
+<div class="card"><b>No CV. No quiz.</b><p>You don't need to know what you want yet. That is the point.</p></div>
+<div class="push" style="display:flex;flex-direction:column;gap:10px">
+<button class="btn">Continue with Apple</button>
+<button class="btn ghost">Continue with Google</button>
+<div class="or lbl">or</div>
+<input placeholder="Your email">
+<button class="btn ghost">Send me a link</button>
+<small>By continuing you accept the Terms and Privacy Policy.</small></div>`;
+const age=`
+<div><h2>How old<br>are <b>you?</b></h2></div>
+<p>We ask once, to keep KERN safe. Nobody else sees it.</p>
+<input placeholder="Year of birth" inputmode="numeric">
+<div class="card"><b>Under 18?</b><p>KERN opens to under-18s later, with a parent's consent. Leave your email and we'll tell you when.</p></div>
+<div class="push" style="display:flex;flex-direction:column;gap:10px"><button class="btn">Continue</button><small>If you are under 18 this step becomes a waitlist, and no account is made.</small></div>`;
+const you=`
+<div><h2>What should<br>we call <b>you?</b></h2></div>
+<input placeholder="A name or nickname">
+<div class="card"><b>Your language</b><p>English for now. More coming.</p></div>
+<div class="card"><b>What happens next</b><p>Every mission is open. Pick one, add your answer, and yourKERN starts to fill in.</p></div>
+<div class="push" style="display:flex;flex-direction:column;gap:10px"><button class="btn">Start with a mission</button><small>You can change all of this later.</small></div>`;
+const t=[['welcome','Welcome',welcome],['age','Age',age],['you','You',you]];
+const phone=c=>`<div class="phone"><div class="app ${c}">
+<div class="top"><div class="logo">${mark}kern<i>.</i></div><span class="lbl">Sign up</span></div>
+<div class="seg">${t.map((x,i)=>`<button class="${i?'':'on'}" data-t="${x[0]}">${x[1]}</button>`).join('')}</div>
+${t.map((x,i)=>`<div class="screen${i?'':' on'}" data-s="${x[0]}">${x[2]}</div>`).join('')}
+</div></div>`;
+const row=document.getElementById('row');
+row.innerHTML=phone('light')+phone('dark');
+row.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const a=b.closest('.app');
+a.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x===b));
+a.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.dataset.s===b.dataset.t))};
+</script></body></html>
