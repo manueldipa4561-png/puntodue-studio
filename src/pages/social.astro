@@ -1,6 +1,8 @@
 ---
 import Site from '../layouts/Site.astro';
 import Chat from '../components/Chat.astro';
+import Automazione from '../components/Automazione.astro';
+import Profilo from '../components/Profilo.astro';
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto la pagina social e vorrei parlarvi del mio profilo.')}`;
 const posts = [
   { kind: 'Post', cls: 'a', title: 'Piatto del giorno', likes: 214, cap: 'Tagliolini al limone e gamberi. Fino a esaurimento.' },
@@ -86,10 +88,13 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
     </div>
   </section>
 
+
+  <Profilo />
+
   <section class="perche" id="vantaggi">
     <span class="lab">/vantaggi</span>
     <h2>Perché un profilo curato conviene.</h2>
-    <p class="lead">Visibilità, meno lavoro a mano, collaborazioni e una possibile seconda entrata. Numeri da ricerche pubbliche, non risultati garantiti.</p>
+    <p class="lead">Ti trovano più facilmente e rispondi prima, con meno lavoro a mano. Numeri da ricerche pubbliche, non risultati garantiti.</p>
     <div class="adv">
       <article class="adv-c">
         <span class="lab">Visibilità</span>
@@ -103,20 +108,10 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
         <p class="adv-s">si aspetta una risposta entro la giornata, e il 70% la vuole personalizzata<sup><a href="#fonti">1</a></sup></p>
         <p class="adv-t">Post pianificati, risposte pronte per le domande più frequenti e report automatici: risposte rapide senza stare sempre sul telefono. Ti serve meno tempo, e le persone non restano senza risposta.</p>
       </article>
-      <article class="adv-c">
-        <span class="lab">Brand deals</span>
-        <b class="big-n">87,5%</b>
-        <p class="adv-s">dei marketer intervistati prevede di aumentare il budget per l'influencer marketing nel 2026<sup><a href="#fonti">2</a></sup></p>
-        <p class="adv-t">Più budget dai brand significa più occasioni di collaborazione. Un profilo solido e costante è il punto di partenza per essere scelti.</p>
-      </article>
-      <article class="adv-c">
-        <span class="lab">Guadagno extra</span>
-        <b class="big-n">480 mld $</b>
-        <p class="adv-s">il valore stimato della creator economy al 2027, da 250 miliardi di oggi (stima 2023)<sup><a href="#fonti">3</a></sup></p>
-        <p class="adv-t">Collaborazioni pagate, quota dei ricavi delle piattaforme e abbonamenti: un profilo che cresce può diventare una seconda entrata.</p>
-      </article>
     </div>
   </section>
+
+  <Automazione />
 
   <section class="cal" id="calendario">
     <span class="lab">/calendario</span>
@@ -153,8 +148,6 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
     <span class="lab">/fonti</span>
     <ol>
       <li>Sprout Social, «The 2023 Sprout Social Index»: 68% dei consumatori segue i brand per restare aggiornato su prodotti e servizi; 69% si aspetta una risposta entro la giornata; 70% si aspetta risposte personalizzate. <a href="https://sproutsocial.com/insights/press/new-research-indicates-a-shift-in-what-consumers-find-memorable-on-social-media/" target="_blank" rel="noopener">sproutsocial.com</a></li>
-      <li>Influencer Marketing Hub, «Influencer Marketing Benchmark Report 2026»: 87,49% degli intervistati prevede un budget in aumento; il 65,9% si aspetta un ritorno entro un mese. <a href="https://influencermarketinghub.com/influencer-marketing-benchmark-report/" target="_blank" rel="noopener">influencermarketinghub.com</a></li>
-      <li>Goldman Sachs Research, «The creator economy could approach half-a-trillion dollars by 2027», aprile 2023: da 250 a 480 miliardi di dollari; circa 50 milioni di creator nel mondo. <a href="https://www.goldmansachs.com/insights/articles/the-creator-economy-could-approach-half-a-trillion-dollars-by-2027" target="_blank" rel="noopener">goldmansachs.com</a></li>
       <li>Sull'automazione non citiamo cifre di tempo risparmiato: le fonti che abbiamo verificato non le forniscono in modo affidabile. Il vantaggio descritto si appoggia ai dati sulle aspettative di risposta (fonte 1).</li>
       <li>Profilo, nome, post e numeri del telefono sono un concept d'esempio. Il calendario è illustrativo: mostra una tendenza, non è una promessa di risultato.</li>
     </ol>
@@ -436,6 +429,8 @@ const HEART = 'M12 21s-7.5-4.6-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2.1 0 3.9 1.2 5.6 
     p.querySelector('.ccount')!.addEventListener('click', () => openComments(i));
     p.querySelector('.sbtn')!.addEventListener('click', openShare);
   });
+
+
 
   // ---------- calendario ----------
   const TYPES: Record<string, { c: string; on: (wd: number, d: number) => boolean }> = {
