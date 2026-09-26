@@ -72,6 +72,7 @@
   };
   if(reduce || !window.gsap || !window.ScrollTrigger){ showAll(); return; }
   gsap.registerPlugin(ScrollTrigger);
+  if(document.fonts) document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
 
   gsap.set('.hero .mask>span', {yPercent:110});
   gsap.to('.hero .mask>span', {yPercent:0, duration:1.1, ease:'power4.out', stagger:.1, delay:.1});

@@ -164,7 +164,8 @@ body:has(.p-dialog[open]){overflow:hidden}
 /* ---------- dock mobile ---------- */
 .dock{position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:90;display:none;gap:8px;background:rgba(22,21,19,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:100px;padding:7px;box-shadow:0 14px 34px -16px rgba(0,0,0,.7)}
 .dock a{flex:1;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:100px;font-family:var(--font-d);font-weight:600;font-size:.92rem;color:var(--d-fg)}
-.dock a.primary{background:var(--accent);color:#fff}
+.dock a.primary{background:var(--accent);color:#fff;flex:1.6}
+@media (max-width:360px){.dock a{font-size:.84rem;padding:0 10px;text-align:center}}
 
 /* ---------- reveal ---------- */
 .fx{opacity:0;transform:translateY(30px)}
