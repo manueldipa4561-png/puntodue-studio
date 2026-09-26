@@ -22,8 +22,8 @@
     addEventListener('keydown', function(e){ if(e.key === 'Escape' && menu.hasAttribute('data-open')){ set(false); btn.focus(); } });
   }
 
-  /* slider prima/dopo */
-  document.querySelectorAll('[data-ba]').forEach(function(ba){
+  /* slider prima/dopo (riutilizzabile: window.INNESTO.initBA) */
+  var initBA = function(ba){
     var wrap = ba.querySelector('.after-wrap'), handle = ba.querySelector('.ba-handle'), range = ba.querySelector('input[type=range]');
     var setV = function(v){ v = Math.max(0, Math.min(100, v));
       wrap.style.clipPath = 'inset(0 0 0 ' + v + '%)'; handle.style.left = v + '%';
@@ -33,8 +33,8 @@
     ba.addEventListener('pointerdown', function(e){
       var r = ba.getBoundingClientRect(), move = function(ev){ setV((ev.clientX - r.left) / r.width * 100); };
       move(e);
-      var up = function(){ removeEventListener('pointermove', move); removeEventListener('pointerup', up); };
-      addEventListener('pointermove', move); addEventListener('pointerup', up);
+      var up = function(){ removeEventListener('pointermove', move); removeEventListener('pointerup', up); removeEventListener('pointercancel', up); };
+      addEventListener('pointermove', move); addEventListener('pointerup', up); addEventListener('pointercancel', up);
     });
     if(!reduce && 'IntersectionObserver' in window){
       var io = new IntersectionObserver(function(en){ if(!en[0].isIntersecting) return; io.disconnect();
@@ -44,7 +44,9 @@
       }, {threshold:.45});
       io.observe(ba);
     }
-  });
+  };
+  document.querySelectorAll('[data-ba]').forEach(initBA);
+  window.INNESTO = {initBA:initBA};
 
   /* form dimostrativi: nessun invio */
   document.querySelectorAll('[data-demo-form]').forEach(function(f){

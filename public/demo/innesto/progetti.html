@@ -9,7 +9,7 @@
   <title>Progetti — INNESTO Ristrutturazioni</title>
   <meta name="description" content="Sette ristrutturazioni in Emilia con superfici, tempi e budget: appartamenti, cucine, bagni, locali e recuperi. Concept portfolio di Punto Due Studio.">
   <meta property="og:title" content="Progetti — INNESTO Ristrutturazioni">
-  <meta property="og:image" content="./img/6.webp">
+  <meta property="og:image" content="https://puntoduestudio.it/demo/innesto/img/6.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -42,6 +42,9 @@
     .card a.stretch::after{content:"";position:absolute;inset:0}
     .card a.stretch:focus-visible{outline:none}
     .card a.stretch:focus-visible::after{outline:3px solid var(--accent);outline-offset:4px;border-radius:var(--r-l)}
+    .card button.stretch{all:unset;cursor:pointer}
+    .card button.stretch::after{content:"";position:absolute;inset:0;border-radius:var(--r-l)}
+    .card button.stretch:focus-visible::after{outline:3px solid var(--accent);outline-offset:4px}
     .empty{grid-column:1/-1;padding:40px 0;color:var(--muted)}
 
     /* SCHEDA DETTAGLIO */
@@ -148,34 +151,34 @@
       <div><h2><a class="stretch" href="#casa-n07">Casa N.07</a></h2><p class="where">Bologna, zona Mazzini · scheda completa qui sotto</p></div>
       <dl><div><dt>Superficie</dt><dd>128 m²</dd></div><div><dt>Cantiere</dt><dd>5 mesi</dd></div><div><dt>Budget</dt><dd>da 95.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="cucina-bagno">
+    <article class="card fx" data-desc="Una cucina chiusa degli anni '70 diventa uno spazio luminoso: impianti rifatti, ante laccate terracotta e travertino levigato, senza spostare la finestra." data-before="./img/3.webp" data-cat="cucina-bagno">
       <figure><img src="./img/4.webp" alt="Cucina con ante terracotta e piano in travertino" width="1024" height="688" loading="lazy"><span class="cat">Cucina</span></figure>
-      <div><h2>Cucina Saragozza</h2><p class="where">Bologna, centro storico</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Cucina Saragozza</button></h2><p class="where">Bologna, centro storico</p></div>
       <dl><div><dt>Superficie</dt><dd>14 m²</dd></div><div><dt>Cantiere</dt><dd>6 settimane</dd></div><div><dt>Budget</dt><dd>da 28.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="cucina-bagno">
+    <article class="card fx" data-desc="Un bagno di 6 m² ripensato attorno alla finestra: doccia a filo pavimento, cotto smaltato fatto a mano, mobile sospeso in rovere e travertino." data-cat="cucina-bagno">
       <figure><img src="./img/13.webp" alt="Bagno con piastrelle in cotto smaltato e mobile in rovere" width="896" height="1120" loading="lazy"><span class="cat">Bagno</span></figure>
-      <div><h2>Bagno Santo Stefano</h2><p class="where">Bologna, via Santo Stefano</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Bagno Santo Stefano</button></h2><p class="where">Bologna, via Santo Stefano</p></div>
       <dl><div><dt>Superficie</dt><dd>6 m²</dd></div><div><dt>Cantiere</dt><dd>4 settimane</dd></div><div><dt>Budget</dt><dd>da 16.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="casa">
+    <article class="card fx" data-desc="Un sottotetto buio diventa la zona giorno di casa: travi originali pulite e oliate, lucernari nuovi, isolamento del tetto e un terrazzo sui tetti del centro." data-cat="casa">
       <figure><img src="./img/15.webp" alt="Mansarda con travi a vista e terrazzo sui tetti" width="896" height="1120" loading="lazy"><span class="cat">Mansarda</span></figure>
-      <div><h2>Attico Ghirlandina</h2><p class="where">Modena, centro</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Attico Ghirlandina</button></h2><p class="where">Modena, centro</p></div>
       <dl><div><dt>Superficie</dt><dd>85 m²</dd></div><div><dt>Cantiere</dt><dd>4 mesi</dd></div><div><dt>Budget</dt><dd>da 72.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="commerciale">
+    <article class="card fx" data-desc="Un forno sotto i portici: volte in mattoni riportate alla luce, pavimento in cotto, bancone in rovere e travertino, impianti a norma per la produzione." data-cat="commerciale">
       <figure><img src="./img/14.webp" alt="Forno con volte in mattoni, bancone in rovere e travertino" width="896" height="1120" loading="lazy"><span class="cat">Locale</span></figure>
-      <div><h2>Forno 22</h2><p class="where">Parma, sotto i portici</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Forno 22</button></h2><p class="where">Parma, sotto i portici</p></div>
       <dl><div><dt>Superficie</dt><dd>60 m²</dd></div><div><dt>Cantiere</dt><dd>9 settimane</dd></div><div><dt>Budget</dt><dd>da 58.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="recupero">
+    <article class="card fx" data-desc="Un laboratorio dismesso diventa una casa su due livelli: mattoni recuperati, soppalco in acciaio e microcemento continuo, senza cancellare la memoria dello spazio." data-before="./img/5.webp" data-cat="recupero">
       <figure><img src="./img/6.webp" alt="Loft ricavato in un'ex officina con soppalco in acciaio" width="1024" height="688" loading="lazy"><span class="cat">Recupero</span></figure>
-      <div><h2>Officina 14</h2><p class="where">Parma, Oltretorrente</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Officina 14</button></h2><p class="where">Parma, Oltretorrente</p></div>
       <dl><div><dt>Superficie</dt><dd>190 m²</dd></div><div><dt>Cantiere</dt><dd>7 mesi</dd></div><div><dt>Budget</dt><dd>da 210.000 €</dd></div></dl>
     </article>
-    <article class="card fx" data-cat="recupero">
+    <article class="card fx" data-desc="Il recupero di una colonica in pianura: intonaci a calce, persiane in legno, tetto rifatto e una corte ripensata come stanza all'aperto." data-before="./img/7.webp" data-cat="recupero">
       <figure><img src="./img/8.webp" alt="Casa colonica restaurata con facciata ocra" width="1024" height="688" loading="lazy"><span class="cat">Casa a corte</span></figure>
-      <div><h2>Corte 03</h2><p class="where">Pianura modenese</p></div>
+      <div><h2><button class="stretch" type="button" data-open>Corte 03</button></h2><p class="where">Pianura modenese</p></div>
       <dl><div><dt>Superficie</dt><dd>240 m²</dd></div><div><dt>Cantiere</dt><dd>11 mesi</dd></div><div><dt>Budget</dt><dd>su progetto</dd></div></dl>
     </article>
     <p class="empty" data-empty hidden>Nessun progetto in questa categoria.</p>
@@ -259,6 +262,24 @@
   <p class="disclosure">Progetto dimostrativo di Punto Due Studio. INNESTO, i progetti, i dati (superfici, durate, budget, ripartizioni), i contatti e le persone ritratte sono fittizi; le immagini sono generate.</p>
 </footer>
 
+<dialog class="p-dialog" data-dialog aria-labelledby="dlg-title">
+  <button class="close" type="button" data-close aria-label="Chiudi la scheda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="inner">
+    <div class="media" data-dlg-media></div>
+    <div>
+      <p class="micro" data-dlg-cat></p>
+      <h2 id="dlg-title" data-dlg-title></h2>
+      <p class="where" data-dlg-where></p>
+      <p class="desc" data-dlg-desc></p>
+      <dl data-dlg-facts></dl>
+      <div class="actions">
+        <a class="btn btn-accent" href="./configuratore.html#stima">Stima per un lavoro simile <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="./index.html#contatto">Sopralluogo gratuito</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <nav class="dock" aria-label="Azioni rapide">
   <a href="./configuratore.html#stima">Stima</a>
   <a class="primary" href="./index.html#contatto">Sopralluogo gratuito</a>
@@ -286,6 +307,26 @@
       window.ScrollTrigger && ScrollTrigger.refresh();
     });
   });
+  /* scheda progetto in dialog, con prima/dopo quando disponibile */
+  var dlg = document.querySelector('[data-dialog]'), $ = function(k){ return dlg.querySelector('[data-dlg-' + k + ']'); };
+  var esc = function(t){ var d = document.createElement('div'); d.textContent = t; return d.innerHTML.replace(/"/g, '&quot;'); };
+  document.querySelectorAll('[data-open]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var card = b.closest('.card'), img = card.querySelector('figure img'), before = card.dataset.before;
+      $('cat').textContent = card.querySelector('.cat').textContent;
+      $('title').textContent = b.textContent;
+      $('where').textContent = card.querySelector('.where').textContent;
+      $('desc').textContent = card.dataset.desc;
+      $('facts').innerHTML = card.querySelector('dl').innerHTML;
+      $('media').innerHTML = before
+        ? '<figure class="ba" data-ba><img src="' + before + '" alt="' + esc(b.textContent) + ' prima dei lavori"><div class="after-wrap"><img src="' + img.getAttribute('src') + '" alt="' + esc(img.alt) + '"></div><span class="ba-label before">Prima</span><span class="ba-label after">Dopo</span><input type="range" min="0" max="100" step="0.5" value="50" aria-label="Confronta prima e dopo"><div class="ba-handle" aria-hidden="true"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></b></div></figure>'
+        : '<img src="' + img.getAttribute('src') + '" alt="' + esc(img.alt) + '">';
+      dlg.showModal();
+      var ba = $('media').querySelector('[data-ba]'); ba && window.INNESTO && INNESTO.initBA(ba);
+    });
+  });
+  dlg.querySelector('[data-close]').addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('click', function(e){ if(e.target === dlg) dlg.close(); });
   /* barre dei costi che crescono allo scroll */
   if(window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion:reduce)').matches){
     gsap.from('[data-costs] .bar i', {scaleX:0, duration:1.2, ease:'power3.out', stagger:.08, scrollTrigger:{trigger:'[data-costs]', start:'top 80%'}});
