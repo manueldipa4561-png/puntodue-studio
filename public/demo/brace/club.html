@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brace Club · la tessera di BRACE Milano</title>
+<meta name="description" content="La tessera digitale di BRACE: un timbro a ogni cena, alla sesta il brisket è offerto. QR personale, inviti per gli amici e avvisi su WhatsApp.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0D0E10">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="brace.css">
+<style>
+.top{padding-top:clamp(120px,16vw,200px);padding-bottom:clamp(40px,5vw,64px)}
+.top h1{font-size:clamp(4.4rem,13vw,11rem)}
+.inv{display:none;margin-top:24px;padding:14px 18px;border-radius:var(--r);background:var(--blue);color:#fff;max-width:60ch}
+.inv.on{display:block}
+.stage{display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.fm{display:grid;gap:14px;background:var(--ash);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,34px)}
+.fm label{font-size:.9rem;font-weight:500;display:grid;gap:8px}
+.fm input{width:100%;min-height:50px;padding:12px 16px;border-radius:var(--r);border:1px solid rgba(236,237,234,.22);background:var(--soot);font-size:1rem}
+.fm input:focus{outline:none;border-color:var(--blue-hi);box-shadow:0 0 0 3px rgba(61,91,255,.3)}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.stat{min-height:1.4em;margin:0;font-size:.93rem}
+.cardcol{display:flex;flex-direction:column;align-items:center;gap:22px}
+.tilt{perspective:1100px;width:min(100%,460px)}
+.c3{transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease)}
+.flip{position:relative;aspect-ratio:1.586;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.3,.4,1)}
+.flip.back{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:clamp(18px,4.5%,26px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.25)}
+.front{background:radial-gradient(120% 90% at 85% 10%,#3D5BFF 0%,#1B2A99 45%,#0B0F2A 100%);color:#fff}
+.front::after{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.26),transparent 60%);pointer-events:none}
+.back{transform:rotateY(180deg);background:var(--bone);color:var(--soot);align-items:center;justify-content:center;gap:10px}
+.ct{display:flex;justify-content:space-between;align-items:center;font-family:var(--d);font-weight:900;font-size:clamp(1.6rem,4.4vw,2.2rem);letter-spacing:.02em}
+.ct small{font-family:var(--m);font-weight:400;font-size:.72rem;letter-spacing:.12em;opacity:.8}
+.dots{display:flex;gap:clamp(6px,1.6vw,10px)}
+.dots i{width:clamp(26px,7vw,36px);aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
+.dots i.on{background:#fff;border-color:#fff}
+.dots i.gift{border-style:dashed}
+.dots i.pop{animation:pop .5s var(--ease)}
+@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+.cb{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--m);font-size:.82rem}
+.cb .nm{font-family:var(--b);font-weight:600;font-size:1.05rem}
+.cb .nm.ph{opacity:.6}
+.qrw{width:52%;aspect-ratio:1;transition:opacity .3s}
+.qrw svg{width:100%;height:100%;display:block}
+.qrw.dim{opacity:.18}
+.cap{font-family:var(--m);font-size:.74rem;color:#4A4F55}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+@media (max-width:900px){.stage{grid-template-columns:1fr}.cardcol{order:-1}}
+
+.perks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.pk{background:var(--ash);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px}
+.pk b.big{font-family:var(--d);font-weight:900;font-size:3rem;line-height:.9;color:var(--blue-hi)}
+.pk h3{margin:0;font-size:1.05rem;font-weight:600}
+.pk p{margin:0;color:var(--smoke);font-size:.92rem}
+.pk .act{margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:12px}
+.sw{position:relative;flex:none;width:52px;height:30px;border-radius:var(--pill);border:0;background:#3A3E44;cursor:pointer;transition:background .25s}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--bone);transition:transform .25s var(--ease)}
+.sw[aria-pressed="true"]{background:var(--blue)}
+.sw[aria-pressed="true"]::after{transform:translateX(22px)}
+.sw::before{content:"";position:absolute;inset:-8px}
+@media (max-width:1000px){.perks{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.perks{grid-template-columns:1fr}}
+
+.crew{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center;scroll-margin-top:100px}
+.crew figure{margin:0;border-radius:var(--r);overflow:hidden;aspect-ratio:3/2}
+.crew figure img{width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.crew{grid-template-columns:1fr}}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-top:40px}
+.why h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:2rem;line-height:.95;margin:0 0 12px}
+.why p{margin:0;color:var(--smoke)}
+@media (max-width:900px){.why{grid-template-columns:1fr}}
+.sec{padding-top:clamp(88px,11vw,150px)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="hd">
+  <a class="brand" href="index.html" aria-label="BRACE, home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="12" fill="#3D5BFF"/><circle cx="20" cy="13" r="4.5" fill="#ECEDEA"/></svg>BRACE
+  </a>
+  <nav class="nav" aria-label="Principale">
+    <a href="menu.html">Menù</a>
+    <a href="index.html#fuoco">Il fuoco</a>
+    <a href="index.html#vino">Vino</a>
+    <a href="club.html" aria-current="page">Club</a>
+    <a href="index.html#dove">Dove</a>
+  </nav>
+  <span class="now" data-now><i aria-hidden="true"></i><span>Orari</span></span>
+  <a class="lnk m-only" href="index.html">Home</a>
+  <a class="btn" href="index.html#prenota">Prenota</a>
+</header>
+
+<main id="main">
+  <section class="wrap top" data-first>
+    <h1 class="d">Brace <b>Club.</b></h1>
+    <p class="lead">Un timbro a ogni cena, alla sesta il brisket da 250 g è offerto. La tessera vive nel telefono: mostri il QR alla cassa e il timbro lo mette lo staff.</p>
+    <p class="inv" id="inv" role="status"></p>
+  </section>
+
+  <section class="wrap stage" aria-label="Crea la tua tessera">
+    <form class="fm" id="fm" novalidate>
+      <label for="nm">Come ti chiami?
+        <input type="text" id="nm" autocomplete="given-name" maxlength="22" aria-describedby="stat">
+      </label>
+      <div class="row">
+        <button class="btn" type="submit" id="mk">Crea la mia tessera</button>
+        <button class="btn gh" type="button" id="rs" hidden>Ricomincia</button>
+      </div>
+      <p class="stat" id="stat" role="status" aria-live="polite"></p>
+      <p class="note" style="margin:0">Demo: nome e timbri restano solo in questo browser e non vengono inviati a nessuno. Nel sito vero la tessera si collega alle prenotazioni e ai messaggi su WhatsApp.</p>
+    </form>
+
+    <div class="cardcol">
+      <div class="tilt" id="tilt">
+        <div class="c3" id="c3"><div class="flip" id="flip">
+          <div class="face front" id="front">
+            <div class="ct">BRACE <small>CLUB</small></div>
+            <div class="dots" id="dots" aria-hidden="true"></div>
+            <div class="cb"><span class="nm ph" id="cn">Il tuo nome</span><span id="cid">BR-0000</span></div>
+          </div>
+          <div class="face back" id="backf" aria-hidden="true">
+            <div class="qrw dim" id="qrw"></div>
+            <span class="cap">Mostra questo codice alla cassa</span>
+          </div>
+        </div></div>
+      </div>
+      <p class="sr" id="cardSr" aria-live="polite"></p>
+      <div class="ctl">
+        <button class="btn gh" type="button" id="fl" aria-pressed="false">Mostra il QR</button>
+        <button class="btn" type="button" id="st" disabled>Simula un timbro</button>
+      </div>
+      <p class="note" style="text-align:center;margin:0;max-width:44ch">Al ristorante il timbro lo aggiunge lo staff scansionando il QR. Qui lo simuli con il pulsante.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec" id="area" hidden aria-labelledby="ar-h">
+    <h2 class="d" id="ar-h">Ecco cosa<br><b>hai sbloccato.</b></h2>
+    <div class="perks">
+      <article class="pk"><b class="big" id="pg">0/6</b><h3>Verso il brisket</h3><p id="pgt">Ogni cena aggiunge un timbro.</p></article>
+      <article class="pk"><b class="big">-20%</b><h3>Martedì lento</h3><p>Il martedì e il mercoledì, prenotando dal sito.</p><div class="act"><button class="btn gh sm" type="button" data-copy="LENTO20">Copia LENTO20</button></div></article>
+      <article class="pk"><b class="big">+1</b><h3>Compleanno</h3><p>Nella settimana del tuo compleanno il dolce è offerto a tutto il tavolo.</p></article>
+      <article class="pk"><b class="big">18:30</b><h3>Avviso brisket</h3><p>Un messaggio su WhatsApp quando il brisket esce dal fumo.</p><div class="act"><button class="sw" type="button" id="wa" aria-pressed="false" aria-labelledby="wat"></button><span id="wat" class="mono">Avviso disattivato</span></div></article>
+    </div>
+  </section>
+
+  <section class="wrap sec crew" id="invita" aria-labelledby="iv-h">
+    <figure><img src="img/brigata.webp" width="1000" height="672" alt="Un gruppo di amici brinda a un tavolo pieno di barbecue" loading="lazy" decoding="async"></figure>
+    <div>
+      <h2 class="d" id="iv-h">Porta<br><b>la brigata.</b></h2>
+      <p class="lead">Mandi il tuo link a chi non è mai venuto. Alla sua prima cena un calice è offerto a lui, e il prossimo è offerto a te.</p>
+      <div class="row" style="margin-top:24px"><button class="btn" type="button" id="invBtn">Copia il tuo invito</button></div>
+      <p class="note" id="invNote" style="margin-top:12px">Prima crea la tessera: il link porta il tuo codice.</p>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-labelledby="wy-h">
+    <h2 class="d" id="wy-h">Perché <b>funziona.</b></h2>
+    <div class="why">
+      <div><h3>Si torna</h3><p>Il brisket offerto è un traguardo che si vede sulla tessera. Chi ha già tre timbri ha un motivo concreto per prenotare di nuovo.</p></div>
+      <div><h3>I dati restano tuoi</h3><p>Nomi, visite e preferenze restano al ristorante. Niente app da scaricare, niente piattaforme in mezzo che prendono commissioni.</p></div>
+      <div><h3>Passaparola</h3><p>L'invito ricompensa chi porta e chi arriva. I tavoli nuovi arrivano da chi il posto lo conosce già.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <p class="big" aria-hidden="true">BRACE</p>
+    <div class="row" style="justify-content:space-between">
+      <nav aria-label="Piè di pagina"><a href="index.html">Home</a><a href="menu.html">Menù</a><a href="index.html#prenota">Prenota</a></nav>
+      <p class="note" style="margin:0">© 2026 BRACE · concept demo di Punto Due Studio. Premi e sconti sono d'esempio.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock"><span><b data-now><span>Stasera</span></b>Tavoli e banco</span><a class="btn sm" href="index.html#prenota">Prenota un tavolo</a></div>
+
+<script src="qrcode.min.js" defer></script>
+<script src="brace.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = s => document.querySelector(s);
+  const KEY = 'brace-club', N = 6, ID = /^BR-\d{4}-[A-Z0-9]{3}$/;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let st = { name: '', id: '', stamps: 0, wa: false, made: false };
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (saved && typeof saved === 'object') {
+      if (typeof saved.name === 'string') st.name = saved.name.slice(0, 22);
+      if (typeof saved.id === 'string' && ID.test(saved.id)) st.id = saved.id;
+      if (Number.isInteger(saved.stamps)) st.stamps = Math.max(0, Math.min(N, saved.stamps));
+      st.wa = saved.wa === true;
+      st.made = saved.made === true && !!st.id;
+    }
+  } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+  const say = t => { $('#stat').textContent = t; };
+  const toast = t => (window.BRACE && BRACE.toast ? BRACE.toast(t) : say(t));
+
+  /* Invitation link: only accept our own code format, rendered as text. */
+  const inv = new URLSearchParams(location.search).get('invito');
+  if (inv && ID.test(inv)) {
+    const b = $('#inv');
+    b.textContent = 'Ti ha invitato ' + inv + '. Crea la tessera: alla prima cena un calice è offerto.';
+    b.classList.add('on');
+  }
+
+  const mkId = () => 'BR-' + (1000 + Math.floor(Math.random() * 9000)) + '-' + Math.random().toString(36).slice(2, 5).toUpperCase().padEnd(3, 'X');
+  const base = location.origin + location.pathname;
+
+  function qrSvg(text) {
+    if (!window.qrcode) return '';
+    const q = qrcode(0, 'M'); q.addData(text); q.make();
+    const n = q.getModuleCount();
+    let d = '';
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + c + ' ' + r + 'h1v1h-1z';
+    return '<svg viewBox="-2 -2 ' + (n + 4) + ' ' + (n + 4) + '" shape-rendering="crispEdges" role="img" aria-label="QR code personale della tessera"><path d="' + d + '" fill="#0D0E10"/></svg>';
+  }
+
+  const dots = $('#dots');
+  dots.innerHTML = Array.from({ length: N }, (_, i) => '<i' + (i === N - 1 ? ' class="gift"' : '') + '></i>').join('');
+  const dEls = [...dots.children];
+
+  function render(pop) {
+    $('#cn').textContent = st.name || 'Il tuo nome';
+    $('#cn').classList.toggle('ph', !st.name);
+    $('#cid').textContent = st.made ? st.id : 'BR-0000';
+    $('#qrw').innerHTML = qrSvg(base + '#' + (st.made ? st.id : 'BR-0000'));
+    $('#qrw').classList.toggle('dim', !st.made);
+    dEls.forEach((el, i) => el.classList.toggle('on', i < st.stamps));
+    if (pop != null && dEls[pop] && !reduce) { dEls[pop].classList.remove('pop'); void dEls[pop].offsetWidth; dEls[pop].classList.add('pop'); }
+    $('#st').disabled = !st.made;
+    $('#st').textContent = st.stamps >= N ? 'Riscatta il brisket' : 'Simula un timbro';
+    $('#area').hidden = !st.made;
+    $('#rs').hidden = !st.made;
+    $('#mk').textContent = st.made ? 'Aggiorna il nome' : 'Crea la mia tessera';
+    const left = N - st.stamps;
+    $('#pg').textContent = st.stamps + '/' + N;
+    $('#pgt').textContent = left <= 0 ? 'Traguardo raggiunto: il prossimo brisket da 250 g è offerto.' : 'Ancora ' + left + (left === 1 ? ' cena' : ' cene') + ' e il brisket da 250 g è offerto.';
+    $('#cardSr').textContent = 'Tessera di ' + (st.name || 'nessun nome') + ', ' + st.stamps + ' timbri su ' + N + '.';
+    $('#wa').setAttribute('aria-pressed', st.wa);
+    $('#wat').textContent = st.wa ? 'Avviso attivo (demo)' : 'Avviso disattivato';
+    $('#invNote').textContent = st.made ? 'Il link contiene il tuo codice ' + st.id + '.' : 'Prima crea la tessera: il link porta il tuo codice.';
+  }
+
+  $('#nm').value = st.name;
+  $('#nm').addEventListener('input', e => { st.name = e.target.value.trim().slice(0, 22); render(); });
+  $('#fm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (st.name.length < 2) { say('Scrivi il tuo nome per creare la tessera.'); $('#nm').focus(); return; }
+    if (!st.made) st.id = mkId();
+    st.made = true; save(); render();
+    say('Tessera creata. Girala per vedere il tuo QR.');
+    $('#tilt').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+  $('#rs').addEventListener('click', () => {
+    st = { name: '', id: '', stamps: 0, wa: false, made: false };
+    $('#nm').value = '';
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    setFlip(false); render(); say('Tessera azzerata.');
+  });
+  $('#st').addEventListener('click', () => {
+    if (!st.made) return;
+    if (st.stamps >= N) { st.stamps = 0; save(); render(); say('Brisket riscattato. Si riparte da zero.'); return; }
+    st.stamps++; save(); render(st.stamps - 1);
+    say(st.stamps >= N ? 'Sesto timbro: il prossimo brisket è offerto.' : 'Timbro aggiunto: ' + st.stamps + ' su ' + N + '.');
+  });
+  $('#wa').addEventListener('click', () => { st.wa = !st.wa; save(); render(); });
+  $('#invBtn').addEventListener('click', async () => {
+    if (!st.made) { toast('Crea prima la tessera qui sopra'); $('#nm').focus(); return; }
+    const link = base + '?invito=' + encodeURIComponent(st.id);
+    try { await navigator.clipboard.writeText(link); toast('Invito copiato'); } catch (e) { toast('Copia non disponibile su questo browser'); }
+  });
+
+  /* flip + tilt */
+  const flip = $('#flip'), fl = $('#fl');
+  function setFlip(b) {
+    flip.classList.toggle('back', b);
+    fl.setAttribute('aria-pressed', b);
+    fl.textContent = b ? 'Mostra il fronte' : 'Mostra il QR';
+    $('#backf').setAttribute('aria-hidden', !b);
+    $('#front').setAttribute('aria-hidden', b);
+  }
+  fl.addEventListener('click', () => setFlip(!flip.classList.contains('back')));
+  const tilt = $('#tilt'), c3 = $('#c3'), front = $('#front');
+  if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    tilt.addEventListener('pointermove', e => {
+      const b = tilt.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      c3.style.setProperty('--ry', ((x - .5) * 24).toFixed(2) + 'deg');
+      c3.style.setProperty('--rx', ((.5 - y) * 16).toFixed(2) + 'deg');
+      front.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+      front.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+    });
+    tilt.addEventListener('pointerleave', () => { c3.style.removeProperty('--rx'); c3.style.removeProperty('--ry'); });
+  }
+  render();
+});
+</script>
+</body>
+</html>

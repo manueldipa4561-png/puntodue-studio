@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Menù e allergeni · BRACE Milano</title>
+<meta name="description" content="Il menù di BRACE: brisket, costine e pulled pork affumicati sulla quercia, verdure alla brace, dolci e vini naturali. Prezzi e allergeni.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0D0E10">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="brace.css">
+<style>
+.top{padding-top:clamp(120px,16vw,200px);padding-bottom:clamp(32px,4vw,56px)}
+.top h1{font-size:clamp(4.4rem,13vw,11rem)}
+.bar{position:sticky;top:68px;z-index:40;background:rgba(13,14,16,.94);border-bottom:1px solid var(--line)}
+@supports (backdrop-filter:blur(1px)){.bar{background:rgba(13,14,16,.78);backdrop-filter:blur(14px)}}
+.bar .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+.cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.cats::-webkit-scrollbar{display:none}
+.cats a{flex:none;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:var(--pill);color:var(--smoke);font-size:.93rem;transition:color .2s,background .2s}
+.cats a:hover{color:var(--bone)}
+.cats a.on{background:var(--ash2);color:var(--bone)}
+.flt{display:flex;gap:8px;flex:none}
+.tg{min-height:44px;padding:0 16px;border-radius:var(--pill);border:1px solid rgba(236,237,234,.28);background:transparent;cursor:pointer;font-size:.9rem;white-space:nowrap}
+.tg[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+@media (max-width:760px){.bar .wrap{flex-direction:column;align-items:stretch;gap:8px}.cats{margin:0 calc(var(--gut)*-1);padding:0 var(--gut)}.flt .tg{flex:1}}
+
+.cat{padding:clamp(64px,8vw,112px) 0 0;scroll-margin-top:150px}
+.cat-h{display:grid;grid-template-columns:1fr minmax(0,300px);gap:32px;align-items:end;margin-bottom:36px}
+.cat-h h2{font-size:clamp(2.8rem,6vw,5rem)}
+.cat-h p{margin:12px 0 0;color:var(--smoke);max-width:46ch}
+.cat-h img{border-radius:var(--r);aspect-ratio:3/2;object-fit:cover;width:100%}
+.items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.it{background:var(--ash);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-content:start}
+.it[hidden]{display:none}
+.it h3{margin:0;font-size:1.05rem;font-weight:600}
+.it .pr{font-family:var(--m);font-size:1rem;text-align:right;white-space:nowrap}
+.it p{margin:0;color:var(--smoke);font-size:.92rem;grid-column:1/-1}
+.it .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bd{font-family:var(--m);font-size:.72rem;padding:3px 8px;border-radius:var(--pill);border:1px solid var(--line);color:var(--smoke)}
+.bd.v{border-color:rgba(128,149,255,.5);color:var(--blue-hi)}
+.empty{grid-column:1/-1;color:var(--smoke);padding:18px 0;margin:0}
+@media (max-width:760px){.cat-h{grid-template-columns:1fr}.cat-h img{aspect-ratio:16/9}.items{grid-template-columns:1fr}}
+
+.allerg{margin-top:clamp(80px,10vw,140px);padding:clamp(24px,3vw,40px);background:var(--ash);border-radius:var(--r);scroll-margin-top:150px}
+.allerg h2{font-size:clamp(2.4rem,5vw,4rem)}
+.allerg ol{margin:24px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px 24px;font-size:.93rem}
+.allerg li{display:flex;gap:10px;align-items:baseline}
+.allerg li b{font-family:var(--m);font-weight:500;color:var(--blue-hi);min-width:2ch}
+.allerg p{color:var(--smoke);margin:20px 0 0;max-width:70ch;font-size:.93rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:clamp(56px,7vw,96px)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="hd">
+  <a class="brand" href="index.html" aria-label="BRACE, home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="12" fill="#3D5BFF"/><circle cx="20" cy="13" r="4.5" fill="#ECEDEA"/></svg>BRACE
+  </a>
+  <nav class="nav" aria-label="Principale">
+    <a href="menu.html" aria-current="page">Menù</a>
+    <a href="index.html#fuoco">Il fuoco</a>
+    <a href="index.html#vino">Vino</a>
+    <a href="club.html">Club</a>
+    <a href="index.html#dove">Dove</a>
+  </nav>
+  <span class="now" data-now><i aria-hidden="true"></i><span>Orari</span></span>
+  <a class="lnk m-only" href="index.html">Home</a>
+  <a class="btn" href="index.html#prenota">Prenota</a>
+</header>
+
+<main id="main">
+  <section class="wrap top" data-first>
+    <h1 class="d">Il <b>menù.</b></h1>
+    <p class="lead">Cambia con la stagione e con quello che esce dal fumo. Le carni affumicate sono a porzione finché ce ne sono: per non restare senza, tieni da parte il brisket quando prenoti.</p>
+  </section>
+
+  <div class="bar">
+    <div class="wrap">
+      <nav class="cats" aria-label="Categorie del menù">
+        <a href="#fumo">Dal fumo</a><a href="#panini">Panini</a><a href="#verde">Verde</a><a href="#contorni">Contorni</a><a href="#dolci">Dolci</a><a href="#bere">Da bere</a><a href="#allergeni">Allergeni</a>
+      </nav>
+      <div class="flt" role="group" aria-label="Filtri">
+        <button class="tg" type="button" data-t="v" aria-pressed="false">Vegetariano</button>
+        <button class="tg" type="button" data-t="sg" aria-pressed="false">Senza glutine</button>
+      </div>
+    </div>
+  </div>
+  <p class="sr" id="fstat" role="status" aria-live="polite"></p>
+
+  <div class="wrap">
+    <section class="cat" id="fumo" aria-labelledby="c1">
+      <div class="cat-h"><div><h2 class="d" id="c1">Dal <b>fumo.</b></h2><p>Legna di quercia e ciliegio, fuoco a 120 gradi. Servito su carta da macellaio con pane bianco e sottaceti.</p></div><img src="img/brisket.webp" width="1000" height="672" alt="Brisket affumicato tagliato a fette" loading="lazy" decoding="async"></div>
+      <ul class="items">
+        <li class="it" data-sg><h3>Brisket di manzo</h3><span class="pr">19 € · 36 €</span><p>Punta di petto, 14 ore. 250 g o 500 g.</p><div class="meta"><span class="bd v">SG senza pane</span><span class="bd">10</span></div></li>
+        <li class="it" data-sg><h3>Costine di maiale</h3><span class="pr">17 €</span><p>Mezza rastrelliera, glassa al miele di castagno e chipotle.</p><div class="meta"><span class="bd v">SG</span><span class="bd">10 · 12</span></div></li>
+        <li class="it" data-sg><h3>Pulled pork</h3><span class="pr">15 €</span><p>Spalla di maiale sfilacciata, salsa all'aceto di mele. 300 g.</p><div class="meta"><span class="bd v">SG senza pane</span><span class="bd">10 · 12</span></div></li>
+        <li class="it"><h3>Salsiccia affumicata</h3><span class="pr">12 €</span><p>Fatta in casa con la nostra macelleria, peperoncino dolce e fonduta.</p><div class="meta"><span class="bd">1 · 7</span></div></li>
+        <li class="it" data-sg><h3>Mezzo pollo al fumo</h3><span class="pr">16 €</span><p>Marinato nel latticello, pelle croccante, salsa bianca.</p><div class="meta"><span class="bd v">SG</span><span class="bd">3 · 7 · 10</span></div></li>
+        <li class="it"><h3>Tagliere del pitmaster</h3><span class="pr">54 €</span><p>Per 2 o 3. Brisket, costine, pulled pork, salsiccia, coleslaw, sottaceti e tre salse.</p><div class="meta"><span class="bd">1 · 3 · 7 · 10 · 12</span></div></li>
+      </ul>
+    </section>
+
+    <section class="cat" id="panini" aria-labelledby="c2">
+      <div class="cat-h"><div><h2 class="d" id="c2"><b>Panini.</b></h2><p>Brioche tostata sulla brace. A pranzo la domenica e la sera al banco.</p></div><img src="img/bun.webp" width="1000" height="1000" alt="Panino con pulled pork e coleslaw" loading="lazy" decoding="async"></div>
+      <ul class="items">
+        <li class="it"><h3>Pulled pork bun</h3><span class="pr">13 €</span><p>Spalla sfilacciata, coleslaw al cavolo viola, cetrioli della casa.</p><div class="meta"><span class="bd">1 · 3 · 7 · 10</span></div></li>
+        <li class="it"><h3>Brisket sandwich</h3><span class="pr">15 €</span><p>Brisket tagliato spesso, cipolla bruciata, senape al miele.</p><div class="meta"><span class="bd">1 · 3 · 7 · 10</span></div></li>
+        <li class="it" data-v><h3>Fungo alla brace</h3><span class="pr">12 €</span><p>Cappellone di pleurotus laccato, maionese affumicata, rucola.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd">1 · 3 · 7</span></div></li>
+      </ul>
+    </section>
+
+    <section class="cat" id="verde" aria-labelledby="c3">
+      <div class="cat-h"><div><h2 class="d" id="c3"><b>Verde</b> alla brace.</h2><p>Verdure di stagione da orti della Brianza, passate sul fuoco vivo. Qui la carne non serve.</p></div><img src="img/verde.webp" width="1000" height="1000" alt="Porri e cavolo alla brace con salsa verde" loading="lazy" decoding="async"></div>
+      <ul class="items">
+        <li class="it" data-v data-sg><h3>Porri e cavolo alla brace</h3><span class="pr">11 €</span><p>Salsa verde alle erbe, semi di zucca tostati.</p><div class="meta"><span class="bd v">Vegano</span><span class="bd v">SG</span></div></li>
+        <li class="it" data-v data-sg><h3>Pannocchia al fuoco</h3><span class="pr">7 €</span><p>Burro affumicato, lime e peperoncino.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd v">SG</span><span class="bd">7</span></div></li>
+        <li class="it" data-v data-sg><h3>Carote arrosto</h3><span class="pr">9 €</span><p>Yogurt al tahini, dukkah, miele.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd v">SG</span><span class="bd">7 · 8 · 11</span></div></li>
+        <li class="it" data-v><h3>Mac and cheese affumicato</h3><span class="pr">8 €</span><p>Tre formaggi lombardi e crosta di pane.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd">1 · 7</span></div></li>
+      </ul>
+    </section>
+
+    <section class="cat" id="contorni" aria-labelledby="c4">
+      <div class="cat-h"><div><h2 class="d" id="c4"><b>Contorni.</b></h2><p>Per completare il vassoio.</p></div></div>
+      <ul class="items">
+        <li class="it" data-v data-sg><h3>Coleslaw</h3><span class="pr">5 €</span><p>Cavolo viola e carota, maionese leggera.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd v">SG</span><span class="bd">3 · 10</span></div></li>
+        <li class="it" data-v data-sg><h3>Sottaceti della casa</h3><span class="pr">4 €</span><p>Cetrioli, cipolla rossa, jalapeño.</p><div class="meta"><span class="bd v">Vegano</span><span class="bd v">SG</span><span class="bd">12</span></div></li>
+        <li class="it" data-v data-sg><h3>Fagioli al fumo</h3><span class="pr">6 €</span><p>Borlotti, pomodoro e melassa. Versione vegana.</p><div class="meta"><span class="bd v">Vegano</span><span class="bd v">SG</span></div></li>
+        <li class="it" data-v data-sg><h3>Patate schiacciate</h3><span class="pr">6 €</span><p>Cotte nella brace, sale affumicato e rosmarino.</p><div class="meta"><span class="bd v">Vegano</span><span class="bd v">SG</span></div></li>
+      </ul>
+    </section>
+
+    <section class="cat" id="dolci" aria-labelledby="c5">
+      <div class="cat-h"><div><h2 class="d" id="c5"><b>Dolci.</b></h2><p>Il fuoco arriva anche qui.</p></div><img src="img/dolce.webp" width="1000" height="1000" alt="Cheesecake bruciata con pesca alla brace" loading="lazy" decoding="async"></div>
+      <ul class="items">
+        <li class="it" data-v><h3>Cheesecake bruciata</h3><span class="pr">8 €</span><p>Con mezza pesca passata sulla brace.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd">1 · 3 · 7</span></div></li>
+        <li class="it" data-v><h3>Tiramisù al caffè affumicato</h3><span class="pr">8 €</span><p>Savoiardi bagnati in caffè passato nel fumo di ciliegio.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd">1 · 3 · 7</span></div></li>
+        <li class="it" data-v><h3>Banana pudding</h3><span class="pr">7 €</span><p>Crema alla vaniglia, banana, biscotto sbriciolato.</p><div class="meta"><span class="bd v">Vegetariano</span><span class="bd">1 · 3 · 7</span></div></li>
+      </ul>
+    </section>
+
+    <section class="cat" id="bere" aria-labelledby="c6">
+      <div class="cat-h"><div><h2 class="d" id="c6">Da <b>bere.</b></h2><p>120 vini naturali, birre artigianali lombarde alla spina e tre cocktail passati nel fumo.</p></div><img src="img/vino.webp" width="896" height="1120" alt="Calice di vino naturale sul bancone" loading="lazy" decoding="async"></div>
+      <ul class="items">
+        <li class="it" data-v data-sg><h3>Vino naturale al calice</h3><span class="pr">6 € - 8 €</span><p>Quattro bianchi, quattro rossi, due macerati. Chiedi cosa c'è aperto.</p><div class="meta"><span class="bd">12</span></div></li>
+        <li class="it" data-v data-sg><h3>Vino naturale in bottiglia</h3><span class="pr">26 € - 60 €</span><p>La carta completa è al banco e cambia ogni settimana.</p><div class="meta"><span class="bd">12</span></div></li>
+        <li class="it" data-v><h3>Birra artigianale alla spina</h3><span class="pr">6 € · 7 €</span><p>Tre spine da birrifici lombardi: una chiara, una ambrata, una a rotazione.</p><div class="meta"><span class="bd">1</span></div></li>
+        <li class="it" data-v data-sg><h3>Old fashioned al ciliegio</h3><span class="pr">11 €</span><p>Bourbon, zucchero affumicato, bitter. Servito sotto la campana di fumo.</p><div class="meta"><span class="bd">12</span></div></li>
+        <li class="it" data-v data-sg><h3>Paloma alla brace</h3><span class="pr">10 €</span><p>Tequila, pompelmo arrostito, lime, sale al fumo.</p></li>
+        <li class="it" data-v data-sg><h3>Limonata al rosmarino bruciato</h3><span class="pr">5 €</span><p>Analcolica, fatta ogni mattina.</p></li>
+      </ul>
+    </section>
+
+    <section class="allerg" id="allergeni" aria-labelledby="c7">
+      <h2 class="d" id="c7"><b>Allergeni.</b></h2>
+      <ol>
+        <li><b>1</b>Cereali con glutine</li><li><b>2</b>Crostacei</li><li><b>3</b>Uova</li><li><b>4</b>Pesce</li><li><b>5</b>Arachidi</li><li><b>6</b>Soia</li><li><b>7</b>Latte</li>
+        <li><b>8</b>Frutta a guscio</li><li><b>9</b>Sedano</li><li><b>10</b>Senape</li><li><b>11</b>Sesamo</li><li><b>12</b>Anidride solforosa e solfiti</li><li><b>13</b>Lupini</li><li><b>14</b>Molluschi</li>
+      </ol>
+      <p>I numeri accanto a ogni piatto indicano gli allergeni presenti (Reg. UE 1169/2011). In cucina usiamo tutti gli allergeni elencati: se hai un'allergia o un'intolleranza dillo a chi ti serve prima di ordinare. SG indica i piatti senza glutine; il pane si può togliere.</p>
+    </section>
+
+    <div class="cta-row">
+      <a class="btn" href="index.html#prenota">Prenota un tavolo <span class="arrow" aria-hidden="true">→</span></a>
+      <span class="note">Prezzi d'esempio, coperto non previsto.</span>
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <p class="big" aria-hidden="true">BRACE</p>
+    <div class="row">
+      <nav aria-label="Piè di pagina"><a href="index.html">Home</a><a href="club.html">Brace Club</a><a href="index.html#prenota">Prenota</a></nav>
+      <p class="note" style="margin:0">© 2026 BRACE · concept demo di Punto Due Studio. Nomi, prezzi e recensioni sono d'esempio.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock"><span><b data-now><span>Stasera</span></b>Tavoli e banco</span><a class="btn sm" href="index.html#prenota">Prenota un tavolo</a></div>
+
+<script src="brace.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const tgs = [...document.querySelectorAll('.tg')], items = [...document.querySelectorAll('.it')], stat = document.getElementById('fstat');
+  const on = { v: false, sg: false };
+  tgs.forEach(b => b.addEventListener('click', () => {
+    on[b.dataset.t] = !on[b.dataset.t];
+    b.setAttribute('aria-pressed', on[b.dataset.t]);
+    let n = 0;
+    items.forEach(it => { const ok = (!on.v || it.hasAttribute('data-v')) && (!on.sg || it.hasAttribute('data-sg')); it.hidden = !ok; n += ok; });
+    document.querySelectorAll('.items').forEach(ul => {
+      let e = ul.querySelector('.empty');
+      const none = ![...ul.children].some(li => li.classList.contains('it') && !li.hidden);
+      if (none && !e) { e = document.createElement('li'); e.className = 'empty'; e.textContent = 'Niente in questa sezione con i filtri scelti.'; ul.append(e); }
+      if (!none && e) e.remove();
+    });
+    stat.textContent = n + ' piatti e bevande mostrati';
+  }));
+  /* highlight the category currently on screen */
+  const links = [...document.querySelectorAll('.cats a')];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(a => {
+      const cur = a.getAttribute('href') === '#' + e.target.id;
+      a.classList.toggle('on', cur);
+      if (cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      if (cur && a.parentElement.scrollWidth > a.parentElement.clientWidth) a.parentElement.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+    });
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('.cat, .allerg').forEach(s => io.observe(s));
+});
+</script>
+</body>
+</html>
