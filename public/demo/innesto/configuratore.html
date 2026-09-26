@@ -25,7 +25,17 @@
     .stage[data-ready] canvas{opacity:1}
     .stage[data-ready] img.fallback{opacity:0}
     .stage .floor{position:absolute;left:50%;bottom:9%;width:60%;height:12%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);pointer-events:none;opacity:0;transition:opacity .8s}
-    .stage[data-ready] .floor{opacity:1}
+    .stage[data-ready] .floor{opacity:.35}
+    /* pin sulle stanze: scorciatoia per mouse e tocco, da tastiera ci sono i bottoni */
+    .pins{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+    .pin{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;will-change:transform}
+    .pin[data-on]{opacity:1;pointer-events:auto}
+    .pin i{position:relative;width:14px;height:14px;border-radius:50%;background:#FFF8F3;box-shadow:0 0 0 4px var(--accent),0 6px 14px rgba(0,0,0,.45);transition:background .25s,box-shadow .25s}
+    .pin i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #E07A57;animation:ping 2.2s var(--ease) infinite}
+    .pin[aria-pressed=true] i{background:var(--accent);box-shadow:0 0 0 4px #FFF8F3,0 6px 14px rgba(0,0,0,.45)}
+    .pin span{position:absolute;left:36px;white-space:nowrap;font-family:var(--font-d);font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(22,21,19,.86);color:#fff;padding:6px 10px;border-radius:100px;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s var(--ease);pointer-events:none}
+    .pin:hover span,.pin[aria-pressed=true] span{opacity:1;transform:none}
+    @keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(2.3);opacity:0}}
     .stage-ui{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:3;pointer-events:none}
     .stage-ui>*{pointer-events:auto}
     .hint{font-family:var(--font-d);font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(22,21,19,.78);color:var(--d-fg);padding:9px 14px;border-radius:100px}
@@ -162,6 +172,7 @@
       <span class="loading" data-loading>Carico il modello…</span>
       <img class="fallback" src="./img/18.webp" alt="Modellino in sezione di una casa su due piani" width="1000" height="1000" fetchpriority="high">
       <span class="floor" aria-hidden="true"></span>
+      <div class="pins" data-pins></div>
       <button class="touch-gate" type="button" data-gate aria-label="Attiva la rotazione del modello"></button>
       <div class="stage-ui">
         <span class="hint" data-hint>Trascina per ruotare</span>
@@ -268,12 +279,12 @@
 <script>
 /* stanze: testi e costi di esempio, condivisi con il 3D */
 window.ROOMS = {
-  /* view = [azimut, polare, distanza relativa, altezza del punto guardato] */
-  casa:      {t:'Tutta la casa', d:'Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.', p:'700 – 1.100 €/m²', view:[1.0, 1.1, 1.0, 0]},
-  soggiorno: {t:'Soggiorno', d:'Pavimento in rovere, pareti a calce, nuovo impianto elettrico e luci, restauro delle finestre.', p:'450 – 750 €/m²', view:[1.5, 1.2, .62, -.32]},
-  cucina:    {t:'Cucina', d:'Impianto idraulico ed elettrico, rivestimenti, cucina su misura con piano in pietra ed elettrodomestici.', p:'18.000 – 32.000 €', view:[1.05, 1.15, .58, -.32]},
-  camera:    {t:'Camera', d:'Parquet, calce, armadio a muro, prese e punti luce nuovi, isolamento acustico del solaio.', p:'350 – 600 €/m²', view:[1.0, 1.0, .58, .3]},
-  bagno:     {t:'Bagno', d:'Demolizione, impianti, doccia a filo pavimento, sanitari sospesi, rivestimenti e mobile su misura.', p:'12.000 – 20.000 €', view:[1.95, 1.0, .58, .3]}
+  /* view = [azimut, polare, distanza relativa]; at = punto della stanza nel modello (pin e centro della vista) */
+  casa:      {t:'Tutta la casa', d:'Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.', p:'700 – 1.100 €/m²', view:[1.0, 1.1, 1.0], at:[0, 0, 0]},
+  soggiorno: {t:'Soggiorno', d:'Pavimento in rovere, pareti a calce, nuovo impianto elettrico e luci, restauro delle finestre.', p:'450 – 750 €/m²', view:[1.5, 1.2, .62], at:[.15, -.3, .3]},
+  cucina:    {t:'Cucina', d:'Impianto idraulico ed elettrico, rivestimenti, cucina su misura con piano in pietra ed elettrodomestici.', p:'18.000 – 32.000 €', view:[1.05, 1.15, .58], at:[-.1, -.28, -.2]},
+  camera:    {t:'Camera', d:'Parquet, calce, armadio a muro, prese e punti luce nuovi, isolamento acustico del solaio.', p:'350 – 600 €/m²', view:[1.0, 1.0, .58], at:[-.25, .28, .25]},
+  bagno:     {t:'Bagno', d:'Demolizione, impianti, doccia a filo pavimento, sanitari sospesi, rivestimenti e mobile su misura.', p:'12.000 – 20.000 €', view:[1.72, 1.12, .55], at:[-.25, .26, -.47]}
 };
 (function(){
   var card = document.querySelector('[data-room-card]'), btns = document.querySelectorAll('[data-room]');
@@ -355,27 +366,40 @@ async function boot(){
   const THREE = await import('three');
   const { GLTFLoader } = await import('./vendor/jsm/loaders/GLTFLoader.js');
   const { OrbitControls } = await import('./vendor/jsm/controls/OrbitControls.js');
+  const { RoomEnvironment } = await import('./vendor/jsm/environments/RoomEnvironment.js');
 
   const touch = matchMedia('(pointer:coarse)').matches;
+  const dpr = () => Math.min(devicePixelRatio, touch ? 1.25 : 1.5);
   const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
-  renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5));
+  renderer.setPixelRatio(dpr());
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 1.0;
   renderer.localClippingEnabled = true;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   stage.insertBefore(renderer.domElement, stage.querySelector('.floor'));
 
   const scene = new THREE.Scene();
+  /* luce d'ambiente morbida da uno studio fotografico virtuale */
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), .04).texture;
+  pmrem.dispose();
+  scene.environmentIntensity = .75;
   const camera = new THREE.PerspectiveCamera(30, 1, 0.05, 50);
-  scene.add(new THREE.HemisphereLight(0xfff4e8, 0x2a2521, 1.6));
-  const sun = new THREE.DirectionalLight(0xffe2c4, 2.2); sun.position.set(3, 5, 4); scene.add(sun);
-  const rim = new THREE.DirectionalLight(0xc8d4ff, .6); rim.position.set(-4, 2, -3); scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0xfff4e8, 0x2a2521, .7));
+  const sun = new THREE.DirectionalLight(0xffe2c4, 2.2); sun.position.set(2.4, 3.6, 2.2);
+  sun.castShadow = true; sun.shadow.mapSize.setScalar(touch ? 1024 : 2048);
+  Object.assign(sun.shadow.camera, {left:-1.4, right:1.4, top:1.4, bottom:-1.4, near:.5, far:10});
+  sun.shadow.bias = -.0005; sun.shadow.radius = 5;
+  scene.add(sun);
+  const rim = new THREE.DirectionalLight(0xc8d4ff, .5); rim.position.set(-4, 2, -3); scene.add(rim);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = .08;
-  controls.enablePan = false; controls.minDistance = 1.6; controls.maxDistance = 5.5;
+  controls.enablePan = false; controls.minDistance = 1.2;
   controls.minPolarAngle = .35; controls.maxPolarAngle = 1.5;
-  controls.autoRotate = true; controls.autoRotateSpeed = .8;
+  controls.autoRotate = true; controls.autoRotateSpeed = .6;
 
   const bar = stage.querySelector('[data-progress]');
   const gltf = await new GLTFLoader().loadAsync('./media/casa.glb', (e) => { if(e.total) bar.style.width = (e.loaded / e.total * 100) + '%'; });
@@ -383,25 +407,78 @@ async function boot(){
   const box = new THREE.Box3().setFromObject(model), size = box.getSize(new THREE.Vector3()), center = box.getCenter(new THREE.Vector3());
   const s = 1.6 / Math.max(size.x, size.y, size.z);
   model.scale.setScalar(s); model.position.set(-center.x * s, -center.y * s, -center.z * s);
-  const H = size.y * s;
+  size.multiplyScalar(s);
+  const H = size.y;
   const clip = new THREE.Plane(new THREE.Vector3(0, -1, 0), -H / 2);
-  model.traverse((o) => { if(o.isMesh){ o.material.clippingPlanes = [clip]; o.material.side = THREE.DoubleSide; } });
+  /* solo l'ombra a terra: le ombre sui muri scurirebbero le stanze */
+  model.traverse((o) => { if(o.isMesh){ o.material.clippingPlanes = [clip]; o.material.side = THREE.DoubleSide; o.castShadow = true; } });
   scene.add(model);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), new THREE.ShadowMaterial({opacity:.42}));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -H / 2 + .002; ground.receiveShadow = true;
+  scene.add(ground);
   bar.style.width = '100%'; setTimeout(() => bar.remove(), 400);
 
-  const R = 3.4;
-  controls.target.set(0, 0, 0);
-  const [az0, pol0, d0] = ROOMS.casa.view;
-  camera.position.setFromSphericalCoords(R * d0, pol0, az0);
-
-  const resize = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5)); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  /* distanza che fa entrare tutta la casa nell'inquadratura, in base alla forma del riquadro */
+  const radius = size.length() / 2;
+  let R = 4, room = 'casa', userMoved = false, tween;
+  const fit = () => {
+    const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
+    R = radius * .9 / Math.sin(Math.min(vf, hf) / 2);
+    controls.maxDistance = R * 1.25;
+  };
+  const resize = () => {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setPixelRatio(dpr()); renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix(); fit();
+    if(room === 'casa' && !userMoved && !(tween && tween.isActive())){
+      const [az, pol, d] = ROOMS.casa.view; camera.position.setFromSphericalCoords(R * d, pol, az);
+    }
+  };
   resize(); new ResizeObserver(resize).observe(stage);
   stage.setAttribute('data-ready', '');
 
-  /* la casa "si costruisce" dal basso */
+  /* pin sulle stanze */
+  const pinsEl = stage.querySelector('[data-pins]'), pins = [];
+  ['soggiorno', 'cucina', 'camera', 'bagno'].forEach((key) => {
+    const el = document.createElement('button');
+    el.type = 'button'; el.className = 'pin'; el.tabIndex = -1; el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = '<i></i><span></span>'; el.querySelector('span').textContent = ROOMS[key].t;
+    el.addEventListener('click', (e) => { e.stopPropagation(); document.querySelector('[data-room=' + key + ']').click(); });
+    pinsEl.appendChild(el); pins.push({key, el, p:new THREE.Vector3(...ROOMS[key].at), vis:false});
+  });
+  let pinsOn = false, frame = 0;
+  const ray = new THREE.Raycaster(), v = new THREE.Vector3(), last = new THREE.Vector3(Infinity, 0, 0);
+  const updatePins = () => {
+    if(!pinsOn) return;
+    /* un pin si vede solo se nessun muro sta davanti: controllo ogni 6 fotogrammi, solo se la camera si è mossa */
+    if(frame++ % 6 === 0 && camera.position.distanceToSquared(last) > 1e-6){
+      last.copy(camera.position);
+      pins.forEach((q) => { v.copy(q.p).sub(camera.position); ray.far = v.length() - .05; ray.set(camera.position, v.normalize()); q.vis = ray.intersectObject(model, true).length === 0; });
+    }
+    const w = stage.clientWidth, h = stage.clientHeight;
+    pins.forEach((q) => {
+      v.copy(q.p).project(camera);
+      q.el.style.transform = 'translate(' + ((v.x + 1) / 2 * w).toFixed(1) + 'px,' + ((1 - v.y) / 2 * h).toFixed(1) + 'px)';
+      q.el.toggleAttribute('data-on', q.vis && Math.abs(v.x) < .92 && Math.abs(v.y) < .92);
+    });
+  };
+
+  /* la casa "si costruisce" dal basso, con una linea di scansione */
+  const fp = new THREE.Group(), hw = size.x / 2 + .03, hd = size.z / 2 + .03;
+  const edge = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-hw, 0, -hd), new THREE.Vector3(hw, 0, -hd), new THREE.Vector3(hw, 0, hd), new THREE.Vector3(-hw, 0, hd)]), new THREE.LineBasicMaterial({color:0xE07A57, transparent:true}));
+  const slab = new THREE.Mesh(new THREE.PlaneGeometry(hw * 2, hd * 2), new THREE.MeshBasicMaterial({color:0xE07A57, transparent:true, opacity:.14, side:THREE.DoubleSide, depthWrite:false}));
+  slab.rotation.x = -Math.PI / 2; fp.add(edge, slab);
+  fp.position.y = -H / 2; scene.add(fp);
   const build = {h:-H / 2};
-  gsap.to(build, {h:H / 2 + .01, duration:2.4, delay:.2, ease:'power2.inOut', onUpdate:() => { clip.constant = build.h; },
-    onComplete:() => model.traverse((o) => { if(o.isMesh) o.material.clippingPlanes = []; })});
+  gsap.to(build, {h:H / 2 + .01, duration:2.4, delay:.2, ease:'power2.inOut', onUpdate:() => { clip.constant = build.h; fp.position.y = Math.min(build.h, H / 2); },
+    onComplete:() => {
+      model.traverse((o) => { if(o.isMesh) o.material.clippingPlanes = []; });
+      gsap.to([edge.material, slab.material], {opacity:0, duration:.5, onComplete:() => scene.remove(fp)});
+      pinsOn = true; last.set(Infinity, 0, 0);
+    }});
+
+  /* luce calda che "accende" la stanza scelta */
+  const glow = new THREE.PointLight(0xffb27a, 0, 1.2, 2); scene.add(glow);
 
   /* su touch la rotazione si attiva con un tocco, così lo scroll della pagina resta libero */
   const hint = stage.querySelector('[data-hint]'), reset = stage.querySelector('[data-reset]');
@@ -409,18 +486,21 @@ async function boot(){
     stage.setAttribute('data-touch', ''); controls.enabled = false; hint.textContent = 'Tocca per ruotare';
     stage.querySelector('[data-gate]').addEventListener('click', () => { controls.enabled = true; stage.setAttribute('data-active', ''); hint.textContent = 'Trascina per ruotare'; });
   }
-  controls.addEventListener('start', () => { controls.autoRotate = false; reset.hidden = false; tween && tween.kill(); });
+  controls.addEventListener('start', () => { controls.autoRotate = false; userMoved = true; reset.hidden = false; tween && tween.kill(); });
 
-  let tween;
   const goTo = (key) => {
-    const [az, pol, dist, ty] = ROOMS[key].view, sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+    const [az, pol, dist] = ROOMS[key].view, at = new THREE.Vector3(...ROOMS[key].at);
+    const sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
     let dAz = az - sph.theta; dAz = Math.atan2(Math.sin(dAz), Math.cos(dAz));
-    const cur = {az:sph.theta, pol:sph.phi, r:sph.radius, ty:controls.target.y};
-    controls.autoRotate = false; reset.hidden = key === 'casa';
+    const cur = {az:sph.theta, pol:sph.phi, r:sph.radius, tx:controls.target.x, ty:controls.target.y, tz:controls.target.z};
+    room = key; controls.autoRotate = false; reset.hidden = key === 'casa'; if(key === 'casa') userMoved = false;
+    pins.forEach((q) => q.el.setAttribute('aria-pressed', q.key === key ? 'true' : 'false'));
     tween && tween.kill();
-    tween = gsap.to(cur, {az:sph.theta + dAz, pol, r:R * dist, ty, duration:1.3, ease:'power3.inOut',
-      onUpdate:() => { controls.target.y = cur.ty; camera.position.setFromSphericalCoords(cur.r, cur.pol, cur.az).add(controls.target); },
+    tween = gsap.to(cur, {az:sph.theta + dAz, pol, r:R * dist, tx:at.x, ty:at.y, tz:at.z, duration:1.3, ease:'power3.inOut',
+      onUpdate:() => { controls.target.set(cur.tx, cur.ty, cur.tz); camera.position.setFromSphericalCoords(cur.r, cur.pol, cur.az).add(controls.target); },
       onComplete:() => { if(key === 'casa') controls.autoRotate = true; }});
+    if(key !== 'casa') glow.position.set(at.x, at.y + .14, at.z);
+    gsap.fromTo(glow, {intensity:glow.intensity}, {intensity:key === 'casa' ? 0 : .9, duration:.9, delay:key === 'casa' ? 0 : .6, ease:'power2.out', overwrite:true});
   };
   addEventListener('innesto:room', (e) => goTo(e.detail));
   reset.addEventListener('click', () => document.querySelector('[data-room=casa]').click());
@@ -428,9 +508,9 @@ async function boot(){
   /* render solo quando visibile */
   let visible = true;
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(stage);
-  renderer.setAnimationLoop(() => { if(!visible || document.hidden) return; controls.update(); renderer.render(scene, camera); });
+  renderer.setAnimationLoop(() => { if(!visible || document.hidden) return; controls.update(); renderer.render(scene, camera); updatePins(); });
   /* se la GPU perde il contesto, si ferma il loop e torna la foto statica */
-  renderer.domElement.addEventListener('webglcontextlost', () => { renderer.setAnimationLoop(null); stage.removeAttribute('data-ready'); });
+  renderer.domElement.addEventListener('webglcontextlost', () => { renderer.setAnimationLoop(null); stage.removeAttribute('data-ready'); pinsEl.hidden = true; });
 }
 </script>
 </body>
