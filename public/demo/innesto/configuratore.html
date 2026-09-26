@@ -98,9 +98,10 @@
       .opts{grid-template-columns:1fr}
       .nav-steps .btn{flex:1;min-width:0}
       .c-hero h1{font-size:clamp(2.4rem,11vw,3.4rem)}
-      .room{padding:10px 12px}
+      .room{padding:10px 12px;flex-wrap:wrap;row-gap:2px}.c-hero>*{min-width:0}
     }
   </style>
+<noscript><style>.fx{opacity:1!important;transform:none!important}.reveal-media .after{clip-path:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip-link" href="#main">Salta al contenuto</a>
@@ -393,7 +394,7 @@ async function boot(){
   const [az0, pol0, d0] = ROOMS.casa.view;
   camera.position.setFromSphericalCoords(R * d0, pol0, az0);
 
-  const resize = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+  const resize = () => { const w = stage.clientWidth, h = stage.clientHeight; renderer.setPixelRatio(Math.min(devicePixelRatio, touch ? 1.25 : 1.5)); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
   resize(); new ResizeObserver(resize).observe(stage);
   stage.setAttribute('data-ready', '');
 
@@ -428,6 +429,8 @@ async function boot(){
   let visible = true;
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(stage);
   renderer.setAnimationLoop(() => { if(!visible || document.hidden) return; controls.update(); renderer.render(scene, camera); });
+  /* se la GPU perde il contesto, si ferma il loop e torna la foto statica */
+  renderer.domElement.addEventListener('webglcontextlost', () => { renderer.setAnimationLoop(null); stage.removeAttribute('data-ready'); });
 }
 </script>
 </body>
