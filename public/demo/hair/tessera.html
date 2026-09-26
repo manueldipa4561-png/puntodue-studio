@@ -53,7 +53,7 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
 .fm input:focus{border-color:var(--rose);outline:0}
 .fm .row{display:flex;flex-wrap:wrap;gap:10px}
 .note{font-size:13px;opacity:.7;max-width:46ch}
-.stat{min-height:1.5em;font-size:14px;color:var(--rose);font-weight:500}
+.stat{min-height:1.5em;font-size:14px;color:#985160;font-weight:500}
 
 /* ---------- 3D card ---------- */
 .tilt{--rx:0deg;--ry:0deg;--sx:50%;--sy:50%;perspective:1100px;width:100%;max-width:470px;justify-self:center;touch-action:pan-y;cursor:pointer}
@@ -144,7 +144,7 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
 
 <section class="stage" aria-label="Crea la tua tessera">
   <div>
-    <form class="fm" id="fm" novalidate>
+    <form class="fm" id="fm" action="javascript:void(0)" novalidate>
       <label for="nm">Come ti chiami?
         <input type="text" id="nm" name="n" autocomplete="given-name" maxlength="22" placeholder="Il tuo nome">
       </label>
@@ -165,7 +165,7 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
           <div class="dots" id="dots" aria-hidden="true"></div>
           <div class="cbm"><span class="nm ph" id="cn">Il tuo nome</span><span class="cn" id="cid">SZ-0000</span></div>
         </div>
-        <div class="face back" aria-label="Retro della tessera con QR">
+        <div class="face back" aria-label="Retro della tessera con QR" aria-hidden="true">
           <div class="qrw dim" id="qrw"></div>
           <span class="cap">Mostra questo codice in salone</span>
         </div>
@@ -300,7 +300,7 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
 
   /* flip + tilt */
   const tilt = $('#tilt');
-  function setFlip(v) { tilt.classList.toggle('flipped', v); $('#fl').setAttribute('aria-pressed', v); $('#fl').textContent = v ? 'Mostra il fronte' : 'Mostra il QR'; }
+  function setFlip(v) { tilt.classList.toggle('flipped', v); document.querySelector('.face.front').setAttribute('aria-hidden', v); document.querySelector('.face.back').setAttribute('aria-hidden', !v); $('#fl').setAttribute('aria-pressed', v); $('#fl').textContent = v ? 'Mostra il fronte' : 'Mostra il QR'; }
   const toggle = () => setFlip(!tilt.classList.contains('flipped'));
   $('#fl').addEventListener('click', toggle);
   tilt.addEventListener('click', toggle);
