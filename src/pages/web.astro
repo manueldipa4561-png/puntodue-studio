@@ -8,7 +8,7 @@ const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Tessera + QR'], next: ['Prenotazione con conferma su WhatsApp', 'Timbri aggiunti dallo staff scansionando il QR', 'Tessera salvabile nel Wallet del telefono', 'Promemoria su WhatsApp prima della visita'] },
   { slug: 'innesto', name: 'INNESTO', kind: 'Ristrutturazioni', line: 'Ristrutturazioni chiavi in mano: casa 3D, prima/dopo e stima in 4 domande.', tags: ['Casa 3D', 'Prima / Dopo', '3 pagine'], next: ['Preventivo guidato in 4 domande', 'Area cliente con avanzamento del cantiere', 'Coupon sopralluogo gratuito a tempo', 'Sconto referral per chi consiglia lo studio'] },
-  { slug: 'tattoo', name: 'Cultura Tattoo', kind: 'Tattoo studio', line: 'Tatuaggi su misura in bianco e nero, dal lucido alla pelle.', tags: ['Lettore di lucidi', 'Consulenza', 'Acconto'], next: ['Acconto online del 30% scalato dal totale', 'Promemoria WhatsApp 48 ore prima della seduta', 'Tessera a timbri: alla 5ª seduta −15%', 'Porta un amico: −10% a chi presenti'] },
+  { slug: 'brace', name: 'BRACE', kind: 'Smokehouse e vini naturali', line: 'Brisket affumicato 14 ore, vini naturali e tavolo prenotato con conferma su WhatsApp.', tags: ['Fumo in WebGL', 'Timeline 14 ore', 'Tessera + QR'], next: ['Acconto online per tenere da parte il brisket', 'Tessera con QR: alla 6ª cena il brisket è offerto', 'Coupon a tempo per riempire martedì e mercoledì', 'Porta un amico: un calice offerto a entrambi'] },
 ];
 const stats = [
   { t: 'Probabilità di vendere', a: { l: 'Nuovo contatto', v: 12.5, r: '5–20%' }, b: { l: 'Cliente già acquisito', v: 65, r: '60–70%' }, max: 100 },
@@ -223,7 +223,7 @@ const kstats = [
         {demos.map((d, i) => (
           <article class="card">
             <div class="shot">
-              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.it' : d.slug === 'innesto' ? 'innesto.it' : 'culturatattoo.it'}</span></div>
+              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.it' : d.slug === 'innesto' ? 'innesto.it' : 'bracemilano.it'}</span></div>
               <div class="view" data-shot>
                 <img class="poster" src={`/previews/${d.slug}.webp`} width="960" height="600" alt="" loading="lazy" decoding="async" />
                 <iframe data-src={`/demo/${d.slug}/index.html`} title={`Anteprima ${d.name}`} scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
@@ -283,7 +283,7 @@ const kstats = [
           <li>Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera. <a href="https://www.forbes.com/sites/juliakorn/2025/05/20/new-report-50-of-young-adults-feel-isolated-in-career-planning/" target="_blank" rel="noopener">forbes.com</a> · <a href="https://www.bbbs.org/2025/09/career-confidence-in-crisis-new-report-from-big-brothers-big-sisters-shows-gen-zers-lack-critical-mentorship/" target="_blank" rel="noopener">bbbs.org</a></li>
           <li>NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari: <a href="https://blog.theinterviewguys.com/the-state-of-skills-based-hiring/" target="_blank" rel="noopener">The Interview Guys</a> · <a href="https://testlify.com/skills-based-hiring-statistics/" target="_blank" rel="noopener">Testlify</a> · <a href="https://www.forbes.com/sites/terdawn-deboe/2026/08/10/employers-are-hiring-for-skills-over-degrees-now-ai-is-why/" target="_blank" rel="noopener">Forbes, agosto 2026</a></li>
           <li>NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level. <a href="https://www.npr.org/2026/08/18/nx-s1-5910677/recent-college-graduates-employment-job-artificial-intelligence" target="_blank" rel="noopener">npr.org</a> · <a href="https://www.ibisworld.com/blog/2026-job-market-leaves-new-grads-behind/1/1126/" target="_blank" rel="noopener">ibisworld.com</a></li>
-          <li>Le demo INNESTO, SEZIONE e Cultura Tattoo sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.</li>
+          <li>Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.</li>
         </ol>
       </section>
 </Site>

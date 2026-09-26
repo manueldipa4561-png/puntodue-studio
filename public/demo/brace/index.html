@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="it" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BRACE · Smokehouse e vini naturali a Milano</title>
+<meta name="description" content="Brisket affumicato 14 ore sulla quercia, verdure alla brace e 120 vini naturali. All'Isola, Milano. Prenota un tavolo con conferma su WhatsApp.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0D0E10">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="img/hero.webp" media="(min-aspect-ratio: 4/5)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-m.webp" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
+<link rel="stylesheet" href="brace.css">
+<script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('anim');setTimeout(function(){if(!window.gsap||!window.__braceHome)document.documentElement.classList.remove('anim')},3000)}</script>
+<style>
+.anim .hero .ln>span{transform:translateY(105%)}
+.anim #hsub,.anim #hcta{opacity:0}
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero picture,.hero img,#smoke{position:absolute;inset:0;width:100%;height:100%}
+.hero img{object-fit:cover;object-position:70% 50%}
+#smoke{z-index:1;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+#smoke.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(13,14,16,.88) 0%,rgba(13,14,16,.55) 38%,rgba(13,14,16,0) 66%),linear-gradient(0deg,var(--soot) 0%,rgba(13,14,16,0) 30%)}
+.hero-in{position:relative;z-index:3;width:100%;padding-bottom:clamp(48px,9vh,110px);padding-top:120px}
+.hero h1{font-size:clamp(3.9rem,10vw,10rem)}
+.ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em;white-space:nowrap}
+.ln>span{display:block}
+.hero-sub{max-width:34ch;margin:26px 0 0;font-size:clamp(1.05rem,1.35vw,1.2rem);color:#C9CDD2}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+@media (max-aspect-ratio:4/5){
+  .hero img{object-position:50% 40%}
+  .hero::after{background:linear-gradient(0deg,var(--soot) 0%,rgba(13,14,16,.9) 30%,rgba(13,14,16,.25) 62%,rgba(13,14,16,.35) 100%)}
+}
+@media (max-width:520px){.ctas .btn{flex:1 1 auto}}
+@media (max-width:560px){.hero h1{font-size:min(3.9rem,16.8vw)}}
+
+section{position:relative}
+.sec{padding:clamp(96px,13vw,176px) 0}
+
+/* ---------- 14 ore (pinned scroll story) ---------- */
+.cook-head{padding-top:clamp(96px,12vw,160px);padding-bottom:clamp(40px,5vw,64px)}
+.cook-pin{position:relative}
+.cook-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.cook-media{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--ash)}
+.cook-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.readout{display:flex;gap:clamp(20px,4vw,48px);align-items:flex-end;flex-wrap:wrap}
+.clock{font-family:var(--m);font-weight:500;font-size:clamp(4rem,8.6vw,8.4rem);line-height:.9;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.core{font-family:var(--m);color:var(--smoke);padding-bottom:.6em}
+.core b{display:block;font-weight:500;font-size:clamp(1.6rem,2.6vw,2.4rem);color:var(--blue-hi);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.prog{height:2px;margin:28px 0 30px;position:relative}
+.prog i{position:absolute;inset:0;background:var(--blue);transform-origin:0 50%;transform:scaleX(0)}
+.stages{list-style:none;margin:0;padding:0;display:grid}
+.stg h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,3.4vw,3rem);line-height:.95;margin:8px 0 12px}
+.stg p{margin:0;color:var(--smoke);max-width:40ch}
+/* fallback: plain list (no JS, reduced motion) */
+.cook-media img+img{display:none}
+.stages{gap:36px}
+/* pinned mode */
+.pinned .cook-pin{height:100vh;height:100svh;display:flex;align-items:center;padding-top:68px}
+.pinned .cook-grid{width:100%}
+.pinned .cook-media{aspect-ratio:auto;height:min(calc(100svh - 136px),760px)}
+.pinned .cook-media img+img{display:block}
+.pinned .cook-media img{opacity:0;transform:scale(1.06);transition:opacity .6s ease,transform 1.4s var(--ease)}
+.pinned .cook-media img.on{opacity:1;transform:none}
+.pinned .stages{gap:0}
+.pinned .stg{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .45s ease,transform .45s var(--ease),visibility .45s}
+.pinned .stg.on{opacity:1;visibility:visible;transform:none}
+@media (max-width:900px){
+  .cook-grid{grid-template-columns:1fr;gap:20px}
+  .cook-media,.pinned .cook-media{aspect-ratio:auto;height:44svh}
+  .pinned .cook-pin{align-items:flex-start;padding-top:84px}
+  .clock{font-size:clamp(3.2rem,15vw,4.6rem)}
+  .prog{margin:16px 0 18px}
+  .stg h3{font-size:1.9rem}
+  .stg p{font-size:.95rem}
+}
+@media (max-width:900px) and (max-height:700px){.cook-media,.pinned .cook-media{height:36svh}.stg p{font-size:.9rem}}
+
+/* ---------- brisket del giorno ---------- */
+.today{display:grid;grid-template-columns:1fr minmax(0,500px);gap:clamp(32px,6vw,96px);align-items:center}
+.ticket{background:var(--ash);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,34px)}
+.left{display:flex;align-items:baseline;gap:14px;margin:6px 0 18px}
+.left b{font-family:var(--d);font-weight:900;font-size:clamp(5rem,9vw,7.5rem);line-height:.8;font-variant-numeric:tabular-nums}
+.left span{color:var(--smoke)}
+.slots{display:grid;grid-template-columns:repeat(20,1fr);gap:4px;margin-bottom:24px}
+.slots i{aspect-ratio:1;border-radius:2px;background:var(--ash2);border:1px solid var(--line)}
+.slots i.sold{background:#3A3E44;border-color:transparent}
+.slots i.mine{background:var(--blue);border-color:transparent}
+.opts{display:flex;gap:10px;flex-wrap:wrap;border:0;padding:0;margin:0 0 18px}
+.opts legend{margin-bottom:10px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border-radius:var(--pill);border:1px solid rgba(236,237,234,.3);font-size:.95rem}
+.opt input:checked+span{background:var(--bone);color:var(--soot);border-color:var(--bone)}
+.opt input:focus-visible+span{outline:2px solid var(--blue-hi);outline-offset:3px}
+.sw-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;margin-bottom:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sw-row span{font-size:.93rem;color:var(--smoke)}
+.sw{position:relative;flex:none;width:52px;height:30px;border-radius:var(--pill);border:0;background:#3A3E44;cursor:pointer;transition:background .25s}
+.sw::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--bone);transition:transform .25s var(--ease)}
+.sw[aria-pressed="true"]{background:var(--blue)}
+.sw[aria-pressed="true"]::after{transform:translateX(22px)}
+.sw::before{content:"";position:absolute;inset:-8px}
+.res{margin:16px 0 0;min-height:1.5em;font-size:.95rem}
+.res b{color:var(--blue-hi);font-family:var(--m);font-weight:500}
+@media (max-width:900px){.today{grid-template-columns:1fr}.slots{grid-template-columns:repeat(10,1fr)}}
+
+/* ---------- menu ---------- */
+.menu-top{display:flex;flex-direction:column;gap:28px;margin-bottom:40px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--gut)*-1);padding:2px var(--gut)}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:44px;padding:0 18px;border-radius:var(--pill);border:1px solid rgba(236,237,234,.28);background:transparent;cursor:pointer;font-size:.95rem;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--bone)}
+.chip[aria-pressed="true"]{background:var(--bone);color:var(--soot);border-color:var(--bone)}
+.dishes{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,20px)}
+.dish{background:var(--ash);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.dish[hidden]{display:none}
+.dish figure{margin:0;aspect-ratio:1;overflow:hidden;background:var(--ash2)}
+.dish img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.dish:hover img{transform:scale(1.04)}
+.dishes.all .dish.wide{grid-column:span 2}
+.dishes.all .dish.wide figure{aspect-ratio:2/1}
+.dish-b{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dish h3{margin:0;font-size:1.08rem;font-weight:600;line-height:1.25}
+.dish p{margin:0;color:var(--smoke);font-size:.92rem}
+.dish-f{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:8px;font-family:var(--m);font-size:.84rem;color:var(--smoke)}
+.dish-f b{font-weight:500;color:var(--bone);font-size:1rem}
+.menu-more{margin-top:36px}
+@media (max-width:1100px){.dishes{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){
+  .dishes{grid-template-columns:1fr;gap:10px}
+  .dish{flex-direction:row}
+  .dish figure,.dishes.all .dish.wide figure{width:104px;flex:none;aspect-ratio:auto;min-height:124px}
+  .dishes.all .dish.wide{grid-column:auto}
+  .dish-b{padding:14px 16px}
+  .dish p{font-size:.88rem}
+}
+
+/* ---------- vino ---------- */
+.wine{display:grid;grid-template-columns:minmax(0,.85fr) 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.wine figure{margin:0;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.wine figure img{width:100%;height:100%;object-fit:cover}
+.pours{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:10px}
+.pours li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:16px 18px;background:var(--ash);border-radius:var(--r)}
+.pours b{font-weight:600}
+.pours span{color:var(--smoke);font-size:.9rem}
+.pours .mono{grid-row:span 2;align-self:center;text-align:right;color:var(--bone)}
+@media (max-width:900px){.wine{grid-template-columns:1fr}.wine figure{aspect-ratio:4/3}}
+
+/* ---------- il posto ---------- */
+.room{margin:0;height:clamp(340px,72vh,760px);overflow:hidden;position:relative}
+.room img{width:100%;height:118%;object-fit:cover;position:absolute;top:-9%;left:0}
+.place{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);padding-top:clamp(48px,6vw,80px)}
+.place p{margin:0;color:var(--smoke);font-size:1.08rem;max-width:46ch}
+.quotes{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(20px,3vw,40px);margin-top:clamp(64px,8vw,112px);padding-top:40px;border-top:1px solid var(--line)}
+.quotes figure{margin:0}
+.quotes blockquote{margin:0 0 14px;font-size:1.05rem;line-height:1.45}
+.quotes .q1 blockquote{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:clamp(1.9rem,3vw,2.7rem);line-height:.98}
+.quotes figcaption{font-size:.88rem;color:var(--smoke)}
+.rating{font-family:var(--m);font-size:.8rem;color:var(--smoke);margin-top:18px}
+.rating b{color:var(--bone);font-weight:500;font-size:1.3rem;margin-right:6px}
+@media (max-width:900px){.place,.quotes{grid-template-columns:1fr}}
+
+/* ---------- club / iniziative (bento) ---------- */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:clamp(12px,1.4vw,18px);margin-top:48px}
+.cell{border-radius:var(--r);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-height:260px}
+.cell h3{font-family:var(--d);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,2.8vw,2.6rem);line-height:.92;margin:0}
+.cell p{margin:0;font-size:.97rem;max-width:40ch}
+.cell .act{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.c-club{grid-column:span 2;grid-row:span 2;background:var(--ash);border:1px solid var(--line)}
+.c-club p{color:var(--smoke)}
+.c-slow{grid-column:span 2;background:var(--blue);color:#fff}
+.c-slow .btn{background:#fff;color:#1a2ad6}
+.c-slow .btn:hover{background:#E6E9FF}
+.count{font-family:var(--m);font-size:.9rem;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.count b{font-weight:500;font-size:1.35rem;font-variant-numeric:tabular-nums}
+.c-crew{color:#fff;background:#111}
+.c-crew>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.c-crew::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,14,16,.95) 20%,rgba(13,14,16,.2));z-index:1}
+.c-crew>*:not(img){position:relative;z-index:2}
+.c-save{background:var(--ash2)}
+.c-save p{color:var(--smoke)}
+.tilt{perspective:900px;margin:auto 0 8px;display:flex;justify-content:center;padding:18px 0}
+.mcard{width:min(100%,380px);aspect-ratio:1.586;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(120% 90% at 85% 10%,#3D5BFF 0%,#1B2A99 45%,#0B0F2A 100%);color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.25);transform-style:preserve-3d;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-14deg));transition:transform .5s var(--ease);position:relative}
+.mcard::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 50% at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.28),transparent 60%);pointer-events:none}
+.mcard .t{display:flex;justify-content:space-between;align-items:center;font-family:var(--d);font-weight:900;font-size:1.6rem;letter-spacing:.02em}
+.mcard .t small{font-family:var(--m);font-weight:400;font-size:.7rem;letter-spacing:.1em;opacity:.8}
+.mcard .st{display:flex;gap:8px}
+.mcard .st i{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
+.mcard .st i.f{background:#fff;border-color:#fff}
+.mcard .b{display:flex;justify-content:space-between;font-family:var(--m);font-size:.78rem;opacity:.9}
+@media (prefers-reduced-motion:no-preference){.tilt:not(.live) .mcard{animation:float 6s ease-in-out infinite}}
+@keyframes float{50%{transform:rotateX(4deg) rotateY(-6deg) translateY(-6px)}}
+.ex{margin-top:18px}
+@media (max-width:1100px){.bento{grid-template-columns:repeat(2,1fr)}.c-club,.c-slow{grid-column:span 2}.c-club{grid-row:auto}}
+@media (max-width:640px){.bento{grid-template-columns:1fr}.c-club,.c-slow{grid-column:auto}.cell{min-height:0}}
+
+/* ---------- prenota ---------- */
+.book{display:grid;grid-template-columns:1fr minmax(0,560px);gap:clamp(32px,6vw,96px);align-items:start}
+.book-l{position:sticky;top:110px}
+.fm{display:grid;gap:22px;background:var(--ash);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,36px)}
+.fld{display:grid;gap:8px;min-width:0}
+.fld>label,.fld>.lbl{font-size:.9rem;font-weight:500}
+.fld input,.fld textarea{width:100%;min-height:50px;padding:12px 16px;border-radius:var(--r);border:1px solid rgba(236,237,234,.22);background:var(--soot);color:var(--bone);font-size:1rem;transition:border-color .2s}
+.fld textarea{min-height:88px;resize:vertical}
+.fld input:hover,.fld textarea:hover{border-color:rgba(236,237,234,.4)}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--blue-hi);box-shadow:0 0 0 3px rgba(61,91,255,.3)}
+.fld [aria-invalid="true"]{border-color:#FF8A8A}
+.err{color:#FF9C9C;font-size:.85rem;margin:0}
+.err:empty{display:none}
+.help{color:var(--smoke);font-size:.85rem;margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.times{display:flex;flex-wrap:wrap;gap:8px}
+.times .opt span{padding:0 14px;font-family:var(--m);font-size:.88rem}
+.times:empty::before{content:"Scegli un giorno per vedere gli orari.";color:var(--smoke);font-size:.9rem}
+.step{display:inline-flex;align-items:center;border:1px solid rgba(236,237,234,.22);border-radius:var(--pill);width:max-content}
+.step button{width:48px;height:48px;border:0;background:transparent;font-size:1.3rem;cursor:pointer;border-radius:var(--pill)}
+.step button:hover{background:rgba(236,237,234,.08)}
+.step output{min-width:44px;text-align:center;font-family:var(--m);font-size:1.05rem}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:.93rem;color:var(--smoke);cursor:pointer}
+.chk input{width:22px;height:22px;margin:0;accent-color:var(--blue);flex:none}
+.wa{display:none;margin-top:4px;background:#0B141A;border-radius:var(--r);padding:18px;border:1px solid var(--line)}
+.wa.on{display:block}
+.wa .bub{background:#1F2C33;color:#E9EDEF;border-radius:0 10px 10px 10px;padding:12px 14px;font-size:.93rem;max-width:40ch;line-height:1.45}
+.wa .bub b{display:block;color:var(--blue-hi);font-size:.8rem;margin-bottom:4px}
+.wa .bub small{display:block;text-align:right;color:#8696A0;font-size:.72rem;margin-top:6px}
+@media (max-width:900px){.book{grid-template-columns:1fr}.book-l{position:static}}
+@media (max-width:420px){.two{grid-template-columns:1fr}}
+
+/* ---------- dove ---------- */
+.where{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,4vw,64px);margin-top:48px}
+.where h3{font-size:.95rem;font-weight:600;margin:0 0 14px}
+.where p{margin:0 0 6px;color:var(--smoke)}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;margin:0;font-family:var(--m);font-size:.9rem}
+.hrs dt{color:var(--smoke)}
+.hrs dd{margin:0}
+.hrs .today-row{color:var(--blue-hi)}
+.where .act{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+@media (max-width:900px){.where{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+
+<header class="hd">
+  <a class="brand" href="index.html" aria-label="BRACE, home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="12" fill="#3D5BFF"/><circle cx="20" cy="13" r="4.5" fill="#ECEDEA"/></svg>BRACE
+  </a>
+  <nav class="nav" aria-label="Principale">
+    <a href="menu.html">Menù</a>
+    <a href="#fuoco">Il fuoco</a>
+    <a href="#vino">Vino</a>
+    <a href="club.html">Club</a>
+    <a href="#dove">Dove</a>
+  </nav>
+  <span class="now" data-now><i aria-hidden="true"></i><span>Orari</span></span>
+  <a class="lnk m-only" href="menu.html">Menù</a>
+  <a class="btn" href="#prenota">Prenota</a>
+</header>
+
+<main id="main">
+
+<section class="hero" data-first aria-labelledby="h1">
+  <picture>
+    <source media="(max-aspect-ratio: 4/5)" srcset="img/hero-m.webp" width="840" height="1120">
+    <img src="img/hero.webp" width="1920" height="1086" alt="Brisket affumicato tagliato a fette su carta da macellaio" fetchpriority="high">
+  </picture>
+  <canvas id="smoke" aria-hidden="true"></canvas>
+  <div class="hero-in wrap">
+    <h1 class="d" id="h1"><span class="ln"><span>Fumo lento.</span></span><span class="ln"><span><b>Vino vivo.</b></span></span></h1>
+    <p class="hero-sub" id="hsub">Brisket affumicato quattordici ore sulla quercia, verdure alla brace e 120 vini naturali. All'Isola, Milano.</p>
+    <div class="ctas" id="hcta">
+      <a class="btn" href="#prenota">Prenota un tavolo <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn gh" href="menu.html">Il menù</a>
+    </div>
+  </div>
+</section>
+
+<section id="fuoco" aria-labelledby="cook-h">
+  <div class="wrap cook-head">
+    <h2 class="d rv" id="cook-h">Quattordici ore<br>per <b>un taglio.</b></h2>
+    <p class="lead rv">Il brisket entra nel fumo la sera prima. Scorri e segui la notte del pitmaster, dalla prima presa di sale al taglio davanti a te.</p>
+  </div>
+  <div class="cook-pin">
+    <div class="cook-grid">
+      <div class="cook-media" aria-hidden="true">
+        <img class="on" src="img/rub.webp" width="896" height="1120" alt="" loading="lazy" decoding="async">
+        <img src="img/legna.webp" width="1000" height="672" alt="" loading="lazy" decoding="async">
+        <img src="img/smoker.webp" width="688" height="1024" alt="" loading="lazy" decoding="async">
+        <img src="img/brisket.webp" width="1000" height="672" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="cook-txt">
+        <div class="readout" aria-hidden="true">
+          <div class="clock" id="clk">00:00</div>
+          <div class="core">Al cuore<b id="core">4°C</b></div>
+        </div>
+        <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+        <ol class="stages">
+          <li class="stg on"><span class="mono">Ore 00:00</span><h3>Sale e pepe. Basta così.</h3><p>Il brisket arriva intero dalla nostra macelleria in Brianza. Sale grosso e pepe nero macinato al momento, niente salse, niente trucchi.</p></li>
+          <li class="stg"><span class="mono">Ore 02:00</span><h3>Quercia e ciliegio.</h3><p>Legna stagionata due anni. La quercia dà il fumo pulito, il ciliegio il colore. Il fuoco resta fisso a 120 gradi per tutta la notte.</p></li>
+          <li class="stg"><span class="mono">Ore 07:00</span><h3>Lo stallo.</h3><p>Verso i 70 gradi la carne si ferma per ore. È qui che si forma la crosta. Noi aspettiamo con lei e non apriamo lo sportello.</p></li>
+          <li class="stg"><span class="mono">Ore 14:00</span><h3>Il taglio.</h3><p>Un'ora di riposo nella carta da macellaio, poi si taglia contro fibra, al momento, davanti a te. Quando il banco è vuoto, per oggi è finito.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="brisket" aria-labelledby="br-h">
+  <div class="wrap today">
+    <div>
+      <h2 class="d rv" id="br-h">Quando finisce,<br><b>finisce.</b></h2>
+      <p class="lead rv">Ogni giorno affumichiamo un numero preciso di brisket. Tieni da parte la tua porzione con un acconto di 5 euro: lo scaliamo dal conto e ti avvisiamo su WhatsApp quando esce dal fumo.</p>
+    </div>
+    <div class="ticket rv">
+      <p class="lab">Stasera al banco</p>
+      <div class="left"><b id="left">07</b><span>porzioni libere su 40</span></div>
+      <div class="slots" id="slots" aria-hidden="true"></div>
+      <fieldset class="opts">
+        <legend class="lab">Porzione</legend>
+        <label class="opt"><input type="radio" name="por" value="250" checked><span>250 g · <b class="mono">19 €</b></span></label>
+        <label class="opt"><input type="radio" name="por" value="500"><span>500 g · <b class="mono">36 €</b></span></label>
+      </fieldset>
+      <div class="sw-row"><span id="sw-l">Avvisami su WhatsApp quando esce dal fumo</span><button class="sw" type="button" id="notify" aria-pressed="true" aria-labelledby="sw-l"></button></div>
+      <button class="btn" type="button" id="reserve" style="width:100%">Tieni da parte, acconto 5 €</button>
+      <p class="res" id="res" role="status" aria-live="polite"></p>
+      <p class="note">Numeri d'esempio. Demo: nessun pagamento reale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="menu" aria-labelledby="mn-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="menu-top">
+      <h2 class="d rv" id="mn-h">Dal fumo e<br><b>dalla brace.</b></h2>
+      <div class="chips" role="group" aria-label="Filtra il menù">
+        <button class="chip" type="button" data-f="all" aria-pressed="true">Tutto</button>
+        <button class="chip" type="button" data-f="fumo" aria-pressed="false">Dal fumo</button>
+        <button class="chip" type="button" data-f="verde" aria-pressed="false">Verde</button>
+        <button class="chip" type="button" data-f="dolci" aria-pressed="false">Dolci</button>
+        <button class="chip" type="button" data-f="bere" aria-pressed="false">Da bere</button>
+      </div>
+    </div>
+    <div class="dishes all" id="dishes">
+      <article class="dish wide" data-cat="fumo"><figure><img src="img/brisket.webp" width="1000" height="672" alt="Brisket tagliato a fette con crosta di pepe" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Brisket di manzo</h3><p>Quercia, 14 ore. Pane bianco, cetrioli e cipolla della casa.</p><div class="dish-f"><span>250 g</span><b>19 €</b></div></div></article>
+      <article class="dish" data-cat="fumo"><figure><img src="img/ribs.webp" width="1000" height="1000" alt="Costine di maiale glassate su vassoio nero" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Costine di maiale</h3><p>Glassa al miele di castagno e chipotle, cipolla rossa in agrodolce.</p><div class="dish-f"><span>mezza rastrelliera</span><b>17 €</b></div></div></article>
+      <article class="dish" data-cat="fumo"><figure><img src="img/bun.webp" width="1000" height="1000" alt="Panino con pulled pork, coleslaw e cetrioli" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Pulled pork bun</h3><p>Spalla sfilacciata, coleslaw al cavolo viola, cetrioli.</p><div class="dish-f"><span>brioche</span><b>13 €</b></div></div></article>
+      <article class="dish" data-cat="fumo"><figure><img src="img/tagliere.webp" width="1000" height="672" alt="Tagliere di carni affumicate con salse e contorni" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Tagliere del pitmaster</h3><p>Brisket, costine, pulled pork, salsiccia affumicata, contorni e salse.</p><div class="dish-f"><span>per 2 o 3</span><b>54 €</b></div></div></article>
+      <article class="dish" data-cat="verde"><figure><img src="img/verde.webp" width="1000" height="1000" alt="Porri e cavolo alla brace con salsa verde" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Porri e cavolo alla brace</h3><p>Salsa verde alle erbe, semi di zucca tostati. Vegano.</p><div class="dish-f"><span>verde</span><b>11 €</b></div></div></article>
+      <article class="dish" data-cat="dolci"><figure><img src="img/dolce.webp" width="1000" height="1000" alt="Cheesecake bruciata con pesca alla brace" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Cheesecake bruciata</h3><p>Con mezza pesca passata sulla brace.</p><div class="dish-f"><span>dolce</span><b>8 €</b></div></div></article>
+      <article class="dish" data-cat="bere"><figure><img src="img/vino.webp" width="896" height="1120" alt="Calice di vino macerato arancione sul bancone" loading="lazy" decoding="async"></figure><div class="dish-b"><h3>Bianco macerato</h3><p>Due settimane sulle bucce, Carso. Cambia ogni settimana.</p><div class="dish-f"><span>al calice</span><b>7 €</b></div></div></article>
+    </div>
+    <p class="sr" id="fcount" role="status" aria-live="polite"></p>
+    <div class="menu-more"><a class="lnk" href="menu.html">Menù completo e allergeni <span class="arrow" aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+
+<section class="sec" id="vino" aria-labelledby="vn-h" style="padding-top:0">
+  <div class="wrap wine">
+    <figure class="rv"><img src="img/vino.webp" width="896" height="1120" alt="Calice di vino naturale sul bancone di cemento, bottiglie sullo sfondo" loading="lazy" decoding="async"></figure>
+    <div>
+      <h2 class="d rv" id="vn-h">120 etichette.<br><b>Tutte naturali.</b></h2>
+      <p class="lead rv">Macerati, rifermentati, rossi da bere freschi con la carne grassa. Piccoli produttori, vendemmia a mano. La carta cambia spesso: chiedi a chi versa e assaggi prima di scegliere.</p>
+      <ul class="pours rv" aria-label="Al calice questa settimana">
+        <li><b>Bianco macerato</b><span class="mono">7 € · 34 €</span><span>Carso, Friuli. Albicocca secca e tannino.</span></li>
+        <li><b>Rosso frizzante</b><span class="mono">6 € · 28 €</span><span>Emilia. Fresco, da servire fresco.</span></li>
+        <li><b>Pét-nat rosato</b><span class="mono">7 € · 32 €</span><span>Colli Euganei. Bollicina rustica, secca.</span></li>
+      </ul>
+      <p class="note" style="margin-top:14px">Prezzi al calice e alla bottiglia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="posto" aria-labelledby="ps-h">
+  <figure class="room"><img id="roomImg" src="img/sala.webp" width="1344" height="752" alt="La sala di Brace la sera: tavoloni, pareti di cemento e il fuoco a vista della cucina" loading="lazy" decoding="async"></figure>
+  <div class="wrap">
+    <div class="place">
+      <h2 class="d rv" id="ps-h">Tavoloni,<br>fuoco a vista,<br><b>musica alta.</b></h2>
+      <div class="rv">
+        <p>Settanta coperti su tavoli lunghi, la cucina aperta sul fuoco e un dehors in cortile da maggio a settembre. Per compleanni e cene di gruppo c'è la sala in fondo, fino a 24 persone.</p>
+        <p style="margin-top:16px">Cani ben educati benvenuti. Opzioni vegane e senza glutine segnate sul menù.</p>
+      </div>
+    </div>
+    <div class="quotes">
+      <figure class="q1 rv"><blockquote>“Il brisket più vicino al Texas che abbia mangiato in Italia.”</blockquote><figcaption>Marta Riva, su Google</figcaption><p class="rating"><b>4,8</b>su 5 · recensioni d'esempio</p></figure>
+      <figure class="rv"><blockquote>“Prenotato dal sito in un minuto, conferma su WhatsApp e brisket tenuto da parte. Perfetto.”</blockquote><figcaption>Luca Bonfanti, su Google</figcaption></figure>
+      <figure class="rv"><blockquote>“Le verdure alla brace valgono il viaggio anche per chi non mangia carne.”</blockquote><figcaption>Giulia Ferraris, su TheFork</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="club" aria-labelledby="cl-h">
+  <div class="wrap">
+    <h2 class="d rv" id="cl-h">Chi torna,<br><b>mangia meglio.</b></h2>
+    <div class="bento">
+      <article class="cell c-club rv">
+        <h3>Brace Club</h3>
+        <p>La tessera sta nel telefono: un timbro a ogni cena, alla sesta il brisket da 250 g è offerto. Niente app da scaricare.</p>
+        <div class="tilt" id="tilt" aria-hidden="true">
+          <div class="mcard"><div class="t">BRACE <small>CLUB</small></div><div class="st"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div><div class="b"><span>Marta R.</span><span>BR-0412</span></div></div>
+        </div>
+        <div class="act"><a class="btn" href="club.html">Crea la tua tessera <span class="arrow" aria-hidden="true">→</span></a></div>
+      </article>
+      <article class="cell c-slow rv">
+        <h3>Martedì lento</h3>
+        <p>Il martedì e il mercoledì la sala è più tranquilla: prenoti dal sito e hai il 20% sul conto.</p>
+        <div class="count"><span>Il codice scade tra</span><b id="cd">7g 00h 00m</b></div>
+        <div class="act"><button class="btn sm" type="button" data-copy="LENTO20">Copia LENTO20</button></div>
+      </article>
+      <article class="cell c-crew rv">
+        <img src="img/brigata.webp" width="1000" height="672" alt="" loading="lazy" decoding="async">
+        <h3>Porta la brigata</h3>
+        <p>Presenti qualcuno che non è mai venuto: un calice offerto a te e a lui.</p>
+        <div class="act"><a class="lnk" href="club.html#invita" style="color:#fff">Il tuo invito <span class="arrow" aria-hidden="true">→</span></a></div>
+      </article>
+      <article class="cell c-save rv">
+        <h3>Tenuto da parte</h3>
+        <p>Acconto di 5 euro online, scalato dal conto. Promemoria su WhatsApp il giorno stesso.</p>
+        <div class="act"><a class="lnk" href="#brisket">Come funziona <span class="arrow" aria-hidden="true">→</span></a></div>
+      </article>
+    </div>
+    <p class="note ex">Sconti, premi e numeri sono d'esempio.</p>
+  </div>
+</section>
+
+<section class="sec" id="prenota" aria-labelledby="pr-h" style="padding-top:0">
+  <div class="wrap book">
+    <div class="book-l">
+      <h2 class="d rv" id="pr-h">Prenota<br><b>un tavolo.</b></h2>
+      <p class="lead rv">Conferma su WhatsApp in pochi secondi, con la possibilità di spostare o cancellare. Oltre le 12 persone scrivici, organizziamo la sala in fondo.</p>
+    </div>
+    <form class="fm rv" id="bookForm" action="#prenota" novalidate>
+      <div class="two">
+        <div class="fld">
+          <label for="f-day">Giorno</label>
+          <input type="date" id="f-day" required aria-describedby="e-day">
+          <p class="err" id="e-day"></p>
+        </div>
+        <div class="fld">
+          <span class="lbl" id="l-ppl">Persone</span>
+          <div class="step" role="group" aria-labelledby="l-ppl">
+            <button type="button" id="minus" aria-label="Una persona in meno">−</button>
+            <output id="ppl" aria-live="polite">2</output>
+            <button type="button" id="plus" aria-label="Una persona in più">+</button>
+          </div>
+        </div>
+      </div>
+      <fieldset class="fld" style="border:0;padding:0;margin:0">
+        <legend class="lbl" style="margin-bottom:8px">Orario</legend>
+        <div class="times" id="times"></div>
+        <p class="err" id="e-time"></p>
+      </fieldset>
+      <div class="two">
+        <div class="fld">
+          <label for="f-name">Nome</label>
+          <input type="text" id="f-name" autocomplete="given-name" maxlength="40" required aria-describedby="e-name">
+          <p class="err" id="e-name"></p>
+        </div>
+        <div class="fld">
+          <label for="f-tel">Telefono (WhatsApp)</label>
+          <input type="tel" id="f-tel" autocomplete="tel" inputmode="tel" maxlength="20" required aria-describedby="e-tel">
+          <p class="err" id="e-tel"></p>
+        </div>
+      </div>
+      <div class="fld">
+        <label for="f-note">Allergie o richieste</label>
+        <textarea id="f-note" maxlength="300" aria-describedby="h-note"></textarea>
+        <p class="help" id="h-note">Facoltativo. Per esempio: una persona celiaca, seggiolone, dehors.</p>
+      </div>
+      <label class="chk"><input type="checkbox" id="f-bris"> Tienimi da parte anche un brisket da 250 g (acconto 5 €)</label>
+      <button class="btn" type="submit">Conferma la prenotazione</button>
+      <div class="wa" id="wa" role="status" aria-live="polite">
+        <div class="bub"><b>BRACE</b><span id="waText"></span><small>ora</small></div>
+        <p class="note" style="margin:12px 0 0">Questa è una demo: nessun dato viene inviato. Nel sito vero questo messaggio arriva su WhatsApp.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="dove" aria-labelledby="dv-h" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="d rv" id="dv-h">Ci trovi<br><b>all'Isola.</b></h2>
+    <div class="where">
+      <div class="rv">
+        <h3>Indirizzo</h3>
+        <p>Via dei Carbonai 00, 20159 Milano</p>
+        <p>M5 Isola, quattro minuti a piedi. Rastrelliere per bici in cortile.</p>
+        <div class="act">
+          <a class="btn sm" href="https://www.google.com/maps/search/?api=1&amp;query=Isola%2C%20Milano" target="_blank" rel="noopener">Indicazioni</a>
+          <a class="btn gh sm" href="tel:+390200000000">Chiama</a>
+        </div>
+      </div>
+      <div class="rv">
+        <h3>Orari</h3>
+        <dl class="hrs" id="hrs">
+          <dt data-d="1">Lunedì</dt><dd data-d="1">chiuso</dd>
+          <dt data-d="2 3 4">Mar - Gio</dt><dd data-d="2 3 4">19:00 - 24:00</dd>
+          <dt data-d="5 6">Ven - Sab</dt><dd data-d="5 6">19:00 - 01:00</dd>
+          <dt data-d="0">Domenica</dt><dd data-d="0">12:00 - 16:00, 19:00 - 23:00</dd>
+        </dl>
+      </div>
+      <div class="rv">
+        <h3>Contatti</h3>
+        <p>+39 02 0000 0000</p>
+        <p>ciao@brace.example</p>
+        <p>WhatsApp allo stesso numero</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <p class="big" aria-hidden="true">BRACE</p>
+    <div class="row">
+      <nav aria-label="Piè di pagina">
+        <a href="menu.html">Menù</a>
+        <a href="menu.html#allergeni">Allergeni</a>
+        <a href="club.html">Brace Club</a>
+        <a href="#prenota">Prenota</a>
+      </nav>
+      <p class="note" style="margin:0">© 2026 BRACE · concept demo di Punto Due Studio. Nomi, prezzi e recensioni sono d'esempio.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" id="dock"><span><b data-now><span>Stasera</span></b>Tavoli e banco</span><a class="btn sm" href="#prenota">Prenota un tavolo</a></div>
+
+<script src="gsap.min.js" defer></script>
+<script src="ScrollTrigger.min.js" defer></script>
+<script src="Flip.min.js" defer></script>
+<script src="brace.js" defer></script>
+<script src="home.js" defer></script>
+</body>
+</html>
