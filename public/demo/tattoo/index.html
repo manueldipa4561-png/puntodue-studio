@@ -1,165 +1,172 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Concept web dimostrativo per Cultura Tattoo Gallery, Montesilvano. Realizzato da Punto Due Studio.">
-  <meta name="theme-color" content="#eee9df">
-  <title>Cultura Tattoo Gallery — Demo di Punto Due Studio</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="evoluzione.css">
-  <link rel="stylesheet" href="share-refine.css">
-  <link rel="stylesheet" href="concept-evolution.css">
-  <link rel="stylesheet" href="mobile.css">
-  <script src="app.js" defer></script>
-  <script src="concept-evolution.js" type="module"></script>
-  <script src="assets/scene.bundle.js" defer></script>
-  <script src="referral.js" type="module"></script>
-  <script src="share-refine.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Cultura Tattoo — Demo di Punto Due Studio</title>
+<meta name="description" content="Demo di sito per uno studio di tatuaggi a Pescara: realistico e ornamentale in bianco e nero. Concept non ufficiale.">
+<meta name="theme-color" content="#0E0F10">
+<link rel="icon" href="favicon.svg">
+<link rel="preload" href="sg.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
-<div class="demo-bar">CONCEPT WEBSITE <span>Una visione di Punto Due Studio · Sito non ufficiale</span></div>
-<header>
-  <a class="brand" href="#" aria-label="Cultura, inizio">CULTURA<span>TATTOO GALLERY</span></a>
-  <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span>＋</span></button>
-  <nav id="navigation" aria-label="Principale">
-    <a href="#studio">Lo studio</a>
-    <a href="#concept">Il concept</a>
-    <a href="#referral">Porta un amico</a>
-    <a href="#contatti">Dove trovarci</a>
-    <a class="nav-cta" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Parliamone ↗</a>
+<div class="demo-bar"><span><b>Concept website</b> · una proposta di Punto Due Studio</span><span>Sito non ufficiale</span></div>
+<header class="top">
+  <a class="logo" href="index.html" aria-label="Cultura Tattoo, home"><i></i>Cultura Tattoo</a>
+  <button class="menu-btn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="main" id="nav" aria-label="Principale">
+    <a href="#lavori">Lavori</a><a href="#come">Come lavoriamo</a><a href="#artisti">Artisti</a><a href="#cura">Cura</a><a href="#dove">Dove siamo</a>
+    <a class="btn" href="consulenza.html">Prenota la consulenza</a>
   </nav>
 </header>
+
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-top"><span><i></i> MONTESILVANO, ITALIA</span><span>ARTE CHE TI APPARTIENE</span></div>
-    <div class="hero-layout">
-      <div class="hero-copy">
-        <p class="eyebrow">IL TUO SEGNO. LA TUA STORIA.</p>
-        <h1 id="hero-title">Non solo<br>inchiostro.<br><em>Identità.</em></h1>
-        <p class="intro">Un’idea prende forma.<br>Un segno diventa parte di te.</p>
-        <a class="button" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Scopri Cultura <span>↗</span></a>
+<section class="hero">
+  <img src="img/1.webp" alt="Mani con guanti neri di un tatuatore al lavoro su un avambraccio con un decoro ornamentale" width="1344" height="752" fetchpriority="high">
+  <span class="lab">Pescara · Realistico e ornamentale</span>
+  <h1><span class="mask"><span>Segni che</span></span><span class="mask"><span><em>restano.</em></span></span></h1>
+  <p class="lead">Tatuaggi su misura in bianco e nero. Disegnati per te, per la tua pelle, per durare.</p>
+  <div class="cta-row"><a class="btn" href="consulenza.html">Prenota la consulenza gratuita</a><a class="link" href="#lavori">Guarda i lavori ↓</a></div>
+</section>
+
+<section class="lucidi" id="lavori" aria-labelledby="t-lucidi">
+  <div class="lucidi-pin">
+    <div class="lucidi-txt">
+      <span class="lab">Il nostro metodo</span>
+      <h2 id="t-lucidi" style="margin-top:16px"><span class="mask"><span>Dal lucido</span></span><span class="mask"><span><em>alla pelle.</em></span></span></h2>
+      <p class="lead">Muovi la luce: sotto c'è lo stencil, sopra il lavoro guarito.</p>
+      <div class="meta"><b id="cnt">01 / 03</b><span id="cap">Leone · avambraccio · realistico</span></div>
+      <div class="dots" role="group" aria-label="Scegli il lavoro">
+        <button type="button" aria-pressed="true" aria-label="Lavoro 1, leone">1</button>
+        <button type="button" aria-pressed="false" aria-label="Lavoro 2, mandala">2</button>
+        <button type="button" aria-pressed="false" aria-label="Lavoro 3, sacro cuore">3</button>
       </div>
-      <figure class="artwork" data-stage="2">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <span class="art-cross cross-one">+</span><span class="art-cross cross-two">+</span>
-        <img id="hero-art" src="assets/sculpture-poster.webp" width="1200" height="1200" alt="Poster illustrativo: una scultura di crisantemo color avorio, con foglie e cerchio in ottone" fetchpriority="high">
-        <span class="art-index">FIG. 01 / METAMORFOSI</span>
-        <div class="scene-tools">
-          <button data-rotate="-1" aria-label="Ruota la scultura a sinistra">←</button>
-          <span>TRASCINA PER ESPLORARE</span>
-          <button data-rotate="1" aria-label="Ruota la scultura a destra">→</button>
-          <button data-reset-scene aria-label="Ripristina la vista iniziale">↺</button>
+      <p class="hint" id="hint">Passa il mouse sull'immagine.</p>
+      <p class="note" style="margin-top:20px;max-width:44ch">Immagini illustrative create per questa demo, non lavori reali dello studio.</p>
+    </div>
+    <div>
+      <div class="stage" id="stage" data-mode="slide">
+        <div class="work on" data-name="Leone · avambraccio · realistico">
+          <img src="img/2.webp" alt="" aria-hidden="true" width="896" height="1120"><img class="top" src="img/3.webp" alt="Avambraccio con un leone realistico in bianco e nero" width="896" height="1120">
         </div>
-        <figcaption>Concept artistico · non un lavoro dello studio</figcaption>
-      </figure>
-      <div class="stage-panel">
-        <p class="eyebrow">ESPLORA<br>LA SCULTURA</p>
-        <div class="stages" role="group" aria-label="Esplora le fasi del concept">
-          <button data-stage="0" aria-pressed="false"><span>01</span> Traccia</button>
-          <button data-stage="1" aria-pressed="false"><span>02</span> Stencil</button>
-          <button data-stage="2" aria-pressed="true"><span>03</span> Inchiostro</button>
+        <div class="work" data-name="Mandala · polpaccio · ornamentale">
+          <img src="img/4.webp" alt="" aria-hidden="true" width="896" height="1120" loading="lazy"><img class="top" src="img/5.webp" alt="Polpaccio con un mandala ornamentale in bianco e nero" width="896" height="1120" loading="lazy">
         </div>
-        <p class="stage-description" aria-live="polite">La struttura diventa identità.</p>
-        <button class="play-scene" data-play-scene aria-pressed="false">Riproduci la trasformazione ↗</button>
-      </div>
-    </div>
-    <div class="hero-bottom"><a href="#studio">SCOPRI LO STUDIO <span>↓</span></a><span>CORSO UMBERTO I, 590</span><span>UN’IDEA. INFINITE ESPRESSIONI.</span></div>
-  </section>
-
-  <section class="studio section" id="studio" data-reveal>
-    <div><p class="eyebrow">01 / CULTURA TATTOO GALLERY</p><h2>La tua storia.<br><em>Un altro linguaggio.</em></h2></div>
-    <div class="studio-copy">
-      <p>Cultura Tattoo Gallery è a Montesilvano, in Corso Umberto I, 590.</p>
-      <p>Entra nel mondo dello studio: scopri i tatuaggi, gli artisti e gli aggiornamenti attraverso il suo profilo Instagram.</p>
-      <a class="text-link" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Esplora i lavori reali <span>↗</span></a>
-    </div>
-  </section>
-
-  <section class="concept section concept-evolution" id="concept" data-reveal data-concept-evolution data-stage-0="assets/concept-traccia.webp" data-stage-1="assets/concept-stencil.webp" data-stage-2="assets/concept-inchiostro.webp">
-    <div class="section-heading">
-      <div><p class="eyebrow">02 / ESPLORAZIONE VISIVA</p><h2>Prima della pelle,<br><em>l’immaginazione.</em></h2></div>
-      <p>Traccia, stencil, inchiostro.<br>Un unico concept che evolve davanti a te.</p>
-    </div>
-    <div class="concept-lab">
-      <div class="concept-control-panel">
-        <div>
-          <p class="eyebrow">TRE FASI / UN SOLO SEGNO</p>
-          <div class="concept-stage-nav" role="group" aria-label="Fasi del concept interattivo">
-            <button type="button" data-concept-stage="0" aria-pressed="true"><span>01</span><strong>LA TRACCIA</strong><span>IDEA</span></button>
-            <button type="button" data-concept-stage="1" aria-pressed="false"><span>02</span><strong>LO STENCIL</strong><span>STRUTTURA</span></button>
-            <button type="button" data-concept-stage="2" aria-pressed="false"><span>03</span><strong>L’INCHIOSTRO</strong><span>IDENTITÀ</span></button>
-          </div>
+        <div class="work" data-name="Sacro cuore · braccio · sacro">
+          <img src="img/6.webp" alt="" aria-hidden="true" width="896" height="1120" loading="lazy"><img class="top" src="img/7.webp" alt="Braccio con un sacro cuore e un rosario in bianco e nero" width="896" height="1120" loading="lazy">
         </div>
-        <div class="concept-stage-copy">
-          <p class="concept-stage-index">FASE 01 / LA TRACCIA</p>
-          <h3 class="concept-stage-title">La traccia</h3>
-          <p class="concept-stage-description" aria-live="polite">Il gesto nasce leggero: proporzioni, direzione e respiro prima che il segno diventi definitivo.</p>
-          <div class="concept-progress" aria-hidden="true"><span></span></div>
-          <button type="button" class="concept-play" data-concept-play aria-pressed="false">Riproduci evoluzione ↗</button>
-        </div>
+        <i class="edge" aria-hidden="true"></i><i class="ring" aria-hidden="true"></i>
       </div>
-      <div class="concept-visual-shell">
-        <div class="concept-3d-host" tabindex="0" aria-label="Concept 3D interattivo. Trascina per inclinare l’opera; usa le frecce sinistra e destra per cambiare fase."></div>
-        <img class="concept-fallback" src="assets/concept-traccia.webp" alt="Concept illustrativo — La traccia" loading="lazy">
-        <div class="concept-visual-meta"><span>DRAG — INCLINA / TAP — CAMBIA FASE</span><span>FIG. 02 / EVOLUZIONE</span></div>
-      </div>
+      <div class="rng" id="rngwrap"><input type="range" id="rng" min="0" max="100" value="50" aria-label="Rivela il tatuaggio finito"></div>
     </div>
-    <p class="concept-note">Visual originali generati per questa demo dopo una ricerca del linguaggio visivo pubblico dello studio. Sono concept illustrativi ispirati a quell’atmosfera e non rappresentano tatuaggi realmente eseguiti da Cultura Tattoo Gallery.</p>
-  </section>
+  </div>
+</section>
 
-  <section class="referral section" id="referral" data-referral-stage="0" data-reveal aria-labelledby="referral-title">
-    <div class="referral-copy">
-      <p class="eyebrow">03 / PORTA UN AMICO — CONCEPT INTERATTIVO</p>
-      <h2 class="referral-title" id="referral-title">Passa<br>il segno.<em>Una storia ne accende un’altra.</em></h2>
-      <p class="referral-lead">Condividi Cultura con una persona che vuoi portare con te. Il tuo segno apre la catena, il suo ne crea un’altra parte e l’opera digitale evolve.</p>
-      <div class="referral-stage-nav" role="group" aria-label="Fasi della referral demo">
-        <button class="referral-stage" aria-pressed="true"><span>01</span>Il tuo segno</button>
-        <button class="referral-stage" aria-pressed="false"><span>02</span>Passalo</button>
-        <button class="referral-stage" aria-pressed="false"><span>03</span>Nuova storia</button>
-      </div>
-      <p class="referral-stage-copy" aria-live="polite">Il tuo segno apre la catena.</p>
-      <div class="referral-progress" aria-hidden="true"><span></span></div>
-      <div class="referral-share" aria-label="Condividi la referral demo">
-        <button type="button" data-share-referral>Condividi</button>
-        <button type="button" data-whatsapp-referral>WhatsApp</button>
-        <button type="button" data-copy-referral>Copia link demo</button>
-      </div>
-      <p class="share-status" aria-live="polite"></p>
-      <p class="referral-disclaimer">Demo funzionale proposta da Punto Due Studio. Non indica che Cultura Tattoo Gallery abbia già un programma referral attivo: benefit, condizioni e validità restano da definire con lo studio.</p>
-    </div>
-    <div class="referral-visual" aria-label="Installazione digitale interattiva Passa il Segno">
-      <div class="referral-media">
-        <video id="referral-motion" class="referral-motion" muted loop playsinline preload="none" poster="assets/concept.webp" aria-hidden="true"></video>
-        <div class="referral-canvas-host" aria-hidden="true"></div>
-      </div>
-      <div class="referral-visual-meta"><span>DRAG / TAP — IL SEGNO SI EVOLVE</span><span>FIG. 02 / INK CHAIN</span></div>
-    </div>
-  </section>
+<section class="sec" aria-labelledby="t-stili">
+  <div class="head"><span class="lab">Stili</span><h2 id="t-stili"><span class="mask"><span>Tre linguaggi,</span></span><span class="mask"><span>una pelle.</span></span></h2></div>
+  <div class="cards">
+    <article class="card rv"><img src="img/8.webp" alt="Ritratto femminile realistico tatuato su una spalla" width="896" height="1120" loading="lazy"><div><h3>Realistico</h3><p>Ritratti, animali, volti: sfumature costruite strato su strato.</p></div></article>
+    <article class="card rv"><img src="img/9.webp" alt="Decoro ornamentale a pizzo tatuato su un avambraccio" width="896" height="1120" loading="lazy"><div><h3>Ornamentale</h3><p>Mandala, pizzi, geometrie che seguono il muscolo.</p></div></article>
+    <article class="card rv"><img src="img/7.webp" alt="Sacro cuore con rosario tatuato su un braccio" width="896" height="1120" loading="lazy"><div><h3>Sacro</h3><p>Iconografia religiosa e simbolica, reinterpretata.</p></div></article>
+  </div>
+</section>
 
-  <section class="contact section" id="contatti" data-reveal>
-    <div><p class="eyebrow">04 / INIZIA UNA CONVERSAZIONE</p><h2>Hai un’idea<br><em>in testa?</em><span class="red-dot">●</span></h2><a class="button light" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">Scrivi allo studio su Instagram <span>↗</span></a></div>
-    <div class="contact-details"><p class="eyebrow">CI TROVI A MONTESILVANO</p><address>Corso Umberto I, 590<br>Montesilvano · Pescara</address><a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Cultura%20Tattoo%20Gallery%20Corso%20Umberto%20I%20590%20Montesilvano" target="_blank" rel="noopener noreferrer">Ottieni indicazioni ↗</a><a class="social" href="https://www.instagram.com/culturatattoogallery/" target="_blank" rel="noopener noreferrer">@culturatattoogallery ↗</a></div>
-  </section>
+<section class="sec" id="come" style="padding-top:0" aria-labelledby="t-come">
+  <div class="head"><span class="lab">Come lavoriamo</span><h2 id="t-come"><span class="mask"><span>Quattro passi,</span></span><span class="mask"><span>nessuna fretta.</span></span></h2></div>
+  <ol class="steps">
+    <li class="rv"><span>01</span><h3>Consulenza</h3><p>Ci racconti l'idea, guardiamo la zona. Gratis, senza impegno.</p></li>
+    <li class="rv"><span>02</span><h3>Disegno</h3><p>Il disegno nasce su misura. Lo rivedi prima di confermare.</p></li>
+    <li class="rv"><span>03</span><h3>Seduta</h3><p>Stencil, controllo, poi l'ago. Materiale monouso, sempre.</p></li>
+    <li class="rv"><span>04</span><h3>Guarigione</h3><p>Ti seguiamo nelle settimane dopo. Il ritocco è incluso.</p></li>
+  </ol>
+</section>
 
-  <section class="configurator-teaser section" data-reveal aria-labelledby="configurator-teaser-title">
-    <div class="configurator-teaser-copy">
-      <p class="eyebrow">05 / CONFIGURATORE 3D — CONCEPT</p>
-      <h2 id="configurator-teaser-title">Il tuo segno,<br><em>prima della pelle.</em></h2>
-      <p class="configurator-teaser-lead">Scegli la zona, prova uno dei concept della demo o carica un tuo disegno, regola dimensioni e orientamento e osservalo su una superficie 3D interattiva. Un modo più concreto per arrivare alla consulenza con un’idea già visibile.</p>
-      <a class="button" href="configuratore.html">Apri il configuratore 3D <span>↗</span></a>
-    </div>
-    <div class="configurator-preview" aria-hidden="true">
-      <div class="configurator-preview-ring"></div>
-      <div class="configurator-preview-ring"></div>
-      <div class="configurator-preview-card"><img src="assets/concept-inchiostro.webp" alt=""></div>
-    </div>
-  </section>
+<section class="sec" id="artisti" style="padding-top:0" aria-labelledby="t-art">
+  <div class="head"><span class="lab">Artisti</span><h2 id="t-art"><span class="mask"><span>Due mani,</span></span><span class="mask"><span>due mondi.</span></span></h2></div>
+  <div class="duo">
+    <figure class="rv"><img src="img/10.webp" alt="Ritratto di una tatuatrice in maglietta nera nello studio" width="896" height="1120" loading="lazy"><figcaption><b>Marta</b><small>Realistico, ritratti</small></figcaption></figure>
+    <figure class="rv"><img src="img/11.webp" alt="Ritratto di un tatuatore con le braccia tatuate nello studio" width="896" height="1120" loading="lazy"><figcaption><b>Davide</b><small>Ornamentale e sacro</small></figcaption></figure>
+  </div>
+  <p class="note" style="margin-top:12px">Nomi e volti di fantasia, creati per questa demo.</p>
+</section>
+
+<section class="studio" aria-labelledby="t-studio">
+  <img src="img/12.webp" alt="Interno di uno studio di tatuaggi pulito, con lettino nero, carrello in acciaio e stampe alle pareti" width="1344" height="752" loading="lazy">
+  <h2 id="t-studio"><span class="mask"><span>Uno spazio pulito e silenzioso.</span></span><span class="mask"><span><em>Una postazione per volta.</em></span></span></h2>
+</section>
+
+<section class="sec init" id="iniziative" aria-labelledby="t-init">
+  <span class="lab">Cosa aggiungeremmo al vostro sito</span>
+  <h2 id="t-init" style="margin-top:16px"><span class="mask"><span>Quattro modi per</span></span><span class="mask"><span>far tornare i clienti.</span></span></h2>
+  <div class="tiles">
+    <div class="tile rv"><big>30%</big><h3>Acconto online</h3><p>Blocchi la data con un acconto del 30%, scalato dal totale.</p></div>
+    <div class="tile rv"><big>48h</big><h3>Promemoria WhatsApp</h3><p>Conferma e promemoria 48 ore prima della seduta.</p></div>
+    <div class="tile rv"><big>5ª</big><h3>Tessera a timbri</h3><p>Alla 5ª seduta, −15% sulla sessione.</p></div>
+    <div class="tile rv"><big>−10%</big><h3>Porta un amico</h3><p>Chi presenti ha −10% sul primo tatuaggio, tu un timbro in più.</p></div>
+  </div>
+  <p class="note" style="margin-top:20px">Numeri d'esempio, non dati reali. Dati di ricerca generali, non risultati della demo.</p>
+</section>
+
+<section class="sec" id="cura" aria-labelledby="t-faq">
+  <div class="head"><span class="lab">Domande frequenti</span><h2 id="t-faq"><span class="mask"><span>Prima di venire.</span></span></h2></div>
+  <div class="faq">
+    <details><summary>Quanto fa male?</summary><p>Dipende da zona e sensibilità. Ti diciamo prima cosa aspettarti e facciamo pause ogni volta che servono.</p></details>
+    <details><summary>Quanto costa?</summary><p>Dipende da misura e dettaglio: te lo diciamo in consulenza, prima di iniziare. Un tatuaggio piccolo parte da circa €80 (cifra d'esempio).</p></details>
+    <details><summary>Come funziona l'acconto?</summary><p>Il 30% blocca la data e viene scalato dal totale. Esempio di regola: se annulli con meno di 48 ore di preavviso l'acconto non è rimborsabile.</p></details>
+    <details><summary>Il ritocco è incluso?</summary><p>Sì, entro 3 mesi dalla seduta.</p></details>
+    <details><summary>Come curo il tatuaggio?</summary><p>Ti diamo le istruzioni per iscritto: lavare con delicatezza, crema in strato sottile, niente sole né piscina nei primi giorni. Per ogni dubbio ci scrivi su WhatsApp.</p></details>
+  </div>
+</section>
+
+<section class="sec final" aria-labelledby="t-fin">
+  <h2 id="t-fin"><span class="mask"><span>Hai un'idea?</span></span><span class="mask"><span><em>Parliamone.</em></span></span></h2>
+  <div class="cta-row"><a class="btn" href="consulenza.html">Prenota la consulenza gratuita</a></div>
+</section>
 </main>
-<footer><div class="footer-brand">CULTURA<span>TATTOO GALLERY</span></div><div><p>Demo dimostrativa realizzata da <a href="https://puntoduestudio.it/" target="_blank" rel="noopener noreferrer">Punto Due Studio</a>.<br>Non è il sito ufficiale dell’attività.</p><a href="#main">Torna all’inizio ↑</a></div></footer>
-<dialog id="art-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><h2 id="dialog-title">Esplorazione del concept</h2><button class="close-dialog" aria-label="Chiudi anteprima">Chiudi ×</button></div><img src="assets/concept.webp" width="1200" height="1200" alt="Anteprima del concept illustrativo"><p>Concept generato per la demo · non un tatuaggio dello studio</p></dialog>
+
+<footer id="dove">
+  <div><b>Cultura Tattoo</b>Demo di Punto Due Studio. Studio e dati di fantasia.</div>
+  <div><b>Dove siamo</b>Via Esempio 12, 65100 Pescara<br>Mar–Sab 11–20</div>
+  <div><b>Contatti</b><a href="tel:+390000000000">+39 000 000 0000</a><br><a href="mailto:ciao@esempio.it">ciao@esempio.it</a></div>
+</footer>
+
+<div class="dock"><a class="btn" href="consulenza.html">Prenota</a><a class="btn ghost" href="https://wa.me/390000000000" aria-label="Scrivici su WhatsApp (numero di esempio)">WhatsApp</a></div>
+
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script src="site.js"></script>
+<script>
+(()=>{
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const stage=$('#stage'),works=$$('.work',stage),cap=$('#cap'),cnt=$('#cnt'),dots=$$('.dots button'),rng=$('#rng'),rw=$('#rngwrap'),hint=$('#hint');
+let idx=0;
+function show(i){idx=i;works.forEach((w,k)=>w.classList.toggle('on',k===i));dots.forEach((d,k)=>d.setAttribute('aria-pressed',k===i));cap.textContent=works[i].dataset.name;cnt.textContent='0'+(i+1)+' / 03'}
+dots.forEach((d,k)=>d.addEventListener('click',()=>show(k)));
+const torch=fine&&!reduce&&innerWidth>=900;
+if(torch){
+ stage.dataset.mode='torch';
+ let w=stage.clientWidth,h=stage.clientHeight,r0=Math.min(170,w*.32);
+ let tx=w/2,ty=h/2,x=tx,y=ty,tr=r0,ttr=r0,raf=0,vis=true;
+ const put=()=>{stage.style.setProperty('--x',x+'px');stage.style.setProperty('--y',y+'px');stage.style.setProperty('--tr',tr+'px')};
+ const loop=()=>{x+=(tx-x)*.18;y+=(ty-y)*.18;tr+=(ttr-tr)*.16;put();raf=(Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(ttr-tr)>.3&&vis)?requestAnimationFrame(loop):0};
+ const kick=()=>{if(!raf&&vis)raf=requestAnimationFrame(loop)};
+ stage.addEventListener('pointermove',e=>{const b=stage.getBoundingClientRect();tx=e.clientX-b.left;ty=e.clientY-b.top;ttr=r0;kick()});
+ stage.addEventListener('pointerleave',()=>{ttr=0;kick()});
+ new IntersectionObserver(([e])=>{vis=e.isIntersecting;if(vis)kick()}).observe(stage);
+ addEventListener('resize',()=>{w=stage.clientWidth;h=stage.clientHeight;r0=Math.min(170,w*.32)});
+ put();
+ gsap.registerPlugin(ScrollTrigger);
+ ScrollTrigger.create({trigger:'.lucidi',start:'top top',end:'+=240%',pin:true,onUpdate:s=>{const i=Math.min(2,Math.floor(s.progress*3));if(i!==idx)show(i)}});
+}else{
+ rw.classList.add('on');hint.textContent='Trascina il cursore per rivelare il tatuaggio.';
+ rng.addEventListener('input',()=>stage.style.setProperty('--p',rng.value+'%'));
+}
+})();
+</script>
 </body>
 </html>

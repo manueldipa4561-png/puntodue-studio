@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KERN — colour round 1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#0b0b0c;color:#ece9e2;font-family:'Bricolage Grotesque',system-ui,sans-serif;padding:32px 16px}
+h1{font-weight:800;font-size:28px}
+.sub{font-family:'Fragment Mono',monospace;font-size:12px;opacity:.6;margin:6px 0 28px;max-width:72ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;max-width:1240px}
+.pal{border-radius:8px;overflow:hidden;background:#1a1a1c}
+.pal>h2{font:400 12px 'Fragment Mono',monospace;padding:12px 16px;display:flex;justify-content:space-between;color:#ece9e2}
+.pair{display:grid;grid-template-columns:1fr 1fr}
+.side{padding:28px 18px;display:flex;flex-direction:column;gap:20px;background:var(--bg);color:var(--ink)}
+.lock{display:flex;align-items:center;gap:10px;font-weight:800;font-size:38px;letter-spacing:-.07em}
+.lock svg{width:44px;flex:none}
+.lock i{font-style:normal;color:var(--acc);letter-spacing:0}
+.mission{border:1.5px solid var(--ink);border-radius:10px;padding:12px;font-size:13px;line-height:1.35}
+.mission small{font:400 10px 'Fragment Mono',monospace;opacity:.65;display:block;margin-bottom:6px}
+.btn{margin-top:10px;display:inline-block;background:var(--acc);color:var(--onacc);padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px}
+.sw{display:flex;font:400 10px 'Fragment Mono',monospace}
+.sw div{flex:1;padding:36px 8px 8px}
+.p1{--bg:#ece9e2;--ink:#16161a;--acc:#e8541e;--onacc:#16161a}
+.p1d{--bg:#16161a;--ink:#ece9e2;--acc:#ff6a2b;--onacc:#16161a}
+.p2{--bg:#e8e6da;--ink:#141a12;--acc:#2f7d3a;--onacc:#f4f2e8}
+.p2d{--bg:#0f140e;--ink:#e8e6da;--acc:#c9f24a;--onacc:#0f140e}
+.p3{--bg:#f0ece4;--ink:#14161f;--acc:#2447d6;--onacc:#f0ece4}
+.p3d{--bg:#0f1119;--ink:#f0ece4;--acc:#7f9bff;--onacc:#0f1119}
+.p4{--bg:#efe9dd;--ink:#211b16;--acc:#b8862b;--onacc:#211b16}
+.p4d{--bg:#1a1613;--ink:#efe9dd;--acc:#f2b134;--onacc:#1a1613}
+</style></head><body>
+<h1>KERN — colour round 1</h1>
+<p class="sub">Locked: E (Cleave) mark + tight-kerned wordmark. Each palette = one neutral, one graphite, ONE accent (the core + the full stop). Light and dark side by side. No purple gradients, no second accent.</p>
+<div class="grid" id="g"></div>
+<script>
+const mark=`<svg viewBox="0 0 100 100"><path fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" style="fill:var(--acc)"/></svg>`;
+const side=c=>`<div class="side ${c}"><div class="lock">${mark}kern<i>.</i></div><div class="mission"><small>MISSION 001 · 30 MIN</small>Make somebody care<br><span class="btn">Start mission</span></div></div>`;
+const pals=[
+ ['p1','1 · Ember','recommended',[['#ece9e2','#16161a','stone'],['#16161a','#ece9e2','graphite'],['#e8541e','#16161a','ember']]],
+ ['p2','2 · Moss','calm, growth',[['#e8e6da','#141a12','bone'],['#0f140e','#e8e6da','night'],['#2f7d3a','#f4f2e8','moss'],['#c9f24a','#0f140e','lime']]],
+ ['p3','3 · Ink','trust, tech',[['#f0ece4','#14161f','paper'],['#14161f','#f0ece4','ink'],['#2447d6','#f0ece4','cobalt'],['#7f9bff','#0f1119','dark']]],
+ ['p4','4 · Amber','warm, premium',[['#efe9dd','#211b16','linen'],['#211b16','#efe9dd','umber'],['#b8862b','#211b16','brass'],['#f2b134','#1a1613','amber']]]];
+document.getElementById('g').innerHTML=pals.map(([c,t,n,s])=>`<div class="pal"><h2><b>${t}</b><span>${n}</span></h2><div class="pair">${side(c)}${side(c+'d')}</div><div class="sw">${s.map(([b,f,l])=>`<div style="background:${b};color:${f}">${b.toUpperCase()}<br>${l}</div>`).join('')}</div></div>`).join('');
+</script></body></html>

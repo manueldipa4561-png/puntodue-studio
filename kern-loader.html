@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KERN launch loader</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#0b0b0c;color:#E8E6DA;font-family:'Bricolage Grotesque',system-ui,sans-serif;padding:32px 16px;min-height:100vh}
+h1{font-weight:800;font-size:24px}
+.sub{font:400 12px/1.6 'Fragment Mono',monospace;opacity:.6;margin:6px 0 24px;max-width:70ch}
+.row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+button{font:400 12px 'Fragment Mono',monospace;background:#E8E6DA;color:#141A12;border:0;border-radius:999px;padding:9px 16px;cursor:pointer;margin-bottom:24px}
+
+/* ---- the loader (this block is what ships in the app) ---- */
+.phone{width:300px;height:650px;border-radius:38px;border:6px solid #1c1f1b;overflow:hidden;flex:none}
+.kern-loader{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:var(--bg);color:var(--fg);position:relative}
+.light{--bg:#E8E6DA;--fg:#141A12;--acc:#2C5A3A;--muted:#B9B7A8}
+.dark{--bg:#0F140E;--fg:#E8E6DA;--acc:#C9F24A;--muted:#5b6156}
+.kern-loader svg{width:92px;overflow:visible}
+.solid,.line{transform:translate(0,0)}
+.core{transform-box:fill-box;transform-origin:center;transform:scale(0);fill:var(--acc)}
+.word{font-weight:800;font-size:46px;letter-spacing:-.07em;line-height:1;opacity:0;transform:translateY(8px)}
+.word i{font-style:normal;color:var(--acc);letter-spacing:0}
+.tag{position:absolute;bottom:62px;text-align:center;color:var(--fg);opacity:0;display:flex;flex-direction:column;gap:6px}
+.tag span{font-weight:500;font-size:16px;letter-spacing:-.02em;line-height:1;opacity:.6}
+.tag strong{font-weight:800;font-size:27px;letter-spacing:-.06em;line-height:1}
+.tag b{font-weight:800;color:var(--acc)}
+.rail{position:absolute;bottom:30px;width:56px;height:2px;background:var(--muted);border-radius:2px;overflow:hidden;opacity:0}
+.rail::after{content:"";position:absolute;inset:0;background:var(--acc);transform:translateX(-100%)}
+
+.go .solid{animation:solid .9s .35s cubic-bezier(.65,0,.25,1) forwards}
+.go .line{animation:line .9s .35s cubic-bezier(.65,0,.25,1) forwards}
+.go .core{animation:core .5s 1.05s cubic-bezier(.3,1.6,.5,1) forwards}
+.go .word{animation:rise .6s 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.go .tag{animation:rise .6s 1.6s cubic-bezier(.2,.8,.2,1) forwards}
+.go .rail{animation:fade .3s 1.6s forwards}
+.go .rail::after{animation:load 1.2s 1.7s ease-in-out infinite}
+@keyframes solid{to{transform:translate(-5px,-5px)}}
+@keyframes line{to{transform:translate(5px,5px)}}
+@keyframes core{to{transform:scale(1)}}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:.7}}
+@keyframes load{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){
+  .go *{animation:none!important}
+  .solid{transform:translate(-5px,-5px)}.line{transform:translate(5px,5px)}
+  .core{transform:none}.word,.tag{opacity:1;transform:none}
+}
+</style></head><body>
+<h1>KERN launch loader</h1>
+<p class="sub">Shown when the app opens on the phone. The circle starts whole, cleaves along the diagonal, the core lands, the wordmark rises, a thin rail runs while the app loads. About 1.7 s to the full logo. Light and dark follow the phone setting.</p>
+<button onclick="replay()">Replay</button>
+<div class="row" id="row"></div>
+<script>
+const svg=`<svg viewBox="0 0 100 100" aria-hidden="true"><path class="solid" fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z"/><path class="line" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z"/><circle class="core" cx="66.4" cy="66.4" r="9"/></svg>`;
+const loader=t=>`<div class="phone"><div class="kern-loader ${t}" role="status" aria-label="Loading KERN">${svg}<div class="word">kern<i>.</i></div><div class="tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div><div class="rail"></div></div></div>`;
+const row=document.getElementById('row');
+row.innerHTML=loader('light')+loader('dark');
+function replay(){row.querySelectorAll('.kern-loader').forEach(e=>{e.classList.remove('go');void e.offsetWidth;e.classList.add('go')})}
+replay();
+</script></body></html>

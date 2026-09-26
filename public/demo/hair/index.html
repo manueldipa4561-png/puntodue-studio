@@ -155,6 +155,16 @@ em{font-style:italic;font-weight:500;color:var(--rose)}
 .step p{font-size:18px;max-width:26ch}
 
 /* ---------- book ---------- */
+.club{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center;background:var(--blush)}
+.club h2 em{color:var(--plum)}
+.club .lead{margin-top:22px}
+.mini{justify-self:center;width:100%;max-width:440px;aspect-ratio:1.586;border-radius:22px;padding:clamp(18px,3vw,26px);display:flex;flex-direction:column;justify-content:space-between;color:var(--bg);background:radial-gradient(120% 90% at 85% 0%,#6b3446 0%,transparent 60%),linear-gradient(150deg,#3a1c2a,#2A1620);box-shadow:0 30px 60px -24px rgba(42,22,32,.55);transform:rotate(-4deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.mini:hover{transform:rotate(0) translateY(-6px)}
+.mb{font:700 19px var(--d);letter-spacing:-.04em}.mb i{font-style:normal;color:var(--blush)}
+.md{display:flex;gap:8px}.md i{flex:1;max-width:40px;aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(233,184,176,.5);font-style:normal;display:grid;place-items:center;color:var(--gold);font-size:14px}
+.md i.on{background:var(--blush);border-color:transparent}.md i.g{border-color:var(--gold)}
+.mn{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+@media (max-width:900px){.mini{transform:rotate(-2deg)}}
 .book{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:start}
 .book h2{margin:18px 0 22px}
 form{display:grid;gap:14px;padding:clamp(22px,3vw,38px);border-radius:var(--r);background:#fff8f5;box-shadow:0 30px 60px -30px rgba(183,110,121,.35)}
@@ -186,7 +196,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
   .words h2{font-size:clamp(64px,22vw,110px)}
   .frames{height:100%;min-height:0}
   .dots{display:none}
-  .svc,.book{grid-template-columns:1fr}
+  .svc,.book,.club{grid-template-columns:1fr}
   .svc .left{position:static}
   .team{grid-template-columns:1fr}
   .pers:nth-of-type(2){margin-top:0}
@@ -205,7 +215,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
 <header class="hd" id="hd">
   <a class="brand" href="#top" aria-label="SEZIONE — inizio pagina">SEZIONE<i>.</i></a>
   <nav class="nav" aria-label="Principale">
-    <a href="#servizi">Servizi</a><a href="#lavori">Lavori</a><a href="#team">Team</a><a href="#spazio">Spazio</a>
+    <a href="#servizi">Servizi</a><a href="#lavori">Lavori</a><a href="#team">Team</a><a href="tessera.html">Tessera</a>
   </nav>
   <a class="btn" href="#prenota">Prenota</a>
 </header>
@@ -302,6 +312,20 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
   </div>
 </section>
 
+<section class="sec club" aria-labelledby="c-h">
+  <div>
+    <p class="micro">Tessera fedeltà</p>
+    <h2 id="c-h" style="margin-top:16px">Sei visite,<br><em>la settima è nostra.</em></h2>
+    <p class="lead">Una tessera digitale con il tuo QR personale: niente carta da perdere, −15% sulla prima visita e promemoria su WhatsApp.</p>
+    <a class="btn" href="tessera.html" style="margin-top:28px">Crea la tua tessera</a>
+  </div>
+  <a class="mini" href="tessera.html" aria-label="Apri la tessera fedeltà">
+    <span class="mb">SEZIONE<i>.</i></span>
+    <span class="md" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i class="g">✦</i></span>
+    <span class="mn">3 timbri su 6</span>
+  </a>
+</section>
+
 <section class="sec book" id="prenota" aria-labelledby="b-h">
   <div>
     <p class="micro">Prenota</p>
@@ -323,7 +347,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
 
 <footer class="ft">
   <span>© 2026 SEZIONE — concept demo by Punto Due Studio</span>
-  <nav aria-label="Footer"><a href="#servizi">Servizi</a><a href="#lavori">Lavori</a><a href="#team">Team</a><a href="#prenota">Prenota</a></nav>
+  <nav aria-label="Footer"><a href="#servizi">Servizi</a><a href="#lavori">Lavori</a><a href="#team">Team</a><a href="tessera.html">Tessera</a><a href="#prenota">Prenota</a></nav>
 </footer>
 
 <div class="dock" id="dock"><span>Hai un'idea?</span><a class="btn" href="#prenota">Prenota</a></div>

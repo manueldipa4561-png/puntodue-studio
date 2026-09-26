@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F7EDE8">
+<title>La tua tessera — SEZIONE Hair studio</title>
+<meta name="description" content="Tessera fedeltà digitale e QR personale di SEZIONE Hair Studio. Concept demo by Punto Due Studio.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23B76E79'/%3E%3Cpath d='M20 20h24v6H27v6h15v6H27v6h17v6H20z' fill='%23F7EDE8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7EDE8; --blush:#E9B8B0; --rose:#B76E79; --plum:#2A1620; --gold:#C9A27A;
+  --line:rgba(42,22,32,.16); --r:24px;
+  --d:"Bricolage Grotesque","Inter",system-ui,sans-serif; --b:"Inter",system-ui,sans-serif;
+  --pad:clamp(20px,4vw,56px);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);color:var(--plum);font-family:var(--b);-webkit-text-size-adjust:100%}
+body{min-width:320px;overflow-x:hidden;font-size:16px;line-height:1.55}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+.micro{font:500 12px/1 var(--b);letter-spacing:.14em;text-transform:uppercase;opacity:.72}
+h1,h2,h3{font-family:var(--d);font-weight:600;letter-spacing:-.035em;line-height:.95}
+h1{font-size:clamp(48px,8.4vw,128px);padding-bottom:.12em}
+h2{font-size:clamp(32px,4.6vw,64px)}
+em{font-style:italic;font-weight:500;color:var(--rose)}
+.lead{font-size:clamp(16px,1.35vw,19px);max-width:46ch;opacity:.86}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border-radius:99px;background:var(--plum);color:var(--bg);font:500 14px var(--b);letter-spacing:.02em;border:0;cursor:pointer;transition:transform .25s,background .25s,opacity .25s}
+.btn:hover{background:var(--rose);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;background:var(--plum)}
+.btn.ghost{background:transparent;color:var(--plum);box-shadow:inset 0 0 0 1.5px var(--plum)}
+.btn.ghost:hover{background:var(--plum);color:var(--bg)}
+
+.hd{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);background:rgba(247,237,232,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{font:700 22px var(--d);letter-spacing:-.04em}
+.brand i{font-style:normal;color:var(--rose)}
+.hd .btn{min-height:42px;padding:0 20px}
+
+.top{padding:120px var(--pad) 0}
+.top .lead{margin-top:22px}
+.stage{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:center;padding:clamp(28px,4vw,56px) var(--pad) clamp(60px,8vw,110px)}
+
+/* ---------- form ---------- */
+.fm{display:grid;gap:14px;max-width:460px}
+.fm label{display:grid;gap:6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+.fm input[type=text]{min-height:52px;padding:0 20px;border:1.5px solid var(--line);border-radius:99px;background:rgba(255,255,255,.55);font-size:16px;letter-spacing:0;text-transform:none;transition:border-color .25s}
+.fm input:focus{border-color:var(--rose);outline:0}
+.fm .row{display:flex;flex-wrap:wrap;gap:10px}
+.note{font-size:13px;opacity:.7;max-width:46ch}
+.stat{min-height:1.5em;font-size:14px;color:var(--rose);font-weight:500}
+
+/* ---------- 3D card ---------- */
+.tilt{--rx:0deg;--ry:0deg;--sx:50%;--sy:50%;perspective:1100px;width:100%;max-width:470px;justify-self:center;touch-action:pan-y;cursor:pointer}
+.c3{position:relative;aspect-ratio:1.586;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.tilt.mv .c3{transition:transform .08s linear}
+.flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.tilt.flipped .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:22px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:clamp(16px,3.6vw,26px);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px -24px rgba(42,22,32,.55),0 8px 18px -8px rgba(183,110,121,.35)}
+.front{background:radial-gradient(120% 90% at 85% 0%,#6b3446 0%,transparent 60%),linear-gradient(150deg,#3a1c2a,#2A1620);color:var(--bg)}
+.front::before{content:"";position:absolute;right:-8%;top:-30%;width:62%;aspect-ratio:.8;border-radius:999px 999px 24px 24px;border:1.5px solid rgba(233,184,176,.35)}
+.front::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--sx) var(--sy),rgba(255,255,255,.22),transparent 45%);mix-blend-mode:soft-light;pointer-events:none}
+.back{transform:rotateY(180deg);background:var(--bg);color:var(--plum);align-items:center;justify-content:center;text-align:center;gap:10px;box-shadow:0 30px 60px -24px rgba(42,22,32,.4),0 8px 18px -8px rgba(183,110,121,.3),inset 0 0 0 1.5px var(--line)}
+.back::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--sx) var(--sy),rgba(255,255,255,.55),transparent 45%);pointer-events:none}
+.ct{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+.cb{font:700 19px var(--d);letter-spacing:-.04em}
+.cb i{font-style:normal;color:var(--blush)}
+.cn{font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.dots{display:flex;gap:clamp(5px,1.6vw,9px);position:relative;z-index:1}
+.dots i{flex:1;aspect-ratio:1;max-width:44px;border-radius:50%;border:1.5px dashed rgba(233,184,176,.5);display:grid;place-items:center;font-style:normal;font-size:clamp(11px,2.6vw,15px);color:var(--plum);transition:background .4s,border-color .4s}
+.dots i.on{background:var(--blush);border-color:transparent}
+.dots i.pop{animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+.dots i.gift{border-color:var(--gold);color:var(--gold)}
+.dots i.gift.on{background:var(--gold);color:var(--plum)}
+@keyframes pop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+.cbm{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1;gap:10px}
+.nm{font:600 clamp(20px,4.6vw,30px) var(--d);letter-spacing:-.03em;line-height:1;max-width:14ch;overflow-wrap:anywhere}
+.nm.ph{opacity:.4}
+.qrw{width:min(56%,190px);aspect-ratio:1;padding:10px;background:#fff;border-radius:14px;transition:opacity .4s,filter .4s;position:relative;z-index:1}
+.qrw svg{display:block;width:100%;height:100%}
+.qrw.dim{opacity:.35;filter:blur(2px)}
+.cap{font-size:12px;letter-spacing:.06em;position:relative;z-index:1}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+
+/* ---------- perks ---------- */
+.area{padding:clamp(60px,9vw,120px) var(--pad);background:var(--blush)}
+.area[hidden]{display:none}
+.area h2 em{color:var(--plum)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.pk{background:var(--bg);border-radius:var(--r);padding:26px 24px;display:flex;flex-direction:column;gap:12px;min-height:250px}
+.pk b{font:600 44px var(--d);letter-spacing:-.04em;color:var(--rose);line-height:1}
+.pk h3{font-size:24px;line-height:1.02}
+.pk p{font-size:14.5px;opacity:.85}
+.pk .btn{margin-top:auto;min-height:44px;padding:0 20px;align-self:flex-start}
+.code{display:inline-flex;align-items:center;font:600 15px var(--b);letter-spacing:.12em;padding:10px 16px;border-radius:99px;border:1.5px dashed var(--rose);align-self:flex-start}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:auto}
+.bar span{display:block;height:100%;width:0;background:var(--rose);border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.tg{display:flex;align-items:center;gap:12px;margin-top:auto}
+.sw{width:56px;height:44px;border:0;background:none;position:relative;cursor:pointer;flex:none;padding:0}
+.sw::before{content:"";position:absolute;left:0;top:6px;width:56px;height:32px;border-radius:99px;background:var(--line);transition:background .3s}
+.sw::after{content:"";position:absolute;left:4px;top:10px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
+.sw[aria-pressed=true]::before{background:var(--rose)}
+.sw[aria-pressed=true]::after{transform:translateX(24px)}
+
+.why{padding:clamp(60px,8vw,110px) var(--pad);background:var(--plum);color:var(--bg)}
+.why h2 em{color:var(--blush)}
+.why ul{list-style:none;padding:0;margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.why li{padding:24px;border-radius:var(--r);background:rgba(247,237,232,.07)}
+.why li b{display:block;font:600 40px var(--d);color:var(--gold);letter-spacing:-.04em;margin-bottom:8px}
+.why p{opacity:.85;font-size:15px}
+.ft{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px;padding:28px var(--pad);border-top:1px solid var(--line);font-size:13px}
+
+.cf{position:fixed;inset:0;z-index:80;pointer-events:none;width:100%;height:100%}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr}
+  .stage .cardcol{order:-1}
+  .grid{grid-template-columns:1fr 1fr}
+  .why ul{grid-template-columns:1fr}
+  .top{padding-top:96px}
+}
+@media (max-width:520px){.grid{grid-template-columns:1fr}.pk{min-height:0}}
+@media (hover:none){.btn:hover{background:var(--plum);transform:none}.btn.ghost:hover{background:transparent;color:var(--plum)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="hd">
+  <a class="brand" href="index.html" aria-label="SEZIONE — torna al sito">SEZIONE<i>.</i></a>
+  <a class="btn ghost" href="index.html#prenota">Prenota</a>
+</header>
+
+<main>
+<section class="top">
+  <p class="micro">Tessera fedeltà · QR personale</p>
+  <h1 style="margin-top:16px">La tua <em>tessera.</em></h1>
+  <p class="lead">Ogni sesta visita, la settima è in regalo. Crea la tua tessera digitale: il QR è solo tuo e lo mostri in salone al posto dei timbri di carta.</p>
+</section>
+
+<section class="stage" aria-label="Crea la tua tessera">
+  <div>
+    <form class="fm" id="fm" novalidate>
+      <label for="nm">Come ti chiami?
+        <input type="text" id="nm" name="n" autocomplete="given-name" maxlength="22" placeholder="Il tuo nome">
+      </label>
+      <div class="row">
+        <button class="btn" type="submit" id="mk">Crea la mia tessera</button>
+        <button class="btn ghost" type="button" id="rs" hidden>Ricomincia</button>
+      </div>
+      <p class="stat" id="stat" role="status"></p>
+      <p class="note">Demo: nome e timbri restano solo in questo browser e non vengono inviati a nessuno. Nel sito vero la tessera si collega alla prenotazione e ai promemoria su WhatsApp.</p>
+    </form>
+  </div>
+
+  <div class="cardcol">
+    <div class="tilt" id="tilt">
+      <div class="c3"><div class="flip">
+        <div class="face front" aria-label="Fronte della tessera">
+          <div class="ct"><span class="cb">SEZIONE<i>.</i></span><span class="cn">Tessera fedeltà</span></div>
+          <div class="dots" id="dots" aria-hidden="true"></div>
+          <div class="cbm"><span class="nm ph" id="cn">Il tuo nome</span><span class="cn" id="cid">SZ-0000</span></div>
+        </div>
+        <div class="face back" aria-label="Retro della tessera con QR">
+          <div class="qrw dim" id="qrw"></div>
+          <span class="cap">Mostra questo codice in salone</span>
+        </div>
+      </div></div>
+    </div>
+    <div class="ctl">
+      <button class="btn ghost" type="button" id="fl" aria-pressed="false">Mostra il QR</button>
+      <button class="btn" type="button" id="st" disabled>Simula un timbro</button>
+    </div>
+    <p class="note" style="text-align:center;margin:14px auto 0">In salone il timbro lo aggiunge lo staff scansionando il tuo QR. Qui lo simuli con il pulsante.</p>
+  </div>
+</section>
+
+<section class="area" id="area" hidden aria-labelledby="ar-h">
+  <p class="micro">Il tuo profilo</p>
+  <h2 id="ar-h" style="margin-top:16px">Benvenuta, benvenuto.<br><em>Ecco cosa hai sbloccato.</em></h2>
+  <div class="grid">
+    <article class="pk"><b>−15%</b><h3>Prima visita</h3><p>Mostra il codice alla cassa nel giorno del primo appuntamento.</p><span class="code">PRIMA15</span><button class="btn ghost" type="button" data-copy="PRIMA15">Copia il codice</button></article>
+    <article class="pk"><b id="pg">0/6</b><h3>Verso il regalo</h3><p id="pgt">Ogni servizio aggiunge un timbro. Al sesto, il settimo è in regalo.</p><div class="bar" aria-hidden="true"><span id="bar"></span></div></article>
+    <article class="pk"><b>+1</b><h3>Porta qualcuno</h3><p>Una persona nuova con il tuo link: −10% a te e −10% a lei o lui.</p><button class="btn ghost" type="button" data-copy="" id="inv">Copia il tuo link</button></article>
+    <article class="pk"><b>24h</b><h3>Promemoria</h3><p>Un messaggio su WhatsApp il giorno prima, con la possibilità di spostare.</p><div class="tg"><button class="sw" type="button" id="wa" aria-pressed="false" aria-label="Attiva promemoria WhatsApp"></button><span id="wat" class="micro">Disattivato</span></div></article>
+  </div>
+</section>
+
+<section class="why" aria-labelledby="w-h">
+  <p class="micro">Perché conviene al salone</p>
+  <h2 id="w-h" style="margin-top:16px">Un motivo per <em>tornare.</em></h2>
+  <ul>
+    <li><b>Ritorno</b><p>Il regalo è un traguardo visibile, non una promessa: chi ha già qualche timbro ha un motivo concreto per prenotare di nuovo.</p></li>
+    <li><b>Dati tuoi</b><p>Nome, visite e preferenze restano del salone: niente app da scaricare, niente terzi in mezzo.</p></li>
+    <li><b>Passaparola</b><p>Il link personale porta clienti nuove e nuovi con uno sconto che ricompensa entrambi.</p></li>
+  </ul>
+</section>
+</main>
+
+<footer class="ft">
+  <span>© 2026 SEZIONE — concept demo by Punto Due Studio</span>
+  <a href="index.html">← Torna al sito</a>
+</footer>
+
+<canvas class="cf" id="cf" aria-hidden="true"></canvas>
+
+<script src="qrcode.min.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const KEY = 'sezione-tessera';
+  const N = 6;
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let st = { name: '', id: '', stamps: 0, wa: false, made: false };
+  try { Object.assign(st, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+
+  const mkId = n => { let h = 0; for (const c of n) h = (h * 31 + c.charCodeAt(0)) >>> 0; return 'SZ-' + (h % 9000 + 1000) + '-' + Math.random().toString(36).slice(2, 5).toUpperCase(); };
+  const base = location.origin + location.pathname;
+  const url = () => base + '#' + (st.made ? st.id : 'SZ-0000');
+
+  function qrSvg(text) {
+    const q = qrcode(0, 'M'); q.addData(text); q.make();
+    const n = q.getModuleCount();
+    let d = '';
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + c + ' ' + r + 'h1v1h-1z';
+    return '<svg viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" role="img" aria-label="QR code personale della tessera"><path d="' + d + '" fill="#2A1620"/></svg>';
+  }
+
+  const dots = $('#dots');
+  dots.innerHTML = Array.from({ length: N }, () => '<i></i>').join('') + '<i class="gift">✦</i>';
+  const dEls = [...dots.children];
+
+  function render(pop) {
+    $('#cn').textContent = st.name || 'Il tuo nome';
+    $('#cn').classList.toggle('ph', !st.name);
+    $('#cid').textContent = st.made ? st.id : 'SZ-0000';
+    const qw = $('#qrw');
+    qw.innerHTML = qrSvg(url());
+    qw.classList.toggle('dim', !st.made);
+    dEls.forEach((el, i) => {
+      const on = i < N ? i < st.stamps : st.stamps >= N;
+      el.classList.toggle('on', on);
+      el.textContent = i < N ? (on ? '✓' : '') : '✦';
+    });
+    if (pop != null && dEls[pop]) { dEls[pop].classList.remove('pop'); void dEls[pop].offsetWidth; dEls[pop].classList.add('pop'); }
+    $('#st').disabled = !st.made;
+    $('#st').textContent = st.stamps >= N ? 'Riscatta il regalo' : 'Simula un timbro';
+    $('#area').hidden = !st.made;
+    $('#rs').hidden = !st.made;
+    $('#mk').textContent = st.made ? 'Aggiorna il nome' : 'Crea la mia tessera';
+    const done = Math.min(st.stamps, N), left = N - done;
+    $('#pg').textContent = done + '/' + N;
+    $('#bar').style.width = done / N * 100 + '%';
+    $('#pgt').textContent = left === 0 ? 'Traguardo raggiunto: il prossimo servizio è in regalo.' : 'Ancora ' + left + (left === 1 ? ' timbro' : ' timbri') + ' e il servizio successivo è in regalo.';
+    $('#wa').setAttribute('aria-pressed', st.wa);
+    $('#wat').textContent = st.wa ? 'Attivo (demo)' : 'Disattivato';
+    $('#inv').dataset.copy = base + '?invito=' + (st.made ? st.id : '');
+  }
+
+  const say = t => { $('#stat').textContent = t; };
+
+  $('#nm').value = st.name;
+  $('#nm').addEventListener('input', e => { st.name = e.target.value.trim(); render(); });
+  $('#fm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!st.name) { say('Scrivi il tuo nome per creare la tessera.'); $('#nm').focus(); return; }
+    if (!st.made) st.id = mkId(st.name);
+    st.made = true; save(); render();
+    say('Tessera creata. Girala per vedere il tuo QR.');
+    setTimeout(() => $('#tilt').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }), 60);
+    burst(70);
+  });
+  $('#rs').addEventListener('click', () => {
+    st = { name: '', id: '', stamps: 0, wa: false, made: false };
+    $('#nm').value = ''; try { localStorage.removeItem(KEY); } catch (e) {}
+    setFlip(false); render(); say('Tessera azzerata.');
+  });
+
+  $('#st').addEventListener('click', () => {
+    if (!st.made) return;
+    if (st.stamps >= N) { st.stamps = 0; save(); render(); say('Regalo riscattato! Si ricomincia da zero.'); burst(140); return; }
+    st.stamps++; save(); render(st.stamps - 1);
+    if (st.stamps >= N) { render(N); say('Sesto timbro: il prossimo servizio è in regalo.'); burst(140); }
+    else say('Timbro aggiunto: ' + st.stamps + ' su ' + N + '.');
+  });
+
+  $('#wa').addEventListener('click', () => { st.wa = !st.wa; save(); render(); });
+
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    const old = b.textContent;
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copiato ✓'; }
+    catch (e) { b.textContent = 'Copia non disponibile'; }
+    setTimeout(() => { b.textContent = old; }, 1600);
+  }));
+
+  /* flip + tilt */
+  const tilt = $('#tilt');
+  function setFlip(v) { tilt.classList.toggle('flipped', v); $('#fl').setAttribute('aria-pressed', v); $('#fl').textContent = v ? 'Mostra il fronte' : 'Mostra il QR'; }
+  const toggle = () => setFlip(!tilt.classList.contains('flipped'));
+  $('#fl').addEventListener('click', toggle);
+  tilt.addEventListener('click', toggle);
+  if (!reduce) {
+    tilt.addEventListener('pointermove', e => {
+      const b = tilt.getBoundingClientRect(), x = (e.clientX - b.left) / b.width - .5, y = (e.clientY - b.top) / b.height - .5;
+      tilt.classList.add('mv');
+      tilt.style.setProperty('--rx', (-y * 12) + 'deg'); tilt.style.setProperty('--ry', (x * 16) + 'deg');
+      tilt.style.setProperty('--sx', (x * 100 + 50) + '%'); tilt.style.setProperty('--sy', (y * 100 + 50) + '%');
+    });
+    tilt.addEventListener('pointerleave', () => {
+      tilt.classList.remove('mv');
+      tilt.style.setProperty('--rx', '0deg'); tilt.style.setProperty('--ry', '0deg');
+      tilt.style.setProperty('--sx', '50%'); tilt.style.setProperty('--sy', '50%');
+    });
+  }
+
+  /* confetti */
+  const cv = $('#cf'), cx = cv.getContext('2d');
+  let ps = [], raf = 0;
+  function burst(n) {
+    if (reduce) return;
+    const W = cv.width = innerWidth, H = cv.height = innerHeight;
+    const col = ['#B76E79', '#E9B8B0', '#C9A27A', '#F7EDE8', '#2A1620'];
+    for (let i = 0; i < n; i++) ps.push({ x: W / 2, y: H * .55, vx: (Math.random() - .5) * 14, vy: -Math.random() * 14 - 4, s: 4 + Math.random() * 6, r: Math.random() * 6, vr: (Math.random() - .5) * .4, c: col[i % col.length], l: 1 });
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  function tick() {
+    cx.clearRect(0, 0, cv.width, cv.height);
+    ps = ps.filter(p => p.l > 0);
+    ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += .35; p.vx *= .99; p.r += p.vr; p.l -= .012; cx.save(); cx.globalAlpha = Math.max(p.l, 0); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillStyle = p.c; cx.fillRect(-p.s / 2, -p.s / 3, p.s, p.s * .6); cx.restore(); });
+    raf = ps.length ? requestAnimationFrame(tick) : 0;
+    if (!raf) cx.clearRect(0, 0, cv.width, cv.height);
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

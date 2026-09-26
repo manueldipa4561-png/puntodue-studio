@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KERN — Moss palette</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bone:#E8E6DA;--night:#0F140E;--ink:#141A12;--moss:#2C5A3A;--lime:#C9F24A;--stone:#B9B7A8}
+*{box-sizing:border-box;margin:0}
+body{background:#0b0b0c;color:var(--bone);font-family:'Bricolage Grotesque',system-ui,sans-serif;padding:32px 16px}
+h1{font-weight:800;font-size:28px}
+.sub{font-family:'Fragment Mono',monospace;font-size:12px;opacity:.6;margin:6px 0 28px;max-width:72ch}
+.wrap{max-width:1100px;display:grid;gap:16px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.panel{border-radius:8px;padding:36px 28px;display:flex;flex-direction:column;gap:28px;min-height:280px;justify-content:space-between}
+.light{background:var(--bone);color:var(--ink);--acc:var(--moss)}
+.dark{background:var(--night);color:var(--bone);--acc:var(--lime)}
+.lock{display:flex;align-items:center;gap:14px;font-weight:800;font-size:64px;letter-spacing:-.07em}
+.lock svg{width:70px;flex:none}
+.lock i{font-style:normal;color:var(--acc);letter-spacing:0}
+.card{border:1.5px solid currentColor;border-radius:12px;padding:14px;font-size:14px;line-height:1.4;max-width:280px}
+.card small{font:400 10px 'Fragment Mono',monospace;opacity:.65;display:block;margin-bottom:6px}
+.btn{margin-top:12px;display:inline-block;background:var(--acc);padding:9px 16px;border-radius:999px;font-weight:800;font-size:13px}
+.light .btn{color:var(--bone)}.dark .btn{color:var(--night)}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-radius:8px;overflow:hidden}
+.sw div{padding:56px 12px 12px;font:400 11px 'Fragment Mono',monospace;line-height:1.5}
+pre{background:#161816;border-radius:8px;padding:16px;font:400 12px/1.6 'Fragment Mono',monospace;overflow:auto;color:#d7d5c8}
+.rules li{margin:6px 0 6px 18px;font-size:14px;line-height:1.45}
+.rules{background:#161816;border-radius:8px;padding:16px 20px}
+</style></head><body>
+<h1>KERN — Moss palette (locked v1)</h1>
+<p class="sub">Two tones of one green. Deep moss on light, lime on dark. The accent lives only on the core and the full stop, plus primary actions.</p>
+<div class="wrap">
+<div class="pair" id="p"></div>
+<div class="sw">
+<div style="background:#E8E6DA;color:#141A12">BONE<br>#E8E6DA<br>light bg</div>
+<div style="background:#B9B7A8;color:#141A12">STONE<br>#B9B7A8<br>lines, muted</div>
+<div style="background:#141A12;color:#E8E6DA">INK<br>#141A12<br>text on light</div>
+<div style="background:#0F140E;color:#E8E6DA">NIGHT<br>#0F140E<br>dark bg</div>
+<div style="background:#2C5A3A;color:#E8E6DA">MOSS<br>#2C5A3A<br>accent, light</div>
+<div style="background:#C9F24A;color:#0F140E">LIME<br>#C9F24A<br>accent, dark</div>
+</div>
+<ul class="rules">
+<li><b>Contrast (WCAG):</b> moss on bone 6.37:1 (AA, and AAA large). Lime on night 14.45:1. Ink on bone 14.13:1. Bone on night 14.88:1.</li>
+<li><b>Never:</b> moss on night (2.33:1, fails) or lime on bone (too faint). Use each accent only on its own background.</li>
+<li><b>My first moss, #2F7D3A, was rejected:</b> only 4.07:1 on bone, below AA for text. That is why the deeper olive replaced it.</li>
+</ul>
+<pre>:root{
+  --bg:#E8E6DA; --fg:#141A12; --muted:#B9B7A8; --accent:#2C5A3A; --on-accent:#E8E6DA;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0F140E; --fg:#E8E6DA; --muted:#5b6156; --accent:#C9F24A; --on-accent:#0F140E;
+}}</pre>
+</div>
+<script>
+const mark=`<svg viewBox="0 0 100 100"><path fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" style="fill:var(--acc)"/></svg>`;
+const p=c=>`<div class="panel ${c}"><div class="lock">${mark}kern<i>.</i></div><div class="card"><small>MISSION 001 · 30 MIN</small>Make somebody care<br><span class="btn">Start mission</span></div></div>`;
+document.getElementById('p').innerHTML=p('light')+p('dark');
+</script></body></html>

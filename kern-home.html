@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>KERN home screen</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#0b0b0c;color:#E8E6DA;font-family:'Bricolage Grotesque',system-ui,sans-serif;padding:32px 16px}
+h1{font-weight:800;font-size:24px}
+.sub{font:400 12px/1.6 'Fragment Mono',monospace;opacity:.6;margin:6px 0 24px;max-width:72ch}
+.row{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+
+/* ---- the home screen ---- */
+.phone{width:320px;height:680px;border-radius:38px;border:6px solid #1c1f1b;overflow:hidden;flex:none}
+.light{--bg:#E8E6DA;--fg:#141A12;--acc:#2C5A3A;--on:#E8E6DA;--line:#B9B7A8;--dim:#5b6156}
+.dark{--bg:#0F140E;--fg:#E8E6DA;--acc:#C9F24A;--on:#0F140E;--line:#2a3128;--dim:#9a9d8e}
+.app{height:100%;display:flex;flex-direction:column;background:var(--bg);color:var(--fg)}
+.top{padding:22px 20px 6px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:22px;letter-spacing:-.07em}
+.logo svg{width:24px}.logo i{font-style:normal;color:var(--acc);letter-spacing:0}
+.pill{font:400 10px 'Fragment Mono',monospace;border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--dim)}
+.screen{flex:1;overflow:auto;padding:12px 20px 16px;display:none;flex-direction:column;gap:14px}
+.screen.on{display:flex}
+h2{font-weight:800;font-size:30px;letter-spacing:-.05em;line-height:1}
+h2 b{color:var(--acc)}
+.lbl{font:400 10px 'Fragment Mono',monospace;color:var(--dim);letter-spacing:.04em;text-transform:uppercase}
+.card{border:1.5px solid var(--fg);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.card.main{background:var(--fg);color:var(--bg)}
+.card.main .lbl{color:var(--bg);opacity:.65}
+.card h3{font-weight:800;font-size:20px;letter-spacing:-.04em;line-height:1.1}
+.card p{font-size:13px;line-height:1.4;opacity:.8}
+.card.lock{border-color:var(--line);border-style:dashed;color:var(--dim)}
+.btn{align-self:flex-start;border:0;border-radius:999px;padding:9px 16px;font:800 13px 'Bricolage Grotesque',sans-serif;cursor:pointer}
+.light .btn{background:#E8E6DA;color:#2C5A3A}
+.dark .btn{background:#0F140E;color:#C9F24A}
+.bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc)}
+.stat{display:flex;align-items:baseline;gap:8px}
+.stat b{font-weight:800;font-size:38px;letter-spacing:-.06em;line-height:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--fg);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:500}
+.sig{border-left:3px solid var(--acc);padding-left:12px;font-size:14px;line-height:1.4}
+.ask{display:flex;gap:8px}
+.ask span{font-size:12px;font-weight:800;border:1.5px solid var(--fg);border-radius:999px;padding:7px 12px}
+.ask span:first-child{background:var(--acc);color:var(--on);border-color:var(--acc)}
+.done{display:flex;justify-content:space-between;font-size:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+.done small{font:400 10px 'Fragment Mono',monospace;color:var(--dim)}
+/* trail */
+.trail{position:relative;display:flex;flex-direction:column;gap:20px;padding-left:34px}
+.trail::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.stop{position:relative}
+.stop::before{content:"";position:absolute;left:-30px;top:2px;width:16px;height:16px;border-radius:50%;border:2px solid var(--fg);background:var(--bg)}
+.stop.fin::before{background:var(--fg)}
+.stop.now::before{background:var(--acc);border-color:var(--acc)}
+.stop h3{font-weight:800;font-size:17px;letter-spacing:-.03em}
+.stop p{font-size:12px;color:var(--dim);margin-top:2px}
+/* tabs */
+.tabs{display:flex;border-top:1px solid var(--line);padding:8px 8px 14px}
+.tabs button{flex:1;background:none;border:0;color:var(--dim);font:800 12px 'Bricolage Grotesque',sans-serif;letter-spacing:-.01em;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:6px 0}
+.tabs button::before{content:"";width:6px;height:6px;border-radius:50%;background:transparent}
+.tabs button.on{color:var(--fg)}
+.tabs button.on::before{background:var(--acc)}
+.tabs button.on .k{color:var(--acc)}
+</style></head><body>
+<h1>KERN home screen</h1>
+<p class="sub">Three tabs: Missions, yourKERN, Trail. Tap the tabs on either phone. No mission shows a time and none is locked; you can add several answers to one mission. All names, counts and signals are placeholder content. yourKERN counts only time spent inside KERN missions, and every claim shows its evidence.</p>
+<div class="row" id="row"></div>
+<script>
+const mark=`<svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" transform="translate(-5 -5)"/><path fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="var(--acc)"/></svg>`;
+const missions=`
+<div><div class="lbl">All missions open</div><h2 style="margin-top:6px">Pick your<br>next <b>move.</b></h2></div>
+<div class="card main"><div class="lbl">Mission 002 · startup partner</div><h3>Fix what already exists</h3><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="lbl">128 answers · judged on quality</div><button class="btn">Add your answer</button></div>
+<div class="card"><div class="lbl">Mission 003 · KERN</div><h3>Rewrite a confusing email</h3><p>Do it your way. Every answer counts.</p><div class="lbl">54 answers</div></div>
+<div class="card"><div class="lbl">Mission 004 · studio client</div><h3>Work with a partner</h3><p>Answer together with someone else.</p><div class="lbl">31 answers</div></div>`;
+const yk=`
+<div><div class="lbl">yourKERN · first signs</div><h2 style="margin-top:6px">Your <b>KERN</b><br>so far.</h2></div>
+<div class="card"><div class="lbl">Time on KERN missions</div><div class="stat"><b>1h 15m</b><span class="lbl">this week · only you see this</span></div><div class="bar"><i style="width:62%"></i></div></div>
+<div class="card"><div class="lbl">What you seem drawn to</div><div class="chips"><span class="chip">Shaping ideas</span><span class="chip">Writing</span><span class="chip">Solo work</span></div></div>
+<div class="card"><div class="lbl">A first guess</div><div class="sig">You seemed to light up on the open brief and drag on the polish.</div><div class="lbl">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div><div class="ask"><span>That feels right</span><span>Not really</span></div></div>
+<div><div class="lbl">Completed</div><div class="done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
+<div class="card"><div class="lbl">Worth trying next</div><h3>Improve an existing product page</h3><p>Tests the part you seemed to drag on.</p></div>`;
+const trail=`
+<div><div class="lbl">Your Trail</div><h2 style="margin-top:6px">Follow the<br><b>trail.</b></h2></div>
+<div class="trail">
+<div class="stop fin"><h3>Make somebody care</h3><p>Build from zero · done</p></div>
+<div class="stop now"><h3>Fix what already exists</h3><p>Improve what exists · in progress</p></div>
+<div class="stop"><h3>Work with a partner</h3><p>Pair up · not started</p></div>
+<div class="stop"><h3>Your Kern card</h3><p>What we saw, why, and your next move</p></div>
+</div>
+<div class="card"><div class="lbl">Leave a sign</div><p>After each mission, leave one short tip for the next person.</p></div>`;
+const t=[['missions','Missions',missions],['yourkern','your<span class="k">KERN</span>',yk],['trail','Trail',trail]];
+const phone=c=>`<div class="phone"><div class="app ${c}">
+<div class="top"><div class="logo">${mark}kern<i>.</i></div><span class="pill">1 of 3 done</span></div>
+${t.map((x,i)=>`<div class="screen${i?'':' on'}" data-s="${x[0]}">${x[2]}</div>`).join('')}
+<nav class="tabs">${t.map((x,i)=>`<button class="${i?'':'on'}" data-t="${x[0]}">${x[1]}</button>`).join('')}</nav>
+</div></div>`;
+const row=document.getElementById('row');
+row.innerHTML=phone('light')+phone('dark');
+row.onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const a=b.closest('.app');
+a.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x===b));
+a.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.dataset.s===b.dataset.t))};
+</script></body></html>
