@@ -4,6 +4,8 @@ import Sim from '../components/Sim.astro';
 import Chat from '../components/Chat.astro';
 import Bi from '../components/Bi.astro';
 import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+const KFIELDS = ['Design', 'Writing', 'Code', 'Video', 'Selling', 'Music'];
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.')}`;
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Tessera + QR'], next: ['Prenotazione con conferma su WhatsApp', 'Timbri aggiunti dallo staff scansionando il QR', 'Tessera salvabile nel Wallet del telefono', 'Promemoria su WhatsApp prima della visita'] },
@@ -78,6 +80,7 @@ const kstats = [
                   <div class="k-l" id="kShL">Mission 002 · startup partner</div>
                   <h5 id="kShT">Fix what already exists</h5>
                   <p class="k-msg k-ai" id="kShQ">What would make the first step easier for someone brand new?</p>
+                  <div class="k-trailsigns"><div class="k-l">Signs from people before you</div><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Someone who finished it · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Someone who finished it · last week</span></div></div>
                   <label class="k-l" for="kTa">Your answer</label>
                   <textarea id="kTa" rows="4"></textarea>
                   <div class="k-sh-btns"><button type="button" class="k-go" id="kSub">Submit answer</button><button type="button" class="k-sk" id="kCancel">Not now</button></div>
@@ -95,8 +98,9 @@ const kstats = [
                   <button type="button" class="k-go" id="kRwOk">Keep going</button>
                 </div>
               </div>
-              <div class="k-start on" id="kLogin">
+              <div class="k-start" id="kLogin">
                 <div class="k-sp">
+                  <img class="k-hero-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" />
                   <div class="k-l" id="kLlab">Welcome back</div>
                   <h4 id="kLh">Log in to<br>your <b>trail.</b></h4>
                   <div class="k-field" id="kNm" hidden><label class="k-l" for="kNmI">Name</label><input id="kNmI" type="text" value="Alex Demo" readonly /></div>
@@ -107,38 +111,41 @@ const kstats = [
                   <div class="k-l">Demo account · nothing is sent or saved</div>
                 </div>
               </div>
-              <div class="k-start" id="kStart">
+              <div class="k-start on" id="kStart">
                 <div id="kS1" class="k-sp">
-                  <svg class="k-cairn" viewBox="0 0 120 96" aria-hidden="true"><ellipse class="c3" cx="60" cy="82" rx="46" ry="12"/><ellipse class="c2" cx="60" cy="58" rx="34" ry="11"/><ellipse class="c1" cx="60" cy="36" rx="22" ry="9"/><circle class="cd" cx="60" cy="16" r="7"/></svg>
+                  <div class="k-float" aria-hidden="true"><img src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-music.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-code.webp" alt="" width="400" height="400" loading="lazy" /></div>
                   <div class="k-l">Start here</div>
                   <h4>What do you want<br>to <b>do?</b></h4>
+                  <ol class="k-how"><li><b>01</b><p>Try a real mission</p></li><li><b>02</b><p>Reflect in 20 seconds</p></li><li><b>03</b><p>See how you work</p></li></ol>
                   <button type="button" class="k-go" id="kIdk">I don't know what I want to do</button>
                   <button type="button" class="k-sk" id="kSkip">Explore missions</button>
                 </div>
                 <div id="kS2" class="k-sp" hidden>
                   <div class="k-l">Good. Let's find out.</div>
                   <h4>What are you<br>curious about <b>right now?</b></h4>
-                  <div class="k-chips" id="kPick"><span role="button" tabindex="0">Design</span><span role="button" tabindex="0">Writing</span><span role="button" tabindex="0">Code</span><span role="button" tabindex="0">Video</span><span role="button" tabindex="0">Selling</span><span role="button" tabindex="0">Music</span></div>
+                  <div class="k-tiles" id="kPick" role="group">
+                    {KFIELDS.map((f) => <button type="button" class="k-tile" data-f={f} aria-pressed="false"><img src={`/kern/f-${f.toLowerCase()}.webp`} alt="" width="400" height="400" loading="lazy" decoding="async" /><span>{f}</span></button>)}
+                  </div>
                   <button type="button" class="k-go" id="kGo">Start my first mission</button>
                 </div>
               </div>
               <div class="k-app">
                 <div class="k-top">
                   <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="currentColor" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="currentColor" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9"/></svg>kern<i>.</i></div>
-                  <div class="k-tp"><span class="k-pill">1 of 3 done</span><button type="button" class="k-av" id="kAv" aria-label="Log out (demo account)">A</button></div>
+                  <div class="k-tp"><span class="k-pill"><i class="k-ring" aria-hidden="true"></i><span class="k-pl">1 of 3 done</span></span><button type="button" class="k-av" id="kAv" aria-label="Log out (demo account)">A</button></div>
                 </div>
                 <div class="k-body">
                   <div class="k-pane on" id="k-missions">
                     <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
-                    <div class="k-card k-main" id="kM0"><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
-                    <div class="k-card k-aic"><div class="k-l">Co-pilot · asks, never answers</div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
-                    <div class="k-card k-best"><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
+                    <div class="k-card k-main" id="kM0"><img class="k-obj" id="kNxImg" src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
+                    <div class="k-card k-aic"><div class="k-aic-hd"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Co-pilot · asks, never answers</div></div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
+                    <div class="k-card k-best"><img class="k-side" src="/kern/r4.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
                     <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
                     <div class="k-card" id="kM2"><div class="k-l">Mission 004 · studio client</div><h5>Work with a partner</h5><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
                   </div>
                   <div class="k-pane" id="k-yourkern">
                     <div><div class="k-l">yourKERN · first signs</div><h4>Your <b>KERN</b><br>so far.</h4></div>
-                    <div class="k-card k-lvl"><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
+                    <div class="k-card k-lvl"><img class="k-rank-img" id="kRankImg" src="/kern/r1.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
                     <div class="k-card"><div class="k-l">This week's circle</div><div id="kCircle"></div><div class="k-l">No one drops more than one rank in a week.</div></div>
                     <div class="k-duo"><div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div><div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div></div>
                     <div class="k-card"><div class="k-l">What you seem drawn to</div><div class="k-chips"><span>Shaping ideas</span><span>Writing</span><span>Solo work</span></div></div>
@@ -149,20 +156,20 @@ const kstats = [
                     <div class="k-card"><div class="k-l">Worth trying next</div><h5>Improve an existing product page</h5><p>Tests the part you seemed to drag on.</p></div>
                   </div>
                   <div class="k-pane" id="k-trail">
-                    <div><div class="k-l">Your Trail</div><h4>Follow the<br><b>trail.</b></h4></div>
+                    <div class="k-hd"><div class="k-l">Your Trail</div><h4>Follow the<br><b>trail.</b></h4><img class="k-hd-img" src="/kern/r3.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
                     <div class="k-tr">
                       <div class="k-st fin"><h5>Make somebody care</h5><p>Build from zero · done</p></div>
                       <div class="k-st now"><h5 id="kTrNow">Fix what already exists</h5><p>In progress</p></div>
                       <div class="k-st"><h5 id="kTrNext">Work with a partner</h5><p>Pair up · not started</p></div>
                       <div class="k-st"><h5>Your Kern card</h5><p>What we saw, why, and your next move</p></div>
                     </div>
-                    <div class="k-card"><div class="k-l">Leave a sign</div><p>After each mission, leave one short tip for the next person.</p></div>
-                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><div class="k-kt">kern<i>.</i></div><h5>You light up when you start from zero.</h5><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
+                    <div class="k-card k-signs-card"><div class="k-l">Signs on the trail</div><p>People who finish a mission before you leave a short tip for you. Yours helps the next person.</p><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Fix what already exists · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Make somebody care · last week</span></div></div>
+                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><img class="k-kc-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" /><div class="k-kt">kern<i>.</i></div><h5>You light up when you start from zero.</h5><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
                     <div class="k-card"><div class="k-l">Dare a friend</div><p>Send a mission. You both answer, then see the two answers side by side.</p><button type="button" class="k-ask-btn" data-k-toast="Link copied. Your friend answers the same mission.">Send a dare</button></div>
                   </div>
                   <div class="k-pane" id="k-copilot">
-                    <div><div class="k-l">KERN.AI ·your co-pilot</div><h4>Your idea.<br>My <b>questions.</b></h4></div>
-                    <div class="k-ait"><span class="k-dot" aria-hidden="true"></span><div class="k-l">You are talking to an AI · replies are a scripted preview</div></div>
+                    <div class="k-hd"><div class="k-l">KERN.AI ·your co-pilot</div><h4>Your idea.<br>My <b>questions.</b></h4><img class="k-hd-img" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
+                    <div class="k-ait"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">You are talking to an AI · replies are a scripted preview</div></div>
                     <div class="k-card k-chat">
                       <div class="k-log" id="kChat" aria-live="polite"></div>
                       <div class="k-cmp" id="kCmp" hidden><div class="k-l">Version 1</div><p id="kV1"></p><div class="k-l">Version 3</div><p id="kV3"></p><button type="button" class="k-ask-btn" data-k-toast="Saved to yourKERN. Every version counts as evidence.">Save to yourKERN</button></div>
@@ -409,11 +416,6 @@ const kstats = [
       .k-tabs button:nth-child(1) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E"); }
       .k-tabs button:nth-child(2) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cellipse cx='12' cy='19' rx='8' ry='2.8'/%3E%3Cellipse cx='12' cy='13' rx='5.6' ry='2.4'/%3E%3Ccircle cx='12' cy='7.4' r='2.2'/%3E%3C/svg%3E"); }
       .k-tabs button:nth-child(3) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='18' r='2'/%3E%3Ccircle cx='18' cy='6' r='2'/%3E%3Cpath d='M8 18h5a3 3 0 0 0 0-6h-2a3 3 0 0 1 0-6h5'/%3E%3C/svg%3E"); }
-      .k-cairn { width: 92px; overflow: visible; margin-bottom: 4px; } .k-cairn ellipse { fill: var(--fg); transform-box: fill-box; transform-origin: center; }
-      .k-cairn .c2 { opacity: .72; } .k-cairn .c1 { opacity: .5; } .k-cairn .cd { fill: var(--acc); transform-box: fill-box; animation: kBob 2.4s ease-in-out infinite; }
-      .k-cairn .c1 { animation: kBob 2.4s .2s ease-in-out infinite; } .k-cairn .c2 { animation: kBob 2.4s .4s ease-in-out infinite; }
-      @keyframes kBob { 50% { transform: translateY(-3px); } }
-      @media (prefers-reduced-motion: reduce) { .k-cairn .cd, .k-cairn .c1, .k-cairn .c2 { animation: none; } }
 
       /* v5: KERN AI tab */
       .k-tabs button:nth-child(4) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z'/%3E%3C/svg%3E"); }
@@ -547,6 +549,89 @@ const kstats = [
       .note a { color: inherit; text-decoration: underline; }
       @media (min-width: 1024px) { .app { grid-template-columns: 1.1fr .9fr; } }
       @media (prefers-reduced-motion: reduce) { .row i { transition: none; } }
+
+      /* KERN phone, v1.0 look (same as the app): 3D objects, italic serif accents, floating tab bar, grain */
+      @property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
+      .k-scr { --ks: 'Instrument Serif', Georgia, serif; --spring: cubic-bezier(.34, 1.56, .64, 1); --out: cubic-bezier(.22, 1, .36, 1); --bone: #ECEADF; }
+      .k-scr::after { content: ''; position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+      .k-scr.light::after { filter: invert(1); opacity: .045; }
+      .k-scr h4 { font-size: 30px; line-height: .98; letter-spacing: -.045em; }
+      .k-scr h4 b, .k-tag b { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 1.16em; letter-spacing: -.01em; line-height: .8; }
+      .k-rank { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 34px; letter-spacing: -.01em; line-height: 1; }
+      .k-card { border-radius: 22px; border-color: color-mix(in srgb, var(--fg) 13%, transparent); background: color-mix(in srgb, var(--fg) 5.5%, transparent); }
+      .k-go, .k-btn, .k-win, .k-ask-btn, .k-tile, .k-ask button { transition: transform .45s var(--spring), background-color .2s, border-color .2s; }
+      .k-go:active, .k-btn:active, .k-win:active, .k-ask-btn:active, .k-tile:active, .k-ask button:active { transform: scale(.95); transition-duration: .08s; }
+      @keyframes kFloat { 50% { transform: translateY(-6px) rotate(-2deg); } }
+      .k-obj, .k-hd-img, .k-rank-img, .k-hero-img, .k-float img { pointer-events: none; animation: kFloat 6s ease-in-out infinite; }
+      .k-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 5px; }
+      .k-ring { --p: .3333; width: 16px; height: 16px; border-radius: 50%; background: conic-gradient(var(--acc) calc(var(--p) * 1turn), var(--edge) 0); -webkit-mask: radial-gradient(circle, transparent 4.5px, #000 5px); mask: radial-gradient(circle, transparent 4.5px, #000 5px); }
+      /* hero mission card with the field object breaking out of the frame */
+      .k-main { margin-top: 26px; overflow: visible; border-radius: 26px; padding: 20px 18px 18px; color: var(--bone); background: radial-gradient(110% 90% at 100% 0%, rgba(201,242,74,.36), transparent 55%), linear-gradient(160deg, #2C5A3A, #14241A 72%); box-shadow: 0 22px 44px -24px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.14); }
+      .k-main::after { content: none; }
+      .k-main .k-l, .k-main p { color: var(--bone); } .k-main .k-l { opacity: .72; }
+      .k-main > .k-l:first-of-type, .k-main h5 { padding-right: 92px; }
+      .k-obj { position: absolute; right: -10px; top: -46px; width: 118px; height: 118px; z-index: 2 !important; filter: drop-shadow(0 18px 20px rgba(0,0,0,.5)); }
+      .k-main .k-btn { background: #C9F24A; color: #0F140E; box-shadow: 0 12px 24px -12px rgba(201,242,74,.8); }
+      .k-main .k-btn::after { content: ' →'; }
+      .k-best, .k-aic { position: relative; }
+      .k-side { position: absolute; right: 10px; top: 8px; width: 62px; height: 62px; filter: drop-shadow(0 10px 12px rgba(0,0,0,.4)); pointer-events: none; }
+      .k-best > .k-l:first-of-type { padding-right: 64px; }
+      .k-aic-hd { display: flex; align-items: center; gap: 8px; }
+      .k-aic-hd .k-l { color: var(--ai); }
+      .k-hd { position: relative; }
+      .k-hd-img { position: absolute; right: -4px; top: -8px; width: 88px; height: 88px; filter: drop-shadow(0 14px 18px rgba(0,0,0,.4)); animation-duration: 7s; }
+      /* yourKERN: the rank as a collectible stone */
+      .k-lvl { background: radial-gradient(80% 55% at 50% 16%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 70%), color-mix(in srgb, var(--fg) 5.5%, transparent); }
+      .k-rank-img { width: 140px; height: 140px; align-self: center; margin: -4px 0 -6px; filter: drop-shadow(0 18px 22px rgba(0,0,0,.45)); }
+      .k-ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+      .k-ladder span { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 1px 5px; border: 0; border-radius: 12px; font: 600 8.5px var(--mono); letter-spacing: .03em; text-transform: uppercase; color: var(--dim); }
+      .k-ladder b { font: inherit; }
+      .k-ladder img { width: 28px; height: 28px; filter: grayscale(1) brightness(.75); opacity: .4; }
+      .k-ladder span.done { color: var(--fg); } .k-ladder span.done img { filter: none; opacity: .9; }
+      .k-ladder span.on { background: color-mix(in srgb, var(--gold) 16%, transparent); color: var(--fg); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent); }
+      .k-ladder span.on img { filter: none; opacity: 1; transform: scale(1.15); }
+      /* Trail: the Kern card as a dark collectible, and signs left by people before you */
+      .k-kc { position: relative; overflow: hidden; min-height: 190px; justify-content: flex-end; border: 1px solid rgba(201,242,74,.35); border-radius: 20px; color: var(--bone); background: radial-gradient(90% 70% at 100% 0%, rgba(201,242,74,.22), transparent 60%), linear-gradient(165deg, #1D2E21, #0F140E); }
+      .k-kc-img { position: absolute; right: -14px; top: -8px; width: 124px; height: 124px; rotate: 8deg; filter: drop-shadow(0 16px 18px rgba(0,0,0,.5)); pointer-events: none; }
+      .k-kc .k-kt { position: absolute; left: 14px; top: 12px; color: var(--bone); } .k-kc .k-kt i { color: #C9F24A; }
+      .k-kc h5 { position: relative; font: italic 400 23px/1.05 var(--ks); letter-spacing: -.01em; color: var(--bone); padding-right: 28px; }
+      .k-kc .k-chips span { border-color: rgba(236,234,223,.25); background: rgba(236,234,223,.08); color: var(--bone); }
+      .k-kc .k-l { color: rgba(236,234,223,.6); }
+      .k-sign { display: flex; flex-direction: column; gap: 3px; border-left: 3px solid var(--gold); padding: 2px 0 2px 11px; }
+      .k-sign p { font-size: 13.5px; line-height: 1.4; }
+      .k-trailsigns { display: flex; flex-direction: column; gap: 8px; padding: 11px 13px; border-radius: 16px; background: color-mix(in srgb, var(--gold) 8%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent); }
+      .k-trailsigns > .k-l { color: var(--gold); }
+      /* KERN.AI: the little cairn with the glowing pebble */
+      .k-avatar { flex: none; width: 32px; height: 32px; margin: -7px 0; filter: drop-shadow(0 6px 8px rgba(0,0,0,.35)); }
+      .k-log .k-msg { border: 0; }
+      .k-log .k-ai { border-radius: 16px 16px 16px 5px; background: color-mix(in srgb, var(--ai) 15%, transparent); }
+      .k-log .k-me { border-radius: 16px 16px 5px 16px; background: var(--fg); color: var(--bg); }
+      /* login and onboarding */
+      .k-start { justify-content: safe center; }
+      .k-hero-img { width: 104px; height: 104px; margin: 0 0 -8px -8px; filter: drop-shadow(0 16px 20px rgba(0,0,0,.45)); }
+      .k-float { position: relative; width: 100%; height: 108px; }
+      .k-float img { position: absolute; width: 76px; height: 76px; filter: drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
+      .k-float img:nth-child(1) { left: 0; top: 26px; rotate: -8deg; }
+      .k-float img:nth-child(2) { left: 34%; top: 0; width: 88px; height: 88px; animation-delay: -2s; }
+      .k-float img:nth-child(3) { right: 0; top: 30px; rotate: 10deg; animation-delay: -4s; }
+      .k-how { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; width: 100%; }
+      .k-how li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 14px; border: 1px solid var(--edge); background: var(--surf); }
+      .k-how b { min-width: 22px; font: italic 400 19px/1 var(--ks); color: var(--acc); }
+      .k-how p { font-size: 13px; font-weight: 600; }
+      .k-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+      .k-tile { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 4px 8px; border-radius: 16px; border: 1px solid var(--edge); background: var(--surf); color: var(--fg); cursor: pointer; font: 700 11.5px 'Inter Tight Variable', system-ui, sans-serif; }
+      .k-tile img { width: 50px; height: 50px; filter: drop-shadow(0 8px 10px rgba(0,0,0,.35)); transition: transform .5s var(--spring); }
+      .k-tile.sel { border-color: var(--acc); background: color-mix(in srgb, var(--acc) 14%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 22%, transparent); }
+      .k-tile.sel img { transform: translateY(-3px) scale(1.14) rotate(-5deg); }
+      /* floating tab bar: the active tab becomes a lime capsule */
+      .k-tabs { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 1; padding: 5px; border: 1px solid var(--edge); border-radius: 24px; background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 16px 36px -16px rgba(0,0,0,.7); }
+      .k-tabs button { min-height: 46px; padding: 5px 0; gap: 2px; border-radius: 19px; font-size: 10.5px; transition: background-color .3s var(--out), color .3s; }
+      .k-tabs button::before, .k-tabs button.on::before { content: none; }
+      .k-tabs button.on, .k-tabs button.on span { color: var(--on); }
+      .k-tabs button.on { background: var(--acc); box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--acc) 85%, transparent); }
+      .k-body { padding-bottom: 96px; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); }
+      .k-toast { bottom: 76px; }
+      @media (prefers-reduced-motion: reduce) { .k-obj, .k-hd-img, .k-rank-img, .k-hero-img, .k-float img { animation: none; } .k-tile img, .k-tabs button { transition: none; } }
 </style>
 
 <script>
@@ -674,10 +759,17 @@ const kstats = [
         'Send a mission. You both answer, then see the two answers side by side.': 'Manda una missione. Rispondete entrambi, poi vedete le due risposte affiancate.',
         'Send a dare': 'Manda la sfida',
         'Link copied. Your friend answers the same mission.': 'Link copiato. Il tuo amico risponde alla stessa missione.',
+        'Try a real mission': 'Prova una missione vera', 'Reflect in 20 seconds': 'Rifletti in 20 secondi', 'See how you work': 'Scopri come lavori',
+        'Signs from people before you': 'Segni di chi è passato prima di te', 'Signs on the trail': 'Segni sulla traccia',
+        'People who finish a mission before you leave a short tip for you. Yours helps the next person.': 'Chi finisce una missione prima di te ti lascia un breve consiglio. Il tuo aiuta chi viene dopo.',
+        '“Read the whole flow before touching anything.”': '“Leggi tutto il flusso prima di toccare qualcosa.”',
+        '“Make the ugly first version fast.”': '“Fai in fretta la prima versione brutta.”',
+        'Someone who finished it · 2 days ago': "Qualcuno che l'ha finita · 2 giorni fa", 'Someone who finished it · last week': "Qualcuno che l'ha finita · la settimana scorsa",
+        'Fix what already exists · 2 days ago': 'Sistema ciò che esiste già · 2 giorni fa', 'Make somebody care · last week': 'Fai importare a qualcuno · la settimana scorsa',
       };
       let kLang = 'en';
       const tr = (s: string) => (kLang === 'it' && IT[s]) || s;
-      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-done span, .k-pill, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
+      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-tile span, .k-done span, .k-pl, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
       kTxt.forEach((e) => { e.dataset.en = e.innerHTML.trim(); });
       const setLang = (l: string) => {
         kLang = l;
@@ -691,16 +783,17 @@ const kstats = [
       const kS1 = document.getElementById('kS1')!;
       const kS2 = document.getElementById('kS2')!;
       let kField = 'Design';
-      const closeStart = () => { kStart.classList.remove('on'); applyField(kField); (kScr.querySelector('[data-k-tab]') as HTMLElement).click(); };
-      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.remove('on'); kLogin.classList.add('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => c.classList.remove('sel')); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
+      // Same order as the app: loader > choice > field > log in > missions.
+      const closeStart = () => { kStart.classList.remove('on'); applyField(kField); kLogin.classList.add('on'); };
+      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kLogin.classList.remove('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => { c.classList.remove('sel'); c.setAttribute('aria-pressed', 'false'); }); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
       document.getElementById('kIdk')!.addEventListener('click', () => { kS1.hidden = true; kS2.hidden = false; });
       document.getElementById('kSkip')!.addEventListener('click', closeStart);
       document.getElementById('kGo')!.addEventListener('click', closeStart);
-      kStart.querySelectorAll<HTMLElement>('#kPick span').forEach((c) => {
-        const flip = () => { kStart.querySelectorAll('#kPick span').forEach((o) => o.classList.toggle('sel', o === c)); kField = c.dataset.en || 'Design'; };
-        c.addEventListener('click', flip);
-        c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
-      });
+      const kTiles = kStart.querySelectorAll<HTMLElement>('#kPick [data-f]');
+      kTiles.forEach((c) => c.addEventListener('click', () => {
+        kTiles.forEach((o) => { o.classList.toggle('sel', o === c); o.setAttribute('aria-pressed', String(o === c)); });
+        kField = c.dataset.f || 'Design';
+      }));
       const kAi = document.getElementById('kAi')!;
       let kQs = ['What would make the first step easier for someone brand new?', 'Which part are you avoiding, and why?', 'What is the smallest version you could finish today?'];
       let kQi = 0;
@@ -754,6 +847,7 @@ const kstats = [
       const setT = (el: Element, en: string) => { (el as HTMLElement).dataset.en = en; el.innerHTML = tr(en); };
       const applyField = (name: string) => {
         const f = FIELDS[name] || FIELDS.Design;
+        (document.getElementById('kNxImg') as HTMLImageElement).src = `/kern/f-${(FIELDS[name] ? name : 'Design').toLowerCase()}.webp`;
         kCards.forEach((card, i) => {
           const ls = card.querySelectorAll('.k-l');
           const [lab, title, desc, cnt] = f.m[i];
@@ -784,12 +878,19 @@ const kstats = [
         const i = rankIdx(stones), nx = RANKS[i + 1], it = kLang === 'it';
         (document.getElementById('kTa') as HTMLTextAreaElement).placeholder = tr('Write it your way. Nothing is sent.');
         document.getElementById('kRank')!.textContent = rn(RANKS[i][0]);
+        (document.getElementById('kRankImg') as HTMLImageElement).src = `/kern/r${i}.webp`;
         document.getElementById('kSt')!.textContent = String(stones);
         (document.getElementById('kBar') as HTMLElement).style.width = (nx ? ((stones - RANKS[i][1]) / (nx[1] - RANKS[i][1])) * 100 : 100) + '%';
         document.getElementById('kNx')!.textContent = nx ? (it ? `${nx[1] - stones} pietre a ${rn(nx[0])}` : `${nx[1] - stones} stones to ${rn(nx[0])}`) : (it ? 'Grado massimo' : 'Top rank');
         const lad = document.getElementById('kLad')!;
         lad.innerHTML = '';
-        RANKS.forEach((r, k) => { const s = document.createElement('span'); s.textContent = rn(r[0]); if (k < i) s.className = 'done'; if (k === i) s.className = 'on'; lad.appendChild(s); });
+        RANKS.forEach((r, k) => {
+          const s = document.createElement('span'), im = document.createElement('img'), b = document.createElement('b');
+          im.src = `/kern/r${k}.webp`; im.alt = ''; im.width = im.height = 400; im.decoding = 'async'; im.loading = 'lazy';
+          b.textContent = rn(r[0]); s.append(im, b);
+          if (k < i) s.className = 'done'; if (k === i) s.className = 'on';
+          lad.appendChild(s);
+        });
         const circ = document.getElementById('kCircle')!;
         circ.innerHTML = '';
         ([...CIRCLE, [it ? 'Tu' : 'You', stones, 1]] as [string, number, number?][]).sort((a, b) => b[1] - a[1]).forEach((r, k) => {
@@ -860,7 +961,7 @@ const kstats = [
         kLog.classList.add('busy'); setT(kLog, signup ? 'Creating your account…' : 'Signing in…');
         window.setTimeout(() => {
           kLogin.classList.remove('on'); kLog.classList.remove('busy'); setAuth();
-          kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on');
+          (kScr.querySelector('[data-k-tab]') as HTMLElement).click();
         }, still ? 0 : 900);
       });
       document.getElementById('kAv')!.addEventListener('click', () => resetStart());
