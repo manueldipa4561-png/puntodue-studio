@@ -123,6 +123,7 @@ const kstats = [
                 <div id="kS2" class="k-sp" hidden>
                   <div class="k-l">Good. Let's find out.</div>
                   <h4>What are you<br>curious about <b>right now?</b></h4>
+                  <p class="k-l">Pick one or more. You can add others anytime.</p>
                   <div class="k-tiles" id="kPick" role="group">
                     {KFIELDS.map((f) => <button type="button" class="k-tile" data-f={f} aria-pressed="false"><img src={`/kern/f-${f.toLowerCase()}.webp`} alt="" width="400" height="400" loading="lazy" decoding="async" /><span>{f}</span></button>)}
                   </div>
@@ -137,6 +138,7 @@ const kstats = [
                 <div class="k-body">
                   <div class="k-pane on" id="k-missions">
                     <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
+                    <div class="k-fields" id="kFields" role="group" aria-label="Your interests"></div>
                     <div class="k-card k-main" id="kM0"><img class="k-obj" id="kNxImg" src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
                     <div class="k-card k-aic"><div class="k-aic-hd"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Co-pilot · asks, never answers</div></div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
                     <div class="k-card k-best"><img class="k-side" src="/kern/r4.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
@@ -631,6 +633,16 @@ const kstats = [
       .k-tabs button.on { background: var(--acc); box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--acc) 85%, transparent); }
       .k-body { padding-bottom: 96px; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); }
       .k-toast { bottom: 76px; }
+      /* your interests: switch path on Missions */
+      .k-fields { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 2px 20px 4px; }
+      .k-fields::-webkit-scrollbar { display: none; }
+      .k-fchip { flex: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px 4px 4px; border-radius: 999px; border: 1px solid var(--edge); background: var(--surf); color: var(--fg); font: 700 11.5px 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; transition: transform .45s var(--spring), background-color .2s; }
+      .k-fchip img { width: 22px; height: 22px; }
+      .k-fchip small { font: 500 9.5px var(--mono); color: var(--dim); }
+      .k-fchip.on { background: var(--acc); border-color: var(--acc); color: var(--on); } .k-fchip.on small { color: var(--on); opacity: .7; }
+      .k-fchip:active { transform: scale(.95); transition-duration: .08s; }
+      .k-fadd { padding: 7px 12px; border-style: dashed; color: var(--dim); }
+      .k-go:disabled { opacity: .4; box-shadow: none; cursor: default; transform: none; }
       @media (prefers-reduced-motion: reduce) { .k-obj, .k-hd-img, .k-rank-img, .k-hero-img, .k-float img { animation: none; } .k-tile img, .k-tabs button { transition: none; } }
 </style>
 
@@ -760,6 +772,7 @@ const kstats = [
         'Send a dare': 'Manda la sfida',
         'Link copied. Your friend answers the same mission.': 'Link copiato. Il tuo amico risponde alla stessa missione.',
         'Try a real mission': 'Prova una missione vera', 'Reflect in 20 seconds': 'Rifletti in 20 secondi', 'See how you work': 'Scopri come lavori',
+        'Pick one or more. You can add others anytime.': 'Scegline uno o più. Puoi aggiungerne altri quando vuoi.', 'Add': 'Aggiungi',
         'Signs from people before you': 'Segni di chi è passato prima di te', 'Signs on the trail': 'Segni sulla traccia',
         'People who finish a mission before you leave a short tip for you. Yours helps the next person.': 'Chi finisce una missione prima di te ti lascia un breve consiglio. Il tuo aiuta chi viene dopo.',
         '“Read the whole flow before touching anything.”': '“Leggi tutto il flusso prima di toccare qualcosa.”',
@@ -775,7 +788,7 @@ const kstats = [
         kLang = l;
         kTxt.forEach((e) => { const en = e.dataset.en!; if (en) e.innerHTML = tr(en); });
         if (fb.dataset.src) fb.textContent = tr(fb.dataset.src);
-        setLvl(); renderChat();
+        setLvl(); renderChat(); renderFields();
         document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kLang === l)));
       };
       document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.kLang!)));
@@ -783,17 +796,48 @@ const kstats = [
       const kS1 = document.getElementById('kS1')!;
       const kS2 = document.getElementById('kS2')!;
       let kField = 'Design';
-      // Same order as the app: loader > choice > field > log in > missions.
-      const closeStart = () => { kStart.classList.remove('on'); applyField(kField); kLogin.classList.add('on'); };
-      resetStart = () => { kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kLogin.classList.remove('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => { c.classList.remove('sel'); c.setAttribute('aria-pressed', 'false'); }); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
+      // Same order as the app: loader > choice > interests > log in > missions. Interests: one or more fields,
+      // switched from a row on Missions; "+ Add" reopens the picker.
+      let kPicks: string[] = [], kMine: string[] = ['Design'], kIn = false;
+      const closeStart = () => {
+        kMine = kPicks.length ? [...kPicks] : [kField];
+        if (!kMine.includes(kField)) kField = kMine[0];
+        kStart.classList.remove('on'); applyField(kField); renderFields();
+        if (kIn) (kScr.querySelector('[data-k-tab]') as HTMLElement).click(); else kLogin.classList.add('on');
+      };
+      resetStart = () => { kIn = false; kPicks = []; kMine = ['Design']; markTiles(); kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kLogin.classList.remove('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => { c.classList.remove('sel'); c.setAttribute('aria-pressed', 'false'); }); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
       document.getElementById('kIdk')!.addEventListener('click', () => { kS1.hidden = true; kS2.hidden = false; });
       document.getElementById('kSkip')!.addEventListener('click', closeStart);
       document.getElementById('kGo')!.addEventListener('click', closeStart);
       const kTiles = kStart.querySelectorAll<HTMLElement>('#kPick [data-f]');
+      function markTiles() {
+        kTiles.forEach((o) => { const on = kPicks.includes(o.dataset.f!); o.classList.toggle('sel', on); o.setAttribute('aria-pressed', String(on)); });
+        (document.getElementById('kGo') as HTMLButtonElement).disabled = !kPicks.length;
+      }
       kTiles.forEach((c) => c.addEventListener('click', () => {
-        kTiles.forEach((o) => { o.classList.toggle('sel', o === c); o.setAttribute('aria-pressed', String(o === c)); });
-        kField = c.dataset.f || 'Design';
+        const f = c.dataset.f || 'Design';
+        kPicks = kPicks.includes(f) ? kPicks.filter((x) => x !== f) : [...kPicks, f];
+        if (!kIn && kPicks.length) kField = kPicks[0];
+        markTiles();
       }));
+      markTiles();
+      function renderFields() {
+        const box = document.getElementById('kFields')!;
+        box.innerHTML = '';
+        kMine.forEach((f) => {
+          const b = document.createElement('button'), im = document.createElement('img'), t = document.createElement('span'), n = document.createElement('small');
+          b.type = 'button'; b.className = 'k-fchip' + (f === kField ? ' on' : ''); b.setAttribute('aria-pressed', String(f === kField));
+          im.src = `/kern/f-${f.toLowerCase()}.webp`; im.alt = ''; im.width = im.height = 400; im.decoding = 'async';
+          t.textContent = tr(f); n.textContent = f === kField ? '1/3' : '0/3';
+          b.append(im, t, n);
+          b.addEventListener('click', () => { if (f === kField) return; kField = f; applyField(f); renderFields(); });
+          box.appendChild(b);
+        });
+        const add = document.createElement('button');
+        add.type = 'button'; add.className = 'k-fchip k-fadd'; add.textContent = `+ ${tr('Add')}`;
+        add.addEventListener('click', () => { kPicks = [...kMine]; markTiles(); kS1.hidden = true; kS2.hidden = false; kStart.classList.add('on'); });
+        box.appendChild(add);
+      }
       const kAi = document.getElementById('kAi')!;
       let kQs = ['What would make the first step easier for someone brand new?', 'Which part are you avoiding, and why?', 'What is the smallest version you could finish today?'];
       let kQi = 0;
@@ -960,7 +1004,7 @@ const kstats = [
         if (kLog.classList.contains('busy')) return;
         kLog.classList.add('busy'); setT(kLog, signup ? 'Creating your account…' : 'Signing in…');
         window.setTimeout(() => {
-          kLogin.classList.remove('on'); kLog.classList.remove('busy'); setAuth();
+          kLogin.classList.remove('on'); kLog.classList.remove('busy'); setAuth(); kIn = true; renderFields();
           (kScr.querySelector('[data-k-tab]') as HTMLElement).click();
         }, still ? 0 : 900);
       });
@@ -1043,6 +1087,7 @@ const kstats = [
         c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
       });
       resetChat();
+      renderFields();
       const setAna = (l: string) => {
         document.documentElement.dataset.ana = l;
         document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));
