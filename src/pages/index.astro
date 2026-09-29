@@ -1,13 +1,13 @@
 ---
 import '@fontsource-variable/inter-tight';
 import Chat from '../components/Chat.astro';
-import { siFigma, siClaude, siClaudecode, siDeepseek, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siNetlify, siShopify } from 'simple-icons';
+import { siFigma, siClaude, siClaudecode, siDeepseek, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify } from 'simple-icons';
 // Numero WhatsApp senza + (preso da puntoduestudio.it). Vuoto = il pulsante ripiega sull'email.
 const WA_NUMBER = '393248423657';
 const WA_TEXT = 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?';
 const contactHref = WA_NUMBER ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}` : 'mailto:projects@puntoduestudio.it?subject=Nuovo%20progetto';
 const contactExternal = Boolean(WA_NUMBER);
-const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siNetlify, siShopify];
+const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify];
 ---
 <!doctype html>
 <html lang="it">
