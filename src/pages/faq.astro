@@ -1,0 +1,96 @@
+---
+import Site from '../layouts/Site.astro';
+// Domande frequenti: risposte brevi e dirette (2-3 frasi), pensate per Google e per le AI Overview.
+// Condizioni prese dai preventivi reali, prezzi di listino confermati. Eventuali pezzi tra [[ ]] sono da confermare:
+// in pagina escono evidenziati in giallo e vanno riempiti prima di pubblicare.
+const groups = [
+  { t: 'Servizi', q: [
+    ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è uno studio digitale con sede a Pescara che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.'],
+    ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.'],
+    ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.'],
+    ['Gestite anche Instagram e TikTok?', 'Sì. Il servizio prevede un piano editoriale mensile con 8 post, 4 reel e storie, oltre a un report mensile con l\'andamento del profilo e i clic sul pulsante di prenotazione. Su richiesta sono disponibili anche riprese in sede.'],
+    ['Sviluppate anche app?', 'Sì. Un esempio è l\'app per personal trainer, personalizzata con logo e colori del professionista, che gestisce prenotazioni 24 ore su 24, pacchetti di sessioni e programma «invita un amico». Il canone parte da 59€ al mese, l\'app è operativa in circa una settimana e non prevede costi per singolo cliente.'],
+    ['In cosa consiste l\'analisi gratuita del profilo?', 'È sufficiente inviarci il nome del profilo Instagram: riceverete un\'analisi con le tre priorità di intervento. L\'analisi è gratuita e senza alcun impegno.'],
+  ] },
+  { t: 'Prezzi e tempi', q: [
+    ['Quanto costa un sito web?', 'I siti sono offerti in abbonamento mensile a partire da 200€ al mese, senza anticipi annuali. Il canone varia in base al numero di pagine e alle funzionalità richieste, come shop o acconti online: il preventivo è personalizzato su ogni progetto.'],
+    ['Quanto costa la gestione dei social?', 'La gestione dei social parte da 200€ al mese, con pagamento mensile. Il canone varia in base ai contenuti inclusi, in particolare riprese in sede e produzione di reel.'],
+    ['Quali sono i tempi di realizzazione?', 'Un sito viene pubblicato entro 2 settimane dalla ricezione dei contenuti (testi, foto, orari e prezzi). Le app web sono operative in circa una settimana.'],
+    ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ciascun sito.'],
+  ] },
+  { t: 'Modalità di lavoro', q: [
+    ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.'],
+    ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.'],
+    ['In quale zona operate?', 'Lo studio ha sede a Pescara e collabora con clienti sia in presenza sia a distanza, tramite videochiamate e WhatsApp.'],
+    ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.'],
+  ] },
+];
+const plain = (s: string) => s.replace(/\[\[(.*?)\]\]/g, '$1');
+const parts = (s: string) => s.split(/(\[\[.*?\]\])/).filter(Boolean);
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/',
+      logo: 'https://puntoduestudio.it/icon-512.png', image: 'https://puntoduestudio.it/og.png', email: 'projects@puntoduestudio.it',
+      telephone: '+393248423657', areaServed: 'Pescara', address: { '@type': 'PostalAddress', addressLocality: 'Pescara', addressRegion: 'PE', addressCountry: 'IT' },
+      sameAs: ['https://www.instagram.com/puntoduestudio/'],
+      founder: [{ '@type': 'Person', name: 'Manuel Di Paolo' }, { '@type': 'Person', name: 'Nicolas Di Paolo' }],
+      knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp'],
+    },
+    {
+      '@type': 'FAQPage', url: 'https://puntoduestudio.it/faq/',
+      mainEntity: groups.flatMap((g) => g.q.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: plain(a) } }))),
+    },
+  ],
+};
+---
+<Site title="Domande frequenti — Punto Due Studio, Pescara" description="Prezzi, tempi e condizioni di Punto Due Studio, Pescara: siti web, app e gestione social per aziende e professionisti, con canone mensile e contratti da 6 o 12 mesi.">
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <section class="top">
+    <span class="lab">/faq</span>
+    <h1>Domande frequenti.</h1>
+    <p class="lead">Servizi, prezzi, tempi e condizioni contrattuali: le risposte alle domande più frequenti.</p>
+  </section>
+
+  {groups.map((g) => (
+    <section class="faq">
+      <h2>{g.t}</h2>
+      <div class="qs">
+        {g.q.map(([q, a]) => (
+          <details>
+            <summary><h3>{q}</h3><i aria-hidden="true"></i></summary>
+            <p>{parts(a).map((p) => p.startsWith('[[') ? <mark class="todo">DA CONFERMARE: {p.slice(2, -2)}</mark> : p)}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section class="cta-s">
+    <p class="lead">Per ulteriori informazioni, il nostro team è a disposizione.</p>
+    <div class="cta">
+      <a class="btn" href="/info">Contattaci <span aria-hidden="true">→</span></a>
+      <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .top { padding-bottom: 12px; }
+  .faq { display: grid; gap: 24px; border-top: 1px solid rgba(255,255,255,.25); }
+  .faq h2 { margin: 0; font-size: clamp(1.8rem, 3.6vw, 3rem); }
+  .qs { display: grid; gap: 10px; max-width: 52rem; }
+  details { border: 1px solid rgba(255,255,255,.3); border-radius: 16px; background: rgba(0,52,214,.6); transition: border-color .2s; }
+  details[open] { border-color: var(--yellow); }
+  summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 18px 20px; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary h3 { font-size: clamp(1.05rem, 1.6vw, 1.25rem); letter-spacing: -.02em; line-height: 1.25; }
+  summary i { flex: none; position: relative; width: 16px; height: 16px; }
+  summary i::before, summary i::after { content: ''; position: absolute; left: 0; top: 7px; width: 16px; height: 2px; background: var(--yellow); transition: transform .25s; }
+  summary i::after { transform: rotate(90deg); }
+  details[open] summary i::after { transform: rotate(0); }
+  details p { margin: 0; padding: 0 20px 20px; max-width: 44rem; line-height: 1.55; color: rgba(255,255,255,.88); }
+  .todo { padding: 1px 6px; border-radius: 6px; background: var(--yellow); color: var(--blue); font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { summary i::before, summary i::after, details { transition: none; } }
+</style>
