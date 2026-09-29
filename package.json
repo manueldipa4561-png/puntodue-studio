@@ -10,7 +10,10 @@
     "esbuild": true
   },
   "scripts": {
+    "i18n": "node scripts/i18n.mjs",
+    "predev": "node scripts/i18n.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/i18n.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },

@@ -1,0 +1,682 @@
+# Dizionario italiano → inglese per scripts/i18n.mjs
+# Ogni coppia: una riga "it: " con il testo esatto com'è nel file italiano (anche apici e \'),
+# e sotto una riga "en: " con la traduzione. Nell'inglese usa l'apostrofo tipografico ’ (mai ').
+# Se una frase italiana cambia, lo script la segnala come "non trovata": aggiorna qui la riga it:.
+
+# ---------- comuni ----------
+it: aria-label="Principale"
+en: aria-label="Main"
+it: aria-label="Collegamenti"
+en: aria-label="Links"
+it: Tutti i diritti riservati
+en: All rights reserved
+it: >Note legali<
+en: >Legal notice (IT)<
+it: Scrivici <span
+en: Write to us <span
+it: aria-label="Chiudi"
+en: aria-label="Close"
+it: >/fonti<
+en: >/sources<
+it: Strategia editoriale
+en: Editorial strategy
+it: Reel, foto e grafiche nel tuo stile
+en: Reels, photos and graphics in your style
+it: Community e crescita costante
+en: Community and steady growth
+it: <span>Segui</span>
+en: <span>Follow</span>
+it: <span>Messaggio</span>
+en: <span>Message</span>
+it: 'Spegni tutto' : 'Accendi tutto'
+en: 'Turn all off' : 'Turn all on'
+it: >Accendi tutto<
+en: >Turn all on<
+
+# ---------- home ----------
+it: <a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+en: <a class="lang pre" href="/" hreflang="it" lang="it" aria-label="Versione italiana">IT</a>
+it: <html lang="it">
+en: <html lang="en">
+it: <link rel="canonical" href="https://puntoduestudio.it/" />
+en: <link rel="canonical" href="https://puntoduestudio.it/en/" />
+it: <meta property="og:locale" content="it_IT" />
+en: <meta property="og:locale" content="en_GB" />
+it: Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore.
+en: Punto Due Studio: websites, e-commerce, apps, social media management and AI agents for businesses in every sector.
+it: Siti, app, social e agenti AI per la tua attività.
+en: Websites, apps, social media and AI agents for your business.
+it: Parliamone →
+en: Let’s talk →
+it: 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?'
+en: 'Hi! I’d like to talk to you about a project. When could we speak?'
+it: subject=Nuovo%20progetto
+en: subject=New%20project
+it: >Aggiungi alla home.<
+en: >Add to Home Screen.<
+it: Un click per entrare, un tocco per restare: siti e app veloci, fatti per convertire.
+en: One click to get in, one tap to stay: fast websites and apps, built to convert.
+it: <span>App web e mobile</span>
+en: <span>Web and mobile apps</span>
+it: <span>SEO e prestazioni</span>
+en: <span>SEO and performance</span>
+it: Vedi i lavori
+en: See our work
+it: Ti seguono, ti ricordano, ti scelgono. Strategia, contenuti e gestione dei tuoi profili.
+en: They follow you, remember you, choose you. Strategy, content and management for your profiles.
+it: Vedi il feed
+en: See the feed
+it: >Tre x Uno.<
+en: >Three x One.<
+it: Un assistente risponde, un'automazione lavora, un report ti aggiorna: tre agenti per un solo lavoro, il tuo.
+en: One assistant answers, one automation works, one report keeps you posted: three agents for one job, yours.
+it: Un assistente per i clienti
+en: An assistant for your customers
+it: Automazioni che collegano i tuoi strumenti
+en: Automations that connect your tools
+it: Report chiari, senza doverli chiedere
+en: Clear reports, without having to ask
+it: >Sta scrivendo...<
+en: >Typing...<
+it: Dall'altra parte ci siamo noi. Raccontaci il progetto.
+en: We’re on the other side. Tell us about your project.
+
+# ---------- componente Chat ----------
+it: 'Consegnato'
+en: 'Delivered'
+it: 'Visualizzato'
+en: 'Seen'
+it: 'Punto Due Studio sta scrivendo'
+en: 'Punto Due Studio is typing'
+it: 'Il cliente sta scrivendo'
+en: 'The client is typing'
+it: `Messaggio ${label.toLowerCase()}`
+en: `Message ${label.toLowerCase()}`
+
+# ---------- componente Sim ----------
+it: >/simula<
+en: >/simulate<
+it: aria-label="Funzioni da attivare"
+en: aria-label="Features to turn on"
+it: `Grafico: ${kpi[0].toLowerCase()}`
+en: `Chart: ${kpi[0].toLowerCase()}`
+it: '12 mesi'
+en: '12 months'
+it: Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta dalle fonti, non è una promessa di risultato. La linea tratteggiata è il punto di partenza.
+en: Illustrative simulation with sample values: it shows the trend described by the sources, not a promised result. The dashed line is the starting point.
+
+# ---------- /web ----------
+it: <Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+en: <Site title="Work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus KERN, a concept app that helps people find out what to do by doing real work." active="web">
+it: 'Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.'
+en: 'Hi! I saw your demos and I’d like to talk to you about a project.'
+it: 'Il sito di un salone, per lei e per lui.'
+en: 'The website of a hair salon, for her and for him.'
+it: 'Lei / Lui'
+en: 'Her / Him'
+it: 'Tessera + QR'
+en: 'Loyalty card + QR'
+it: 'Prenotazione con conferma su WhatsApp'
+en: 'Booking with WhatsApp confirmation'
+it: 'Timbri aggiunti dallo staff scansionando il QR'
+en: 'Stamps added by staff scanning the QR code'
+it: 'Tessera salvabile nel Wallet del telefono'
+en: 'Card saved to the phone’s Wallet'
+it: 'Promemoria su WhatsApp prima della visita'
+en: 'WhatsApp reminder before the appointment'
+it: kind: 'Ristrutturazioni'
+en: kind: 'Renovations'
+it: 'Ristrutturazioni chiavi in mano: casa 3D, prima/dopo e stima in 4 domande.'
+en: 'Turnkey renovations: 3D house, before/after and an estimate in 4 questions.'
+it: 'Casa 3D'
+en: '3D house'
+it: 'Prima / Dopo'
+en: 'Before / After'
+it: '3 pagine'
+en: '3 pages'
+it: 'Preventivo guidato in 4 domande'
+en: 'Guided quote in 4 questions'
+it: 'Area cliente con avanzamento del cantiere'
+en: 'Client area with site progress'
+it: 'Coupon sopralluogo gratuito a tempo'
+en: 'Time-limited free site visit coupon'
+it: 'Sconto referral per chi consiglia lo studio'
+en: 'Referral discount for anyone who recommends the studio'
+it: 'Smokehouse e vini naturali'
+en: 'Smokehouse and natural wines'
+it: 'Brisket affumicato 14 ore, vini naturali e tavolo prenotato con conferma su WhatsApp.'
+en: '14-hour smoked brisket, natural wines and table bookings confirmed on WhatsApp.'
+it: 'Fumo in WebGL'
+en: 'WebGL smoke'
+it: 'Timeline 14 ore'
+en: '14-hour timeline'
+it: 'Acconto online per tenere da parte il brisket'
+en: 'Online deposit to save a portion of brisket'
+it: 'Tessera con QR: alla 6ª cena il brisket è offerto'
+en: 'QR loyalty card: brisket on the house at the 6th dinner'
+it: 'Coupon a tempo per riempire martedì e mercoledì'
+en: 'Time-limited coupons to fill Tuesdays and Wednesdays'
+it: 'Porta un amico: un calice offerto a entrambi'
+en: 'Bring a friend: a glass of wine on us for both'
+it: 'Probabilità di vendere'
+en: 'Chance of making a sale'
+it: 'Nuovo contatto'
+en: 'New prospect'
+it: 'Cliente già acquisito'
+en: 'Existing customer'
+it: 'Costo per ottenere un cliente'
+en: 'Cost of winning a customer'
+it: 'Mantenerne uno'
+en: 'Keeping one'
+it: 'Trovarne uno nuovo'
+en: 'Finding a new one'
+it: 'Profitto con +5% di clienti fedeli'
+en: 'Profit with +5% loyal customers'
+it: l: 'Oggi'
+en: l: 'Today'
+it: 'Con +5% di retention'
+en: 'With +5% retention'
+it: 'Sito veloce'
+en: 'Fast website'
+it: 'Più contatti ogni mese'
+en: 'More leads every month'
+it: 'Tessera fedeltà'
+en: 'Loyalty card'
+it: 'I clienti tornano più spesso'
+en: 'Customers come back more often'
+it: 'Riporta chi si era perso'
+en: 'Brings back lapsed customers'
+it: 'Promemoria WhatsApp'
+en: 'WhatsApp reminders'
+it: 'Meno appuntamenti saltati'
+en: 'Fewer missed appointments'
+it: 'I clienti portano amici'
+en: 'Customers bring their friends'
+it: <button type="button" data-ana-lang="it" aria-pressed="true">IT</button><button type="button" data-ana-lang="en" aria-pressed="false">EN</button>
+en: <button type="button" data-ana-lang="it" aria-pressed="false">IT</button><button type="button" data-ana-lang="en" aria-pressed="true">EN</button>
+it: if (!navigator.language.toLowerCase().startsWith('it')) setAna('en');
+en: setAna('en');
+it: aria-label="In breve"
+en: aria-label="In short"
+it: aria-label="Lingua"
+en: aria-label="Language"
+it: aria-label="Tema"
+en: aria-label="Theme"
+it: aria-label="Anteprima interattiva dell'app KERN"
+en: aria-label="Interactive preview of the KERN app"
+it: ↻ Rivedi l'apertura
+en: ↻ Replay the intro
+it: <h1>Nuovo link.</h1>
+en: <h1>New link.</h1>
+it: Tre siti da aprire e toccare con mano. Un click e sei dentro.
+en: Three websites to open and try for yourself. One click and you’re in. The demos are in Italian, made for Italian businesses.
+it: aria-label="Demo"
+en: aria-label="Demos"
+it: `Anteprima ${d.name}`
+en: `Preview of ${d.name}`
+it: `Apri la demo ${d.name}`
+en: `Open the ${d.name} demo`
+it: Apri la demo →
+en: Open the demo →
+it: >Prossime modifiche<
+en: >Next upgrades<
+it: >/numeri<
+en: >/numbers<
+it: Far tornare un cliente vale di più.
+en: Bringing a customer back is worth more.
+it: Fedeltà e coupon servono a questo. Dati di ricerca generali, non risultati delle demo.
+en: That’s what loyalty cards and coupons are for. General research data, not results from the demos.
+it: Le barre mostrano il centro dell'intervallo indicato dalle fonti.
+en: Bars show the midpoint of the range given by the sources.
+it: kpi={['Clienti attivi al 12° mese', 'Clienti che tornano', 'Nuovi clienti al mese']} heading="Accendi le funzioni." lead="Aggiungine una alla volta e guarda come cambiano i clienti in un anno."
+en: kpi={['Active customers at month 12', 'Returning customers', 'New customers per month']} heading="Turn on the features." lead="Add them one at a time and watch how your customers change over a year."
+it: Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Review, ottobre 2014: aumentare la retention del 5% aumenta i profitti del 25–95%; acquisire un cliente costa 5–25 volte più che mantenerlo (dati di Fred Reichheld, Bain &amp; Company).
+en: Amy Gallo, “The Value of Keeping the Right Customers”, Harvard Business Review, October 2014: increasing retention by 5% increases profits by 25–95%; acquiring a customer costs 5–25 times more than keeping one (data by Fred Reichheld, Bain &amp; Company).
+it: , Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.
+en: , Pearson, 2010: a 5–20% chance of selling to a new prospect, 60–70% to an existing customer.
+it: Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera.
+en: Forbes on a Tallo report, May 2025, and Big Brothers Big Sisters / Harris Poll, 2025: young adults’ uncertainty about their career path.
+it: NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari:
+en: NACE Job Outlook 2026 (70% use skills-based hiring for entry-level roles); TestGorilla 2025; Harvard Business School and Burning Glass Institute (fewer than 1 in 700 new hires without a degree at companies that dropped the requirement). Secondary summaries:
+it: Forbes, agosto 2026
+en: Forbes, August 2026
+it: NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level.
+en: NPR, August 2026 and IBISWorld: unemployment among recent graduates (5.7% in June 2026) and the entry-level market.
+it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.
+en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. The KERN app is a concept not yet tested with users: screens, names and numbers are examples.
+
+# ---------- /social ----------
+it: <Site title="Social — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
+en: <Site title="Social — Punto Due Studio" description="A live profile to tap and scroll, an editorial calendar that fills up and the numbers that matter, with sources." active="social">
+it: 'Ciao! Ho visto la pagina social e vorrei parlarvi del mio profilo.'
+en: 'Hi! I saw your social page and I’d like to talk to you about my profile.'
+it: 'Piatto del giorno'
+en: 'Dish of the day'
+it: 'Tagliolini al limone e gamberi. Fino a esaurimento.'
+en: 'Lemon and prawn tagliolini. While stocks last.'
+it: 'Come nasce'
+en: 'How it’s made'
+it: 'Dalla sfoglia al piatto in 15 secondi.'
+en: 'From fresh pasta to plate in 15 seconds.'
+it: 'Menu di sabato'
+en: 'Saturday menu'
+it: 'Tre novità e una sorpresa. Prenota il tuo tavolo.'
+en: 'Three new dishes and a surprise. Book your table.'
+it: kind: 'Storia'
+en: kind: 'Story'
+it: 'Dietro le quinte'
+en: 'Behind the scenes'
+it: 'La brigata che ogni sera ti aspetta.'
+en: 'The kitchen team waiting for you every evening.'
+it: 'Martedì e venerdì'
+en: 'Tuesday and Friday'
+it: 'Lunedì, mercoledì e sabato'
+en: 'Monday, Wednesday and Saturday'
+it: t: 'Storie'
+en: t: 'Stories'
+it: 'Ogni giorno, tranne domenica'
+en: 'Every day except Sunday'
+it: 'Dirette e risposte, giovedì e domenica'
+en: 'Lives and replies, Thursday and Sunday'
+it: t: 'Collaborazioni'
+en: t: 'Collaborations'
+it: 'Due al mese'
+en: 'Two a month'
+it: Ti seguono, ti ricordano, ti scelgono. Guarda com'è un profilo curato.
+en: They follow you, remember you, choose you. See what a well-run profile looks like.
+it: >/feed · dal vivo<
+en: >/feed · live<
+it: Il tuo profilo, dal vivo.
+en: Your profile, live.
+it: Tocca, scorri, metti like: i numeri si muovono da soli, come su un profilo vero.
+en: Tap, scroll, like: the numbers move on their own, just like on a real profile.
+it: Cosa dire, quando e a chi.
+en: What to say, when and to whom.
+it: Riconoscibili al primo sguardo.
+en: Recognisable at first glance.
+it: Rispondiamo noi, ogni giorno.
+en: We reply, every day.
+it: aria-label="Anteprima interattiva di un profilo Instagram"
+en: aria-label="Interactive preview of an Instagram profile"
+it: aria-label="Guarda le storie"
+en: aria-label="View stories"
+it: <small>seguiti</small>
+en: <small>following</small>
+it: data-story="oggi">Oggi</button>
+en: data-story="oggi">Today</button>
+it: data-story="ordini">Prenota</button>
+en: data-story="ordini">Book</button>
+it: data-story="rec">Recensioni</button>
+en: data-story="rec">Reviews</button>
+it: aria-label="Feed dei post"
+en: aria-label="Post feed"
+it: aria-label="Mi piace"
+en: aria-label="Like"
+it: aria-label="Commenta"
+en: aria-label="Comment"
+it: aria-label="Condividi"
+en: aria-label="Share"
+it: </b> mi piace</p>
+en: </b> likes</p>
+it: aria-label="Storia"
+en: aria-label="Story"
+it: aria-label="Precedente"
+en: aria-label="Previous"
+it: aria-label="Successiva"
+en: aria-label="Next"
+it: >/vantaggi<
+en: >/benefits<
+it: Perché un profilo curato conviene.
+en: Why a well-run profile pays off.
+it: Ti trovano più facilmente e rispondi prima, con meno lavoro a mano. Numeri da ricerche pubbliche, non risultati garantiti.
+en: People find you more easily and you reply faster, with less manual work. Figures from public research, not guaranteed results.
+it: <span class="lab">Visibilità</span>
+en: <span class="lab">Visibility</span>
+it: dei consumatori segue i brand sui social per restare aggiornato su prodotti e servizi
+en: of consumers follow brands on social media to stay up to date on products and services
+it: Il tuo profilo è la vetrina che i clienti guardano prima di scriverti. Se è curato e sempre attivo, ti trovano e ti ricordano.
+en: Your profile is the shop window customers look at before they message you. If it’s well kept and always active, they find you and remember you.
+it: <span class="lab">Automazione</span>
+en: <span class="lab">Automation</span>
+it: si aspetta una risposta entro la giornata, e il 70% la vuole personalizzata
+en: expect a reply the same day, and 70% want it personalised
+it: Post pianificati, risposte pronte per le domande più frequenti e report automatici: risposte rapide senza stare sempre sul telefono. Ti serve meno tempo, e le persone non restano senza risposta.
+en: Scheduled posts, ready-made answers to common questions and automatic reports: quick replies without being glued to your phone. It takes less of your time, and nobody is left without an answer.
+it: >/calendario<
+en: >/calendar<
+it: Riempi il mese.
+en: Fill the month.
+it: Scegli cosa pubblicare: il calendario si riempie e i giorni si illuminano.
+en: Choose what to post: the calendar fills up and the days light up.
+it: aria-label="Tipi di contenuto"
+en: aria-label="Content types"
+it: <small>Contenuti al mese</small>
+en: <small>Posts per month</small>
+it: <small>Giorni con contenuto</small>
+en: <small>Days with content</small>
+it: <small>Crescita stimata</small>
+en: <small>Estimated growth</small>
+it: Calendario d'esempio: mostra il ritmo di pubblicazione, la crescita è una stima illustrativa e non una promessa di risultato.
+en: Sample calendar: it shows the posting rhythm; growth is an illustrative estimate, not a promised result.
+it: Sprout Social, «The 2023 Sprout Social Index»: 68% dei consumatori segue i brand per restare aggiornato su prodotti e servizi; 69% si aspetta una risposta entro la giornata; 70% si aspetta risposte personalizzate.
+en: Sprout Social, “The 2023 Sprout Social Index”: 68% of consumers follow brands to stay up to date on products and services; 69% expect a reply the same day; 70% expect personalised replies.
+it: Sull'automazione non citiamo cifre di tempo risparmiato: le fonti che abbiamo verificato non le forniscono in modo affidabile. Il vantaggio descritto si appoggia ai dati sulle aspettative di risposta (fonte 1).
+en: We don’t quote time-saving figures for automation: the sources we checked don’t provide them reliably. The benefit described rests on the data about reply expectations (source 1).
+it: Profilo, nome, post e numeri del telefono sono un concept d'esempio. Il calendario è illustrativo: mostra una tendenza, non è una promessa di risultato.
+en: The profile, name, posts and numbers on the phone are a sample concept. The calendar is illustrative: it shows a trend, not a promised result.
+it: 'aria-label', 'Guarda il reel'
+en: 'aria-label', 'Watch the reel'
+it:  ha iniziato a seguirti`
+en:  started following you`
+it: t: 'La sfoglia', s: 'Tirata a mano, ogni giorno'
+en: t: 'The pasta', s: 'Rolled by hand, every day'
+it: t: 'Il taglio', s: 'Sottile, come una volta'
+en: t: 'The cut', s: 'Thin, the old-fashioned way'
+it: t: 'La cottura', s: 'Pochi minuti, fuoco vivo'
+en: t: 'The cooking', s: 'A few minutes over a high flame'
+it: t: 'Il piatto', s: 'Tagliolini al limone e gamberi'
+en: t: 'The dish', s: 'Lemon and prawn tagliolini'
+it: t: 'Menu di oggi', s: 'Tagliolini, risotto allo zafferano, tiramisù'
+en: t: 'Today’s menu', s: 'Tagliolini, saffron risotto, tiramisù'
+it: t: 'Novità', s: 'Risotto alla marinara dalle 19'
+en: t: 'New in', s: 'Seafood risotto from 7 pm'
+it: t: 'Sabato ci sei?', s: 'Prenota il tuo tavolo', poll: ['Ci sono', 'Non posso']
+en: t: 'Joining us Saturday?', s: 'Book your table', poll: ['I’m in', 'Can’t make it']
+it: name: 'Oggi', slides: [{ c: 'b', t: 'Si cucina!', s: 'Dalle 12:00, tutto fresco' }, { c: 'a', t: 'Tavolo pronto', s: 'Prenota e non aspetti' }]
+en: name: 'Today', slides: [{ c: 'b', t: 'Kitchen’s open!', s: 'From 12:00, everything fresh' }, { c: 'a', t: 'Table ready', s: 'Book ahead, skip the wait' }]
+it: name: 'Ordini', slides: [{ c: 'c', t: 'Prenota in 10 secondi', s: 'Scrivici e ti teniamo il tavolo', cta: true }]
+en: name: 'Orders', slides: [{ c: 'c', t: 'Book in 10 seconds', s: 'Message us and we’ll hold your table', cta: true }]
+it: name: 'Recensioni', slides: [{ c: 'a', t: '“Il miglior risotto di Milano”', s: 'Marta R.' }, { c: 'b', t: '“Cortesia e profumo di casa”', s: 'Luca P.' }]
+en: name: 'Reviews', slides: [{ c: 'a', t: '“The best risotto in Milan”', s: 'Marta R.' }, { c: 'b', t: '“Friendly service and a taste of home”', s: 'Luca P.' }]
+it: >Prenota su WhatsApp</a>
+en: >Book on WhatsApp</a>
+it: [['marta.r', 'Che profumo, arrivo!'], ['luca_p', 'Prenotato per sabato']]
+en: [['marta.r', 'Smells amazing, on my way!'], ['luca_p', 'Booked for Saturday']]
+it: [['giulia_92', 'Guardato tre volte'], ['andrea', 'Bravissimi'], ['sara.b', 'Mi insegnate?']]
+en: [['giulia_92', 'Watched it three times'], ['andrea', 'Brilliant'], ['sara.b', 'Will you teach me?']]
+it: [['paolo', 'Ci siamo!']]
+en: [['paolo', 'We’re in!']]
+it: [['elena', 'Il team migliore'], ['davide', 'Sempre una garanzia']]
+en: [['elena', 'The best team'], ['davide', 'Never disappoints']]
+it: ['Grazie! Ti aspettiamo.', 'Che bello leggerti, passa a trovarci!', 'Grazie mille, ti scriviamo in privato.']
+en: ['Thank you! See you soon.', 'Lovely to hear from you, come and see us!', 'Thanks so much, we’ll message you privately.']
+it: `Vedi tutti i ${seed[i].length} commenti`
+en: `View all ${seed[i].length} comments`
+it: placeholder="Aggiungi un commento" aria-label="Il tuo commento" /><button type="submit">Invia</button>
+en: placeholder="Add a comment" aria-label="Your comment" /><button type="submit">Post</button>
+it: seed[i].push(['tu', t]); add('tu', t, true);
+en: seed[i].push(['you', t]); add('you', t, true);
+it: openSheet('Commenti', w)
+en: openSheet('Comments', w)
+it: [['WhatsApp', '#25d366', 'Condiviso su WhatsApp'], ['Storia', '#ff5fa2', 'Aggiunto alla tua storia'], ['Copia link', '#0034d6', 'Link copiato'], ['Invia', '#ffb020', 'Inviato a un amico']]
+en: [['WhatsApp', '#25d366', 'Shared on WhatsApp'], ['Story', '#ff5fa2', 'Added to your story'], ['Copy link', '#0034d6', 'Link copied'], ['Send', '#ffb020', 'Sent to a friend']]
+it: if (n === 'Copia link') navigator.clipboard?.writeText(location.origin + '/social')
+en: if (n === 'Copy link') navigator.clipboard?.writeText(location.origin + '/en/social')
+it: openSheet('Condividi', w)
+en: openSheet('Share', w)
+it: ['L', 'M', 'M', 'G', 'V', 'S', 'D']
+en: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+
+# ---------- componente Profilo ----------
+it: Ciao Nicolas! Vorrei l\'analisi gratuita del mio profilo: @
+en: Hi Nicolas! I’d like the free review of my profile: @
+it: label: 'Parrucchiere'
+en: label: 'Hair salon'
+it: cat: 'Parrucchiere'
+en: cat: 'Hair salon'
+it: bio: 'parrucchiere'
+en: bio: 'hairdresser'
+it: [[11, '2019'], [4, 'Varie']]
+en: [[11, '2019'], [4, 'Misc']]
+it: 'PROMO\n-20%', 10, 'CHIUSO\nPER FERIE', 7, 11, 'AUGURI\nA TUTTI!'
+en: 'PROMO\n-20%', 10, 'CLOSED\nFOR HOLIDAYS', 7, 11, 'SEASON’S\nGREETINGS!'
+it: 'Tagli, colore e fade, per lei e per lui', 'Via Firenze 12, Pescara · Mar–Sab 9–20'
+en: 'Cuts, colour and fades, for her and him', 'Via Firenze 12, Pescara · Tue–Sat 9am–8pm'
+it: [['tag', 'Prezzi'], ['cal', 'Prenota'], ['cut', 'Tagli'], ['star', 'Recensioni']]
+en: [['tag', 'Prices'], ['cal', 'Book'], ['cut', 'Cuts'], ['star', 'Reviews']]
+it: pins: ['Il taglio', 'Lo staff', 'Il salone']
+en: pins: ['The cut', 'The team', 'The salon']
+it: label: 'Ristorante'
+en: label: 'Restaurant'
+it: cat: 'Ristorante'
+en: cat: 'Restaurant'
+it: bio: 'ristorante'
+en: bio: 'restaurant'
+it: [['verde', 'Estate'], ['bun', 'Cibo']]
+en: [['verde', 'Summer'], ['bun', 'Food']]
+it: 'MENU\nFISSO 25€', 'legna', 'SERATA\nKARAOKE', 'bun', 'rub', 'APERTI\nA PASQUA'
+en: 'SET MENU\n€25', 'legna', 'KARAOKE\nNIGHT', 'bun', 'rub', 'OPEN\nAT EASTER'
+it: 'Carne affumicata e vini naturali', 'Brisket 14 ore · Mer–Dom 19–24'
+en: 'Smoked meats and natural wines', '14-hour brisket · Wed–Sun 7pm–midnight'
+it: [['book', 'Menu'], ['cal', 'Prenota'], ['wine', 'Vini'], ['star', 'Recensioni']]
+en: [['book', 'Menu'], ['cal', 'Book'], ['wine', 'Wines'], ['star', 'Reviews']]
+it: pins: ['Il piatto', 'La brigata', 'La sala']
+en: pins: ['The dish', 'The team', 'The room']
+it: label: 'Impresa edile'
+en: label: 'Construction'
+it: cat: 'Impresa edile'
+en: cat: 'Construction company'
+it: bio: 'impresa edile'
+en: bio: 'builders'
+it: [[10, 'Cantieri'], [5, '2020']]
+en: [[10, 'Sites'], [5, '2020']]
+it: 'PREVENTIVI\nGRATIS!!', 3, 5, 'ASSUMIAMO\nMURATORI', 7, 'BUONE\nFESTE'
+en: 'FREE\nQUOTES!!', 3, 5, 'NOW HIRING\nBUILDERS', 7, 'HAPPY\nHOLIDAYS'
+it: name: 'INNESTO · Ristrutturazioni'
+en: name: 'INNESTO · Renovations'
+it: 'Ristrutturazioni chiavi in mano', 'Case, cucine e bagni · sopralluogo in 48 ore'
+en: 'Turnkey renovations', 'Homes, kitchens and bathrooms · site visit within 48 hours'
+it: [['home', 'Lavori'], ['tag', 'Stima'], ['cam', 'Prima/Dopo'], ['star', 'Recensioni']]
+en: [['home', 'Projects'], ['tag', 'Estimate'], ['cam', 'Before/After'], ['star', 'Reviews']]
+it: pins: ['Prima e dopo', 'La casa', 'Il loft']
+en: pins: ['Before and after', 'The house', 'The loft']
+it: { t: 'Foto profilo', d: 'Prima: una foto qualsiasi, illeggibile quando è piccola. Dopo: il logo, riconoscibile anche in un commento.' }
+en: { t: 'Profile picture', d: 'Before: any old photo, unreadable when small. After: the logo, recognisable even next to a comment.' }
+it: { t: 'Nome e bio', d: 'Prima: un nome difficile da cercare e una parola. Dopo: nome, categoria, cosa fai, dove sei e quando sei aperto.' }
+en: { t: 'Name and bio', d: 'Before: a name that’s hard to search and a single word. After: name, category, what you do, where you are and when you’re open.' }
+it: { t: 'Il link', d: 'Prima: nessun link. Dopo: un tocco e si prenota o si chiede la stima, senza scrivere messaggi.' }
+en: { t: 'The link', d: 'Before: no link. After: one tap to book or request an estimate, no messages needed.' }
+it: { t: 'Storie in evidenza', d: 'Prima: vecchie storie a caso. Dopo: copertine coordinate con prezzi, prenotazioni, lavori e recensioni.' }
+en: { t: 'Story highlights', d: 'Before: random old stories. After: matching covers for prices, bookings, projects and reviews.' }
+it: { t: 'La griglia', d: 'Prima: locandine e foto a caso. Dopo: pochi formati che si ripetono, riconoscibili al primo sguardo.' }
+en: { t: 'The grid', d: 'Before: flyers and random photos. After: a few repeating formats, recognisable at a glance.' }
+it: { t: 'I post fissati', d: 'Prima: in alto c\'è l\'ultimo post, qualunque sia. Dopo: i tre che convincono a prenotare.' }
+en: { t: 'Pinned posts', d: 'Before: the latest post sits at the top, whatever it is. After: the three that convince people to book.' }
+it: >/profilo · prima e dopo<
+en: >/profile · before and after<
+it: Il tuo profilo, rifatto.
+en: Your profile, redone.
+it: Lo stesso profilo prima e dopo il nostro lavoro. Tocca i numeri per scoprire cosa cambia e perché.
+en: The same profile before and after our work. Tap the numbers to see what changes and why.
+it: aria-label="Settore"
+en: aria-label="Sector"
+it: aria-label="Prima o dopo"
+en: aria-label="Before or after"
+it: aria-pressed="true">Prima</button>
+en: aria-pressed="true">Before</button>
+it: aria-pressed="false">Dopo</button>
+en: aria-pressed="false">After</button>
+it: `Profilo ${after ? 'dopo' : 'prima'}: ${v.user}`
+en: `Profile ${after ? 'after' : 'before'}: ${v.user}`
+it: aria-label="Punto 1: foto profilo"
+en: aria-label="Point 1: profile picture"
+it: aria-label="Punto 2: nome e bio"
+en: aria-label="Point 2: name and bio"
+it: aria-label="Punto 3: il link"
+en: aria-label="Point 3: the link"
+it: aria-label="Punto 4: storie in evidenza"
+en: aria-label="Point 4: story highlights"
+it: aria-label="Punto 5: la griglia"
+en: aria-label="Point 5: the grid"
+it: aria-label="Punto 6: i post fissati"
+en: aria-label="Point 6: pinned posts"
+it: ['post', 'follower', 'seguiti']
+en: ['posts', 'followers', 'following']
+it: {s.k === 'edilizia' ? 'Stima' : 'Prenota'}
+en: {s.k === 'edilizia' ? 'Estimate' : 'Book'}
+it: <b>Analisi gratuita del tuo profilo.</b><span>Mandaci il nome del profilo: ti rispondiamo con le 3 cose da cambiare per prime.</span>
+en: <b>A free review of your profile.</b><span>Send us your profile name: we’ll reply with the 3 things to change first.</span>
+it: Chiedi l'analisi
+en: Ask for the review
+it: Profili d'esempio costruiti con le immagini e i loghi delle nostre demo (SEZIONE, BRACE, INNESTO): non sono clienti reali. I numeri sono uguali prima e dopo perché qui mostriamo il lavoro, non promettiamo risultati.
+en: Sample profiles built with images and logos from our demos (SEZIONE, BRACE, INNESTO): they are not real clients. The numbers are the same before and after because we are showing the work, not promising results.
+
+# ---------- componente Automazione ----------
+it: { t: 'Post programmati', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
+en: { t: 'Scheduled posts', d: 'The month’s plan is loaded: posts go out on their own, at the right time.', bot: 'Posting today’s reel at 7:30 pm.' }
+it: { t: 'Risposte ai messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' }
+en: { t: 'Message replies', d: 'Anyone asking “are you open?” instantly gets your hours and a booking link.', bot: 'Replying: open until 11 pm, here’s the booking link.' }
+it: { t: 'WhatsApp e prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' }
+en: { t: 'WhatsApp and bookings', d: 'The request arrives on WhatsApp, with automatic confirmation and reminders.', bot: 'Table for 4 confirmed. Reminder tomorrow at 6 pm.' }
+it: { t: 'Report mensile', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' }
+en: { t: 'Monthly report', d: 'At the end of the month you get the numbers that matter, without having to ask.', bot: 'Report sent: this month’s posts, messages and bookings.' }
+it: >/automazione<
+en: >/automation<
+it: Il lavoro ripetitivo lo fa il bot.
+en: The bot does the repetitive work.
+it: Quattro automazioni che impostiamo per te, collegate in una sola catena: dal post alla prenotazione, fino al report.
+en: Four automations we set up for you, linked in a single chain: from post to booking, all the way to the report.
+it: Simulazione illustrativa: mostra come si collegano le automazioni. Messaggi e orari sono d'esempio.
+en: Illustrative simulation: it shows how the automations connect. Messages and times are examples.
+
+# ---------- /info ----------
+it: 'Guida il reparto web design: siti, e-commerce e app, dal progetto al browser.'
+en: 'Leads web design: websites, e-commerce and apps, from concept to browser.'
+it: 'Guida i social: strategia, contenuti e community per il tuo profilo.'
+en: 'Leads social media: strategy, content and community for your profile.'
+it: t: 'Un sito', p: 'un sito'
+en: t: 'A website', p: 'a website'
+it: t: 'E-commerce', p: 'un e-commerce'
+en: t: 'E-commerce', p: 'an online shop'
+it: t: 'Un\'app', p: 'un\'app'
+en: t: 'An app', p: 'an app'
+it: t: 'Social', p: 'la gestione dei social'
+en: t: 'Social media', p: 'social media management'
+it: t: 'Agenti AI', p: 'degli agenti AI'
+en: t: 'AI agents', p: 'AI agents'
+it: <Site title="Info — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
+en: <Site title="Info — Punto Due Studio" description="Tell us about your project: fill in the message, watch it take shape and send it to us on WhatsApp or by email. You talk directly to Manuel and Nicolas." active="info">
+it: <h1>Premi invio.</h1>
+en: <h1>Hit send.</h1>
+it: Compila i campi: il messaggio prende forma e lo mandi a chi lavora al tuo progetto.
+en: Fill in the fields: the message takes shape and goes straight to the person working on your project.
+it: aria-label="Chi sei"
+en: aria-label="Who you are"
+it: >Un'azienda</button>
+en: >A business</button>
+it: >Un privato</button>
+en: >An individual</button>
+it: <span>Il tuo nome</span>
+en: <span>Your name</span>
+it: placeholder="Ottavia"
+en: placeholder="Olivia"
+it: <span>Nome dell'azienda</span>
+en: <span>Company name</span>
+it: placeholder="Bottega Ferrante"
+en: placeholder="Ferrante Studio"
+it: <span>Di cosa si occupa</span>
+en: <span>What it does</span>
+it: placeholder="Ceramiche artigianali"
+en: placeholder="Handmade ceramics"
+it: <span>Che lavoro fai</span>
+en: <span>What you do</span>
+it: placeholder="Architetta d'interni"
+en: placeholder="Interior designer"
+it: <legend>Cosa ti serve</legend>
+en: <legend>What you need</legend>
+it: <span>Qualcosa da aggiungere <em>(facoltativo)</em></span>
+en: <span>Anything to add <em>(optional)</em></span>
+it: placeholder="Ad esempio: vorrei partire entro un mese"
+en: placeholder="For example: I’d like to start within a month"
+it: aria-label="Anteprima del messaggio"
+en: aria-label="Message preview"
+it: >Scrivi a Manuel · web design<
+en: >Message Manuel · web design<
+it: <small>ora</small>
+en: <small>now</small>
+it: aria-label="A chi scrivere"
+en: aria-label="Who to message"
+it: Invia su WhatsApp
+en: Send on WhatsApp
+it: >oppure per email<
+en: >or by email<
+it: Aggiungi il nome e cosa ti serve.
+en: Add your name and what you need.
+it: Due fratelli, un solo studio.
+en: Two brothers, one studio.
+it: <span class="lab">Per i progetti</span>
+en: <span class="lab">Projects</span>
+it: <span class="lab">Informazioni</span>
+en: <span class="lab">General enquiries</span>
+it: <span class="lab">Assistenza clienti</span>
+en: <span class="lab">Client support</span>
+it: Quello che scrivi resta nel tuo browser finché non premi invia.
+en: What you write stays in your browser until you hit send.
+it: encodeURIComponent('Ciao ' + p.name.split(' ')[0] + '! Vorrei parlarvi di un progetto.')
+en: encodeURIComponent('Hi ' + p.name.split(' ')[0] + '! I’d like to talk to you about a project.')
+it: .join(', ') + ' e ' + a[a.length - 1]
+en: .join(', ') + ' and ' + a[a.length - 1]
+it: `di ${val('fCompany')}`
+en: `from ${val('fCompany')}`
+it: text: `Ciao! Sono ${who_ || '…'}. Cerco ${want || '…'}.${note ? ' ' + note : ''} Quando potremmo sentirci?`
+en: text: `Hi! I’m ${who_ || '…'}. I’m looking for ${want || '…'}.${note ? ' ' + note : ''} When could we speak?`
+it: `Scrivi a ${NUMS[who][1]}`
+en: `Message ${NUMS[who][1]}`
+it: encodeURIComponent('Nuovo progetto')
+en: encodeURIComponent('New project')
+it: 'Pronto: si apre WhatsApp con il messaggio già scritto.'
+en: 'Ready: WhatsApp opens with your message already written.'
+it: 'Serve il nome e almeno una voce in "Cosa ti serve".'
+en: 'Your name and at least one item in "What you need" are required.'
+it: `Ciao ${name}! Ti rispondiamo noi, ${person}, il prima possibile.`
+en: `Hi ${name}! ${person} here: we’ll get back to you as soon as possible.`
+
+# ---------- /faq ----------
+it: t: 'Servizi', q: [
+en: t: 'Services', q: [
+it: t: 'Prezzi e tempi', q: [
+en: t: 'Prices and timing', q: [
+it: t: 'Modalità di lavoro', q: [
+en: t: 'How we work', q: [
+it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è uno studio digitale con sede a Pescara che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
+en: ['What does Punto Due Studio do?', 'Punto Due Studio is a digital studio based in Pescara, Italy, that designs and develops websites, e-commerce stores and apps, and manages social media for companies and professionals in every sector. The web team is led by Manuel Di Paolo, the social media team by Nicolas Di Paolo.']
+it: ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
+en: ['Do you build websites for restaurants, salons and construction companies?', 'Yes. The /web section features three demo projects: BRACE for restaurants, SEZIONE for salons and INNESTO for renovations. Each website is designed around the end customer’s main action: booking, checking prices or requesting a quote.']
+it: ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.']
+en: ['What does a website project include?', 'The service includes a custom design optimised for smartphones, fast loading times, online booking and a privacy and cookie policy. On request, we can add an online shop, deposits and loyalty tools such as a loyalty card and WhatsApp reminders.']
+it: ['Gestite anche Instagram e TikTok?', 'Sì. Il servizio prevede un piano editoriale mensile con 8 post, 4 reel e storie, oltre a un report mensile con l\'andamento del profilo e i clic sul pulsante di prenotazione. Su richiesta sono disponibili anche riprese in sede.']
+en: ['Do you also manage Instagram and TikTok?', 'Yes. The service includes a monthly editorial plan with 8 posts, 4 reels and stories, plus a monthly report on the profile’s performance and clicks on the booking button. On-site filming is also available on request.']
+it: ['Sviluppate anche app?', 'Sì. Un esempio è l\'app per personal trainer, personalizzata con logo e colori del professionista, che gestisce prenotazioni 24 ore su 24, pacchetti di sessioni e programma «invita un amico». Il canone parte da 59€ al mese, l\'app è operativa in circa una settimana e non prevede costi per singolo cliente.']
+en: ['Do you also develop apps?', 'Yes. One example is our app for personal trainers, customised with the trainer’s logo and colours, which handles round-the-clock bookings, session packages and a “refer a friend” programme. Plans start at €59 per month, the app is up and running in about a week and there are no per-client fees.']
+it: ['In cosa consiste l\'analisi gratuita del profilo?', 'È sufficiente inviarci il nome del profilo Instagram: riceverete un\'analisi con le tre priorità di intervento. L\'analisi è gratuita e senza alcun impegno.']
+en: ['What is the free profile review?', 'Just send us the name of your Instagram profile and you will receive a review with the three top-priority improvements. The review is free and comes with no obligation.']
+it: ['Quanto costa un sito web?', 'I siti sono offerti in abbonamento mensile a partire da 200€ al mese, senza anticipi annuali. Il canone varia in base al numero di pagine e alle funzionalità richieste, come shop o acconti online: il preventivo è personalizzato su ogni progetto.']
+en: ['How much does a website cost?', 'Websites are offered as a monthly subscription starting from €200 per month, with no annual upfront payment. The fee depends on the number of pages and the features required, such as an online shop or deposits: every quote is tailored to the project.']
+it: ['Quanto costa la gestione dei social?', 'La gestione dei social parte da 200€ al mese, con pagamento mensile. Il canone varia in base ai contenuti inclusi, in particolare riprese in sede e produzione di reel.']
+en: ['How much does social media management cost?', 'Social media management starts from €200 per month, billed monthly. The fee depends on the content included, in particular on-site filming and reel production.']
+it: ['Quali sono i tempi di realizzazione?', 'Un sito viene pubblicato entro 2 settimane dalla ricezione dei contenuti (testi, foto, orari e prezzi). Le app web sono operative in circa una settimana.']
+en: ['How long does it take?', 'A website goes live within 2 weeks of receiving the content (texts, photos, opening hours and prices). Web apps are up and running in about a week.']
+it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ciascun sito.']
+en: ['How long is the contract?', 'Contracts run for 6 or 12 months, at the client’s choice, and never renew automatically. Payment is monthly in advance, with no annual upfront payment. Every website includes a one-month warranty from launch and 2 revisions per month.']
+it: ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.']
+en: ['How does a project start?', 'You can contact us on WhatsApp or through the form on the /info page: your request goes straight to the person in charge of the project. After an initial call to define your needs, we send a detailed quote.']
+it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.']
+en: ['Does the client own the website and the domain?', 'Yes. The domain, accounts and content are registered to the client and remain their property; Punto Due Studio sets them up and manages them. Domain and hosting are not included in the fee: a .it domain costs about €12 + VAT per year.']
+it: ['In quale zona operate?', 'Lo studio ha sede a Pescara e collabora con clienti sia in presenza sia a distanza, tramite videochiamate e WhatsApp.']
+en: ['Where do you work?', 'The studio is based in Pescara, Italy, and works with clients both in person and remotely, via video calls and WhatsApp.']
+it: ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.']
+en: ['How can I contact the studio?', 'For websites: Manuel Di Paolo, WhatsApp +39 324 842 3657. For social media: Nicolas Di Paolo, WhatsApp +39 324 816 5947. By email: projects@puntoduestudio.it for new projects and care@puntoduestudio.it for support.']
+it: knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp']
+en: knowsAbout: ['Websites', 'E-commerce', 'Web apps', 'Social media management', 'WhatsApp automation']
+it: url: 'https://puntoduestudio.it/faq/'
+en: url: 'https://puntoduestudio.it/en/faq/'
+it: <Site title="Domande frequenti — Punto Due Studio, Pescara" description="Prezzi, tempi e condizioni di Punto Due Studio, Pescara: siti web, app e gestione social per aziende e professionisti, con canone mensile e contratti da 6 o 12 mesi.">
+en: <Site title="FAQ — Punto Due Studio, Pescara" description="Prices, timing and terms at Punto Due Studio, Pescara, Italy: websites, apps and social media management for companies and professionals, with a monthly fee and 6 or 12-month contracts.">
+it: <h1>Domande frequenti.</h1>
+en: <h1>Frequently asked questions.</h1>
+it: Servizi, prezzi, tempi e condizioni contrattuali: le risposte alle domande più frequenti.
+en: Services, prices, timing and contract terms: answers to the questions we hear most often.
+it: Per ulteriori informazioni, il nostro team è a disposizione.
+en: For further information, our team is happy to help.
+it: Contattaci <span
+en: Contact us <span
