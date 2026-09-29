@@ -1,7 +1,8 @@
 ---
 import '@fontsource-variable/inter-tight';
-interface Props { title: string; description: string; active?: 'web' | 'social' | 'info' }
-const { title, description, active } = Astro.props;
+// noindex: pagine da mandare con un link (es. il modulo per i clienti), fuori da Google e senza versione inglese
+interface Props { title: string; description: string; active?: 'web' | 'social' | 'info'; noindex?: boolean }
+const { title, description, active, noindex } = Astro.props;
 // Le pagine sotto /en/ sono la versione inglese generata da scripts/i18n.mjs
 const path = Astro.url.pathname;
 const en = path === '/en' || path.startsWith('/en/');
@@ -27,9 +28,11 @@ const SITE = 'https://puntoduestudio.it';
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
     <meta property="og:locale" content={en ? 'en_GB' : 'it_IT'} />
-    <link rel="alternate" hreflang="it" href={SITE + itPath} />
-    <link rel="alternate" hreflang="en" href={SITE + enPath} />
-    <link rel="alternate" hreflang="x-default" href={SITE + itPath} />
+    {noindex ? <meta name="robots" content="noindex" /> : <>
+      <link rel="alternate" hreflang="it" href={SITE + itPath} />
+      <link rel="alternate" hreflang="en" href={SITE + enPath} />
+      <link rel="alternate" hreflang="x-default" href={SITE + itPath} />
+    </>}
     <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
     <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1013794909284091af82872b6126a728"}'></script>
   </head>
@@ -48,7 +51,7 @@ const SITE = 'https://puntoduestudio.it';
         <a href={L + '/social'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
         <a href={L + '/info'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
       </nav>
-      <a class="lang" href={en ? itPath : enPath} hreflang={en ? 'it' : 'en'} lang={en ? 'it' : 'en'} aria-label={en ? 'Versione italiana' : 'English version'}>{en ? 'IT' : 'EN'}</a>
+      {!noindex && <a class="lang" href={en ? itPath : enPath} hreflang={en ? 'it' : 'en'} lang={en ? 'it' : 'en'} aria-label={en ? 'Versione italiana' : 'English version'}>{en ? 'IT' : 'EN'}</a>}
       </div>
     </header>
 

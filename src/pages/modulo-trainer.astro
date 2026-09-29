@@ -1,0 +1,170 @@
+---
+import Site from '../layouts/Site.astro';
+// Il modulo che mandiamo a un personal trainer per preparare la sua app. Le risposte vanno a Netlify Forms:
+// gratis, e chi compila non crea nessun account. Le leggi su Netlify > puntodue-studio > Forms.
+const DEMO = 'https://pt-app-codebase.netlify.app/?t=';
+const looks = [
+  { t: 'Studio', d: 'Chiaro e pulito', demo: 'luca-moretti' },
+  { t: 'Energy', d: 'Scuro e sportivo', demo: 'marco-bellini' },
+  { t: 'Luxe', d: 'Elegante, da boutique', demo: 'giulia-ferri' },
+];
+---
+<Site title="La tua app — Punto Due Studio" description="Il modulo per preparare la tua app da personal trainer." noindex>
+  <section class="top">
+    <span class="lab">/modulo</span>
+    <h1>La tua app.</h1>
+    <p class="lead">Cinque minuti di risposte: con queste prepariamo la tua app e te la mostriamo prima di pubblicarla.</p>
+  </section>
+
+  <section class="mod">
+    <form class="cform" id="mform" name="trainer" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="trainer" />
+      <p hidden><label>Non compilare: <input name="bot-field" /></label></p>
+
+      <fieldset class="grp">
+        <legend>Il tuo marchio</legend>
+        <label class="fld"><span>Nome dell'app</span><input name="nome" required maxlength="60" placeholder="Mario Rossi PT" /><small class="help">Di solito il tuo nome o quello del tuo studio.</small></label>
+        <label class="fld"><span>Una frase su di te <em>(facoltativo)</em></span><input name="frase" maxlength="90" placeholder="Personal training a Bologna." /></label>
+        <fieldset class="fld sub">
+          <legend>Lo stile <em>(facoltativo)</em></legend>
+          <div class="looks">
+            {looks.map((l) => (
+              <label class="look">
+                <input type="radio" name="stile" value={l.t} />
+                <b>{l.t}</b><small>{l.d}</small>
+                <a href={DEMO + l.demo} target="_blank" rel="noopener">Vedi l'esempio ↗</a>
+              </label>
+            ))}
+          </div>
+          <small class="help">Se non sai, lo scegliamo insieme.</small>
+        </fieldset>
+        <label class="fld"><span>I tuoi colori <em>(facoltativo)</em></span><input name="colori" maxlength="80" placeholder="Es. nero e oro, oppure #CBF24A" /><small class="help">Se non li hai, li prendiamo dal logo o li scegliamo noi.</small></label>
+        <label class="fld"><span>Logo <em>(se ce l'hai)</em></span><input type="file" name="logo" accept="image/*,.pdf,.svg,.ai,.eps" /></label>
+        <label class="fld"><span>Una tua foto per la copertina <em>(facoltativo)</em></span><input type="file" name="foto" accept="image/*" /><small class="help">Meglio orizzontale, mentre alleni.</small></label>
+      </fieldset>
+
+      <fieldset class="grp">
+        <legend>Sessioni e orari</legend>
+        <label class="fld"><span>Che sessioni offri</span><textarea name="sessioni" required rows="4" maxlength="1500" placeholder={'Personal 1:1 · 60 min\nSmall group · 60 min · max 4 persone\nPrima valutazione gratis · 45 min'}></textarea><small class="help">Per ognuna: nome, durata e quante persone per volta.</small></label>
+        <label class="fld"><span>Quando e dove alleni</span><textarea name="orari" required rows="4" maxlength="1500" placeholder={'Lun, Mer, Ven 7-12 · Palestra Centro, via Roma 1\nMar, Gio 18-21 · Parco Nord'}></textarea></label>
+        <label class="fld"><span>Disdetta gratuita fino a</span><select name="disdetta"><option>12 ore prima</option><option selected>24 ore prima</option><option>48 ore prima</option></select><small class="help">Dopo, la sessione viene scalata dal pacchetto.</small></label>
+      </fieldset>
+
+      <fieldset class="grp">
+        <legend>Contatti</legend>
+        <label class="fld"><span>Email con cui entrerai nell'app</span><input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="mario@esempio.it" /><small class="help">Qui ti arriva il codice per entrare, senza password.</small></label>
+        <label class="fld"><span>WhatsApp per i clienti</span><input type="tel" name="whatsapp" required maxlength="30" autocomplete="tel" placeholder="+39 333 123 4567" /></label>
+        <label class="fld"><span>Instagram <em>(facoltativo)</em></span><input name="instagram" maxlength="60" placeholder="@mariorossi.pt" /></label>
+        <label class="fld"><span>Il tuo sito <em>(se ce l'hai)</em></span><input name="sito" maxlength="120" placeholder="mariorossi.it" /><small class="help">Se non ce l'hai, l'indirizzo dell'app te lo diamo noi.</small></label>
+      </fieldset>
+
+      <fieldset class="grp">
+        <legend>Per contratto e privacy</legend>
+        <label class="fld"><span>Nome e cognome o ragione sociale</span><input name="intestatario" required maxlength="120" autocomplete="name" /></label>
+        <label class="fld"><span>Indirizzo</span><input name="indirizzo" required maxlength="160" autocomplete="street-address" placeholder="Via Roma 1, 40121 Bologna" /></label>
+        <label class="fld"><span>Partita IVA o codice fiscale</span><input name="piva" required maxlength="20" autocomplete="off" /></label>
+        <small class="help">Servono per il contratto e per la pagina privacy della tua app.</small>
+      </fieldset>
+
+      <fieldset class="grp">
+        <legend>Altro</legend>
+        <label class="fld"><span>Prodotti da vendere <em>(solo con lo shop)</em></span><textarea name="prodotti" rows="2" maxlength="1500" placeholder="Proteine whey 1 kg · 39,90 €"></textarea></label>
+        <label class="fld"><span>Qualcos'altro da dirci? <em>(facoltativo)</em></span><textarea name="note" rows="2" maxlength="1500"></textarea></label>
+      </fieldset>
+
+      <div class="send">
+        <button class="btn" type="submit" id="send">Invia <span aria-hidden="true">→</span></button>
+        <p class="hint" id="hint" aria-live="polite"></p>
+        <p class="note">Usiamo questi dati solo per creare la tua app e per il contratto. <a class="lnk" href="/privacy">Informativa privacy</a></p>
+      </div>
+    </form>
+
+    <div class="done" id="done" tabindex="-1" hidden>
+      <h2>Ricevuto.</h2>
+      <p class="lead">Grazie! Prepariamo l'anteprima della tua app e ti scriviamo noi.</p>
+      <p class="note"><a class="lnk" href={`https://wa.me/393248423657?text=${encodeURIComponent('Ciao Manuel, ho compilato il modulo per la mia app.')}`} target="_blank" rel="noopener">Avvisa Manuel su WhatsApp</a></p>
+    </div>
+  </section>
+</Site>
+
+<style is:global>
+  .top { padding-bottom: 8px; }
+  .mod { max-width: 46rem; padding-top: 24px !important; }
+  .cform { display: grid; gap: 40px; color-scheme: dark; }
+  .grp { display: grid; gap: 18px; margin: 0; padding: 0; border: 0; min-width: 0; }
+  .grp > legend { padding: 0; margin-bottom: 18px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 700; letter-spacing: -.035em; }
+  .fld { display: grid; gap: 8px; min-width: 0; }
+  .fld.sub { margin: 0; padding: 0; border: 0; }
+  .fld > span, .fld.sub > legend { padding: 0; margin-bottom: 0; font: 500 12px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
+  .fld.sub > legend { margin-bottom: 8px; }
+  .fld em { font-style: normal; opacity: .7; }
+  .fld input, .fld textarea, .fld select { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,20,90,.45); color: #fff; font: 500 1.05rem 'Inter Tight Variable', system-ui, sans-serif; resize: vertical; transition: border-color .2s, background .2s; }
+  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.4); }
+  .fld input:focus, .fld textarea:focus, .fld select:focus { outline: none; border-color: var(--yellow); background: rgba(0,20,90,.7); }
+  .fld input[type="file"] { padding: 10px; font-size: .95rem; }
+  .fld input[type="file"]::file-selector-button { margin-right: 14px; padding: 10px 16px; border: 0; border-radius: 999px; background: var(--yellow); color: var(--blue); font: 700 .9rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
+  .help { font-size: .85rem; line-height: 1.4; color: rgba(255,255,255,.7); }
+  .looks { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .look { position: relative; display: grid; gap: 4px; padding: 16px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,20,90,.45); cursor: pointer; transition: border-color .2s, background .2s; }
+  .look input { position: absolute; opacity: 0; pointer-events: none; }
+  .look b { font-size: 1.2rem; letter-spacing: -.02em; }
+  .look small { color: rgba(255,255,255,.75); }
+  .look a { justify-self: start; margin-top: 6px; padding: 4px 0; font-size: .85rem; color: var(--yellow); }
+  .look:has(input:checked) { border-color: var(--yellow); background: rgba(255,224,0,.14); }
+  .look:has(input:focus-visible) { outline: 2px solid var(--yellow); outline-offset: 3px; }
+  .send { display: grid; gap: 12px; justify-items: start; }
+  .send .btn { border: 0; cursor: pointer; font: 700 1.05rem 'Inter Tight Variable', system-ui, sans-serif; }
+  .send .btn:disabled { opacity: .5; cursor: progress; transform: none; }
+  .hint { margin: 0; min-height: 1.3em; font-size: .9rem; } .hint.warn { color: #ffc2cf; }
+  .send .note { margin: 0; }
+  .done { outline: none; } .done[hidden], .cform[hidden] { display: none; }
+</style>
+
+<script>
+  // Le foto dal telefono pesano diversi MB: le rimpiccioliamo nel browser, così l'invio è veloce e resta
+  // sotto il limite di Netlify (8 MB a invio). Se qualcosa non va, parte il file originale.
+  const form = document.getElementById('mform') as HTMLFormElement;
+  const send = document.getElementById('send') as HTMLButtonElement;
+  const hint = document.getElementById('hint')!;
+  const done = document.getElementById('done')!;
+
+  async function shrink(file: File, max: number): Promise<File> {
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 1_000_000) return file;
+    try {
+      const img = await createImageBitmap(file);
+      const k = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * k);
+      c.height = Math.round(img.height * k);
+      c.getContext('2d')!.drawImage(img, 0, 0, c.width, c.height);
+      const png = file.type === 'image/png'; // un logo può avere lo sfondo trasparente
+      const blob = await new Promise<Blob | null>((r) => c.toBlob(r, png ? 'image/png' : 'image/jpeg', 0.85));
+      return blob && blob.size < file.size ? new File([blob], file.name.replace(/\.\w+$/, png ? '.png' : '.jpg'), { type: blob.type }) : file;
+    } catch {
+      return file;
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    send.disabled = true;
+    hint.classList.remove('warn');
+    hint.textContent = 'Invio in corso…';
+    try {
+      const data = new FormData(form);
+      for (const [name, max] of [['logo', 1600], ['foto', 2000]] as const) {
+        const f = data.get(name);
+        if (f instanceof File && f.size) data.set(name, await shrink(f, max));
+      }
+      const res = await fetch('/', { method: 'POST', body: data });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      form.hidden = true;
+      done.hidden = false;
+      done.focus();
+    } catch {
+      hint.classList.add('warn');
+      hint.textContent = 'Non è partito: controlla la connessione e riprova.';
+      send.disabled = false;
+    }
+  });
+</script>
