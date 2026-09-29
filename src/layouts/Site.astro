@@ -2,9 +2,16 @@
 import '@fontsource-variable/inter-tight';
 interface Props { title: string; description: string; active?: 'web' | 'social' | 'info' }
 const { title, description, active } = Astro.props;
+// Le pagine sotto /en/ sono la versione inglese generata da scripts/i18n.mjs
+const path = Astro.url.pathname;
+const en = path === '/en' || path.startsWith('/en/');
+const itPath = en ? path.slice(3) || '/' : path;
+const enPath = en ? path : '/en' + (path === '/' ? '/' : path);
+const L = en ? '/en' : '';
+const SITE = 'https://puntoduestudio.it';
 ---
 <!doctype html>
-<html lang="it">
+<html lang={en ? 'en' : 'it'} data-ana={en ? 'en' : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -19,21 +26,28 @@ const { title, description, active } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
+    <meta property="og:locale" content={en ? 'en_GB' : 'it_IT'} />
+    <link rel="alternate" hreflang="it" href={SITE + itPath} />
+    <link rel="alternate" hreflang="en" href={SITE + enPath} />
+    <link rel="alternate" hreflang="x-default" href={SITE + itPath} />
   </head>
   <body>
     <header class="hdr">
-      <a class="brand" href="/">
+      <a class="brand" href={L + '/'}>
         <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
           <defs><clipPath id="lc"><circle cx="37" cy="50" r="27" /></clipPath></defs>
           <circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lc)" />
         </svg>
         <span class="word"><span class="name">Punto Due</span> <span class="sub">STUDIO</span></span>
       </a>
-      <nav class="nav" aria-label="Principale">
-        <a href="/web" class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
-        <a href="/social" class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
-        <a href="/info" class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
+      <div class="hdr-r">
+      <nav class="nav" aria-label={en ? 'Main' : 'Principale'}>
+        <a href={L + '/web'} class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
+        <a href={L + '/social'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
+        <a href={L + '/info'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
       </nav>
+      <a class="lang" href={en ? itPath : enPath} hreflang={en ? 'it' : 'en'} lang={en ? 'it' : 'en'} aria-label={en ? 'Versione italiana' : 'English version'}>{en ? 'IT' : 'EN'}</a>
+      </div>
     </header>
 
     <canvas id="bg" aria-hidden="true"></canvas>
@@ -41,12 +55,12 @@ const { title, description, active } = Astro.props;
     <main>
       <slot />
       <footer class="ftr">
-        <span>© 2026 Punto Due Studio · Tutti i diritti riservati</span>
-        <nav class="ftr-links" aria-label="Collegamenti">
+        <span>© 2026 Punto Due Studio · {en ? 'All rights reserved' : 'Tutti i diritti riservati'}</span>
+        <nav class="ftr-links" aria-label={en ? 'Links' : 'Collegamenti'}>
           <a href="https://www.instagram.com/puntoduestudio/" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>
-          <a href="/faq">Domande frequenti</a>
-          <a href="/note-legali">Note legali</a>
+          <a href={L + '/faq'}>{en ? 'FAQ' : 'Domande frequenti'}</a>
+          <a href="/note-legali">{en ? 'Legal notice (IT)' : 'Note legali'}</a>
           <a href="/privacy">Privacy</a>
           <a href="/privacy#cookie">Cookie</a>
         </nav>
@@ -73,6 +87,11 @@ const { title, description, active } = Astro.props;
       .nav a { position: relative; text-decoration: none; transition: color .2s; }
       .nav a:hover, .nav a.on { color: var(--yellow); }
       .nav a.on::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--yellow); }
+      .hdr-r { display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); }
+      .lang { display: inline-grid; place-items: center; min-width: 44px; min-height: 36px; padding: 0 10px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; font: 700 12px/1 var(--mono); letter-spacing: .1em; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+      .lang:hover { background: var(--yellow); color: var(--blue); border-color: var(--yellow); }
+      /* telefoni stretti: testata compatta, così il pulsante IT/EN resta dentro lo schermo */
+      @media (max-width: 479px) { .hdr-r { gap: 10px; } .nav { gap: 12px; } .lang { min-width: 36px; padding: 0 6px; } .mark { width: 36px; height: 36px; } .brand { gap: 8px; } }
       main { position: relative; z-index: 1; padding-top: 110px; }
       main > section { padding: clamp(48px, 9vh, 110px) var(--gut); }
       .lab { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
