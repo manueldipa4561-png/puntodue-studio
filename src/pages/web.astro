@@ -454,7 +454,7 @@ const kstats = [
       .k-sheet textarea { resize: none; min-height: 96px; }
       .k-sh-btns { display: flex; align-items: center; gap: 12px; }
       .k-body { scroll-behavior: smooth; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); }
-      .k-pane.leaving { animation: kOut .14s ease-in both; } @keyframes kOut { to { opacity: 0; transform: translateY(-6px); } }
+      .k-pane.leaving { animation: kOut .12s ease-in both; pointer-events: none; } @keyframes kOut { to { opacity: 0; } }
       @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
       @media (prefers-reduced-motion: reduce) { .k-sheet, .k-sh-in, .k-start.on, .k-sp, .k-go.busy::after { animation: none; } .k-body { scroll-behavior: auto; } }
       .k-btn, .k-go, .k-ask-btn, .k-ask button, .k-win, .k-tabs button { transition: transform .15s; }
@@ -463,9 +463,9 @@ const kstats = [
       @media (hover: none) { .k-tabs { background: color-mix(in srgb, var(--bg) 95%, transparent); backdrop-filter: none; } }
       .k-tabs button::before { transition: width .25s, background .25s; }
       .k-tabs button.on::before { width: 20px; border-radius: 4px; }
-      .k-pane.on > * { animation: kUp .45s both cubic-bezier(.2,.8,.2,1); }
-      .k-pane.on > *:nth-child(2) { animation-delay: .05s; } .k-pane.on > *:nth-child(3) { animation-delay: .1s; } .k-pane.on > *:nth-child(4) { animation-delay: .15s; } .k-pane.on > *:nth-child(n+5) { animation-delay: .2s; }
-      @keyframes kUp { from { opacity: 0; transform: translateY(12px); } }
+      .k-pane.on > * { animation: kUp .32s both cubic-bezier(.2,.8,.2,1); }
+      .k-pane.on > *:nth-child(2) { animation-delay: .04s; } .k-pane.on > *:nth-child(3) { animation-delay: .08s; } .k-pane.on > *:nth-child(n+4) { animation-delay: .12s; }
+      @keyframes kUp { from { opacity: 0; transform: translateY(8px); } }
       @keyframes kPulse { 50% { opacity: .35; } } @keyframes kFade { from { opacity: 0; } }
       .k-live::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); margin-right: 6px; animation: kPulse 1.6s infinite; }
       .k-best .k-done small { color: var(--gold); font-weight: 600; }
@@ -690,7 +690,14 @@ const kstats = [
           kScr.querySelector<HTMLElement>('.k-body')!.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
         };
         if (still || !cur || cur.id === next) swap();
-        else { cur.classList.add('leaving'); setTimeout(swap, 140); }
+        else {
+          // Swap when the fade-out has really finished (a fixed timer cut it off at ~60% opacity); the timer is only a fallback.
+          let done = false;
+          const go = () => { if (!done) { done = true; swap(); } };
+          cur.classList.add('leaving');
+          cur.addEventListener('animationend', go, { once: true });
+          setTimeout(go, 220);
+        }
       }));
       const toast = document.getElementById('kToast')!;
       let tT = 0;
