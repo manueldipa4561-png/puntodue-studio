@@ -19,6 +19,9 @@ const looks = [
   <section class="mod">
     <form class="cform" id="mform" name="trainer" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="trainer" />
+      <input type="hidden" name="piano" />
+      <input type="hidden" name="anteprima" />
+      <p class="note" id="prefilled" hidden>Abbiamo già riportato qui il nome, lo stile e i colori che hai scelto nell'anteprima: controlla e completa il resto.</p>
       <p hidden><label>Non compilare: <input name="bot-field" /></label></p>
 
       <fieldset class="grp">
@@ -125,6 +128,23 @@ const looks = [
   // sotto il limite di Netlify (8 MB a invio). Se qualcosa non va, parte il file originale.
   const form = document.getElementById('mform') as HTMLFormElement;
   const send = document.getElementById('send') as HTMLButtonElement;
+
+  // Arriving from the app preview ("Voglio la mia app"): its name, look, colors, plan and the preview itself come along.
+  const q = new URLSearchParams(location.search);
+  const fill = (name: string) => {
+    const v = q.get(name);
+    const el = form.elements.namedItem(name);
+    if (v && el instanceof HTMLInputElement) el.value = v.slice(0, el.maxLength > 0 ? el.maxLength : 2000);
+    return !!v;
+  };
+  const named = fill('nome');
+  fill('colori');
+  fill('piano');
+  fill('anteprima');
+  const look = q.get('stile');
+  const radio = look && form.querySelector<HTMLInputElement>(`input[name="stile"][value="${CSS.escape(look.charAt(0).toUpperCase() + look.slice(1))}"]`);
+  if (radio) radio.checked = true;
+  if (named) document.getElementById('prefilled')!.hidden = false;
   const hint = document.getElementById('hint')!;
   const done = document.getElementById('done')!;
 
