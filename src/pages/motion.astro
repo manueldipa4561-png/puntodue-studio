@@ -105,7 +105,10 @@ const steps = [
   const btn = document.querySelector<HTMLButtonElement>('.reel-play')!;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const showBtn = () => { btn.hidden = false; };
-  btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(showBtn); });
+  // un play interrotto dallo scroll (pause) non è un errore: il pulsante serve solo se il browser blocca davvero la riproduzione
+  const failed = (e: Error) => { if (e.name !== 'AbortError') showBtn(); };
+  v.addEventListener('playing', () => { btn.hidden = true; });
+  btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(failed); });
   if (still) showBtn();
-  else new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(showBtn); else v.pause(); }, { threshold: .35 }).observe(v);
+  else new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(failed); else v.pause(); }, { threshold: .35 }).observe(v);
 </script>
