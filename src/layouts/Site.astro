@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/inter-tight';
 // noindex: pagine da mandare con un link (es. il modulo per i clienti), fuori da Google e senza versione inglese
-interface Props { title: string; description: string; active?: 'web' | 'social' | 'info'; noindex?: boolean }
+interface Props { title: string; description: string; active?: 'web' | 'social' | 'motion' | 'info'; noindex?: boolean }
 const { title, description, active, noindex } = Astro.props;
 // Le pagine sotto /en/ sono la versione inglese generata da scripts/i18n.mjs
 const path = Astro.url.pathname;
@@ -49,6 +49,7 @@ const SITE = 'https://puntoduestudio.it';
       <nav class="nav" aria-label={en ? 'Main' : 'Principale'}>
         <a href={L + '/web'} class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
         <a href={L + '/social'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
+        <a href={L + '/motion'} class={active === 'motion' ? 'on' : undefined} aria-current={active === 'motion' ? 'page' : undefined}>/motion</a>
         <a href={L + '/info'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
       </nav>
       {!noindex && <a class="lang" href={en ? itPath : enPath} hreflang={en ? 'it' : 'en'} lang={en ? 'it' : 'en'} aria-label={en ? 'Versione italiana' : 'English version'}>{en ? 'IT' : 'EN'}</a>}
@@ -96,7 +97,7 @@ const SITE = 'https://puntoduestudio.it';
       .lang { display: inline-grid; place-items: center; min-width: 44px; min-height: 36px; padding: 0 10px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; font: 700 12px/1 var(--mono); letter-spacing: .1em; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
       .lang:hover { background: var(--yellow); color: var(--blue); border-color: var(--yellow); }
       /* telefoni stretti: testata compatta, così il pulsante IT/EN resta dentro lo schermo */
-      @media (max-width: 479px) { .hdr-r { gap: 10px; } .nav { gap: 12px; } .lang { min-width: 36px; padding: 0 6px; } .mark { width: 36px; height: 36px; } .brand { gap: 8px; } }
+      @media (max-width: 479px) { .word { display: none; } .hdr-r { gap: 10px; } .nav { gap: 12px; } .lang { min-width: 36px; padding: 0 6px; } .mark { width: 36px; height: 36px; } .brand { gap: 8px; } }
       main { position: relative; z-index: 1; padding-top: 110px; }
       main > section { padding: clamp(48px, 9vh, 110px) var(--gut); }
       .lab { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }

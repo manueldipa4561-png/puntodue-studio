@@ -15,7 +15,7 @@ const steps = [
   { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' },
 ];
 ---
-<Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito.">
+<Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
   <section class="top">
     <span class="lab">/motion</span>
     <h1>Premi play.</h1>
@@ -35,7 +35,7 @@ const steps = [
       <p class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</p>
     </div>
     <div class="phone reel-ph">
-      <video class="reel-v" src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="metadata" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
+      <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
       <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
     </div>
   </section>
@@ -97,12 +97,15 @@ const steps = [
 </style>
 
 <script>
-  // Il video parte solo quando è a schermo e si ferma quando esce; con "riduci animazioni" parte solo a richiesta.
+  // Al caricamento c'è solo il poster: il video si scarica quando sta per entrare nello schermo,
+  // parte quando è visibile e si ferma quando esce; con "riduci animazioni" parte solo a richiesta.
   const v = document.querySelector<HTMLVideoElement>('.reel-v')!;
+  const load = () => { if (!v.src) { v.src = v.dataset.src!; v.preload = 'auto'; } };
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(v);
   const btn = document.querySelector<HTMLButtonElement>('.reel-play')!;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const showBtn = () => { btn.hidden = false; };
-  btn.addEventListener('click', () => { btn.hidden = true; v.controls = true; v.play().catch(showBtn); });
+  btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(showBtn); });
   if (still) showBtn();
   else new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(showBtn); else v.pause(); }, { threshold: .35 }).observe(v);
 </script>

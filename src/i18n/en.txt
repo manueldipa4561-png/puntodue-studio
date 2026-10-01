@@ -706,8 +706,8 @@ it: { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezz
 en: { t: 'We bring it into 3D', d: 'We model the product and animate copy, price, offer and call to action.' }
 it: { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' }
 en: { t: 'Get your video', d: 'In 3-5 days, in the formats you need. We review it together before delivery.' }
-it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito.">
-en: <Site title="3D product videos — Punto Due Studio" description="3D videos of your products for reels, stories and ads: animated copy and offer, 9:16, 1:1 and 16:9 formats, delivered in 3-5 days. Free quote.">
+it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
+en: <Site title="3D product videos — Punto Due Studio" description="3D videos of your products for reels, stories and ads: animated copy and offer, 9:16, 1:1 and 16:9 formats, delivered in 3-5 days. Free quote." active="motion">
 it: <h1>Premi play.</h1>
 en: <h1>Press play.</h1>
 it: >Premi play.<
