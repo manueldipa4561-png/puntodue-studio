@@ -323,7 +323,7 @@ const kstats = [
       .meta p { margin: 0 0 14px; color: rgba(255,255,255,.85); line-height: 1.45; }
       .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0 0 16px; padding: 0; }
       .tags li { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
-      .app { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; }
+      .app { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; overflow-x: clip; }
       .icon { width: 96px; height: 96px; display: block; margin: 22px 0 6px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
       .k-h { margin-top: 6px; letter-spacing: -.07em; } .k-h span { color: #C9F24A; letter-spacing: 0; }
       .spec { margin: 26px 0 0; border-top: 1px solid rgba(255,255,255,.28); max-width: 34rem; }
@@ -335,7 +335,7 @@ const kstats = [
       .feat span { color: rgba(255,255,255,.8); }
 
       /* KERN phone: own palette (night / bone / lime) */
-      .k-wrap { display: grid; justify-items: center; gap: 16px; }
+      .k-wrap { position: relative; display: grid; justify-items: center; gap: 16px; }
       .k-ctl { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
       .k-seg { display: inline-flex; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; overflow: hidden; }
       .k-seg button { background: none; border: 0; color: #fff; padding: 5px 11px; font: 600 .7rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
