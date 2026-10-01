@@ -632,7 +632,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           u.uGrid.value = st.grid; u.uLink.value = st.link; u.uAmt.value = st.amt * (wide ? 1 : 0.82) * vis;
           u.uDetB.value = st.det; u.uDetP.value = st.notch; u.uMg.value = st.mg; u.uPlay.value = st.play; u.uProg.value = progS;
           u.uMouse.value.set(gx * dpr, (h - gy) * dpr);
-          const sig = scrollY + md * 1000 + Math.abs(gx - mpx) + (Math.abs(mx - tx) + Math.abs(my - ty)) * 500 + (st.grid + st.mg + vis) * 100;
+          const sig = scrollY + md * 1000 + Math.abs(gx - mpx) + (Math.abs(mx - tx) + Math.abs(my - ty)) * 500 + (st.grid + st.mg + vis) * 100 + progS * 1000;
           const moving = Math.abs(sig - lastSig) > 0.02;
           lastSig = sig;
           if (wide || moving || time - lastDraw >= 0.1) { renderer.render(scene, camera); lastDraw = time; }
@@ -678,12 +678,17 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
             scrollTrigger: { trigger: sec.nextElementSibling as HTMLElement, start: 'top 90%', end: 'top 35%', scrub: 0.7 } });
         });
 
-        // la fascia /stack accelera con la velocità dello scroll e va al contrario scorrendo verso l'alto
+        // la fascia /stack accelera con la velocità dello scroll e va per un attimo al contrario scorrendo verso l'alto
         const band = document.querySelector<HTMLElement>('.track')?.getAnimations()[0];
         if (band && !reduced) {
           let rate = 1;
           ScrollTrigger.create({ onUpdate: (self) => { const v = self.getVelocity() / 500; if (Math.abs(v) > Math.abs(rate)) rate = Math.max(-6, Math.min(6, v)); } });
-          gsap.ticker.add(() => { rate += ((rate < 0 ? -1 : 1) - rate) * 0.06; band.playbackRate = rate; });
+          gsap.ticker.add(() => {
+            rate += (1 - rate) * 0.06;
+            // all'indietro non deve arrivare a 0, dove l'animazione si fermerebbe: la riporto di un giro
+            if (rate < 0 && Number(band.currentTime) < 1000) band.currentTime = Number(band.currentTime) + 45000;
+            band.playbackRate = rate;
+          });
         }
 
         if (!reduced) {
