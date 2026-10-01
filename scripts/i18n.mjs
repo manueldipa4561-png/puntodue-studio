@@ -7,7 +7,7 @@
 // lo script segnala le frasi del dizionario che non trova più.
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 
-const PAGES = ['index', 'web', 'social', 'info', 'faq'];
+const PAGES = ['index', 'web', 'social', 'info', 'faq', 'motion'];
 const COMPONENTS = ['Chat', 'Sim', 'Bi', 'Profilo', 'Automazione'];
 const HEAD = '// GENERATO da scripts/i18n.mjs: non modificare. Modifica la pagina italiana e src/i18n/en.txt.\n';
 
@@ -25,8 +25,8 @@ const translate = (s) => {
   for (const [from, to] of pairs) if (s.includes(from)) { s = s.split(from).join(to); used.add(from); }
   return s;
 };
-// link interni verso la versione inglese: "/" "/web" "/social" "/info" "/faq" (con eventuale #ancora)
-const links = (s) => s.replace(/href="\/(web|social|info|faq)?(#[\w-]*)?"/g, (_, p = '', h = '') => `href="/en/${p}${h}"`);
+// link interni verso la versione inglese: "/" "/web" "/social" "/info" "/faq" "/motion" (con eventuale #ancora)
+const links = (s) => s.replace(/href="\/(web|social|info|faq|motion)?(#[\w-]*)?"/g, (_, p = '', h = '') => `href="/en/${p}${h}"`);
 const stamp = (s) => s.replace(/^---\r?\n/, '---\n' + HEAD);
 
 rmSync('src/pages/en', { recursive: true, force: true });

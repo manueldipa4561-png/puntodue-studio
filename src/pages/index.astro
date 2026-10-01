@@ -102,6 +102,20 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         </div>
       </section>
 
+      <section class="sec" id="motion">
+        <div class="txt">
+          <span class="lab rv">/motion</span>
+          <h2 data-split>Premi play.</h2>
+          <p class="lead rv">Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.</p>
+          <ul class="pts rv">
+            <li><span>Il tuo prodotto in 3D</span><b>01</b></li>
+            <li><span>Testi e offerta animati</span><b>02</b></li>
+            <li><span>Cartelloni LED e formati social</span><b>03</b></li>
+          </ul>
+          <div class="cta rv"><a class="btn" href="/motion">Guarda il video <span class="arr" aria-hidden="true">→</span></a></div>
+        </div>
+      </section>
+
       <section class="sec" id="ai">
         <div class="txt">
           <span class="lab rv">/agents</span>
@@ -273,6 +287,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         { ax: 0, ay: 0, ahw: 0.5, ahh: 0.5, ar: 0.5, bx: 0, by: 0, bhw: 0.5, bhh: 0.5, br: 0.5, det: 0, notch: 0, link: 0, amt: 0 },
         { ax: 0, ay: 4, ahw: 44, ahh: 30, ar: 7, bx: 30, by: -20, bhw: 17, bhh: 11, br: 4, det: 1, notch: 0, link: 0, amt: 1 },
         { ax: -10, ay: 0, ahw: 22, ahh: 38, ar: 11, bx: 14, by: 16, bhw: 12, bhh: 12, br: 12, det: 0, notch: 1, link: 0, amt: 1 },
+        { ax: -8, ay: 0, ahw: 19, ahh: 34, ar: 7, bx: 17, by: -15, bhw: 9, bhh: 9, br: 9, det: 0, notch: 0, link: 0, amt: 1 },
         { ax: -26, ay: 0, ahw: 13, ahh: 13, ar: 13, bx: 26, by: 0, bhw: 13, bhh: 13, br: 13, det: 0, notch: 0, link: 1, amt: 1 },
         { ax: -13, ay: 0, ahw: 27, ahh: 27, ar: 27, bx: 13, by: 0, bhw: 27, bhh: 27, br: 27, det: 0, notch: 0, link: 0, amt: 1 },
       ];
@@ -537,12 +552,12 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         let vis = 1, lastSig = 0, lastDraw = -1;
         const measure = () => {
           const vh = innerHeight;
-          slots = ['web', 'social', 'ai', 'info'].map((id) => {
+          slots = ['web', 'social', 'motion', 'ai', 'info'].map((id) => {
             const sec = document.getElementById(id)!, top = sec.getBoundingClientRect().top + scrollY + 92;
             const avail = Math.max(120, sec.querySelector<HTMLElement>('.txt')!.getBoundingClientRect().top + scrollY - 20 - top);
             return { y: top + avail / 2, S: Math.min(VW * 0.6, avail / 0.82, vh * 0.34) };
           });
-          segs = ['web', 'social', 'ai', 'info'].map((id, i) => {
+          segs = ['web', 'social', 'motion', 'ai', 'info'].map((id, i) => {
             const top = document.getElementById(id)!.getBoundingClientRect().top + scrollY;
             return i === 0 ? { a: top - vh * 0.55, b: top - vh * 0.1 } : { a: top - vh * 0.95, b: top - vh * 0.25 };
           });

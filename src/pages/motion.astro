@@ -1,0 +1,108 @@
+---
+import Site from '../layouts/Site.astro';
+import Chat from '../components/Chat.astro';
+// Servizio video 3D per prodotti. Il video in /motion/showreel.mp4 deve essere un progetto con marchio
+// inventato o di un cliente che ha dato il permesso: mai marchi altrui senza autorizzazione.
+const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Vorrei un video 3D per un prodotto.')}`;
+const formats = [
+  { r: '9 / 16', t: '9:16', d: 'Reel, storie e TikTok' },
+  { r: '1 / 1', t: '1:1', d: 'Post nel feed e caroselli' },
+  { r: '16 / 9', t: '16:9', d: 'Sito, YouTube e sponsorizzate' },
+];
+const steps = [
+  { t: 'Mandi il prodotto', d: 'Bastano qualche foto ben illuminata, il logo e l\'etichetta. Se serve, il prodotto vero.' },
+  { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezzo, offerta e invito all\'acquisto.' },
+  { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' },
+];
+---
+<Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito.">
+  <section class="top">
+    <span class="lab">/motion</span>
+    <h1>Premi play.</h1>
+    <p class="lead">Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.</p>
+  </section>
+
+  <section class="reel" id="reel">
+    <div class="reel-txt">
+      <span class="lab">/showreel</span>
+      <h2>Il prodotto, da ogni lato.</h2>
+      <p class="lead">Un oggetto fermo in foto diventa una scena che si muove: luce, materiali, testi e prezzo, in 15 secondi.</p>
+      <ul class="feat">
+        <li><b>Il tuo prodotto in 3D</b><span>Fedele a forma, etichetta e colori.</span></li>
+        <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'acquisto.</span></li>
+        <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
+      </ul>
+      <p class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</p>
+    </div>
+    <div class="phone reel-ph">
+      <video class="reel-v" src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="metadata" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
+      <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+    </div>
+  </section>
+
+  <section class="fmt" id="formati">
+    <span class="lab">/formati</span>
+    <h2>Un video, ogni schermo.</h2>
+    <div class="fmt-grid">
+      {formats.map((f) => (
+        <figure class="fmt-c">
+          <div class="fmt-box" style={`aspect-ratio:${f.r}`}><b>{f.t}</b></div>
+          <figcaption>{f.d}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="how" id="come">
+    <span class="lab">/come</span>
+    <h2>Tre passi, nessun set.</h2>
+    <ol class="steps">
+      {steps.map((s, i) => <li><span class="n">0{i + 1}</span><b>{s.t}</b><p>{s.d}</p></li>)}
+    </ol>
+  </section>
+
+  <section class="cta-s">
+    <Chat kind="sent" />
+    <p class="lead">Preventivo gratuito: mandaci il prodotto e ti diciamo tempi e costi.</p>
+    <div class="cta">
+      <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
+      <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
+    </div>
+  </section>
+</Site>
+
+<style is:global>
+  .top { padding-bottom: 24px; }
+  .reel { display: grid; gap: clamp(32px, 6vw, 80px); align-items: center; border-top: 1px solid rgba(255,255,255,.25); }
+  .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
+  .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; } .feat span { color: rgba(255,255,255,.8); }
+  .reel-ph { position: relative; justify-self: center; width: min(300px, 78vw); }
+  .reel-v { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 34px; background: #0a0f24; object-fit: cover; }
+  .reel-play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border: 0; border-radius: 50%; background: var(--yellow); cursor: pointer; display: grid; place-items: center; }
+  .reel-play[hidden] { display: none; }
+  .reel-play span { width: 0; height: 0; margin-left: 6px; border: 13px solid transparent; border-left: 20px solid var(--blue); border-right: 0; }
+  .fmt, .how { border-top: 1px solid rgba(255,255,255,.25); }
+  .fmt-grid { display: grid; gap: 24px; margin-top: 40px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; max-width: 56rem; }
+  .fmt-c { margin: 0; display: grid; gap: 12px; }
+  .fmt-box { display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 16px; background: rgba(0,20,90,.55); }
+  .fmt-box b { font: 700 clamp(1.1rem, 2.4vw, 1.8rem)/1 var(--mono); color: var(--yellow); }
+  .fmt-c figcaption { font-size: .95rem; color: rgba(255,255,255,.85); line-height: 1.35; }
+  .steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .steps li { display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); }
+  .steps .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
+  .steps b { font-size: 1.25rem; letter-spacing: -.02em; } .steps p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
+  .cta-s .lead { margin-top: 22px; }
+  @media (max-width: 600px) { .fmt-grid { gap: 12px; } .fmt-c figcaption { font-size: .8rem; } }
+  @media (min-width: 1024px) { .reel { grid-template-columns: 1.1fr .9fr; } }
+</style>
+
+<script>
+  // Il video parte solo quando è a schermo e si ferma quando esce; con "riduci animazioni" parte solo a richiesta.
+  const v = document.querySelector<HTMLVideoElement>('.reel-v')!;
+  const btn = document.querySelector<HTMLButtonElement>('.reel-play')!;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const showBtn = () => { btn.hidden = false; };
+  btn.addEventListener('click', () => { btn.hidden = true; v.controls = true; v.play().catch(showBtn); });
+  if (still) showBtn();
+  else new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(showBtn); else v.pause(); }, { threshold: .35 }).observe(v);
+</script>
