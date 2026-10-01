@@ -100,7 +100,7 @@ const steps = [
   // Al caricamento c'è solo il poster: il video si scarica quando sta per entrare nello schermo,
   // parte quando è visibile e si ferma quando esce; con "riduci animazioni" parte solo a richiesta.
   const v = document.querySelector<HTMLVideoElement>('.reel-v')!;
-  v.defaultPlaybackRate = v.playbackRate = 1.15; // un filo più veloce del render originale
+  v.defaultPlaybackRate = v.playbackRate = 1.35; // più veloce del render originale
   const load = () => { if (!v.src) { v.src = v.dataset.src!; v.preload = 'auto'; } };
   new IntersectionObserver(([e], o) => { if (e.isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(v);
   const btn = document.querySelector<HTMLButtonElement>('.reel-play')!;
