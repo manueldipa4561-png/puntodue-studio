@@ -34,8 +34,8 @@ it: >Accendi tutto<
 en: >Turn all on<
 
 # ---------- home ----------
-it: <a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
-en: <a class="lang pre" href="/" hreflang="it" lang="it" aria-label="Versione italiana">IT</a>
+it: <span class="langs"><a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a><a class="lang pre" href="/de/" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
+en: <span class="langs"><a class="lang pre" href="/" hreflang="it" lang="it" aria-label="Versione italiana">IT</a><a class="lang pre" href="/de/" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
 it: <html lang="it">
 en: <html lang="en">
 it: <link rel="canonical" href="https://puntoduestudio.it/" />

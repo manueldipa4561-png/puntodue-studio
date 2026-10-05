@@ -1,22 +1,36 @@
 ---
 import '@fontsource-variable/inter-tight';
-// noindex: pagine da mandare con un link (es. il modulo per i clienti), fuori da Google e senza versione inglese
-interface Props { title: string; description: string; active?: 'web' | 'social' | 'motion' | 'info'; noindex?: boolean }
-const { title, description, active, noindex } = Astro.props;
-// Le pagine sotto /en/ sono la versione inglese generata da scripts/i18n.mjs
+import LangAuto from '../components/LangAuto.astro';
+// noindex: pagine da mandare con un link (es. il modulo per i clienti), fuori da Google e senza traduzioni
+// itOnly: pagina solo italiana ma indicizzata (es. note legali): niente pulsante lingua né hreflang verso traduzioni che non esistono
+interface Props { title: string; description: string; active?: 'web' | 'social' | 'motion' | 'info'; noindex?: boolean; itOnly?: boolean }
+const { title, description, active, noindex, itOnly } = Astro.props;
+// Le pagine sotto /en/ e /de/ sono le traduzioni generate da scripts/i18n.mjs (nuova lingua: aggiungerla anche lì)
 const path = Astro.url.pathname;
-const en = path === '/en' || path.startsWith('/en/');
-const itPath = en ? path.slice(3) || '/' : path;
-const enPath = en ? path : '/en' + (path === '/' ? '/' : path);
-const L = en ? '/en' : '';
+const LANGS = ['it', 'en', 'de'] as const;
+type Lang = typeof LANGS[number];
+const lang: Lang = LANGS.find((l) => l !== 'it' && (path === '/' + l || path.startsWith('/' + l + '/'))) ?? 'it';
+const itPath = lang === 'it' ? path : path.slice(lang.length + 1) || '/';
+const pathIn = (l: Lang) => (l === 'it' ? itPath : '/' + l + (itPath === '/' ? '/' : itPath));
+const L = lang === 'it' ? '' : '/' + lang;
 const SITE = 'https://puntoduestudio.it';
+// La KERN preview in /web esiste solo in italiano e inglese: le lingue senza versione propria mostrano l'inglese
+const ana = lang === 'it' ? undefined : 'en';
+const T: Record<Lang, { og: string; main: string; links: string; rights: string; faq: string; legal: string; to: string }> = {
+  it: { og: 'it_IT', main: 'Principale', links: 'Collegamenti', rights: 'Tutti i diritti riservati', faq: 'Domande frequenti', legal: 'Note legali', to: 'Versione italiana' },
+  en: { og: 'en_GB', main: 'Main', links: 'Links', rights: 'All rights reserved', faq: 'FAQ', legal: 'Legal notice (IT)', to: 'English version' },
+  de: { og: 'de_DE', main: 'Hauptmenü', links: 'Links', rights: 'Alle Rechte vorbehalten', faq: 'Häufige Fragen', legal: 'Rechtliche Hinweise (IT)', to: 'Deutsche Version' },
+};
+const t = T[lang];
+const showLangs = !noindex && !itOnly;
 ---
 <!doctype html>
-<html lang={en ? 'en' : 'it'} data-ana={en ? 'en' : undefined}>
+<html lang={lang} data-ana={ana}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#0034D6" />
+    {showLangs && <LangAuto />}
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
@@ -27,10 +41,10 @@ const SITE = 'https://puntoduestudio.it';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
-    <meta property="og:locale" content={en ? 'en_GB' : 'it_IT'} />
-    {noindex ? <meta name="robots" content="noindex" /> : <>
-      <link rel="alternate" hreflang="it" href={SITE + itPath} />
-      <link rel="alternate" hreflang="en" href={SITE + enPath} />
+    <meta property="og:locale" content={t.og} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {showLangs && <>
+      {LANGS.map((l) => <link rel="alternate" hreflang={l} href={SITE + pathIn(l)} />)}
       <link rel="alternate" hreflang="x-default" href={SITE + itPath} />
     </>}
     <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
@@ -46,13 +60,13 @@ const SITE = 'https://puntoduestudio.it';
         <span class="word"><span class="name">Punto Due</span> <span class="sub">STUDIO</span></span>
       </a>
       <div class="hdr-r">
-      <nav class="nav" aria-label={en ? 'Main' : 'Principale'}>
+      <nav class="nav" aria-label={t.main}>
         <a href={L + '/web'} class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
         <a href={L + '/social'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
         <a href={L + '/motion'} class={active === 'motion' ? 'on' : undefined} aria-current={active === 'motion' ? 'page' : undefined}>/motion</a>
         <a href={L + '/info'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
       </nav>
-      {!noindex && <a class="lang" href={en ? itPath : enPath} hreflang={en ? 'it' : 'en'} lang={en ? 'it' : 'en'} aria-label={en ? 'Versione italiana' : 'English version'}>{en ? 'IT' : 'EN'}</a>}
+      {showLangs && <span class="langs">{LANGS.filter((l) => l !== lang).map((l) => <a class="lang" href={pathIn(l)} hreflang={l} lang={l} aria-label={T[l].to}>{l.toUpperCase()}</a>)}</span>}
       </div>
     </header>
 
@@ -61,12 +75,12 @@ const SITE = 'https://puntoduestudio.it';
     <main>
       <slot />
       <footer class="ftr">
-        <span>© 2026 Punto Due Studio · {en ? 'All rights reserved' : 'Tutti i diritti riservati'}</span>
-        <nav class="ftr-links" aria-label={en ? 'Links' : 'Collegamenti'}>
+        <span>© 2026 Punto Due Studio · {t.rights}</span>
+        <nav class="ftr-links" aria-label={t.links}>
           <a href="https://www.instagram.com/puntoduestudio/" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>
-          <a href={L + '/faq'}>{en ? 'FAQ' : 'Domande frequenti'}</a>
-          <a href="/note-legali">{en ? 'Legal notice (IT)' : 'Note legali'}</a>
+          <a href={L + '/faq'}>{t.faq}</a>
+          <a href="/note-legali">{t.legal}</a>
           <a href="/privacy">Privacy</a>
           <a href="/privacy#cookie">Cookie</a>
         </nav>
@@ -96,8 +110,10 @@ const SITE = 'https://puntoduestudio.it';
       .hdr-r { display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); }
       .lang { display: inline-grid; place-items: center; min-width: 44px; min-height: 36px; padding: 0 10px; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; font: 700 12px/1 var(--mono); letter-spacing: .1em; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
       .lang:hover { background: var(--yellow); color: var(--blue); border-color: var(--yellow); }
-      /* telefoni stretti: testata compatta, così il pulsante IT/EN resta dentro lo schermo */
-      @media (max-width: 479px) { .word { display: none; } .hdr-r { gap: 10px; } .nav { gap: 12px; } .lang { min-width: 36px; padding: 0 6px; } .mark { width: 36px; height: 36px; } .brand { gap: 8px; } }
+      .langs { display: inline-flex; gap: 6px; }
+      /* telefoni stretti: testata compatta, così i pulsanti lingua restano dentro lo schermo */
+      @media (max-width: 479px) { .word { display: none; } .hdr-r { gap: 10px; } .nav { gap: 12px; } .langs { gap: 4px; } .lang { min-width: 32px; padding: 0 4px; } .mark { width: 36px; height: 36px; } .brand { gap: 8px; } }
+      @media (max-width: 359px) { .nav { gap: 8px; font-size: 15px; } .hdr-r { gap: 8px; } }
       main { position: relative; z-index: 1; padding-top: 110px; }
       main > section { padding: clamp(48px, 9vh, 110px) var(--gut); }
       .lab { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
