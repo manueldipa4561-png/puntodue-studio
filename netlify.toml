@@ -19,3 +19,21 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Video, anteprime e immagini KERN: file pesanti che non cambiano spesso. Una settimana, non un anno:
+# non hanno l'hash nel nome, quindi se ne sostituisci uno con lo stesso nome i visitatori lo vedono entro 7 giorni
+# (per aggiornarlo subito, dagli un nome nuovo).
+[[headers]]
+  for = "/motion/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/previews/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/kern/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

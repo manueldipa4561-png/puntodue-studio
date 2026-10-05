@@ -14,12 +14,24 @@ const steps = [
   { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezzo, offerta e invito all\'acquisto.' },
   { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' },
 ];
+// Dati strutturati: il servizio e il video di esempio (il video si scarica solo quando entra nello schermo, quindi Google lo trova da qui)
+const NAME = 'Video 3D per prodotti';
+const LEAD = 'Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.';
+const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
+const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
+const abs = (p: string) => new URL(p, 'https://puntoduestudio.it').href;
+const studio = { '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/' };
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'Service', name: NAME, serviceType: NAME, description: LEAD, url: abs(Astro.url.pathname), provider: studio, areaServed: [{ '@type': 'Country', name: 'Italy' }, 'Worldwide'] },
+  { '@context': 'https://schema.org', '@type': 'VideoObject', name: VIDEO_NAME, description: VIDEO_DESC, thumbnailUrl: abs('/motion/salmastro-led-poster.jpg'), contentUrl: abs('/motion/salmastro-led.mp4'), uploadDate: '2026-10-04', duration: 'PT15S', publisher: studio },
+];
 ---
 <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   <section class="top">
     <span class="lab">/motion</span>
     <h1>Premi play.</h1>
-    <p class="lead">Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.</p>
+    <p class="lead">{LEAD}</p>
   </section>
 
   <section class="reel" id="reel">
@@ -46,7 +58,10 @@ const steps = [
     <div class="fmt-grid">
       {formats.map((f) => (
         <figure class="fmt-c">
-          <div class="fmt-box" style={`aspect-ratio:${f.r}`}><b>{f.t}</b></div>
+          <div class="fmt-box" style={`aspect-ratio:${f.r}`}>
+            <img src="/motion/salmastro-led-poster.jpg" alt="" width="540" height="960" loading="lazy" decoding="async" />
+            <b>{f.t}</b>
+          </div>
           <figcaption>{f.d}</figcaption>
         </figure>
       ))}
@@ -59,6 +74,18 @@ const steps = [
     <ol class="steps">
       {steps.map((s, i) => <li><span class="n">0{i + 1}</span><b>{s.t}</b><p>{s.d}</p></li>)}
     </ol>
+  </section>
+
+  <section class="more" id="altri">
+    <span class="lab">/altri-servizi</span>
+    <h2>Gli altri servizi.</h2>
+    <ul class="more-l">
+      <li><a class="lnk" href="/siti-web/">Siti web</a></li>
+      <li><a class="lnk" href="/e-commerce/">E-commerce</a></li>
+      <li><a class="lnk" href="/gestione-social/">Gestione social media</a></li>
+      <li><a class="lnk" href="/agenti-ai/">Agenti AI</a></li>
+      <li><a class="lnk" href="/servizi/">Tutti i servizi</a></li>
+    </ul>
   </section>
 
   <section class="cta-s">
@@ -84,15 +111,19 @@ const steps = [
   .fmt, .how { border-top: 1px solid rgba(255,255,255,.25); }
   .fmt-grid { display: grid; gap: 24px; margin-top: 40px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; max-width: 56rem; }
   .fmt-c { margin: 0; display: grid; gap: 12px; }
-  .fmt-box { display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 16px; background: rgba(0,20,90,.55); }
-  .fmt-box b { font: 700 clamp(1.1rem, 2.4vw, 1.8rem)/1 var(--mono); color: var(--yellow); }
+  /* stesso video, riquadrato per ogni formato: il poster riempie il riquadro e l'etichetta sta in basso */
+  .fmt-box { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.45); border-radius: 16px; background: #0a0f24; }
+  .fmt-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; }
+  .fmt-box b { position: absolute; left: 10px; bottom: 10px; padding: 6px 10px; border-radius: 999px; background: rgba(0,20,90,.85); font: 700 clamp(.8rem, 1.6vw, 1rem)/1 var(--mono); color: var(--yellow); }
+  .more { border-top: 1px solid rgba(255,255,255,.25); }
+  .more-l { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
   .fmt-c figcaption { font-size: .95rem; color: rgba(255,255,255,.85); line-height: 1.35; }
   .steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
   .steps li { display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); }
   .steps .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
   .steps b { font-size: 1.25rem; letter-spacing: -.02em; } .steps p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
   .cta-s .lead { margin-top: 22px; }
-  @media (max-width: 600px) { .fmt-grid { gap: 12px; } .fmt-c figcaption { font-size: .8rem; } }
+  @media (max-width: 600px) { .fmt-grid { gap: 12px; } .fmt-c figcaption { font-size: .8rem; } .fmt-box b { left: 6px; bottom: 6px; padding: 4px 7px; } }
   @media (min-width: 1024px) { .reel { grid-template-columns: 1.1fr .9fr; } }
 </style>
 
