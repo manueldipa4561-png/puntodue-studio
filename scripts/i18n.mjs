@@ -23,6 +23,7 @@ const loadPairs = (loc) => {
   return pairs.sort((a, b) => b[0].length - a[0].length); // le frasi lunghe prima, così una breve non ne spezza una lunga
 };
 
+let staleTotal = 0;
 for (const loc of LOCALES) {
   const pairs = loadPairs(loc);
   const used = new Set();
@@ -54,5 +55,14 @@ for (const loc of LOCALES) {
 
   const stale = pairs.filter(([from]) => !used.has(from)).map(([from]) => from);
   console.log(`i18n ${loc}: ${PAGES.length} pagine e ${COMPONENTS.length} componenti, ${pairs.length} frasi nel dizionario.`);
-  if (stale.length) console.warn(`i18n ${loc}: ${stale.length} frasi del dizionario non trovate (testo italiano cambiato?):\n  - ${stale.join('\n  - ')}`);
+  if (stale.length) {
+    staleTotal += stale.length;
+    console.error(`i18n ${loc}: ${stale.length} frasi del dizionario non trovate (testo italiano cambiato?):\n  - ${stale.join('\n  - ')}`);
+  }
+}
+// Si ferma invece di avvisare e basta: un testo italiano cambiato senza aggiornare il dizionario manderebbe italiano in /en e /de.
+// Per sbloccare a mano (es. una frase tolta di proposito): I18N_ALLOW_STALE=1 npm run build
+if (staleTotal && !process.env.I18N_ALLOW_STALE) {
+  console.error(`i18n: ${staleTotal} frasi non trovate, build fermata. Aggiorna le righe "it:" in src/i18n/*.txt.`);
+  process.exit(1);
 }
