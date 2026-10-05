@@ -764,3 +764,7 @@ it: menu: { name: 'Menu',
 de: menu: { name: 'Menü',
 it: t: 'Referral'
 de: t: 'Empfehlung'
+
+# ---------- dati strutturati della home ----------
+it: const HOME = 'https://puntoduestudio.it/';
+de: const HOME = 'https://puntoduestudio.it/de/';

@@ -746,3 +746,7 @@ it: ['Realizzate video 3D dei prodotti?', 'Sì. Realizziamo video 3D dei prodott
 en: ['Do you make 3D product videos?', 'Yes. We make 3D product videos for reels, stories and ads, with animated copy, price and offer, including LED billboard versions. Delivery takes 3-5 days from receiving photos and logo, and the quote is free.']
 it: { k: 'video', t: 'Video 3D', p: 'un video 3D per un prodotto' }
 en: { k: 'video', t: '3D video', p: 'a 3D product video' }
+
+# ---------- dati strutturati della home ----------
+it: const HOME = 'https://puntoduestudio.it/';
+en: const HOME = 'https://puntoduestudio.it/en/';
