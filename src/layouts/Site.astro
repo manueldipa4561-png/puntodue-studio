@@ -19,7 +19,7 @@ const ana = lang === 'it' ? undefined : 'en';
 const T: Record<Lang, { og: string; main: string; links: string; rights: string; faq: string; legal: string; to: string }> = {
   it: { og: 'it_IT', main: 'Principale', links: 'Collegamenti', rights: 'Tutti i diritti riservati', faq: 'Domande frequenti', legal: 'Note legali', to: 'Versione italiana' },
   en: { og: 'en_GB', main: 'Main', links: 'Links', rights: 'All rights reserved', faq: 'FAQ', legal: 'Legal notice (IT)', to: 'English version' },
-  de: { og: 'de_DE', main: 'Hauptmenü', links: 'Links', rights: 'Alle Rechte vorbehalten', faq: 'Häufige Fragen', legal: 'Rechtliche Hinweise (IT)', to: 'Deutsche Version' },
+  de: { og: 'de_DE', main: 'Hauptnavigation', links: 'Links', rights: 'Alle Rechte vorbehalten', faq: 'Häufige Fragen', legal: 'Rechtliche Hinweise (IT)', to: 'Deutsche Version' },
 };
 const t = T[lang];
 const showLangs = !noindex && !itOnly;
@@ -35,17 +35,25 @@ const showLangs = !noindex && !itOnly;
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, "https://puntoduestudio.it")} />
+    {!noindex && <link rel="canonical" href={new URL(Astro.url.pathname, "https://puntoduestudio.it")} />}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, SITE)} />
+    <meta property="og:site_name" content="Punto Due Studio" />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Punto Due Studio" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={t.og} />
     {noindex && <meta name="robots" content="noindex" />}
     {showLangs && <>
       {LANGS.map((l) => <link rel="alternate" hreflang={l} href={SITE + pathIn(l)} />)}
-      <link rel="alternate" hreflang="x-default" href={SITE + itPath} />
+      <link rel="alternate" hreflang="x-default" href={SITE + pathIn('en')} />
     </>}
     <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
     <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1013794909284091af82872b6126a728"}'></script>
@@ -61,10 +69,10 @@ const showLangs = !noindex && !itOnly;
       </a>
       <div class="hdr-r">
       <nav class="nav" aria-label={t.main}>
-        <a href={L + '/web'} class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
-        <a href={L + '/social'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
-        <a href={L + '/motion'} class={active === 'motion' ? 'on' : undefined} aria-current={active === 'motion' ? 'page' : undefined}>/motion</a>
-        <a href={L + '/info'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
+        <a href={L + '/web/'} class={active === 'web' ? 'on' : undefined} aria-current={active === 'web' ? 'page' : undefined}>/web</a>
+        <a href={L + '/social/'} class={active === 'social' ? 'on' : undefined} aria-current={active === 'social' ? 'page' : undefined}>/social</a>
+        <a href={L + '/motion/'} class={active === 'motion' ? 'on' : undefined} aria-current={active === 'motion' ? 'page' : undefined}>/motion</a>
+        <a href={L + '/info/'} class={active === 'info' ? 'on' : undefined} aria-current={active === 'info' ? 'page' : undefined}>/info</a>
       </nav>
       {showLangs && <span class="langs">{LANGS.filter((l) => l !== lang).map((l) => <a class="lang" href={pathIn(l)} hreflang={l} lang={l} aria-label={T[l].to}>{l.toUpperCase()}</a>)}</span>}
       </div>
@@ -79,10 +87,10 @@ const showLangs = !noindex && !itOnly;
         <nav class="ftr-links" aria-label={t.links}>
           <a href="https://www.instagram.com/puntoduestudio/" target="_blank" rel="noopener">Instagram</a>
           <a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>
-          <a href={L + '/faq'}>{t.faq}</a>
-          <a href="/note-legali">{t.legal}</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/privacy#cookie">Cookie</a>
+          <a href={L + '/faq/'}>{t.faq}</a>
+          <a href="/note-legali/">{t.legal}</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/privacy/#cookie">Cookie</a>
         </nav>
       </footer>
     </main>
@@ -90,7 +98,7 @@ const showLangs = !noindex && !itOnly;
     <style is:global>
       :root { --blue: #0034d6; --yellow: #ffe000; --gut: clamp(16px, 3vw, 40px); --mono: ui-monospace, 'SF Mono', Consolas, Menlo, monospace; }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; scroll-padding-top: 110px; }
       body { margin: 0; color: #fff; font-family: 'Inter Tight Variable', system-ui, sans-serif; background: var(--blue); overflow-x: hidden; }
       #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
       .phone { transition: transform .25s ease-out; will-change: transform; }
@@ -134,7 +142,7 @@ const showLangs = !noindex && !itOnly;
       .src { padding-top: 0 !important; }
       .src ol { margin: 18px 0 0; padding-left: 1.2em; max-width: 52rem; display: grid; gap: 12px; font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.8); }
       .src a { color: var(--yellow); }
-      .ftr { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 32px var(--gut) 28px; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+      .ftr { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 32px var(--gut) 28px; font: 500 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.75); }
       .ftr-links { display: flex; flex-wrap: wrap; gap: 12px 20px; }
       .ftr a { text-decoration: none; } .ftr a:hover { color: var(--yellow); }
       .cta-s .cta { margin-top: 32px; }
