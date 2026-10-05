@@ -70,10 +70,10 @@ const { feats, kpi, scale = 1, heading, lead } = Astro.props;
       @media (max-width: 1023px) {
         .plot { order: -1; }
         .sim-grid { gap: 14px; }
-        .toggles { grid-template-columns: 1fr 1fr; gap: 8px; }
+        .toggles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
         .tg { padding: 10px 12px; gap: 10px; border-radius: 14px; }
         .tg small { display: none; }
-        .tg b { font-size: .9rem; line-height: 1.2; }
+        .tg b { font-size: .9rem; line-height: 1.2; overflow-wrap: anywhere; hyphens: auto; }
         .sw { width: 34px; height: 20px; } .sw::after { width: 14px; height: 14px; }
         .tg[aria-pressed="true"] .sw::after { transform: translateX(14px); }
         .all { grid-column: 1 / -1; justify-self: stretch; margin-top: 0; }
