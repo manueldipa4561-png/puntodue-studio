@@ -740,6 +740,20 @@ it: <h2>Un video, ogni schermo.</h2>
 en: <h2>One video, every screen.</h2>
 it: <h2>Tre passi, nessun set.</h2>
 en: <h2>Three steps, no film set.</h2>
+it: const NAME = 'Video 3D per prodotti';
+en: const NAME = '3D product videos';
+it: const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
+en: const VIDEO_NAME = 'SALMASTRO: sample 3D video on an LED billboard';
+it: const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
+en: const VIDEO_DESC = 'A perfume with a brand invented by Punto Due Studio, animated in 3D on an LED billboard: an example of the service.';
+it: >Siti web</a>
+en: >Websites</a>
+it: >Gestione social media</a>
+en: >Social media management</a>
+it: >Agenti AI</a>
+en: >AI agents</a>
+it: >Tutti i servizi</a>
+en: >All services</a>
 it: Preventivo gratuito: mandaci il prodotto e ti diciamo tempi e costi.
 en: Free quote: send us the product and we’ll tell you timing and cost.
 it: Chiedi un preventivo <span
