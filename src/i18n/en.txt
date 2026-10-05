@@ -756,3 +756,169 @@ it: <meta property="og:url" content="https://puntoduestudio.it/" />
 en: <meta property="og:url" content="https://puntoduestudio.it/en/" />
 it: >Domande frequenti</a>
 en: >FAQ</a>
+
+# ---------- pagine servizi (/servizi, /siti-web, /e-commerce, /gestione-social, /agenti-ai) ----------
+it: { href: '/siti-web/', name: 'Siti web', blurb: 'Siti su misura, veloci e pensati per il telefono, online in 2 settimane dai contenuti.' }
+en: { href: '/siti-web/', name: 'Websites', blurb: 'Custom websites, fast and made for the phone, live within 2 weeks of receiving your content.' }
+it: { href: '/e-commerce/', name: 'E-commerce', blurb: 'Negozi online su misura per vendere ai tuoi clienti, con acconti e strumenti di fidelizzazione.' }
+en: { href: '/e-commerce/', name: 'E-commerce', blurb: 'Custom online shops to sell to your customers, with deposits and loyalty tools.' }
+it: { href: '/gestione-social/', name: 'Gestione social media', blurb: 'Piano editoriale mensile, contenuti nel tuo stile e un report chiaro su Instagram e TikTok.' }
+en: { href: '/gestione-social/', name: 'Social media management', blurb: 'A monthly editorial plan, content in your style and a clear report on Instagram and TikTok.' }
+it: { href: '/agenti-ai/', name: 'Agenti AI', blurb: 'Un assistente che risponde ai clienti, automazioni che collegano i tuoi strumenti e report senza doverli chiedere.' }
+en: { href: '/agenti-ai/', name: 'AI agents', blurb: 'An assistant that answers customers, automations that connect your tools and reports without having to ask.' }
+it: { href: '/motion/', name: 'Video 3D per prodotti', blurb: 'Video 3D dei prodotti per reel, storie e sponsorizzate, consegnati in 3-5 giorni.' }
+en: { href: '/motion/', name: '3D product videos', blurb: '3D videos of your products for reels, stories and ads, delivered in 3–5 days.' }
+it: <span class="lab">/incluso</span>
+en: <span class="lab">/included</span>
+it: <h2>Cosa trovi dentro.</h2>
+en: <h2>What’s inside.</h2>
+it: <h2>Tre passi, nessun giro.</h2>
+en: <h2>Three steps, no detours.</h2>
+it: <span class="lab">/costi</span>
+en: <span class="lab">/costs</span>
+it: <h2>Tempi e costi, chiari.</h2>
+en: <h2>Timing and costs, clearly.</h2>
+it: <span class="lab">/altri-servizi</span>
+en: <span class="lab">/other-services</span>
+it: <h2>Gli altri servizi.</h2>
+en: <h2>The other services.</h2>
+it: Raccontaci cosa ti serve: ti rispondiamo con tempi e costi.
+en: Tell us what you need: we’ll reply with timing and costs.
+it: <Site title="Servizi: siti web, e-commerce, social e AI — Punto Due Studio" description="Tutti i servizi di Punto Due Studio: siti web, e-commerce, gestione social media, agenti AI e video 3D per aziende e professionisti in tutta Italia.">
+en: <Site title="Services: websites, e-commerce, social and AI — Punto Due Studio" description="All Punto Due Studio services: websites, e-commerce, social media management, AI agents and 3D video for businesses in Italy and internationally.">
+it: label="/servizi"
+en: label="/services"
+it: h1="Tutto quello che serve."
+en: h1="Everything you need."
+it: lead="Siti web, e-commerce, social media, agenti AI e video 3D per aziende e professionisti in tutta Italia, in un unico studio."
+en: lead="Websites, e-commerce, social media, AI agents and 3D video for businesses and professionals in Italy and internationally, from one studio."
+it: <Site title="Agenzia siti web in tutta Italia — Punto Due Studio" description="Siti web su misura, veloci e pensati per il telefono: online in 2 settimane dai contenuti, canone mensile da 200 € e nessun rinnovo automatico.">
+en: <Site title="Web agency: custom websites — Punto Due Studio" description="Custom websites, fast and made for the phone: live within 2 weeks of receiving content, a monthly fee from €200 and no automatic renewal.">
+it: label="/siti-web"
+en: label="/websites"
+it: h1="Un sito che lavora per te."
+en: h1="A website that works for you."
+it: lead="Siti web per aziende e professionisti in tutta Italia: veloci, chiari e fatti per far scrivere o prenotare chi li visita."
+en: lead="Websites for businesses and professionals in Italy and internationally: fast, clear and built to get visitors to message or book."
+it: serviceName="Realizzazione siti web"
+en: serviceName="Website design and development"
+it: { t: 'Design su misura', d: 'Pensato per il tuo settore e ottimizzato per lo smartphone.' }
+en: { t: 'Custom design', d: 'Made for your sector and optimised for the smartphone.' }
+it: { t: 'Caricamento veloce', d: 'Pagine leggere, pensate per aprirsi in fretta.' }
+en: { t: 'Fast loading', d: 'Light pages, built to open quickly.' }
+it: { t: 'Prenotazione online', d: 'Chi visita il sito può prenotare o chiedere un preventivo senza giri.' }
+en: { t: 'Online booking', d: 'Visitors can book or ask for a quote without detours.' }
+it: { t: 'Privacy e cookie', d: 'Informativa privacy e cookie inclusa nel servizio.' }
+en: { t: 'Privacy and cookies', d: 'Privacy and cookie policy included in the service.' }
+it: { t: 'Su richiesta', d: 'Shop online, acconti, tessera fedeltà e promemoria via WhatsApp.' }
+en: { t: 'On request', d: 'Online shop, deposits, loyalty card and WhatsApp reminders.' }
+it: { t: 'Ci racconti l’attività', d: 'Scrivici su WhatsApp o dal modulo: la richiesta arriva direttamente a chi segue il progetto.' }
+en: { t: 'You tell us about your business', d: 'Message us on WhatsApp or through the form: your request goes straight to the person in charge of the project.' }
+it: { t: 'Ricevi il preventivo', d: 'Dopo un primo colloquio per definire le esigenze, ti inviamo un preventivo dettagliato.' }
+en: { t: 'You get a quote', d: 'After an initial call to define your needs, we send a detailed quote.' }
+it: { t: 'Il sito va online', d: 'Entro 2 settimane da quando riceviamo testi, foto, orari e prezzi.' }
+en: { t: 'Your site goes live', d: 'Within 2 weeks of receiving texts, photos, opening hours and prices.' }
+it: 'Da 200 € al mese, senza anticipi annuali. Il canone varia con il numero di pagine e le funzioni richieste.'
+en: 'From €200 per month, with no annual upfront payment. The fee depends on the number of pages and the features required.'
+it: 'Contratto di 6 o 12 mesi, a tua scelta, senza rinnovo automatico.'
+en: 'A 6- or 12-month contract, your choice, with no automatic renewal.'
+it: 'Un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ogni sito.'
+en: 'One month of warranty from launch and 2 revisions per month for every site.'
+it: 'Dominio, account e contenuti restano tuoi. Dominio e hosting non sono nel canone: un dominio .it costa circa 12 € + IVA all’anno.'
+en: 'The domain, accounts and content stay yours. Domain and hosting are not included in the fee: a .it domain costs about €12 + VAT per year.'
+it: t: 'Guarda le demo'
+en: t: 'See the demos'
+it: <Site title="Creazione e-commerce su misura — Punto Due Studio" description="Negozi online su misura per aziende e professionisti: catalogo, acconti online e strumenti di fidelizzazione. Preventivo personalizzato per ogni progetto.">
+en: <Site title="Custom e-commerce development — Punto Due Studio" description="Custom online shops for businesses and professionals: catalogue, online deposits and loyalty tools. A tailored quote for every project.">
+it: label="/e-commerce"
+en: label="/e-commerce"
+it: h1="Un negozio sempre aperto."
+en: h1="A shop that’s always open."
+it: lead="E-commerce su misura per aziende e professionisti in tutta Italia, pensato per vendere da telefono e da computer."
+en: lead="Custom e-commerce for businesses and professionals in Italy and internationally, built to sell on phones and computers."
+it: serviceName="Creazione e-commerce"
+en: serviceName="E-commerce development"
+it: { t: 'Negozio su misura', d: 'Un’esperienza d’acquisto costruita sul tuo catalogo e sul tuo marchio.' }
+en: { t: 'A custom shop', d: 'A buying experience built around your catalogue and your brand.' }
+it: { t: 'Acconti online', d: 'Per bloccare un prodotto o un posto con un acconto, come un tavolo o una prenotazione.' }
+en: { t: 'Online deposits', d: 'Secure a product or a booking with a deposit, such as a table reservation.' }
+it: { t: 'Fidelizzazione', d: 'Tessera fedeltà, coupon e promemoria via WhatsApp per far tornare i clienti.' }
+en: { t: 'Customer loyalty', d: 'Loyalty card, coupons and WhatsApp reminders to bring customers back.' }
+it: { t: 'Pensato per lo smartphone', d: 'Design ottimizzato per il telefono e tempi di caricamento ridotti.' }
+en: { t: 'Made for the smartphone', d: 'Design optimised for the phone and short loading times.' }
+it: { t: 'Scegli cosa vendere', d: 'Ci racconti prodotti, prezzi e come vuoi che acquisti il cliente.' }
+en: { t: 'Choose what to sell', d: 'You tell us about your products, prices and how you want customers to buy.' }
+it: { t: 'Costruiamo il negozio', d: 'Progettiamo il design e aggiungiamo acconti e strumenti di fidelizzazione, se ti servono.' }
+en: { t: 'We build the shop', d: 'We design it and add deposits and loyalty tools if you need them.' }
+it: { t: 'Si parte', d: 'Il negozio va online e lo rivediamo insieme: ogni mese hai 2 revisioni.' }
+en: { t: 'Launch', d: 'The shop goes live and we review it together: you get 2 revisions every month.' }
+it: 'Preventivo personalizzato su ogni progetto: il canone dipende da pagine e funzioni richieste, come shop o acconti online.'
+en: 'A tailored quote for every project: the fee depends on the pages and features required, such as an online shop or deposits.'
+it: 'I contenuti e il dominio restano di tua proprietà.'
+en: 'The content and the domain stay yours.'
+it: <Site title="Gestione social media per aziende — Punto Due Studio" description="Piano editoriale mensile con 8 post, 4 reel e storie, più un report mensile sui risultati. Gestione Instagram e TikTok da 200 € al mese.">
+en: <Site title="Social media management for businesses — Punto Due Studio" description="A monthly editorial plan with 8 posts, 4 reels and stories, plus a monthly results report. Instagram and TikTok management from €200 a month.">
+it: label="/gestione-social"
+en: label="/social-media"
+it: h1="Profili curati, clienti che scrivono."
+en: h1="Well-kept profiles, customers who write."
+it: lead="Gestione dei social media per aziende e professionisti in tutta Italia: strategia, contenuti e community per il tuo profilo."
+en: lead="Social media management for businesses and professionals in Italy and internationally: strategy, content and community for your profile."
+it: serviceName="Gestione social media"
+en: serviceName="Social media management"
+it: { t: 'Piano editoriale', d: 'Ogni mese un piano con 8 post, 4 reel e storie.' }
+en: { t: 'Editorial plan', d: 'Every month a plan with 8 posts, 4 reels and stories.' }
+it: { t: 'Contenuti nel tuo stile', d: 'Reel, foto e grafiche coerenti con il tuo marchio.' }
+en: { t: 'Content in your style', d: 'Reels, photos and graphics consistent with your brand.' }
+it: { t: 'Community', d: 'Risposte ai messaggi e ai commenti per far crescere chi ti segue.' }
+en: { t: 'Community', d: 'Replies to messages and comments to grow your following.' }
+it: { t: 'Report mensile', d: 'L’andamento del profilo e i clic sul pulsante di prenotazione.' }
+en: { t: 'Monthly report', d: 'How the profile is doing and the clicks on the booking button.' }
+it: { t: 'Riprese in sede', d: 'Su richiesta, anche riprese nella tua attività.' }
+en: { t: 'On-site filming', d: 'On request, we can also film at your business.' }
+it: { t: 'Analisi gratuita', d: 'Mandaci il nome del profilo Instagram: ti rispondiamo con le tre priorità, senza impegno.' }
+en: { t: 'Free review', d: 'Send us your Instagram profile name: we’ll reply with the three top priorities, with no obligation.' }
+it: { t: 'Analisi del profilo', d: 'Ci mandi il nome del profilo e vediamo cosa cambiare per prima cosa.' }
+en: { t: 'Profile review', d: 'You send us the profile name and we see what to change first.' }
+it: { t: 'Il piano del mese', d: 'Prepariamo il calendario editoriale e i contenuti.' }
+en: { t: 'The month’s plan', d: 'We prepare the editorial calendar and the content.' }
+it: { t: 'Pubblichiamo e misuriamo', d: 'Pubblichiamo e a fine mese ricevi il report con i risultati.' }
+en: { t: 'We publish and measure', d: 'We publish, and at the end of the month you get the report with the results.' }
+it: 'Da 200 € al mese, con pagamento mensile.'
+en: 'From €200 per month, billed monthly.'
+it: 'Il canone varia con i contenuti inclusi, in particolare riprese in sede e produzione di reel.'
+en: 'The fee depends on the content included, in particular on-site filming and reel production.'
+it: t: 'Guarda il feed'
+en: t: 'See the feed'
+it: <Site title="Agenti AI e automazioni per aziende — Punto Due Studio" description="Un assistente che risponde ai clienti, automazioni che collegano i tuoi strumenti e report chiari: agenti AI su misura per la tua attività.">
+en: <Site title="AI agents and automations for businesses — Punto Due Studio" description="An assistant that answers customers, automations that connect your tools and clear reports: AI agents tailored to your business.">
+it: label="/agenti-ai"
+en: label="/ai-agents"
+it: h1="Un assistente che lavora per te."
+en: h1="An assistant that works for you."
+it: lead="Agenti AI e automazioni per aziende e professionisti in tutta Italia: rispondono ai clienti, collegano i tuoi strumenti e ti tengono aggiornato."
+en: lead="AI agents and automations for businesses and professionals in Italy and internationally: they answer customers, connect your tools and keep you posted."
+it: serviceName="Agenti AI e automazioni"
+en: serviceName="AI agents and automations"
+it: { t: 'Assistente per i clienti', d: 'Risponde alle domande più frequenti, per esempio orari e link per prenotare.' }
+en: { t: 'An assistant for your customers', d: 'Answers common questions, for example opening hours and a booking link.' }
+it: { t: 'Automazioni', d: 'Collegano i tuoi strumenti: dal post alla prenotazione, con conferma e promemoria su WhatsApp.' }
+en: { t: 'Automations', d: 'They connect your tools: from post to booking, with confirmation and reminders on WhatsApp.' }
+it: { t: 'Post programmati', d: 'Il piano del mese è caricato e i post escono da soli, all’ora giusta.' }
+en: { t: 'Scheduled posts', d: 'The month’s plan is loaded and posts go out on their own, at the right time.' }
+it: { t: 'Report chiari', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.' }
+en: { t: 'Clear reports', d: 'At the end of the month you get the numbers that matter, without having to ask.' }
+it: { t: 'Capiamo cosa si ripete', d: 'Ci racconti le attività che ti fanno perdere più tempo.' }
+en: { t: 'We find what repeats', d: 'You tell us which tasks take up most of your time.' }
+it: { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti.' }
+en: { t: 'We set up the agents', d: 'We configure the assistant and automations and connect them to your tools.' }
+it: { t: 'Vedi i risultati', d: 'Ricevi report chiari su cosa hanno fatto.' }
+en: { t: 'You see the results', d: 'You get clear reports on what they did.' }
+it: 'Preventivo su misura per ogni progetto: scrivici cosa ti serve e ti diciamo tempi e costi.'
+en: 'A tailored quote for every project: tell us what you need and we’ll tell you timing and costs.'
+it: 'Prima un colloquio per definire le esigenze, poi un preventivo dettagliato.'
+en: 'First a call to define your needs, then a detailed quote.'
+it: t: 'Guarda le automazioni'
+en: t: 'See the automations'
+it: >Servizi</a>
+en: >Services</a>
