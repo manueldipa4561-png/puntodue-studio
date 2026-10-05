@@ -64,7 +64,7 @@ const looks = [
       <fieldset class="grp">
         <legend>Per contratto e privacy</legend>
         <label class="fld"><span>Nome e cognome o ragione sociale</span><input name="intestatario" required maxlength="120" autocomplete="name" /></label>
-        <label class="fld"><span>Indirizzo</span><input name="indirizzo" required maxlength="160" autocomplete="street-address" placeholder="Via Roma 1, 40121 Bologna" /></label>
+        <label class="fld"><span>Indirizzo</span><input name="indirizzo" required maxlength="160" autocomplete="street-address" placeholder="Via, numero civico, CAP, città" /></label>
         <label class="fld"><span>Partita IVA o codice fiscale</span><input name="piva" required maxlength="20" autocomplete="off" /></label>
         <small class="help">Servono per il contratto e per la pagina privacy della tua app.</small>
       </fieldset>
@@ -102,7 +102,7 @@ const looks = [
   .fld.choice > legend { margin-bottom: 8px; }
   .fld em { font-style: normal; opacity: .7; }
   .fld input, .fld textarea, .fld select { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,20,90,.45); color: #fff; font: 500 1.05rem 'Inter Tight Variable', system-ui, sans-serif; resize: vertical; transition: border-color .2s, background .2s; }
-  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.4); }
+  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.65); }
   .fld input:focus, .fld textarea:focus, .fld select:focus { outline: none; border-color: var(--yellow); background: rgba(0,20,90,.7); }
   .fld input[type="file"] { padding: 10px; font-size: .95rem; }
   .fld input[type="file"]::file-selector-button { margin-right: 14px; padding: 10px 16px; border: 0; border-radius: 999px; background: var(--yellow); color: var(--blue); font: 700 .9rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
