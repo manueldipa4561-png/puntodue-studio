@@ -15,12 +15,16 @@
     var bot = /bot|crawl|spider|slurp|lighthouse|headless|inspectiontool|bingpreview/i.test(navigator.userAgent) || navigator.webdriver;
     // mai da una pagina già tradotta (evita i giri a vuoto, es. un 404 sotto /de/)
     if (document.documentElement.lang !== 'it' || /^\/(en|de)(\/|$)/.test(location.pathname) || bot || saved()) return;
-    // la prima lingua preferita tra quelle che il sito ha decide: italiano = resta, tedesco/inglese = va alla traduzione
+    // la prima lingua preferita tra quelle che il sito ha decide: italiano = resta, tedesco/inglese = va alla traduzione;
+    // chi non parla nessuna delle tre (francese, spagnolo...) va in inglese, la lingua internazionale del sito
     var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+    var other = false;
     for (var i = 0; i < prefs.length; i++) {
       var l = String(prefs[i]).slice(0, 2).toLowerCase();
       if (l === 'it') return;
       if (SUPPORTED.indexOf(l) > -1) { location.replace('/' + l + location.pathname + location.search + location.hash); return; }
+      if (l) other = true;
     }
+    if (other) location.replace('/en' + location.pathname + location.search + location.hash);
   })();
 </script>
