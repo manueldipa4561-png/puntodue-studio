@@ -21,9 +21,19 @@ const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
 const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
 const abs = (p: string) => new URL(p, 'https://puntoduestudio.it').href;
 const studio = { '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/' };
+// Solo fatti già scritti in questa pagina. Le stesse domande vanno nella sezione visibile e nei dati strutturati (FAQPage).
+const faq = [
+  { q: "Cosa devo mandarvi?", a: "Bastano qualche foto ben illuminata del prodotto, il logo e l'etichetta. Se serve, il prodotto vero." },
+  { q: "Quanto tempo ci vuole?", a: "Consegniamo in 3-5 giorni, nei formati che ti servono, e lo rivediamo insieme prima della consegna." },
+  { q: "In quali formati lo ricevo?", a: "In 9:16 per reel, storie e TikTok, in 1:1 per i post nel feed e i caroselli, in 16:9 per il sito, YouTube e le sponsorizzate." },
+  { q: "Cosa c'è dentro il video?", a: "Il tuo prodotto in 3D, fedele a forma, etichetta e colori, con nome, benefici, prezzo e pulsante d'acquisto animati." },
+  { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e ti diciamo tempi e costi." },
+  { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." },
+];
 const ld = [
   { '@context': 'https://schema.org', '@type': 'Service', name: NAME, serviceType: NAME, description: LEAD, url: abs(Astro.url.pathname), provider: studio, areaServed: [{ '@type': 'Country', name: 'Italy' }, 'Worldwide'] },
   { '@context': 'https://schema.org', '@type': 'VideoObject', name: VIDEO_NAME, description: VIDEO_DESC, thumbnailUrl: abs('/motion/salmastro-led-poster.jpg'), contentUrl: abs('/motion/salmastro-led.mp4'), uploadDate: '2026-10-04', duration: 'PT15S', publisher: studio },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
 <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
@@ -45,10 +55,17 @@ const ld = [
         <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
       </ul>
       <p class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</p>
+      <div class="cta reel-cta">
+        <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
+      </div>
     </div>
-    <div class="phone reel-ph">
-      <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
-      <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+    <div class="reel-col">
+      <div class="phone reel-ph">
+        <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
+        <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+      </div>
+      <div class="reel-bar" aria-hidden="true"><i></i></div>
+      <button type="button" class="reel-replay">Rivedi dall'inizio</button>
     </div>
   </section>
 
@@ -74,6 +91,16 @@ const ld = [
     <ol class="steps">
       {steps.map((s, i) => <li><span class="n">0{i + 1}</span><b>{s.t}</b><p>{s.d}</p></li>)}
     </ol>
+  </section>
+
+  <section class="faq-s" id="domande">
+    <span class="lab">/faq</span>
+    <h2>Domande frequenti.</h2>
+    <div class="faq-l">
+      {faq.map((f) => (
+        <details class="faq-i"><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </div>
   </section>
 
   <section class="more" id="altri">
@@ -103,7 +130,24 @@ const ld = [
   .reel { display: grid; gap: clamp(32px, 6vw, 80px); align-items: center; border-top: 1px solid rgba(255,255,255,.25); }
   .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
   .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; } .feat span { color: rgba(255,255,255,.8); }
-  .reel-ph { position: relative; justify-self: center; width: min(300px, 78vw); }
+  .reel-col { justify-self: center; width: min(300px, 78vw); display: grid; }
+  .reel-ph { position: relative; width: 100%; }
+  .reel-bar { height: 3px; margin-top: 18px; border-radius: 2px; background: rgba(255,255,255,.25); overflow: hidden; }
+  .reel-bar i { display: block; height: 100%; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s linear; }
+  .reel-replay { justify-self: center; margin-top: 6px; padding: 8px 6px; font: inherit; font-size: .9rem; font-weight: 600; color: #fff; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.4); transition: color .2s; }
+  .reel-replay:hover, .reel-replay:focus-visible { color: var(--yellow); }
+  .reel-cta { margin-top: 28px; }
+  .faq-s { border-top: 1px solid rgba(255,255,255,.25); }
+  .faq-l { margin-top: 32px; max-width: 46rem; display: grid; }
+  .faq-i { border-bottom: 1px solid rgba(255,255,255,.2); }
+  .faq-i summary { position: relative; cursor: pointer; list-style: none; padding: 18px 44px 18px 0; font-weight: 600; font-size: 1.1rem; letter-spacing: -.01em; line-height: 1.3; }
+  .faq-i summary::-webkit-details-marker { display: none; }
+  .faq-i summary::after { content: '+'; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 1.6rem/1 var(--mono); color: var(--yellow); }
+  .faq-i[open] summary::after { content: '\2013'; }
+  .faq-i summary:hover { color: var(--yellow); }
+  .faq-i summary:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+  .faq-i p { margin: 0 0 18px; max-width: 40rem; color: rgba(255,255,255,.85); line-height: 1.5; }
+  @media (prefers-reduced-motion: reduce) { .reel-bar i { transition: none; } }
   .reel-v { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 34px; background: #0a0f24; object-fit: cover; }
   .reel-play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border: 0; border-radius: 50%; background: var(--yellow); cursor: pointer; display: grid; place-items: center; }
   .reel-play[hidden] { display: none; }
@@ -141,6 +185,25 @@ const ld = [
   const failed = (e: Error) => { if (e.name !== 'AbortError') showBtn(); };
   v.addEventListener('playing', () => { btn.hidden = true; });
   btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(failed); });
+  // Parte quando il video è per metà nello schermo e riparte sempre da capo. Prima partiva appena ne entrava un pixel:
+  // arrivando dall'alto lo si trovava già a metà. Uscito del tutto dallo schermo va in pausa e al prossimo ingresso ricomincia.
+  let away = true, shown = false;
+  const rewind = () => { if (v.currentTime > 0) v.currentTime = 0; };
   if (still) showBtn();
-  else new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(failed); else v.pause(); }, { threshold: .35 }).observe(v);
+  else {
+    new IntersectionObserver((entries) => {
+      const e = entries[entries.length - 1];
+      if (!e.isIntersecting) { v.pause(); away = true; shown = false; return; }
+      if (e.intersectionRatio < .5) return;
+      shown = true;
+      if (away) { rewind(); away = false; }
+      v.play().catch(failed);
+    }, { threshold: [0, .5] }).observe(v);
+    // col tasto "Indietro" il browser può rimettere la pagina com'era (con il video a metà): anche così da capo
+    addEventListener('pageshow', (e) => { if (e.persisted && shown) { rewind(); v.play().catch(failed); } });
+  }
+  // barra di avanzamento sotto il video e "Rivedi dall'inizio" (utile anche con "riduci animazioni", dove il video parte solo a richiesta)
+  const bar = document.querySelector<HTMLElement>('.reel-bar i')!;
+  v.addEventListener('timeupdate', () => { bar.style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`; });
+  document.querySelector('.reel-replay')!.addEventListener('click', () => { load(); rewind(); btn.hidden = true; v.play().catch(failed); });
 </script>
