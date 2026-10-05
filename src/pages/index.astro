@@ -8,6 +8,19 @@ const WA_NUMBER = '393248423657';
 const WA_TEXT = 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?';
 const contactHref = WA_NUMBER ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}` : 'mailto:projects@puntoduestudio.it?subject=Nuovo%20progetto';
 const contactExternal = Boolean(WA_NUMBER);
+// Dati strutturati per Google: stessa attività (@id) descritta in /faq, qui con la descrizione della home
+const HOME = 'https://puntoduestudio.it/';
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: HOME,
+  description: 'Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore.',
+  logo: 'https://puntoduestudio.it/icon-512.png', image: 'https://puntoduestudio.it/og.png', email: 'projects@puntoduestudio.it',
+  telephone: '+393248423657', areaServed: 'Pescara', address: { '@type': 'PostalAddress', addressLocality: 'Pescara', addressRegion: 'PE', addressCountry: 'IT' },
+  sameAs: ['https://www.instagram.com/puntoduestudio/'],
+  founder: [{ '@type': 'Person', name: 'Manuel Di Paolo' }, { '@type': 'Person', name: 'Nicolas Di Paolo' }],
+  knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp'],
+  knowsLanguage: ['it', 'en', 'de'],
+};
 const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify];
 ---
 <!doctype html>
@@ -34,6 +47,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <meta property="og:description" content="Siti, app, social e agenti AI per la tua attività." />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     <script is:inline>document.documentElement.classList.add('js')</script>
     <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
     <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1013794909284091af82872b6126a728"}'></script>
@@ -221,7 +235,9 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .lab { font: 500 12px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); display: inline-block; }
       h2 { margin: 18px 0 20px; font-weight: 700; font-size: clamp(2.7rem, 5.8vw, 5.2rem); line-height: 0.96; letter-spacing: -0.045em; }
       h2.mega { font-size: clamp(3.6rem, 9vw, 8rem); line-height: 0.9; }
-      .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0 0.14em; margin: -0.06em 0 -0.14em; }
+      /* maschera di ogni parola (entrata a scorrimento): il padding allarga l'area visibile, il margine negativo lo compensa.
+         A destra serve perché la spaziatura negativa restringe il box e l'ultima lettera ("Home", "to") verrebbe tagliata. */
+      .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.1em 0.08em 0.14em 0.04em; margin: -0.1em -0.08em -0.14em -0.04em; }
       .wi { display: inline-block; will-change: transform; }
       .lead { margin: 0; font-size: clamp(1.12rem, 1.55vw, 1.35rem); line-height: 1.5; color: rgba(255, 255, 255, 0.85); max-width: 34rem; }
       .pts { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.28); }
