@@ -199,7 +199,7 @@ de: 'Weniger verpasste Termine'
 it: 'I clienti portano amici'
 de: 'Kunden bringen Freunde mit'
 it: <button type="button" data-ana-lang="it" aria-pressed="true">IT</button><button type="button" data-ana-lang="en" aria-pressed="false">EN</button>
-de: <button type="button" data-ana-lang="it" aria-pressed="false">IT</button><button type="button" data-ana-lang="en" aria-pressed="true">EN</button>
+de: <button type="button" data-ana-lang="it" aria-pressed="false">IT</button><button type="button" data-ana-lang="en" aria-pressed="true">DE</button>
 it: if (!navigator.language.toLowerCase().startsWith('it')) setAna('en');
 de: setAna('en');
 it: aria-label="In breve"
@@ -744,6 +744,22 @@ it: <h2>Un video, ogni schermo.</h2>
 de: <h2>Ein Video, jeder Bildschirm.</h2>
 it: <h2>Tre passi, nessun set.</h2>
 de: <h2>Drei Schritte, kein Filmset.</h2>
+it: const NAME = 'Video 3D per prodotti';
+de: const NAME = '3D-Videos für Produkte';
+it: const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
+de: const VIDEO_NAME = 'SALMASTRO: 3D-Beispielvideo auf einer LED-Werbetafel';
+it: const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
+de: const VIDEO_DESC = 'Ein Parfüm mit einer von Punto Due Studio erfundenen Marke, in 3D auf einer LED-Werbetafel animiert: ein Beispiel für die Leistung.';
+it: >Siti web</a>
+de: >Websites</a>
+it: >E-commerce</a>
+de: >E-Commerce</a>
+it: >Gestione social media</a>
+de: >Social-Media-Betreuung</a>
+it: >Agenti AI</a>
+de: >KI-Agenten</a>
+it: >Tutti i servizi</a>
+de: >Alle Leistungen</a>
 it: Preventivo gratuito: mandaci il prodotto e ti diciamo tempi e costi.
 de: Kostenloses Angebot: Schicken Sie uns das Produkt, und wir nennen Ihnen Zeitplan und Kosten.
 it: Chiedi un preventivo <span
@@ -807,7 +823,7 @@ de: <h2>Die anderen Leistungen.</h2>
 it: Raccontaci cosa ti serve: ti rispondiamo con tempi e costi.
 de: Erzählen Sie uns, was Sie brauchen: Wir antworten mit Zeitrahmen und Kosten.
 it: <Site title="Servizi: siti web, e-commerce, social e AI — Punto Due Studio" description="Tutti i servizi di Punto Due Studio: siti web, e-commerce, gestione social media, agenti AI e video 3D per aziende e professionisti in tutta Italia.">
-de: <Site title="Leistungen: Websites, E-Commerce, Social und KI — Punto Due Studio" description="Alle Leistungen von Punto Due Studio: Websites, E-Commerce, Social Media, KI-Agenten und 3D-Videos für Unternehmen in Italien und international.">
+de: <Site title="Leistungen: Websites, Shops, Social und KI — Punto Due Studio" description="Alle Leistungen von Punto Due Studio: Websites, E-Commerce, Social Media, KI-Agenten und 3D-Videos für Unternehmen in Italien und international.">
 it: label="/servizi"
 de: label="/leistungen"
 it: h1="Tutto quello che serve."
@@ -944,3 +960,69 @@ it: t: 'Guarda le automazioni'
 de: t: 'Automatisierungen ansehen'
 it: >Servizi</a>
 de: >Leistungen</a>
+
+# ---------- sezione KERN in /web: testi tedeschi nello slot "en" di <Bi> (il demo resta IT/EN) ----------
+it: en="Find out what you want to do by trying it, not imagining it."
+de: en="Herausfinden, was Sie machen wollen: durch Ausprobieren, nicht durch Vorstellen."
+it: en="Real work"
+de: en="Echte Arbeit"
+it: en="No timers"
+de: en="Keine Stoppuhr"
+it: en="Best work wins"
+de: en="Die beste Arbeit gewinnt"
+it: en="AI that asks questions"
+de: en="KI, die Fragen stellt"
+it: en="Platforms"
+de: en="Plattformen"
+it: en="Concept, in development"
+de: en="Konzept, in Entwicklung"
+it: en="Ages 18 to 35"
+de: en="18 bis 35 Jahre"
+it: en="/why"
+de: en="/warum"
+it: en="If you don't know what you want, there's no way in."
+de: en="Wer nicht weiß, was er will, findet keinen Einstieg."
+it: en="Unsure young people, employers asking for proof, fewer entry-level roles."
+de: en="Verunsicherte junge Menschen, Arbeitgeber, die Nachweise verlangen, immer weniger Einstiegsstellen."
+it: en="Others start from a role. KERN starts from you."
+de: en="Andere gehen von einer Rolle aus. KERN geht von Ihnen aus."
+it: en="Help you work out what you want, through real work."
+de: en="Ihnen helfen herauszufinden, was Sie wollen: durch echte Arbeit."
+it: en: 'US young adults unsure about their path'
+de: en: 'Junge Erwachsene in den USA, unsicher über ihren Weg'
+it: en: 'Unsure about career, 18–30'
+de: en: 'Unsicher bei der Berufswahl, 18–30'
+it: en: '≈ 2 in 3'
+de: en: '≈ 2 von 3'
+it: en: 'Gen Z, unsure about future jobs'
+de: en: 'Gen Z, unsicher über künftige Jobs'
+it: en: '≈ 1 in 3'
+de: en: '≈ 1 von 3'
+it: en: 'Employers say "skills". They hire otherwise.'
+de: en: 'Arbeitgeber sagen „Skills“. Eingestellt wird anders.'
+it: en: 'Entry-level hires based on skills'
+de: en: 'Einstiegsstellen, besetzt nach Skills'
+it: en: 'Hires without a degree where it was dropped'
+de: en: 'Einstellungen ohne Abschluss, wo er gestrichen wurde'
+it: en: '< 1 in 700'
+de: en: '< 1 von 700'
+it: en: 'Unemployment, June 2026'
+de: en: 'Arbeitslosigkeit, Juni 2026'
+it: en: 'All workers'
+de: en: 'Alle Beschäftigten'
+it: en: 'Recent graduates, 22–27'
+de: en: 'Absolventen, 22–27'
+it: en: '5.7%'
+de: en: '5,7 %'
+it: en='General research, not KERN results; bars are indicative and some figures come from secondary sources. Sources: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' />
+de: en='Allgemeine Forschungsdaten, keine KERN-Ergebnisse; die Balken sind Richtwerte, einige Zahlen stammen aus Sekundärquellen. Quellen: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' />
+it: <span lang="it" set:html={it}></span><span lang="en" set:html={en}></span>
+de: <span lang="it" set:html={it}></span><span lang="de" set:html={en}></span>
+it: html:not([data-ana="en"]) span[lang="en"], html[data-ana="en"] span[lang="it"] { display: none; }
+de: html:not([data-ana="en"]) span[lang="de"], html[data-ana="en"] span[lang="it"] { display: none; }
+it: en="For"
+de: en="Für"
+it: en="The difference"
+de: en="Der Unterschied"
+it: en="The goal"
+de: en="Das Ziel"
