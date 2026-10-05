@@ -1,0 +1,23 @@
+---
+import Site from '../layouts/Site.astro';
+import Servizio from '../components/Servizio.astro';
+const features = [
+  { t: 'Negozio su misura', d: 'Un’esperienza d’acquisto costruita sul tuo catalogo e sul tuo marchio.' },
+  { t: 'Acconti online', d: 'Per bloccare un prodotto o un posto con un acconto, come un tavolo o una prenotazione.' },
+  { t: 'Fidelizzazione', d: 'Tessera fedeltà, coupon e promemoria via WhatsApp per far tornare i clienti.' },
+  { t: 'Pensato per lo smartphone', d: 'Design ottimizzato per il telefono e tempi di caricamento ridotti.' },
+];
+const steps = [
+  { t: 'Scegli cosa vendere', d: 'Ci racconti prodotti, prezzi e come vuoi che acquisti il cliente.' },
+  { t: 'Costruiamo il negozio', d: 'Progettiamo il design e aggiungiamo acconti e strumenti di fidelizzazione, se ti servono.' },
+  { t: 'Si parte', d: 'Il negozio va online e lo rivediamo insieme: ogni mese hai 2 revisioni.' },
+];
+const terms = [
+  'Preventivo personalizzato su ogni progetto: il canone dipende da pagine e funzioni richieste, come shop o acconti online.',
+  'Contratto di 6 o 12 mesi, a tua scelta, senza rinnovo automatico.',
+  'I contenuti e il dominio restano di tua proprietà.',
+];
+---
+<Site title="Creazione e-commerce su misura — Punto Due Studio" description="Negozi online su misura per aziende e professionisti: catalogo, acconti online e strumenti di fidelizzazione. Preventivo personalizzato per ogni progetto.">
+  <Servizio label="/e-commerce" h1="Un negozio sempre aperto." lead="E-commerce su misura per aziende e professionisti in tutta Italia, pensato per vendere da telefono e da computer." serviceName="Creazione e-commerce" features={features} steps={steps} terms={terms} more={{ href: '/web/', t: 'Guarda le demo' }} />
+</Site>
