@@ -36,7 +36,7 @@ const kstats = [
     b: { l: { it: 'Neolaureati, 22–27', en: 'Recent graduates, 22–27' }, v: 5.7, r: { it: '5,7%', en: '5.7%' } }, max: 10 },
 ];
 ---
-<Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+<Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
       <section class="app" id="app">
         <div class="app-txt">
           <div class="ana-top">
@@ -248,7 +248,7 @@ const kstats = [
                 <span class="lab">Prossime modifiche</span>
                 <ul>{d.next.map((n) => <li>{n}</li>)}</ul>
               </div>
-              <a class="lnk" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener">Apri la demo →</a>
+              <a class="lnk" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}>Apri la demo →</a>
             </div>
           </article>
         ))}

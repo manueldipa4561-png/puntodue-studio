@@ -5,7 +5,7 @@ import Site from '../layouts/Site.astro';
 // in pagina escono evidenziati in giallo e vanno riempiti prima di pubblicare.
 const groups = [
   { t: 'Servizi', q: [
-    ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è uno studio digitale con sede a Pescara che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.'],
+    ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.'],
     ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.'],
     ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.'],
     ['Gestite anche Instagram e TikTok?', 'Sì. Il servizio prevede un piano editoriale mensile con 8 post, 4 reel e storie, oltre a un report mensile con l\'andamento del profilo e i clic sul pulsante di prenotazione. Su richiesta sono disponibili anche riprese in sede.'],
@@ -22,7 +22,7 @@ const groups = [
   { t: 'Modalità di lavoro', q: [
     ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.'],
     ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.'],
-    ['In quale zona operate?', 'Lo studio ha sede a Pescara e collabora con clienti sia in presenza sia a distanza, tramite videochiamate e WhatsApp.'],
+    ['In quale zona operate?', 'Lo studio lavora con clienti in Italia e a livello internazionale, a distanza tramite videochiamate e WhatsApp.'],
     ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.'],
   ] },
 ];
@@ -32,9 +32,9 @@ const ld = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'ProfessionalService', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/',
+      '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/',
       logo: 'https://puntoduestudio.it/icon-512.png', image: 'https://puntoduestudio.it/og.png', email: 'projects@puntoduestudio.it',
-      telephone: '+393248423657', areaServed: 'Pescara', address: { '@type': 'PostalAddress', addressLocality: 'Pescara', addressRegion: 'PE', addressCountry: 'IT' },
+      telephone: '+393248423657', areaServed: 'Worldwide', address: { '@type': 'PostalAddress', addressCountry: 'IT' },
       sameAs: ['https://www.instagram.com/puntoduestudio/'],
       founder: [{ '@type': 'Person', name: 'Manuel Di Paolo' }, { '@type': 'Person', name: 'Nicolas Di Paolo' }],
       knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp'],
@@ -46,7 +46,7 @@ const ld = {
   ],
 };
 ---
-<Site title="Domande frequenti — Punto Due Studio, Pescara" description="Prezzi, tempi e condizioni di Punto Due Studio, Pescara: siti web, app e gestione social per aziende e professionisti, con canone mensile e contratti da 6 o 12 mesi.">
+<Site title="Domande frequenti — Punto Due Studio" description="Prezzi, tempi e condizioni di Punto Due Studio: siti web, app e social per aziende e professionisti in Italia e all'estero, con canone mensile.">
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   <section class="top">
     <span class="lab">/faq</span>
@@ -71,7 +71,7 @@ const ld = {
   <section class="cta-s">
     <p class="lead">Per ulteriori informazioni, il nostro team è a disposizione.</p>
     <div class="cta">
-      <a class="btn" href="/info">Contattaci <span aria-hidden="true">→</span></a>
+      <a class="btn" href="/info/">Contattaci <span aria-hidden="true">→</span></a>
       <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
     </div>
   </section>

@@ -14,7 +14,7 @@ const needs = [
   { k: 'ai', t: 'Agenti AI', p: 'degli agenti AI' },
 ];
 ---
-<Site title="Info — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
+<Site title="Contatti — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
   <section class="top">
     <span class="lab">/info</span>
     <h1>Premi invio.</h1>
@@ -90,7 +90,7 @@ const needs = [
   </section>
 
   <section class="cta-s end">
-    <Chat kind="us" />
+    <Chat kind="us" uid="End" />
     <p class="note-e">Quello che scrivi resta nel tuo browser finché non premi invia.</p>
   </section>
 </Site>
@@ -103,9 +103,9 @@ const needs = [
   .seg button { border: 0; background: none; color: #fff; font: 700 .95rem 'Inter Tight Variable', system-ui, sans-serif; padding: 10px 18px; border-radius: 999px; cursor: pointer; transition: background .25s, color .25s; }
   .seg button.on { background: var(--yellow); color: var(--blue); }
   .fld { display: grid; gap: 8px; } .fld[hidden] { display: none; }
-  .fld span, .needs legend { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); } .fld em { font-style: normal; opacity: .7; }
+  .fld span, .needs legend { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); } .fld em { font-style: normal; opacity: .85; }
   .fld input, .fld textarea { width: 100%; padding: 15px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,20,90,.45); color: #fff; font: 500 1.05rem 'Inter Tight Variable', system-ui, sans-serif; resize: vertical; transition: border-color .2s, background .2s; }
-  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.4); }
+  .fld input::placeholder, .fld textarea::placeholder { color: rgba(255,255,255,.65); }
   .fld input:focus, .fld textarea:focus { outline: none; border-color: var(--yellow); background: rgba(0,20,90,.7); }
   .needs { border: 0; margin: 0; padding: 0; } .needs legend { padding: 0; margin-bottom: 10px; }
   .nchips { display: flex; flex-wrap: wrap; gap: 8px; }
