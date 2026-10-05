@@ -1,0 +1,22 @@
+---
+import Site from '../layouts/Site.astro';
+import Servizio from '../components/Servizio.astro';
+const features = [
+  { t: 'Assistente per i clienti', d: 'Risponde alle domande più frequenti, per esempio orari e link per prenotare.' },
+  { t: 'Automazioni', d: 'Collegano i tuoi strumenti: dal post alla prenotazione, con conferma e promemoria su WhatsApp.' },
+  { t: 'Post programmati', d: 'Il piano del mese è caricato e i post escono da soli, all’ora giusta.' },
+  { t: 'Report chiari', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.' },
+];
+const steps = [
+  { t: 'Capiamo cosa si ripete', d: 'Ci racconti le attività che ti fanno perdere più tempo.' },
+  { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti.' },
+  { t: 'Vedi i risultati', d: 'Ricevi report chiari su cosa hanno fatto.' },
+];
+const terms = [
+  'Preventivo su misura per ogni progetto: scrivici cosa ti serve e ti diciamo tempi e costi.',
+  'Prima un colloquio per definire le esigenze, poi un preventivo dettagliato.',
+];
+---
+<Site title="Agenti AI e automazioni per aziende — Punto Due Studio" description="Un assistente che risponde ai clienti, automazioni che collegano i tuoi strumenti e report chiari: agenti AI su misura per la tua attività.">
+  <Servizio label="/agenti-ai" h1="Un assistente che lavora per te." lead="Agenti AI e automazioni per aziende e professionisti in tutta Italia: rispondono ai clienti, collegano i tuoi strumenti e ti tengono aggiornato." serviceName="Agenti AI e automazioni" features={features} steps={steps} terms={terms} more={{ href: '/social/', t: 'Guarda le automazioni' }} />
+</Site>

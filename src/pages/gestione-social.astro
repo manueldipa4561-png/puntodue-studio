@@ -1,0 +1,25 @@
+---
+import Site from '../layouts/Site.astro';
+import Servizio from '../components/Servizio.astro';
+const features = [
+  { t: 'Piano editoriale', d: 'Ogni mese un piano con 8 post, 4 reel e storie.' },
+  { t: 'Contenuti nel tuo stile', d: 'Reel, foto e grafiche coerenti con il tuo marchio.' },
+  { t: 'Community', d: 'Risposte ai messaggi e ai commenti per far crescere chi ti segue.' },
+  { t: 'Report mensile', d: 'L’andamento del profilo e i clic sul pulsante di prenotazione.' },
+  { t: 'Riprese in sede', d: 'Su richiesta, anche riprese nella tua attività.' },
+  { t: 'Analisi gratuita', d: 'Mandaci il nome del profilo Instagram: ti rispondiamo con le tre priorità, senza impegno.' },
+];
+const steps = [
+  { t: 'Analisi del profilo', d: 'Ci mandi il nome del profilo e vediamo cosa cambiare per prima cosa.' },
+  { t: 'Il piano del mese', d: 'Prepariamo il calendario editoriale e i contenuti.' },
+  { t: 'Pubblichiamo e misuriamo', d: 'Pubblichiamo e a fine mese ricevi il report con i risultati.' },
+];
+const terms = [
+  'Da 200 € al mese, con pagamento mensile.',
+  'Il canone varia con i contenuti inclusi, in particolare riprese in sede e produzione di reel.',
+  'Contratto di 6 o 12 mesi, a tua scelta, senza rinnovo automatico.',
+];
+---
+<Site title="Gestione social media per aziende — Punto Due Studio" description="Piano editoriale mensile con 8 post, 4 reel e storie, più un report mensile sui risultati. Gestione Instagram e TikTok da 200 € al mese.">
+  <Servizio label="/gestione-social" h1="Profili curati, clienti che scrivono." lead="Gestione dei social media per aziende e professionisti in tutta Italia: strategia, contenuti e community per il tuo profilo." serviceName="Gestione social media" features={features} steps={steps} terms={terms} more={{ href: '/social/', t: 'Guarda il feed' }} />
+</Site>

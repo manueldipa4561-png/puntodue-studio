@@ -1,0 +1,104 @@
+---
+// Pagine dei servizi (/siti-web, /e-commerce, /gestione-social, /agenti-ai) e indice (/servizi).
+// Un solo componente: ogni pagina passa i suoi testi, struttura e stile sono uguali. Solo fatti già scritti nel sito (FAQ, /web, /social).
+interface Item { t: string; d: string }
+interface Props { hub?: boolean; label: string; h1: string; lead: string; serviceName?: string; features?: Item[]; steps?: Item[]; terms?: string[]; more?: { href: string; t: string } }
+const { hub = false, label, h1, lead, serviceName, features = [], steps = [], terms = [], more } = Astro.props;
+const SERVICES = [
+  { href: '/siti-web/', name: 'Siti web', blurb: 'Siti su misura, veloci e pensati per il telefono, online in 2 settimane dai contenuti.' },
+  { href: '/e-commerce/', name: 'E-commerce', blurb: 'Negozi online su misura per vendere ai tuoi clienti, con acconti e strumenti di fidelizzazione.' },
+  { href: '/gestione-social/', name: 'Gestione social media', blurb: 'Piano editoriale mensile, contenuti nel tuo stile e un report chiaro su Instagram e TikTok.' },
+  { href: '/agenti-ai/', name: 'Agenti AI', blurb: 'Un assistente che risponde ai clienti, automazioni che collegano i tuoi strumenti e report senza doverli chiedere.' },
+  { href: '/motion/', name: 'Video 3D per prodotti', blurb: 'Video 3D dei prodotti per reel, storie e sponsorizzate, consegnati in 3-5 giorni.' },
+];
+// lingua dal percorso (come in Site.astro): i link interni restano nella stessa lingua
+const path = Astro.url.pathname;
+const lang = ['en', 'de'].find((l) => path === '/' + l || path.startsWith('/' + l + '/'));
+const L = lang ? '/' + lang : '';
+const here = L ? path.slice(L.length) : path;
+const others = SERVICES.filter((s) => s.href !== here);
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Service', name: serviceName, serviceType: serviceName, description: lead,
+  url: new URL(path, 'https://puntoduestudio.it').href,
+  provider: { '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/' },
+  areaServed: [{ '@type': 'Country', name: 'Italy' }, 'Worldwide'],
+};
+---
+{!hub && <script type="application/ld+json" set:html={JSON.stringify(ld)} />}
+<section class="top">
+  <span class="lab">{label}</span>
+  <h1>{h1}</h1>
+  <p class="lead">{lead}</p>
+</section>
+
+{hub ? (
+  <section class="sv">
+    <ul class="sv-grid sv-hub">
+      {SERVICES.map((s) => (
+        <li><h2><a href={L + s.href}>{s.name}</a></h2><p>{s.blurb}</p></li>
+      ))}
+    </ul>
+  </section>
+) : (
+  <>
+    <section class="sv">
+      <span class="lab">/incluso</span>
+      <h2>Cosa trovi dentro.</h2>
+      <ul class="sv-grid">
+        {features.map((f) => <li><h3>{f.t}</h3><p>{f.d}</p></li>)}
+      </ul>
+    </section>
+
+    <section class="sv">
+      <span class="lab">/come</span>
+      <h2>Tre passi, nessun giro.</h2>
+      <ol class="sv-grid">
+        {steps.map((s, i) => <li><span class="n">0{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>)}
+      </ol>
+    </section>
+
+    <section class="sv">
+      <span class="lab">/costi</span>
+      <h2>Tempi e costi, chiari.</h2>
+      <ul class="sv-terms">
+        {terms.map((t) => <li>{t}</li>)}
+      </ul>
+    </section>
+
+    <section class="sv">
+      <span class="lab">/altri-servizi</span>
+      <h2>Gli altri servizi.</h2>
+      <ul class="sv-links">
+        {others.map((s) => <li><a class="lnk" href={L + s.href}>{s.name}</a></li>)}
+      </ul>
+    </section>
+  </>
+)}
+
+<section class="cta-s">
+  {!hub && <p class="lead">Raccontaci cosa ti serve: ti rispondiamo con tempi e costi.</p>}
+  <div class="cta">
+    <a class="btn" href={L + '/info/'}>Scrivici <span aria-hidden="true">→</span></a>
+    {more && <a class="lnk" href={L + more.href}>{more.t}</a>}
+  </div>
+</section>
+
+<style>
+  .top { padding-bottom: 24px; }
+  .sv { border-top: 1px solid rgba(255,255,255,.25); }
+  .sv h2 { max-width: 20ch; }
+  .sv-grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .sv-grid li { position: relative; display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); transition: border-color .25s; }
+  .sv-grid h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; line-height: 1.15; }
+  .sv-grid p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
+  .sv-grid .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
+  .sv-hub h2 { margin: 0; max-width: none; font-size: 1.6rem; letter-spacing: -.03em; line-height: 1.1; }
+  .sv-hub a { text-decoration: none; }
+  .sv-hub a::after { content: ''; position: absolute; inset: 0; border-radius: 18px; }
+  .sv-hub li:hover, .sv-hub li:focus-within { border-color: var(--yellow); }
+  .sv-terms { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 12px; max-width: 46rem; }
+  .sv-terms li { padding: 0 0 12px; border-bottom: 1px solid rgba(255,255,255,.2); line-height: 1.5; color: rgba(255,255,255,.9); }
+  .sv-links { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
+  .cta-s .lead { margin-top: 0; }
+  @media (hover: none) { .sv-hub li:hover { border-color: rgba(255,255,255,.3); } }
+</style>
