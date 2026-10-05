@@ -36,7 +36,7 @@ const kstats = [
     b: { l: { it: 'Neolaureati, 22–27', en: 'Recent graduates, 22–27' }, v: 5.7, r: { it: '5,7%', en: '5.7%' } }, max: 10 },
 ];
 ---
-<Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+<Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
       <section class="app" id="app">
         <div class="app-txt">
           <div class="ana-top">
@@ -78,7 +78,7 @@ const kstats = [
                 <div class="k-sh-in">
                   <div class="k-grab" aria-hidden="true"></div>
                   <div class="k-l" id="kShL">Mission 002 · startup partner</div>
-                  <h5 id="kShT">Fix what already exists</h5>
+                  <h3 id="kShT">Fix what already exists</h3>
                   <p class="k-msg k-ai" id="kShQ">What would make the first step easier for someone brand new?</p>
                   <div class="k-trailsigns"><div class="k-l">Signs from people before you</div><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Someone who finished it · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Someone who finished it · last week</span></div></div>
                   <label class="k-l" for="kTa">Your answer</label>
@@ -91,7 +91,7 @@ const kstats = [
                 <div class="k-rw-in">
                   <div class="k-medal" aria-hidden="true">#1</div>
                   <div class="k-l">Voted first</div>
-                  <h4 id="kRwT">Your answer<br>won <b>#1.</b></h4>
+                  <h3 id="kRwT">Your answer<br>won <b>#1.</b></h3>
                   <p>Anonymous reviewers ranked it first out of 128.</p>
                   <div class="k-gain"><b id="kGain">+0</b> <span class="k-l">stones</span></div>
                   <div class="k-rankup" id="kRU" hidden><div class="k-l">New rank</div><div class="k-rank" id="kRU2"></div></div>
@@ -102,7 +102,7 @@ const kstats = [
                 <div class="k-sp">
                   <img class="k-hero-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" />
                   <div class="k-l" id="kLlab">Welcome back</div>
-                  <h4 id="kLh">Log in to<br>your <b>trail.</b></h4>
+                  <h3 id="kLh">Log in to<br>your <b>trail.</b></h3>
                   <div class="k-field" id="kNm" hidden><label class="k-l" for="kNmI">Name</label><input id="kNmI" type="text" value="Alex Demo" readonly /></div>
                   <div class="k-field"><label class="k-l" for="kEm">Email</label><input id="kEm" type="email" value="alex@example.com" readonly /></div>
                   <div class="k-field"><label class="k-l" for="kPw">Password</label><input id="kPw" type="password" value="demo-password" readonly /></div>
@@ -115,14 +115,14 @@ const kstats = [
                 <div id="kS1" class="k-sp">
                   <div class="k-float" aria-hidden="true"><img src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-music.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-code.webp" alt="" width="400" height="400" loading="lazy" /></div>
                   <div class="k-l">Start here</div>
-                  <h4>What do you want<br>to <b>do?</b></h4>
+                  <h3>What do you want<br>to <b>do?</b></h3>
                   <ol class="k-how"><li><b>01</b><p>Try a real mission</p></li><li><b>02</b><p>Reflect in 20 seconds</p></li><li><b>03</b><p>See how you work</p></li></ol>
                   <button type="button" class="k-go" id="kIdk">I don't know what I want to do</button>
                   <button type="button" class="k-sk" id="kSkip">Explore missions</button>
                 </div>
                 <div id="kS2" class="k-sp" hidden>
                   <div class="k-l">Good. Let's find out.</div>
-                  <h4>What are you<br>curious about <b>right now?</b></h4>
+                  <h3>What are you<br>curious about <b>right now?</b></h3>
                   <p class="k-l">Pick one or more. You can add others anytime.</p>
                   <div class="k-tiles" id="kPick" role="group">
                     {KFIELDS.map((f) => <button type="button" class="k-tile" data-f={f} aria-pressed="false"><img src={`/kern/f-${f.toLowerCase()}.webp`} alt="" width="400" height="400" loading="lazy" decoding="async" /><span>{f}</span></button>)}
@@ -137,16 +137,16 @@ const kstats = [
                 </div>
                 <div class="k-body">
                   <div class="k-pane on" id="k-missions">
-                    <div><div class="k-l">All missions open</div><h4>Pick your<br>next <b>move.</b></h4></div>
+                    <div><div class="k-l">All missions open</div><h3>Pick your<br>next <b>move.</b></h3></div>
                     <div class="k-fields" id="kFields" role="group" aria-label="Your interests"></div>
-                    <div class="k-card k-main" id="kM0"><img class="k-obj" id="kNxImg" src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Mission 002 · startup partner</div><h5>Fix what already exists</h5><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
+                    <div class="k-card k-main" id="kM0"><img class="k-obj" id="kNxImg" src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Mission 002 · startup partner</div><h4>Fix what already exists</h4><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
                     <div class="k-card k-aic"><div class="k-aic-hd"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Co-pilot · asks, never answers</div></div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
                     <div class="k-card k-best"><img class="k-side" src="/kern/r4.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
-                    <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h5>Rewrite a confusing email</h5><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
-                    <div class="k-card" id="kM2"><div class="k-l">Mission 004 · studio client</div><h5>Work with a partner</h5><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
+                    <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h4>Rewrite a confusing email</h4><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
+                    <div class="k-card" id="kM2"><div class="k-l">Mission 004 · studio client</div><h4>Work with a partner</h4><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
                   </div>
                   <div class="k-pane" id="k-yourkern">
-                    <div><div class="k-l">yourKERN · first signs</div><h4>Your <b>KERN</b><br>so far.</h4></div>
+                    <div><div class="k-l">yourKERN · first signs</div><h3>Your <b>KERN</b><br>so far.</h3></div>
                     <div class="k-card k-lvl"><img class="k-rank-img" id="kRankImg" src="/kern/r1.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
                     <div class="k-card"><div class="k-l">This week's circle</div><div id="kCircle"></div><div class="k-l">No one drops more than one rank in a week.</div></div>
                     <div class="k-duo"><div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div><div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div></div>
@@ -155,22 +155,22 @@ const kstats = [
                     <div class="k-card"><div class="k-l">A first guess</div><div class="k-sig">You seemed to light up on the open brief and drag on the polish.</div><div class="k-l">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div>
                       <div class="k-ask"><button type="button" class="k-yes" data-k-msg="Saved. This sharpens your KERN.">That feels right</button><button type="button" data-k-msg="Noted. We'll give this guess less weight.">Not really</button></div><div class="k-l k-fb" id="kFb" aria-live="polite"></div></div>
                     <div><div class="k-l">Completed</div><div class="k-done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
-                    <div class="k-card"><div class="k-l">Worth trying next</div><h5>Improve an existing product page</h5><p>Tests the part you seemed to drag on.</p></div>
+                    <div class="k-card"><div class="k-l">Worth trying next</div><h4>Improve an existing product page</h4><p>Tests the part you seemed to drag on.</p></div>
                   </div>
                   <div class="k-pane" id="k-trail">
-                    <div class="k-hd"><div class="k-l">Your Trail</div><h4>Follow the<br><b>trail.</b></h4><img class="k-hd-img" src="/kern/r3.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
+                    <div class="k-hd"><div class="k-l">Your Trail</div><h3>Follow the<br><b>trail.</b></h3><img class="k-hd-img" src="/kern/r3.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
                     <div class="k-tr">
-                      <div class="k-st fin"><h5>Make somebody care</h5><p>Build from zero · done</p></div>
-                      <div class="k-st now"><h5 id="kTrNow">Fix what already exists</h5><p>In progress</p></div>
-                      <div class="k-st"><h5 id="kTrNext">Work with a partner</h5><p>Pair up · not started</p></div>
-                      <div class="k-st"><h5>Your Kern card</h5><p>What we saw, why, and your next move</p></div>
+                      <div class="k-st fin"><h4>Make somebody care</h4><p>Build from zero · done</p></div>
+                      <div class="k-st now"><h4 id="kTrNow">Fix what already exists</h4><p>In progress</p></div>
+                      <div class="k-st"><h4 id="kTrNext">Work with a partner</h4><p>Pair up · not started</p></div>
+                      <div class="k-st"><h4>Your Kern card</h4><p>What we saw, why, and your next move</p></div>
                     </div>
                     <div class="k-card k-signs-card"><div class="k-l">Signs on the trail</div><p>People who finish a mission before you leave a short tip for you. Yours helps the next person.</p><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Fix what already exists · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Make somebody care · last week</span></div></div>
-                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><img class="k-kc-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" /><div class="k-kt">kern<i>.</i></div><h5>You light up when you start from zero.</h5><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
+                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><img class="k-kc-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" /><div class="k-kt">kern<i>.</i></div><h4>You light up when you start from zero.</h4><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
                     <div class="k-card"><div class="k-l">Dare a friend</div><p>Send a mission. You both answer, then see the two answers side by side.</p><button type="button" class="k-ask-btn" data-k-toast="Link copied. Your friend answers the same mission.">Send a dare</button></div>
                   </div>
                   <div class="k-pane" id="k-copilot">
-                    <div class="k-hd"><div class="k-l">KERN.AI ·your co-pilot</div><h4>Your idea.<br>My <b>questions.</b></h4><img class="k-hd-img" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
+                    <div class="k-hd"><div class="k-l">KERN.AI ·your co-pilot</div><h3>Your idea.<br>My <b>questions.</b></h3><img class="k-hd-img" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
                     <div class="k-ait"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">You are talking to an AI · replies are a scripted preview</div></div>
                     <div class="k-card k-chat">
                       <div class="k-log" id="kChat" aria-live="polite"></div>
@@ -234,21 +234,21 @@ const kstats = [
             <div class="shot">
               <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.it' : d.slug === 'innesto' ? 'innesto.it' : 'bracemilano.it'}</span></div>
               <div class="view" data-shot>
-                <img class="poster" src={`/previews/${d.slug}.webp`} width="960" height="600" alt="" loading="lazy" decoding="async" />
+                <img class="poster" src={`/previews/${d.slug}.webp`} width="960" height="600" alt={`${d.name}: ${d.line}`} loading="lazy" decoding="async" />
                 <iframe data-src={`/demo/${d.slug}/index.html`} title={`Anteprima ${d.name}`} scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
                 <a class="cover" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}><span>Apri la demo →</span></a>
               </div>
             </div>
             <div class="meta">
               <span class="lab">0{i + 1} · {d.kind}</span>
-              <h3>{d.name}</h3>
+              <h2>{d.name}</h2>
               <p>{d.line}</p>
               <ul class="tags">{d.tags.map((t) => <li>{t}</li>)}</ul>
               <div class="next">
                 <span class="lab">Prossime modifiche</span>
                 <ul>{d.next.map((n) => <li>{n}</li>)}</ul>
               </div>
-              <a class="lnk" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener">Apri la demo →</a>
+              <a class="lnk" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}>Apri la demo →</a>
             </div>
           </article>
         ))}
@@ -319,7 +319,7 @@ const kstats = [
       .next ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; font-size: .95rem; line-height: 1.35; color: rgba(255,255,255,.88); }
       .next li { display: grid; grid-template-columns: 1.1em 1fr; }
       .next li::before { content: '+'; font: 700 .95rem var(--mono); color: var(--yellow); }
-      .meta h3 { margin: 10px 0 8px; font-size: 1.9rem; }
+      .meta h2 { margin: 10px 0 8px; font-size: 1.9rem; line-height: normal; }
       .meta p { margin: 0 0 14px; color: rgba(255,255,255,.85); line-height: 1.45; }
       .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0 0 16px; padding: 0; }
       .tags li { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
@@ -344,7 +344,7 @@ const kstats = [
       .k-replay:hover { border-color: var(--yellow); color: var(--yellow); }
       .k-scr.light { --bg: #E8E6DA; --fg: #141A12; --acc: #2C5A3A; --on: #E8E6DA; --line: #B9B7A8; --dim: #5b6156; }
       .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; contain: layout paint; background: var(--bg); color: var(--fg); }
-      .k-scr h4, .k-scr h5, .k-scr p { margin: 0; }
+      .k-scr h3, .k-scr h4, .k-scr p { margin: 0; }
       .k-scr button { font-family: inherit; }
       .k-app { height: 100%; display: flex; flex-direction: column; }
       .k-top { padding: 20px 18px 6px; display: flex; justify-content: space-between; align-items: center; }
@@ -356,9 +356,9 @@ const kstats = [
       .k-pane { display: none; flex-direction: column; gap: 12px; }
       .k-pane.on { display: flex; }
       .k-l { font: 400 10px var(--mono); color: var(--dim); letter-spacing: .04em; text-transform: uppercase; }
-      .k-scr h4 { margin-top: 6px; font-weight: 800; font-size: 28px; letter-spacing: -.05em; line-height: 1; } .k-scr h4 b { color: var(--acc); }
+      .k-scr h3 { margin-top: 6px; font-weight: 800; font-size: 28px; letter-spacing: -.05em; line-height: 1; } .k-scr h3 b { color: var(--acc); }
       .k-card { border: 1.5px solid var(--fg); border-radius: 14px; padding: 13px; display: flex; flex-direction: column; gap: 8px; }
-      .k-card h5 { font-weight: 800; font-size: 18px; letter-spacing: -.04em; line-height: 1.1; }
+      .k-card h4 { font-weight: 800; font-size: 18px; letter-spacing: -.04em; line-height: 1.1; }
       .k-card p { font-size: 13px; line-height: 1.4; opacity: .82; }
       .k-main { background: var(--fg); color: var(--bg); } .k-main .k-l { color: var(--bg); opacity: .65; } .k-main p { color: var(--bg); }
       .k-btn { align-self: flex-start; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--bg); color: var(--acc); }
@@ -386,7 +386,7 @@ const kstats = [
       .k-top { padding: 22px 20px 8px; }
       .k-body { padding: 12px 20px 18px; }
       .k-pane { gap: 14px; }
-      .k-scr h4 { font-size: 30px; letter-spacing: -.055em; }
+      .k-scr h3 { font-size: 30px; letter-spacing: -.055em; }
       .k-l { letter-spacing: .06em; }
       .k-card { border: 1px solid var(--edge); background: var(--surf); border-radius: 20px; padding: 16px; gap: 10px; transition: border-color .2s, transform .2s; }
       .k-card:hover { border-color: color-mix(in srgb, var(--acc) 55%, transparent); }
@@ -403,9 +403,9 @@ const kstats = [
 
       /* v3: display font (self-hosted Bricolage Grotesque), tab icons, tiles, cairn */
       .k-scr, .k-h { --kd: 'Bricolage Grotesque Variable', 'Inter Tight Variable', system-ui, sans-serif; }
-      .k-scr h4, .k-scr h5, .k-logo, .k-word, .k-tag strong, .k-stat b, .k-rank, .k-stones b, .k-gain b, .k-medal, .k-kt, .k-h { font-family: var(--kd); }
-      .k-scr h4 { font-size: 28px; letter-spacing: -.04em; line-height: 1.02; }
-      .k-scr h5, .k-card h5 { letter-spacing: -.03em; }
+      .k-scr h3, .k-scr h4, .k-logo, .k-word, .k-tag strong, .k-stat b, .k-rank, .k-stones b, .k-gain b, .k-medal, .k-kt, .k-h { font-family: var(--kd); }
+      .k-scr h3 { font-size: 28px; letter-spacing: -.04em; line-height: 1.02; }
+      .k-scr h4, .k-card h4 { letter-spacing: -.03em; }
       .k-main { position: relative; overflow: hidden; }
       .k-main::after { content: ''; position: absolute; right: -34px; top: -34px; width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 50%, transparent), transparent 70%); pointer-events: none; }
       .k-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -438,7 +438,8 @@ const kstats = [
       .k-tabs .tl { font: inherit; white-space: nowrap; } .k-logo i { margin-left: -6px; }
       .k-main > * { position: relative; z-index: 1; }
       .k-sh-in .k-msg { font-size: 13.5px; line-height: 1.4; padding: 10px 12px; border-radius: 12px; align-self: stretch; }
-      .k-sh-in h5 { font-size: 22px; line-height: 1.1; }
+      /* titolo del foglio: era un h5, ora h3 per non saltare livello; il selettore più forte lo tiene com'era (non prende lo stile dei titoli schermata) */
+      .k-scr .k-sh-in h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
       .k-av { width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--kd); font-weight: 800; font-size: 13px; color: var(--bg); background: linear-gradient(135deg, var(--acc), var(--gold)); }
       .k-field { display: flex; flex-direction: column; gap: 6px; width: 100%; } .k-field[hidden] { display: none; }
       .k-field input, .k-sheet textarea { width: 100%; box-sizing: border-box; font: 500 14px/1.4 'Inter Tight Variable', system-ui, sans-serif; color: var(--fg); background: var(--surf); border: 1px solid var(--edge); border-radius: 12px; padding: 12px 14px; }
@@ -502,7 +503,7 @@ const kstats = [
       .k-tr::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
       .k-st { position: relative; } .k-st::before { content: ''; position: absolute; left: -30px; top: 2px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--fg); background: var(--bg); }
       .k-st.fin::before { background: var(--fg); } .k-st.now::before { background: var(--acc); border-color: var(--acc); }
-      .k-st h5 { font-weight: 800; font-size: 16px; letter-spacing: -.03em; } .k-st p { font-size: 12px; color: var(--dim); margin-top: 2px; }
+      .k-st h4 { font-weight: 800; font-size: 16px; letter-spacing: -.03em; } .k-st p { font-size: 12px; color: var(--dim); margin-top: 2px; }
       .k-toast { position: absolute; left: 14px; right: 14px; bottom: 72px; background: var(--fg); color: var(--bg); border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
       .k-toast.on { opacity: 1; transform: none; }
       .k-tabs { display: flex; border-top: 1px solid var(--line); padding: 6px 8px 12px; }
@@ -557,8 +558,8 @@ const kstats = [
       .k-scr { --ks: 'Instrument Serif', Georgia, serif; --spring: cubic-bezier(.34, 1.56, .64, 1); --out: cubic-bezier(.22, 1, .36, 1); --bone: #ECEADF; }
       .k-scr::after { content: ''; position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
       .k-scr.light::after { filter: invert(1); opacity: .045; }
-      .k-scr h4 { font-size: 30px; line-height: .98; letter-spacing: -.045em; }
-      .k-scr h4 b, .k-tag b { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 1.16em; letter-spacing: -.01em; line-height: .8; }
+      .k-scr h3 { font-size: 30px; line-height: .98; letter-spacing: -.045em; }
+      .k-scr h3 b, .k-tag b { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 1.16em; letter-spacing: -.01em; line-height: .8; }
       .k-rank { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 34px; letter-spacing: -.01em; line-height: 1; }
       .k-card { border-radius: 22px; border-color: color-mix(in srgb, var(--fg) 13%, transparent); background: color-mix(in srgb, var(--fg) 5.5%, transparent); }
       .k-go, .k-btn, .k-win, .k-ask-btn, .k-tile, .k-ask button { transition: transform .45s var(--spring), background-color .2s, border-color .2s; }
@@ -571,7 +572,7 @@ const kstats = [
       .k-main { margin-top: 26px; overflow: visible; border-radius: 26px; padding: 20px 18px 18px; color: var(--bone); background: radial-gradient(110% 90% at 100% 0%, rgba(201,242,74,.36), transparent 55%), linear-gradient(160deg, #2C5A3A, #14241A 72%); box-shadow: 0 22px 44px -24px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.14); }
       .k-main::after { content: none; }
       .k-main .k-l, .k-main p { color: var(--bone); } .k-main .k-l { opacity: .72; }
-      .k-main > .k-l:first-of-type, .k-main h5 { padding-right: 92px; }
+      .k-main > .k-l:first-of-type, .k-main h4 { padding-right: 92px; }
       .k-obj { position: absolute; right: -10px; top: -46px; width: 118px; height: 118px; z-index: 2 !important; filter: drop-shadow(0 18px 20px rgba(0,0,0,.5)); }
       .k-main .k-btn { background: #C9F24A; color: #0F140E; box-shadow: 0 12px 24px -12px rgba(201,242,74,.8); }
       .k-main .k-btn::after { content: ' →'; }
@@ -596,7 +597,7 @@ const kstats = [
       .k-kc { position: relative; overflow: hidden; min-height: 190px; justify-content: flex-end; border: 1px solid rgba(201,242,74,.35); border-radius: 20px; color: var(--bone); background: radial-gradient(90% 70% at 100% 0%, rgba(201,242,74,.22), transparent 60%), linear-gradient(165deg, #1D2E21, #0F140E); }
       .k-kc-img { position: absolute; right: -14px; top: -8px; width: 124px; height: 124px; rotate: 8deg; filter: drop-shadow(0 16px 18px rgba(0,0,0,.5)); pointer-events: none; }
       .k-kc .k-kt { position: absolute; left: 14px; top: 12px; color: var(--bone); } .k-kc .k-kt i { color: #C9F24A; }
-      .k-kc h5 { position: relative; font: italic 400 23px/1.05 var(--ks); letter-spacing: -.01em; color: var(--bone); padding-right: 28px; }
+      .k-kc h4 { position: relative; font: italic 400 23px/1.05 var(--ks); letter-spacing: -.01em; color: var(--bone); padding-right: 28px; }
       .k-kc .k-chips span { border-color: rgba(236,234,223,.25); background: rgba(236,234,223,.08); color: var(--bone); }
       .k-kc .k-l { color: rgba(236,234,223,.6); }
       .k-sign { display: flex; flex-direction: column; gap: 3px; border-left: 3px solid var(--gold); padding: 2px 0 2px 11px; }
@@ -789,7 +790,7 @@ const kstats = [
       };
       let kLang = 'en';
       const tr = (s: string) => (kLang === 'it' && IT[s]) || s;
-      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h4, h5, p, .k-sig, .k-chips span, .k-tile span, .k-done span, .k-pl, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
+      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h3, h4, p, .k-sig, .k-chips span, .k-tile span, .k-done span, .k-pl, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
       kTxt.forEach((e) => { e.dataset.en = e.innerHTML.trim(); });
       const setLang = (l: string) => {
         kLang = l;
@@ -902,7 +903,7 @@ const kstats = [
         kCards.forEach((card, i) => {
           const ls = card.querySelectorAll('.k-l');
           const [lab, title, desc, cnt] = f.m[i];
-          setT(ls[0], lab); setT(card.querySelector('h5')!, title); setT(card.querySelector('p')!, desc); setT(ls[ls.length - 1], cnt);
+          setT(ls[0], lab); setT(card.querySelector('h4')!, title); setT(card.querySelector('p')!, desc); setT(ls[ls.length - 1], cnt);
         });
         setT(document.getElementById('kTrNow')!, f.m[0][1]);
         setT(document.getElementById('kTrNext')!, f.m[2][1]);
@@ -1023,7 +1024,7 @@ const kstats = [
       document.getElementById('kAdd')!.addEventListener('click', () => {
         const m = kCards[0], ls = m.querySelectorAll<HTMLElement>('.k-l');
         setT(document.getElementById('kShL')!, ls[0].dataset.en!);
-        setT(document.getElementById('kShT')!, m.querySelector<HTMLElement>('h5')!.dataset.en!);
+        setT(document.getElementById('kShT')!, m.querySelector<HTMLElement>('h4')!.dataset.en!);
         setT(document.getElementById('kShQ')!, kAi.dataset.en!);
         kTa.value = ''; kSheet.hidden = false; kTa.focus();
       });

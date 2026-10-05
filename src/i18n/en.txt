@@ -42,8 +42,8 @@ it: <link rel="canonical" href="https://puntoduestudio.it/" />
 en: <link rel="canonical" href="https://puntoduestudio.it/en/" />
 it: <meta property="og:locale" content="it_IT" />
 en: <meta property="og:locale" content="en_GB" />
-it: Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore.
-en: Punto Due Studio: websites, e-commerce, apps, social media management and AI agents for businesses in every sector.
+it: Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI. Lavoriamo con aziende e professionisti in Italia e a livello internazionale.
+en: Digital agency for websites, e-commerce, apps, social media management and AI agents. We work with businesses and professionals in Italy and internationally.
 it: Siti, app, social e agenti AI per la tua attività.
 en: Websites, apps, social media and AI agents for your business.
 it: Parliamone →
@@ -108,8 +108,8 @@ it: Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta 
 en: Illustrative simulation with sample values: it shows the trend described by the sources, not a promised result. The dashed line is the starting point.
 
 # ---------- /web ----------
-it: <Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
-en: <Site title="Work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus KERN, a concept app that helps people find out what to do by doing real work." active="web">
+it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+en: <Site title="Websites and apps: work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus KERN, a concept app that helps people find out what to do by doing real work." active="web">
 it: 'Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.'
 en: 'Hi! I saw your demos and I’d like to talk to you about a project.'
 it: 'Il sito di un salone, per lei e per lui.'
@@ -137,7 +137,7 @@ en: 'Before / After'
 it: '3 pagine'
 en: '3 pages'
 it: 'Preventivo guidato in 4 domande'
-en: 'Guided quote in 4 questions'
+en: 'Guided estimate in 4 questions'
 it: 'Area cliente con avanzamento del cantiere'
 en: 'Client area with site progress'
 it: 'Coupon sopralluogo gratuito a tempo'
@@ -221,7 +221,7 @@ en: `Open the ${d.name} demo`
 it: Apri la demo →
 en: Open the demo →
 it: >Prossime modifiche<
-en: >Next upgrades<
+en: >Upcoming changes<
 it: >/numeri<
 en: >/numbers<
 it: Far tornare un cliente vale di più.
@@ -248,8 +248,8 @@ it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio
 en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. The KERN app is a concept not yet tested with users: screens, names and numbers are examples.
 
 # ---------- /social ----------
-it: <Site title="Social — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
-en: <Site title="Social — Punto Due Studio" description="A live profile to tap and scroll, an editorial calendar that fills up and the numbers that matter, with sources." active="social">
+it: <Site title="Gestione social media — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
+en: <Site title="Social media management — Punto Due Studio" description="A live profile to tap and scroll, an editorial calendar that fills up and the numbers that matter, with sources." active="social">
 it: 'Ciao! Ho visto la pagina social e vorrei parlarvi del mio profilo.'
 en: 'Hi! I saw your social page and I’d like to talk to you about my profile.'
 it: 'Piatto del giorno'
@@ -402,8 +402,10 @@ it: [['elena', 'Il team migliore'], ['davide', 'Sempre una garanzia']]
 en: [['elena', 'The best team'], ['davide', 'Never disappoints']]
 it: ['Grazie! Ti aspettiamo.', 'Che bello leggerti, passa a trovarci!', 'Grazie mille, ti scriviamo in privato.']
 en: ['Thank you! See you soon.', 'Lovely to hear from you, come and see us!', 'Thanks so much, we’ll message you privately.']
-it: `Vedi tutti i ${seed[i].length} commenti`
-en: `View all ${seed[i].length} comments`
+it: 'Vedi 1 commento'
+en: 'View 1 comment'
+it: `Vedi tutti i ${n} commenti`
+en: `View all ${n} comments`
 it: placeholder="Aggiungi un commento" aria-label="Il tuo commento" /><button type="submit">Invia</button>
 en: placeholder="Add a comment" aria-label="Your comment" /><button type="submit">Post</button>
 it: seed[i].push(['tu', t]); add('tu', t, true);
@@ -432,8 +434,8 @@ it: [[11, '2019'], [4, 'Varie']]
 en: [[11, '2019'], [4, 'Misc']]
 it: 'PROMO\n-20%', 10, 'CHIUSO\nPER FERIE', 7, 11, 'AUGURI\nA TUTTI!'
 en: 'PROMO\n-20%', 10, 'CLOSED\nFOR HOLIDAYS', 7, 11, 'SEASON’S\nGREETINGS!'
-it: 'Tagli, colore e fade, per lei e per lui', 'Via Firenze 12, Pescara · Mar–Sab 9–20'
-en: 'Cuts, colour and fades, for her and him', 'Via Firenze 12, Pescara · Tue–Sat 9am–8pm'
+it: 'Tagli, colore e fade, per lei e per lui', 'Mar–Sab 9–20'
+en: 'Cuts, colour and fades, for her and him', 'Tue–Sat 9am–8pm'
 it: [['tag', 'Prezzi'], ['cal', 'Prenota'], ['cut', 'Tagli'], ['star', 'Recensioni']]
 en: [['tag', 'Prices'], ['cal', 'Book'], ['cut', 'Cuts'], ['star', 'Reviews']]
 it: pins: ['Il taglio', 'Lo staff', 'Il salone']
@@ -556,8 +558,8 @@ it: t: 'Social', p: 'la gestione dei social'
 en: t: 'Social media', p: 'social media management'
 it: t: 'Agenti AI', p: 'degli agenti AI'
 en: t: 'AI agents', p: 'AI agents'
-it: <Site title="Info — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
-en: <Site title="Info — Punto Due Studio" description="Tell us about your project: fill in the message, watch it take shape and send it to us on WhatsApp or by email. You talk directly to Manuel and Nicolas." active="info">
+it: <Site title="Contatti — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
+en: <Site title="Contact — Punto Due Studio" description="Tell us about your project: fill in the message, watch it take shape and send it to us on WhatsApp or by email. You talk directly to Manuel and Nicolas." active="info">
 it: <h1>Premi invio.</h1>
 en: <h1>Hit send.</h1>
 it: Compila i campi: il messaggio prende forma e lo mandi a chi lavora al tuo progetto.
@@ -629,7 +631,7 @@ en: encodeURIComponent('New project')
 it: 'Pronto: si apre WhatsApp con il messaggio già scritto.'
 en: 'Ready: WhatsApp opens with your message already written.'
 it: 'Serve il nome e almeno una voce in "Cosa ti serve".'
-en: 'Your name and at least one item in "What you need" are required.'
+en: 'Your name and at least one item in “What you need” are required.'
 it: `Ciao ${name}! Ti rispondiamo noi, ${person}, il prima possibile.`
 en: `Hi ${name}! ${person} here: we’ll get back to you as soon as possible.`
 
@@ -640,8 +642,8 @@ it: t: 'Prezzi e tempi', q: [
 en: t: 'Prices and timing', q: [
 it: t: 'Modalità di lavoro', q: [
 en: t: 'How we work', q: [
-it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è uno studio digitale con sede a Pescara che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
-en: ['What does Punto Due Studio do?', 'Punto Due Studio is a digital studio based in Pescara, Italy, that designs and develops websites, e-commerce stores and apps, and manages social media for companies and professionals in every sector. The web team is led by Manuel Di Paolo, the social media team by Nicolas Di Paolo.']
+it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
+en: ['What does Punto Due Studio do?', 'Punto Due Studio is a digital agency that designs and develops websites, e-commerce stores and apps, and manages social media for companies and professionals in every sector, in Italy and internationally. The web team is led by Manuel Di Paolo, the social media team by Nicolas Di Paolo.']
 it: ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
 en: ['Do you build websites for restaurants, salons and construction companies?', 'Yes. The /web section features three demo projects: BRACE for restaurants, SEZIONE for salons and INNESTO for renovations. Each website is designed around the end customer’s main action: booking, checking prices or requesting a quote.']
 it: ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.']
@@ -664,16 +666,16 @@ it: ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tram
 en: ['How does a project start?', 'You can contact us on WhatsApp or through the form on the /info page: your request goes straight to the person in charge of the project. After an initial call to define your needs, we send a detailed quote.']
 it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.']
 en: ['Does the client own the website and the domain?', 'Yes. The domain, accounts and content are registered to the client and remain their property; Punto Due Studio sets them up and manages them. Domain and hosting are not included in the fee: a .it domain costs about €12 + VAT per year.']
-it: ['In quale zona operate?', 'Lo studio ha sede a Pescara e collabora con clienti sia in presenza sia a distanza, tramite videochiamate e WhatsApp.']
-en: ['Where do you work?', 'The studio is based in Pescara, Italy, and works with clients both in person and remotely, via video calls and WhatsApp.']
+it: ['In quale zona operate?', 'Lo studio lavora con clienti in Italia e a livello internazionale, a distanza tramite videochiamate e WhatsApp.']
+en: ['Where do you work?', 'The studio works with clients in Italy and internationally, remotely via video calls and WhatsApp.']
 it: ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.']
 en: ['How can I contact the studio?', 'For websites: Manuel Di Paolo, WhatsApp +39 324 842 3657. For social media: Nicolas Di Paolo, WhatsApp +39 324 816 5947. By email: projects@puntoduestudio.it for new projects and care@puntoduestudio.it for support.']
 it: knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp']
 en: knowsAbout: ['Websites', 'E-commerce', 'Web apps', 'Social media management', 'WhatsApp automation']
 it: url: 'https://puntoduestudio.it/faq/'
 en: url: 'https://puntoduestudio.it/en/faq/'
-it: <Site title="Domande frequenti — Punto Due Studio, Pescara" description="Prezzi, tempi e condizioni di Punto Due Studio, Pescara: siti web, app e gestione social per aziende e professionisti, con canone mensile e contratti da 6 o 12 mesi.">
-en: <Site title="FAQ — Punto Due Studio, Pescara" description="Prices, timing and terms at Punto Due Studio, Pescara, Italy: websites, apps and social media management for companies and professionals, with a monthly fee and 6 or 12-month contracts.">
+it: <Site title="Domande frequenti — Punto Due Studio" description="Prezzi, tempi e condizioni di Punto Due Studio: siti web, app e social per aziende e professionisti in Italia e all'estero, con canone mensile.">
+en: <Site title="FAQ — Punto Due Studio" description="Prices, timing and terms at Punto Due Studio: websites, apps and social media management for businesses in Italy and internationally, with a monthly fee.">
 it: <h1>Domande frequenti.</h1>
 en: <h1>Frequently asked questions.</h1>
 it: Servizi, prezzi, tempi e condizioni contrattuali: le risposte alle domande più frequenti.
@@ -693,7 +695,7 @@ en: <span>LED billboards and social formats</span><b>03</b>
 it: Guarda il video <span
 en: Watch the video <span
 it: Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.
-en: 3D videos of your products, ready for reels, stories and ads. Delivered in 3-5 days.
+en: 3D videos of your products, ready for reels, stories and ads. Delivered in 3–5 days.
 it: 'Ciao! Vorrei un video 3D per un prodotto.'
 en: 'Hi! I’d like a 3D video for a product.'
 it: { r: '9 / 16', t: '9:16', d: 'Reel, storie e TikTok' }
@@ -707,9 +709,9 @@ en: { t: 'Send us the product', d: 'A few well-lit photos, the logo and the labe
 it: { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezzo, offerta e invito all\'acquisto.' }
 en: { t: 'We bring it into 3D', d: 'We model the product and animate copy, price, offer and call to action.' }
 it: { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' }
-en: { t: 'Get your video', d: 'In 3-5 days, in the formats you need. We review it together before delivery.' }
-it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
-en: <Site title="3D product videos — Punto Due Studio" description="3D videos of your products for reels, stories and ads: animated copy and offer, 9:16, 1:1 and 16:9 formats, delivered in 3-5 days. Free quote." active="motion">
+en: { t: 'Get your video', d: 'In 3–5 days, in the formats you need. We review it together before delivery.' }
+it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
+en: <Site title="3D product videos — Punto Due Studio" description="3D videos of your products for reels, stories and ads: animated copy and offer, 9:16, 1:1 and 16:9 formats, delivered in 3–5 days. Free quote." active="motion">
 it: <h1>Premi play.</h1>
 en: <h1>Press play.</h1>
 it: >Premi play.<
@@ -743,6 +745,14 @@ en: Free quote: send us the product and we’ll tell you timing and cost.
 it: Chiedi un preventivo <span
 en: Get a quote <span
 it: ['Realizzate video 3D dei prodotti?', 'Sì. Realizziamo video 3D dei prodotti per reel, storie e sponsorizzate, con testi, prezzo e offerta animati, anche in versione cartellone LED. La consegna avviene in 3-5 giorni dalla ricezione di foto e logo, e il preventivo è gratuito.']
-en: ['Do you make 3D product videos?', 'Yes. We make 3D product videos for reels, stories and ads, with animated copy, price and offer, including LED billboard versions. Delivery takes 3-5 days from receiving photos and logo, and the quote is free.']
+en: ['Do you make 3D product videos?', 'Yes. We make 3D product videos for reels, stories and ads, with animated copy, price and offer, including LED billboard versions. Delivery takes 3–5 days from receiving photos and logo, and the quote is free.']
 it: { k: 'video', t: 'Video 3D', p: 'un video 3D per un prodotto' }
 en: { k: 'video', t: '3D video', p: 'a 3D product video' }
+
+# ---------- dati strutturati della home ----------
+it: Agenzia siti web, e-commerce e social — Punto Due Studio
+en: Web agency: websites, e-commerce and social — Punto Due Studio
+it: <meta property="og:url" content="https://puntoduestudio.it/" />
+en: <meta property="og:url" content="https://puntoduestudio.it/en/" />
+it: >Domande frequenti</a>
+en: >FAQ</a>

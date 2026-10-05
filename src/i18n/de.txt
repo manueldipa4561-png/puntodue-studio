@@ -9,7 +9,7 @@
 
 # ---------- comuni ----------
 it: aria-label="Principale"
-de: aria-label="Hauptmenü"
+de: aria-label="Hauptnavigation"
 it: aria-label="Collegamenti"
 de: aria-label="Links"
 it: Tutti i diritti riservati
@@ -46,12 +46,12 @@ it: <link rel="canonical" href="https://puntoduestudio.it/" />
 de: <link rel="canonical" href="https://puntoduestudio.it/de/" />
 it: <meta property="og:locale" content="it_IT" />
 de: <meta property="og:locale" content="de_DE" />
-it: Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore.
-de: Punto Due Studio: Websites, E-Commerce, Apps, Social-Media-Betreuung und KI-Agenten für Unternehmen jeder Branche.
+it: Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI. Lavoriamo con aziende e professionisti in Italia e a livello internazionale.
+de: Digitalagentur für Websites, E-Commerce, Apps, Social Media und KI-Agenten. Wir arbeiten mit Unternehmen in Italien und international.
 it: Siti, app, social e agenti AI per la tua attività.
 de: Websites, Apps, Social Media und KI-Agenten für Ihr Unternehmen.
 it: Parliamone →
-de: Lassen Sie uns sprechen →
+de: Sprechen wir darüber →
 it: 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?'
 de: 'Hallo! Ich würde gern mit Ihnen über ein Projekt sprechen. Wann hätten Sie Zeit?'
 it: subject=Nuovo%20progetto
@@ -59,13 +59,13 @@ de: subject=Neues%20Projekt
 it: >Aggiungi alla home.<
 de: >Zum Home-Bildschirm.<
 it: Un click per entrare, un tocco per restare: siti e app veloci, fatti per convertire.
-de: Ein Klick zum Reinkommen, ein Tipp zum Bleiben: schnelle Websites und Apps, die Besucher zu Kunden machen.
+de: Ein Klick zum Eintreten, ein Fingertipp zum Bleiben: schnelle Websites und Apps, die Besucher zu Kunden machen.
 it: <span>App web e mobile</span>
 de: <span>Web- und Mobile-Apps</span>
 it: <span>SEO e prestazioni</span>
 de: <span>SEO und Performance</span>
 it: Vedi i lavori
-de: Unsere Arbeiten ansehen
+de: Unsere Projekte ansehen
 it: Ti seguono, ti ricordano, ti scelgono. Strategia, contenuti e gestione dei tuoi profili.
 de: Kunden folgen Ihnen, erinnern sich an Sie und entscheiden sich für Sie. Strategie, Inhalte und Betreuung Ihrer Profile.
 it: Vedi il feed
@@ -112,8 +112,8 @@ it: Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta 
 de: Illustrative Simulation mit Beispielwerten: Sie zeigt den in den Quellen beschriebenen Trend und ist kein Ergebnisversprechen. Die gestrichelte Linie ist der Ausgangspunkt.
 
 # ---------- /web ----------
-it: <Site title="Lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
-de: <Site title="Arbeiten und Demos — Punto Due Studio" description="Drei vollständige, anklickbare Website-Demos und KERN, ein App-Konzept, das hilft, durch echte Arbeit herauszufinden, was man tun möchte." active="web">
+it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+de: <Site title="Websites und Apps: Projekte und Demos — Punto Due Studio" description="Drei vollständige, anklickbare Website-Demos und KERN, ein App-Konzept, das hilft, durch echte Arbeit herauszufinden, was man tun möchte." active="web">
 it: 'Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.'
 de: 'Hallo! Ich habe Ihre Demos gesehen und würde gern mit Ihnen über ein Projekt sprechen.'
 it: 'Il sito di un salone, per lei e per lui.'
@@ -127,13 +127,13 @@ de: 'Buchung mit Bestätigung per WhatsApp'
 it: 'Timbri aggiunti dallo staff scansionando il QR'
 de: 'Stempel, die das Team per QR-Scan hinzufügt'
 it: 'Tessera salvabile nel Wallet del telefono'
-de: 'Karte im Wallet des Handys speicherbar'
+de: 'Karte im Wallet des Smartphones speicherbar'
 it: 'Promemoria su WhatsApp prima della visita'
 de: 'WhatsApp-Erinnerung vor dem Termin'
 it: kind: 'Ristrutturazioni'
 de: kind: 'Renovierungen'
 it: 'Ristrutturazioni chiavi in mano: casa 3D, prima/dopo e stima in 4 domande.'
-de: 'Renovierungen schlüsselfertig: 3D-Haus, Vorher/Nachher und Kostenschätzung in 4 Fragen.'
+de: 'Schlüsselfertige Renovierungen: 3D-Haus, Vorher/Nachher und Angebot in 4 Fragen.'
 it: 'Casa 3D'
 de: '3D-Haus'
 it: 'Prima / Dopo'
@@ -175,9 +175,9 @@ de: 'Kosten für einen Kunden'
 it: 'Mantenerne uno'
 de: 'Einen halten'
 it: 'Trovarne uno nuovo'
-de: 'Einen neuen finden'
+de: 'Einen neuen gewinnen'
 it: 'Profitto con +5% di clienti fedeli'
-de: 'Gewinn mit +5% treuen Kunden'
+de: 'Gewinn mit +5% Stammkunden'
 it: l: 'Oggi'
 de: l: 'Heute'
 it: 'Con +5% di retention'
@@ -225,35 +225,35 @@ de: `Demo ${d.name} öffnen`
 it: Apri la demo →
 de: Demo öffnen →
 it: >Prossime modifiche<
-de: >Nächste Erweiterungen<
+de: >Geplante Änderungen<
 it: >/numeri<
 de: >/zahlen<
 it: Far tornare un cliente vale di più.
-de: Einen Kunden zurückzuholen ist mehr wert.
+de: Ein Kunde, der wiederkommt, ist mehr wert.
 it: Fedeltà e coupon servono a questo. Dati di ricerca generali, non risultati delle demo.
-de: Dafür sind Treueprogramme und Gutscheine da. Allgemeine Forschungsdaten, keine Ergebnisse der Demos.
+de: Dafür sind Treueprogramme und Gutscheine da. Allgemeine Studiendaten, keine Ergebnisse der Demos.
 it: Le barre mostrano il centro dell'intervallo indicato dalle fonti.
 de: Die Balken zeigen die Mitte des in den Quellen genannten Bereichs.
 it: kpi={['Clienti attivi al 12° mese', 'Clienti che tornano', 'Nuovi clienti al mese']} heading="Accendi le funzioni." lead="Aggiungine una alla volta e guarda come cambiano i clienti in un anno."
 de: kpi={['Aktive Kunden im 12. Monat', 'Wiederkehrende Kunden', 'Neukunden pro Monat']} heading="Funktionen einschalten." lead="Fügen Sie eine nach der anderen hinzu und sehen Sie, wie sich Ihre Kundschaft in einem Jahr verändert."
 it: Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Review, ottobre 2014: aumentare la retention del 5% aumenta i profitti del 25–95%; acquisire un cliente costa 5–25 volte più che mantenerlo (dati di Fred Reichheld, Bain &amp; Company).
-de: Amy Gallo, „The Value of Keeping the Right Customers“, Harvard Business Review, Oktober 2014: Eine um 5% höhere Kundenbindung steigert den Gewinn um 25–95%; einen Kunden zu gewinnen kostet 5–25-mal mehr, als einen zu halten (Daten von Fred Reichheld, Bain &amp; Company).
+de: Amy Gallo, „The Value of Keeping the Right Customers“, Harvard Business Review, Oktober 2014: Eine um 5% höhere Kundenbindung steigert den Gewinn um 25–95%; einen Kunden zu gewinnen kostet 5- bis 25-mal so viel, wie ihn zu halten (Daten von Fred Reichheld, Bain &amp; Company).
 it: , Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.
 de: , Pearson, 2010: Verkaufswahrscheinlichkeit 5–20% bei einem neuen Kontakt, 60–70% bei einem Bestandskunden.
 it: Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera.
 de: Forbes über einen Tallo-Bericht, Mai 2025, und Big Brothers Big Sisters / Harris Poll, 2025: Unsicherheit junger Erwachsener über ihren Karriereweg.
 it: NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari:
-de: NACE Job Outlook 2026 (70% nutzen kompetenzbasierte Einstellung für Einstiegspositionen); TestGorilla 2025; Harvard Business School und Burning Glass Institute (weniger als 1 von 700 Neueinstellungen ohne Abschluss in Unternehmen, die die Anforderung gestrichen haben). Sekundärzusammenfassungen:
+de: NACE Job Outlook 2026 (70% stellen für Einstiegspositionen kompetenzbasiert ein); TestGorilla 2025; Harvard Business School und Burning Glass Institute (weniger als 1 von 700 Neueinstellungen ohne Hochschulabschluss in Unternehmen, die diese Anforderung gestrichen haben). Sekundärquellen:
 it: Forbes, agosto 2026
 de: Forbes, August 2026
 it: NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level.
-de: NPR, August 2026 und IBISWorld: Arbeitslosigkeit unter Hochschulabsolventen (5,7% im Juni 2026) und der Markt für Berufseinsteiger.
+de: NPR, August 2026 und IBISWorld: Arbeitslosigkeit unter Berufseinsteigern mit Hochschulabschluss (5,7% im Juni 2026) und der Markt für Einstiegsstellen.
 it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.
-de: Die Demos INNESTO, SEZIONE und BRACE sind Konzepte von Punto Due Studio; Namen und Betriebe sind fiktiv. Die KERN-App ist ein Konzept, das noch nicht mit Nutzern getestet wurde: Bildschirme, Namen und Zahlen sind Beispiele.
+de: Die Demos INNESTO, SEZIONE und BRACE sind Konzepte von Punto Due Studio; Namen und Betriebe sind fiktiv. Die KERN-App ist ein Konzept, das noch nicht mit Nutzern getestet wurde: Ansichten, Namen und Zahlen sind Beispiele.
 
 # ---------- /social ----------
-it: <Site title="Social — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
-de: <Site title="Social — Punto Due Studio" description="Ein Live-Profil zum Antippen und Scrollen, ein Redaktionskalender, der sich füllt, und die Zahlen, auf die es ankommt – mit Quellen." active="social">
+it: <Site title="Gestione social media — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
+de: <Site title="Social-Media-Betreuung — Punto Due Studio" description="Ein Live-Profil zum Antippen und Scrollen, ein Redaktionskalender, der sich füllt, und die Zahlen, auf die es ankommt – mit Quellen." active="social">
 it: 'Ciao! Ho visto la pagina social e vorrei parlarvi del mio profilo.'
 de: 'Hallo! Ich habe Ihre Social-Seite gesehen und würde gern mit Ihnen über mein Profil sprechen.'
 it: 'Piatto del giorno'
@@ -341,7 +341,7 @@ de: <span class="lab">Sichtbarkeit</span>
 it: dei consumatori segue i brand sui social per restare aggiornato su prodotti e servizi
 de: der Verbraucher folgen Marken in den sozialen Netzwerken, um über Produkte und Dienstleistungen auf dem Laufenden zu bleiben
 it: Il tuo profilo è la vetrina che i clienti guardano prima di scriverti. Se è curato e sempre attivo, ti trovano e ti ricordano.
-de: Ihr Profil ist das Schaufenster, das Kunden ansehen, bevor sie Ihnen schreiben. Ist es gepflegt und immer aktiv, finden sie Sie und erinnern sich an Sie.
+de: Ihr Profil ist das Schaufenster, das Kunden ansehen, bevor sie Ihnen schreiben. Ist es gepflegt und stets aktiv, werden Sie gefunden und in Erinnerung behalten.
 it: <span class="lab">Automazione</span>
 de: <span class="lab">Automatisierung</span>
 it: si aspetta una risposta entro la giornata, e il 70% la vuole personalizzata
@@ -357,9 +357,9 @@ de: Wählen Sie, was veröffentlicht wird: Der Kalender füllt sich und die Tage
 it: aria-label="Tipi di contenuto"
 de: aria-label="Inhaltsarten"
 it: <small>Contenuti al mese</small>
-de: <small>Beiträge pro Monat</small>
+de: <small>Inhalte pro Monat</small>
 it: <small>Giorni con contenuto</small>
-de: <small>Tage mit Beitrag</small>
+de: <small>Tage mit Inhalt</small>
 it: <small>Crescita stimata</small>
 de: <small>Geschätztes Wachstum</small>
 it: Calendario d'esempio: mostra il ritmo di pubblicazione, la crescita è una stima illustrativa e non una promessa di risultato.
@@ -369,7 +369,7 @@ de: Sprout Social, „The 2023 Sprout Social Index“: 68% der Verbraucher folge
 it: Sull'automazione non citiamo cifre di tempo risparmiato: le fonti che abbiamo verificato non le forniscono in modo affidabile. Il vantaggio descritto si appoggia ai dati sulle aspettative di risposta (fonte 1).
 de: Zur Automatisierung nennen wir keine Zahlen zur Zeitersparnis: Die von uns geprüften Quellen liefern sie nicht verlässlich. Der beschriebene Vorteil stützt sich auf die Daten zu den Antworterwartungen (Quelle 1).
 it: Profilo, nome, post e numeri del telefono sono un concept d'esempio. Il calendario è illustrativo: mostra una tendenza, non è una promessa di risultato.
-de: Profil, Name, Beiträge und Zahlen auf dem Handy sind ein Beispielkonzept. Der Kalender ist illustrativ: Er zeigt einen Trend, kein Ergebnisversprechen.
+de: Profil, Name, Beiträge und Zahlen auf dem Smartphone sind ein Beispielkonzept. Der Kalender ist illustrativ: Er zeigt einen Trend, kein Ergebnisversprechen.
 it: 'aria-label', 'Guarda il reel'
 de: 'aria-label', 'Reel ansehen'
 it:  ha iniziato a seguirti`
@@ -393,7 +393,7 @@ de: name: 'Heute', slides: [{ c: 'b', t: 'Es wird gekocht!', s: 'Ab 12:00 Uhr al
 it: name: 'Ordini', slides: [{ c: 'c', t: 'Prenota in 10 secondi', s: 'Scrivici e ti teniamo il tavolo', cta: true }]
 de: name: 'Buchen', slides: [{ c: 'c', t: 'Buchen in 10 Sekunden', s: 'Schreib uns, wir halten deinen Tisch frei', cta: true }]
 it: name: 'Recensioni', slides: [{ c: 'a', t: '“Il miglior risotto di Milano”', s: 'Marta R.' }, { c: 'b', t: '“Cortesia e profumo di casa”', s: 'Luca P.' }]
-de: name: 'Bewertungen', slides: [{ c: 'a', t: '„Das beste Risotto in Mailand“', s: 'Marta R.' }, { c: 'b', t: '„Herzlicher Service und ein Hauch von Zuhause“', s: 'Luca P.' }]
+de: name: 'Bewertungen', slides: [{ c: 'a', t: '„Das beste Risotto in Mailand“', s: 'Marta R.' }, { c: 'b', t: '„Herzlich und wie zu Hause“', s: 'Luca P.' }]
 it: >Prenota su WhatsApp</a>
 de: >Über WhatsApp buchen</a>
 it: [['marta.r', 'Che profumo, arrivo!'], ['luca_p', 'Prenotato per sabato']]
@@ -406,8 +406,10 @@ it: [['elena', 'Il team migliore'], ['davide', 'Sempre una garanzia']]
 de: [['elena', 'Das beste Team'], ['davide', 'Immer eine sichere Bank']]
 it: ['Grazie! Ti aspettiamo.', 'Che bello leggerti, passa a trovarci!', 'Grazie mille, ti scriviamo in privato.']
 de: ['Danke! Wir freuen uns auf dich.', 'Schön, von dir zu lesen, komm vorbei!', 'Vielen Dank, wir schreiben dir privat.']
-it: `Vedi tutti i ${seed[i].length} commenti`
-de: (seed[i].length === 1 ? 'Kommentar ansehen' : `Alle ${seed[i].length} Kommentare ansehen`)
+it: 'Vedi 1 commento'
+de: '1 Kommentar ansehen'
+it: `Vedi tutti i ${n} commenti`
+de: `Alle ${n} Kommentare ansehen`
 it: placeholder="Aggiungi un commento" aria-label="Il tuo commento" /><button type="submit">Invia</button>
 de: placeholder="Kommentar hinzufügen" aria-label="Dein Kommentar" /><button type="submit">Posten</button>
 it: seed[i].push(['tu', t]); add('tu', t, true);
@@ -436,8 +438,8 @@ it: [[11, '2019'], [4, 'Varie']]
 de: [[11, '2019'], [4, 'Diverses']]
 it: 'PROMO\n-20%', 10, 'CHIUSO\nPER FERIE', 7, 11, 'AUGURI\nA TUTTI!'
 de: 'AKTION\n-20%', 10, 'BETRIEBS-\nURLAUB', 7, 11, 'FROHE\nFESTTAGE!'
-it: 'Tagli, colore e fade, per lei e per lui', 'Via Firenze 12, Pescara · Mar–Sab 9–20'
-de: 'Schnitt, Farbe und Fade, für Damen und Herren', 'Via Firenze 12, Pescara · Di–Sa 9–20 Uhr'
+it: 'Tagli, colore e fade, per lei e per lui', 'Mar–Sab 9–20'
+de: 'Schnitt, Farbe und Fade, für Damen und Herren', 'Di–Sa 9–20 Uhr'
 it: [['tag', 'Prezzi'], ['cal', 'Prenota'], ['cut', 'Tagli'], ['star', 'Recensioni']]
 de: [['tag', 'Preise'], ['cal', 'Buchen'], ['cut', 'Schnitte'], ['star', 'Bewertungen']]
 it: pins: ['Il taglio', 'Lo staff', 'Il salone']
@@ -451,7 +453,7 @@ de: bio: 'Restaurant'
 it: [['verde', 'Estate'], ['bun', 'Cibo']]
 de: [['verde', 'Sommer'], ['bun', 'Essen']]
 it: 'MENU\nFISSO 25€', 'legna', 'SERATA\nKARAOKE', 'bun', 'rub', 'APERTI\nA PASQUA'
-de: 'MENÜ\n25 €', 'legna', 'KARAOKE-\nABEND', 'bun', 'rub', 'OSTERN\nOFFEN'
+de: 'FESTPREIS-\nMENÜ 25 €', 'legna', 'KARAOKE-\nABEND', 'bun', 'rub', 'OSTERN\nOFFEN'
 it: 'Carne affumicata e vini naturali', 'Brisket 14 ore · Mer–Dom 19–24'
 de: 'Geräuchertes Fleisch und Naturweine', 'Brisket 14 Std. · Mi–So 19–24 Uhr'
 it: [['book', 'Menu'], ['cal', 'Prenota'], ['wine', 'Vini'], ['star', 'Recensioni']]
@@ -471,27 +473,27 @@ de: 'ANGEBOTE\nGRATIS!!', 3, 5, 'MAURER\nGESUCHT', 7, 'FROHE\nFESTTAGE'
 it: name: 'INNESTO · Ristrutturazioni'
 de: name: 'INNESTO · Renovierungen'
 it: 'Ristrutturazioni chiavi in mano', 'Case, cucine e bagni · sopralluogo in 48 ore'
-de: 'Renovierungen schlüsselfertig', 'Häuser, Küchen und Bäder · Besichtigung binnen 48 Std.'
+de: 'Schlüsselfertige Renovierungen', 'Häuser, Küchen und Bäder · Besichtigung binnen 48 Std.'
 it: [['home', 'Lavori'], ['tag', 'Stima'], ['cam', 'Prima/Dopo'], ['star', 'Recensioni']]
-de: [['home', 'Projekte'], ['tag', 'Angebot'], ['cam', 'Vorher/Nachher'], ['star', 'Bewertungen']]
+de: [['home', 'Projekte'], ['tag', 'Angebot'], ['cam', 'Vergleich'], ['star', 'Bewertungen']]
 it: pins: ['Prima e dopo', 'La casa', 'Il loft']
 de: pins: ['Vorher und Nachher', 'Das Haus', 'Das Loft']
 it: { t: 'Foto profilo', d: 'Prima: una foto qualsiasi, illeggibile quando è piccola. Dopo: il logo, riconoscibile anche in un commento.' }
-de: { t: 'Profilbild', d: 'Vorher: irgendein Foto, im Kleinformat nicht erkennbar. Nachher: das Logo, erkennbar sogar neben einem Kommentar.' }
+de: { t: 'Profilbild', d: 'Vorher: irgendein Foto, im Kleinformat nicht erkennbar. Nachher: das Logo, auch in einem Kommentar noch erkennbar.' }
 it: { t: 'Nome e bio', d: 'Prima: un nome difficile da cercare e una parola. Dopo: nome, categoria, cosa fai, dove sei e quando sei aperto.' }
 de: { t: 'Name und Bio', d: 'Vorher: ein Name, der schwer zu finden ist, und ein einzelnes Wort. Nachher: Name, Kategorie, was Sie tun, wo Sie sind und wann Sie geöffnet haben.' }
 it: { t: 'Il link', d: 'Prima: nessun link. Dopo: un tocco e si prenota o si chiede la stima, senza scrivere messaggi.' }
-de: { t: 'Der Link', d: 'Vorher: kein Link. Nachher: ein Tipp, und man bucht oder fragt ein Angebot an, ganz ohne Nachrichten zu schreiben.' }
+de: { t: 'Der Link', d: 'Vorher: kein Link. Nachher: ein Fingertipp, und man bucht oder fordert ein Angebot an, ganz ohne Nachrichten zu schreiben.' }
 it: { t: 'Storie in evidenza', d: 'Prima: vecchie storie a caso. Dopo: copertine coordinate con prezzi, prenotazioni, lavori e recensioni.' }
 de: { t: 'Story-Highlights', d: 'Vorher: zufällige alte Stories. Nachher: abgestimmte Cover für Preise, Buchungen, Projekte und Bewertungen.' }
 it: { t: 'La griglia', d: 'Prima: locandine e foto a caso. Dopo: pochi formati che si ripetono, riconoscibili al primo sguardo.' }
 de: { t: 'Das Raster', d: 'Vorher: Flyer und zufällige Fotos. Nachher: wenige wiederkehrende Formate, auf den ersten Blick erkennbar.' }
 it: { t: 'I post fissati', d: 'Prima: in alto c\'è l\'ultimo post, qualunque sia. Dopo: i tre che convincono a prenotare.' }
-de: { t: 'Angepinnte Beiträge', d: 'Vorher: Oben steht der neueste Beitrag, egal welcher. Nachher: die drei, die zum Buchen überzeugen.' }
+de: { t: 'Angeheftete Beiträge', d: 'Vorher: Oben steht der neueste Beitrag, egal welcher. Nachher: die drei, die zum Buchen überzeugen.' }
 it: >/profilo · prima e dopo<
 de: >/profil · vorher und nachher<
 it: Il tuo profilo, rifatto.
-de: Ihr Profil, neu gemacht.
+de: Ihr Profil, neu gestaltet.
 it: Lo stesso profilo prima e dopo il nostro lavoro. Tocca i numeri per scoprire cosa cambia e perché.
 de: Dasselbe Profil vor und nach unserer Arbeit. Tippen Sie auf die Zahlen, um zu sehen, was sich ändert und warum.
 it: aria-label="Settore"
@@ -515,7 +517,7 @@ de: aria-label="Punkt 4: Story-Highlights"
 it: aria-label="Punto 5: la griglia"
 de: aria-label="Punkt 5: das Raster"
 it: aria-label="Punto 6: i post fissati"
-de: aria-label="Punkt 6: angepinnte Beiträge"
+de: aria-label="Punkt 6: angeheftete Beiträge"
 it: ['post', 'follower', 'seguiti']
 de: ['Beiträge', 'Follower', 'Gefolgt']
 it: {s.k === 'edilizia' ? 'Stima' : 'Prenota'}
@@ -525,7 +527,7 @@ de: <b>Kostenlose Analyse Ihres Profils.</b><span>Schicken Sie uns den Profilnam
 it: Chiedi l'analisi
 de: Analyse anfragen
 it: Profili d'esempio costruiti con le immagini e i loghi delle nostre demo (SEZIONE, BRACE, INNESTO): non sono clienti reali. I numeri sono uguali prima e dopo perché qui mostriamo il lavoro, non promettiamo risultati.
-de: Beispielprofile, gebaut mit den Bildern und Logos unserer Demos (SEZIONE, BRACE, INNESTO): Es sind keine echten Kunden. Die Zahlen sind vorher und nachher gleich, weil wir hier die Arbeit zeigen und keine Ergebnisse versprechen.
+de: Beispielprofile, erstellt mit den Bildern und Logos unserer Demos (SEZIONE, BRACE, INNESTO): Es sind keine echten Kunden. Die Zahlen sind vorher und nachher gleich, weil wir hier die Arbeit zeigen und keine Ergebnisse versprechen.
 
 # ---------- componente Automazione ----------
 it: { t: 'Post programmati', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
@@ -560,8 +562,8 @@ it: t: 'Social', p: 'la gestione dei social'
 de: t: 'Social Media', p: 'Social-Media-Betreuung'
 it: t: 'Agenti AI', p: 'degli agenti AI'
 de: t: 'KI-Agenten', p: 'KI-Agenten'
-it: <Site title="Info — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
-de: <Site title="Info — Punto Due Studio" description="Erzählen Sie uns von Ihrem Projekt: Füllen Sie die Nachricht aus, sehen Sie zu, wie sie Form annimmt, und schicken Sie sie uns per WhatsApp oder E-Mail. Sie sprechen direkt mit Manuel und Nicolas." active="info">
+it: <Site title="Contatti — Punto Due Studio" description="Raccontaci il progetto: compila il messaggio, guardalo prendere forma e mandacelo su WhatsApp o per email. Parli direttamente con Manuel e Nicolas." active="info">
+de: <Site title="Kontakt — Punto Due Studio" description="Erzählen Sie uns von Ihrem Projekt: Nachricht ausfüllen und per WhatsApp oder E-Mail senden. Sie sprechen direkt mit Manuel und Nicolas." active="info">
 it: <h1>Premi invio.</h1>
 de: <h1>Abschicken.</h1>
 it: Compila i campi: il messaggio prende forma e lo mandi a chi lavora al tuo progetto.
@@ -581,7 +583,7 @@ de: <span>Name des Unternehmens</span>
 it: placeholder="Bottega Ferrante"
 de: placeholder="Ferrante Studio"
 it: <span>Di cosa si occupa</span>
-de: <span>Was es macht</span>
+de: <span>Was das Unternehmen macht</span>
 it: placeholder="Ceramiche artigianali"
 de: placeholder="Handgemachte Keramik"
 it: <span>Che lavoro fai</span>
@@ -597,7 +599,7 @@ de: placeholder="Zum Beispiel: Ich möchte innerhalb eines Monats starten"
 it: aria-label="Anteprima del messaggio"
 de: aria-label="Nachrichtenvorschau"
 it: >Scrivi a Manuel · web design<
-de: >Schreiben an Manuel · Webdesign<
+de: >Nachricht an Manuel · Webdesign<
 it: <small>ora</small>
 de: <small>jetzt</small>
 it: aria-label="A chi scrivere"
@@ -627,7 +629,7 @@ de: `von ${val('fCompany')}`
 it: text: `Ciao! Sono ${who_ || '…'}. Cerco ${want || '…'}.${note ? ' ' + note : ''} Quando potremmo sentirci?`
 de: text: `Hallo! Ich bin ${who_ || '…'}. Ich suche ${want || '…'}.${note ? ' ' + note : ''} Wann hätten Sie Zeit für ein Gespräch?`
 it: `Scrivi a ${NUMS[who][1]}`
-de: `Schreiben an ${NUMS[who][1]}`
+de: `Nachricht an ${NUMS[who][1]}`
 it: encodeURIComponent('Nuovo progetto')
 de: encodeURIComponent('Neues Projekt')
 it: 'Pronto: si apre WhatsApp con il messaggio già scritto.'
@@ -641,47 +643,47 @@ de: `Hallo ${name}! Hier ist ${person}: Wir melden uns so schnell wie möglich b
 it: t: 'Servizi', q: [
 de: t: 'Leistungen', q: [
 it: t: 'Prezzi e tempi', q: [
-de: t: 'Preise und Fristen', q: [
+de: t: 'Preise und Zeitrahmen', q: [
 it: t: 'Modalità di lavoro', q: [
 de: t: 'Arbeitsweise', q: [
-it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è uno studio digitale con sede a Pescara che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
-de: ['Was macht Punto Due Studio?', 'Punto Due Studio ist ein digitales Studio mit Sitz in Pescara, Italien, das Websites, Online-Shops und Apps entwirft und entwickelt und die Social-Media-Betreuung für Unternehmen und Selbstständige aller Branchen übernimmt. Der Bereich Web wird von Manuel Di Paolo geleitet, der Bereich Social von Nicolas Di Paolo.']
+it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
+de: ['Was macht Punto Due Studio?', 'Punto Due Studio ist eine digitale Agentur, die Websites, Online-Shops und Apps entwirft und entwickelt und die Social-Media-Betreuung für Unternehmen und Selbstständige aller Branchen in Italien und international übernimmt. Der Bereich Web wird von Manuel Di Paolo geleitet, der Bereich Social von Nicolas Di Paolo.']
 it: ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
-de: ['Erstellen Sie Websites für Restaurants, Salons und Bauunternehmen?', 'Ja. Im Bereich /web finden Sie drei Demoprojekte: BRACE für die Gastronomie, SEZIONE für Salons und INNESTO für Renovierungen. Jede Website ist um die Hauptaktion des Endkunden herum gestaltet: buchen, Preise ansehen oder ein Angebot anfragen.']
+de: ['Erstellen Sie Websites für Restaurants, Friseursalons und Bauunternehmen?', 'Ja. Im Bereich /web finden Sie drei Demoprojekte: BRACE für die Gastronomie, SEZIONE für Friseursalons und INNESTO für Renovierungen. Jede Website ist auf die wichtigste Handlung des Endkunden ausgerichtet: buchen, Preise ansehen oder ein Angebot anfragen.']
 it: ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.']
-de: ['Was umfasst die Erstellung einer Website?', 'Die Leistung umfasst ein maßgeschneidertes, für Smartphones optimiertes Design, kurze Ladezeiten, Online-Buchung sowie Datenschutz- und Cookie-Hinweise. Auf Wunsch lassen sich Online-Shop, Anzahlungen und Kundenbindungs-Tools wie Kundenkarte und WhatsApp-Erinnerungen integrieren.']
+de: ['Was umfasst die Erstellung einer Website?', 'Die Leistung umfasst ein maßgeschneidertes, für Smartphones optimiertes Design, kurze Ladezeiten, Online-Buchung sowie Datenschutzerklärung und Cookie-Hinweis. Auf Wunsch lassen sich Online-Shop, Anzahlungen und Kundenbindungs-Tools wie Kundenkarte und WhatsApp-Erinnerungen integrieren.']
 it: ['Gestite anche Instagram e TikTok?', 'Sì. Il servizio prevede un piano editoriale mensile con 8 post, 4 reel e storie, oltre a un report mensile con l\'andamento del profilo e i clic sul pulsante di prenotazione. Su richiesta sono disponibili anche riprese in sede.']
 de: ['Betreuen Sie auch Instagram und TikTok?', 'Ja. Die Leistung umfasst einen monatlichen Redaktionsplan mit 8 Beiträgen, 4 Reels und Stories sowie einen monatlichen Bericht über die Entwicklung des Profils und die Klicks auf den Buchungsbutton. Auf Wunsch sind auch Dreharbeiten vor Ort möglich.']
 it: ['Sviluppate anche app?', 'Sì. Un esempio è l\'app per personal trainer, personalizzata con logo e colori del professionista, che gestisce prenotazioni 24 ore su 24, pacchetti di sessioni e programma «invita un amico». Il canone parte da 59€ al mese, l\'app è operativa in circa una settimana e non prevede costi per singolo cliente.']
-de: ['Entwickeln Sie auch Apps?', 'Ja. Ein Beispiel ist unsere App für Personal Trainer, individualisiert mit Logo und Farben des Trainers, die Buchungen rund um die Uhr, Sitzungspakete und ein „Freund einladen“-Programm verwaltet. Die Gebühr beginnt bei 59 € pro Monat, die App ist in etwa einer Woche einsatzbereit und es fallen keine Kosten pro Kunde an.']
+de: ['Entwickeln Sie auch Apps?', 'Ja. Ein Beispiel ist unsere App für Personal Trainer, individualisiert mit Logo und Farben des Trainers, die Buchungen rund um die Uhr, Trainingspakete und ein „Freund einladen“-Programm verwaltet. Die Gebühr beginnt bei 59 € pro Monat, die App ist in etwa einer Woche einsatzbereit und es fallen keine Kosten pro Kunde an.']
 it: ['In cosa consiste l\'analisi gratuita del profilo?', 'È sufficiente inviarci il nome del profilo Instagram: riceverete un\'analisi con le tre priorità di intervento. L\'analisi è gratuita e senza alcun impegno.']
 de: ['Was beinhaltet die kostenlose Profilanalyse?', 'Senden Sie uns einfach den Namen Ihres Instagram-Profils: Sie erhalten eine Analyse mit den drei wichtigsten Verbesserungen. Die Analyse ist kostenlos und unverbindlich.']
 it: ['Quanto costa un sito web?', 'I siti sono offerti in abbonamento mensile a partire da 200€ al mese, senza anticipi annuali. Il canone varia in base al numero di pagine e alle funzionalità richieste, come shop o acconti online: il preventivo è personalizzato su ogni progetto.']
-de: ['Wie viel kostet eine Website?', 'Websites werden im Monatsabonnement ab 200 € pro Monat angeboten, ohne jährliche Vorauszahlung. Die Gebühr hängt von der Seitenanzahl und den gewünschten Funktionen ab, etwa Online-Shop oder Anzahlungen: Jedes Angebot wird individuell auf das Projekt zugeschnitten.']
+de: ['Wie viel kostet eine Website?', 'Websites werden im Abonnement ab 200 € pro Monat angeboten, ohne jährliche Vorauszahlung. Die Gebühr hängt von der Seitenanzahl und den gewünschten Funktionen ab, etwa Online-Shop oder Anzahlungen: Jedes Angebot wird individuell auf das Projekt zugeschnitten.']
 it: ['Quanto costa la gestione dei social?', 'La gestione dei social parte da 200€ al mese, con pagamento mensile. Il canone varia in base ai contenuti inclusi, in particolare riprese in sede e produzione di reel.']
 de: ['Wie viel kostet die Social-Media-Betreuung?', 'Die Social-Media-Betreuung beginnt bei 200 € pro Monat, monatlich abgerechnet. Die Gebühr hängt von den enthaltenen Inhalten ab, insbesondere von Dreharbeiten vor Ort und der Reel-Produktion.']
 it: ['Quali sono i tempi di realizzazione?', 'Un sito viene pubblicato entro 2 settimane dalla ricezione dei contenuti (testi, foto, orari e prezzi). Le app web sono operative in circa una settimana.']
 de: ['Wie lange dauert die Umsetzung?', 'Eine Website geht innerhalb von 2 Wochen nach Erhalt der Inhalte (Texte, Fotos, Öffnungszeiten und Preise) online. Web-Apps sind in etwa einer Woche einsatzbereit.']
 it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ciascun sito.']
-de: ['Wie lange läuft der Vertrag?', 'Der Vertrag läuft 6 oder 12 Monate, nach Wahl des Kunden, und verlängert sich nie automatisch. Die Zahlung erfolgt monatlich im Voraus, ohne jährliche Vorauszahlung. Enthalten sind ein Monat Gewährleistung ab Veröffentlichung und 2 Überarbeitungen pro Monat für jede Website.']
+de: ['Wie lange läuft der Vertrag?', 'Der Vertrag läuft 6 oder 12 Monate, nach Wahl des Kunden, und verlängert sich nie automatisch. Die Zahlung erfolgt monatlich im Voraus, ohne jährliche Vorauszahlung. Enthalten sind ein Monat Garantie ab Veröffentlichung und 2 Überarbeitungen pro Monat für jede Website.']
 it: ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.']
 de: ['Wie startet ein Projekt?', 'Sie können uns per WhatsApp oder über das Formular auf der Seite /info kontaktieren: Ihre Anfrage geht direkt an die verantwortliche Person. Nach einem ersten Gespräch, in dem wir Ihren Bedarf klären, senden wir ein detailliertes Angebot.']
 it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.']
 de: ['Gehören Website und Domain dem Kunden?', 'Ja. Domain, Konten und Inhalte laufen auf den Namen des Kunden und bleiben sein Eigentum; Punto Due Studio richtet sie ein und verwaltet sie. Domain und Hosting sind in der Gebühr nicht enthalten: Eine .it-Domain kostet etwa 12 € zzgl. MwSt. pro Jahr.']
-it: ['In quale zona operate?', 'Lo studio ha sede a Pescara e collabora con clienti sia in presenza sia a distanza, tramite videochiamate e WhatsApp.']
-de: ['In welcher Region sind Sie tätig?', 'Das Studio hat seinen Sitz in Pescara, Italien, und arbeitet mit Kunden sowohl vor Ort als auch aus der Ferne, per Videoanruf und WhatsApp.']
+it: ['In quale zona operate?', 'Lo studio lavora con clienti in Italia e a livello internazionale, a distanza tramite videochiamate e WhatsApp.']
+de: ['In welcher Region sind Sie tätig?', 'Das Studio arbeitet mit Kunden in Italien und international, aus der Ferne per Videoanruf und WhatsApp.']
 it: ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.']
-de: ['Wie erreicht man das Studio?', 'Für Websites: Manuel Di Paolo, WhatsApp +39 324 842 3657. Für Social Media: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Per E-Mail: projects@puntoduestudio.it für neue Projekte und care@puntoduestudio.it für den Support.']
+de: ['Wie erreicht man das Studio?', 'Für Websites: Manuel Di Paolo, WhatsApp +39 324 842 3657. Für Social Media: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Per E-Mail: projects@puntoduestudio.it für neue Projekte und care@puntoduestudio.it für den Kundenservice.']
 it: knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp']
-de: knowsAbout: ['Websites', 'E-Commerce', 'Web-Apps', 'Social-Media-Management', 'WhatsApp-Automatisierung']
+de: knowsAbout: ['Websites', 'E-Commerce', 'Web-Apps', 'Social-Media-Betreuung', 'WhatsApp-Automatisierung']
 it: url: 'https://puntoduestudio.it/faq/'
 de: url: 'https://puntoduestudio.it/de/faq/'
-it: <Site title="Domande frequenti — Punto Due Studio, Pescara" description="Prezzi, tempi e condizioni di Punto Due Studio, Pescara: siti web, app e gestione social per aziende e professionisti, con canone mensile e contratti da 6 o 12 mesi.">
-de: <Site title="Häufige Fragen — Punto Due Studio, Pescara" description="Preise, Fristen und Bedingungen von Punto Due Studio, Pescara: Websites, Apps und Social-Media-Betreuung für Unternehmen und Selbstständige, mit monatlicher Gebühr und Verträgen über 6 oder 12 Monate.">
+it: <Site title="Domande frequenti — Punto Due Studio" description="Prezzi, tempi e condizioni di Punto Due Studio: siti web, app e social per aziende e professionisti in Italia e all'estero, con canone mensile.">
+de: <Site title="Häufige Fragen — Punto Due Studio" description="Preise, Zeitrahmen und Bedingungen von Punto Due Studio: Websites, Apps und Social Media für Unternehmen in Italien und international, mit Monatsgebühr.">
 it: <h1>Domande frequenti.</h1>
 de: <h1>Häufige Fragen.</h1>
 it: Servizi, prezzi, tempi e condizioni contrattuali: le risposte alle domande più frequenti.
-de: Leistungen, Preise, Fristen und Vertragsbedingungen: die Antworten auf die häufigsten Fragen.
+de: Leistungen, Preise, Zeitrahmen und Vertragsbedingungen: die Antworten auf die häufigsten Fragen.
 it: Per ulteriori informazioni, il nostro team è a disposizione.
 de: Für weitere Informationen steht Ihnen unser Team gern zur Verfügung.
 it: Contattaci <span
@@ -691,13 +693,13 @@ de: Kontakt aufnehmen <span
 it: <span>Il tuo prodotto in 3D</span><b>01</b>
 de: <span>Ihr Produkt in 3D</span><b>01</b>
 it: <span>Testi e offerta animati</span><b>02</b>
-de: <span>Animierte Texte und Angebot</span><b>02</b>
+de: <span>Animierte Texte und Aktionsangebot</span><b>02</b>
 it: <span>Cartelloni LED e formati social</span><b>03</b>
 de: <span>LED-Werbetafeln und Social-Formate</span><b>03</b>
 it: Guarda il video <span
 de: Video ansehen <span
 it: Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.
-de: 3D-Videos Ihrer Produkte, fertig für Reels, Stories und Werbeanzeigen. Lieferung in 3-5 Tagen.
+de: 3D-Videos Ihrer Produkte, fertig für Reels, Stories und Werbeanzeigen. Lieferung in 3–5 Tagen.
 it: 'Ciao! Vorrei un video 3D per un prodotto.'
 de: 'Hallo! Ich hätte gern ein 3D-Video für ein Produkt.'
 it: { r: '9 / 16', t: '9:16', d: 'Reel, storie e TikTok' }
@@ -709,11 +711,11 @@ de: { r: '16 / 9', t: '16:9', d: 'Website, YouTube und Werbeanzeigen' }
 it: { t: 'Mandi il prodotto', d: 'Bastano qualche foto ben illuminata, il logo e l\'etichetta. Se serve, il prodotto vero.' }
 de: { t: 'Sie schicken das Produkt', d: 'Ein paar gut ausgeleuchtete Fotos, das Logo und das Etikett genügen. Bei Bedarf das echte Produkt.' }
 it: { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezzo, offerta e invito all\'acquisto.' }
-de: { t: 'Wir bringen es in 3D', d: 'Wir modellieren das Produkt und animieren Texte, Preis, Angebot und Kaufaufforderung.' }
+de: { t: 'Wir bringen es in 3D', d: 'Wir modellieren das Produkt und animieren Texte, Preis, Aktionsangebot und Kaufaufforderung.' }
 it: { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' }
-de: { t: 'Sie erhalten das Video', d: 'In 3-5 Tagen, in den Formaten, die Sie brauchen. Wir gehen es vor der Lieferung gemeinsam durch.' }
-it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei tuoi prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
-de: <Site title="3D-Videos für Produkte — Punto Due Studio" description="3D-Videos Ihrer Produkte für Reels, Stories und Werbeanzeigen: animierte Texte und Angebot, Formate 9:16, 1:1 und 16:9, Lieferung in 3-5 Tagen. Kostenloses Angebot." active="motion">
+de: { t: 'Sie erhalten das Video', d: 'In 3–5 Tagen, in den Formaten, die Sie brauchen. Wir gehen es vor der Lieferung gemeinsam durch.' }
+it: <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
+de: <Site title="3D-Videos für Produkte — Punto Due Studio" description="3D-Videos Ihrer Produkte für Reels, Stories und Ads: animierte Texte und Aktionsangebot, Formate 9:16, 1:1, 16:9, Lieferung in 3–5 Tagen. Kostenloses Angebot." active="motion">
 it: <h1>Premi play.</h1>
 de: <h1>Play drücken.</h1>
 it: >Premi play.<
@@ -725,15 +727,15 @@ de: >/ablauf<
 it: <h2>Il prodotto, da ogni lato.</h2>
 de: <h2>Ihr Produkt, von allen Seiten.</h2>
 it: Un oggetto fermo in foto diventa una scena che si muove: luce, materiali, testi e prezzo, in 15 secondi.
-de: Ein stilles Produktfoto wird zu einer bewegten Szene: Licht, Materialien, Texte und Preis, in 15 Sekunden.
+de: Aus einem statischen Produktfoto wird eine bewegte Szene: Licht, Materialien, Texte und Preis, in 15 Sekunden.
 it: <li><b>Il tuo prodotto in 3D</b><span>Fedele a forma, etichetta e colori.</span></li>
 de: <li><b>Ihr Produkt in 3D</b><span>Originalgetreu in Form, Etikett und Farben.</span></li>
 it: <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'acquisto.</span></li>
-de: <li><b>Animierte Texte und Angebot</b><span>Name, Vorteile, Preis und Kaufbutton.</span></li>
+de: <li><b>Animierte Texte und Aktionsangebot</b><span>Name, Vorteile, Preis und Kaufbutton.</span></li>
 it: <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
 de: <li><b>Bereit zur Veröffentlichung</b><span>Die richtigen Formate und Längen für jeden Kanal.</span></li>
 it: Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.
-de: Im Video: SALMASTRO, ein Parfum mit einer von uns erfundenen Marke, um den Service zu zeigen. Preis und Angebot sind Beispiele.
+de: Im Video: SALMASTRO, ein Parfum mit einer von uns erfundenen Marke, um den Service zu zeigen. Preis und Aktionsangebot sind Beispiele.
 it: aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"
 de: aria-label="3D-Beispielvideo: das Parfum SALMASTRO auf einer LED-Werbetafel, eine von Punto Due Studio erfundene Marke"
 it: aria-label="Riproduci il video"
@@ -747,7 +749,7 @@ de: Kostenloses Angebot: Schicken Sie uns das Produkt, und wir nennen Ihnen Zeit
 it: Chiedi un preventivo <span
 de: Angebot anfragen <span
 it: ['Realizzate video 3D dei prodotti?', 'Sì. Realizziamo video 3D dei prodotti per reel, storie e sponsorizzate, con testi, prezzo e offerta animati, anche in versione cartellone LED. La consegna avviene in 3-5 giorni dalla ricezione di foto e logo, e il preventivo è gratuito.']
-de: ['Erstellen Sie 3D-Videos von Produkten?', 'Ja. Wir erstellen 3D-Produktvideos für Reels, Stories und Werbeanzeigen, mit animierten Texten, Preis und Angebot, auch als LED-Werbetafel-Version. Die Lieferung erfolgt 3-5 Tage nach Erhalt von Fotos und Logo, und das Angebot ist kostenlos.']
+de: ['Erstellen Sie 3D-Videos von Produkten?', 'Ja. Wir erstellen 3D-Produktvideos für Reels, Stories und Werbeanzeigen, mit animierten Texten, Preis und Aktionsangebot, auch als LED-Werbetafel-Version. Die Lieferung erfolgt 3–5 Tage nach Erhalt von Fotos und Logo, und das Angebot ist kostenlos.']
 it: { k: 'video', t: 'Video 3D', p: 'un video 3D per un prodotto' }
 de: { k: 'video', t: '3D-Video', p: 'ein 3D-Video für ein Produkt' }
 
@@ -764,3 +766,15 @@ it: menu: { name: 'Menu',
 de: menu: { name: 'Menü',
 it: t: 'Referral'
 de: t: 'Empfehlung'
+
+# ---------- dati strutturati della home ----------
+it: 'Manuel · web design'
+de: 'Manuel · Webdesign'
+it: 'Nicolas · social media'
+de: 'Nicolas · Social Media'
+it: Agenzia siti web, e-commerce e social — Punto Due Studio
+de: Webagentur: Websites, Shops, Social Media — Punto Due Studio
+it: <meta property="og:url" content="https://puntoduestudio.it/" />
+de: <meta property="og:url" content="https://puntoduestudio.it/de/" />
+it: >Domande frequenti</a>
+de: >Häufige Fragen</a>
