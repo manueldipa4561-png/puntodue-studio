@@ -9,8 +9,8 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 
 const LOCALES = ['en', 'de'];
-const PAGES = ['index', 'web', 'social', 'info', 'faq', 'motion'];
-const COMPONENTS = ['Chat', 'Sim', 'Bi', 'Profilo', 'Automazione', 'LangAuto'];
+const PAGES = ['index', 'web', 'social', 'info', 'faq', 'motion', 'servizi', 'siti-web', 'e-commerce', 'gestione-social', 'agenti-ai'];
+const COMPONENTS = ['Chat', 'Sim', 'Bi', 'Profilo', 'Automazione', 'LangAuto', 'Servizio'];
 
 // <lingua>.txt: coppie di righe "it: ..." / "<lingua>: ...", testo preso alla lettera (niente escape); # = commento
 const loadPairs = (loc) => {
@@ -34,7 +34,7 @@ for (const loc of LOCALES) {
   };
   // link interni verso la versione tradotta: "/" "/web" "/web/" "/social" "/info" "/faq" "/motion" (con eventuale #ancora).
   // Va fatto PRIMA di translate(): gli href scritti nel dizionario (es. il pulsante IT, href="/") restano com'è scritto.
-  const links = (s) => s.replace(/href="\/(web|social|info|faq|motion)?(\/)?(#[\w-]*)?"/g, (_, p = '', sl = '', h = '') => `href="/${loc}/${p}${sl}${h}"`);
+  const links = (s) => s.replace(/href="\/(web|social|info|faq|motion|servizi|siti-web|e-commerce|gestione-social|agenti-ai)?(\/)?(#[\w-]*)?"/g, (_, p = '', sl = '', h = '') => `href="/${loc}/${p}${sl}${h}"`);
   const stamp = (s) => s.replace(/^---\r?\n/, '---\n' + head);
 
   rmSync(`src/pages/${loc}`, { recursive: true, force: true });
