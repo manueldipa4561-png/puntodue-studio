@@ -32,9 +32,9 @@ for (const loc of LOCALES) {
     for (const [from, to] of pairs) if (s.includes(from)) { s = s.split(from).join(to); used.add(from); }
     return s;
   };
-  // link interni verso la versione tradotta: "/" "/web" "/social" "/info" "/faq" "/motion" (con eventuale #ancora).
+  // link interni verso la versione tradotta: "/" "/web" "/web/" "/social" "/info" "/faq" "/motion" (con eventuale #ancora).
   // Va fatto PRIMA di translate(): gli href scritti nel dizionario (es. il pulsante IT, href="/") restano com'è scritto.
-  const links = (s) => s.replace(/href="\/(web|social|info|faq|motion)?(#[\w-]*)?"/g, (_, p = '', h = '') => `href="/${loc}/${p}${h}"`);
+  const links = (s) => s.replace(/href="\/(web|social|info|faq|motion)?(\/)?(#[\w-]*)?"/g, (_, p = '', sl = '', h = '') => `href="/${loc}/${p}${sl}${h}"`);
   const stamp = (s) => s.replace(/^---\r?\n/, '---\n' + head);
 
   rmSync(`src/pages/${loc}`, { recursive: true, force: true });
