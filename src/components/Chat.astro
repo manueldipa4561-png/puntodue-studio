@@ -1,6 +1,8 @@
 ---
-interface Props { kind: 'sent' | 'read' | 'online' | 'us' | 'client' }
-const { kind } = Astro.props;
+// uid: serve solo se la stessa bolla compare due volte nella pagina (l'id del clipPath deve restare unico)
+interface Props { kind: 'sent' | 'read' | 'online' | 'us' | 'client'; uid?: string }
+const { kind, uid = '' } = Astro.props;
+const lensId = `chatLens${uid}`;
 const label = kind === 'sent' ? 'Consegnato' : kind === 'read' ? 'Visualizzato' : '';
 const typing = kind === 'us' || kind === 'client';
 const online = kind === 'online';
@@ -8,8 +10,8 @@ const online = kind === 'online';
 <div class={`bub rv ${kind}`} role="img" aria-label={online ? 'Punto Due Studio è online' : typing ? (kind === 'us' ? 'Punto Due Studio sta scrivendo' : 'Il cliente sta scrivendo') : `Messaggio ${label.toLowerCase()}`}>
   {(kind === 'us' || online) && (
     <svg class="av lente" viewBox="0 0 100 100" aria-hidden="true">
-      <defs><clipPath id="chatLens"><circle cx="37" cy="50" r="27" /></clipPath></defs>
-      <circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#chatLens)" />
+      <defs><clipPath id={lensId}><circle cx="37" cy="50" r="27" /></clipPath></defs>
+      <circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path={`url(#${lensId})`} />
     </svg>
   )}
   {kind === 'client' && (

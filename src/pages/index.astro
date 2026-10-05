@@ -8,6 +8,21 @@ const WA_NUMBER = '393248423657';
 const WA_TEXT = 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?';
 const contactHref = WA_NUMBER ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}` : 'mailto:projects@puntoduestudio.it?subject=Nuovo%20progetto';
 const contactExternal = Boolean(WA_NUMBER);
+// Dati strutturati per Google: stessa attività (@id) descritta in /faq (area di servizio Italia + Europa, nessuna città) più il sito
+const studio = {
+  '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/',
+  description: 'Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI. Lavoriamo con aziende e professionisti in Italia e a livello internazionale.',
+  logo: 'https://puntoduestudio.it/icon-512.png', image: 'https://puntoduestudio.it/og.png', email: 'projects@puntoduestudio.it',
+  telephone: '+393248423657', areaServed: 'Worldwide', address: { '@type': 'PostalAddress', addressCountry: 'IT' },
+  sameAs: ['https://www.instagram.com/puntoduestudio/'],
+  founder: [{ '@type': 'Person', name: 'Manuel Di Paolo' }, { '@type': 'Person', name: 'Nicolas Di Paolo' }],
+  knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp'],
+  knowsLanguage: ['it', 'en', 'de'],
+};
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [studio, { '@type': 'WebSite', '@id': 'https://puntoduestudio.it/#website', url: 'https://puntoduestudio.it/', name: 'Punto Due Studio', inLanguage: ['it', 'en', 'de'], publisher: { '@id': 'https://puntoduestudio.it/#studio' } }],
+};
 const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify];
 ---
 <!doctype html>
@@ -17,23 +32,30 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#0034D6" />
     <LangAuto />
-    <title>Punto Due Studio — Web.2</title>
-    <meta name="description" content="Punto Due Studio: siti web, e-commerce, app, gestione social e agenti AI per attività di ogni settore." />
+    <title>Agenzia siti web, e-commerce e social — Punto Due Studio</title>
+    <meta name="description" content="Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI. Lavoriamo con aziende e professionisti in Italia e a livello internazionale." />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href="https://puntoduestudio.it/" />
     <link rel="alternate" hreflang="it" href="https://puntoduestudio.it/" />
     <link rel="alternate" hreflang="en" href="https://puntoduestudio.it/en/" />
     <link rel="alternate" hreflang="de" href="https://puntoduestudio.it/de/" />
-    <link rel="alternate" hreflang="x-default" href="https://puntoduestudio.it/" />
+    <link rel="alternate" hreflang="x-default" href="https://puntoduestudio.it/en/" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="it_IT" />
-    <meta property="og:title" content="Punto Due Studio — Web.2" />
+    <meta property="og:title" content="Agenzia siti web, e-commerce e social — Punto Due Studio" />
     <meta property="og:description" content="Siti, app, social e agenti AI per la tua attività." />
+    <meta property="og:url" content="https://puntoduestudio.it/" />
+    <meta property="og:site_name" content="Punto Due Studio" />
     <meta property="og:image" content="https://puntoduestudio.it/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Punto Due Studio" />
     <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     <script is:inline>document.documentElement.classList.add('js')</script>
     <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
     <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1013794909284091af82872b6126a728"}'></script>
@@ -88,7 +110,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
             <li><span>App web e mobile</span><b>02</b></li>
             <li><span>SEO e prestazioni</span><b>03</b></li>
           </ul>
-          <div class="cta rv"><a class="btn" href="/web">Vedi i lavori <span class="arr" aria-hidden="true">→</span></a></div>
+          <div class="cta rv"><a class="btn" href="/web/">Vedi i lavori <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
       </section>
 
@@ -102,7 +124,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
             <li><span>Reel, foto e grafiche nel tuo stile</span><b>02</b></li>
             <li><span>Community e crescita costante</span><b>03</b></li>
           </ul>
-          <div class="cta rv"><a class="btn" href="/social">Vedi il feed <span class="arr" aria-hidden="true">→</span></a></div>
+          <div class="cta rv"><a class="btn" href="/social/">Vedi il feed <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
       </section>
 
@@ -116,7 +138,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
             <li><span>Testi e offerta animati</span><b>02</b></li>
             <li><span>Cartelloni LED e formati social</span><b>03</b></li>
           </ul>
-          <div class="cta rv"><a class="btn" href="/motion">Guarda il video <span class="arr" aria-hidden="true">→</span></a></div>
+          <div class="cta rv"><a class="btn" href="/motion/">Guarda il video <span class="arr" aria-hidden="true">→</span></a></div>
         </div>
       </section>
 
@@ -140,7 +162,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           <h2 class="mega" data-split>Sta scrivendo...</h2>
           <p class="lead rv">Dall'altra parte ci siamo noi. Raccontaci il progetto.</p>
           <div class="cta rv">
-            <a class="btn" href="/info">Scrivici <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn" href="/info/">Scrivici <span class="arr" aria-hidden="true">→</span></a>
             <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
           </div>
         </div>
@@ -149,9 +171,10 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           <nav class="ftr-links" aria-label="Collegamenti">
             <a href="https://www.instagram.com/puntoduestudio/" target="_blank" rel="noopener">Instagram</a>
             <a href="mailto:studio@puntoduestudio.it">studio@puntoduestudio.it</a>
-            <a href="/note-legali">Note legali</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/privacy#cookie">Cookie</a>
+            <a href="/faq/">Domande frequenti</a>
+            <a href="/note-legali/">Note legali</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/privacy/#cookie">Cookie</a>
           </nav>
         </footer>
       </section>
@@ -221,7 +244,9 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .lab { font: 500 12px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow); display: inline-block; }
       h2 { margin: 18px 0 20px; font-weight: 700; font-size: clamp(2.7rem, 5.8vw, 5.2rem); line-height: 0.96; letter-spacing: -0.045em; }
       h2.mega { font-size: clamp(3.6rem, 9vw, 8rem); line-height: 0.9; }
-      .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0 0.14em; margin: -0.06em 0 -0.14em; }
+      /* maschera di ogni parola (entrata a scorrimento): il padding allarga l'area visibile, il margine negativo lo compensa.
+         A destra serve perché la spaziatura negativa restringe il box e l'ultima lettera ("Home", "to") verrebbe tagliata. */
+      .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.1em 0.08em 0.14em 0.04em; margin: -0.1em -0.08em -0.14em -0.04em; }
       .wi { display: inline-block; will-change: transform; }
       .lead { margin: 0; font-size: clamp(1.12rem, 1.55vw, 1.35rem); line-height: 1.5; color: rgba(255, 255, 255, 0.85); max-width: 34rem; }
       .pts { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.28); }
@@ -240,7 +265,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       .sec.info { padding-bottom: 110px; }
       .ftr a { color: inherit; text-decoration: none; transition: color 0.2s; }
       .ftr a:hover { color: var(--yellow); }
-      .ftr { position: absolute; left: var(--gut); right: var(--gut); bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+      .ftr { position: absolute; left: var(--gut); right: var(--gut); bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; font: 500 11px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
       .ftr-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
       @media (hover: none) {
         .btn:hover { transform: none; background: var(--yellow); }

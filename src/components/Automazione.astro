@@ -33,13 +33,14 @@ const steps = [
   .step { position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; width: 100%; min-height: 44px; padding: 16px 18px; text-align: left; font: inherit; color: #fff; background: rgba(0,52,214,.6); border: 1px solid rgba(255,255,255,.3); border-radius: 16px; cursor: pointer; transition: border-color .25s, background .25s; }
   .step:hover { border-color: rgba(255,255,255,.7); }
   .step[aria-pressed="true"] { border-color: var(--yellow); background: rgba(255,224,0,.1); }
-  .n { font: 700 12px/1.6 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.6); }
+  .n { font: 700 12px/1.6 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.7); }
   .step[aria-pressed="true"] .n { color: var(--yellow); }
   .st { display: grid; gap: 4px; } .st b { font-size: 1.05rem; letter-spacing: -.01em; } .st small { font-size: .9rem; line-height: 1.4; color: rgba(255,255,255,.78); }
   .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--yellow); }
   .auto[data-auto] .step[aria-pressed="true"] .bar { animation: abar 4s linear both; }
   @keyframes abar { to { width: 100%; } }
-  .bot-stage { position: relative; margin: 0; min-height: 340px; aspect-ratio: 1; border-radius: 20px; border: 1px solid rgba(255,255,255,.3); background: radial-gradient(120% 90% at 50% 20%, rgba(77,123,255,.45), rgba(0,20,90,.6)); overflow: hidden; }
+  /* min-width/max-width: con aspect-ratio + min-height il box non scendeva sotto i 340px di larghezza e sui telefoni da 320px la pagina andava in orizzontale */
+  .bot-stage { position: relative; margin: 0; min-width: 0; max-width: 100%; min-height: 340px; aspect-ratio: 1; border-radius: 20px; border: 1px solid rgba(255,255,255,.3); background: radial-gradient(120% 90% at 50% 20%, rgba(77,123,255,.45), rgba(0,20,90,.6)); overflow: hidden; }
   .bot-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .bot-cap { position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; gap: 10px; align-items: baseline; padding: 12px 16px; border-radius: 14px; background: #0a0f24; font-size: .92rem; line-height: 1.4; }
   .bot-who { flex: none; font: 700 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); }
