@@ -936,3 +936,21 @@ it: t: 'Guarda le automazioni'
 en: t: 'See the automations'
 it: >Servizi</a>
 en: >Services</a>
+
+# ---------- /motion: domande frequenti, replay ----------
+it: <h2>Domande frequenti.</h2>
+en: <h2>Common questions.</h2>
+it: >Rivedi dall'inizio</button>
+en: >Watch again from the start</button>
+it: { q: "Cosa devo mandarvi?", a: "Bastano qualche foto ben illuminata del prodotto, il logo e l'etichetta. Se serve, il prodotto vero." }
+en: { q: "What do I need to send you?", a: "A few well-lit photos of the product, the logo and the label are enough. If needed, the real product." }
+it: { q: "Quanto tempo ci vuole?", a: "Consegniamo in 3-5 giorni, nei formati che ti servono, e lo rivediamo insieme prima della consegna." }
+en: { q: "How long does it take?", a: "We deliver in 3–5 days, in the formats you need, and we review it with you before delivery." }
+it: { q: "In quali formati lo ricevo?", a: "In 9:16 per reel, storie e TikTok, in 1:1 per i post nel feed e i caroselli, in 16:9 per il sito, YouTube e le sponsorizzate." }
+en: { q: "Which formats do I get?", a: "9:16 for reels, stories and TikTok, 1:1 for feed posts and carousels, 16:9 for your website, YouTube and ads." }
+it: { q: "Cosa c'è dentro il video?", a: "Il tuo prodotto in 3D, fedele a forma, etichetta e colori, con nome, benefici, prezzo e pulsante d'acquisto animati." }
+en: { q: "What’s in the video?", a: "Your product in 3D, faithful to shape, label and colors, with name, benefits, price and buy button animated." }
+it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e ti diciamo tempi e costi." }
+en: { q: "How much does it cost?", a: "The quote is free: send us the product and we’ll tell you timing and costs." }
+it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
+en: { q: "Is the sample video from a client?", a: "No. SALMASTRO is a brand we invented to show the service: price and offer are examples." }
