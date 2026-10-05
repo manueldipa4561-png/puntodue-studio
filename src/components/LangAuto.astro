@@ -1,0 +1,26 @@
+---
+// Lingua automatica: chi apre una pagina italiana con il telefono (o il browser) in tedesco o inglese viene portato
+// alla versione tradotta. Rispetta la scelta fatta con i pulsanti IT/EN/DE (salvata in localStorage, "pd-lang")
+// e non tocca i crawler, così Google continua a indicizzare la versione italiana. Va nel <head>, prima del body.
+---
+<script is:inline>
+  (function () {
+    var KEY = 'pd-lang', SUPPORTED = ['it', 'en', 'de'];
+    var saved = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    // il pulsante lingua è una scelta esplicita: da lì in poi il sito non cambia più lingua da solo
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a.lang');
+      if (a) { try { localStorage.setItem(KEY, a.hreflang); } catch (err) {} }
+    });
+    var bot = /bot|crawl|spider|slurp|lighthouse|headless|inspectiontool|bingpreview/i.test(navigator.userAgent) || navigator.webdriver;
+    // mai da una pagina già tradotta (evita i giri a vuoto, es. un 404 sotto /de/)
+    if (document.documentElement.lang !== 'it' || /^\/(en|de)(\/|$)/.test(location.pathname) || bot || saved()) return;
+    // la prima lingua preferita tra quelle che il sito ha decide: italiano = resta, tedesco/inglese = va alla traduzione
+    var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+    for (var i = 0; i < prefs.length; i++) {
+      var l = String(prefs[i]).slice(0, 2).toLowerCase();
+      if (l === 'it') return;
+      if (SUPPORTED.indexOf(l) > -1) { location.replace('/' + l + location.pathname + location.search + location.hash); return; }
+    }
+  })();
+</script>
