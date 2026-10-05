@@ -1026,3 +1026,21 @@ it: en="The difference"
 de: en="Der Unterschied"
 it: en="The goal"
 de: en="Das Ziel"
+
+# ---------- /motion: domande frequenti, replay ----------
+it: <h2>Domande frequenti.</h2>
+de: <h2>Häufige Fragen.</h2>
+it: >Rivedi dall'inizio</button>
+de: >Von vorn ansehen</button>
+it: { q: "Cosa devo mandarvi?", a: "Bastano qualche foto ben illuminata del prodotto, il logo e l'etichetta. Se serve, il prodotto vero." }
+de: { q: "Was muss ich Ihnen schicken?", a: "Ein paar gut beleuchtete Fotos des Produkts, das Logo und das Etikett genügen. Bei Bedarf das echte Produkt." }
+it: { q: "Quanto tempo ci vuole?", a: "Consegniamo in 3-5 giorni, nei formati che ti servono, e lo rivediamo insieme prima della consegna." }
+de: { q: "Wie lange dauert es?", a: "Wir liefern in 3–5 Tagen, in den Formaten, die Sie brauchen, und gehen das Video vor der Lieferung gemeinsam mit Ihnen durch." }
+it: { q: "In quali formati lo ricevo?", a: "In 9:16 per reel, storie e TikTok, in 1:1 per i post nel feed e i caroselli, in 16:9 per il sito, YouTube e le sponsorizzate." }
+de: { q: "In welchen Formaten erhalte ich es?", a: "Im Format 9:16 für Reels, Stories und TikTok, 1:1 für Feed-Posts und Karussells, 16:9 für Website, YouTube und Werbeanzeigen." }
+it: { q: "Cosa c'è dentro il video?", a: "Il tuo prodotto in 3D, fedele a forma, etichetta e colori, con nome, benefici, prezzo e pulsante d'acquisto animati." }
+de: { q: "Was ist im Video zu sehen?", a: "Ihr Produkt in 3D, getreu in Form, Etikett und Farben, mit animiertem Namen, Vorteilen, Preis und Kaufbutton." }
+it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e ti diciamo tempi e costi." }
+de: { q: "Was kostet es?", a: "Das Angebot ist kostenlos: Schicken Sie uns das Produkt, und wir nennen Ihnen Zeitplan und Kosten." }
+it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
+de: { q: "Stammt das Beispielvideo von einem Kunden?", a: "Nein. SALMASTRO ist eine von uns erfundene Marke, um die Leistung zu zeigen: Preis und Angebot sind Beispiele." }
