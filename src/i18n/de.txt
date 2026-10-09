@@ -1044,3 +1044,48 @@ it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e t
 de: { q: "Was kostet es?", a: "Das Angebot ist kostenlos: Schicken Sie uns das Produkt, und wir nennen Ihnen Zeitplan und Kosten." }
 it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
 de: { q: "Stammt das Beispielvideo von einem Kunden?", a: "Nein. SALMASTRO ist eine von uns erfundene Marke, um die Leistung zu zeigen: Preis und Angebot sind Beispiele." }
+
+# ---------- /motion ridisegnata: dati in apertura, formati, timeline ----------
+it: <li>3-5 giorni</li>
+de: <li>3–5 Tage</li>
+it: <li>Preventivo gratuito</li>
+de: <li>Kostenloses Angebot</li>
+it: >Come funziona</a>
+de: >So läuft es ab</a>
+it: >Consegna in 3-5 giorni</span>
+de: >Lieferung in 3–5 Tagen</span>
+# ---------- /motion: tre spot 3D nei formati (prodotti inventati) ----------
+it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.
+de: Jedes Format hat seinen eigenen Bildausschnitt, seinen Rhythmus und seine Texte. Hier drei live animierte Beispiele.
+it: <em>Sponsorizzato</em>
+de: <em>Gesponsert</em>
+it: aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine"
+de: aria-label="Beispiel-Story im Format 9:16: die ONDA-Dose fällt und dreht sich zwischen Bläschen"
+it: >Agrumi frizzanti</span>
+de: >Spritzige Zitrusfrüchte</span>
+it: >€1,90</span>
+de: >1,90 €</span>
+it: >Scopri di più</span>
+de: >Mehr erfahren</span>
+it: aria-label="Post di esempio in 1:1: il vasetto NEVE con il tappo che si solleva"
+de: aria-label="Beispiel-Post im Format 1:1: der NEVE-Tiegel, dessen Deckel sich hebt"
+it: >Crema viso idratante</span>
+de: >Feuchtigkeitscreme fürs Gesicht</span>
+it: <s>€24,90</s> €19,90
+de: <s>24,90 €</s> 19,90 €
+it: >Solo questa settimana</span>
+de: >Nur diese Woche</span>
+it: >Acquista ora</span>
+de: >Jetzt kaufen</span>
+it: aria-label="Video di esempio in 16:9: la bottiglia d'olio ORO con una luce che scorre sul vetro"
+de: aria-label="Beispielvideo im Format 16:9: die ORO-Olivenölflasche, über deren Glas ein Licht gleitet"
+it: >Olio extravergine d'oliva</span>
+de: >Natives Olivenöl extra</span>
+it: >€12,90</span>
+de: >12,90 €</span>
+it: >Spedizione gratuita</span>
+de: >Kostenloser Versand</span>
+it: >Acquista</span>
+de: >Kaufen</span>
+it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
+de: Produkte, Marken und Preise sind Beispiele: Wir haben sie erfunden, um die Formate zu zeigen.

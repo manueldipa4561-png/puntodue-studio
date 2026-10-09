@@ -954,3 +954,48 @@ it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e t
 en: { q: "How much does it cost?", a: "The quote is free: send us the product and we’ll tell you timing and costs." }
 it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
 en: { q: "Is the sample video from a client?", a: "No. SALMASTRO is a brand we invented to show the service: price and offer are examples." }
+
+# ---------- /motion ridisegnata: dati in apertura, formati, timeline ----------
+it: <li>3-5 giorni</li>
+en: <li>3–5 days</li>
+it: <li>Preventivo gratuito</li>
+en: <li>Free quote</li>
+it: >Come funziona</a>
+en: >How it works</a>
+it: >Consegna in 3-5 giorni</span>
+en: >Delivered in 3–5 days</span>
+# ---------- /motion: tre spot 3D nei formati (prodotti inventati) ----------
+it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.
+en: Every format has its own framing, rhythm and copy. Here are three examples, animated live.
+it: <em>Sponsorizzato</em>
+en: <em>Sponsored</em>
+it: aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine"
+en: aria-label="Sample 9:16 story: the ONDA can dropping and spinning among bubbles"
+it: >Agrumi frizzanti</span>
+en: >Sparkling citrus</span>
+it: >€1,90</span>
+en: >€1.90</span>
+it: >Scopri di più</span>
+en: >Learn more</span>
+it: aria-label="Post di esempio in 1:1: il vasetto NEVE con il tappo che si solleva"
+en: aria-label="Sample 1:1 post: the NEVE jar with its lid lifting"
+it: >Crema viso idratante</span>
+en: >Moisturising face cream</span>
+it: <s>€24,90</s> €19,90
+en: <s>€24.90</s> €19.90
+it: >Solo questa settimana</span>
+en: >This week only</span>
+it: >Acquista ora</span>
+en: >Shop now</span>
+it: aria-label="Video di esempio in 16:9: la bottiglia d'olio ORO con una luce che scorre sul vetro"
+en: aria-label="Sample 16:9 video: the ORO olive oil bottle with light sweeping across the glass"
+it: >Olio extravergine d'oliva</span>
+en: >Extra virgin olive oil</span>
+it: >€12,90</span>
+en: >€12.90</span>
+it: >Spedizione gratuita</span>
+en: >Free shipping</span>
+it: >Acquista</span>
+en: >Buy now</span>
+it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
+en: Products, brands and prices are examples: we made them up to show the formats.

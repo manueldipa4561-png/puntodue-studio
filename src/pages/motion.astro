@@ -1,9 +1,10 @@
 ---
 import Site from '../layouts/Site.astro';
 import Chat from '../components/Chat.astro';
-// Servizio video 3D per prodotti. Il video in /motion/showreel.mp4 deve essere un progetto con marchio
+// Servizio video 3D per prodotti. Il video in /motion/ deve essere un progetto con marchio
 // inventato o di un cliente che ha dato il permesso: mai marchi altrui senza autorizzazione.
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Vorrei un video 3D per un prodotto.')}`;
+const POSTER = '/motion/salmastro-led-poster.jpg';
 const formats = [
   { r: '9 / 16', t: '9:16', d: 'Reel, storie e TikTok' },
   { r: '1 / 1', t: '1:1', d: 'Post nel feed e caroselli' },
@@ -32,65 +33,132 @@ const faq = [
 ];
 const ld = [
   { '@context': 'https://schema.org', '@type': 'Service', name: NAME, serviceType: NAME, description: LEAD, url: abs(Astro.url.pathname), provider: studio, areaServed: [{ '@type': 'Country', name: 'Italy' }, 'Worldwide'] },
-  { '@context': 'https://schema.org', '@type': 'VideoObject', name: VIDEO_NAME, description: VIDEO_DESC, thumbnailUrl: abs('/motion/salmastro-led-poster.jpg'), contentUrl: abs('/motion/salmastro-led.mp4'), uploadDate: '2026-10-04', duration: 'PT15S', publisher: studio },
+  { '@context': 'https://schema.org', '@type': 'VideoObject', name: VIDEO_NAME, description: VIDEO_DESC, thumbnailUrl: abs(POSTER), contentUrl: abs('/motion/salmastro-led.mp4'), uploadDate: '2026-10-04', duration: 'PT15S', publisher: studio },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
 <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
-  <section class="top">
-    <span class="lab">/motion</span>
-    <h1>Premi play.</h1>
-    <p class="lead">{LEAD}</p>
-  </section>
 
-  <section class="reel" id="reel">
-    <div class="reel-txt">
-      <span class="lab">/showreel</span>
-      <h2>Il prodotto, da ogni lato.</h2>
-      <p class="lead">Un oggetto fermo in foto diventa una scena che si muove: luce, materiali, testi e prezzo, in 15 secondi.</p>
-      <ul class="feat">
-        <li><b>Il tuo prodotto in 3D</b><span>Fedele a forma, etichetta e colori.</span></li>
-        <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'acquisto.</span></li>
-        <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
-      </ul>
-      <p class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</p>
-      <div class="cta reel-cta">
-        <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
-      </div>
+  <!-- Apertura: il video è la prima cosa che si vede, in un monitor da sala di montaggio -->
+  <section class="hero">
+    <div class="hero-head">
+      <span class="lab">/motion</span>
+      <h1>Premi play.</h1>
+      <p class="lead">{LEAD}</p>
     </div>
-    <div class="reel-col">
-      <div class="phone reel-ph">
-        <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster="/motion/salmastro-led-poster.jpg" muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
-        <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+    <figure class="mon">
+      <div class="mon-body">
+        <div class="mon-top" aria-hidden="true"><span class="mon-dot"></span><span>SALMASTRO_LED.mp4</span><span class="mon-res">1080×1920</span></div>
+        <div class="mon-scr">
+          <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster={POSTER} muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
+          <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+        </div>
+        <div class="mon-bot" aria-hidden="true"><span class="mon-tc">00:00 / 00:15</span><span class="reel-bar"><i></i></span></div>
       </div>
-      <div class="reel-bar" aria-hidden="true"><i></i></div>
       <button type="button" class="reel-replay">Rivedi dall'inizio</button>
+      <figcaption class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</figcaption>
+    </figure>
+    <div class="hero-foot">
+      <ul class="facts">
+        <li>15 s</li>
+        <li>9:16 · 1:1 · 16:9</li>
+        <li>3-5 giorni</li>
+        <li>Preventivo gratuito</li>
+      </ul>
+      <div class="cta">
+        <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
+        <a class="lnk" href="#come">Come funziona</a>
+      </div>
     </div>
   </section>
 
+  <section class="inc" id="incluso">
+    <span class="lab">/incluso</span>
+    <h2>Il prodotto, da ogni lato.</h2>
+    <p class="lead">Un oggetto fermo in foto diventa una scena che si muove: luce, materiali, testi e prezzo, in 15 secondi.</p>
+    <ul class="feat">
+      <li><b>Il tuo prodotto in 3D</b><span>Fedele a forma, etichetta e colori.</span></li>
+      <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'acquisto.</span></li>
+      <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
+    </ul>
+  </section>
+
+  <!-- Formati: tre spot animati dal vivo in 3D, uno per schermo (src/scripts/motion-formats.ts, caricato solo quando serve).
+       Prodotti e marchi inventati. Senza WebGL restano sfondo e testi. -->
   <section class="fmt" id="formati">
     <span class="lab">/formati</span>
     <h2>Un video, ogni schermo.</h2>
-    <div class="fmt-grid">
-      {formats.map((f) => (
-        <figure class="fmt-c">
-          <div class="fmt-box" style={`aspect-ratio:${f.r}`}>
-            <img src="/motion/salmastro-led-poster.jpg" alt="" width="540" height="960" loading="lazy" decoding="async" />
-            <b>{f.t}</b>
+    <p class="lead">Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.</p>
+    <div class="scr-row">
+      <figure class="scr scr-916" data-spot="onda">
+        <div class="scr-dev" role="img" aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine">
+          <div class="scr-view">
+            <canvas></canvas>
+            <div class="st-top"><span class="st-bars"><i data-prog></i></span><span class="st-who"><i class="av"></i><b>onda</b><em>Sponsorizzato</em></span></div>
+            <div class="ad">
+              <b class="ad-brand" data-in=".12">ONDA</b>
+              <span class="ad-tag" data-in=".22">Agrumi frizzanti</span>
+              <span class="ad-price" data-in=".44">€1,90</span>
+              <span class="ad-cta" data-in=".58">Scopri di più</span>
+            </div>
           </div>
-          <figcaption>{f.d}</figcaption>
-        </figure>
-      ))}
+        </div>
+        <figcaption><b>{formats[0].t}</b><span>{formats[0].d}</span></figcaption>
+      </figure>
+      <figure class="scr scr-11" data-spot="neve">
+        <div class="scr-dev" role="img" aria-label="Post di esempio in 1:1: il vasetto NEVE con il tappo che si solleva">
+          <div class="fd-head"><i class="av"></i><b>neve.skin</b><em>Sponsorizzato</em></div>
+          <div class="scr-view">
+            <canvas></canvas>
+            <div class="ad">
+              <b class="ad-brand" data-in=".1">NEVE</b>
+              <span class="ad-tag" data-in=".2">Crema viso idratante</span>
+              <span class="ad-badge" data-in=".34">-20%</span>
+              <span class="ad-price" data-in=".46"><s>€24,90</s> €19,90</span>
+              <span class="ad-note" data-in=".52">Solo questa settimana</span>
+            </div>
+          </div>
+          <div class="fd-foot">
+            <svg viewBox="0 0 84 20" aria-hidden="true"><path d="M10 17s-8-4.6-8-10a4.3 4.3 0 0 1 8-2.2A4.3 4.3 0 0 1 18 7c0 5.4-8 10-8 10z" /><path d="M32 3.5a7 7 0 1 1-3.4 13.1L25 17.6l1-3.4A7 7 0 0 1 32 3.5z" /><path d="M48 3l14 7-14 7 2.6-7z" /></svg>
+            <span class="fd-cta">Acquista ora</span>
+          </div>
+        </div>
+        <figcaption><b>{formats[1].t}</b><span>{formats[1].d}</span></figcaption>
+      </figure>
+      <figure class="scr scr-169" data-spot="oro">
+        <div class="scr-dev" role="img" aria-label="Video di esempio in 16:9: la bottiglia d'olio ORO con una luce che scorre sul vetro">
+          <div class="scr-view">
+            <canvas></canvas>
+            <div class="ad">
+              <b class="ad-brand" data-in=".1">ORO</b>
+              <span class="ad-tag" data-in=".2">Olio extravergine d'oliva</span>
+              <span class="ad-price" data-in=".36">€12,90</span>
+              <span class="ad-ship" data-in=".46">Spedizione gratuita</span>
+              <span class="ad-btn" data-in=".56">Acquista</span>
+            </div>
+            <div class="pl-bar"><i class="pl-play"></i><span class="pl-line"><i data-prog></i></span><span class="pl-time">0:00 / 0:06</span></div>
+          </div>
+        </div>
+        <figcaption><b>{formats[2].t}</b><span>{formats[2].d}</span></figcaption>
+      </figure>
     </div>
+    <div class="scr-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <p class="note">Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.</p>
   </section>
 
+  <!-- Come: i tre passi su una timeline di montaggio; la testina la attraversa una volta quando entra nello schermo -->
   <section class="how" id="come">
     <span class="lab">/come</span>
     <h2>Tre passi, nessun set.</h2>
-    <ol class="steps">
-      {steps.map((s, i) => <li><span class="n">0{i + 1}</span><b>{s.t}</b><p>{s.d}</p></li>)}
-    </ol>
+    <div class="tl">
+      <div class="tl-ruler" aria-hidden="true"></div>
+      <ol class="tl-track">
+        {steps.map((s, i) => <li class="tl-clip"><span class="n">0{i + 1}</span><b>{s.t}</b><p>{s.d}</p></li>)}
+      </ol>
+      <span class="tl-head" aria-hidden="true"></span>
+      <p class="tl-end"><span>Consegna in 3-5 giorni</span></p>
+    </div>
   </section>
 
   <section class="faq-s" id="domande">
@@ -126,18 +194,141 @@ const ld = [
 </Site>
 
 <style is:global>
-  .top { padding-bottom: 24px; }
-  .reel { display: grid; gap: clamp(32px, 6vw, 80px); align-items: center; border-top: 1px solid rgba(255,255,255,.25); }
-  .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
-  .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; } .feat span { color: rgba(255,255,255,.8); }
-  .reel-col { justify-self: center; width: min(300px, 78vw); display: grid; }
-  .reel-ph { position: relative; width: 100%; }
-  .reel-bar { height: 3px; margin-top: 18px; border-radius: 2px; background: rgba(255,255,255,.25); overflow: hidden; }
+  :root { --stage: #070b1d; }
+  .inc, .fmt, .how, .faq-s, .more { border-top: 1px solid rgba(255,255,255,.25); }
+
+  /* apertura: testo a sinistra, monitor a destra; sul telefono titolo, monitor, poi dati e pulsante */
+  .hero { display: grid; gap: 28px clamp(32px, 5vw, 80px); grid-template-areas: "head" "mon" "foot"; padding-top: clamp(20px, 4vh, 48px) !important; }
+  .hero-head { grid-area: head; } .hero-foot { grid-area: foot; }
+  .hero .lead { max-width: 32rem; }
+  .facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .facts li { padding: 9px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); background: rgba(0,20,90,.35); font: 600 13px/1 var(--mono); letter-spacing: .04em; white-space: nowrap; }
+  .hero-foot .cta { margin-top: 26px; }
+  @media (min-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); grid-template-areas: "head mon" "foot mon"; align-items: center; min-height: calc(100svh - 110px); }
+    .hero-head { align-self: end; } .hero-foot { align-self: start; }
+  }
+
+  /* monitor: si stringe sulla larghezza del video, così la didascalia va a capo sotto di lui */
+  .mon { grid-area: mon; justify-self: center; width: min-content; margin: 0; display: grid; }
+  .mon-body { padding: 0 10px; border-radius: 22px; background: var(--stage); border: 1px solid rgba(255,255,255,.28); box-shadow: 0 40px 90px rgba(0,8,60,.55), 0 0 0 6px rgba(255,255,255,.05); }
+  .mon-top, .mon-bot { display: flex; align-items: center; gap: 10px; height: 36px; font: 500 11px/1 var(--mono); letter-spacing: .08em; color: rgba(255,255,255,.62); white-space: nowrap; }
+  .mon-res { margin-left: auto; }
+  .mon-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, box-shadow .3s; }
+  .mon.on .mon-dot { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+  .mon-scr { position: relative; }
+  .reel-v { display: block; height: min(58vh, 600px); min-height: 380px; aspect-ratio: 9 / 16; width: auto; max-width: calc(100vw - 2 * var(--gut) - 22px); object-fit: cover; border-radius: 12px; background: #000; }
+  .reel-play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border: 0; border-radius: 50%; background: var(--yellow); cursor: pointer; display: grid; place-items: center; }
+  .reel-play[hidden] { display: none; }
+  .reel-play span { width: 0; height: 0; margin-left: 6px; border: 13px solid transparent; border-left: 20px solid var(--blue); border-right: 0; }
+  .mon-tc { font-variant-numeric: tabular-nums; color: #fff; }
+  .reel-bar { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.2); overflow: hidden; }
   .reel-bar i { display: block; height: 100%; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s linear; }
-  .reel-replay { justify-self: center; margin-top: 6px; padding: 8px 6px; font: inherit; font-size: .9rem; font-weight: 600; color: #fff; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.4); transition: color .2s; }
+  .reel-replay { justify-self: center; margin-top: 10px; padding: 8px 6px; font: inherit; font-size: .9rem; font-weight: 600; color: #fff; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: rgba(255,255,255,.4); transition: color .2s; }
   .reel-replay:hover, .reel-replay:focus-visible { color: var(--yellow); }
-  .reel-cta { margin-top: 28px; }
-  .faq-s { border-top: 1px solid rgba(255,255,255,.25); }
+  .mon .note { margin-top: 4px; text-align: center; }
+
+  /* incluso: tre colonne numerate, senza riquadri */
+  .inc .feat { list-style: none; margin: 44px 0 0; padding: 0; display: grid; gap: 28px clamp(24px, 4vw, 56px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: f; }
+  .inc .feat li { counter-increment: f; display: grid; gap: 8px; align-content: start; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.4); }
+  .inc .feat li::before { content: '0' counter(f); font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
+  .inc .feat b { font-size: 1.4rem; letter-spacing: -.02em; line-height: 1.15; }
+  .inc .feat span { color: rgba(255,255,255,.82); line-height: 1.5; }
+
+  /* formati: tre schermi veri (storia, post, player) con uno spot 3D ciascuno; i testi scalano con lo schermo (cqw) */
+  .fmt .lead { max-width: 40rem; }
+  .scr-row { margin-top: 44px; display: grid; gap: 36px 28px; justify-items: center; }
+  @media (min-width: 760px) { .scr-row { grid-template-columns: auto auto; align-items: end; justify-content: center; } .scr-169 { grid-column: 1 / -1; } }
+  @media (min-width: 1240px) { .scr-row { grid-template-columns: auto auto minmax(0, 1fr); } .scr-169 { grid-column: auto; justify-self: stretch; } }
+  .scr { margin: 0; display: grid; gap: 14px; width: 100%; }
+  .scr-916 { width: min(260px, 74vw); } .scr-11 { width: min(330px, 88vw); } .scr-169 { max-width: 720px; }
+  .scr-dev { position: relative; overflow: hidden; border-radius: 18px; background: #0a0f24; box-shadow: 0 30px 70px rgba(0,8,60,.45); }
+  .scr-916 .scr-dev { border-radius: 32px; border: 6px solid #0a0f24; box-shadow: 0 0 0 1px rgba(255,255,255,.3), 0 30px 70px rgba(0,8,60,.45); }
+  .scr-11 .scr-dev { background: #fff; color: #14161f; }
+  .scr-view { position: relative; overflow: hidden; container-type: inline-size; }
+  .scr-916 .scr-view { aspect-ratio: 9 / 16; border-radius: 26px; background: radial-gradient(120% 80% at 50% 40%, #ffcf5a, #ff8a2a 48%, #d9431c); }
+  .scr-11 .scr-view { aspect-ratio: 1; background: radial-gradient(110% 90% at 62% 42%, #fff7f3, #f8d3d9 55%, #e9a9b9); }
+  .scr-169 .scr-view { aspect-ratio: 16 / 9; background: radial-gradient(90% 120% at 25% 50%, #2e4a1d, #17301a 55%, #0b1a0c); }
+  .scr-view canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+  .scr figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; font-size: .95rem; color: rgba(255,255,255,.88); }
+  .scr figcaption b { font: 700 14px/1 var(--mono); color: var(--yellow); }
+  .av { flex: none; display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: conic-gradient(#ffe000, #ff4d1a, #ffe000); }
+  .scr-11 .av { background: conic-gradient(#f3c3cd, #c9a24b, #f3c3cd); }
+  .scr-dev em { font-style: normal; opacity: .75; }
+  /* testi degli spot: entrano quando lo script aggiunge .in (senza WebGL restano visibili) */
+  .ad { position: absolute; inset: 0; pointer-events: none; }
+  .ad > * { position: absolute; opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+  .ad > .in, .nogl .ad > * { opacity: 1; transform: none; }
+  /* 9:16 storia */
+  .st-top { position: absolute; z-index: 1; top: 12px; left: 12px; right: 12px; display: grid; gap: 8px; color: #fff; font-size: 12px; }
+  .st-bars, .pl-line { display: block; height: 3px; border-radius: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
+  .st-bars i, .pl-line i { display: block; height: 100%; background: #fff; transform: scaleX(0); transform-origin: left; }
+  .st-who { display: flex; align-items: center; gap: 6px; }
+  .scr-916 .ad > * { left: 0; right: 0; margin: auto; width: max-content; color: #fff; text-align: center; }
+  .scr-916 .ad-brand { top: 14%; font-size: 19cqw; font-weight: 800; letter-spacing: -.04em; line-height: 1; text-shadow: 0 6px 24px rgba(150,40,0,.35); }
+  .scr-916 .ad-tag { top: calc(14% + 20cqw); font-size: 6cqw; font-weight: 600; }
+  .scr-916 .ad-price { bottom: 18%; padding: 2.4cqw 5cqw; border-radius: 999px; background: #fff; color: #d9431c; font-size: 8cqw; font-weight: 800; }
+  .scr-916 .ad-cta { bottom: 6%; padding: 2.6cqw 6cqw; border-radius: 999px; border: 2px solid #fff; font-size: 5.4cqw; font-weight: 700; }
+  /* 1:1 post nel feed */
+  .fd-head, .fd-foot { display: flex; align-items: center; gap: 8px; padding: 10px 12px; font-size: 13px; }
+  .fd-foot { justify-content: space-between; border-top: 1px solid #eceef3; }
+  .fd-foot svg { width: 84px; height: 20px; fill: none; stroke: #14161f; stroke-width: 1.8; stroke-linejoin: round; }
+  .fd-cta { font-weight: 700; color: var(--blue); }
+  .scr-11 .ad > * { left: 7%; color: #2a2440; }
+  .scr-11 .ad-brand { top: 8%; font-size: 13cqw; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .scr-11 .ad-tag { top: calc(8% + 15cqw); max-width: 42%; font-size: 4.4cqw; font-weight: 600; line-height: 1.25; }
+  .scr-11 .ad-badge { top: calc(8% + 27cqw); display: grid; place-items: center; width: 16cqw; height: 16cqw; border-radius: 50%; background: #e2456b; color: #fff; font-size: 5cqw; font-weight: 800; rotate: -10deg; }
+  .scr-11 .ad-price { bottom: 15%; font-size: 7cqw; font-weight: 800; }
+  .scr-11 .ad-price s { margin-right: .3em; font-size: .7em; font-weight: 500; color: rgba(42,36,64,.55); }
+  .scr-11 .ad-note { bottom: 7%; font-size: 3.8cqw; font-weight: 600; color: rgba(42,36,64,.72); }
+  /* 16:9 player */
+  .scr-169 .ad > * { left: 54%; color: #f3e6c4; }
+  .scr-169 .ad-brand { top: 15%; font-size: 9cqw; font-weight: 800; letter-spacing: .06em; line-height: 1; }
+  .scr-169 .ad-tag { top: calc(15% + 10.5cqw); font-size: 2.7cqw; font-weight: 600; }
+  .scr-169 .ad-price { top: calc(15% + 15.5cqw); font-size: 5.4cqw; font-weight: 800; color: #e3bf55; }
+  .scr-169 .ad-ship { top: calc(15% + 22.5cqw); font-size: 2.3cqw; font-weight: 600; color: rgba(243,230,196,.8); }
+  .scr-169 .ad-btn { top: calc(15% + 27.5cqw); padding: 1.2cqw 3cqw; border-radius: 999px; background: #e3bf55; color: #13240e; font-size: 2.4cqw; font-weight: 800; }
+  .pl-bar { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 10px; padding: 18px 14px 10px; background: linear-gradient(transparent, rgba(0,0,0,.55)); color: #fff; font: 500 11px/1 var(--mono); }
+  .pl-play { flex: none; width: 0; height: 0; border: 6px solid transparent; border-left: 10px solid #fff; border-right: 0; }
+  .pl-line { flex: 1; }
+  .pl-line i { background: #e3bf55; }
+  .scr-dots { display: none; }
+  .scr-dots i { width: 8px; height: 8px; border-radius: 4px; background: rgba(255,255,255,.35); transition: width .25s, background .25s; }
+  .scr-dots i.on { width: 22px; background: var(--yellow); }
+  /* telefono: i tre schermi diventano un carosello orizzontale (si intravede il successivo) con i pallini sotto;
+     gira solo lo spot visibile, gli altri restano fermi finché non ci arrivi */
+  @media (max-width: 759px) {
+    .scr-row { display: flex; align-items: flex-end; gap: 16px; margin: 32px calc(-1 * var(--gut)) 0; padding: 0 var(--gut) 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--gut); overscroll-behavior-x: contain; scrollbar-width: none; }
+    .scr-row::-webkit-scrollbar { display: none; }
+    .scr { flex: none; scroll-snap-align: center; }
+    .scr-916 { width: 62vw; } .scr-11 { width: 80vw; } .scr-169 { width: 86vw; }
+    .scr-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+  }
+
+  /* come: timeline di montaggio con righello, tre clip e la testina */
+  .tl { position: relative; margin-top: 44px; }
+  .tl-ruler { height: 16px; border-bottom: 1px solid rgba(255,255,255,.4);
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 1px, transparent 1px 96px) left bottom / 100% 14px no-repeat,
+                repeating-linear-gradient(90deg, rgba(255,255,255,.3) 0 1px, transparent 1px 24px) left bottom / 100% 7px no-repeat; }
+  .tl-track { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .tl-clip { display: grid; align-content: start; gap: 10px; padding: 18px 20px 22px; border-radius: 12px; border: 1px solid rgba(255,255,255,.28); border-top: 4px solid var(--yellow); background: rgba(0,20,90,.6); }
+  .tl-clip:nth-child(2) { border-top-color: #fff; }
+  .tl-clip:nth-child(3) { border-top-color: #8fb0ff; }
+  .tl-clip .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
+  .tl-clip b { font-size: 1.25rem; letter-spacing: -.02em; }
+  .tl-clip p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
+  .tl-head { position: absolute; top: 0; bottom: 34px; left: 0; width: 2px; background: var(--yellow); box-shadow: 0 0 12px var(--yellow); opacity: 0; pointer-events: none; }
+  .tl-head::before { content: ''; position: absolute; top: -2px; left: -6px; border: 7px solid transparent; border-top: 9px solid var(--yellow); }
+  .tl.in .tl-head { animation: tl-play 3.2s cubic-bezier(.45,0,.2,1) .3s forwards; }
+  @keyframes tl-play { 0% { left: 0; opacity: 1; } 92% { opacity: 1; } 100% { left: calc(100% - 2px); opacity: 0; } }
+  .tl-end { display: flex; justify-content: flex-end; margin: 16px 0 0; }
+  .tl-end span { padding: 8px 14px; border-radius: 999px; background: var(--yellow); color: var(--blue); font: 700 13px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  @media (max-width: 760px) {
+    .tl-track { grid-template-columns: 1fr; }
+    .tl-ruler, .tl-head { display: none; }
+    .tl-end { justify-content: flex-start; }
+  }
+
   .faq-l { margin-top: 32px; max-width: 46rem; display: grid; }
   .faq-i { border-bottom: 1px solid rgba(255,255,255,.2); }
   .faq-i summary { position: relative; cursor: pointer; list-style: none; padding: 18px 44px 18px 0; font-weight: 600; font-size: 1.1rem; letter-spacing: -.01em; line-height: 1.3; }
@@ -147,34 +338,17 @@ const ld = [
   .faq-i summary:hover { color: var(--yellow); }
   .faq-i summary:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
   .faq-i p { margin: 0 0 18px; max-width: 40rem; color: rgba(255,255,255,.85); line-height: 1.5; }
-  @media (prefers-reduced-motion: reduce) { .reel-bar i { transition: none; } }
-  .reel-v { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 34px; background: #0a0f24; object-fit: cover; }
-  .reel-play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border: 0; border-radius: 50%; background: var(--yellow); cursor: pointer; display: grid; place-items: center; }
-  .reel-play[hidden] { display: none; }
-  .reel-play span { width: 0; height: 0; margin-left: 6px; border: 13px solid transparent; border-left: 20px solid var(--blue); border-right: 0; }
-  .fmt, .how { border-top: 1px solid rgba(255,255,255,.25); }
-  .fmt-grid { display: grid; gap: 24px; margin-top: 40px; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; max-width: 56rem; }
-  .fmt-c { margin: 0; display: grid; gap: 12px; }
-  /* stesso video, riquadrato per ogni formato: il poster riempie il riquadro e l'etichetta sta in basso */
-  .fmt-box { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.45); border-radius: 16px; background: #0a0f24; }
-  .fmt-box img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; }
-  .fmt-box b { position: absolute; left: 10px; bottom: 10px; padding: 6px 10px; border-radius: 999px; background: rgba(0,20,90,.85); font: 700 clamp(.8rem, 1.6vw, 1rem)/1 var(--mono); color: var(--yellow); }
-  .more { border-top: 1px solid rgba(255,255,255,.25); }
   .more-l { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
-  .fmt-c figcaption { font-size: .95rem; color: rgba(255,255,255,.85); line-height: 1.35; }
-  .steps { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
-  .steps li { display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); }
-  .steps .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }
-  .steps b { font-size: 1.25rem; letter-spacing: -.02em; } .steps p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
   .cta-s .lead { margin-top: 22px; }
-  @media (max-width: 600px) { .fmt-grid { gap: 12px; } .fmt-c figcaption { font-size: .8rem; } .fmt-box b { left: 6px; bottom: 6px; padding: 4px 7px; } }
-  @media (min-width: 1024px) { .reel { grid-template-columns: 1.1fr .9fr; } }
+
+  @media (prefers-reduced-motion: reduce) { .reel-bar i, .ad > * { transition: none; } .tl-head { display: none; } }
 </style>
 
 <script>
-  // Al caricamento c'è solo il poster: il video si scarica quando sta per entrare nello schermo,
-  // parte quando è visibile e si ferma quando esce; con "riduci animazioni" parte solo a richiesta.
+  // ---- video nel monitor ----
+  // Al caricamento c'è solo il poster: il video si scarica quando sta per entrare nello schermo.
   const v = document.querySelector<HTMLVideoElement>('.reel-v')!;
+  const mon = document.querySelector<HTMLElement>('.mon')!;
   v.defaultPlaybackRate = v.playbackRate = 1.35; // più veloce del render originale
   const load = () => { if (!v.src) { v.src = v.dataset.src!; v.preload = 'auto'; } };
   new IntersectionObserver(([e], o) => { if (e.isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(v);
@@ -183,10 +357,11 @@ const ld = [
   const showBtn = () => { btn.hidden = false; };
   // un play interrotto dallo scroll (pause) non è un errore: il pulsante serve solo se il browser blocca davvero la riproduzione
   const failed = (e: Error) => { if (e.name !== 'AbortError') showBtn(); };
-  v.addEventListener('playing', () => { btn.hidden = true; });
+  v.addEventListener('playing', () => { btn.hidden = true; mon.classList.add('on'); });
+  v.addEventListener('pause', () => mon.classList.remove('on'));
   btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(failed); });
-  // Parte quando il video è per metà nello schermo e riparte sempre da capo. Prima partiva appena ne entrava un pixel:
-  // arrivando dall'alto lo si trovava già a metà. Uscito del tutto dallo schermo va in pausa e al prossimo ingresso ricomincia.
+  // Parte quando il video è per metà nello schermo e riparte sempre da capo (prima partiva appena ne entrava un pixel
+  // e lo si trovava già a metà). Uscito del tutto dallo schermo va in pausa e al prossimo ingresso ricomincia.
   let away = true, shown = false;
   const rewind = () => { if (v.currentTime > 0) v.currentTime = 0; };
   if (still) showBtn();
@@ -202,8 +377,34 @@ const ld = [
     // col tasto "Indietro" il browser può rimettere la pagina com'era (con il video a metà): anche così da capo
     addEventListener('pageshow', (e) => { if (e.persisted && shown) { rewind(); v.play().catch(failed); } });
   }
-  // barra di avanzamento sotto il video e "Rivedi dall'inizio" (utile anche con "riduci animazioni", dove il video parte solo a richiesta)
+  // timecode e barra del monitor; "Rivedi dall'inizio" serve anche con "riduci animazioni", dove il video parte solo a richiesta
   const bar = document.querySelector<HTMLElement>('.reel-bar i')!;
-  v.addEventListener('timeupdate', () => { bar.style.transform = `scaleX(${v.duration ? v.currentTime / v.duration : 0})`; });
+  const tc = document.querySelector<HTMLElement>('.mon-tc')!;
+  const mmss = (s: number) => `00:${String(Math.floor(s)).padStart(2, '0')}`;
+  v.addEventListener('timeupdate', () => {
+    const d = v.duration || 15;
+    bar.style.transform = `scaleX(${v.currentTime / d})`;
+    tc.textContent = `${mmss(v.currentTime)} / ${mmss(d)}`;
+  });
   document.querySelector('.reel-replay')!.addEventListener('click', () => { load(); rewind(); btn.hidden = true; v.play().catch(failed); });
+
+  // ---- formati: i tre spot 3D (three.js) si scaricano solo quando la sezione sta per entrare nello schermo ----
+  const fmtSec = document.querySelector<HTMLElement>('#formati')!;
+  new IntersectionObserver(([e], o) => {
+    if (!e.isIntersecting) return;
+    o.disconnect();
+    import('../scripts/motion-formats').then((m) => m.mountFormats(fmtSec)).catch(() => fmtSec.querySelectorAll('.scr').forEach((x) => x.classList.add('nogl')));
+  }, { rootMargin: '800px 0px' }).observe(fmtSec);
+  // pallini del carosello (visibili solo su telefono): si accende quello dello schermo centrato
+  const scrRow = fmtSec.querySelector<HTMLElement>('.scr-row')!;
+  const scrs = [...scrRow.querySelectorAll<HTMLElement>('.scr')];
+  const dots = [...fmtSec.querySelectorAll<HTMLElement>('.scr-dots i')];
+  const dotIo = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) dots.forEach((d, i) => d.classList.toggle('on', scrs[i] === e.target));
+  }), { root: scrRow, threshold: 0.6 });
+  scrs.forEach((x) => dotIo.observe(x));
+
+  // ---- come: la testina attraversa la timeline una volta ----
+  const tl = document.querySelector<HTMLElement>('.tl')!;
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { tl.classList.add('in'); o.disconnect(); } }, { threshold: .4 }).observe(tl);
 </script>
