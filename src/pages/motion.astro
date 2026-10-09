@@ -15,11 +15,9 @@ const steps = [
   { t: 'Lo portiamo in 3D', d: 'Modelliamo il prodotto e animiamo testi, prezzo, offerta e invito all\'acquisto.' },
   { t: 'Ricevi il video', d: 'In 3-5 giorni, nei formati che ti servono. Lo rivediamo insieme prima della consegna.' },
 ];
-// Dati strutturati: il servizio e il video di esempio (il video si scarica solo quando entra nello schermo, quindi Google lo trova da qui)
+// Dati strutturati: il servizio e le domande frequenti
 const NAME = 'Video 3D per prodotti';
 const LEAD = 'Video 3D dei tuoi prodotti, pronti per reel, storie e sponsorizzate. Consegna in 3-5 giorni.';
-const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
-const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
 const abs = (p: string) => new URL(p, 'https://puntoduestudio.it').href;
 const studio = { '@type': 'Organization', '@id': 'https://puntoduestudio.it/#studio', name: 'Punto Due Studio', url: 'https://puntoduestudio.it/' };
 // Solo fatti già scritti in questa pagina. Le stesse domande vanno nella sezione visibile e nei dati strutturati (FAQPage).
@@ -33,30 +31,36 @@ const faq = [
 ];
 const ld = [
   { '@context': 'https://schema.org', '@type': 'Service', name: NAME, serviceType: NAME, description: LEAD, url: abs(Astro.url.pathname), provider: studio, areaServed: [{ '@type': 'Country', name: 'Italy' }, 'Worldwide'] },
-  { '@context': 'https://schema.org', '@type': 'VideoObject', name: VIDEO_NAME, description: VIDEO_DESC, thumbnailUrl: abs(POSTER), contentUrl: abs('/motion/salmastro-led.mp4'), uploadDate: '2026-10-04', duration: 'PT15S', publisher: studio },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
 ];
 ---
 <Site title="Video 3D per prodotti — Punto Due Studio" description="Video 3D dei prodotti per reel, storie e sponsorizzate: testi e offerta animati, formati 9:16, 1:1 e 16:9, consegna in 3-5 giorni. Preventivo gratuito." active="motion">
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 
-  <!-- Apertura: il video è la prima cosa che si vede, in un monitor da sala di montaggio -->
+  <!-- Apertura: la prima cosa che si vede è uno spot 3D dal vivo (src/scripts/motion-spots.ts) in un monitor da sala di montaggio.
+       Finché il 3D carica si vede il poster dello stesso profumo. -->
   <section class="hero">
     <div class="hero-head">
       <span class="lab">/motion</span>
       <h1>Premi play.</h1>
       <p class="lead">{LEAD}</p>
     </div>
-    <figure class="mon">
+    <figure class="mon" data-spot="salmastro" style={`--poster:url(${POSTER})`}>
       <div class="mon-body">
-        <div class="mon-top" aria-hidden="true"><span class="mon-dot"></span><span>SALMASTRO_LED.mp4</span><span class="mon-res">1080×1920</span></div>
-        <div class="mon-scr">
-          <video class="reel-v" data-src="/motion/salmastro-led.mp4" poster={POSTER} muted loop playsinline preload="none" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"></video>
-          <button type="button" class="reel-play" aria-label="Riproduci il video" hidden><span aria-hidden="true"></span></button>
+        <div class="mon-top" aria-hidden="true"><span class="mon-dot"></span><span>SALMASTRO_3D</span><span class="mon-res">9:16 · LIVE</span></div>
+        <div class="mon-scr" role="img" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio">
+          <canvas></canvas>
+          <div class="ad">
+            <b class="ad-brand" data-in=".5">SALMASTRO</b>
+            <span class="ad-tag" data-in=".55">Eau de parfum</span>
+            <span class="ad-price" data-in=".62">€59</span>
+            <span class="ad-ship" data-in=".68">Spedizione gratuita</span>
+            <span class="ad-btn" data-in=".76">Acquista</span>
+          </div>
         </div>
-        <div class="mon-bot" aria-hidden="true"><span class="mon-tc">00:00 / 00:15</span><span class="reel-bar"><i></i></span></div>
+        <div class="mon-bot" aria-hidden="true"><span class="mon-tc" data-time="long">00:00 / 00:08</span><span class="reel-bar"><i data-prog></i></span></div>
       </div>
-      <button type="button" class="reel-replay">Rivedi dall'inizio</button>
+      <button type="button" class="reel-replay" data-restart>Rivedi dall'inizio</button>
       <figcaption class="note">Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.</figcaption>
     </figure>
     <div class="hero-foot">
@@ -84,7 +88,7 @@ const ld = [
     </ul>
   </section>
 
-  <!-- Formati: tre spot animati dal vivo in 3D, uno per schermo (src/scripts/motion-formats.ts, caricato solo quando serve).
+  <!-- Formati: tre spot animati dal vivo in 3D, uno per schermo (src/scripts/motion-spots.ts, caricato solo quando serve).
        Prodotti e marchi inventati. Senza WebGL restano sfondo e testi. -->
   <section class="fmt" id="formati">
     <span class="lab">/formati</span>
@@ -137,7 +141,7 @@ const ld = [
               <span class="ad-ship" data-in=".46">Spedizione gratuita</span>
               <span class="ad-btn" data-in=".56">Acquista</span>
             </div>
-            <div class="pl-bar"><i class="pl-play"></i><span class="pl-line"><i data-prog></i></span><span class="pl-time">0:00 / 0:06</span></div>
+            <div class="pl-bar"><i class="pl-play"></i><span class="pl-line"><i data-prog></i></span><span class="pl-time" data-time>0:00 / 0:06</span></div>
           </div>
         </div>
         <figcaption><b>{formats[2].t}</b><span>{formats[2].d}</span></figcaption>
@@ -216,11 +220,18 @@ const ld = [
   .mon-res { margin-left: auto; }
   .mon-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, box-shadow .3s; }
   .mon.on .mon-dot { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
-  .mon-scr { position: relative; }
-  .reel-v { display: block; height: min(58vh, 600px); min-height: 380px; aspect-ratio: 9 / 16; width: auto; max-width: calc(100vw - 2 * var(--gut) - 22px); object-fit: cover; border-radius: 12px; background: #000; }
-  .reel-play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border: 0; border-radius: 50%; background: var(--yellow); cursor: pointer; display: grid; place-items: center; }
-  .reel-play[hidden] { display: none; }
-  .reel-play span { width: 0; height: 0; margin-left: 6px; border: 13px solid transparent; border-left: 20px solid var(--blue); border-right: 0; }
+  .mon-scr { position: relative; overflow: hidden; height: min(58vh, 600px); min-height: 380px; aspect-ratio: 9 / 16; max-width: calc(100vw - 2 * var(--gut) - 22px); border-radius: 12px; background: #03060d var(--poster) center / cover; container-type: inline-size; }
+  .mon-scr canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; }
+  .mon.ready .mon-scr canvas { opacity: 1; }
+  /* sfumatura scura in alto e in basso: i testi restano leggibili sopra il muro LED */
+  .mon-scr::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(rgba(3,6,13,.7), transparent 26%, transparent 62%, rgba(3,6,13,.85)); }
+  .mon .ad { z-index: 1; }
+  .mon .ad > * { left: 0; right: 0; margin: auto; width: max-content; text-align: center; }
+  .mon .ad-brand { top: 7%; color: #f2fffd; font-size: 10cqw; font-weight: 800; letter-spacing: .16em; text-shadow: 0 0 24px rgba(41,227,209,.55); }
+  .mon .ad-tag { top: calc(7% + 13cqw); color: #7ff5e8; font-size: 4.2cqw; font-weight: 600; letter-spacing: .34em; text-transform: uppercase; }
+  .mon .ad-price { bottom: 20%; color: #ffd98a; font-size: 14cqw; font-weight: 800; letter-spacing: -.02em; text-shadow: 0 0 28px rgba(255,198,107,.5); }
+  .mon .ad-ship { bottom: calc(20% - 7cqw); color: rgba(242,255,253,.82); font-size: 4.2cqw; font-weight: 600; }
+  .mon .ad-btn { bottom: 5%; padding: 2.6cqw 8cqw; border-radius: 999px; background: linear-gradient(135deg, #7ff5e8, #29e3d1); color: #032520; font-size: 4.6cqw; font-weight: 800; box-shadow: 0 0 30px rgba(41,227,209,.45); }
   .mon-tc { font-variant-numeric: tabular-nums; color: #fff; }
   .reel-bar { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.2); overflow: hidden; }
   .reel-bar i { display: block; height: 100%; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s linear; }
@@ -345,55 +356,17 @@ const ld = [
 </style>
 
 <script>
-  // ---- video nel monitor ----
-  // Al caricamento c'è solo il poster: il video si scarica quando sta per entrare nello schermo.
-  const v = document.querySelector<HTMLVideoElement>('.reel-v')!;
+  // ---- spot 3D (three.js): l'apertura parte subito, i tre formati si scaricano solo quando la sezione si avvicina ----
+  const spots = () => import('../scripts/motion-spots');
   const mon = document.querySelector<HTMLElement>('.mon')!;
-  v.defaultPlaybackRate = v.playbackRate = 1.35; // più veloce del render originale
-  const load = () => { if (!v.src) { v.src = v.dataset.src!; v.preload = 'auto'; } };
-  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { load(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(v);
-  const btn = document.querySelector<HTMLButtonElement>('.reel-play')!;
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const showBtn = () => { btn.hidden = false; };
-  // un play interrotto dallo scroll (pause) non è un errore: il pulsante serve solo se il browser blocca davvero la riproduzione
-  const failed = (e: Error) => { if (e.name !== 'AbortError') showBtn(); };
-  v.addEventListener('playing', () => { btn.hidden = true; mon.classList.add('on'); });
-  v.addEventListener('pause', () => mon.classList.remove('on'));
-  btn.addEventListener('click', () => { load(); btn.hidden = true; v.controls = true; v.play().catch(failed); });
-  // Parte quando il video è per metà nello schermo e riparte sempre da capo (prima partiva appena ne entrava un pixel
-  // e lo si trovava già a metà). Uscito del tutto dallo schermo va in pausa e al prossimo ingresso ricomincia.
-  let away = true, shown = false;
-  const rewind = () => { if (v.currentTime > 0) v.currentTime = 0; };
-  if (still) showBtn();
-  else {
-    new IntersectionObserver((entries) => {
-      const e = entries[entries.length - 1];
-      if (!e.isIntersecting) { v.pause(); away = true; shown = false; return; }
-      if (e.intersectionRatio < .5) return;
-      shown = true;
-      if (away) { rewind(); away = false; }
-      v.play().catch(failed);
-    }, { threshold: [0, .5] }).observe(v);
-    // col tasto "Indietro" il browser può rimettere la pagina com'era (con il video a metà): anche così da capo
-    addEventListener('pageshow', (e) => { if (e.persisted && shown) { rewind(); v.play().catch(failed); } });
-  }
-  // timecode e barra del monitor; "Rivedi dall'inizio" serve anche con "riduci animazioni", dove il video parte solo a richiesta
-  const bar = document.querySelector<HTMLElement>('.reel-bar i')!;
-  const tc = document.querySelector<HTMLElement>('.mon-tc')!;
-  const mmss = (s: number) => `00:${String(Math.floor(s)).padStart(2, '0')}`;
-  v.addEventListener('timeupdate', () => {
-    const d = v.duration || 15;
-    bar.style.transform = `scaleX(${v.currentTime / d})`;
-    tc.textContent = `${mmss(v.currentTime)} / ${mmss(d)}`;
-  });
-  document.querySelector('.reel-replay')!.addEventListener('click', () => { load(); rewind(); btn.hidden = true; v.play().catch(failed); });
+  spots().then((m) => m.mountSpots(mon)).catch(() => mon.classList.add('nogl'));
 
-  // ---- formati: i tre spot 3D (three.js) si scaricano solo quando la sezione sta per entrare nello schermo ----
+  // ---- formati ----
   const fmtSec = document.querySelector<HTMLElement>('#formati')!;
   new IntersectionObserver(([e], o) => {
     if (!e.isIntersecting) return;
     o.disconnect();
-    import('../scripts/motion-formats').then((m) => m.mountFormats(fmtSec)).catch(() => fmtSec.querySelectorAll('.scr').forEach((x) => x.classList.add('nogl')));
+    spots().then((m) => m.mountSpots(fmtSec)).catch(() => fmtSec.querySelectorAll('.scr').forEach((x) => x.classList.add('nogl')));
   }, { rootMargin: '800px 0px' }).observe(fmtSec);
   // pallini del carosello (visibili solo su telefono): si accende quello dello schermo centrato
   const scrRow = fmtSec.querySelector<HTMLElement>('.scr-row')!;

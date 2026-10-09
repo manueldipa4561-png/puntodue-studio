@@ -738,18 +738,12 @@ it: Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare i
 de: Im Video: SALMASTRO, ein Parfum mit einer von uns erfundenen Marke, um den Service zu zeigen. Preis und Aktionsangebot sind Beispiele.
 it: aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"
 de: aria-label="3D-Beispielvideo: das Parfum SALMASTRO auf einer LED-Werbetafel, eine von Punto Due Studio erfundene Marke"
-it: aria-label="Riproduci il video"
-de: aria-label="Video abspielen"
 it: <h2>Un video, ogni schermo.</h2>
 de: <h2>Ein Video, jeder Bildschirm.</h2>
 it: <h2>Tre passi, nessun set.</h2>
 de: <h2>Drei Schritte, kein Filmset.</h2>
 it: const NAME = 'Video 3D per prodotti';
 de: const NAME = '3D-Videos für Produkte';
-it: const VIDEO_NAME = 'SALMASTRO: video 3D di esempio su un cartellone LED';
-de: const VIDEO_NAME = 'SALMASTRO: 3D-Beispielvideo auf einer LED-Werbetafel';
-it: const VIDEO_DESC = 'Un profumo con marchio inventato da Punto Due Studio, animato in 3D su un cartellone LED: un esempio del servizio.';
-de: const VIDEO_DESC = 'Ein Parfüm mit einer von Punto Due Studio erfundenen Marke, in 3D auf einer LED-Werbetafel animiert: ein Beispiel für die Leistung.';
 it: >Siti web</a>
 de: >Websites</a>
 it: >E-commerce</a>
@@ -1089,3 +1083,5 @@ it: >Acquista</span>
 de: >Kaufen</span>
 it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
 de: Produkte, Marken und Preise sind Beispiele: Wir haben sie erfunden, um die Formate zu zeigen.
+it: >€59</span>
+de: >59 €</span>
