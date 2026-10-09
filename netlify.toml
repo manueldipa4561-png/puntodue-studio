@@ -20,6 +20,29 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# TEMPORANEO, da togliere dopo il 16 ottobre 2026: fa svuotare ai browser la cache di questo sito, così chi aveva in
+# memoria la vecchia /motion/ (rimasta in cache 7 giorni per errore, fino al 9 ottobre) vede subito la versione nuova
+# appena apre la home o quando Chrome ricontrolla il manifest. Solo su risposte che vengono sempre ricontrollate, mai sui file.
+[[headers]]
+  for = "/"
+  [headers.values]
+    Clear-Site-Data = '"cache"'
+
+[[headers]]
+  for = "/en/"
+  [headers.values]
+    Clear-Site-Data = '"cache"'
+
+[[headers]]
+  for = "/de/"
+  [headers.values]
+    Clear-Site-Data = '"cache"'
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Clear-Site-Data = '"cache"'
+
 # Anteprime e immagini KERN: file pesanti che non cambiano spesso. Una settimana, non un anno:
 # non hanno l'hash nel nome, quindi se ne sostituisci uno con lo stesso nome i visitatori lo vedono entro 7 giorni
 # (per aggiornarlo subito, dagli un nome nuovo).
