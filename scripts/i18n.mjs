@@ -49,7 +49,8 @@ for (const loc of LOCALES) {
   }
   for (const p of PAGES) {
     let s = translate(links(readFileSync(`src/pages/${p}.astro`, 'utf8')));
-    s = s.replace(/from '\.\.\/components\//g, `from '../../components/${loc}/`).replace(/from '\.\.\/layouts\//g, "from '../../layouts/");
+    s = s.replace(/from '\.\.\/components\//g, `from '../../components/${loc}/`).replace(/from '\.\.\/layouts\//g, "from '../../layouts/")
+      .replace(/import\('\.\.\/scripts\//g, "import('../../scripts/"); // es. gli spot 3D di /motion, caricati solo quando servono
     writeFileSync(`src/pages/${loc}/${p}.astro`, stamp(s));
   }
 
