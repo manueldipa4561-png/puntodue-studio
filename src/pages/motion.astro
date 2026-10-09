@@ -4,7 +4,6 @@ import Chat from '../components/Chat.astro';
 // Servizio video 3D per prodotti. Il video in /motion/ deve essere un progetto con marchio
 // inventato o di un cliente che ha dato il permesso: mai marchi altrui senza autorizzazione.
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Vorrei un video 3D per un prodotto.')}`;
-const POSTER = '/motion/salmastro-led-poster.jpg';
 const formats = [
   { r: '9 / 16', t: '9:16', d: 'Reel, storie e TikTok' },
   { r: '1 / 1', t: '1:1', d: 'Post nel feed e caroselli' },
@@ -38,14 +37,14 @@ const ld = [
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 
   <!-- Apertura: la prima cosa che si vede è uno spot 3D dal vivo (src/scripts/motion-spots.ts) in un monitor da sala di montaggio.
-       Finché il 3D carica si vede il poster dello stesso profumo. -->
+       Finché il 3D carica si vede già il muro LED (solo CSS) percorso da una riga di luce. -->
   <section class="hero">
     <div class="hero-head">
       <span class="lab">/motion</span>
       <h1>Premi play.</h1>
       <p class="lead">{LEAD}</p>
     </div>
-    <figure class="mon" data-spot="salmastro" style={`--poster:url(${POSTER})`}>
+    <figure class="mon" data-spot="salmastro">
       <div class="mon-body">
         <div class="mon-top" aria-hidden="true"><span class="mon-dot"></span><span>SALMASTRO_3D</span><span class="mon-res">9:16 · LIVE</span></div>
         <div class="mon-scr" role="img" aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio">
@@ -220,7 +219,11 @@ const ld = [
   .mon-res { margin-left: auto; }
   .mon-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, box-shadow .3s; }
   .mon.on .mon-dot { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
-  .mon-scr { position: relative; overflow: hidden; height: min(58vh, 600px); min-height: 380px; aspect-ratio: 9 / 16; max-width: calc(100vw - 2 * var(--gut) - 22px); border-radius: 12px; background: #03060d var(--poster) center / cover; container-type: inline-size; }
+  .mon-scr { position: relative; overflow: hidden; height: min(58vh, 600px); min-height: 380px; aspect-ratio: 9 / 16; max-width: calc(100vw - 2 * var(--gut) - 22px); border-radius: 12px; background: radial-gradient(circle, rgba(41,227,209,.16) 0 1.1px, transparent 1.6px) 50% 50% / 6px 6px, #03060d; container-type: inline-size; }
+  /* finché il 3D carica: il muro LED è già acceso e una riga di luce lo percorre (sparisce quando la scena è pronta) */
+  .mon-scr::before { content: ''; position: absolute; left: 0; right: 0; top: -20%; height: 20%; background: linear-gradient(transparent, rgba(41,227,209,.3), transparent); animation: mon-scan 1.6s linear infinite; }
+  .mon.ready .mon-scr::before { display: none; }
+  @keyframes mon-scan { to { transform: translateY(600%); } }
   .mon-scr canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; }
   .mon.ready .mon-scr canvas { opacity: 1; }
   /* sfumatura scura in alto e in basso: i testi restano leggibili sopra il muro LED */
@@ -352,7 +355,7 @@ const ld = [
   .more-l { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 28px; }
   .cta-s .lead { margin-top: 22px; }
 
-  @media (prefers-reduced-motion: reduce) { .reel-bar i, .ad > * { transition: none; } .tl-head { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .mon-scr::before { display: none; } .reel-bar i, .ad > * { transition: none; } .tl-head { display: none; } }
 </style>
 
 <script>
