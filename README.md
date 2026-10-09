@@ -39,7 +39,7 @@ Nei file `.txt` le righe vanno a coppie: `it: <testo italiano esatto>` seguita d
 ## Pubblicazione
 
 Netlify pubblica `main` da solo: non serve (e non va) toccare Netlify. Si lavora con branch e PR; il merge su `main` mette online.
-`netlify.toml` contiene gli header di sicurezza e la cache: `/_astro/*` un anno (hanno l'hash nel nome); `/motion`, `/previews`, `/kern` una settimana. Se sostituisci uno di questi file, dagli un nome nuovo per vederlo subito.
+`netlify.toml` contiene gli header di sicurezza e la cache: `/_astro/*` un anno (hanno l'hash nel nome); `/previews`, `/kern` una settimana. Se sostituisci uno di questi file, dagli un nome nuovo per vederlo subito. Mai una regola di cache su un percorso che è anche una pagina (es. `/motion/*` teneva in cache la pagina `/motion/` per 7 giorni).
 
 ## Da non cancellare
 
