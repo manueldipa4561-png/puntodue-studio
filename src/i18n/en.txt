@@ -34,8 +34,6 @@ it: >Accendi tutto<
 en: >Turn all on<
 
 # ---------- home ----------
-it: <span class="langs"><a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a><a class="lang pre" href="/de/" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
-en: <span class="langs"><a class="lang pre" href="/" hreflang="it" lang="it" aria-label="Versione italiana">IT</a><a class="lang pre" href="/de/" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
 it: <html lang="it">
 en: <html lang="en">
 it: <link rel="canonical" href="https://puntoduestudio.it/" />
@@ -46,8 +44,8 @@ it: Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI.
 en: Digital agency for websites, e-commerce, apps, social media management and AI agents. We work with businesses and professionals in Italy and internationally.
 it: Siti, app, social e agenti AI per la tua attività.
 en: Websites, apps, social media and AI agents for your business.
-it: Parliamone →
-en: Let’s talk →
+it: Parliamone
+en: Let’s talk
 it: 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?'
 en: 'Hi! I’d like to talk to you about a project. When could we speak?'
 it: subject=Nuovo%20progetto
@@ -506,20 +504,26 @@ it: Profili d'esempio costruiti con le immagini e i loghi delle nostre demo (SEZ
 en: Sample profiles built with images and logos from our demos (SEZIONE, BRACE, INNESTO): they are not real clients. The numbers are the same before and after because we are showing the work, not promising results.
 
 # ---------- componente Automazione ----------
-it: { t: 'Post programmati', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
-en: { t: 'Scheduled posts', d: 'The month’s plan is loaded: posts go out on their own, at the right time.', bot: 'Posting today’s reel at 7:30 pm.' }
-it: { t: 'Risposte ai messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' }
-en: { t: 'Message replies', d: 'Anyone asking “are you open?” instantly gets your hours and a booking link.', bot: 'Replying: open until 11 pm, here’s the booking link.' }
-it: { t: 'WhatsApp e prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' }
-en: { t: 'WhatsApp and bookings', d: 'The request arrives on WhatsApp, with automatic confirmation and reminders.', bot: 'Table for 4 confirmed. Reminder tomorrow at 6 pm.' }
-it: { t: 'Report mensile', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' }
-en: { t: 'Monthly report', d: 'At the end of the month you get the numbers that matter, without having to ask.', bot: 'Report sent: this month’s posts, messages and bookings.' }
+it: { t: 'Post programmati', a: 'Agente post', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
+en: { t: 'Scheduled posts', a: 'Post agent', d: 'The month’s plan is loaded: posts go out on their own, at the right time.', bot: 'Posting today’s reel at 7:30 pm.' }
+it: { t: 'Risposte ai messaggi', a: 'Agente messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' }
+en: { t: 'Message replies', a: 'Messages agent', d: 'Anyone asking “are you open?” instantly gets your hours and a booking link.', bot: 'Replying: open until 11 pm, here’s the booking link.' }
+it: { t: 'WhatsApp e prenotazioni', a: 'Agente prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' }
+en: { t: 'WhatsApp and bookings', a: 'Bookings agent', d: 'The request arrives on WhatsApp, with automatic confirmation and reminders.', bot: 'Table for 4 confirmed. Reminder tomorrow at 6 pm.' }
+it: { t: 'Report mensile', a: 'Agente report', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' }
+en: { t: 'Monthly report', a: 'Report agent', d: 'At the end of the month you get the numbers that matter, without having to ask.', bot: 'Report sent: this month’s posts, messages and bookings.' }
 it: >/automazione<
 en: >/automation<
-it: Il lavoro ripetitivo lo fa il bot.
-en: The bot does the repetitive work.
-it: Quattro automazioni che impostiamo per te, collegate in una sola catena: dal post alla prenotazione, fino al report.
-en: Four automations we set up for you, linked in a single chain: from post to booking, all the way to the report.
+it: Un OS agentico per il tuo profilo.
+en: An agentic OS for your profile.
+it: Lo impostiamo noi: un agente principale coordina quattro agenti in una sola catena, dal post alla prenotazione, fino al report.
+en: We set it up for you: a main agent coordinates four agents in a single chain, from post to booking, all the way to the report.
+it: Agente principale
+en: Main agent
+it: Assegna il lavoro a ogni agente.
+en: Hands the work to every agent.
+it: >In corso<
+en: >In progress<
 it: Simulazione illustrativa: mostra come si collegano le automazioni. Messaggi e orari sono d'esempio.
 en: Illustrative simulation: it shows how the automations connect. Messages and times are examples.
 
@@ -979,7 +983,29 @@ it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description
 en: <Site title="Websites and apps: work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus slashkern, an early-access app: short projects you finish with an AI assistant and keep on your own page." active="web">
 it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
 en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. slashkern is an independent project in early access, not open yet: in the preview the clients are fictional and the numbers are examples.
-it: aria-label="Anteprima interattiva dell'app slashkern"
-en: aria-label="Interactive preview of the slashkern app"
+it: aria-label="L'app slashkern: schermata di apertura"
+en: aria-label="The slashkern app: opening screen"
 it: <a href="/privacy/">Privacy</a>
 en: <a href="/privacy/">Privacy (IT)</a>
+
+# ---------- ridisegno 2026-10: pulsanti, menu, fascia finale ----------
+it: Raccontaci il progetto.
+en: Tell us about your project.
+it: Scrivici su WhatsApp <span
+en: Write to us on WhatsApp <span
+it: Vedi i lavori
+en: See our work
+it: Scopri gli agenti
+en: Meet the agents
+it: >Chiudi<
+en: >Close<
+it: Torna su <span
+en: Back to top <span
+it: ['In quali lingue è disponibile il sito?', 'Il sito riconosce la lingua del dispositivo con cui lo apri e si apre da solo in italiano, inglese o tedesco. Se la tua lingua non è tra queste, si apre in inglese, la lingua di base. Puoi cambiarla in ogni momento con i pulsanti IT, EN e DE e il sito ricorda la tua scelta.']
+en: ['Which languages is the website available in?', 'The website recognises the language of the device you open it with and automatically opens in Italian, English or German. If your language is not one of these, it opens in English, the default language. You can change it at any time with the IT, EN and DE buttons, and the site remembers your choice.']
+it: Il sito si apre nella lingua del tuo dispositivo; se non c'è, in inglese.
+en: The site opens in your device’s language; if it isn’t available, in English.
+it: Vai al contenuto
+en: Skip to content
+it: aria-label="Scrivici"
+en: aria-label="Write to us"

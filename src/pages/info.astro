@@ -57,7 +57,7 @@ const needs = [
         <div class="who" role="group" aria-label="A chi scrivere">
           {people.map((p, i) => <button type="button" class={i ? '' : 'on'} aria-pressed={i ? 'false' : 'true'} data-who={p.k} data-num={p.num}>{p.name.split(' ')[0]}</button>)}
         </div>
-        <a class="btn" id="waSend" href="#" target="_blank" rel="noopener" aria-disabled="true">Invia su WhatsApp <span aria-hidden="true">→</span></a>
+        <a class="btn" data-i="wa" id="waSend" href="#" target="_blank" rel="noopener" aria-disabled="true">Invia su WhatsApp <span aria-hidden="true">→</span></a>
         <a class="lnk" id="mailSend" href="mailto:projects@puntoduestudio.it">oppure per email</a>
         <p class="hint" id="hint">Aggiungi il nome e cosa ti serve.</p>
       </div>
@@ -76,7 +76,7 @@ const needs = [
           <h3>{p.name}</h3>
           <p>{p.line}</p>
           <div class="pact">
-            <a class="btn" href={`https://wa.me/${p.num}?text=${encodeURIComponent('Ciao ' + p.name.split(' ')[0] + '! Vorrei parlarvi di un progetto.')}`} target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">→</span></a>
+            <a class="btn wa" data-i="wa" href={`https://wa.me/${p.num}?text=${encodeURIComponent('Ciao ' + p.name.split(' ')[0] + '! Vorrei parlarvi di un progetto.')}`} target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">→</span></a>
             <a class="lnk" href={`tel:+${p.num}`}>{p.tel}</a>
           </div>
         </article>

@@ -1,0 +1,50 @@
+---
+// Scelta della lingua: un pulsante con globo e sigla (IT) che apre un pannello con i nomi nella propria lingua, niente bandiere
+// (una bandiera indica un paese, non una lingua). Il pannello segna la lingua attuale e quella rilevata dal dispositivo,
+// e ripete la regola: si apre nella lingua del dispositivo, se non c'è in inglese. `inline` = lista sempre aperta (menu del telefono).
+// La lingua si ricava dall'indirizzo (come in Site.astro), quindi vale uguale per le pagine italiane e per le copie /en e /de.
+// Il comportamento è in src/scripts/ui.ts (initLangMenu); senza JavaScript il pannello si apre con hover e focus.
+interface Props { inline?: boolean; pre?: boolean }
+const { inline = false, pre = false } = Astro.props;
+const LANGS = ['it', 'en', 'de'] as const;
+type Lang = typeof LANGS[number];
+const path = Astro.url.pathname;
+const lang: Lang = LANGS.find((l) => l !== 'it' && (path === '/' + l || path.startsWith('/' + l + '/'))) ?? 'it';
+const itPath = lang === 'it' ? path : path.slice(lang.length + 1) || '/';
+const pathIn = (l: Lang) => (l === 'it' ? itPath : '/' + l + (itPath === '/' ? '/' : itPath));
+const NAMES: Record<Lang, string> = { it: 'Italiano', en: 'English', de: 'Deutsch' };
+const T: Record<Lang, { label: string; here: string; device: string; def: string; note: string; change: string; close: string; matched: string; fallback: string }> = {
+  it: { label: 'Lingua', here: 'lingua attuale', device: 'Dal tuo dispositivo', def: 'Predefinita', note: 'Il sito si apre nella lingua del tuo dispositivo; se non c\'è, in inglese.', change: 'Cambia lingua', close: 'Chiudi', matched: 'Abbiamo aperto il sito in italiano perché il tuo dispositivo è in italiano.', fallback: 'La tua lingua non c\'è ancora: abbiamo aperto il sito in inglese.' },
+  en: { label: 'Language', here: 'current language', device: 'From your device', def: 'Default', note: 'The site opens in your device’s language; if it isn’t available, in English.', change: 'Change language', close: 'Close', matched: 'We opened the site in English because your device is set to English.', fallback: 'Your language isn’t available yet, so we opened the site in English.' },
+  de: { label: 'Sprache', here: 'aktuelle Sprache', device: 'Von Ihrem Gerät', def: 'Standard', note: 'Die Website öffnet sich in der Sprache Ihres Geräts; ist sie nicht verfügbar, auf Englisch.', change: 'Sprache ändern', close: 'Schließen', matched: 'Wir haben die Website auf Deutsch geöffnet, weil Ihr Gerät auf Deutsch eingestellt ist.', fallback: 'Ihre Sprache ist noch nicht verfügbar, daher haben wir die Website auf Englisch geöffnet.' },
+};
+const t = T[lang];
+const uid = inline ? 'lmI' : 'lmH';
+const data = JSON.stringify({ matched: t.matched, fallback: t.fallback, change: t.change, close: t.close, device: t.device, def: t.def });
+---
+<div class={`lm${inline ? ' inline' : ''}${pre ? ' pre' : ''}`} data-lm data-t={data}>
+  {!inline && (
+    <button class="lm-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls={`${uid}-panel`} aria-label={`${t.label}: ${NAMES[lang]}`}>
+      <svg class="lm-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z" /></svg>
+      <span class="lm-code">{lang.toUpperCase()}</span>
+      <svg class="lm-chev" viewBox="0 0 12 12" aria-hidden="true"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" /></svg>
+    </button>
+  )}
+  <div class="lm-panel" id={`${uid}-panel`} role={inline ? 'group' : 'dialog'} aria-label={t.label}>
+    <p class="lm-h">{t.label}</p>
+    <ul class="lm-list">
+      {LANGS.map((l, i) => (
+        <li style={`--i:${i}`}>
+          <a class="lm-opt" href={pathIn(l)} hreflang={l} lang={l} data-l={l} aria-current={l === lang ? 'true' : undefined}>
+            <span class="lm-name">{NAMES[l]}</span>
+            <span class="lm-tag" aria-hidden="true"></span>
+            <span class="lm-c" aria-hidden="true">{l.toUpperCase()}</span>
+            <svg class="lm-ok" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+            {l === lang && <span class="sr">, {t.here}</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="lm-note">{t.note}</p>
+  </div>
+</div>

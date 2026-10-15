@@ -98,7 +98,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
         </div>
 
         <div class="k-wrap">
-          <div class="phone" role="group" aria-label="Anteprima interattiva dell'app slashkern">
+          <div class="phone" role="group" aria-label="L'app slashkern: schermata di apertura">
             <div class="sk" id="sk">
               <div class="sk-load" id="skLoad" aria-hidden="true">
                 <svg class="sk-fly sk-mk" viewBox="82 69 235 271" set:html={MARK} />
@@ -253,8 +253,9 @@ const WORD = 'slashke<span class="rn">r</span>n';
 
       <section class="cta-s">
         <Chat kind="sent" />
+        <h2 class="cta-h">Raccontaci il progetto.</h2>
         <div class="cta">
-          <a class="btn" href={WA} target="_blank" rel="noopener">Scrivici <span aria-hidden="true">→</span></a>
+          <a class="btn btn-l wa" data-i="wa" href={WA} target="_blank" rel="noopener">Scrivici su WhatsApp <span class="arr">→</span></a>
           <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
         </div>
       </section>
@@ -432,14 +433,16 @@ const WORD = 'slashke<span class="rn">r</span>n';
       @keyframes skLook { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-6deg); } 60% { transform: rotate(4deg); } }
       @keyframes skBlink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.15); } }
       @media (prefers-reduced-motion: reduce) {
-        .sk-load { display: none; }
+        .sk-load.go .sk-fly, .sk-load.go .sk-word, .sk-load.go .sk-tag { animation: none; opacity: 1; transform: none; }
         .sk-pane.on, .sk-ai, .sk-me, .sk-saved, .sk-sv-in, .sk-ok, .sk-slash, .sk-slash .eye { animation: none; }
         .sk-card, .sk-card.live { transition: none; }
       }
 
       /* why + difference */
       .why { border-top: 1px solid rgba(255,255,255,.25); }
-      .charts { display: grid; gap: 22px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+      /* flex invece di grid: l'ultima card si allarga e non lascia una cella vuota (3 card su 2 colonne) */
+      .charts { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 40px; }
+      .charts > .chart { flex: 1 1 320px; }
       .chart { margin: 0; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); }
       .chart figcaption { font-weight: 700; font-size: 1.15rem; letter-spacing: -.02em; margin-bottom: 20px; }
       .row { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin-bottom: 16px; font-size: .92rem; }
@@ -486,13 +489,11 @@ const WORD = 'slashke<span class="rn">r</span>n';
       const $$sk = <T extends HTMLElement = HTMLElement>(s: string) => [...sk.querySelectorAll<T>(s)];
       const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const skLoad = $sk('#skLoad');
-      let loadT = 0;
-      const playLoad = () => {
-        clearTimeout(loadT);
-        skLoad.classList.remove('go', 'off'); void skLoad.offsetWidth; skLoad.classList.add('go');
-        loadT = window.setTimeout(() => skLoad.classList.add('off'), 3000);
-      };
-      if (still) skLoad.classList.add('off');
+      // l'anteprima mostra solo l'apertura dell'app: la schermata di caricamento resta, l'app non si apre.
+      // Il resto dell'app (schede, progetti, KernCard, Slash) è sotto, spento: per riaprirla basta rimettere `off` dopo l'animazione.
+      [...sk.children].forEach((c) => { if (c !== skLoad) { c.setAttribute('inert', ''); c.setAttribute('aria-hidden', 'true'); } });
+      const playLoad = () => { skLoad.classList.remove('go'); void skLoad.offsetWidth; skLoad.classList.add('go'); };
+      if (still) skLoad.classList.add('go');
       else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { playLoad(); o.disconnect(); } }, { threshold: 0.5 }).observe(sk);
       const replay = document.getElementById('kReplay')!;
       if (still) replay.hidden = true; // senza animazioni non c'è un'apertura da rivedere

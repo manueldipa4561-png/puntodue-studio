@@ -38,8 +38,6 @@ it: >Accendi tutto<
 de: >Alles einschalten<
 
 # ---------- home ----------
-it: <span class="langs"><a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a><a class="lang pre" href="/de/" hreflang="de" lang="de" aria-label="Deutsche Version">DE</a></span>
-de: <span class="langs"><a class="lang pre" href="/" hreflang="it" lang="it" aria-label="Versione italiana">IT</a><a class="lang pre" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a></span>
 it: <html lang="it">
 de: <html lang="de">
 it: <link rel="canonical" href="https://puntoduestudio.it/" />
@@ -50,8 +48,8 @@ it: Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI.
 de: Digitalagentur für Websites, E-Commerce, Apps, Social Media und KI-Agenten. Wir arbeiten mit Unternehmen in Italien und international.
 it: Siti, app, social e agenti AI per la tua attività.
 de: Websites, Apps, Social Media und KI-Agenten für Ihr Unternehmen.
-it: Parliamone →
-de: Sprechen wir darüber →
+it: Parliamone
+de: Sprechen wir darüber
 it: 'Ciao! Vorrei parlarvi di un progetto. Quando potremmo sentirci?'
 de: 'Hallo! Ich würde gern mit Ihnen über ein Projekt sprechen. Wann hätten Sie Zeit?'
 it: subject=Nuovo%20progetto
@@ -510,20 +508,26 @@ it: Profili d'esempio costruiti con le immagini e i loghi delle nostre demo (SEZ
 de: Beispielprofile, erstellt mit den Bildern und Logos unserer Demos (SEZIONE, BRACE, INNESTO): Es sind keine echten Kunden. Die Zahlen sind vorher und nachher gleich, weil wir hier die Arbeit zeigen und keine Ergebnisse versprechen.
 
 # ---------- componente Automazione ----------
-it: { t: 'Post programmati', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
-de: { t: 'Geplante Beiträge', d: 'Der Monatsplan ist hochgeladen: Die Beiträge erscheinen von selbst, zur richtigen Uhrzeit.', bot: 'Ich veröffentliche das heutige Reel um 19:30 Uhr.' }
-it: { t: 'Risposte ai messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' }
-de: { t: 'Antworten auf Nachrichten', d: 'Wer „Haben Sie geöffnet?“ schreibt, bekommt sofort Öffnungszeiten und einen Buchungslink.', bot: 'Ich antworte: Geöffnet bis 23 Uhr, hier ist der Buchungslink.' }
-it: { t: 'WhatsApp e prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' }
-de: { t: 'WhatsApp und Buchungen', d: 'Die Anfrage kommt per WhatsApp an, mit automatischer Bestätigung und Erinnerung.', bot: 'Tisch für 4 bestätigt. Erinnerung morgen um 18 Uhr.' }
-it: { t: 'Report mensile', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' }
-de: { t: 'Monatsbericht', d: 'Am Monatsende erhalten Sie die Zahlen, auf die es ankommt, ohne nachfragen zu müssen.', bot: 'Bericht gesendet: Beiträge, Nachrichten und Buchungen des Monats.' }
+it: { t: 'Post programmati', a: 'Agente post', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' }
+de: { t: 'Geplante Beiträge', a: 'Post-Agent', d: 'Der Monatsplan ist hochgeladen: Die Beiträge erscheinen von selbst, zur richtigen Uhrzeit.', bot: 'Ich veröffentliche das heutige Reel um 19:30 Uhr.' }
+it: { t: 'Risposte ai messaggi', a: 'Agente messaggi', d: 'Chi scrive «siete aperti?» riceve subito orari e link per prenotare.', bot: 'Rispondo: aperti fino alle 23, ecco il link per prenotare.' }
+de: { t: 'Antworten auf Nachrichten', a: 'Nachrichten-Agent', d: 'Wer „Haben Sie geöffnet?“ schreibt, bekommt sofort Öffnungszeiten und einen Buchungslink.', bot: 'Ich antworte: Geöffnet bis 23 Uhr, hier ist der Buchungslink.' }
+it: { t: 'WhatsApp e prenotazioni', a: 'Agente prenotazioni', d: 'La richiesta arriva su WhatsApp, con conferma e promemoria automatici.', bot: 'Tavolo per 4 confermato. Promemoria domani alle 18.' }
+de: { t: 'WhatsApp und Buchungen', a: 'Buchungs-Agent', d: 'Die Anfrage kommt per WhatsApp an, mit automatischer Bestätigung und Erinnerung.', bot: 'Tisch für 4 bestätigt. Erinnerung morgen um 18 Uhr.' }
+it: { t: 'Report mensile', a: 'Agente report', d: 'A fine mese ricevi i numeri che contano, senza doverli chiedere.', bot: 'Report inviato: post, messaggi e prenotazioni del mese.' }
+de: { t: 'Monatsbericht', a: 'Report-Agent', d: 'Am Monatsende erhalten Sie die Zahlen, auf die es ankommt, ohne nachfragen zu müssen.', bot: 'Bericht gesendet: Beiträge, Nachrichten und Buchungen des Monats.' }
 it: >/automazione<
 de: >/automatisierung<
-it: Il lavoro ripetitivo lo fa il bot.
-de: Die Routinearbeit übernimmt der Bot.
-it: Quattro automazioni che impostiamo per te, collegate in una sola catena: dal post alla prenotazione, fino al report.
-de: Vier Automatisierungen, die wir für Sie einrichten, in einer Kette verbunden: vom Beitrag über die Buchung bis zum Bericht.
+it: Un OS agentico per il tuo profilo.
+de: Ein agentisches OS für Ihr Profil.
+it: Lo impostiamo noi: un agente principale coordina quattro agenti in una sola catena, dal post alla prenotazione, fino al report.
+de: Wir richten es für Sie ein: Ein Hauptagent koordiniert vier Agenten in einer einzigen Kette, vom Beitrag über die Buchung bis zum Bericht.
+it: Agente principale
+de: Hauptagent
+it: Assegna il lavoro a ogni agente.
+de: Verteilt die Arbeit an jeden Agenten.
+it: >In corso<
+de: >Läuft<
 it: Simulazione illustrativa: mostra come si collegano le automazioni. Messaggi e orari sono d'esempio.
 de: Illustrative Simulation: Sie zeigt, wie die Automatisierungen zusammenhängen. Nachrichten und Uhrzeiten sind Beispiele.
 
@@ -1013,8 +1017,8 @@ it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description
 de: <Site title="Websites und Apps: Projekte und Demos — Punto Due Studio" description="Drei anklickbare Website-Demos und slashkern, eine App im frühen Zugang: kurze Projekte, mit einem KI-Assistenten fertig gemacht und auf der eigenen Seite behalten." active="web">
 it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
 de: Die Demos INNESTO, SEZIONE und BRACE sind Konzepte von Punto Due Studio; Namen und Betriebe sind fiktiv. slashkern ist ein unabhängiges Projekt im frühen Zugang und noch nicht geöffnet: In der Vorschau sind die Kunden fiktiv und die Zahlen Beispiele.
-it: aria-label="Anteprima interattiva dell'app slashkern"
-de: aria-label="Interaktive Vorschau der slashkern-App"
+it: aria-label="L'app slashkern: schermata di apertura"
+de: aria-label="Die slashkern-App: Startbildschirm"
 it: en="early access"
 de: en="früher Zugang"
 it: en="From zero to product."
@@ -1199,3 +1203,29 @@ it: en: 'A knife slicing the bread'
 de: en: 'Ein Messer schneidet das Brot'
 it: <a href="/privacy/">Privacy</a>
 de: <a href="/privacy/">Datenschutz (IT)</a>
+
+# ---------- ridisegno 2026-10: pulsanti, menu, fascia finale ----------
+it: Raccontaci il progetto.
+de: Erzählen Sie uns von Ihrem Projekt.
+it: Scrivici su WhatsApp <span
+de: Schreiben Sie uns auf WhatsApp <span
+it: Vedi i lavori
+de: Unsere Arbeiten
+it: Scopri gli agenti
+de: Die Agenten entdecken
+it: >Chiudi<
+de: >Schließen<
+it: >Menu<
+de: >Menü<
+it: aria-label="Menu"
+de: aria-label="Menü"
+it: Torna su <span
+de: Nach oben <span
+it: ['In quali lingue è disponibile il sito?', 'Il sito riconosce la lingua del dispositivo con cui lo apri e si apre da solo in italiano, inglese o tedesco. Se la tua lingua non è tra queste, si apre in inglese, la lingua di base. Puoi cambiarla in ogni momento con i pulsanti IT, EN e DE e il sito ricorda la tua scelta.']
+de: ['In welchen Sprachen ist die Website verfügbar?', 'Die Website erkennt die Sprache des Geräts, mit dem Sie sie öffnen, und öffnet sich automatisch auf Italienisch, Englisch oder Deutsch. Ist Ihre Sprache nicht dabei, öffnet sie sich auf Englisch, der Standardsprache. Sie können die Sprache jederzeit mit den Schaltflächen IT, EN und DE ändern, und die Website merkt sich Ihre Wahl.']
+it: Il sito si apre nella lingua del tuo dispositivo; se non c'è, in inglese.
+de: Die Website öffnet sich in der Sprache Ihres Geräts; ist sie nicht verfügbar, auf Englisch.
+it: Vai al contenuto
+de: Zum Inhalt springen
+it: aria-label="Scrivici"
+de: aria-label="Schreiben Sie uns"
