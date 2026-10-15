@@ -3,9 +3,6 @@ import Site from '../layouts/Site.astro';
 import Sim from '../components/Sim.astro';
 import Chat from '../components/Chat.astro';
 import Bi from '../components/Bi.astro';
-import '@fontsource-variable/bricolage-grotesque';
-import '@fontsource/instrument-serif/latin-400-italic.css';
-const KFIELDS = ['Design', 'Writing', 'Code', 'Video', 'Selling', 'Music'];
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.')}`;
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Tessera + QR'], next: ['Prenotazione con conferma su WhatsApp', 'Timbri aggiunti dallo staff scansionando il QR', 'Tessera salvabile nel Wallet del telefono', 'Promemoria su WhatsApp prima della visita'] },
@@ -24,200 +21,178 @@ const feats = [
   { id: 'wa', t: 'Promemoria WhatsApp', d: 'Meno appuntamenti saltati', n: 0, r: 0.06 },
   { id: 'ref', t: 'Referral', d: 'I clienti portano amici', n: 0.2, r: 0.02 },
 ];
-const kstats = [
-  { t: { it: 'Giovani USA incerti sul percorso', en: 'US young adults unsure about their path' },
-    a: { l: { it: 'Incerti sulla carriera, 18–30', en: 'Unsure about career, 18–30' }, v: 66.7, r: { it: '≈ 2 su 3', en: '≈ 2 in 3' } },
-    b: { l: { it: 'Gen Z, incerti sui lavori futuri', en: 'Gen Z, unsure about future jobs' }, v: 33.3, r: { it: '≈ 1 su 3', en: '≈ 1 in 3' } }, max: 100 },
-  { t: { it: 'Le aziende dicono «competenze». Assumono altrimenti.', en: 'Employers say "skills". They hire otherwise.' },
-    a: { l: { it: 'Assunzioni entry-level per competenze', en: 'Entry-level hires based on skills' }, v: 70, r: { it: '70%', en: '70%' } },
-    b: { l: { it: "Assunti senza laurea dove l'hanno tolta", en: 'Hires without a degree where it was dropped' }, v: 0.14, r: { it: '< 1 su 700', en: '< 1 in 700' } }, max: 100 },
-  { t: { it: 'Disoccupazione, giugno 2026', en: 'Unemployment, June 2026' },
-    a: { l: { it: 'Tutti i lavoratori', en: 'All workers' }, v: 4, r: { it: '≈ 4%', en: '≈ 4%' } },
-    b: { l: { it: 'Neolaureati, 22–27', en: 'Recent graduates, 22–27' }, v: 5.7, r: { it: '5,7%', en: '5.7%' } }, max: 10 },
+// slashkern (/app): le 7 categorie e i progetti di prova come sono nell'app (clienti fittizi, scritto anche nella pagina)
+const SK = [
+  { f: 'video', it: 'Video brevi', en: 'Short videos',
+    t: { it: 'Storyboard di 15 secondi per un furgone di panini', en: '15-second storyboard for a sandwich van' },
+    b: { it: 'Scegli poche cose e alla fine hai uno storyboard di quattro vignette che Rocco può girare con il telefono.', en: 'Pick a few things and end with a four-frame storyboard that Rocco can film on his phone.' },
+    c: { it: 'Il furgone di panini di Rocco (fittizio)', en: 'Rocco’s sandwich van (fictional)' } },
+  { f: 'design', it: 'Poster e loghi', en: 'Posters and logos',
+    t: { it: 'Scheda del brand per un bar', en: 'Brand sheet for a bar' },
+    b: { it: 'Scegli poche cose e alla fine hai una pagina che mostra com’è e cosa trasmette un bar.', en: 'Pick a few things and end with a page that shows how a bar looks and feels.' },
+    c: { it: 'Bar Ficus (fittizio)', en: 'Bar Ficus (fictional)' } },
+  { f: 'writing', it: 'Post e didascalie', en: 'Posts and captions',
+    t: { it: 'Kit di lancio per un gusto nuovo', en: 'Launch kit for a new flavour' },
+    b: { it: 'Dai un nome a un gusto nuovo, scrivi il cartello per il banco e il primo post: alla fine hai una pagina da mostrare.', en: 'Name a new flavour, write the sign for the counter and the first post, and end with one page you can show.' },
+    c: { it: 'Pigro Gelato (fittizio)', en: 'Pigro Gelato (fictional)' } },
+  { f: 'code', it: 'Siti e piccoli strumenti', en: 'Websites and small tools',
+    t: { it: 'Sito di una pagina per un negozio di piante', en: 'One-page website for a plant shop' },
+    b: { it: 'Scegli poche cose e alla fine hai una vera pagina web, in un file che puoi aprire e mettere online.', en: 'Pick a few things and end with a real web page, as a file you can open and put online.' },
+    c: { it: 'Sunny Plants, un negozio di piante (fittizio)', en: 'Sunny Plants, a plant shop (fictional)' } },
+  { f: 'selling', it: 'Annunci di prodotti', en: 'Product listings',
+    t: { it: 'Annuncio per una lampada da scrivania usata', en: 'Listing for a used desk lamp' },
+    b: { it: 'Scegli cosa dire e scrivi due righe brevi. Alla fine hai un annuncio onesto per una lampada usata.', en: 'Pick what to say and write two short lines. You end with an honest listing for a used lamp.' },
+    c: { it: 'Marta (fittizia)', en: 'Marta (fictional)' } },
+  { f: 'music', it: 'Musica e suoni', en: 'Music and sound',
+    t: { it: 'Un ritmo e la sua scheda di uscita', en: 'A beat and its release card' },
+    b: { it: 'Batti un ritmo, dagli un nome e scegli la sua cover. Alla fine hai una scheda che suona il tuo ritmo.', en: 'Tap a beat, name it and pick its cover. End with a release card that plays your beat.' },
+    c: { it: 'Clank Gym (fittizia)', en: 'Clank Gym (fictional)' } },
+  { f: 'prompting', it: 'Prompt per l’AI', en: 'AI prompts',
+    t: { it: 'Un prompt che scrive un post', en: 'A prompt that writes a post' },
+    b: { it: 'Costruisci un prompt con poche scelte, mandalo all’AI e tieni il post che scrive, segnato come AI.', en: 'Build a prompt from a few choices, send it to the AI and keep the post it writes, marked as AI.' },
+    c: { it: 'il corso di ceramica di Dana (fittizio)', en: 'Dana’s pottery class (fictional)' } },
 ];
+// i gradi della KernCard e le pietre che servono per ognuno (come nell'app)
+const RANKS = [
+  { it: 'Ciottolo', en: 'Pebble', s: 0 }, { it: 'Pietra', en: 'Stone', s: 100 }, { it: 'Cairn', en: 'Cairn', s: 300 },
+  { it: 'Cresta', en: 'Ridge', s: 700 }, { it: 'Vetta', en: 'Summit', s: 1500 },
+];
+// il primo passo vero del progetto Video: Slash chiede il gancio
+const HOOKS = [
+  { it: 'Formaggio che fila al rallentatore', en: 'Cheese pull in slow motion' },
+  { it: 'Rocco che grida l’ordine', en: 'Rocco shouting the order' },
+  { it: 'Un coltello che taglia il pane', en: 'A knife slicing the bread' },
+];
+// il simbolo di slashkern (è anche Slash): corpo e occhi, i colori li dà il CSS
+const MARK = '<path d="M99.56 84.12Q92.48 78.56 92.48 87.56L92.48 293.52Q92.48 311.52 107.50 301.60L157.49 268.57Q164.16 264.16 167.68 271.34L190.00 316.87Q196.16 329.44 209.09 324.08L235.71 313.04Q248.64 307.68 241.86 295.43L219.23 254.52Q215.36 247.52 223.36 247.52L289.52 247.52Q307.52 247.52 293.37 236.40Z"/><path class="eye" d="M113.73 226.02Q108.63 210.34 124.32 205.25L124.34 205.24Q140.02 200.14 145.11 215.83L151.61 235.82Q156.71 251.50 141.02 256.60L141.00 256.60Q125.32 261.70 120.22 246.02ZM167.15 200.06Q162.06 184.38 177.74 179.28L177.76 179.27Q193.44 174.18 198.54 189.86L205.03 209.85Q210.13 225.53 194.45 230.63L194.43 230.64Q178.74 235.73 173.65 220.05Z"/>';
+// nel nome resta un po' di spazio tra r e n, così "rn" non si legge "m" (regola del brand)
+const WORD = 'slashke<span class="rn">r</span>n';
 ---
-<Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
+<Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più slashkern, un'app in accesso anticipato: progetti brevi da finire con un assistente AI e tenere sulla propria pagina." active="web">
       <section class="app" id="app">
         <div class="app-txt">
           <div class="ana-top">
-            <span class="lab">/app · concept</span>
+            <span class="lab">/app · <Bi it="accesso anticipato" en="early access" /></span>
             <div class="k-seg" role="group" aria-label="Lingua del sito / Site language"><button type="button" data-ana-lang="it" aria-pressed="true">IT</button><button type="button" data-ana-lang="en" aria-pressed="false">EN</button></div>
           </div>
-          <svg class="icon" viewBox="0 0 100 100" role="img" aria-label="KERN app icon">
-            <rect width="100" height="100" rx="23" fill="#0F140E" />
-            <g stroke="#E8E6DA"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="#E8E6DA" stroke="none" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9" fill="#C9F24A" stroke="none"/></g>
+          <svg class="icon" viewBox="0 0 400 400" role="img" aria-label="slashkern app icon">
+            <rect width="400" height="400" rx="92" fill="#0050F0" />
+            <g transform="translate(200 200) scale(0.86) translate(-196.03 -203.84)"><g fill="#fff" stroke="#fff" stroke-width="18" stroke-linejoin="round" set:html={MARK} /><g class="sk-mk" set:html={MARK} /></g>
           </svg>
-          <h2 class="k-h">kern<span>.</span><sup style="font-size:.28em;letter-spacing:0;margin-left:.15em;vertical-align:super;opacity:.7">™</sup></h2>
-          <p class="lead"><Bi it="Scopri cosa vuoi fare provandolo, non immaginandolo." en="Find out what you want to do by trying it, not imagining it." /></p>
+          <h2 class="k-h" set:html={WORD} />
+          <p class="k-slogan"><Bi it="Da zero al prodotto." en="From zero to product." /></p>
+          <p class="lead"><Bi it="Scegli un progetto breve, finiscilo con Slash, il tuo assistente AI, e tienilo sulla tua pagina." en="Pick a short project, finish it with Slash, your AI assistant, and keep it on your own page." /></p>
           <ul class="k-tags" aria-label="In breve">
-            <li><Bi it="Lavoro vero" en="Real work" /></li>
-            <li><Bi it="Nessun cronometro" en="No timers" /></li>
-            <li><Bi it="Vince chi lo fa meglio" en="Best work wins" /></li>
-            <li><Bi it="AI che fa domande" en="AI that asks questions" /></li>
+            <li><Bi it="Gratis per i creator" en="Free for creators" /></li>
+            <li><Bi it="7 categorie" en="7 categories" /></li>
+            <li><Bi it="Slash ti aiuta. Tu finisci." en="Slash helps. You finish." /></li>
+            <li><Bi it="La tua KernCard" en="Your KernCard" /></li>
           </ul>
           <dl class="spec">
-            <div><dt><Bi it="Piattaforme" en="Platforms" /></dt><dd>iOS · Android · Web app</dd></div>
-            <div><dt><Bi it="Stato" en="Status" /></dt><dd><Bi it="Concept, in sviluppo" en="Concept, in development" /></dd></div>
-            <div><dt><Bi it="Per chi" en="For" /></dt><dd><Bi it="Dai 18 ai 35 anni" en="Ages 18 to 35" /></dd></div>
+            <div><dt><Bi it="Piattaforma" en="Platform" /></dt><dd><Bi it="Web app installabile" en="Installable web app" /></dd></div>
+            <div><dt><Bi it="Stato" en="Status" /></dt><dd><Bi it="Accesso anticipato · lista d'attesa" en="Early access · waitlist" /></dd></div>
+            <div><dt><Bi it="Per chi" en="For" /></dt><dd><Bi it="Dai 18 anni, in Europa" en="18+, across Europe" /></dd></div>
+            <div><dt><Bi it="Lingue" en="Languages" /></dt><dd>7</dd></div>
           </dl>
+          <p class="note"><Bi it="Un progetto indipendente, separato da Punto Due Studio, e non ancora aperto. Nell'anteprima i clienti sono fittizi e i numeri d'esempio." en="An independent project, separate from Punto Due Studio, and not open yet. In the preview the clients are fictional and the numbers are examples." /> <a class="lnk" href="https://slashkern.com/" target="_blank" rel="noopener">slashkern.com →</a></p>
         </div>
 
         <div class="k-wrap">
-          <div class="k-ctl">
-            <div class="k-seg" role="group" aria-label="Lingua"><button type="button" data-k-lang="en" aria-pressed="true">EN</button><button type="button" data-k-lang="it" aria-pressed="false">IT</button></div>
-            <div class="k-seg" role="group" aria-label="Tema"><button type="button" data-k-theme="dark" aria-pressed="true">Dark</button><button type="button" data-k-theme="light" aria-pressed="false">Light</button></div>
-          </div>
-          <div class="phone" aria-label="Anteprima interattiva dell'app KERN">
-            <div class="k-scr" id="kScr">
-              <div class="k-load" id="kLoad" aria-hidden="true">
-                <svg viewBox="0 0 100 100"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" class="ks" fill="currentColor"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" class="kl" stroke="currentColor"/><circle cx="66.4" cy="66.4" r="9" class="kc"/></svg>
-                <div class="k-word">kern<i>.</i></div>
-                <div class="k-tag"><span>Follow the trail.</span><strong>Find your<b>KERN</b>.</strong></div>
+          <div class="phone" role="group" aria-label="Anteprima interattiva dell'app slashkern">
+            <div class="sk" id="sk">
+              <div class="sk-load" id="skLoad" aria-hidden="true">
+                <svg class="sk-fly sk-mk" viewBox="82 69 235 271" set:html={MARK} />
+                <div class="sk-word" set:html={WORD} />
+                <div class="sk-tag"><Bi it="Da zero al prodotto." en="From zero to product." /></div>
               </div>
-              <div class="k-sheet" id="kSheet" role="dialog" aria-modal="true" aria-labelledby="kShT" hidden>
-                <div class="k-sh-in">
-                  <div class="k-grab" aria-hidden="true"></div>
-                  <div class="k-l" id="kShL">Mission 002 · startup partner</div>
-                  <h3 id="kShT">Fix what already exists</h3>
-                  <p class="k-msg k-ai" id="kShQ">What would make the first step easier for someone brand new?</p>
-                  <div class="k-trailsigns"><div class="k-l">Signs from people before you</div><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Someone who finished it · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Someone who finished it · last week</span></div></div>
-                  <label class="k-l" for="kTa">Your answer</label>
-                  <textarea id="kTa" rows="4"></textarea>
-                  <div class="k-sh-btns"><button type="button" class="k-go" id="kSub">Submit answer</button><button type="button" class="k-sk" id="kCancel">Not now</button></div>
-                </div>
-              </div>
-              <div class="k-reward" id="kReward" role="dialog" aria-modal="true" aria-labelledby="kRwT" hidden>
-                <div class="k-conf" id="kConf" aria-hidden="true"></div>
-                <div class="k-rw-in">
-                  <div class="k-medal" aria-hidden="true">#1</div>
-                  <div class="k-l">Voted first</div>
-                  <h3 id="kRwT">Your answer<br>won <b>#1.</b></h3>
-                  <p>Anonymous reviewers ranked it first out of 128.</p>
-                  <div class="k-gain"><b id="kGain">+0</b> <span class="k-l">stones</span></div>
-                  <div class="k-rankup" id="kRU" hidden><div class="k-l">New rank</div><div class="k-rank" id="kRU2"></div></div>
-                  <button type="button" class="k-go" id="kRwOk">Keep going</button>
-                </div>
-              </div>
-              <div class="k-start" id="kLogin">
-                <div class="k-sp">
-                  <img class="k-hero-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" />
-                  <div class="k-l" id="kLlab">Welcome back</div>
-                  <h3 id="kLh">Log in to<br>your <b>trail.</b></h3>
-                  <div class="k-field" id="kNm" hidden><label class="k-l" for="kNmI">Name</label><input id="kNmI" type="text" value="Alex Demo" readonly /></div>
-                  <div class="k-field"><label class="k-l" for="kEm">Email</label><input id="kEm" type="email" value="alex@example.com" readonly /></div>
-                  <div class="k-field"><label class="k-l" for="kPw">Password</label><input id="kPw" type="password" value="demo-password" readonly /></div>
-                  <button type="button" class="k-go" id="kLog">Log in</button>
-                  <button type="button" class="k-sk" id="kSw">Create an account</button>
-                  <div class="k-l">Demo account · nothing is sent or saved</div>
-                </div>
-              </div>
-              <div class="k-start on" id="kStart">
-                <div id="kS1" class="k-sp">
-                  <div class="k-float" aria-hidden="true"><img src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-music.webp" alt="" width="400" height="400" loading="lazy" /><img src="/kern/f-code.webp" alt="" width="400" height="400" loading="lazy" /></div>
-                  <div class="k-l">Start here</div>
-                  <h3>What do you want<br>to <b>do?</b></h3>
-                  <ol class="k-how"><li><b>01</b><p>Try a real mission</p></li><li><b>02</b><p>Reflect in 20 seconds</p></li><li><b>03</b><p>See how you work</p></li></ol>
-                  <button type="button" class="k-go" id="kIdk">I don't know what I want to do</button>
-                  <button type="button" class="k-sk" id="kSkip">Explore missions</button>
-                </div>
-                <div id="kS2" class="k-sp" hidden>
-                  <div class="k-l">Good. Let's find out.</div>
-                  <h3>What are you<br>curious about <b>right now?</b></h3>
-                  <p class="k-l">Pick one or more. You can add others anytime.</p>
-                  <div class="k-tiles" id="kPick" role="group">
-                    {KFIELDS.map((f) => <button type="button" class="k-tile" data-f={f} aria-pressed="false"><img src={`/kern/f-${f.toLowerCase()}.webp`} alt="" width="400" height="400" loading="lazy" decoding="async" /><span>{f}</span></button>)}
+              <div class="sk-top"><div class="sk-logo"><svg class="sk-mk" viewBox="82 69 235 271" aria-hidden="true" set:html={MARK} /><span set:html={WORD} /></div><span class="sk-av" aria-hidden="true">G</span></div>
+              <div class="sk-body" id="skBody">
+                <div class="sk-pane on" id="sk-projects">
+                  <p class="sk-hi"><Bi it="Ciao Giulia" en="Hi Giulia" /></p>
+                  <div class="sk-row"><span class="sk-l"><Bi it="Il tuo percorso" en="Your path" /></span><button type="button" class="sk-more" id="skMore" aria-expanded="false" aria-controls="skPaths"><Bi it="Altri percorsi" en="More paths" /> <i aria-hidden="true">▾</i></button></div>
+                  <div class="sk-paths" id="skPaths" hidden>
+                    {SK.map((c, i) => <button type="button" class="sk-path" data-f={c.f} aria-pressed={i === 0 ? 'true' : 'false'}><img src={`/kern/sk-${c.f}.webp`} alt="" width="96" height="96" loading="lazy" decoding="async" /><Bi it={c.it} en={c.en} /></button>)}
                   </div>
-                  <button type="button" class="k-go" id="kGo">Start my first mission</button>
+                  <h3 class="sk-field" id="skField"><Bi it={SK[0].it} en={SK[0].en} /></h3>
+                  {SK.map((c, i) => (
+                    <article class="sk-piece" data-f={c.f} hidden={i !== 0}>
+                      <img class="sk-obj" src={`/kern/sk-${c.f}.webp`} alt="" width="96" height="96" loading="lazy" decoding="async" />
+                      <span class="sk-l"><Bi it="Un pezzo per la tua pagina" en="A piece for your page" /></span>
+                      <h4><Bi it={c.t.it} en={c.t.en} /></h4>
+                      <p><Bi it={c.b.it} en={c.b.en} /></p>
+                      <span class="sk-l"><Bi it="5 piccoli passi" en="5 small steps" /> · <Bi it={c.c.it} en={c.c.en} /></span>
+                      <button type="button" class="sk-start" data-start><Bi it="Inizia" en="Start" /></button>
+                    </article>
+                  ))}
+                  <p class="sk-s"><Bi it="Ogni pagina finita dice «Progetto di prova» e il nome del cliente fittizio." en="Every finished page says “Practice project” and names the fictional client." /></p>
                 </div>
-              </div>
-              <div class="k-app">
-                <div class="k-top">
-                  <div class="k-logo"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M23.13 76.87A38 38 0 0 1 76.87 23.13Z" fill="currentColor" transform="translate(-5 -5)"/><path d="M23.13 76.87A38 38 0 0 0 76.87 23.13Z" fill="none" stroke-width="7" stroke-linejoin="round" stroke="currentColor" transform="translate(5 5)"/><circle cx="66.4" cy="66.4" r="9"/></svg>kern<i>.</i></div>
-                  <div class="k-tp"><span class="k-pill"><i class="k-ring" aria-hidden="true"></i><span class="k-pl">1 of 3 done</span></span><button type="button" class="k-av" id="kAv" aria-label="Log out (demo account)">A</button></div>
-                </div>
-                <div class="k-body">
-                  <div class="k-pane on" id="k-missions">
-                    <div><div class="k-l">All missions open</div><h3>Pick your<br>next <b>move.</b></h3></div>
-                    <div class="k-fields" id="kFields" role="group" aria-label="Your interests"></div>
-                    <div class="k-card k-main" id="kM0"><img class="k-obj" id="kNxImg" src="/kern/f-design.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Mission 002 · startup partner</div><h4>Fix what already exists</h4><p>Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.</p><div class="k-l">128 answers · judged on quality</div><button type="button" class="k-btn" id="kAdd">Add your answer</button></div>
-                    <div class="k-card k-aic"><div class="k-aic-hd"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">Co-pilot · asks, never answers</div></div><p class="k-msg k-me" id="kIdea">Your idea: a 3-step onboarding with one clear choice at the start.</p><p class="k-msg k-ai" id="kAi">What would make the first step easier for someone brand new?</p><button type="button" class="k-ask-btn" id="kAsk">Another question</button></div>
-                    <div class="k-card k-best"><img class="k-side" src="/kern/r4.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l k-live">Mission of the week · best answers</div><div class="k-done"><span>Answer #7</span><small>4.6 / 5</small></div><div class="k-done"><span>Answer #31</span><small>4.4 / 5</small></div><div class="k-done"><span>Answer #12</span><small>4.3 / 5</small></div><p>Ranked by anonymous review, not likes.</p><button type="button" class="k-win" id="kWin">See what a win feels like</button></div>
-                    <div class="k-card" id="kM1"><div class="k-l">Mission 003 · KERN</div><h4>Rewrite a confusing email</h4><p>Do it your way. Every answer counts.</p><div class="k-l">54 answers</div></div>
-                    <div class="k-card" id="kM2"><div class="k-l">Mission 004 · studio client</div><h4>Work with a partner</h4><p>Answer together with someone else.</p><div class="k-l">31 answers</div></div>
-                  </div>
-                  <div class="k-pane" id="k-yourkern">
-                    <div><div class="k-l">yourKERN · first signs</div><h3>Your <b>KERN</b><br>so far.</h3></div>
-                    <div class="k-card k-lvl"><img class="k-rank-img" id="kRankImg" src="/kern/r1.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-lvl-top"><div><div class="k-l">Your rank</div><div class="k-rank" id="kRank">Stone</div></div><div class="k-stones"><b id="kSt">240</b> <span class="k-l">stones</span></div></div><div class="k-bar k-bar-g"><i id="kBar"></i></div><small class="k-nx" id="kNx"></small><div class="k-ladder" id="kLad"></div></div>
-                    <div class="k-card"><div class="k-l">This week's circle</div><div id="kCircle"></div><div class="k-l">No one drops more than one rank in a week.</div></div>
-                    <div class="k-duo"><div class="k-card"><div class="k-l">Time on KERN missions</div><div class="k-stat"><b>1h 15m</b><span class="k-l">this week · only you see this</span></div><div class="k-bar"><i></i></div></div><div class="k-card"><div class="k-l">Your rhythm · no pressure</div><div class="k-dots"><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div><p>3 weeks this month you made something.</p></div></div>
-                    <div class="k-card"><div class="k-l">What you seem drawn to</div><div class="k-chips"><span>Shaping ideas</span><span>Writing</span><span>Solo work</span></div></div>
-                    <div class="k-card"><div class="k-l">How you work with AI</div><div class="k-sig">You rewrote your question 4 times, and every version got clearer.</div></div>
-                    <div class="k-card"><div class="k-l">A first guess</div><div class="k-sig">You seemed to light up on the open brief and drag on the polish.</div><div class="k-l">Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".</div>
-                      <div class="k-ask"><button type="button" class="k-yes" data-k-msg="Saved. This sharpens your KERN.">That feels right</button><button type="button" data-k-msg="Noted. We'll give this guess less weight.">Not really</button></div><div class="k-l k-fb" id="kFb" aria-live="polite"></div></div>
-                    <div><div class="k-l">Completed</div><div class="k-done"><span>Make somebody care</span><small>MISSION 001</small></div></div>
-                    <div class="k-card"><div class="k-l">Worth trying next</div><h4>Improve an existing product page</h4><p>Tests the part you seemed to drag on.</p></div>
-                  </div>
-                  <div class="k-pane" id="k-trail">
-                    <div class="k-hd"><div class="k-l">Your Trail</div><h3>Follow the<br><b>trail.</b></h3><img class="k-hd-img" src="/kern/r3.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
-                    <div class="k-tr">
-                      <div class="k-st fin"><h4>Make somebody care</h4><p>Build from zero · done</p></div>
-                      <div class="k-st now"><h4 id="kTrNow">Fix what already exists</h4><p>In progress</p></div>
-                      <div class="k-st"><h4 id="kTrNext">Work with a partner</h4><p>Pair up · not started</p></div>
-                      <div class="k-st"><h4>Your Kern card</h4><p>What we saw, why, and your next move</p></div>
+
+                <div class="sk-pane" id="sk-kerncard">
+                  <div><span class="sk-l">KernCard</span><h3><Bi it="La tua KernCard." en="Your KernCard." /></h3><p class="sk-s"><Bi it="Tutto quello che finisci sta su una pagina, la tua KernCard. Le aziende vedono solo quello che pubblichi." en="Everything you finish lives on one page, your KernCard. Companies see only what you publish." /></p></div>
+                  <div class="sk-stage" id="skStage">
+                    <div class="sk-card" id="skCard">
+                      <div class="sk-face sk-front">
+                        <i class="sk-foil" aria-hidden="true"></i>
+                        <div class="sk-ct"><span class="sk-kt"><svg class="sk-mk" viewBox="82 69 235 271" aria-hidden="true" set:html={MARK} /><span set:html={WORD} /></span><span class="sk-l sk-cf"><Bi it={SK[0].it} en={SK[0].en} /></span></div>
+                        <div class="sk-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        <span class="sk-l"><Bi it='<b class="sk-n">0</b> su 6 progetti' en='<b class="sk-n">0</b> of 6 projects' /></span>
+                        <p class="sk-q" id="skQ"><Bi it="Il primo progetto che finisci comparirà qui." en="The first project you finish shows up here." /></p>
+                        <span class="sk-l sk-ex"><Bi it="Carta d'esempio · anteprima" en="Example card · preview" /></span>
+                      </div>
+                      <div class="sk-face sk-back" aria-hidden="true">
+                        <i class="sk-foil" aria-hidden="true"></i>
+                        <div class="sk-ct"><span class="sk-kt"><svg class="sk-mk" viewBox="82 69 235 271" aria-hidden="true" set:html={MARK} /><span set:html={WORD} /></span><span class="sk-l sk-cf"><Bi it={SK[0].it} en={SK[0].en} /></span></div>
+                        <span class="sk-l"><Bi it="I tuoi progetti" en="Your projects" /></span>
+                        <ul class="sk-list" id="skList"><li class="sk-none"><Bi it="Ancora nessuno." en="None yet." /></li></ul>
+                        <div class="sk-rank"><div><span class="sk-l"><Bi it="Il tuo grado" en="Your rank" /></span><b>{RANKS.map((r, i) => <span class="sk-rn" hidden={i !== 0}><Bi it={r.it} en={r.en} /></span>)}</b></div><div class="sk-stn"><b id="skSt">0</b> <span class="sk-l"><Bi it="pietre" en="stones" /></span></div></div>
+                        <p class="sk-foot"><Bi it="Da zero al prodotto." en="From zero to product." /></p>
+                      </div>
                     </div>
-                    <div class="k-card k-signs-card"><div class="k-l">Signs on the trail</div><p>People who finish a mission before you leave a short tip for you. Yours helps the next person.</p><div class="k-sign"><p>“Read the whole flow before touching anything.”</p><span class="k-l">Fix what already exists · 2 days ago</span></div><div class="k-sign"><p>“Make the ugly first version fast.”</p><span class="k-l">Make somebody care · last week</span></div></div>
-                    <div class="k-card"><div class="k-l">Your Kern card · preview</div><div class="k-kc"><img class="k-kc-img" src="/kern/cairn.webp" alt="" width="720" height="720" loading="lazy" decoding="async" /><div class="k-kt">kern<i>.</i></div><h4>You light up when you start from zero.</h4><div class="k-chips"><span>Shaping ideas</span><span>Writing</span></div><div class="k-l">3 missions · first guess</div></div><button type="button" class="k-ask-btn" data-k-toast="Card ready to share. Your friends see what you made, not a test result.">Share my card</button></div>
-                    <div class="k-card"><div class="k-l">Dare a friend</div><p>Send a mission. You both answer, then see the two answers side by side.</p><button type="button" class="k-ask-btn" data-k-toast="Link copied. Your friend answers the same mission.">Send a dare</button></div>
                   </div>
-                  <div class="k-pane" id="k-copilot">
-                    <div class="k-hd"><div class="k-l">KERN.AI ·your co-pilot</div><h3>Your idea.<br>My <b>questions.</b></h3><img class="k-hd-img" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /></div>
-                    <div class="k-ait"><img class="k-avatar" src="/kern/ai.webp" alt="" width="400" height="400" loading="lazy" decoding="async" /><div class="k-l">You are talking to an AI · replies are a scripted preview</div></div>
-                    <div class="k-card k-chat">
-                      <div class="k-log" id="kChat" aria-live="polite"></div>
-                      <div class="k-cmp" id="kCmp" hidden><div class="k-l">Version 1</div><p id="kV1"></p><div class="k-l">Version 3</div><p id="kV3"></p><button type="button" class="k-ask-btn" data-k-toast="Saved to yourKERN. Every version counts as evidence.">Save to yourKERN</button></div>
-                      <div class="k-comp"><input id="kIn" type="text" maxlength="140" autocomplete="off" aria-label="Your idea" /><button type="button" class="k-send" id="kSend" aria-label="Send">↑</button></div>
-                      <div class="k-chips" id="kEx"><span role="button" tabindex="0">Use an example</span><span role="button" tabindex="0">Start over</span></div>
-                    </div>
-                    <div class="k-card"><div class="k-l">Do it twice</div><p>Make it alone first. Then with the co-pilot. Compare the two.</p></div>
-                    <div class="k-card"><div class="k-l">The rules</div><p>It asks. It never answers.</p><p>Your idea always comes first.</p><p>If it gets heavy, it stops and points you to a person.</p></div>
+                  <button type="button" class="sk-flip" id="skFlip" aria-pressed="false"><span aria-hidden="true">↻</span> <Bi it="Gira la carta" en="Flip the card" /></button>
+                  <div class="sk-ladder" id="skLad">{RANKS.map((r) => <span data-s={r.s}><Bi it={r.it} en={r.en} /><small>{r.s}</small></span>)}</div>
+                  <p class="sk-early"><Bi it="Accesso anticipato: le aziende non sono ancora su slashkern." en="Early access: companies are not on slashkern yet." /></p>
+                </div>
+
+                <div class="sk-pane" id="sk-slash">
+                  <div class="sk-sh"><svg class="sk-slash sk-mk" viewBox="82 69 235 271" aria-hidden="true" set:html={MARK} /><div><span class="sk-l">Slash</span><h3><Bi it="Slash ti aiuta.<br>Tu finisci." en="Slash helps.<br>You finish." /></h3></div></div>
+                  <div class="sk-chat" id="skChat" aria-live="polite">
+                    <span class="sk-l"><Bi it="Stai parlando con un'AI · risposte d'anteprima già scritte" en="You are talking to an AI · scripted preview replies" /></span>
+                    <p class="sk-msg sk-ai"><Bi it="Scegli il gancio: cosa mostrano i primi 2 secondi?" en="Pick the hook: what do the first 2 seconds show?" /></p>
+                    <div class="sk-chips" data-s="0">{HOOKS.map((h) => <button type="button" class="sk-chip"><Bi it={h.it} en={h.en} /></button>)}</div>
+                    <p class="sk-msg sk-me" data-s="1" hidden></p>
+                    <p class="sk-msg sk-ai" data-s="1" hidden><Bi it="Chiaro. Manca una cosa: cosa dice a chi guarda l'ultima vignetta?" en="Clear. One thing is missing: what does the last frame tell people?" /></p>
+                    <button type="button" class="sk-start sk-draft" data-s="1" hidden><Bi it="Prepara una prima versione" en="Draft a first version" /></button>
+                    <div class="sk-msg sk-ai" data-s="2" hidden><Bi it="Ultima vignetta: il furgone e la scritta «Aperti oggi, dalle 12 alle 15»." en="Last frame: the van, and “Open today, 12 to 3” on screen." /><span class="sk-aitag"><Bi it="Creato con l’aiuto dell’AI" en="Made with AI help" /></span></div>
+                    <p class="sk-msg sk-ai" data-s="2" hidden><Bi it="È solo una bozza: decidi tu cosa tenere." en="It is only a draft: you decide what stays." /></p>
+                    <button type="button" class="sk-again" id="skAgain" data-s="2" hidden><Bi it="Ricomincia" en="Start over" /></button>
+                  </div>
+                  <div class="sk-rules">
+                    <div><span class="sk-l"><Bi it="Slash fa" en="Slash does" /></span><ul><li><Bi it="Fa una domanda alla volta." en="Asks one question at a time." /></li><li><Bi it="Ti dice cosa non è chiaro o cosa manca." en="Points at what is unclear or missing." /></li><li><Bi it="Prepara una prima versione se glielo chiedi, segnata «Creato con l’aiuto dell’AI»." en="Drafts a first version when you ask, tagged Made with AI help." /></li></ul></div>
+                    <div class="no"><span class="sk-l"><Bi it="Slash non" en="Slash does not" /></span><ul><li><Bi it="Pubblica al posto tuo." en="Publish anything for you." /></li><li><Bi it="Sceglie al posto tuo." en="Make your choices." /></li><li><Bi it="Nasconde il suo aiuto." en="Hide its help." /></li></ul></div>
                   </div>
                 </div>
-                <div class="k-toast" id="kToast" role="status" aria-live="polite"></div>
-                <nav class="k-tabs" aria-label="KERN">
-                  <button type="button" class="on" data-k-tab="missions">Missions</button>
-                  <button type="button" data-k-tab="yourkern"><b class="tl">your<span>KERN</span></b></button>
-                  <button type="button" data-k-tab="trail">Trail</button>
-                  <button type="button" data-k-tab="copilot">KERN.AI</button>
-                </nav>
               </div>
+
+              <div class="sk-saved" id="skSaved" role="dialog" aria-modal="true" aria-labelledby="skSvT" hidden>
+                <div class="sk-sv-in">
+                  <span class="sk-ok" aria-hidden="true">✓</span>
+                  <span class="sk-l"><Bi it="Anteprima: i cinque passi sono saltati" en="Preview: the five steps are skipped" /></span>
+                  <h3 id="skSvT"><Bi it="Salvato nella tua KernCard" en="Saved to your KernCard" /></h3>
+                  <p><Bi it="Il progetto è nella tua KernCard. Le aziende non sono ancora su slashkern." en="The project is on your KernCard. Companies are not on slashkern yet." /></p>
+                  <button type="button" class="sk-start" id="skSeeCard"><Bi it="Vedi la mia KernCard" en="See my KernCard" /></button>
+                  <button type="button" class="sk-again" id="skStay"><Bi it="Resta sui progetti" en="Stay on projects" /></button>
+                </div>
+              </div>
+
+              <nav class="sk-tabs" aria-label="slashkern">
+                <button type="button" class="on" data-sk-tab="projects" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2"/></svg><Bi it="Progetti" en="Projects" /></button>
+                <button type="button" data-sk-tab="kerncard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10.5A.5.5 0 0 1 6.5 20V4a.5.5 0 0 1 .5-.5z"/><path d="M9.5 12h5M9.5 15.5h5"/></svg>KernCard</button>
+                <button type="button" data-sk-tab="slash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4 3.5v-3.5H5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/></svg>Slash</button>
+              </nav>
             </div>
           </div>
-          <button type="button" class="k-replay" id="kReplay">↻ Rivedi l'apertura</button>
-        </div>
-      </section>
-
-      <section class="why" id="perche">
-        <span class="lab"><Bi it="/perché" en="/why" /></span>
-        <h2><Bi it="Chi non sa cosa vuole non trova una porta d'ingresso." en="If you don't know what you want, there's no way in." /></h2>
-        <p class="lead"><Bi it="Giovani incerti, aziende che chiedono prove, sempre meno posti d'ingresso." en="Unsure young people, employers asking for proof, fewer entry-level roles." /></p>
-        <div class="charts">
-          {kstats.map((s) => (
-            <figure class="chart">
-              <figcaption><Bi it={s.t.it} en={s.t.en} /></figcaption>
-              {[s.a, s.b].map((r, k) => (
-                <div class="row">
-                  <span><Bi it={r.l.it} en={r.l.en} /></span>
-                  <b><Bi it={r.r.it} en={r.r.en} /></b>
-                  <div class="track"><i class={k ? 'y' : 'w'} style={`--v:${Math.max((r.v / s.max) * 100, 1.5)}%`}></i></div>
-                </div>
-              ))}
-            </figure>
-          ))}
-        </div>
-        <p class="note"><Bi it='Dati di ricerca generali, non risultati di KERN; barre indicative, alcune cifre da fonti secondarie. Fonti: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School e Burning Glass Institute · NPR e IBISWorld 2026. <a href="#fonti">Dettagli</a>' en='General research, not KERN results; bars are indicative and some figures come from secondary sources. Sources: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' /></p>
-        <div class="duo">
-          <div><span class="lab"><Bi it="La differenza" en="The difference" /></span><p><Bi it="Gli altri partono da un ruolo. KERN parte da te." en="Others start from a role. KERN starts from you." /></p></div>
-          <div><span class="lab"><Bi it="L'obiettivo" en="The goal" /></span><p><Bi it="Aiutarti a capire cosa vuoi, con lavoro vero." en="Help you work out what you want, through real work." /></p></div>
+          <button type="button" class="k-replay" id="kReplay"><span aria-hidden="true">↻</span> <Bi it="Rivedi l'apertura" en="Replay the intro" /></button>
         </div>
       </section>
 
@@ -289,10 +264,7 @@ const kstats = [
         <ol>
           <li>Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Review, ottobre 2014: aumentare la retention del 5% aumenta i profitti del 25–95%; acquisire un cliente costa 5–25 volte più che mantenerlo (dati di Fred Reichheld, Bain &amp; Company). <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">hbr.org</a></li>
           <li>P. Farris, N. Bendle, P. Pfeifer, D. Reibstein, <i>Marketing Metrics: The Definitive Guide to Measuring Marketing Performance</i>, Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.</li>
-          <li>Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera. <a href="https://www.forbes.com/sites/juliakorn/2025/05/20/new-report-50-of-young-adults-feel-isolated-in-career-planning/" target="_blank" rel="noopener">forbes.com</a> · <a href="https://www.bbbs.org/2025/09/career-confidence-in-crisis-new-report-from-big-brothers-big-sisters-shows-gen-zers-lack-critical-mentorship/" target="_blank" rel="noopener">bbbs.org</a></li>
-          <li>NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari: <a href="https://blog.theinterviewguys.com/the-state-of-skills-based-hiring/" target="_blank" rel="noopener">The Interview Guys</a> · <a href="https://testlify.com/skills-based-hiring-statistics/" target="_blank" rel="noopener">Testlify</a> · <a href="https://www.forbes.com/sites/terdawn-deboe/2026/08/10/employers-are-hiring-for-skills-over-degrees-now-ai-is-why/" target="_blank" rel="noopener">Forbes, agosto 2026</a></li>
-          <li>NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level. <a href="https://www.npr.org/2026/08/18/nx-s1-5910677/recent-college-graduates-employment-job-artificial-intelligence" target="_blank" rel="noopener">npr.org</a> · <a href="https://www.ibisworld.com/blog/2026-job-market-leaves-new-grads-behind/1/1126/" target="_blank" rel="noopener">ibisworld.com</a></li>
-          <li>Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.</li>
+          <li>Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.</li>
         </ol>
       </section>
 </Site>
@@ -325,209 +297,143 @@ const kstats = [
       .tags li { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; }
       .app { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr; align-items: center; overflow-x: clip; }
       .icon { width: 96px; height: 96px; display: block; margin: 22px 0 6px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
-      .k-h { margin-top: 6px; letter-spacing: -.07em; } .k-h span { color: #C9F24A; letter-spacing: 0; }
       .spec { margin: 26px 0 0; border-top: 1px solid rgba(255,255,255,.28); max-width: 34rem; }
       .spec div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.28); }
       .spec dt { font: 500 12px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--yellow); }
       .spec dd { margin: 0; font-weight: 600; text-align: right; }
-      .feat { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 14px; max-width: 34rem; }
-      .feat b { display: block; font-size: 1.1rem; letter-spacing: -.01em; }
-      .feat span { color: rgba(255,255,255,.8); }
+      .k-h { margin-top: 6px; letter-spacing: -.045em; text-transform: none; }
+      .rn { margin-left: .045em; } /* brand: un filo di spazio tra r e n, così "rn" non si legge "m" */
+      .k-slogan { margin: 4px 0 14px; font-weight: 700; font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: -.03em; color: var(--yellow); }
+      .icon .sk-mk { --eye: #DCE6FF; color: #0E1B3D; }
+      .app .note { max-width: 34rem; line-height: 1.45; }
+      .app .note .lnk { white-space: nowrap; }
 
-      /* KERN phone: own palette (night / bone / lime) */
+      /* slashkern: l'anteprima dell'app con i suoi colori (navy, blu oltremare, ghiaccio) e il suo font, Geist */
+      @font-face { font-family: 'Geist SK'; src: url('/kern/sk-geist.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
       .k-wrap { position: relative; display: grid; justify-items: center; gap: 16px; }
-      .k-ctl { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
       .k-seg { display: inline-flex; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; overflow: hidden; }
       .k-seg button { background: none; border: 0; color: #fff; padding: 5px 11px; font: 600 .7rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
       .k-seg button[aria-pressed="true"] { background: var(--yellow); color: #000; }
       .k-replay { background: none; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 9px 16px; font: 600 .85rem 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; }
       .k-replay:hover { border-color: var(--yellow); color: var(--yellow); }
-      .k-scr.light { --bg: #E8E6DA; --fg: #141A12; --acc: #2C5A3A; --on: #E8E6DA; --line: #B9B7A8; --dim: #5b6156; }
-      .k-scr { --bg: #0F140E; --fg: #E8E6DA; --acc: #C9F24A; --on: #0F140E; --line: #2a3128; --dim: #9a9d8e; position: relative; height: 600px; border-radius: 34px; overflow: hidden; contain: layout paint; background: var(--bg); color: var(--fg); }
-      .k-scr h3, .k-scr h4, .k-scr p { margin: 0; }
-      .k-scr button { font-family: inherit; }
-      .k-app { height: 100%; display: flex; flex-direction: column; }
-      .k-top { padding: 20px 18px 6px; display: flex; justify-content: space-between; align-items: center; }
-      .k-logo { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 21px; letter-spacing: -.07em; }
-      .k-logo svg { width: 22px; } .k-logo circle { fill: var(--acc); } .k-logo i { font-style: normal; color: var(--acc); letter-spacing: 0; }
-      .k-pill { font: 400 10px var(--mono); border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: var(--dim); }
-      .k-body { flex: 1; overflow: auto; padding: 10px 18px 12px; scrollbar-width: none; }
-      .k-body::-webkit-scrollbar { display: none; }
-      .k-pane { display: none; flex-direction: column; gap: 12px; }
-      .k-pane.on { display: flex; }
-      .k-l { font: 400 10px var(--mono); color: var(--dim); letter-spacing: .04em; text-transform: uppercase; }
-      .k-scr h3 { margin-top: 6px; font-weight: 800; font-size: 28px; letter-spacing: -.05em; line-height: 1; } .k-scr h3 b { color: var(--acc); }
-      .k-card { border: 1.5px solid var(--fg); border-radius: 14px; padding: 13px; display: flex; flex-direction: column; gap: 8px; }
-      .k-card h4 { font-weight: 800; font-size: 18px; letter-spacing: -.04em; line-height: 1.1; }
-      .k-card p { font-size: 13px; line-height: 1.4; opacity: .82; }
-      .k-main { background: var(--fg); color: var(--bg); } .k-main .k-l { color: var(--bg); opacity: .65; } .k-main p { color: var(--bg); }
-      .k-btn { align-self: flex-start; border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--bg); color: var(--acc); }
-      .k-stat { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; } .k-stat b { font-weight: 800; font-size: 36px; letter-spacing: -.06em; line-height: 1; }
-      .k-bar { height: 6px; border-radius: 6px; background: var(--line); overflow: hidden; } .k-bar i { display: block; height: 100%; width: 62%; background: var(--acc); }
-      .k-chips { display: flex; flex-wrap: wrap; gap: 6px; } .k-chips span { border: 1px solid var(--fg); border-radius: 999px; padding: 5px 11px; font-size: 12px; font-weight: 500; }
-      .k-sig { border-left: 3px solid var(--acc); padding-left: 12px; font-size: 14px; line-height: 1.4; }
-      .k-ask { display: flex; gap: 8px; flex-wrap: wrap; }
-      .k-ask button { font-size: 12px; font-weight: 800; border: 1.5px solid var(--fg); background: none; color: var(--fg); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
-      .k-ask .k-yes { background: var(--acc); color: var(--on); border-color: var(--acc); }
-      .k-fb { min-height: 1.2em; color: var(--acc); }
-      .k-start { position: absolute; inset: 0; z-index: 2; background: var(--bg); padding: 30px 22px; display: none; flex-direction: column; justify-content: center; }
-      .k-start.on { display: flex; }
-      .k-sp { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; } .k-sp[hidden] { display: none; }
-      .k-go { border: 0; border-radius: 999px; padding: 13px 20px; font-weight: 800; font-size: 14px; cursor: pointer; background: var(--acc); color: var(--on); text-align: left; }
-      .k-sk { background: none; border: 0; color: var(--dim); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: underline; padding: 4px 0; }
-      .k-chips span[role="button"] { cursor: pointer; } .k-chips span.sel { background: var(--acc); color: var(--on); border-color: var(--acc); }
-      .k-dots { display: flex; gap: 6px; } .k-dots i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--acc); } .k-dots i.f { background: var(--acc); }
-      .k-kc { border: 1.5px solid var(--acc); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: color-mix(in srgb, var(--acc) 10%, transparent); }
-      .k-kt { font-weight: 800; font-size: 18px; letter-spacing: -.07em; } .k-kt i { font-style: normal; color: var(--acc); letter-spacing: 0; }
-
-      /* v2: modern surfaces, spacing, colour roles (lime = progress, gold = reward, cool blue = thinking / AI) */
-      .k-scr { --gold: #F5C04B; --ai: #7FD1E6; --dim: #b4b7a9; --surf: color-mix(in srgb, var(--fg) 10%, transparent); --edge: color-mix(in srgb, var(--fg) 24%, transparent); background: radial-gradient(120% 55% at 85% -8%, color-mix(in srgb, var(--acc) 15%, transparent), transparent 62%), var(--bg); }
-      .k-scr.light { --gold: #6A4700; --ai: #1F6079; --dim: #454b40; }
-      .k-top { padding: 22px 20px 8px; }
-      .k-body { padding: 12px 20px 18px; }
-      .k-pane { gap: 14px; }
-      .k-scr h3 { font-size: 30px; letter-spacing: -.055em; }
-      .k-l { letter-spacing: .06em; }
-      .k-card { border: 1px solid var(--edge); background: var(--surf); border-radius: 20px; padding: 16px; gap: 10px; transition: border-color .2s, transform .2s; }
-      .k-card:hover { border-color: color-mix(in srgb, var(--acc) 55%, transparent); }
-      .k-main { background: linear-gradient(150deg, var(--fg), color-mix(in srgb, var(--fg) 80%, var(--acc))); border: 0; box-shadow: 0 12px 30px -14px color-mix(in srgb, var(--acc) 60%, transparent); }
-      .k-chips span { border-color: var(--edge); background: var(--surf); }
-      .k-chips span.sel { background: var(--acc); color: var(--on); border-color: var(--acc); }
-      .k-aic > .k-l:first-child { color: var(--ai); }
-      .k-ai { border: 1px solid color-mix(in srgb, var(--ai) 50%, transparent); border-left: 3px solid var(--ai); background: color-mix(in srgb, var(--ai) 20%, transparent); }
-      .k-me { border-color: var(--fg); background: var(--fg); color: var(--bg); }
-      .k-card p { opacity: .92; font-size: 13.5px; }
-      .k-l { font-size: 10.5px; font-weight: 500; }
-      .k-scr .k-card:not(.k-main) { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--fg) 10%, transparent); }
-      .k-scr.light .k-card:not(.k-main) { box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 8px 20px -12px rgba(20,26,18,.4); }
-
-      /* v3: display font (self-hosted Bricolage Grotesque), tab icons, tiles, cairn */
-      .k-scr, .k-h { --kd: 'Bricolage Grotesque Variable', 'Inter Tight Variable', system-ui, sans-serif; }
-      .k-scr h3, .k-scr h4, .k-logo, .k-word, .k-tag strong, .k-stat b, .k-rank, .k-stones b, .k-gain b, .k-medal, .k-kt, .k-h { font-family: var(--kd); }
-      .k-scr h3 { font-size: 28px; letter-spacing: -.04em; line-height: 1.02; }
-      .k-scr h4, .k-card h4 { letter-spacing: -.03em; }
-      .k-main { position: relative; overflow: hidden; }
-      .k-main::after { content: ''; position: absolute; right: -34px; top: -34px; width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 50%, transparent), transparent 70%); pointer-events: none; }
-      .k-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .k-duo .k-card { padding: 14px; } .k-duo .k-stat b { font-size: 28px; }
-      .k-tabs { padding-top: 10px; }
-      .k-tabs button { position: relative; gap: 4px; }
-      .k-tabs button::before { position: absolute; top: -11px; left: 50%; margin-left: -3px; }
-      .k-tabs button.on::before { margin-left: -10px; }
-      .k-tabs button::after { content: ''; order: -1; width: 22px; height: 22px; background: currentColor; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
-      .k-tabs button:nth-child(1) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E"); }
-      .k-tabs button:nth-child(2) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cellipse cx='12' cy='19' rx='8' ry='2.8'/%3E%3Cellipse cx='12' cy='13' rx='5.6' ry='2.4'/%3E%3Ccircle cx='12' cy='7.4' r='2.2'/%3E%3C/svg%3E"); }
-      .k-tabs button:nth-child(3) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='18' r='2'/%3E%3Ccircle cx='18' cy='6' r='2'/%3E%3Cpath d='M8 18h5a3 3 0 0 0 0-6h-2a3 3 0 0 1 0-6h5'/%3E%3C/svg%3E"); }
-
-      /* v5: KERN AI tab */
-      .k-tabs button:nth-child(4) { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z'/%3E%3C/svg%3E"); }
-      .k-ait { display: flex; align-items: center; gap: 8px; } .k-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ai); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ai) 25%, transparent); }
-      .k-chat { gap: 12px; }
-      .k-log { display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto; scrollbar-width: none; scroll-behavior: smooth; } .k-log::-webkit-scrollbar { display: none; }
-      .k-log .k-msg { max-width: 90%; } .k-log .k-me { align-self: flex-end; } .k-log .k-ai { align-self: flex-start; }
-      .k-typing { display: inline-flex; gap: 4px; } .k-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--ai); animation: kPulse 1s infinite; } .k-typing i:nth-child(2) { animation-delay: .15s; } .k-typing i:nth-child(3) { animation-delay: .3s; }
-      .k-comp { display: flex; gap: 8px; align-items: center; }
-      .k-comp input { flex: 1; min-width: 0; box-sizing: border-box; font: 500 14px/1.4 'Inter Tight Variable', system-ui, sans-serif; color: var(--fg); background: var(--surf); border: 1px solid var(--edge); border-radius: 999px; padding: 11px 14px; }
-      .k-comp input:focus-visible { outline: 2px solid var(--ai); outline-offset: 1px; }
-      .k-send { flex: none; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--ai); color: var(--bg); font-weight: 800; font-size: 18px; cursor: pointer; transition: transform .15s; } .k-send:active { transform: scale(.92); }
-      .k-cmp { display: grid; gap: 6px; border: 1px dashed var(--edge); border-radius: 14px; padding: 12px; } .k-cmp[hidden] { display: none; }
-      .k-cmp p { font-size: 13.5px; border-left: 3px solid var(--gold); padding-left: 10px; margin-bottom: 4px; } .k-cmp .k-ask-btn { justify-self: start; border-color: var(--gold); color: var(--gold); }
-
-      /* v4: login, answer sheet, smoother motion */
-      .k-tp { display: flex; align-items: center; gap: 8px; }
-      .k-tabs .tl { font: inherit; white-space: nowrap; } .k-logo i { margin-left: -6px; }
-      .k-main > * { position: relative; z-index: 1; }
-      .k-sh-in .k-msg { font-size: 13.5px; line-height: 1.4; padding: 10px 12px; border-radius: 12px; align-self: stretch; }
-      /* titolo del foglio: era un h5, ora h3 per non saltare livello; il selettore più forte lo tiene com'era (non prende lo stile dei titoli schermata) */
-      .k-scr .k-sh-in h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
-      .k-av { width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--kd); font-weight: 800; font-size: 13px; color: var(--bg); background: linear-gradient(135deg, var(--acc), var(--gold)); }
-      .k-field { display: flex; flex-direction: column; gap: 6px; width: 100%; } .k-field[hidden] { display: none; }
-      .k-field input, .k-sheet textarea { width: 100%; box-sizing: border-box; font: 500 14px/1.4 'Inter Tight Variable', system-ui, sans-serif; color: var(--fg); background: var(--surf); border: 1px solid var(--edge); border-radius: 12px; padding: 12px 14px; }
-      .k-field input:focus-visible, .k-sheet textarea:focus-visible { outline: 2px solid var(--acc); outline-offset: 1px; }
-      .k-go.busy { opacity: .85; pointer-events: none; }
-      .k-go.busy::after { content: ''; display: inline-block; width: 12px; height: 12px; margin-left: 10px; border-radius: 50%; border: 2px solid currentColor; border-top-color: transparent; animation: kSpin .7s linear infinite; vertical-align: -2px; }
-      @keyframes kSpin { to { transform: rotate(360deg); } }
-      .k-start.on { animation: kFade .35s both; } .k-sp:not([hidden]) { animation: kUp .45s both cubic-bezier(.2,.8,.2,1); }
-      .k-sheet { position: absolute; inset: 0; z-index: 4; display: flex; align-items: flex-end; background: color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter: blur(3px); animation: kFade .25s both; } .k-sheet[hidden] { display: none; }
-      .k-sh-in { width: 100%; max-height: 92%; overflow: auto; background: var(--bg); border-top: 1px solid var(--edge); border-radius: 26px 26px 0 0; padding: 12px 20px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 -20px 50px -20px rgba(0,0,0,.5); animation: kSlide .38s cubic-bezier(.2,.9,.3,1) both; }
-      @keyframes kSlide { from { transform: translateY(100%); } }
-      .k-grab { width: 38px; height: 4px; border-radius: 4px; background: var(--edge); align-self: center; }
-      .k-sheet textarea { resize: none; min-height: 96px; }
-      .k-sh-btns { display: flex; align-items: center; gap: 12px; }
-      .k-body { scroll-behavior: smooth; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 12px), transparent 100%); }
-      .k-pane.leaving { animation: kOut .12s ease-in both; pointer-events: none; } @keyframes kOut { to { opacity: 0; } }
-      @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-      @media (prefers-reduced-motion: reduce) { .k-sheet, .k-sh-in, .k-start.on, .k-sp, .k-go.busy::after { animation: none; } .k-body { scroll-behavior: auto; } }
-      .k-btn, .k-go, .k-ask-btn, .k-ask button, .k-win, .k-tabs button { transition: transform .15s; }
-      .k-btn:active, .k-go:active, .k-ask-btn:active, .k-ask button:active, .k-win:active { transform: scale(.95); }
-      .k-tabs { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(12px); }
-      @media (hover: none) { .k-tabs { background: color-mix(in srgb, var(--bg) 95%, transparent); backdrop-filter: none; } }
-      .k-tabs button::before { transition: width .25s, background .25s; }
-      .k-tabs button.on::before { width: 20px; border-radius: 4px; }
-      .k-pane.on > * { animation: kUp .32s both cubic-bezier(.2,.8,.2,1); }
-      .k-pane.on > *:nth-child(2) { animation-delay: .04s; } .k-pane.on > *:nth-child(3) { animation-delay: .08s; } .k-pane.on > *:nth-child(n+4) { animation-delay: .12s; }
-      @keyframes kUp { from { opacity: 0; transform: translateY(8px); } }
-      @keyframes kPulse { 50% { opacity: .35; } } @keyframes kFade { from { opacity: 0; } }
-      .k-live::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); margin-right: 6px; animation: kPulse 1.6s infinite; }
-      .k-best .k-done small { color: var(--gold); font-weight: 600; }
-      .k-win { align-self: flex-start; border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 13px; cursor: pointer; background: var(--gold); color: var(--bg); box-shadow: 0 8px 22px -10px var(--gold); }
-      .k-rank { font-weight: 800; font-size: 26px; letter-spacing: -.05em; color: var(--gold); line-height: 1.1; }
-      .k-lvl-top { display: flex; justify-content: space-between; align-items: flex-end; }
-      .k-stones b { font-weight: 800; font-size: 26px; letter-spacing: -.05em; }
-      .k-bar-g i { width: 0; background: linear-gradient(90deg, var(--acc), var(--gold)); transition: width 1s cubic-bezier(.2,.8,.2,1); }
-      .k-nx { font: 400 11px var(--mono); color: var(--dim); }
-      .k-ladder { display: flex; flex-wrap: wrap; gap: 5px; }
-      .k-ladder span { font: 600 10px var(--mono); padding: 4px 9px; border-radius: 999px; border: 1px solid var(--edge); color: var(--dim); }
-      .k-ladder span.done { color: var(--fg); border-color: var(--gold); }
-      .k-ladder span.on { background: var(--gold); border-color: var(--gold); color: var(--bg); }
-      .k-rw { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--edge); font-size: 14px; }
-      .k-rw i { font: 700 12px var(--mono); font-style: normal; color: var(--dim); } .k-rw em { font: 600 12px var(--mono); font-style: normal; color: var(--gold); }
-      .k-rw.me { background: color-mix(in srgb, var(--acc) 14%, transparent); border-radius: 10px; padding: 8px; margin: 0 -8px; font-weight: 800; border-bottom-color: transparent; }
-      .k-reward { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; backdrop-filter: blur(6px); background: radial-gradient(90% 50% at 50% 28%, color-mix(in srgb, var(--gold) 30%, transparent), transparent 70%), color-mix(in srgb, var(--bg) 93%, transparent); animation: kFade .3s both; }
-      .k-reward[hidden] { display: none; }
-      .k-rw-in { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-      .k-medal { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 34px; letter-spacing: -.05em; color: var(--bg); background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.55), transparent 42%), var(--gold); box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 25%, transparent), 0 0 60px color-mix(in srgb, var(--gold) 55%, transparent); animation: kPop .7s cubic-bezier(.3,1.6,.5,1) both; }
-      @keyframes kPop { from { transform: scale(0) rotate(-40deg); } }
-      .k-gain b { font-weight: 800; font-size: 44px; letter-spacing: -.06em; color: var(--gold); }
-      .k-rankup { padding: 10px 18px; border: 1px solid var(--gold); border-radius: 999px; animation: kUp .5s .9s both; } .k-rankup[hidden] { display: none; }
-      .k-conf { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-      .k-conf span { position: absolute; top: -16px; left: var(--l); width: 9px; height: 14px; border-radius: 3px; background: var(--c); opacity: 0; animation: kFall var(--d) var(--dl) cubic-bezier(.3,.6,.6,1) forwards; }
-      @keyframes kFall { 0% { opacity: 1; transform: translate3d(0,0,0) rotate(0); } 100% { opacity: 1; transform: translate3d(var(--x), 800px, 0) rotate(var(--r)); } }
-      @media (prefers-reduced-motion: reduce) { .k-pane.on > *, .k-medal, .k-conf span, .k-rankup, .k-reward, .k-live::before { animation: none; } .k-bar-g i, .k-card, .k-tabs button::before { transition: none; } }
-      .k-card .k-msg { font-size: 13px; line-height: 1.4; opacity: 1; padding: 8px 11px; border-radius: 12px; max-width: 92%; }
-      .k-me { align-self: flex-end; border: 1.5px solid var(--fg); }
-      .k-ai { align-self: flex-start; border-left: 3px solid var(--acc); background: color-mix(in srgb, var(--acc) 16%, transparent); }
-      .k-ask-btn { align-self: flex-start; font-size: 12px; font-weight: 800; border: 1.5px solid var(--fg); background: none; color: var(--fg); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
-      .k-done { display: flex; justify-content: space-between; font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); } .k-done small { font: 400 10px var(--mono); color: var(--dim); }
-      .k-tr { position: relative; display: flex; flex-direction: column; gap: 18px; padding-left: 32px; }
-      .k-tr::before { content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
-      .k-st { position: relative; } .k-st::before { content: ''; position: absolute; left: -30px; top: 2px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--fg); background: var(--bg); }
-      .k-st.fin::before { background: var(--fg); } .k-st.now::before { background: var(--acc); border-color: var(--acc); }
-      .k-st h4 { font-weight: 800; font-size: 16px; letter-spacing: -.03em; } .k-st p { font-size: 12px; color: var(--dim); margin-top: 2px; }
-      .k-toast { position: absolute; left: 14px; right: 14px; bottom: 72px; background: var(--fg); color: var(--bg); border-radius: 12px; padding: 10px 12px; font-size: 12px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
-      .k-toast.on { opacity: 1; transform: none; }
-      .k-tabs { display: flex; border-top: 1px solid var(--line); padding: 6px 8px 12px; }
-      .k-tabs button { flex: 1; background: none; border: 0; color: var(--dim); font-weight: 800; font-size: 12px; letter-spacing: -.01em; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; padding: 6px 0; }
-      .k-tabs button::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: transparent; }
-      .k-tabs button.on { color: var(--fg); } .k-tabs button.on::before { background: var(--acc); } .k-tabs button.on span { color: var(--acc); }
-      /* launch loader (plays once when the phone scrolls into view) */
-      .k-load { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: var(--bg); transition: opacity .5s; }
-      .k-load.off { opacity: 0; pointer-events: none; }
-      .k-load svg { width: 92px; overflow: visible; color: var(--fg); }
-      .ks, .kl { transform: translate(0,0); } .kl { fill: none; }
-      .kc { transform-box: fill-box; transform-origin: center; transform: scale(0); fill: var(--acc); }
-      .k-word { font-weight: 800; font-size: 46px; letter-spacing: -.07em; line-height: 1; opacity: 0; transform: translateY(8px); } .k-word i { font-style: normal; color: var(--acc); letter-spacing: 0; }
-      .k-tag { position: absolute; bottom: 44px; text-align: center; display: flex; flex-direction: column; gap: 6px; opacity: 0; }
-      .k-tag span { font-weight: 500; font-size: 16px; letter-spacing: -.02em; line-height: 1; opacity: .6; }
-      .k-tag strong { font-weight: 800; font-size: 27px; letter-spacing: -.06em; line-height: 1; } .k-tag b { color: var(--acc); }
-      .k-load.go .ks { animation: kS .9s .35s cubic-bezier(.65,0,.25,1) forwards; }
-      .k-load.go .kl { animation: kL .9s .35s cubic-bezier(.65,0,.25,1) forwards; }
-      .k-load.go .kc { animation: kC .5s 1.05s cubic-bezier(.3,1.6,.5,1) forwards; }
-      .k-load.go .k-word { animation: kR .6s 1.2s cubic-bezier(.2,.8,.2,1) forwards; }
-      .k-load.go .k-tag { animation: kR .6s 1.6s cubic-bezier(.2,.8,.2,1) forwards; }
-      @keyframes kS { to { transform: translate(-5px,-5px); } } @keyframes kL { to { transform: translate(5px,5px); } }
-      @keyframes kC { to { transform: scale(1); } } @keyframes kR { to { opacity: 1; transform: none; } }
-      @media (prefers-reduced-motion: reduce) { .k-load { display: none; } .k-toast { transition: none; } }
+      .sk { --navy: #0E1B3D; --ultra: #2D4BFF; --ice: #DCE6FF; --cream: #F5F2EA; --page: #F5F7FF; --muted: #5A6478; --line: #C9D1E6; --sky: #7C93FF;
+        position: relative; height: 600px; border-radius: 34px; overflow: hidden; contain: layout paint; display: flex; flex-direction: column;
+        background: var(--page); color: var(--navy); font-family: 'Geist SK', 'Inter Tight Variable', system-ui, sans-serif; }
+      .sk h3, .sk h4, .sk p { margin: 0; }
+      .sk button { font-family: inherit; cursor: pointer; }
+      .sk-mk { --eye: #DCE6FF; fill: currentColor; } .sk-mk .eye { fill: var(--eye); }
+      .sk-l { font: 500 11px/1.35 'Geist SK', system-ui, sans-serif; color: var(--muted); }
+      .sk-s { font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+      .sk-top { display: flex; align-items: center; justify-content: space-between; padding: 20px 18px 6px; }
+      .sk-logo { display: flex; align-items: center; gap: 7px; font-weight: 800; font-size: 19px; letter-spacing: -.04em; }
+      .sk-logo svg { width: 20px; height: 23px; }
+      .sk-av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font-weight: 700; font-size: 13px; }
+      .sk-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; padding: 6px 18px 18px; }
+      .sk-body::-webkit-scrollbar { display: none; }
+      .sk-pane { display: none; flex-direction: column; gap: 12px; }
+      .sk-pane.on { display: flex; animation: skUp .32s both cubic-bezier(.2,.8,.2,1); }
+      .sk h3 { font-weight: 800; font-size: 28px; line-height: 1.02; letter-spacing: -.045em; }
+      .sk-hi { font-weight: 600; font-size: 15px; color: var(--muted); }
+      .sk-row { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+      .sk-more { border: 0; background: none; color: var(--navy); font-weight: 700; font-size: 13.5px; padding: 6px 0; }
+      .sk-more i { font-style: normal; font-size: 10px; display: inline-block; transition: transform .25s; } .sk-more[aria-expanded="true"] i { transform: rotate(180deg); }
+      .sk-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; } .sk-paths[hidden] { display: none; }
+      .sk-path { display: flex; align-items: center; gap: 7px; padding: 5px 8px 5px 5px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--navy); font-weight: 600; font-size: 11.5px; line-height: 1.15; text-align: left; transition: border-color .2s, background-color .2s; }
+      .sk-path img { width: 28px; height: 28px; flex: none; border-radius: 8px; }
+      .sk-path[aria-pressed="true"] { border-color: var(--ultra); background: var(--ice); }
+      .sk-piece { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px 16px 16px; border-radius: 22px; color: #fff; background: linear-gradient(160deg, #4763FF, var(--ultra) 55%, #2440E0); box-shadow: 0 16px 30px -18px rgba(45,75,255,.9); }
+      .sk-piece[hidden] { display: none; }
+      .sk-piece .sk-l { color: rgba(255,255,255,.82); font-weight: 600; }
+      .sk-piece > .sk-l:first-of-type, .sk-piece h4 { padding-right: 62px; }
+      .sk-piece h4 { font-weight: 800; font-size: 19px; line-height: 1.1; letter-spacing: -.035em; }
+      .sk-piece p { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,.92); }
+      .sk-obj { position: absolute; right: 12px; top: 14px; width: 54px; height: 54px; border-radius: 14px; rotate: 6deg; box-shadow: 0 10px 18px -8px rgba(14,27,61,.6); }
+      .sk-start { align-self: flex-start; margin-top: 4px; border: 0; border-radius: 999px; padding: 11px 22px; background: #fff; color: var(--navy); font-weight: 700; font-size: 14px; transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+      .sk-start:active, .sk-path:active, .sk-chip:active, .sk-flip:active { transform: scale(.95); transition-duration: .08s; }
+      .sk-start.done { background: rgba(255,255,255,.2); color: #fff; }
+      .sk-start.done::before { content: '✓ '; }
+      .sk-stage { perspective: 900px; padding: 4px 2px; }
+      .sk-card { --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%; position: relative; display: grid; transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+      .sk-card.flip { transform: rotateX(var(--rx)) rotateY(calc(var(--ry) + 180deg)); }
+      .sk-card.live { transition: transform .12s linear; }
+      .sk-face { grid-area: 1 / 1; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 6px; min-height: 250px; padding: 16px; border-radius: 22px; color: #fff; background: var(--navy); backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 18px 34px -18px rgba(14,27,61,.8); }
+      .sk-back { transform: rotateY(180deg); }
+      .sk-face .sk-l { color: rgba(255,255,255,.72); }
+      .sk-foil { position: absolute; inset: 0; pointer-events: none; opacity: .55; mix-blend-mode: screen; background: radial-gradient(60% 45% at var(--mx) var(--my), rgba(124,147,255,.55), transparent 70%), linear-gradient(115deg, transparent 35%, rgba(220,230,255,.22) 48%, transparent 60%); }
+      .sk-face > :not(.sk-foil) { position: relative; }
+      .sk-ct { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+      .sk-kt { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 15px; letter-spacing: -.035em; }
+      .sk-kt svg { width: 15px; height: 17px; color: var(--cream); --eye: #0E1B3D; }
+      .sk-face .sk-cf { color: var(--sky); font-weight: 600; text-align: right; }
+      .sk-bar { display: flex; gap: 5px; } .sk-bar i { flex: 1; height: 6px; border-radius: 999px; background: rgba(255,255,255,.16); transition: background-color .4s; } .sk-bar i.on { background: var(--sky); }
+      .sk-n { font-weight: 700; color: #fff; }
+      .sk-q { margin-top: 12px !important; font-weight: 700; font-size: 19px; line-height: 1.2; letter-spacing: -.025em; }
+      .sk-ex { margin-top: auto; }
+      .sk-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+      .sk-list li { padding-left: 14px; position: relative; } .sk-list li::before { content: ''; position: absolute; left: 0; top: .45em; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
+      .sk-list .sk-none { color: rgba(255,255,255,.6); font-weight: 500; } .sk-list .sk-none::before { content: none; }
+      .sk-rank { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.16); }
+      .sk-rank b { display: block; font-weight: 800; font-size: 22px; letter-spacing: -.035em; }
+      .sk-rank .sk-rn[hidden] { display: none; }
+      .sk-stn b { display: inline; font-size: 22px; }
+      .sk-foot { font-size: 11px; color: rgba(255,255,255,.6); }
+      .sk-flip { align-self: center; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: #fff; color: var(--navy); border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 12.5px; transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+      .sk-ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+      .sk-ladder > span { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 7px 2px; border-radius: 12px; border: 1px solid var(--line); font-weight: 700; font-size: 10.5px; color: var(--muted); background: #fff; }
+      .sk-ladder small { font-weight: 500; font-size: 9.5px; }
+      .sk-ladder > span.done { color: var(--navy); border-color: var(--sky); }
+      .sk-ladder > span.on { color: #fff; background: var(--ultra); border-color: var(--ultra); }
+      .sk-early { font-size: 12px; line-height: 1.4; color: var(--muted); padding: 10px 12px; border-radius: 14px; background: var(--ice); }
+      .sk-sh { display: flex; align-items: center; gap: 14px; }
+      .sk-slash { width: 54px; height: 62px; flex: none; color: var(--navy); animation: skLook 5s ease-in-out infinite; transform-origin: 30% 80%; }
+      .sk-slash .eye { animation: skBlink 4s infinite; transform-box: fill-box; transform-origin: center; }
+      .sk-chat { display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 20px; background: #fff; border: 1px solid var(--line); }
+      .sk-msg { max-width: 90%; padding: 9px 12px; font-size: 13px; line-height: 1.42; border-radius: 16px; }
+      .sk-msg[hidden], .sk-chat [hidden] { display: none !important; }
+      .sk-ai { align-self: flex-start; background: var(--ice); border-bottom-left-radius: 5px; animation: skUp .35s both cubic-bezier(.2,.8,.2,1); }
+      .sk-me { align-self: flex-end; background: var(--navy); color: #fff; border-bottom-right-radius: 5px; animation: skUp .3s both cubic-bezier(.2,.8,.2,1); }
+      .sk-aitag { display: block; width: fit-content; margin-top: 6px; padding: 3px 8px; border-radius: 999px; background: var(--ultra); color: #fff; font-size: 10.5px; font-weight: 600; }
+      .sk-chips { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+      .sk-chip { border: 1px solid var(--ultra); background: #fff; color: var(--ultra); border-radius: 999px; padding: 7px 12px; font-weight: 600; font-size: 12.5px; text-align: left; transition: transform .45s cubic-bezier(.34,1.56,.64,1), background-color .2s; }
+      .sk-chip:hover { background: var(--ice); }
+      .sk-chat .sk-start { background: var(--ultra); color: #fff; padding: 9px 16px; font-size: 13px; }
+      .sk-again { align-self: flex-start; border: 0; background: none; color: var(--muted); font-weight: 600; font-size: 12.5px; text-decoration: underline; padding: 4px 0; }
+      .sk-rules { display: grid; gap: 8px; }
+      .sk-rules > div { padding: 12px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+      .sk-rules ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 12.5px; line-height: 1.4; font-weight: 500; }
+      .sk-rules li::before { content: '✓  '; color: var(--ultra); font-weight: 700; }
+      .sk-rules .no li::before { content: '✕  '; color: var(--muted); }
+      .sk-saved { position: absolute; inset: 0; z-index: 4; display: flex; align-items: flex-end; background: rgba(14,27,61,.35); animation: skFade .25s both; }
+      .sk-saved[hidden] { display: none; }
+      .sk-sv-in { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 22px 20px 24px; border-radius: 26px 26px 0 0; background: var(--page); animation: skSlide .38s cubic-bezier(.2,.9,.3,1) both; }
+      .sk-sv-in h3 { font-size: 24px; } .sk-sv-in p { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+      .sk-sv-in .sk-start { background: var(--ultra); color: #fff; }
+      .sk-ok { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ultra); color: #fff; font-weight: 800; font-size: 20px; animation: skPop .6s cubic-bezier(.3,1.6,.5,1) both; }
+      .sk-tabs { display: flex; padding: 6px 10px 10px; border-top: 1px solid var(--line); background: #fff; }
+      .sk-tabs button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 4px; border: 0; background: none; color: var(--muted); font-weight: 600; font-size: 11px; }
+      .sk-tabs svg { width: 34px; height: 26px; padding: 3px 7px; border-radius: 999px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; transition: background-color .25s; }
+      .sk-tabs button.on { color: var(--ultra); } .sk-tabs button.on svg { background: var(--ice); }
+      .sk-load { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: var(--page); transition: opacity .5s; }
+      .sk-load.off { opacity: 0; pointer-events: none; }
+      .sk-fly { width: 64px; height: 74px; color: var(--navy); opacity: 0; }
+      .sk-word { font-weight: 800; font-size: 40px; letter-spacing: -.045em; opacity: 0; transform: translateY(8px); }
+      .sk-tag { position: absolute; bottom: 48px; font-weight: 600; font-size: 16px; color: var(--muted); opacity: 0; }
+      .sk-load.go .sk-fly { animation: skFly 1.3s .2s cubic-bezier(.65,0,.25,1) forwards; }
+      .sk-load.go .sk-word { animation: skIn .6s 1.3s cubic-bezier(.2,.8,.2,1) forwards; }
+      .sk-load.go .sk-tag { animation: skIn .6s 1.7s cubic-bezier(.2,.8,.2,1) forwards; }
+      @keyframes skFly { 0% { opacity: 0; transform: translate(-90px, 140px) rotate(-30deg) scale(.6); } 30% { opacity: 1; } 55% { transform: translate(60px, -40px) rotate(12deg) scale(.9); } 78% { transform: translate(-10px, 6px) rotate(-6deg); } 100% { opacity: 1; transform: none; } }
+      @keyframes skIn { to { opacity: 1; transform: none; } }
+      @keyframes skUp { from { opacity: 0; transform: translateY(8px); } }
+      @keyframes skFade { from { opacity: 0; } }
+      @keyframes skSlide { from { transform: translateY(100%); } }
+      @keyframes skPop { from { transform: scale(0) rotate(-30deg); } }
+      @keyframes skLook { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-6deg); } 60% { transform: rotate(4deg); } }
+      @keyframes skBlink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.15); } }
+      @media (prefers-reduced-motion: reduce) {
+        .sk-load { display: none; }
+        .sk-pane.on, .sk-ai, .sk-me, .sk-saved, .sk-sv-in, .sk-ok, .sk-slash, .sk-slash .eye { animation: none; }
+        .sk-card, .sk-card.live { transition: none; }
+      }
 
       /* why + difference */
       .why { border-top: 1px solid rgba(255,255,255,.25); }
@@ -544,107 +450,11 @@ const kstats = [
       .k-tags li { border: 1px solid rgba(255,255,255,.4); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: .95rem; background: rgba(255,255,255,.06); }
       .k-wrap > * { position: relative; z-index: 1; }
       .k-wrap::before { content: ''; position: absolute; inset: 6% -14%; background: radial-gradient(closest-side, rgba(255,224,0,.22), rgba(255,224,0,.08) 60%, transparent 100%); pointer-events: none; }
-      .duo { display: grid; gap: 22px; margin-top: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
-      .duo > div { padding: 26px; border-radius: 18px; background: rgba(255,224,0,.12); border: 1px solid rgba(255,224,0,.45); }
-      .duo p { margin: 14px 0 0; font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.8rem); letter-spacing: -.03em; line-height: 1.15; }
       .ana-top { display: flex; justify-content: flex-start; margin-bottom: 4px; align-items: center; gap: 18px; flex-wrap: wrap; }
       html:not([data-ana="en"]) span[lang="en"], html[data-ana="en"] span[lang="it"] { display: none; }
       .note a { color: inherit; text-decoration: underline; }
       @media (min-width: 1024px) { .app { grid-template-columns: 1.1fr .9fr; } }
       @media (prefers-reduced-motion: reduce) { .row i { transition: none; } }
-
-      /* KERN phone, v1.0 look (same as the app): 3D objects, italic serif accents, floating tab bar, grain */
-      @property --p { syntax: '<number>'; inherits: false; initial-value: 0; }
-      .k-scr { --ks: 'Instrument Serif', Georgia, serif; --spring: cubic-bezier(.34, 1.56, .64, 1); --out: cubic-bezier(.22, 1, .36, 1); --bone: #ECEADF; }
-      .k-scr::after { content: ''; position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: .06; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-      .k-scr.light::after { filter: invert(1); opacity: .045; }
-      .k-scr h3 { font-size: 30px; line-height: .98; letter-spacing: -.045em; }
-      .k-scr h3 b, .k-tag b { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 1.16em; letter-spacing: -.01em; line-height: .8; }
-      .k-rank { font-family: var(--ks); font-style: italic; font-weight: 400; font-size: 34px; letter-spacing: -.01em; line-height: 1; }
-      .k-card { border-radius: 22px; border-color: color-mix(in srgb, var(--fg) 13%, transparent); background: color-mix(in srgb, var(--fg) 5.5%, transparent); }
-      .k-go, .k-btn, .k-win, .k-ask-btn, .k-tile, .k-ask button { transition: transform .45s var(--spring), background-color .2s, border-color .2s; }
-      .k-go:active, .k-btn:active, .k-win:active, .k-ask-btn:active, .k-tile:active, .k-ask button:active { transform: scale(.95); transition-duration: .08s; }
-      @keyframes kFloat { 50% { transform: translateY(-6px) rotate(-2deg); } }
-      .k-obj, .k-hd-img, .k-rank-img, .k-hero-img, .k-float img { pointer-events: none; animation: kFloat 6s ease-in-out infinite; }
-      .k-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 5px; }
-      .k-ring { --p: .3333; width: 16px; height: 16px; border-radius: 50%; background: conic-gradient(var(--acc) calc(var(--p) * 1turn), var(--edge) 0); -webkit-mask: radial-gradient(circle, transparent 4.5px, #000 5px); mask: radial-gradient(circle, transparent 4.5px, #000 5px); }
-      /* hero mission card with the field object breaking out of the frame */
-      .k-main { margin-top: 26px; overflow: visible; border-radius: 26px; padding: 20px 18px 18px; color: var(--bone); background: radial-gradient(110% 90% at 100% 0%, rgba(201,242,74,.36), transparent 55%), linear-gradient(160deg, #2C5A3A, #14241A 72%); box-shadow: 0 22px 44px -24px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.14); }
-      .k-main::after { content: none; }
-      .k-main .k-l, .k-main p { color: var(--bone); } .k-main .k-l { opacity: .72; }
-      .k-main > .k-l:first-of-type, .k-main h4 { padding-right: 92px; }
-      .k-obj { position: absolute; right: -10px; top: -46px; width: 118px; height: 118px; z-index: 2 !important; filter: drop-shadow(0 18px 20px rgba(0,0,0,.5)); }
-      .k-main .k-btn { background: #C9F24A; color: #0F140E; box-shadow: 0 12px 24px -12px rgba(201,242,74,.8); }
-      .k-main .k-btn::after { content: ' →'; }
-      .k-best, .k-aic { position: relative; }
-      .k-side { position: absolute; right: 10px; top: 8px; width: 62px; height: 62px; filter: drop-shadow(0 10px 12px rgba(0,0,0,.4)); pointer-events: none; }
-      .k-best > .k-l:first-of-type { padding-right: 64px; min-height: 60px; }
-      .k-aic-hd { display: flex; align-items: center; gap: 8px; }
-      .k-aic-hd .k-l { color: var(--ai); }
-      .k-hd { position: relative; }
-      .k-hd-img { position: absolute; right: -4px; top: -8px; width: 88px; height: 88px; filter: drop-shadow(0 14px 18px rgba(0,0,0,.4)); animation-duration: 7s; }
-      /* yourKERN: the rank as a collectible stone */
-      .k-lvl { background: radial-gradient(80% 55% at 50% 16%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 70%), color-mix(in srgb, var(--fg) 5.5%, transparent); }
-      .k-rank-img { width: 140px; height: 140px; align-self: center; margin: -4px 0 -6px; filter: drop-shadow(0 18px 22px rgba(0,0,0,.45)); }
-      .k-ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
-      .k-ladder span { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 7px 1px 5px; border: 0; border-radius: 12px; font: 600 8.5px var(--mono); letter-spacing: .03em; text-transform: uppercase; color: var(--dim); }
-      .k-ladder b { font: inherit; }
-      .k-ladder img { width: 28px; height: 28px; filter: grayscale(1) brightness(.75); opacity: .4; }
-      .k-ladder span.done { color: var(--fg); } .k-ladder span.done img { filter: none; opacity: .9; }
-      .k-ladder span.on { background: color-mix(in srgb, var(--gold) 16%, transparent); color: var(--fg); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent); }
-      .k-ladder span.on img { filter: none; opacity: 1; transform: scale(1.15); }
-      /* Trail: the Kern card as a dark collectible, and signs left by people before you */
-      .k-kc { position: relative; overflow: hidden; min-height: 190px; justify-content: flex-end; border: 1px solid rgba(201,242,74,.35); border-radius: 20px; color: var(--bone); background: radial-gradient(90% 70% at 100% 0%, rgba(201,242,74,.22), transparent 60%), linear-gradient(165deg, #1D2E21, #0F140E); }
-      .k-kc-img { position: absolute; right: -14px; top: -8px; width: 124px; height: 124px; rotate: 8deg; filter: drop-shadow(0 16px 18px rgba(0,0,0,.5)); pointer-events: none; }
-      .k-kc .k-kt { position: absolute; left: 14px; top: 12px; color: var(--bone); } .k-kc .k-kt i { color: #C9F24A; }
-      .k-kc h4 { position: relative; font: italic 400 23px/1.05 var(--ks); letter-spacing: -.01em; color: var(--bone); padding-right: 28px; }
-      .k-kc .k-chips span { border-color: rgba(236,234,223,.25); background: rgba(236,234,223,.08); color: var(--bone); }
-      .k-kc .k-l { color: rgba(236,234,223,.6); }
-      .k-sign { display: flex; flex-direction: column; gap: 3px; border-left: 3px solid var(--gold); padding: 2px 0 2px 11px; }
-      .k-sign p { font-size: 13.5px; line-height: 1.4; }
-      .k-trailsigns { display: flex; flex-direction: column; gap: 8px; padding: 11px 13px; border-radius: 16px; background: color-mix(in srgb, var(--gold) 8%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent); }
-      .k-trailsigns > .k-l { color: var(--gold); }
-      /* KERN.AI: the little cairn with the glowing pebble */
-      .k-avatar { flex: none; width: 32px; height: 32px; margin: -7px 0; filter: drop-shadow(0 6px 8px rgba(0,0,0,.35)); }
-      .k-log .k-msg { border: 0; }
-      .k-log .k-ai { border-radius: 16px 16px 16px 5px; background: color-mix(in srgb, var(--ai) 15%, transparent); }
-      .k-log .k-me { border-radius: 16px 16px 5px 16px; background: var(--fg); color: var(--bg); }
-      /* login and onboarding */
-      .k-start { justify-content: safe center; }
-      .k-hero-img { width: 104px; height: 104px; margin: 0 0 -8px -8px; filter: drop-shadow(0 16px 20px rgba(0,0,0,.45)); }
-      .k-float { position: relative; width: 100%; height: 108px; }
-      .k-float img { position: absolute; width: 76px; height: 76px; filter: drop-shadow(0 12px 16px rgba(0,0,0,.45)); }
-      .k-float img:nth-child(1) { left: 0; top: 26px; rotate: -8deg; }
-      .k-float img:nth-child(2) { left: 34%; top: 0; width: 88px; height: 88px; animation-delay: -2s; }
-      .k-float img:nth-child(3) { right: 0; top: 30px; rotate: 10deg; animation-delay: -4s; }
-      .k-how { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; width: 100%; }
-      .k-how li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 14px; border: 1px solid var(--edge); background: var(--surf); }
-      .k-how b { min-width: 22px; font: italic 400 19px/1 var(--ks); color: var(--acc); }
-      .k-how p { font-size: 13px; font-weight: 600; }
-      .k-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
-      .k-tile { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 4px 8px; border-radius: 16px; border: 1px solid var(--edge); background: var(--surf); color: var(--fg); cursor: pointer; font: 700 11.5px 'Inter Tight Variable', system-ui, sans-serif; }
-      .k-tile img { width: 50px; height: 50px; filter: drop-shadow(0 8px 10px rgba(0,0,0,.35)); transition: transform .5s var(--spring); }
-      .k-tile.sel { border-color: var(--acc); background: color-mix(in srgb, var(--acc) 14%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--acc) 22%, transparent); }
-      .k-tile.sel img { transform: translateY(-3px) scale(1.14) rotate(-5deg); }
-      /* floating tab bar: the active tab becomes a lime capsule */
-      .k-tabs { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 1; padding: 5px; border: 1px solid var(--edge); border-radius: 24px; background: color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 16px 36px -16px rgba(0,0,0,.7); }
-      .k-tabs button { min-height: 46px; padding: 5px 0; gap: 2px; border-radius: 19px; font-size: 10.5px; transition: background-color .3s var(--out), color .3s; }
-      .k-tabs button::before, .k-tabs button.on::before { content: none; }
-      .k-tabs button.on, .k-tabs button.on span { color: var(--on); }
-      .k-tabs button.on { background: var(--acc); box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--acc) 85%, transparent); }
-      .k-body { padding-bottom: 96px; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); mask-image: linear-gradient(to bottom, transparent 0, #000 16px, #000 calc(100% - 110px), transparent calc(100% - 34px)); }
-      .k-toast { bottom: 76px; }
-      /* your interests: switch path on Missions */
-      .k-fields { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 2px 20px 4px; }
-      .k-fields::-webkit-scrollbar { display: none; }
-      .k-fchip { flex: none; display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px 4px 4px; border-radius: 999px; border: 1px solid var(--edge); background: var(--surf); color: var(--fg); font: 700 11.5px 'Inter Tight Variable', system-ui, sans-serif; cursor: pointer; transition: transform .45s var(--spring), background-color .2s; }
-      .k-fchip img { width: 22px; height: 22px; }
-      .k-fchip small { font: 500 9.5px var(--mono); color: var(--dim); }
-      .k-fchip.on { background: var(--acc); border-color: var(--acc); color: var(--on); } .k-fchip.on small { color: var(--on); opacity: .7; }
-      .k-fchip:active { transform: scale(.95); transition-duration: .08s; }
-      .k-fadd { padding: 7px 12px; border-style: dashed; color: var(--dim); }
-      .k-go:disabled { opacity: .4; box-shadow: none; cursor: default; transform: none; }
-      @media (prefers-reduced-motion: reduce) { .k-obj, .k-hd-img, .k-rank-img, .k-hero-img, .k-float img { animation: none; } .k-tile img, .k-tabs button { transition: none; } }
 </style>
 
 <script>
@@ -668,434 +478,121 @@ const kstats = [
 
       const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.35 });
       document.querySelectorAll('.chart').forEach((c) => io.observe(c));
-      const kScr = document.getElementById('kScr')!;
-      const kLoad = document.getElementById('kLoad')!;
+      // slashkern: l'anteprima dell'app (apertura, tre schede, progetti, KernCard, Slash)
+      const sk = document.getElementById('sk')!;
+      const $sk = <T extends HTMLElement = HTMLElement>(s: string) => sk.querySelector<T>(s)!;
+      const $$sk = <T extends HTMLElement = HTMLElement>(s: string) => [...sk.querySelectorAll<T>(s)];
       const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let kT = 0;
-      let resetStart = () => {};
-      const play = () => {
-        clearTimeout(kT); resetStart();
-        kLoad.classList.remove('go', 'off'); void kLoad.offsetWidth; kLoad.classList.add('go');
-        kT = window.setTimeout(() => kLoad.classList.add('off'), 3400);
+      const skLoad = $sk('#skLoad');
+      let loadT = 0;
+      const playLoad = () => {
+        clearTimeout(loadT);
+        skLoad.classList.remove('go', 'off'); void skLoad.offsetWidth; skLoad.classList.add('go');
+        loadT = window.setTimeout(() => skLoad.classList.add('off'), 3000);
       };
-      if (still) kLoad.classList.add('off');
-      else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { play(); o.disconnect(); } }, { threshold: 0.5 }).observe(kScr);
-      document.getElementById('kReplay')!.addEventListener('click', () => { if (!still) play(); });
+      if (still) skLoad.classList.add('off');
+      else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { playLoad(); o.disconnect(); } }, { threshold: 0.5 }).observe(sk);
+      const replay = document.getElementById('kReplay')!;
+      if (still) replay.hidden = true; // senza animazioni non c'è un'apertura da rivedere
+      else replay.addEventListener('click', playLoad);
 
-      const tabs = kScr.querySelectorAll<HTMLElement>('[data-k-tab]');
-      tabs.forEach((t) => t.addEventListener('click', () => {
-        const next = 'k-' + t.dataset.kTab, cur = kScr.querySelector<HTMLElement>('.k-pane.on');
-        tabs.forEach((x) => x.classList.toggle('on', x === t));
-        const swap = () => {
-          kScr.querySelectorAll('.k-pane').forEach((p) => { p.classList.remove('leaving'); p.classList.toggle('on', p.id === next); });
-          kScr.querySelector<HTMLElement>('.k-body')!.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-        };
-        if (still || !cur || cur.id === next) swap();
-        else {
-          // Swap when the fade-out has really finished (a fixed timer cut it off at ~60% opacity); the timer is only a fallback.
-          let done = false;
-          const go = () => { if (!done) { done = true; swap(); } };
-          cur.classList.add('leaving');
-          cur.addEventListener('animationend', go, { once: true });
-          setTimeout(go, 220);
-        }
+      const tabs = $$sk('[data-sk-tab]');
+      const showTab = (name: string) => {
+        tabs.forEach((t) => { const on = t.dataset.skTab === name; t.classList.toggle('on', on); on ? t.setAttribute('aria-current', 'page') : t.removeAttribute('aria-current'); });
+        $$sk('.sk-pane').forEach((p) => p.classList.toggle('on', p.id === 'sk-' + name));
+        $sk('#skBody').scrollTo({ top: 0 });
+      };
+      tabs.forEach((t) => t.addEventListener('click', () => showTab(t.dataset.skTab!)));
+
+      // Progetti: "Altri percorsi" apre le 7 categorie; scegliendone una cambiano titolo e progetto
+      const more = $sk('#skMore'), paths = $sk('#skPaths');
+      // le etichette bilingui (<span lang>) si copiano così come sono: la lingua la sceglie il CSS
+      const bi = (el: Element) => [...el.querySelectorAll(':scope > span[lang]')].map((s) => s.outerHTML).join('');
+      more.addEventListener('click', () => { paths.hidden = !paths.hidden; more.setAttribute('aria-expanded', String(!paths.hidden)); });
+      $$sk('.sk-path').forEach((b) => b.addEventListener('click', () => {
+        $$sk('.sk-path').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        $$sk('.sk-piece').forEach((p) => (p.hidden = p.dataset.f !== b.dataset.f));
+        $sk('#skField').innerHTML = bi(b);
+        paths.hidden = true; more.setAttribute('aria-expanded', 'false');
       }));
-      const toast = document.getElementById('kToast')!;
-      let tT = 0;
-      kScr.querySelectorAll<HTMLElement>('[data-k-toast]').forEach((b) => b.addEventListener('click', () => {
-        toast.textContent = tr(b.dataset.kToast!); toast.classList.add('on');
-        clearTimeout(tT); tT = window.setTimeout(() => toast.classList.remove('on'), 2200);
+
+      // KernCard: ogni progetto finito riempie il percorso (6 tacche), va sul retro e porta pietre (numeri d'esempio)
+      const STONES_PER_PROJECT = 60;
+      const done: HTMLElement[] = [];
+      const lad = $$sk('#skLad > span'); // solo le 5 celle, non gli <span lang> dentro
+      const renderCard = () => {
+        const stones = done.length * STONES_PER_PROJECT;
+        const rank = lad.reduce((a, s, i) => (stones >= Number(s.dataset.s) ? i : a), 0);
+        $$sk('.sk-bar i').forEach((i, k) => i.classList.toggle('on', k < done.length));
+        $$sk('.sk-n').forEach((n) => (n.textContent = String(Math.min(done.length, 6))));
+        $$sk('.sk-rn').forEach((r, i) => (r.hidden = i !== rank));
+        lad.forEach((s, i) => { s.classList.toggle('done', i < rank); s.classList.toggle('on', i === rank); });
+        $sk('#skSt').textContent = String(stones);
+        const last = done[done.length - 1];
+        if (!last) return;
+        $sk('#skQ').innerHTML = bi(last.querySelector('h4')!);
+        const field = $$sk('.sk-path').find((b) => b.dataset.f === last.dataset.f)!;
+        $$sk('.sk-cf').forEach((c) => (c.innerHTML = bi(field)));
+        $sk('#skList').innerHTML = done.map((p) => `<li>${bi(p.querySelector('h4')!)}</li>`).join('');
+      };
+      renderCard(); // il Ciottolo è già acceso sulla scala
+      const saved = $sk('#skSaved');
+      // mentre il foglio è aperto, il resto del telefono non si raggiunge col Tab
+      const behind = [$sk('.sk-top'), $sk('#skBody'), $sk('.sk-tabs')];
+      let opener: HTMLElement | null = null;
+      // preventScroll: spostare il focus dentro il telefono non deve far scorrere la pagina
+      const closeSaved = (to?: string) => {
+        saved.hidden = true;
+        behind.forEach((el) => (el.inert = false));
+        if (to) showTab(to);
+        (to ? tabs.find((t) => t.dataset.skTab === to) : opener)?.focus({ preventScroll: true });
+      };
+      $$sk('[data-start]').forEach((b) => b.addEventListener('click', () => {
+        const piece = b.closest<HTMLElement>('.sk-piece')!;
+        if (!done.includes(piece)) { done.push(piece); b.classList.add('done'); renderCard(); }
+        opener = b; saved.hidden = false;
+        behind.forEach((el) => (el.inert = true));
+        $sk('#skSeeCard').focus({ preventScroll: true });
       }));
-      const fb = document.getElementById('kFb')!;
-      kScr.querySelectorAll<HTMLElement>('[data-k-msg]').forEach((b) => b.addEventListener('click', () => { fb.textContent = tr(b.dataset.kMsg!); fb.dataset.src = b.dataset.kMsg!; }));
-      const IT: Record<string, string> = {
-        'Follow the trail.': 'Segui la traccia.',
-        'Find your<b>KERN</b>.': 'Trova il tuo <b>KERN</b>.',
-        '1 of 3 done': '1 su 3 fatte',
-        'All missions open': 'Tutte le missioni aperte',
-        'Pick your<br>next <b>move.</b>': 'Scegli la<br>prossima <b>mossa.</b>',
-        'Mission 002 · startup partner': 'Missione 002 · startup partner',
-        'Fix what already exists': 'Sistema ciò che esiste già',
-        "Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.": "Rendi più chiara la schermata di onboarding di una vera startup. L'opposto di partire da una pagina bianca.",
-        '128 answers · judged on quality': '128 risposte · giudicate sulla qualità',
-        'Add your answer': 'Aggiungi la tua risposta',
-        'Mission 003 · KERN': 'Missione 003 · KERN',
-        'Rewrite a confusing email': "Riscrivi un'email confusa",
-        'Do it your way. Every answer counts.': 'Fallo a modo tuo. Ogni risposta conta.',
-        '54 answers': '54 risposte',
-        'Mission 004 · studio client': 'Missione 004 · cliente dello studio',
-        'Work with a partner': 'Lavora con un partner',
-        'Answer together with someone else.': 'Rispondi insieme a qualcun altro.',
-        '31 answers': '31 risposte',
-        'Missions': 'Missioni',
-        'yourKERN · first signs': 'yourKERN · primi segnali',
-        'Your <b>KERN</b><br>so far.': 'Il tuo <b>KERN</b><br>finora.',
-        'Time on KERN missions': 'Tempo sulle missioni KERN',
-        'this week · only you see this': 'questa settimana · lo vedi solo tu',
-        'What you seem drawn to': 'Cosa sembra attirarti',
-        'Shaping ideas': 'Dare forma alle idee', 'Writing': 'Scrittura', 'Solo work': 'Lavoro in solitaria',
-        'A first guess': 'Una prima ipotesi',
-        'You seemed to light up on the open brief and drag on the polish.': 'Ti sei acceso sul brief aperto e hai faticato sulla rifinitura.',
-        'Why we think so: you tried 3 versions of the open brief, and you wrote "time flew".': 'Perché lo pensiamo: hai provato 3 versioni del brief aperto e hai scritto "il tempo è volato".',
-        'That feels right': 'Mi ci ritrovo', 'Not really': 'Non proprio',
-        'Completed': 'Completate', 'Make somebody care': 'Fai importare a qualcuno', 'MISSION 001': 'MISSIONE 001',
-        'Worth trying next': 'Da provare dopo', 'Improve an existing product page': 'Migliora la pagina di un prodotto esistente',
-        'Tests the part you seemed to drag on.': 'Mette alla prova la parte in cui hai faticato.',
-        'Your Trail': 'La tua traccia', 'Follow the<br><b>trail.</b>': 'Segui la<br><b>traccia.</b>',
-        'Build from zero · done': 'Costruisci da zero · fatta', 'Improve what exists · in progress': 'Migliora ciò che esiste · in corso',
-        'Pair up · not started': 'In coppia · da iniziare', 'Your Kern card': 'La tua Kern card',
-        'What we saw, why, and your next move': 'Cosa abbiamo visto, perché e la tua prossima mossa',
-        'Leave a sign': 'Lascia un segno', 'After each mission, leave one short tip for the next person.': 'Dopo ogni missione, lascia un breve consiglio per la persona dopo di te.',
-        'Your answer is saved. Add another one anytime.': 'La tua risposta è salvata. Ne puoi aggiungere altre quando vuoi.',
-        'Saved. This sharpens your KERN.': 'Salvato. Questo affina il tuo KERN.',
-        "Noted. We'll give this guess less weight.": 'Preso nota. Daremo meno peso a questa ipotesi.',
-        'Co-pilot · asks, never answers': 'Co-pilota · chiede, non risponde',
-        'Your idea: a 3-step onboarding with one clear choice at the start.': "La tua idea: un onboarding in 3 passi con una scelta chiara all'inizio.",
-        'What would make the first step easier for someone brand new?': "Cosa renderebbe il primo passo più facile per chi non ha mai visto l'app?",
-        'Which part are you avoiding, and why?': 'Quale parte stai evitando, e perché?',
-        'What is the smallest version you could finish today?': 'Qual è la versione più piccola che potresti finire oggi?',
-        'Another question': "Un'altra domanda",
-        'How you work with AI': "Come lavori con l'AI",
-        'You rewrote your question 4 times, and every version got clearer.': 'Hai riscritto la domanda 4 volte e ogni versione è diventata più chiara.',
-        'Start here': 'Parti da qui',
-        'What do you want<br>to <b>do?</b>': 'Cosa vuoi<br><b>fare?</b>',
-        "I don't know what I want to do": 'Non so cosa voglio fare',
-        'Explore missions': 'Esplora le missioni',
-        "Good. Let's find out.": 'Bene. Scopriamolo.',
-        'What are you<br>curious about <b>right now?</b>': 'Cosa ti incuriosisce<br><b>adesso?</b>',
-        'Code': 'Codice', 'Selling': 'Vendere', 'Music': 'Musica',
-        'Start my first mission': 'Inizia la mia prima missione',
-        'Mission of the week · best answers': 'Missione della settimana · migliori risposte',
-        'Answer #7': 'Risposta #7', 'Answer #31': 'Risposta #31', 'Answer #12': 'Risposta #12',
-        'Ranked by anonymous review, not likes.': 'Classifica da revisione anonima, non dai like.',
-        'Your rhythm · no pressure': 'Il tuo ritmo · nessuna pressione',
-        '3 weeks this month you made something.': 'Per 3 settimane questo mese hai creato qualcosa.',
-        'Your Kern card · preview': 'La tua Kern card · anteprima',
-        'You light up when you start from zero.': 'Ti accendi quando parti da zero.',
-        '3 missions · first guess': '3 missioni · prima ipotesi',
-        'Share my card': 'Condividi la mia card',
-        'Card ready to share. Your friends see what you made, not a test result.': 'Card pronta da condividere. I tuoi amici vedono cosa hai creato, non il risultato di un test.',
-        'Dare a friend': 'Sfida un amico',
-        'Send a mission. You both answer, then see the two answers side by side.': 'Manda una missione. Rispondete entrambi, poi vedete le due risposte affiancate.',
-        'Send a dare': 'Manda la sfida',
-        'Link copied. Your friend answers the same mission.': 'Link copiato. Il tuo amico risponde alla stessa missione.',
-        'Try a real mission': 'Prova una missione vera', 'Reflect in 20 seconds': 'Rifletti in 20 secondi', 'See how you work': 'Scopri come lavori',
-        'Pick one or more. You can add others anytime.': 'Scegline uno o più. Puoi aggiungerne altri quando vuoi.', 'Add': 'Aggiungi',
-        'Signs from people before you': 'Segni di chi è passato prima di te', 'Signs on the trail': 'Segni sulla traccia',
-        'People who finish a mission before you leave a short tip for you. Yours helps the next person.': 'Chi finisce una missione prima di te ti lascia un breve consiglio. Il tuo aiuta chi viene dopo.',
-        '“Read the whole flow before touching anything.”': '“Leggi tutto il flusso prima di toccare qualcosa.”',
-        '“Make the ugly first version fast.”': '“Fai in fretta la prima versione brutta.”',
-        'Someone who finished it · 2 days ago': "Qualcuno che l'ha finita · 2 giorni fa", 'Someone who finished it · last week': "Qualcuno che l'ha finita · la settimana scorsa",
-        'Fix what already exists · 2 days ago': 'Sistema ciò che esiste già · 2 giorni fa', 'Make somebody care · last week': 'Fai importare a qualcuno · la settimana scorsa',
-      };
-      let kLang = 'en';
-      const tr = (s: string) => (kLang === 'it' && IT[s]) || s;
-      const kTxt = kScr.querySelectorAll<HTMLElement>('.k-l, h3, h4, p, .k-sig, .k-chips span, .k-tile span, .k-done span, .k-pl, .k-tag span, .k-tag strong, .k-ask button, .k-btn, .k-ask-btn, .k-go, .k-sk, .k-win, .k-tabs button:not(:nth-child(2))');
-      kTxt.forEach((e) => { e.dataset.en = e.innerHTML.trim(); });
-      const setLang = (l: string) => {
-        kLang = l;
-        kTxt.forEach((e) => { const en = e.dataset.en!; if (en) e.innerHTML = tr(en); });
-        if (fb.dataset.src) fb.textContent = tr(fb.dataset.src);
-        setLvl(); renderChat(); renderFields();
-        document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kLang === l)));
-      };
-      document.querySelectorAll<HTMLElement>('[data-k-lang]').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.kLang!)));
-      const kStart = document.getElementById('kStart')!;
-      const kS1 = document.getElementById('kS1')!;
-      const kS2 = document.getElementById('kS2')!;
-      let kField = 'Design';
-      // Same order as the app: loader > choice > interests > log in > missions. Interests: one or more fields,
-      // switched from a row on Missions; "+ Add" reopens the picker.
-      let kPicks: string[] = [], kMine: string[] = ['Design'], kIn = false;
-      const closeStart = () => {
-        kMine = kPicks.length ? [...kPicks] : [kField];
-        if (!kMine.includes(kField)) kField = kMine[0];
-        kStart.classList.remove('on'); applyField(kField); renderFields();
-        if (kIn) (kScr.querySelector('[data-k-tab]') as HTMLElement).click(); else kLogin.classList.add('on');
-      };
-      resetStart = () => { kIn = false; kPicks = []; kMine = ['Design']; markTiles(); kS1.hidden = false; kS2.hidden = true; kStart.classList.add('on'); kLogin.classList.remove('on'); resetAuth(); kSheet.hidden = true; kStart.querySelectorAll('.sel').forEach((c) => { c.classList.remove('sel'); c.setAttribute('aria-pressed', 'false'); }); kField = 'Design'; applyField('Design'); stones = 240; setLvl(); kRw.hidden = true; };
-      document.getElementById('kIdk')!.addEventListener('click', () => { kS1.hidden = true; kS2.hidden = false; });
-      document.getElementById('kSkip')!.addEventListener('click', closeStart);
-      document.getElementById('kGo')!.addEventListener('click', closeStart);
-      const kTiles = kStart.querySelectorAll<HTMLElement>('#kPick [data-f]');
-      function markTiles() {
-        kTiles.forEach((o) => { const on = kPicks.includes(o.dataset.f!); o.classList.toggle('sel', on); o.setAttribute('aria-pressed', String(on)); });
-        (document.getElementById('kGo') as HTMLButtonElement).disabled = !kPicks.length;
+      $sk('#skSeeCard').addEventListener('click', () => closeSaved('kerncard'));
+      $sk('#skStay').addEventListener('click', () => closeSaved());
+      saved.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSaved(); });
+
+      // la carta si inclina verso il dito/mouse (al massimo 9 gradi, come nell'app) e si gira
+      const card = $sk('#skCard'), stage = $sk('#skStage'), flipB = $sk('#skFlip');
+      const MAX_TILT = 9;
+      if (!still) {
+        stage.addEventListener('pointermove', (e) => {
+          const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+          card.classList.add('live');
+          card.style.setProperty('--ry', `${(x - 0.5) * 2 * MAX_TILT}deg`); card.style.setProperty('--rx', `${(0.5 - y) * 2 * MAX_TILT}deg`);
+          card.style.setProperty('--mx', `${x * 100}%`); card.style.setProperty('--my', `${y * 100}%`);
+        });
+        stage.addEventListener('pointerleave', () => { card.classList.remove('live'); ['--rx', '--ry', '--mx', '--my'].forEach((p) => card.style.removeProperty(p)); });
       }
-      kTiles.forEach((c) => c.addEventListener('click', () => {
-        const f = c.dataset.f || 'Design';
-        kPicks = kPicks.includes(f) ? kPicks.filter((x) => x !== f) : [...kPicks, f];
-        if (!kIn && kPicks.length) kField = kPicks[0];
-        markTiles();
+      flipB.addEventListener('click', () => {
+        const back = card.classList.toggle('flip');
+        flipB.setAttribute('aria-pressed', String(back));
+        $sk('.sk-front').setAttribute('aria-hidden', String(back)); $sk('.sk-back').setAttribute('aria-hidden', String(!back));
+      });
+
+      // Slash: una domanda alla volta; la bozza arriva solo se la chiedi ed è segnata come aiuto dell'AI
+      const step = (n: number) => {
+        $$sk('#skChat [data-s]').forEach((el) => (el.hidden = Number(el.dataset.s) > n));
+        $sk('#skChat .sk-chips').hidden = n > 0;
+        $sk('.sk-draft').hidden = n !== 1;
+      };
+      const later = (fn: () => void) => (still ? fn() : window.setTimeout(fn, 550));
+      $$sk('.sk-chip').forEach((c) => c.addEventListener('click', () => {
+        const me = $sk('#skChat .sk-me');
+        me.innerHTML = bi(c);
+        $sk('#skChat .sk-chips').hidden = true;
+        me.hidden = false;
+        later(() => step(1));
       }));
-      markTiles();
-      function renderFields() {
-        const box = document.getElementById('kFields')!;
-        box.innerHTML = '';
-        kMine.forEach((f) => {
-          const b = document.createElement('button'), im = document.createElement('img'), t = document.createElement('span'), n = document.createElement('small');
-          b.type = 'button'; b.className = 'k-fchip' + (f === kField ? ' on' : ''); b.setAttribute('aria-pressed', String(f === kField));
-          im.src = `/kern/f-${f.toLowerCase()}.webp`; im.alt = ''; im.width = im.height = 400; im.decoding = 'async';
-          t.textContent = tr(f); n.textContent = f === kField ? '1/3' : '0/3';
-          b.append(im, t, n);
-          b.addEventListener('click', () => { if (f === kField) return; kField = f; applyField(f); renderFields(); });
-          box.appendChild(b);
-        });
-        const add = document.createElement('button');
-        add.type = 'button'; add.className = 'k-fchip k-fadd'; add.textContent = `+ ${tr('Add')}`;
-        add.addEventListener('click', () => { kPicks = [...kMine]; markTiles(); kS1.hidden = true; kS2.hidden = false; kStart.classList.add('on'); });
-        box.appendChild(add);
-      }
-      const kAi = document.getElementById('kAi')!;
-      let kQs = ['What would make the first step easier for someone brand new?', 'Which part are you avoiding, and why?', 'What is the smallest version you could finish today?'];
-      let kQi = 0;
-      document.getElementById('kAsk')!.addEventListener('click', () => {
-        kQi = (kQi + 1) % kQs.length;
-        kAi.dataset.en = kQs[kQi]; kAi.innerHTML = tr(kQs[kQi]);
-      });
-      document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((b) => b.addEventListener('click', () => {
-        kScr.classList.toggle('light', b.dataset.kTheme === 'light');
-        document.querySelectorAll<HTMLElement>('[data-k-theme]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-      }));
-            const t2 = (en: string, it: string) => { IT[en] = it; return en; };
-      IT['In progress'] = 'In corso';
-      const small = t2('What is the smallest version you could finish today?', 'Qual è la versione più piccola che potresti finire oggi?');
-      const avoid = t2('Which part are you avoiding, and why?', 'Quale parte stai evitando, e perché?');
-      const KERN3 = ['Mission 003 · KERN', 'Rewrite a confusing email', 'Do it your way. Every answer counts.', '54 answers'];
-      const FIELDS: Record<string, { m: string[][]; idea: string; qs: string[] }> = {
-        Design: { m: [
-          ['Mission 002 · startup partner', 'Fix what already exists', "Make a real startup's onboarding screen clearer. The opposite of starting from a blank page.", '128 answers · judged on quality'],
-          KERN3,
-          ['Mission 004 · studio client', 'Work with a partner', 'Answer together with someone else.', '31 answers'],
-        ], idea: 'Your idea: a 3-step onboarding with one clear choice at the start.', qs: ['What would make the first step easier for someone brand new?', avoid, small] },
-        Writing: { m: [
-          [t2('Mission 002 · newsletter partner', 'Missione 002 · partner newsletter'), t2('Make a hard idea easy', "Rendi facile un'idea difficile"), t2('Take a confusing explanation from a real newsletter and rewrite it so anyone gets it.', 'Prendi una spiegazione confusa di una vera newsletter e riscrivila in modo che chiunque la capisca.'), t2('96 answers · judged on quality', '96 risposte · giudicate sulla qualità')],
-          KERN3,
-          ['Mission 004 · studio client', t2('Write with a partner', 'Scrivi con un partner'), t2('Write one short story together, taking turns.', 'Scrivete insieme un breve racconto, a turno.'), '31 answers'],
-        ], idea: t2('Your idea: a first line that makes a stranger keep reading.', 'La tua idea: una prima riga che fa continuare a leggere uno sconosciuto.'), qs: [t2('Who is this for, exactly?', 'Per chi è, esattamente?'), t2('Which sentence would you cut first?', 'Quale frase taglieresti per prima?'), small] },
-        Code: { m: [
-          ['Mission 002 · startup partner', t2('Fix a small bug', 'Correggi un piccolo bug'), t2("Find why a real app's button does nothing, and fix it. The opposite of building from scratch.", "Scopri perché il pulsante di una vera app non fa nulla e correggilo. L'opposto di costruire da zero."), t2('74 answers · judged on quality', '74 risposte · giudicate sulla qualità')],
-          ['Mission 003 · KERN', t2('Build a tiny tool', 'Costruisci un piccolo strumento'), t2('Solve one small annoyance from your day. Every answer counts.', 'Risolvi un piccolo fastidio della tua giornata. Ogni risposta conta.'), t2('47 answers', '47 risposte')],
-          ['Mission 004 · studio client', t2('Build with a partner', 'Costruisci con un partner'), t2('Split a small feature between two people.', 'Dividetevi una piccola funzione in due.'), t2('22 answers', '22 risposte')],
-        ], idea: t2('Your idea: a tool that removes one repeated step from your day.', 'La tua idea: uno strumento che elimina un passaggio ripetuto della tua giornata.'), qs: [t2('What is the one thing it must do?', "Qual è l'unica cosa che deve fare?"), avoid, small] },
-        Video: { m: [
-          [t2('Mission 002 · brand partner', 'Missione 002 · brand partner'), t2('Cut one clear story', 'Monta una storia chiara'), t2('Turn rough footage from a real brand into one clear, short story.', 'Trasforma il girato grezzo di un vero brand in una storia breve e chiara.'), t2('83 answers · judged on quality', '83 risposte · giudicate sulla qualità')],
-          ['Mission 003 · KERN', t2('Explain something on camera', 'Spiega qualcosa in video'), t2('Explain one thing you know in one short clip.', 'Spiega una cosa che sai in un breve video.'), t2('39 answers', '39 risposte')],
-          ['Mission 004 · studio client', t2('Make it with a partner', 'Fallo con un partner'), t2('One films, one edits.', 'Uno gira, uno monta.'), t2('18 answers', '18 risposte')],
-        ], idea: t2('Your idea: open on the surprise, not on the logo.', 'La tua idea: apri con la sorpresa, non con il logo.'), qs: [t2('What should someone feel in the first second?', 'Cosa dovrebbe sentire qualcuno nel primo secondo?'), avoid, small] },
-        Selling: { m: [
-          [t2('Mission 002 · small business partner', 'Missione 002 · piccola impresa partner'), t2('Get a stranger to say yes', 'Fatti dire di sì da uno sconosciuto'), t2("Pitch a real small business's product to one person and note what they answer.", 'Proponi il prodotto di una vera piccola impresa a una persona e annota cosa risponde.'), t2('61 answers · judged on quality', '61 risposte · giudicate sulla qualità')],
-          ['Mission 003 · KERN', t2('Write a message that gets a reply', 'Scrivi un messaggio che riceve risposta'), 'Do it your way. Every answer counts.', t2('44 answers', '44 risposte')],
-          ['Mission 004 · studio client', t2('Sell with a partner', 'Vendi con un partner'), t2('One talks, one listens.', 'Uno parla, uno ascolta.'), t2('17 answers', '17 risposte')],
-        ], idea: t2('Your idea: lead with the problem, not the product.', 'La tua idea: parti dal problema, non dal prodotto.'), qs: [t2('Who needs this most, by name?', 'Chi ne ha più bisogno, con nome e cognome?'), t2('What would make them say no?', 'Cosa li farebbe dire di no?'), small] },
-        Music: { m: [
-          ['Mission 002 · brand partner', t2('Give a small brand a sound', 'Dai un suono a un piccolo brand'), t2('Write a short sound or jingle for a real small brand.', 'Scrivi un breve suono o jingle per un vero piccolo brand.'), t2('52 answers · judged on quality', '52 risposte · giudicate sulla qualità')],
-          ['Mission 003 · KERN', t2('Remix something you love', 'Remixa qualcosa che ami'), 'Do it your way. Every answer counts.', t2('35 answers', '35 risposte')],
-          ['Mission 004 · studio client', 'Make it with a partner', t2('One writes, one produces.', 'Uno scrive, uno produce.'), t2('14 answers', '14 risposte')],
-        ], idea: t2('Your idea: one repeating sound people remember.', 'La tua idea: un suono che si ripete e che le persone ricordano.'), qs: [t2('What should it feel like in the first two seconds?', 'Che effetto dovrebbe fare nei primi due secondi?'), avoid, small] },
-      };
-      const kCards = ['kM0', 'kM1', 'kM2'].map((id) => document.getElementById(id)!);
-      const kIdea = document.getElementById('kIdea')!;
-      const setT = (el: Element, en: string) => { (el as HTMLElement).dataset.en = en; el.innerHTML = tr(en); };
-      const applyField = (name: string) => {
-        const f = FIELDS[name] || FIELDS.Design;
-        (document.getElementById('kNxImg') as HTMLImageElement).src = `/kern/f-${(FIELDS[name] ? name : 'Design').toLowerCase()}.webp`;
-        kCards.forEach((card, i) => {
-          const ls = card.querySelectorAll('.k-l');
-          const [lab, title, desc, cnt] = f.m[i];
-          setT(ls[0], lab); setT(card.querySelector('h4')!, title); setT(card.querySelector('p')!, desc); setT(ls[ls.length - 1], cnt);
-        });
-        setT(document.getElementById('kTrNow')!, f.m[0][1]);
-        setT(document.getElementById('kTrNext')!, f.m[2][1]);
-        setT(kIdea, f.idea); kQs = f.qs; kQi = 0; setT(kAi, kQs[0]);
-        resetChat();
-      };
-      Object.assign(IT, {
-        'Your rank': 'Il tuo grado', 'stones': 'pietre', 'New rank': 'Nuovo grado',
-        "This week's circle": 'Il cerchio di questa settimana',
-        'No one drops more than one rank in a week.': 'Nessuno scende di più di un grado in una settimana.',
-        'See what a win feels like': 'Scopri cosa si prova a vincere',
-        'Voted first': 'Votata al primo posto',
-        'Your answer<br>won <b>#1.</b>': 'La tua risposta<br>è <b>#1.</b>',
-        'Anonymous reviewers ranked it first out of 128.': "I revisori anonimi l'hanno messa al primo posto su 128.",
-        'Keep going': 'Continua',
-      });
-      const RANKS: [string, number][] = [['Pebble', 0], ['Stone', 100], ['Cairn', 300], ['Ridge', 700], ['Summit', 1500]];
-      const RIT: Record<string, string> = { Pebble: 'Ciottolo', Stone: 'Pietra', Cairn: 'Cairn', Ridge: 'Cresta', Summit: 'Vetta' };
-      const rn = (n: string) => (kLang === 'it' && RIT[n]) || n;
-      let stones = 240;
-      const CIRCLE: [string, number][] = [['Maya', 288], ['Leo', 262], ['Ana', 205], ['Sam', 180]];
-      const rankIdx = (s: number) => RANKS.reduce((a, r, i) => (s >= r[1] ? i : a), 0);
-      const setLvl = () => {
-        const i = rankIdx(stones), nx = RANKS[i + 1], it = kLang === 'it';
-        (document.getElementById('kTa') as HTMLTextAreaElement).placeholder = tr('Write it your way. Nothing is sent.');
-        document.getElementById('kRank')!.textContent = rn(RANKS[i][0]);
-        (document.getElementById('kRankImg') as HTMLImageElement).src = `/kern/r${i}.webp`;
-        document.getElementById('kSt')!.textContent = String(stones);
-        (document.getElementById('kBar') as HTMLElement).style.width = (nx ? ((stones - RANKS[i][1]) / (nx[1] - RANKS[i][1])) * 100 : 100) + '%';
-        document.getElementById('kNx')!.textContent = nx ? (it ? `${nx[1] - stones} pietre a ${rn(nx[0])}` : `${nx[1] - stones} stones to ${rn(nx[0])}`) : (it ? 'Grado massimo' : 'Top rank');
-        const lad = document.getElementById('kLad')!;
-        lad.innerHTML = '';
-        RANKS.forEach((r, k) => {
-          const s = document.createElement('span'), im = document.createElement('img'), b = document.createElement('b');
-          im.src = `/kern/r${k}.webp`; im.alt = ''; im.width = im.height = 400; im.decoding = 'async'; im.loading = 'lazy';
-          b.textContent = rn(r[0]); s.append(im, b);
-          if (k < i) s.className = 'done'; if (k === i) s.className = 'on';
-          lad.appendChild(s);
-        });
-        const circ = document.getElementById('kCircle')!;
-        circ.innerHTML = '';
-        ([...CIRCLE, [it ? 'Tu' : 'You', stones, 1]] as [string, number, number?][]).sort((a, b) => b[1] - a[1]).forEach((r, k) => {
-          const row = document.createElement('div'); row.className = 'k-rw' + (r[2] ? ' me' : '');
-          const n = document.createElement('i'); n.textContent = String(k + 1);
-          const nm = document.createElement('span'); nm.textContent = r[0];
-          const sc = document.createElement('em'); sc.textContent = String(r[1]);
-          row.append(n, nm, sc); circ.appendChild(row);
-        });
-      };
-      const kRw = document.getElementById('kReward')!;
-      const kWin = document.getElementById('kWin')!;
-      const kConf = document.getElementById('kConf')!;
-      const kGain = document.getElementById('kGain')!;
-      const kRU = document.getElementById('kRU')!;
-      const closeWin = () => { kRw.hidden = true; kWin.focus(); };
-      kWin.addEventListener('click', () => {
-        const before = rankIdx(stones), gain = 200;
-        stones += gain;
-        const after = rankIdx(stones);
-        kRU.hidden = after === before;
-        document.getElementById('kRU2')!.textContent = rn(RANKS[after][0]);
-        kRw.hidden = false;
-        kConf.innerHTML = '';
-        if (still) kGain.textContent = '+' + gain;
-        else {
-          const cols = ['var(--acc)', 'var(--gold)', 'var(--ai)', 'var(--fg)'];
-          for (let i = 0; i < 34; i++) {
-            const s = document.createElement('span');
-            s.style.cssText = `--l:${Math.random() * 100}%;--c:${cols[i % 4]};--x:${(Math.random() - .5) * 160}px;--r:${Math.random() * 720 - 360}deg;--d:${1.6 + Math.random() * 1.4}s;--dl:${Math.random() * .5}s`;
-            if (i % 3 === 0) s.style.borderRadius = '50%';
-            kConf.appendChild(s);
-          }
-          const t0 = performance.now();
-          const step = (t: number) => { const p = Math.min((t - t0) / 900, 1); kGain.textContent = '+' + Math.round(gain * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
-          requestAnimationFrame(step);
-        }
-        if ('vibrate' in navigator) navigator.vibrate(30);
-        setLvl();
-        document.getElementById('kRwOk')!.focus();
-      });
-      document.getElementById('kRwOk')!.addEventListener('click', closeWin);
-      kRw.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeWin(); });
-      setLvl();
-      Object.assign(IT, {
-        'Welcome back': 'Ci rivediamo', 'Log in to<br>your <b>trail.</b>': 'Entra nella<br>tua <b>traccia.</b>',
-        'Name': 'Nome', 'Email': 'Email', 'Password': 'Password', 'Log in': 'Accedi', 'Create an account': 'Crea un account',
-        'New here?': 'Nuovo qui?', 'Create your<br><b>account.</b>': 'Crea il tuo<br><b>account.</b>', 'Create account': 'Crea account',
-        'I already have an account': 'Ho già un account', 'Demo account · nothing is sent or saved': 'Account demo · non viene inviato né salvato nulla',
-        'Signing in…': 'Accesso in corso…', 'Creating your account…': 'Creazione account…',
-        'Your answer': 'La tua risposta', 'Submit answer': 'Invia la risposta', 'Not now': 'Non ora',
-        'Write it your way. Nothing is sent.': 'Scrivila a modo tuo. Non viene inviato nulla.',
-      });
-      const kLogin = document.getElementById('kLogin')!;
-      const kLog = document.getElementById('kLog')!, kSw = document.getElementById('kSw')!, kNm = document.getElementById('kNm')!;
-      let signup = false;
-      const setAuth = () => {
-        setT(document.getElementById('kLlab')!, signup ? 'New here?' : 'Welcome back');
-        setT(document.getElementById('kLh')!, signup ? 'Create your<br><b>account.</b>' : 'Log in to<br>your <b>trail.</b>');
-        setT(kLog, signup ? 'Create account' : 'Log in');
-        setT(kSw, signup ? 'I already have an account' : 'Create an account');
-        kNm.hidden = !signup;
-      };
-      const resetAuth = () => { signup = false; kLog.classList.remove('busy'); setAuth(); };
-      kSw.addEventListener('click', () => { signup = !signup; setAuth(); });
-      kLog.addEventListener('click', () => {
-        if (kLog.classList.contains('busy')) return;
-        kLog.classList.add('busy'); setT(kLog, signup ? 'Creating your account…' : 'Signing in…');
-        window.setTimeout(() => {
-          kLogin.classList.remove('on'); kLog.classList.remove('busy'); setAuth(); kIn = true; renderFields();
-          (kScr.querySelector('[data-k-tab]') as HTMLElement).click();
-        }, still ? 0 : 900);
-      });
-      document.getElementById('kAv')!.addEventListener('click', () => resetStart());
-      const kSheet = document.getElementById('kSheet')!;
-      const kTa = document.getElementById('kTa') as HTMLTextAreaElement;
-      const sayK = (en: string) => { toast.textContent = tr(en); toast.classList.add('on'); clearTimeout(tT); tT = window.setTimeout(() => toast.classList.remove('on'), 2200); };
-      const closeSheet = () => { kSheet.hidden = true; document.getElementById('kAdd')!.focus(); };
-      document.getElementById('kAdd')!.addEventListener('click', () => {
-        const m = kCards[0], ls = m.querySelectorAll<HTMLElement>('.k-l');
-        setT(document.getElementById('kShL')!, ls[0].dataset.en!);
-        setT(document.getElementById('kShT')!, m.querySelector<HTMLElement>('h4')!.dataset.en!);
-        setT(document.getElementById('kShQ')!, kAi.dataset.en!);
-        kTa.value = ''; kSheet.hidden = false; kTa.focus();
-      });
-      document.getElementById('kCancel')!.addEventListener('click', closeSheet);
-      document.getElementById('kSub')!.addEventListener('click', () => { closeSheet(); sayK('Your answer is saved. Add another one anytime.'); });
-      kSheet.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
-      Object.assign(IT, {
-        'KERN.AI ·your co-pilot': 'KERN.AI ·il tuo co-pilota',
-        'Your idea.<br>My <b>questions.</b>': 'La tua idea.<br>Le mie <b>domande.</b>',
-        'You are talking to an AI · replies are a scripted preview': "Stai parlando con un'AI · le risposte sono un'anteprima scritta",
-        'Use an example': 'Usa un esempio', 'Start over': 'Ricomincia',
-        'Version 1': 'Versione 1', 'Version 3': 'Versione 3', 'Save to yourKERN': 'Salva in yourKERN',
-        'Saved to yourKERN. Every version counts as evidence.': 'Salvato in yourKERN. Ogni versione conta come prova.',
-        'Do it twice': 'Fallo due volte', 'Make it alone first. Then with the co-pilot. Compare the two.': 'Prima da solo. Poi con il co-pilota. Poi confronta le due.',
-        'The rules': 'Le regole', 'It asks. It never answers.': 'Chiede. Non risponde mai.', 'Your idea always comes first.': 'La tua idea viene sempre prima.',
-        'If it gets heavy, it stops and points you to a person.': 'Se la cosa si fa pesante, si ferma e ti indirizza a una persona.',
-        "What is your idea? Write it in your own words first. I won't suggest one.": 'Qual è la tua idea? Scrivila prima con parole tue. Non te ne suggerirò una.',
-        "I won't hand you the idea. What is the first thing that comes to mind, even if it's rough?": "Non ti darò io l'idea. Qual è la prima cosa che ti viene in mente, anche se è grezza?",
-        "This sounds heavy, so I'm pausing the mission. Please talk to someone you trust or a local helpline. If you are in danger, call your local emergency number.": "Sembra una cosa pesante, quindi metto in pausa la missione. Parlane con una persona di cui ti fidi o con un servizio di ascolto locale. Se sei in pericolo, chiama il numero di emergenza.",
-        'You wrote it 3 times and each version changed. That is your evidence. Compare the first and the last.': "L'hai scritta 3 volte e ogni versione è cambiata. Questa è la tua prova. Confronta la prima e l'ultima.",
-        'Save it to yourKERN, or start over with a new idea.': 'Salvala in yourKERN, oppure ricomincia con una nuova idea.',
-        'Your idea, your words…': 'La tua idea, a parole tue…',
-      });
-      type Msg = { who: 'ai' | 'me'; t: string; typing?: boolean };
-      const chatEl = document.getElementById('kChat')!, inEl = document.getElementById('kIn') as HTMLInputElement, cmp = document.getElementById('kCmp')!;
-      let msgs: Msg[] = [], mine: string[] = [], busy = false;
-      const OPEN = "What is your idea? Write it in your own words first. I won't suggest one.";
-      const HEAVY = /(kill myself|suicid|self.?harm|hopeless|want to die|voglio morire|farla finita|non ce la faccio più)/i;
-      const ASKED = /(give me|tell me|what should|write it for me|any ideas|dammi|dimmi|che idea|scrivilo tu|cosa dovrei)/i;
-      const renderChat = () => {
-        chatEl.innerHTML = '';
-        msgs.forEach((m) => {
-          const p = document.createElement('p'); p.className = 'k-msg ' + (m.who === 'me' ? 'k-me' : 'k-ai');
-          if (m.typing) { p.classList.add('k-typing'); p.innerHTML = '<i></i><i></i><i></i>'; p.setAttribute('aria-label', 'typing'); }
-          else p.textContent = m.who === 'ai' ? tr(m.t) : m.t;
-          chatEl.appendChild(p);
-        });
-        chatEl.scrollTop = chatEl.scrollHeight;
-        inEl.placeholder = tr('Your idea, your words…');
-      };
-      const aiSay = (t: string, done?: () => void) => {
-        msgs.push({ who: 'ai', t: '', typing: true }); renderChat();
-        window.setTimeout(() => { msgs.pop(); msgs.push({ who: 'ai', t }); renderChat(); if (done) done(); }, still ? 0 : 750);
-      };
-      const resetChat = () => { msgs = [{ who: 'ai', t: OPEN }]; mine = []; busy = false; cmp.hidden = true; inEl.value = ''; renderChat(); };
-      const sendChat = () => {
-        const v = inEl.value.trim(); if (!v || busy) return;
-        inEl.value = ''; msgs.push({ who: 'me', t: v }); busy = true; renderChat();
-        const free = () => { busy = false; };
-        if (HEAVY.test(v)) return aiSay("This sounds heavy, so I'm pausing the mission. Please talk to someone you trust or a local helpline. If you are in danger, call your local emergency number.", free);
-        if (ASKED.test(v)) return aiSay("I won't hand you the idea. What is the first thing that comes to mind, even if it's rough?", free);
-        mine.push(v);
-        if (mine.length < 3) return aiSay((FIELDS[kField] || FIELDS.Design).qs[mine.length - 1], free);
-        if (mine.length === 3) return aiSay('You wrote it 3 times and each version changed. That is your evidence. Compare the first and the last.', () => {
-          document.getElementById('kV1')!.textContent = mine[0]; document.getElementById('kV3')!.textContent = mine[2]; cmp.hidden = false; free();
-        });
-        aiSay('Save it to yourKERN, or start over with a new idea.', free);
-      };
-      document.getElementById('kSend')!.addEventListener('click', sendChat);
-      inEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendChat(); } });
-      document.querySelectorAll<HTMLElement>('#kEx span').forEach((c, i) => {
-        const go = () => {
-          if (i === 1) return resetChat();
-          const f = FIELDS[kField] || FIELDS.Design;
-          inEl.value = tr(f.idea).replace(/^[^:]+:\s*/, ''); inEl.focus();
-        };
-        c.addEventListener('click', go);
-        c.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
-      });
-      resetChat();
-      renderFields();
+      $sk('.sk-draft').addEventListener('click', () => { $sk('.sk-draft').hidden = true; later(() => step(2)); });
+      $sk('#skAgain').addEventListener('click', () => step(0));
+      step(0);
       const setAna = (l: string) => {
         document.documentElement.dataset.ana = l;
         document.querySelectorAll<HTMLElement>('[data-ana-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.anaLang === l)));

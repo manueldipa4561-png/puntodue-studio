@@ -285,8 +285,15 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         .ftr a { padding: 12px 0; }
         .ftr, .ftr-links { gap: 0 20px; }
         .sec.info { padding-bottom: 150px; }
+        /* tanti livelli GPU sempre accesi pesano sul telefono: GSAP li crea da solo mentre anima */
+        .wi, .chi { will-change: auto; }
       }
       @media (max-width: 1023px) {
+        /* svh: altezza fissa, non cambia quando la barra del browser compare/sparisce, quindi niente salti durante lo scroll */
+        .hero, .sec { min-height: 100svh; }
+        /* piè di pagina nel flusso: con i link su più righe non copre più il testo */
+        .sec.info { flex-direction: column; align-items: stretch; justify-content: flex-end; padding-bottom: 24px; }
+        .ftr { position: static; margin-top: 64px; }
         .big { font-size: 32.5vw; }
         .hero { justify-content: center; padding-bottom: 12vh; }
         .sec { padding-top: max(42vh, 260px); }
@@ -350,6 +357,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       function runLoader() {
         const root = document.documentElement;
         root.style.overflow = 'hidden';
+        root.style.touchAction = 'none'; // su iPhone overflow:hidden non basta a bloccare lo scroll col dito
 
         const canvas = document.createElement('canvas');
         canvas.className = 'loader';
@@ -361,7 +369,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         const lR = $('lR'), lC = $('lC'), lW = $('lW');
 
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, premultipliedAlpha: true });
-        const dpr = Math.min(devicePixelRatio, 2);
+        const dpr = Math.min(devicePixelRatio, innerWidth < 1024 ? 1.5 : 2);
         renderer.setPixelRatio(dpr);
         renderer.setSize(innerWidth, innerHeight, false);
 
@@ -472,6 +480,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
               ui.remove();
               renderer.dispose();
               root.style.overflow = '';
+              root.style.touchAction = '';
               lenis?.start();
               removeEventListener('resize', onResize);
               try {
@@ -496,7 +505,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       function initSite(willLoad: boolean, reduced: boolean) {
         const canvas = document.getElementById('bg') as HTMLCanvasElement;
         const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, premultipliedAlpha: true });
-        const dpr = Math.min(devicePixelRatio, innerWidth < 700 ? 1.25 : 2);
+        const dpr = Math.min(devicePixelRatio, innerWidth < 1024 ? 1.25 : 2);
         renderer.setPixelRatio(dpr);
         let VW = canvas.clientWidth || innerWidth, VH = canvas.clientHeight || innerHeight;
         renderer.setSize(VW, VH, false);
@@ -541,25 +550,34 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
                 float aA = cv(sdBox(pa, uA.zw, uR.x))*uAmt;
                 float aB = cv(sdBox(pb, uB.zw, uR.y))*uAmt;
 
-                vec2 ab = uB.xy - uA.xy;
-                float t = clamp(dot(fc - uA.xy, ab)/max(dot(ab, ab), 1.), 0., 1.);
-                c = over(c, vec3(1.), cv(length(fc - uA.xy - ab*t) - 1.2*uDpr)*uLink*.5);
-                vec2 pp = uA.xy + ab*fract(uTime*.35);
-                c = over(c, cB, cv(length(fc - pp) - 4.5*uDpr)*uLink);
+                // i blocchi spenti (peso 0) si saltano: stesso risultato, meno calcoli per pixel sul telefono
+                if (uLink > .001) {
+                  vec2 ab = uB.xy - uA.xy;
+                  float t = clamp(dot(fc - uA.xy, ab)/max(dot(ab, ab), 1.), 0., 1.);
+                  c = over(c, vec3(1.), cv(length(fc - uA.xy - ab*t) - 1.2*uDpr)*uLink*.5);
+                  vec2 pp = uA.xy + ab*fract(uTime*.35);
+                  c = over(c, cB, cv(length(fc - pp) - 4.5*uDpr)*uLink);
+                }
 
                 c = over(c, cA, aA);
 
-                float det = 0.;
-                for (int i = 0; i < 3; i++){
-                  vec2 o = vec2(-uA.z/uK + 9. + 7.*float(i), uA.w/uK - 9.);
-                  det = max(det, bx(fc, o, vec2(2.4), 2.4)*uDetB);
+                if (uDetB > .001) {
+                  float det = 0.;
+                  for (int i = 0; i < 3; i++){
+                    vec2 o = vec2(-uA.z/uK + 9. + 7.*float(i), uA.w/uK - 9.);
+                    det = max(det, bx(fc, o, vec2(2.4), 2.4)*uDetB);
+                  }
+                  c = over(c, cCut, det*aA);
                 }
-                c = over(c, cCut, det*aA);
-                float bars = max(bx(fc, vec2(-14., 6.), vec2(26., 3.4), 1.7), bx(fc, vec2(-22., -3.), vec2(18., 2.2), 1.1))*uDetB
-                           + (bx(fc, vec2(0., 6.), vec2(16., 12.), 3.) + bx(fc, vec2(0., -12.), vec2(14., 2.4), 1.2) + bx(fc, vec2(0., -19.), vec2(10., 2.), 1.))*uDetP;
-                c = over(c, cCut, clamp(bars, 0., 1.)*.2*aA);
-                float notch = bx(fc, vec2(0., uA.w/uK - 7.), vec2(6., 1.8), 1.8)*uDetP;
-                c = over(c, cCut, notch*aA);
+                if (uDetB + uDetP > .001) {
+                  float bars = max(bx(fc, vec2(-14., 6.), vec2(26., 3.4), 1.7), bx(fc, vec2(-22., -3.), vec2(18., 2.2), 1.1))*uDetB
+                             + (bx(fc, vec2(0., 6.), vec2(16., 12.), 3.) + bx(fc, vec2(0., -12.), vec2(14., 2.4), 1.2) + bx(fc, vec2(0., -19.), vec2(10., 2.), 1.))*uDetP;
+                  c = over(c, cCut, clamp(bars, 0., 1.)*.2*aA);
+                }
+                if (uDetP > .001) {
+                  float notch = bx(fc, vec2(0., uA.w/uK - 7.), vec2(6., 1.8), 1.8)*uDetP;
+                  c = over(c, cCut, notch*aA);
+                }
 
                 // /motion: prima il tasto play, poi lo schermo si accende a LED e la barra avanza con lo scroll
                 if (uPlay > .001) {
@@ -592,6 +610,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
 
         let tx = 0, ty = 0, mx = 0, my = 0, mpx = -9999, mpy = -9999, gx = -9999, gy = -9999;
         addEventListener('pointermove', (e) => {
+          if (e.pointerType !== 'mouse') return; // col dito la forma non deve inseguire lo scroll
           tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5; mpx = e.clientX; mpy = e.clientY;
           if (gx < -9000) { gx = mpx; gy = mpy; }
         });
@@ -622,9 +641,14 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         };
         measure();
         document.fonts?.ready.then(measure);
+        // sul telefono la barra del browser che compare/sparisce manda "resize" di sola altezza mentre scorri:
+        // rimisurare lì causa scatti, quindi si rimisura solo se cambia la larghezza (es. rotazione)
+        let lastW = innerWidth;
         addEventListener('resize', () => {
           const w = canvas.clientWidth, h = canvas.clientHeight;
           if (w !== VW || h !== VH) { VW = w; VH = h; renderer.setSize(w, h, false); }
+          if (coarse && innerWidth === lastW) return;
+          lastW = innerWidth;
           measure();
         });
 
@@ -666,10 +690,12 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           const sig = scrollY + md * 1000 + Math.abs(gx - mpx) + (Math.abs(mx - tx) + Math.abs(my - ty)) * 500 + (st.grid + st.mg + vis) * 100 + progS * 1000;
           const moving = Math.abs(sig - lastSig) > 0.02;
           lastSig = sig;
-          if (wide || moving || time - lastDraw >= 0.1) { renderer.render(scene, camera); lastDraw = time; }
+          // fermo si ridisegna 10 volte al secondo, ma il puntino che corre e lo schermo /motion vanno sempre fluidi
+          if (wide || moving || st.link > 0.01 || st.play > 0.01 || time - lastDraw >= 0.1) { renderer.render(scene, camera); lastDraw = time; }
         });
 
-        if (!reduced) {
+        // Lenis solo con mouse/trackpad: sul telefono lo scroll nativo è già fluido e Lenis lo appesantisce
+        if (!reduced && !coarse) {
           lenis = new Lenis({ lerp: 0.09 });
           if (willLoad) lenis.stop();
           lenis.on('scroll', ScrollTrigger.update);
@@ -701,12 +727,12 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
         secs.forEach((sec, i) => {
           const txt = sec.querySelector<HTMLElement>('.txt')!;
           if (reduced) return;
-          gsap.timeline({ scrollTrigger: { trigger: txt, start: 'top 92%', end: 'top 42%', scrub: 0.7 } })
+          gsap.timeline({ scrollTrigger: { trigger: txt, start: 'top 92%', end: 'top 42%', scrub: coarse ? 0.3 : 0.7 } })
             .from(sec.querySelectorAll('.wi'), { yPercent: 115, ease: 'power3.out', stagger: 0.08 })
             .from(sec.querySelectorAll('.rv'), { y: 46, autoAlpha: 0, ease: 'power2.out', stagger: 0.12 }, '<0.15')
             .from(sec.querySelectorAll('.pts li'), { xPercent: -8, ease: 'power2.out', stagger: 0.08 }, '<');
           if (i < secs.length - 1) gsap.to(txt, { yPercent: -18, autoAlpha: 0.15, ease: 'none',
-            scrollTrigger: { trigger: sec.nextElementSibling as HTMLElement, start: 'top 90%', end: 'top 35%', scrub: 0.7 } });
+            scrollTrigger: { trigger: sec.nextElementSibling as HTMLElement, start: 'top 90%', end: 'top 35%', scrub: coarse ? 0.3 : 0.7 } });
         });
 
         // la fascia /stack accelera con la velocità dello scroll e va per un attimo al contrario scorrendo verso l'alto
@@ -716,18 +742,20 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           ScrollTrigger.create({ onUpdate: (self) => { const v = self.getVelocity() / 500; if (Math.abs(v) > Math.abs(rate)) rate = Math.max(-6, Math.min(6, v)); } });
           gsap.ticker.add(() => {
             rate += (1 - rate) * 0.06;
+            if (Math.abs(rate - 1) < 0.002) rate = 1;
             // all'indietro non deve arrivare a 0, dove l'animazione si fermerebbe: la riporto di un giro
             if (rate < 0 && Number(band.currentTime) < 1000) band.currentTime = Number(band.currentTime) + 45000;
-            band.playbackRate = rate;
+            // cambiare velocità a ogni fotogramma costa anche quando non cambia nulla
+            if (band.playbackRate !== rate) band.playbackRate = rate;
           });
         }
 
         if (!reduced) {
           gsap.to('.big .ch', {
             yPercent: -45, opacity: 0, ease: 'none', stagger: { each: 0.09 },
-            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 35%', scrub: 0.5 },
+            scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 35%', scrub: coarse ? 0.3 : 0.5 },
           });
-          gsap.to('.hero-sub', { y: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: 0.5 } });
+          gsap.to('.hero-sub', { y: -30, opacity: 0, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: coarse ? 0.3 : 0.5 } });
         }
 
         const prog = document.querySelector<HTMLElement>('.prog')!;
@@ -740,6 +768,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       }
 
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const coarse = matchMedia('(pointer: coarse)').matches;
       const willLoad = !(reduced || seen());
       try {
         initSite(willLoad, reduced);
@@ -753,6 +782,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
           runLoader();
         } catch {
           document.documentElement.style.overflow = '';
+          document.documentElement.style.touchAction = '';
           lenis?.start();
           instant();
         }

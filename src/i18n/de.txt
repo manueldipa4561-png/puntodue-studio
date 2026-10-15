@@ -112,8 +112,6 @@ it: Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta 
 de: Illustrative Simulation mit Beispielwerten: Sie zeigt den in den Quellen beschriebenen Trend und ist kein Ergebnisversprechen. Die gestrichelte Linie ist der Ausgangspunkt.
 
 # ---------- /web ----------
-it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
-de: <Site title="Websites und Apps: Projekte und Demos — Punto Due Studio" description="Drei vollständige, anklickbare Website-Demos und KERN, ein App-Konzept, das hilft, durch echte Arbeit herauszufinden, was man tun möchte." active="web">
 it: 'Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.'
 de: 'Hallo! Ich habe Ihre Demos gesehen und würde gern mit Ihnen über ein Projekt sprechen.'
 it: 'Il sito di un salone, per lei e per lui.'
@@ -204,14 +202,6 @@ it: if (!navigator.language.toLowerCase().startsWith('it')) setAna('en');
 de: setAna('en');
 it: aria-label="In breve"
 de: aria-label="Kurzüberblick"
-it: aria-label="Lingua"
-de: aria-label="Sprache"
-it: aria-label="Tema"
-de: aria-label="Farbschema"
-it: aria-label="Anteprima interattiva dell'app KERN"
-de: aria-label="Interaktive Vorschau der KERN-App"
-it: ↻ Rivedi l'apertura
-de: ↻ Intro erneut ansehen
 it: <h1>Nuovo link.</h1>
 de: <h1>Neuer Link.</h1>
 it: Tre siti da aprire e toccare con mano. Un click e sei dentro.
@@ -240,16 +230,6 @@ it: Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Re
 de: Amy Gallo, „The Value of Keeping the Right Customers“, Harvard Business Review, Oktober 2014: Eine um 5% höhere Kundenbindung steigert den Gewinn um 25–95%; einen Kunden zu gewinnen kostet 5- bis 25-mal so viel, wie ihn zu halten (Daten von Fred Reichheld, Bain &amp; Company).
 it: , Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.
 de: , Pearson, 2010: Verkaufswahrscheinlichkeit 5–20% bei einem neuen Kontakt, 60–70% bei einem Bestandskunden.
-it: Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera.
-de: Forbes über einen Tallo-Bericht, Mai 2025, und Big Brothers Big Sisters / Harris Poll, 2025: Unsicherheit junger Erwachsener über ihren Karriereweg.
-it: NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari:
-de: NACE Job Outlook 2026 (70% stellen für Einstiegspositionen kompetenzbasiert ein); TestGorilla 2025; Harvard Business School und Burning Glass Institute (weniger als 1 von 700 Neueinstellungen ohne Hochschulabschluss in Unternehmen, die diese Anforderung gestrichen haben). Sekundärquellen:
-it: Forbes, agosto 2026
-de: Forbes, August 2026
-it: NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level.
-de: NPR, August 2026 und IBISWorld: Arbeitslosigkeit unter Berufseinsteigern mit Hochschulabschluss (5,7% im Juni 2026) und der Markt für Einstiegsstellen.
-it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.
-de: Die Demos INNESTO, SEZIONE und BRACE sind Konzepte von Punto Due Studio; Namen und Betriebe sind fiktiv. Die KERN-App ist ein Konzept, das noch nicht mit Nutzern getestet wurde: Ansichten, Namen und Zahlen sind Beispiele.
 
 # ---------- /social ----------
 it: <Site title="Gestione social media — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
@@ -956,70 +936,12 @@ it: >Servizi</a>
 de: >Leistungen</a>
 
 # ---------- sezione KERN in /web: testi tedeschi nello slot "en" di <Bi> (il demo resta IT/EN) ----------
-it: en="Find out what you want to do by trying it, not imagining it."
-de: en="Herausfinden, was Sie machen wollen: durch Ausprobieren, nicht durch Vorstellen."
-it: en="Real work"
-de: en="Echte Arbeit"
-it: en="No timers"
-de: en="Keine Stoppuhr"
-it: en="Best work wins"
-de: en="Die beste Arbeit gewinnt"
-it: en="AI that asks questions"
-de: en="KI, die Fragen stellt"
-it: en="Platforms"
-de: en="Plattformen"
-it: en="Concept, in development"
-de: en="Konzept, in Entwicklung"
-it: en="Ages 18 to 35"
-de: en="18 bis 35 Jahre"
-it: en="/why"
-de: en="/warum"
-it: en="If you don't know what you want, there's no way in."
-de: en="Wer nicht weiß, was er will, findet keinen Einstieg."
-it: en="Unsure young people, employers asking for proof, fewer entry-level roles."
-de: en="Verunsicherte junge Menschen, Arbeitgeber, die Nachweise verlangen, immer weniger Einstiegsstellen."
-it: en="Others start from a role. KERN starts from you."
-de: en="Andere gehen von einer Rolle aus. KERN geht von Ihnen aus."
-it: en="Help you work out what you want, through real work."
-de: en="Ihnen helfen herauszufinden, was Sie wollen: durch echte Arbeit."
-it: en: 'US young adults unsure about their path'
-de: en: 'Junge Erwachsene in den USA, unsicher über ihren Weg'
-it: en: 'Unsure about career, 18–30'
-de: en: 'Unsicher bei der Berufswahl, 18–30'
-it: en: '≈ 2 in 3'
-de: en: '≈ 2 von 3'
-it: en: 'Gen Z, unsure about future jobs'
-de: en: 'Gen Z, unsicher über künftige Jobs'
-it: en: '≈ 1 in 3'
-de: en: '≈ 1 von 3'
-it: en: 'Employers say "skills". They hire otherwise.'
-de: en: 'Arbeitgeber sagen „Skills“. Eingestellt wird anders.'
-it: en: 'Entry-level hires based on skills'
-de: en: 'Einstiegsstellen, besetzt nach Skills'
-it: en: 'Hires without a degree where it was dropped'
-de: en: 'Einstellungen ohne Abschluss, wo er gestrichen wurde'
-it: en: '< 1 in 700'
-de: en: '< 1 von 700'
-it: en: 'Unemployment, June 2026'
-de: en: 'Arbeitslosigkeit, Juni 2026'
-it: en: 'All workers'
-de: en: 'Alle Beschäftigten'
-it: en: 'Recent graduates, 22–27'
-de: en: 'Absolventen, 22–27'
-it: en: '5.7%'
-de: en: '5,7 %'
-it: en='General research, not KERN results; bars are indicative and some figures come from secondary sources. Sources: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' />
-de: en='Allgemeine Forschungsdaten, keine KERN-Ergebnisse; die Balken sind Richtwerte, einige Zahlen stammen aus Sekundärquellen. Quellen: NACE Job Outlook 2026 · Tallo / Forbes 2025 · Big Brothers Big Sisters / Harris Poll 2025 · Harvard Business School &amp; Burning Glass Institute · NPR &amp; IBISWorld 2026. <a href="#fonti">Details</a>' />
 it: <span lang="it" set:html={it}></span><span lang="en" set:html={en}></span>
 de: <span lang="it" set:html={it}></span><span lang="de" set:html={en}></span>
 it: html:not([data-ana="en"]) span[lang="en"], html[data-ana="en"] span[lang="it"] { display: none; }
 de: html:not([data-ana="en"]) span[lang="de"], html[data-ana="en"] span[lang="it"] { display: none; }
 it: en="For"
 de: en="Für"
-it: en="The difference"
-de: en="Der Unterschied"
-it: en="The goal"
-de: en="Das Ziel"
 
 # ---------- /motion: domande frequenti, replay ----------
 it: <h2>Domande frequenti.</h2>
@@ -1085,3 +1007,193 @@ it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare 
 de: Produkte, Marken und Preise sind Beispiele: Wir haben sie erfunden, um die Formate zu zeigen.
 it: >€59</span>
 de: >59 €</span>
+
+# slashkern (/web, sezione /app)
+it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più slashkern, un'app in accesso anticipato: progetti brevi da finire con un assistente AI e tenere sulla propria pagina." active="web">
+de: <Site title="Websites und Apps: Projekte und Demos — Punto Due Studio" description="Drei anklickbare Website-Demos und slashkern, eine App im frühen Zugang: kurze Projekte, mit einem KI-Assistenten fertig gemacht und auf der eigenen Seite behalten." active="web">
+it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
+de: Die Demos INNESTO, SEZIONE und BRACE sind Konzepte von Punto Due Studio; Namen und Betriebe sind fiktiv. slashkern ist ein unabhängiges Projekt im frühen Zugang und noch nicht geöffnet: In der Vorschau sind die Kunden fiktiv und die Zahlen Beispiele.
+it: aria-label="Anteprima interattiva dell'app slashkern"
+de: aria-label="Interaktive Vorschau der slashkern-App"
+it: en="early access"
+de: en="früher Zugang"
+it: en="From zero to product."
+de: en="Von null zum Produkt."
+it: en="Pick a short project, finish it with Slash, your AI assistant, and keep it on your own page."
+de: en="Such dir ein kurzes Projekt aus, mach es mit Slash, deinem KI-Assistenten, fertig und behalte es auf deiner eigenen Seite."
+it: en="Free for creators"
+de: en="Kostenlos für Creator"
+it: en="7 categories"
+de: en="7 Kategorien"
+it: en="Slash helps. You finish."
+de: en="Slash hilft. Du machst es fertig."
+it: en="Your KernCard"
+de: en="Deine KernCard"
+it: en="Platform"
+de: en="Plattform"
+it: en="Installable web app"
+de: en="Installierbare Web-App"
+it: en="Early access · waitlist"
+de: en="Früher Zugang · Warteliste"
+it: en="18+, across Europe"
+de: en="Ab 18, in ganz Europa"
+it: en="Languages"
+de: en="Sprachen"
+it: en="An independent project, separate from Punto Due Studio, and not open yet. In the preview the clients are fictional and the numbers are examples."
+de: en="Ein unabhängiges Projekt, getrennt von Punto Due Studio, und noch nicht geöffnet. In der Vorschau sind die Kunden fiktiv und die Zahlen Beispiele."
+it: en="Hi Giulia"
+de: en="Hallo Giulia"
+it: en="Your path"
+de: en="Dein Weg"
+it: en="More paths"
+de: en="Weitere Wege"
+it: en="A piece for your page"
+de: en="Ein Stück für deine Seite"
+it: en="5 small steps"
+de: en="5 kleine Schritte"
+it: en="Start"
+de: en="Starten"
+it: en="Every finished page says “Practice project” and names the fictional client."
+de: en="Jede fertige Seite sagt „Übungsprojekt“ und nennt den fiktiven Kunden."
+it: en="Your KernCard."
+de: en="Deine KernCard."
+it: en="Everything you finish lives on one page, your KernCard. Companies see only what you publish."
+de: en="Alles, was du fertig machst, lebt auf einer Seite, deiner KernCard. Unternehmen sehen nur, was du veröffentlichst."
+it: en='<b class="sk-n">0</b> of 6 projects'
+de: en='<b class="sk-n">0</b> von 6 Projekten'
+it: en="The first project you finish shows up here."
+de: en="Das erste Projekt, das du fertig machst, erscheint hier."
+it: en="Example card · preview"
+de: en="Beispielkarte · Vorschau"
+it: en="Your projects"
+de: en="Deine Projekte"
+it: en="None yet."
+de: en="Noch keins."
+it: en="Your rank"
+de: en="Dein Rang"
+it: en="stones"
+de: en="Steine"
+it: en="Flip the card"
+de: en="Karte umdrehen"
+it: en="Early access: companies are not on slashkern yet."
+de: en="Früher Zugang: Unternehmen sind noch nicht auf slashkern."
+it: en="Slash helps.<br>You finish."
+de: en="Slash hilft.<br>Du machst es fertig."
+it: en="You are talking to an AI · scripted preview replies"
+de: en="Du sprichst mit einer KI · vorab geschriebene Antworten"
+it: en="Pick the hook: what do the first 2 seconds show?"
+de: en="Wähl den Hook: Was zeigen die ersten 2 Sekunden?"
+it: en="Clear. One thing is missing: what does the last frame tell people?"
+de: en="Klar. Eins fehlt noch: Was sagt das letzte Bild den Leuten?"
+it: en="Draft a first version"
+de: en="Erste Version entwerfen"
+it: en="Last frame: the van, and “Open today, 12 to 3” on screen."
+de: en="Letztes Bild: der Wagen und „Heute geöffnet, 12 bis 15 Uhr“ im Bild."
+it: en="Made with AI help"
+de: en="Mit KI-Hilfe erstellt"
+it: en="It is only a draft: you decide what stays."
+de: en="Es ist nur ein Entwurf: Du entscheidest, was bleibt."
+it: en="Start over"
+de: en="Neu anfangen"
+it: en="Slash does"
+de: en="Das macht Slash"
+it: en="Asks one question at a time."
+de: en="Eine Frage nach der anderen stellen."
+it: en="Points at what is unclear or missing."
+de: en="Zeigen, was unklar ist oder fehlt."
+it: en="Drafts a first version when you ask, tagged Made with AI help."
+de: en="Auf Wunsch eine erste Version schreiben, gekennzeichnet mit „Mit KI-Hilfe erstellt“."
+it: en="Slash does not"
+de: en="Das macht Slash nicht"
+it: en="Publish anything for you."
+de: en="Etwas für dich veröffentlichen."
+it: en="Make your choices."
+de: en="Deine Entscheidungen treffen."
+it: en="Hide its help."
+de: en="Seine Hilfe verstecken."
+it: en="Preview: the five steps are skipped"
+de: en="Vorschau: Die fünf Schritte werden übersprungen"
+it: en="Saved to your KernCard"
+de: en="In deiner KernCard gespeichert"
+it: en="The project is on your KernCard. Companies are not on slashkern yet."
+de: en="Das Projekt ist in deiner KernCard. Unternehmen sind noch nicht auf slashkern."
+it: en="See my KernCard"
+de: en="Meine KernCard ansehen"
+it: en="Stay on projects"
+de: en="Bei den Projekten bleiben"
+it: en="Replay the intro"
+de: en="Intro erneut ansehen"
+it: en="Projects"
+de: en="Projekte"
+it: en: 'Short videos'
+de: en: 'Kurzvideos'
+it: en: 'Posters and logos'
+de: en: 'Poster und Logos'
+it: en: 'Posts and captions'
+de: en: 'Posts und Bildunterschriften'
+it: en: 'Websites and small tools'
+de: en: 'Websites und kleine Tools'
+it: en: 'Product listings'
+de: en: 'Produktanzeigen'
+it: en: 'Music and sound'
+de: en: 'Musik und Sound'
+it: en: 'AI prompts'
+de: en: 'KI-Prompts'
+it: en: '15-second storyboard for a sandwich van'
+de: en: '15-Sekunden-Storyboard für einen Sandwichwagen'
+it: en: 'Pick a few things and end with a four-frame storyboard that Rocco can film on his phone.'
+de: en: 'Wähl ein paar Dinge aus und am Ende steht ein Storyboard aus vier Bildern, das Rocco mit dem Handy filmen kann.'
+it: en: 'Rocco’s sandwich van (fictional)'
+de: en: 'Roccos Sandwichwagen (fiktiv)'
+it: en: 'Brand sheet for a bar'
+de: en: 'Marken-Steckbrief für eine Bar'
+it: en: 'Pick a few things and end with a page that shows how a bar looks and feels.'
+de: en: 'Wähl ein paar Dinge aus und am Ende steht eine Seite, die zeigt, wie eine Bar aussieht und sich anfühlt.'
+it: en: 'Bar Ficus (fictional)'
+de: en: 'Bar Ficus (fiktiv)'
+it: en: 'Launch kit for a new flavour'
+de: en: 'Launch-Kit für eine neue Sorte'
+it: en: 'Name a new flavour, write the sign for the counter and the first post, and end with one page you can show.'
+de: en: 'Gib einer neuen Sorte einen Namen, schreib das Schild für die Theke und den ersten Post. Am Ende hast du eine Seite zum Zeigen.'
+it: en: 'Pigro Gelato (fictional)'
+de: en: 'Pigro Gelato (fiktiv)'
+it: en: 'One-page website for a plant shop'
+de: en: 'One-Pager-Website für einen Pflanzenladen'
+it: en: 'Pick a few things and end with a real web page, as a file you can open and put online.'
+de: en: 'Wähl ein paar Dinge und hab am Ende eine echte Website als Datei, die du öffnen und online stellen kannst.'
+it: en: 'Sunny Plants, a plant shop (fictional)'
+de: en: 'Sunny Plants, ein Pflanzenladen (fiktiv)'
+it: en: 'Listing for a used desk lamp'
+de: en: 'Anzeige für eine gebrauchte Schreibtischlampe'
+it: en: 'Pick what to say and write two short lines. You end with an honest listing for a used lamp.'
+de: en: 'Wähl aus, was du sagst, und schreib zwei kurze Zeilen. Am Ende hast du eine ehrliche Anzeige für eine gebrauchte Lampe.'
+it: en: 'Marta (fictional)'
+de: en: 'Marta (fiktiv)'
+it: en: 'A beat and its release card'
+de: en: 'Ein Beat und seine Release-Karte'
+it: en: 'Tap a beat, name it and pick its cover. End with a release card that plays your beat.'
+de: en: 'Klopf einen Beat, gib ihm einen Namen und wähl sein Cover. Am Ende steht eine Release-Karte, die deinen Beat abspielt.'
+it: en: 'Clank Gym (fictional)'
+de: en: 'Clank Gym (fiktiv)'
+it: en: 'A prompt that writes a post'
+de: en: 'Ein Prompt, der einen Post schreibt'
+it: en: 'Build a prompt from a few choices, send it to the AI and keep the post it writes, marked as AI.'
+de: en: 'Bau aus ein paar Entscheidungen einen Prompt, schick ihn an die KI und behalte den Post, den sie schreibt. Er ist als KI gekennzeichnet.'
+it: en: 'Dana’s pottery class (fictional)'
+de: en: 'Danas Töpferkurs (fiktiv)'
+it: en: 'Pebble'
+de: en: 'Kiesel'
+it: en: 'Stone'
+de: en: 'Stein'
+it: en: 'Cairn'
+de: en: 'Steinmann'
+it: en: 'Ridge'
+de: en: 'Grat'
+it: en: 'Summit'
+de: en: 'Gipfel'
+it: en: 'Cheese pull in slow motion'
+de: en: 'Käsefaden in Zeitlupe'
+it: en: 'Rocco shouting the order'
+de: en: 'Rocco ruft die Bestellung'
+it: en: 'A knife slicing the bread'
+de: en: 'Ein Messer schneidet das Brot'
