@@ -1,7 +1,7 @@
 ---
 // Sezione /automazione di /social: un OS agentico. Un agente principale coordina quattro agenti in una catena
-// (post, messaggi, prenotazioni, report). Le quattro immagini (/agent/os-1..4) sono render 3D generati con Higgsfield
-// a partire da una scena master, stesso bot e stessa inquadratura: passando da un passo all'altro si sfumano l'una nell'altra.
+// (post, messaggi, prenotazioni, report). La scena è un loop video di 5 secondi (/agent/os-loop.mp4), generato con Higgsfield
+// dalla scena master (/agent/os-0): primo e ultimo fotogramma coincidono. Parte solo quando è a schermo; con animazioni ridotte resta la locandina.
 // Senza JavaScript resta il primo passo; con animazioni ridotte la catena non avanza da sola.
 const steps = [
   { t: 'Post programmati', a: 'Agente post', d: 'Il piano del mese è caricato: i post escono da soli, all\'ora giusta.', bot: 'Pubblico il reel di oggi alle 19:30.' },
@@ -24,12 +24,7 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
       <div class="os-bar" aria-hidden="true"><i></i><i></i><i></i><span>agentos.demo</span></div>
       <div class="os-view">
         <div class="os-layers" id="osLayers">
-          {steps.map((s, i) => (
-            <picture class={`os-img${i === 0 ? ' on' : ''}`}>
-              <source media="(max-width: 700px)" srcset={`/agent/os-${i + 1}-720.webp`} />
-              <img src={`/agent/os-${i + 1}-1280.webp`} width="1280" height="956" alt="" loading="lazy" decoding="async" />
-            </picture>
-          ))}
+          <video class="os-vid" id="osVid" src="/agent/os-loop.mp4" poster="/agent/os-0-1280.webp" width="960" height="720" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
           <svg class="os-fx" viewBox="0 0 100 74.69" preserveAspectRatio="none" aria-hidden="true">
             <circle id="osPing" r="1" cx={spots[0][0]} cy={spots[0][1] * K} />
             <circle id="osDot" r="1.15" cx={botAt[0]} cy={botAt[1] * K} />
@@ -88,9 +83,7 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
   .os-bar span { margin-left: 10px; font: 500 11px/1 var(--mono); letter-spacing: .1em; color: rgba(255,255,255,.75); }
   .os-view { position: relative; aspect-ratio: 1280 / 956; overflow: hidden; background: #0a33c8; }
   .os-layers { position: absolute; inset: 0; transform: scale(1.04); will-change: transform; }
-  .os-img { position: absolute; inset: 0; opacity: 0; transform: scale(1.035); transition: opacity .8s var(--ease), transform 1.6s var(--ease); }
-  .os-img.on { opacity: 1; transform: none; }
-  .os-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .os-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0a33c8; }
   .os-fx { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
   #osDot { opacity: 0; fill: var(--yellow); filter: drop-shadow(0 0 .9px #fff) drop-shadow(0 0 2.4px var(--yellow)); }
   #osPing { fill: none; stroke: var(--yellow); stroke-width: .35; opacity: 0; }
@@ -134,7 +127,7 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
 
   @media (min-width: 1024px) { .os { grid-template-columns: minmax(320px, .85fr) 1.15fr; gap: 36px; } .os-win { order: 0; position: sticky; top: 110px; } .os-side { order: -1; } }
   @media (max-width: 700px) { .os-cap { left: 8px; right: 8px; bottom: 8px; padding: 10px 12px; font-size: .86rem; } .os-h { display: none; } }
-  @media (prefers-reduced-motion: reduce) { .step, .os-img, .stp::after, .n { transition: none; } .os-caret, .os-live { animation: none; } .os-layers { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .step, .stp::after, .n { transition: none; } .os-caret, .os-live { animation: none; } .os-layers { transform: none; } }
 </style>
 
 <script>
@@ -143,7 +136,7 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
   const sec = document.getElementById('automazione')!;
   const win = document.getElementById('osWin')!;
   const layers = document.getElementById('osLayers')!;
-  const imgs = [...layers.querySelectorAll<HTMLElement>('.os-img')];
+  const vid = document.getElementById('osVid') as HTMLVideoElement;
   const dot = document.getElementById('osDot') as unknown as SVGCircleElement;
   const ping = document.getElementById('osPing') as unknown as SVGCircleElement;
   const cap = document.getElementById('botCap')!, line = document.getElementById('osLine')!, who = document.getElementById('osWho')!;
@@ -185,7 +178,6 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
     cur = i;
     btns.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
     items.forEach((li, k) => { li.dataset.state = k === i ? 'on' : k < i ? 'done' : 'wait'; });
-    imgs.forEach((im, k) => im.classList.toggle('on', k === i));
     who.textContent = btns[i].dataset.a!;
     cap.textContent = btns[i].dataset.bot!;
     typeLine(btns[i].dataset.bot!);
@@ -195,7 +187,7 @@ const K = 74.69 / 75; // il disegno SVG è 100 x 74,69 come le immagini (1280 x 
   if (!auto) sec.removeAttribute('data-auto');
   // la catena avanza da sola solo mentre è a schermo; un clic dell'utente la ferma
   setInterval(() => { if (auto && vis && !document.hidden) setStep((cur + 1) % btns.length); }, 4000);
-  new IntersectionObserver(([e]) => { vis = e.isIntersecting; }, { threshold: 0.35 }).observe(win);
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (!rm) { if (vis) vid.play().catch(() => {}); else vid.pause(); } }, { threshold: 0.35 }).observe(win);
 
   // la scena segue il puntatore di pochi pixel (molla), solo con il mouse
   if (fine && !rm) {

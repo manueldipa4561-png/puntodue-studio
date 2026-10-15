@@ -10,7 +10,7 @@
   --display: 'Bricolage Grotesque Variable', 'Inter Tight Variable', system-ui, sans-serif;
   --text: 'Inter Tight Variable', system-ui, sans-serif;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Consolas, Menlo, monospace;
-  --glass: rgba(0, 24, 120, .72); --line: rgba(255, 255, 255, .28);
+  --glass: rgba(0, 24, 120, .9); --line: rgba(255, 255, 255, .28);
   --ease: cubic-bezier(.2, .7, .2, 1); --ease-io: cubic-bezier(.76, 0, .24, 1);
 }
 * { box-sizing: border-box; }
