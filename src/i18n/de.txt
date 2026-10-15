@@ -64,8 +64,8 @@ it: <span>App web e mobile</span>
 de: <span>Web- und Mobile-Apps</span>
 it: <span>SEO e prestazioni</span>
 de: <span>SEO und Performance</span>
-it: Vedi i lavori
-de: Unsere Projekte ansehen
+it: Vedi le demo
+de: Demos ansehen
 it: Ti seguono, ti ricordano, ti scelgono. Strategia, contenuti e gestione dei tuoi profili.
 de: Kunden folgen Ihnen, erinnern sich an Sie und entscheiden sich für Sie. Strategie, Inhalte und Betreuung Ihrer Profile.
 it: Vedi il feed
@@ -644,8 +644,8 @@ it: ['Quanto costa la gestione dei social?', 'La gestione dei social parte da 20
 de: ['Wie viel kostet die Social-Media-Betreuung?', 'Die Social-Media-Betreuung beginnt bei 200 € pro Monat, monatlich abgerechnet. Die Gebühr hängt von den enthaltenen Inhalten ab, insbesondere von Dreharbeiten vor Ort und der Reel-Produktion.']
 it: ['Quali sono i tempi di realizzazione?', 'Un sito viene pubblicato entro 2 settimane dalla ricezione dei contenuti (testi, foto, orari e prezzi). Le app web sono operative in circa una settimana.']
 de: ['Wie lange dauert die Umsetzung?', 'Eine Website geht innerhalb von 2 Wochen nach Erhalt der Inhalte (Texte, Fotos, Öffnungszeiten und Preise) online. Web-Apps sind in etwa einer Woche einsatzbereit.']
-it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ciascun sito.']
-de: ['Wie lange läuft der Vertrag?', 'Der Vertrag läuft 6 oder 12 Monate, nach Wahl des Kunden, und verlängert sich nie automatisch. Die Zahlung erfolgt monatlich im Voraus, ohne jährliche Vorauszahlung. Enthalten sind ein Monat Garantie ab Veröffentlichung und 2 Überarbeitungen pro Monat für jede Website.']
+it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di correzioni gratuite dalla pubblicazione, oltre alle garanzie di legge, e 2 revisioni al mese per ciascun sito.']
+de: ['Wie lange läuft der Vertrag?', 'Der Vertrag läuft 6 oder 12 Monate, nach Wahl des Kunden, und verlängert sich nie automatisch. Die Zahlung erfolgt monatlich im Voraus, ohne jährliche Vorauszahlung. Enthalten sind ein Monat kostenlose Korrekturen ab Veröffentlichung, zusätzlich zur gesetzlichen Gewährleistung, und 2 Überarbeitungen pro Monat für jede Website.']
 it: ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.']
 de: ['Wie startet ein Projekt?', 'Sie können uns per WhatsApp oder über das Formular auf der Seite /info kontaktieren: Ihre Anfrage geht direkt an die verantwortliche Person. Nach einem ersten Gespräch, in dem wir Ihren Bedarf klären, senden wir ein detailliertes Angebot.']
 it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.']
@@ -834,8 +834,8 @@ it: 'Da 200 € al mese, senza anticipi annuali. Il canone varia con il numero d
 de: 'Ab 200 € pro Monat, ohne jährliche Vorauszahlung. Die Gebühr hängt von der Seitenanzahl und den gewünschten Funktionen ab.'
 it: 'Contratto di 6 o 12 mesi, a tua scelta, senza rinnovo automatico.'
 de: 'Vertrag über 6 oder 12 Monate, nach Ihrer Wahl, ohne automatische Verlängerung.'
-it: 'Un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ogni sito.'
-de: 'Ein Monat Garantie ab Veröffentlichung und 2 Überarbeitungen pro Monat für jede Website.'
+it: 'Un mese di correzioni gratuite dalla pubblicazione, oltre alle garanzie di legge, e 2 revisioni al mese per ogni sito.'
+de: 'Ein Monat kostenlose Korrekturen ab Veröffentlichung, zusätzlich zur gesetzlichen Gewährleistung, und 2 Überarbeitungen pro Monat für jede Website.'
 it: 'Dominio, account e contenuti restano tuoi. Dominio e hosting non sono nel canone: un dominio .it costa circa 12 € + IVA all’anno.'
 de: 'Domain, Konten und Inhalte bleiben Ihr Eigentum. Domain und Hosting sind nicht in der Gebühr enthalten: Eine .it-Domain kostet etwa 12 € zzgl. MwSt. pro Jahr.'
 it: t: 'Guarda le demo'
@@ -922,8 +922,8 @@ it: { t: 'Report chiari', d: 'A fine mese ricevi i numeri che contano, senza dov
 de: { t: 'Klare Berichte', d: 'Am Monatsende erhalten Sie die Zahlen, auf die es ankommt, ohne nachfragen zu müssen.' }
 it: { t: 'Capiamo cosa si ripete', d: 'Ci racconti le attività che ti fanno perdere più tempo.' }
 de: { t: 'Wir finden, was sich wiederholt', d: 'Sie erzählen uns, welche Aufgaben Sie am meisten Zeit kosten.' }
-it: { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti.' }
-de: { t: 'Wir richten die Agenten ein', d: 'Wir konfigurieren Assistent und Automatisierungen und verbinden sie mit Ihren Tools.' }
+it: { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti. L’assistente dice dal primo messaggio di essere un’AI.' }
+de: { t: 'Wir richten die Agenten ein', d: 'Wir konfigurieren Assistent und Automatisierungen und verbinden sie mit Ihren Tools. Der Assistent sagt ab der ersten Nachricht, dass er eine KI ist.' }
 it: { t: 'Vedi i risultati', d: 'Ricevi report chiari su cosa hanno fatto.' }
 de: { t: 'Sie sehen die Ergebnisse', d: 'Sie erhalten klare Berichte darüber, was sie erledigt haben.' }
 it: 'Preventivo su misura per ogni progetto: scrivici cosa ti serve e ti diciamo tempi e costi.'
@@ -1079,8 +1079,8 @@ it: en="Early access: companies are not on slashkern yet."
 de: en="Früher Zugang: Unternehmen sind noch nicht auf slashkern."
 it: en="Slash helps.<br>You finish."
 de: en="Slash hilft.<br>Du machst es fertig."
-it: en="You are talking to an AI · scripted preview replies"
-de: en="Du sprichst mit einer KI · vorab geschriebene Antworten"
+it: en="Preview: scripted replies, not a live AI. In the app, Slash is an AI."
+de: en="Vorschau: vorab geschriebene Antworten, keine Live-KI. In der App ist Slash eine KI."
 it: en="Pick the hook: what do the first 2 seconds show?"
 de: en="Wähl den Hook: Was zeigen die ersten 2 Sekunden?"
 it: en="Clear. One thing is missing: what does the last frame tell people?"
@@ -1197,3 +1197,5 @@ it: en: 'Rocco shouting the order'
 de: en: 'Rocco ruft die Bestellung'
 it: en: 'A knife slicing the bread'
 de: en: 'Ein Messer schneidet das Brot'
+it: <a href="/privacy/">Privacy</a>
+de: <a href="/privacy/">Datenschutz (IT)</a>

@@ -16,10 +16,10 @@ const L = lang === 'it' ? '' : '/' + lang;
 const SITE = 'https://puntoduestudio.it';
 // La KERN preview in /web esiste solo in italiano e inglese: le lingue senza versione propria mostrano l'inglese
 const ana = lang === 'it' ? undefined : 'en';
-const T: Record<Lang, { og: string; main: string; links: string; rights: string; faq: string; legal: string; to: string; services: string }> = {
-  it: { og: 'it_IT', main: 'Principale', links: 'Collegamenti', rights: 'Tutti i diritti riservati', faq: 'Domande frequenti', legal: 'Note legali', to: 'Versione italiana', services: 'Servizi' },
-  en: { og: 'en_GB', main: 'Main', links: 'Links', rights: 'All rights reserved', faq: 'FAQ', legal: 'Legal notice (IT)', to: 'English version', services: 'Services' },
-  de: { og: 'de_DE', main: 'Hauptnavigation', links: 'Links', rights: 'Alle Rechte vorbehalten', faq: 'Häufige Fragen', legal: 'Rechtliche Hinweise (IT)', to: 'Deutsche Version', services: 'Leistungen' },
+const T: Record<Lang, { og: string; main: string; links: string; rights: string; faq: string; legal: string; privacy: string; to: string; services: string }> = {
+  it: { og: 'it_IT', main: 'Principale', links: 'Collegamenti', rights: 'Tutti i diritti riservati', faq: 'Domande frequenti', legal: 'Note legali', privacy: 'Privacy', to: 'Versione italiana', services: 'Servizi' },
+  en: { og: 'en_GB', main: 'Main', links: 'Links', rights: 'All rights reserved', faq: 'FAQ', legal: 'Legal notice (IT)', privacy: 'Privacy (IT)', to: 'English version', services: 'Services' },
+  de: { og: 'de_DE', main: 'Hauptnavigation', links: 'Links', rights: 'Alle Rechte vorbehalten', faq: 'Häufige Fragen', legal: 'Rechtliche Hinweise (IT)', privacy: 'Datenschutz (IT)', to: 'Deutsche Version', services: 'Leistungen' },
 };
 const t = T[lang];
 const showLangs = !noindex && !itOnly;
@@ -90,7 +90,7 @@ const showLangs = !noindex && !itOnly;
           <a href={L + '/servizi/'}>{t.services}</a>
           <a href={L + '/faq/'}>{t.faq}</a>
           <a href="/note-legali/">{t.legal}</a>
-          <a href="/privacy/">Privacy</a>
+          <a href="/privacy/">{t.privacy}</a>
           <a href="/privacy/#cookie">Cookie</a>
         </nav>
       </footer>
@@ -101,7 +101,7 @@ const showLangs = !noindex && !itOnly;
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; scroll-padding-top: 110px; }
       body { margin: 0; color: #fff; font-family: 'Inter Tight Variable', system-ui, sans-serif; background: var(--blue); overflow-x: hidden; }
-      #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+      #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; background: var(--blue); }
       .phone { transition: transform .25s ease-out; will-change: transform; }
       :focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
       html:not(.kbd) :focus-visible { outline: none; }
@@ -127,6 +127,7 @@ const showLangs = !noindex && !itOnly;
       main > section { padding: clamp(48px, 9vh, 110px) var(--gut); }
       .lab { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow); }
       h1, h2, h3 { margin: 0; letter-spacing: -.045em; }
+      h1, h2 { text-wrap: balance; } /* niente parola sola sull'ultima riga dei titoli grandi */
       h1 { margin-top: 18px; font-size: clamp(3.2rem, 9vw, 8rem); line-height: .9; }
       h2 { margin-top: 18px; font-size: clamp(2.3rem, 5.2vw, 4.6rem); line-height: .96; }
       .lead { margin: 20px 0 0; max-width: 36rem; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.5; color: rgba(255,255,255,.85); }

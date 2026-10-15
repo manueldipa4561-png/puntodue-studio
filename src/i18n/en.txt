@@ -60,8 +60,8 @@ it: <span>App web e mobile</span>
 en: <span>Web and mobile apps</span>
 it: <span>SEO e prestazioni</span>
 en: <span>SEO and performance</span>
-it: Vedi i lavori
-en: See our work
+it: Vedi le demo
+en: See the demos
 it: Ti seguono, ti ricordano, ti scelgono. Strategia, contenuti e gestione dei tuoi profili.
 en: They follow you, remember you, choose you. Strategy, content and management for your profiles.
 it: Vedi il feed
@@ -640,8 +640,8 @@ it: ['Quanto costa la gestione dei social?', 'La gestione dei social parte da 20
 en: ['How much does social media management cost?', 'Social media management starts from €200 per month, billed monthly. The fee depends on the content included, in particular on-site filming and reel production.']
 it: ['Quali sono i tempi di realizzazione?', 'Un sito viene pubblicato entro 2 settimane dalla ricezione dei contenuti (testi, foto, orari e prezzi). Le app web sono operative in circa una settimana.']
 en: ['How long does it take?', 'A website goes live within 2 weeks of receiving the content (texts, photos, opening hours and prices). Web apps are up and running in about a week.']
-it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ciascun sito.']
-en: ['How long is the contract?', 'Contracts run for 6 or 12 months, at the client’s choice, and never renew automatically. Payment is monthly in advance, with no annual upfront payment. Every website includes a one-month warranty from launch and 2 revisions per month.']
+it: ['Qual è la durata del contratto?', 'Il contratto ha una durata di 6 o 12 mesi, a scelta del cliente, e non si rinnova mai automaticamente. Il pagamento è mensile e anticipato, senza anticipi annuali. Sono inclusi un mese di correzioni gratuite dalla pubblicazione, oltre alle garanzie di legge, e 2 revisioni al mese per ciascun sito.']
+en: ['How long is the contract?', 'Contracts run for 6 or 12 months, at the client’s choice, and never renew automatically. Payment is monthly in advance, with no annual upfront payment. Every website includes one month of free fixes from launch, on top of the legal guarantees, and 2 revisions per month.']
 it: ['Come si avvia un progetto?', 'È possibile contattarci via WhatsApp o tramite il modulo nella pagina /info: la richiesta arriva direttamente al referente del progetto. Dopo un primo colloquio per definire le esigenze, inviamo un preventivo dettagliato.']
 en: ['How does a project start?', 'You can contact us on WhatsApp or through the form on the /info page: your request goes straight to the person in charge of the project. After an initial call to define your needs, we send a detailed quote.']
 it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, account e contenuti sono intestati al cliente e restano di sua proprietà; Punto Due Studio si occupa della loro attivazione e gestione. Dominio e hosting sono esclusi dal canone: un dominio .it costa circa 12€ + IVA all\'anno.']
@@ -810,8 +810,8 @@ it: 'Da 200 € al mese, senza anticipi annuali. Il canone varia con il numero d
 en: 'From €200 per month, with no annual upfront payment. The fee depends on the number of pages and the features required.'
 it: 'Contratto di 6 o 12 mesi, a tua scelta, senza rinnovo automatico.'
 en: 'A 6- or 12-month contract, your choice, with no automatic renewal.'
-it: 'Un mese di garanzia dalla pubblicazione e 2 revisioni al mese per ogni sito.'
-en: 'One month of warranty from launch and 2 revisions per month for every site.'
+it: 'Un mese di correzioni gratuite dalla pubblicazione, oltre alle garanzie di legge, e 2 revisioni al mese per ogni sito.'
+en: 'One month of free fixes from launch, on top of the legal guarantees, and 2 revisions per month for every site.'
 it: 'Dominio, account e contenuti restano tuoi. Dominio e hosting non sono nel canone: un dominio .it costa circa 12 € + IVA all’anno.'
 en: 'The domain, accounts and content stay yours. Domain and hosting are not included in the fee: a .it domain costs about €12 + VAT per year.'
 it: t: 'Guarda le demo'
@@ -898,8 +898,8 @@ it: { t: 'Report chiari', d: 'A fine mese ricevi i numeri che contano, senza dov
 en: { t: 'Clear reports', d: 'At the end of the month you get the numbers that matter, without having to ask.' }
 it: { t: 'Capiamo cosa si ripete', d: 'Ci racconti le attività che ti fanno perdere più tempo.' }
 en: { t: 'We find what repeats', d: 'You tell us which tasks take up most of your time.' }
-it: { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti.' }
-en: { t: 'We set up the agents', d: 'We configure the assistant and automations and connect them to your tools.' }
+it: { t: 'Impostiamo gli agenti', d: 'Configuriamo assistente e automazioni e li colleghiamo ai tuoi strumenti. L’assistente dice dal primo messaggio di essere un’AI.' }
+en: { t: 'We set up the agents', d: 'We configure the assistant and automations and connect them to your tools. The assistant says it is an AI from the first message.' }
 it: { t: 'Vedi i risultati', d: 'Ricevi report chiari su cosa hanno fatto.' }
 en: { t: 'You see the results', d: 'You get clear reports on what they did.' }
 it: 'Preventivo su misura per ogni progetto: scrivici cosa ti serve e ti diciamo tempi e costi.'
@@ -981,3 +981,5 @@ it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio
 en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. slashkern is an independent project in early access, not open yet: in the preview the clients are fictional and the numbers are examples.
 it: aria-label="Anteprima interattiva dell'app slashkern"
 en: aria-label="Interactive preview of the slashkern app"
+it: <a href="/privacy/">Privacy</a>
+en: <a href="/privacy/">Privacy (IT)</a>

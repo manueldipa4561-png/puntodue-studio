@@ -87,7 +87,7 @@ const ld = {
   .top { padding-bottom: 24px; }
   .sv { border-top: 1px solid rgba(255,255,255,.25); }
   .sv h2 { max-width: 20ch; }
-  .sv-grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .sv-grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
   .sv-grid li { position: relative; display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); transition: border-color .25s; }
   .sv-grid h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; line-height: 1.15; }
   .sv-grid p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
@@ -95,6 +95,8 @@ const ld = {
   .sv-hub h2 { margin: 0; max-width: none; font-size: 1.6rem; letter-spacing: -.03em; line-height: 1.1; }
   .sv-hub a { text-decoration: none; }
   .sv-hub a::after { content: ''; position: absolute; inset: 0; border-radius: 18px; }
+  /* il titolo entra solo in dissolvenza: con il transform dell'entrata l'area cliccabile (::after) si ancorava al titolo e poi saltava a tutta la scheda (layout shift) */
+  .sv-hub h2.rv { transform: none; }
   .sv-hub li:hover, .sv-hub li:focus-within { border-color: var(--yellow); }
   .sv-terms { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 12px; max-width: 46rem; }
   .sv-terms li { padding: 0 0 12px; border-bottom: 1px solid rgba(255,255,255,.2); line-height: 1.5; color: rgba(255,255,255,.9); }
