@@ -8,9 +8,7 @@
 <title>SEZIONE — Hair studio, Parma</title>
 <meta name="description" content="SEZIONE Hair Studio a Parma. Taglio, colore e cura per lei e per lui. Concept demo by Punto Due Studio.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="preload" as="image" href="img/0.webp">
 <style>
 :root{
@@ -333,7 +331,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
     <p class="micro">Prenota</p>
     <h2 id="b-h">Porta pure<br><em>un riferimento.</em></h2>
     <p class="lead">Non lo copiamo. Lo usiamo per capire la direzione e tradurla su di te.</p>
-    <div class="info"><span>Parma</span><span>Martedì–Sabato, su appuntamento</span><span>ciao@sezione.it</span></div>
+    <div class="info"><span>Parma</span><span>Martedì–Sabato, su appuntamento</span><span>ciao@sezione.example</span></div>
   </div>
   <form id="form" action="javascript:void(0)" novalidate>
     <label>Per chi<select name="g" id="fg"><option value="lei">Lei</option><option value="lui">Lui</option><option value="tutti">Preferisco non dirlo</option></select></label>
@@ -348,7 +346,7 @@ select:focus,input:focus{border-color:var(--rose);outline:0}
 </main>
 
 <footer class="ft">
-  <span>© 2026 SEZIONE — concept demo by Punto Due Studio</span>
+  <span>© 2026 SEZIONE · demo di Punto Due Studio. Nomi, persone, prezzi, recensioni e contatti sono fittizi.</span>
   <nav aria-label="Footer"><a href="#servizi">Servizi</a><a href="#lavori">Lavori</a><a href="#team">Team</a><a href="tessera.html">Tessera</a><a href="#prenota">Prenota</a></nav>
 </footer>
 
@@ -368,7 +366,7 @@ const MODES = {
   lei:{ img:0, alt:'Ritratto di una donna con caschetto rosé lucido', tag:'Caschetto rosé — colore & taglio',
     lead:'Un salone contemporaneo per chi cerca un risultato preciso, personale e portabile. Taglio, colore e cura costruiti su di te.',
     svc:[['Taglio & forma','Struttura, movimento e taglio su misura.','da 55'],['Colore & tono','Schiariture, balayage, riflessi e tono su tono.','da 70'],['Cura & ricostruzione','Trattamenti mirati per cute e fibra.','da 45'],['Piega & finish','Piega, onde, raccolti per le occasioni.','da 30']]},
-  lui:{ img:3, alt:'Profilo di un uomo con skin fade e barba curata', tag:'Skin fade — taglio & barba',
+  lui:{ img:2, alt:'Uomo di spalle con riccio naturale, nuca sfumata e barba curata', tag:'Riccio pulito — taglio & sfumatura',
     lead:'Tagli precisi, sfumature pulite, barba curata. Un barbiere contemporaneo per chi vuole un risultato che dura oltre il sabato.',
     svc:[['Taglio uomo','Forbice e macchinetta, sfumature e texture.','da 28'],['Barba & rifinitura','Modellatura, rasoio, panno caldo.','da 20'],['Colore uomo','Copertura bianchi, schiariture naturali.','da 45'],['Cura cute & styling','Trattamenti mirati e prodotti per la routine.','da 25']]},
   tutti:{ img:9, alt:'Ritratto con taglio pixie biondo e riflessi rosa', tag:'Pixie pastello — taglio & tono',
@@ -444,7 +442,8 @@ $('#fg').addEventListener('change',e=>setMode(e.target.value));
   addEventListener('resize',size);
   /* On GPU context loss, stop drawing and show the static photo again. */
   cv.addEventListener('webglcontextlost',()=>{ lost=true; frame.classList.remove('gl'); heroApi=null; });
-  Promise.all([load(0),load(3),load(9)]).then(()=>{ if(lost) return; size(); cur=nxt=0; bind(); draw(); frame.classList.add('gl'); requestAnimationFrame(loop);
+  /* le foto dell'eroe vengono dalle modalità Lei/Lui/Tutti: una lista scritta a mano qui era rimasta con una foto cancellata e l'effetto non partiva più */
+  Promise.all(Object.values(MODES).map(m=>load(m.img))).then(()=>{ if(lost) return; size(); cur=nxt=0; bind(); draw(); frame.classList.add('gl'); requestAnimationFrame(loop);
     heroApi={to(n){ if(n===cur&&!morphing) return; nxt=n; mix.v=0; morphing=true; bind();
       if(!window.gsap){ cur=nxt; morphing=false; bind(); draw(); return; }
       gsap.to(mix,{v:1,duration:1.1,ease:'power2.inOut',onComplete:()=>{cur=nxt;mix.v=0;morphing=false;bind();draw();}}); }}; });

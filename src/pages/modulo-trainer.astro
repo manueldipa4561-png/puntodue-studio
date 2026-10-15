@@ -78,7 +78,7 @@ const looks = [
       <div class="send">
         <button class="btn" type="submit" id="send">Invia <span aria-hidden="true">→</span></button>
         <p class="hint" id="hint" aria-live="polite"></p>
-        <p class="note">Usiamo questi dati solo per creare la tua app e per il contratto. <a class="lnk" href="/privacy">Informativa privacy</a></p>
+        <p class="note">Titolari: Manuel e Nicolas Di Paolo (Punto Due Studio). Usiamo questi dati solo per creare la tua app e per preventivo e contratto (art. 6.1.b GDPR); logo e foto compariranno nell'app. Restano sul nostro hosting (Netlify) e, se non lavoriamo insieme, li cancelliamo entro 12 mesi. <a class="lnk" href="/privacy/">Informativa privacy</a></p>
       </div>
     </form>
 
@@ -131,6 +131,9 @@ const looks = [
 
   // Arriving from the app preview ("Voglio la mia app"): its name, look, colors, plan and the preview itself come along.
   const q = new URLSearchParams(location.search);
+  // il link all'anteprima finisce nell'invio che apriamo noi: accettiamo solo quelli delle nostre anteprime
+  const PREVIEWS = 'https://pt-app-codebase.netlify.app'; // stesso sito di DEMO nel frontmatter (lì non è visibile allo script)
+  try { if (new URL(q.get('anteprima') || '').origin !== PREVIEWS) q.delete('anteprima'); } catch { q.delete('anteprima'); }
   const fill = (name: string) => {
     const v = q.get(name);
     const el = form.elements.namedItem(name);

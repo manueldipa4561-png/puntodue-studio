@@ -157,7 +157,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
                 <div class="sk-pane" id="sk-slash">
                   <div class="sk-sh"><svg class="sk-slash sk-mk" viewBox="82 69 235 271" aria-hidden="true" set:html={MARK} /><div><span class="sk-l">Slash</span><h3><Bi it="Slash ti aiuta.<br>Tu finisci." en="Slash helps.<br>You finish." /></h3></div></div>
                   <div class="sk-chat" id="skChat" aria-live="polite">
-                    <span class="sk-l"><Bi it="Stai parlando con un'AI · risposte d'anteprima già scritte" en="You are talking to an AI · scripted preview replies" /></span>
+                    <span class="sk-l"><Bi it="Anteprima: risposte già scritte, non un'AI dal vivo. Nell'app Slash è un'AI." en="Preview: scripted replies, not a live AI. In the app, Slash is an AI." /></span>
                     <p class="sk-msg sk-ai"><Bi it="Scegli il gancio: cosa mostrano i primi 2 secondi?" en="Pick the hook: what do the first 2 seconds show?" /></p>
                     <div class="sk-chips" data-s="0">{HOOKS.map((h) => <button type="button" class="sk-chip"><Bi it={h.it} en={h.en} /></button>)}</div>
                     <p class="sk-msg sk-me" data-s="1" hidden></p>
@@ -207,7 +207,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
         {demos.map((d, i) => (
           <article class="card">
             <div class="shot">
-              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.it' : d.slug === 'innesto' ? 'innesto.it' : 'bracemilano.it'}</span></div>
+              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.demo' : d.slug === 'innesto' ? 'innesto.demo' : 'brace.demo'}</span></div>
               <div class="view" data-shot>
                 <img class="poster" src={`/previews/${d.slug}.webp`} width="960" height="600" alt={`${d.name}: ${d.line}`} loading="lazy" decoding="async" />
                 <iframe data-src={`/demo/${d.slug}/index.html`} title={`Anteprima ${d.name}`} scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
@@ -272,6 +272,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
 <style is:global>
       .top { padding-bottom: 24px; border-top: 1px solid rgba(255,255,255,.25); }
       .demos { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); padding-top: 24px; }
+      @media (min-width: 600px) and (max-width: 1099px) { .demos, .charts { grid-template-columns: 1fr; } } /* tablet: 1 colonna invece di 2 + 1 */
       .card { display: flex; flex-direction: column; gap: 18px; }
       .shot { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.35); background: var(--blue); transition: border-color .25s, transform .35s cubic-bezier(.2,.7,.2,1); }
       .shot:hover { border-color: var(--yellow); transform: translateY(-4px); }
@@ -320,6 +321,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
         position: relative; height: 600px; border-radius: 34px; overflow: hidden; contain: layout paint; display: flex; flex-direction: column;
         background: var(--page); color: var(--navy); font-family: 'Geist SK', 'Inter Tight Variable', system-ui, sans-serif; }
       .sk h3, .sk h4, .sk p { margin: 0; }
+      .sk :focus-visible { outline-color: var(--navy); } .sk-piece :focus-visible { outline-color: #fff; } /* il giallo del sito non si vede sul bianco */
       .sk button { font-family: inherit; cursor: pointer; }
       .sk-mk { --eye: #DCE6FF; fill: currentColor; } .sk-mk .eye { fill: var(--eye); }
       .sk-l { font: 500 11px/1.35 'Geist SK', system-ui, sans-serif; color: var(--muted); }
