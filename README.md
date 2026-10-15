@@ -33,7 +33,7 @@ Nei file `.txt` le righe vanno a coppie: `it: <testo italiano esatto>` seguita d
 - **Aggiungi un testo nuovo?** Scrivi anche le due traduzioni. `npm run audit` segnala italiano rimasto in `/en` e `/de`.
 - **Nuova pagina?** Aggiungila a `PAGES` in `scripts/i18n.mjs` e a `public/sitemap.xml` (le tre lingue).
 - **Nuova lingua?** `LOCALES` in `scripts/i18n.mjs`, un nuovo `src/i18n/<lingua>.txt`, `.gitignore` e `Site.astro`.
-- Il demo KERN in `/web` ha un proprio selettore IT/EN (in tedesco mostra i testi tedeschi al posto dell'inglese, ma le schermate dell'app restano in inglese).
+- La sezione slashkern in `/web` (testo e telefono) ha un proprio selettore IT/EN con `<Bi>`: in tedesco i testi `en=` sono tradotti in `de.txt`, quindi mostra il tedesco al posto dell'inglese.
 - `LangAuto` porta chi ha il telefono in inglese o tedesco alla versione tradotta, ricorda la scelta in `localStorage` (`pd-lang`) e non tocca i crawler.
 
 ## Pubblicazione
@@ -53,4 +53,4 @@ Informativa e note legali sono solo in italiano (`/privacy`, `/note-legali`).
 
 ## Demo
 
-INNESTO, SEZIONE (`public/demo/hair`) e BRACE sono concept con nomi e attività inventati, in `noindex`; l'app KERN è un concept non ancora testato con utenti. Niente indirizzi, nomi o dati reali di terzi.
+INNESTO, SEZIONE (`public/demo/hair`) e BRACE sono concept con nomi e attività inventati, in `noindex`. slashkern è un progetto indipendente in accesso anticipato: nell'anteprima di `/web` i clienti sono fittizi e i numeri d'esempio, e i testi seguono l'app (`~/Developer/slashkern`) e il sito slashkern.com. Niente indirizzi, nomi o dati reali di terzi.

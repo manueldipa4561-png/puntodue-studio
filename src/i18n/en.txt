@@ -108,8 +108,6 @@ it: Simulazione illustrativa con valori d'esempio: mostra la tendenza descritta 
 en: Illustrative simulation with sample values: it shows the trend described by the sources, not a promised result. The dashed line is the starting point.
 
 # ---------- /web ----------
-it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più KERN, un'app in concept che aiuta a scoprire cosa fare facendo lavoro vero." active="web">
-en: <Site title="Websites and apps: work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus KERN, a concept app that helps people find out what to do by doing real work." active="web">
 it: 'Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.'
 en: 'Hi! I saw your demos and I’d like to talk to you about a project.'
 it: 'Il sito di un salone, per lei e per lui.'
@@ -200,14 +198,6 @@ it: if (!navigator.language.toLowerCase().startsWith('it')) setAna('en');
 en: setAna('en');
 it: aria-label="In breve"
 en: aria-label="In short"
-it: aria-label="Lingua"
-en: aria-label="Language"
-it: aria-label="Tema"
-en: aria-label="Theme"
-it: aria-label="Anteprima interattiva dell'app KERN"
-en: aria-label="Interactive preview of the KERN app"
-it: ↻ Rivedi l'apertura
-en: ↻ Replay the intro
 it: <h1>Nuovo link.</h1>
 en: <h1>New link.</h1>
 it: Tre siti da aprire e toccare con mano. Un click e sei dentro.
@@ -236,16 +226,6 @@ it: Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Re
 en: Amy Gallo, “The Value of Keeping the Right Customers”, Harvard Business Review, October 2014: increasing retention by 5% increases profits by 25–95%; acquiring a customer costs 5–25 times more than keeping one (data by Fred Reichheld, Bain &amp; Company).
 it: , Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.
 en: , Pearson, 2010: a 5–20% chance of selling to a new prospect, 60–70% to an existing customer.
-it: Forbes su rapporto Tallo, maggio 2025, e Big Brothers Big Sisters / Harris Poll, 2025: incertezza dei giovani adulti sul percorso di carriera.
-en: Forbes on a Tallo report, May 2025, and Big Brothers Big Sisters / Harris Poll, 2025: young adults’ uncertainty about their career path.
-it: NACE Job Outlook 2026 (70% usa assunzioni per competenze nei ruoli entry-level); TestGorilla 2025; Harvard Business School e Burning Glass Institute (meno di 1 nuovo assunto su 700 senza laurea nelle aziende che l'hanno tolta). Riassunti secondari:
-en: NACE Job Outlook 2026 (70% use skills-based hiring for entry-level roles); TestGorilla 2025; Harvard Business School and Burning Glass Institute (fewer than 1 in 700 new hires without a degree at companies that dropped the requirement). Secondary summaries:
-it: Forbes, agosto 2026
-en: Forbes, August 2026
-it: NPR, agosto 2026 e IBISWorld: disoccupazione dei neolaureati (5,7% a giugno 2026) e mercato entry-level.
-en: NPR, August 2026 and IBISWorld: unemployment among recent graduates (5.7% in June 2026) and the entry-level market.
-it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. L'app KERN è un concept non ancora testato con utenti: schermate, nomi e numeri sono d'esempio.
-en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. The KERN app is a concept not yet tested with users: screens, names and numbers are examples.
 
 # ---------- /social ----------
 it: <Site title="Gestione social media — Punto Due Studio" description="Un profilo dal vivo da toccare e scorrere, un calendario editoriale che si riempie e i numeri che contano, con le fonti." active="social">
@@ -993,3 +973,11 @@ it: >Acquista</span>
 en: >Buy now</span>
 it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
 en: Products, brands and prices are examples: we made them up to show the formats.
+
+# slashkern (/web, sezione /app)
+it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più slashkern, un'app in accesso anticipato: progetti brevi da finire con un assistente AI e tenere sulla propria pagina." active="web">
+en: <Site title="Websites and apps: work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus slashkern, an early-access app: short projects you finish with an AI assistant and keep on your own page." active="web">
+it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
+en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. slashkern is an independent project in early access, not open yet: in the preview the clients are fictional and the numbers are examples.
+it: aria-label="Anteprima interattiva dell'app slashkern"
+en: aria-label="Interactive preview of the slashkern app"
