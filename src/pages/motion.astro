@@ -70,7 +70,8 @@ const ld = [
         <li>Preventivo gratuito</li>
       </ul>
       <div class="cta">
-        <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
+        <a class="btn btn-l" data-i="wa" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span class="arr">→</span></a>
+      <a class="btn btn-l ghost" href="/info/">Scrivici <span class="arr">→</span></a>
         <a class="lnk" href="#come">Come funziona</a>
       </div>
     </div>
@@ -93,7 +94,7 @@ const ld = [
     <span class="lab">/formati</span>
     <h2>Un video, ogni schermo.</h2>
     <p class="lead">Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.</p>
-    <div class="scr-row">
+    <div class="scr-row" tabindex="0">
       <figure class="scr scr-916" data-spot="onda">
         <div class="scr-dev" role="img" aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine">
           <div class="scr-view">
@@ -188,9 +189,10 @@ const ld = [
 
   <section class="cta-s">
     <Chat kind="online" />
+    <h2 class="cta-h">Raccontaci il progetto.</h2>
     <p class="lead">Preventivo gratuito: mandaci il prodotto e ti diciamo tempi e costi.</p>
     <div class="cta">
-      <a class="btn" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
+      <a class="btn" data-i="wa" href={WA} target="_blank" rel="noopener">Chiedi un preventivo <span aria-hidden="true">→</span></a>
       <a class="lnk" href="mailto:projects@puntoduestudio.it">projects@puntoduestudio.it</a>
     </div>
   </section>

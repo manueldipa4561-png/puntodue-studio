@@ -76,9 +76,10 @@ const ld = {
 )}
 
 <section class="cta-s">
+  <h2 class="cta-h">Raccontaci il progetto.</h2>
   {!hub && <p class="lead">Raccontaci cosa ti serve: ti rispondiamo con tempi e costi.</p>}
   <div class="cta">
-    <a class="btn" href={L + '/info/'}>Scrivici <span aria-hidden="true">→</span></a>
+    <a class="btn btn-l" href={L + '/info/'}>Scrivici <span class="arr">→</span></a>
     {more && <a class="lnk" href={L + more.href}>{more.t}</a>}
   </div>
 </section>
@@ -87,8 +88,9 @@ const ld = {
   .top { padding-bottom: 24px; }
   .sv { border-top: 1px solid rgba(255,255,255,.25); }
   .sv h2 { max-width: 20ch; }
-  .sv-grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-  .sv-grid li { position: relative; display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); transition: border-color .25s; }
+  /* flex invece di grid: l'ultima riga si allarga e non lascia celle vuote (5 card su 3 colonne, 4 su 3...) */
+  .sv-grid { list-style: none; margin: 40px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 18px; }
+  .sv-grid li { flex: 1 1 220px; position: relative; display: grid; align-content: start; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 18px; background: rgba(0,52,214,.55); transition: border-color .25s; }
   .sv-grid h3 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; line-height: 1.15; }
   .sv-grid p { margin: 0; color: rgba(255,255,255,.85); line-height: 1.5; }
   .sv-grid .n { font: 700 12px/1 var(--mono); letter-spacing: .12em; color: var(--yellow); }

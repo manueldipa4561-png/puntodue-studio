@@ -10,7 +10,7 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 
 const LOCALES = ['en', 'de'];
 const PAGES = ['index', 'web', 'social', 'info', 'faq', 'motion', 'servizi', 'siti-web', 'e-commerce', 'gestione-social', 'agenti-ai'];
-const COMPONENTS = ['Chat', 'Sim', 'Bi', 'Profilo', 'Automazione', 'LangAuto', 'Servizio'];
+const COMPONENTS = ['Chat', 'Sim', 'Bi', 'Profilo', 'Automazione', 'LangAuto', 'Servizio', 'LangMenu'];
 
 // <lingua>.txt: coppie di righe "it: ..." / "<lingua>: ...", testo preso alla lettera (niente escape); # = commento
 const loadPairs = (loc) => {
@@ -50,7 +50,8 @@ for (const loc of LOCALES) {
   for (const p of PAGES) {
     let s = translate(links(readFileSync(`src/pages/${p}.astro`, 'utf8')));
     s = s.replace(/from '\.\.\/components\//g, `from '../../components/${loc}/`).replace(/from '\.\.\/layouts\//g, "from '../../layouts/")
-      .replace(/import\('\.\.\/scripts\//g, "import('../../scripts/"); // es. gli spot 3D di /motion, caricati solo quando servono
+      .replace(/import\('\.\.\/scripts\//g, "import('../../scripts/") // es. gli spot 3D di /motion, caricati solo quando servono
+      .replace(/import '\.\.\/(scripts|styles)\//g, "import '../../$1/"); // stili e script condivisi (ui.css, ui.ts)
     writeFileSync(`src/pages/${loc}/${p}.astro`, stamp(s));
   }
 
