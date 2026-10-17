@@ -742,8 +742,8 @@ it: { k: 'video', t: 'Video 3D', p: 'un video 3D per un prodotto' }
 en: { k: 'video', t: '3D video', p: 'a 3D product video' }
 
 # ---------- dati strutturati della home ----------
-it: Agenzia siti web, e-commerce e social — Punto Due Studio
-en: Web agency: websites, e-commerce and social — Punto Due Studio
+it: Punto Due Studio — Agenzia siti web, e-commerce e social
+en: Punto Due Studio — Web agency: websites, e-commerce and social
 it: <meta property="og:url" content="https://puntoduestudio.it/" />
 en: <meta property="og:url" content="https://puntoduestudio.it/en/" />
 it: >Domande frequenti</a>
@@ -1009,3 +1009,11 @@ it: Vai al contenuto
 en: Skip to content
 it: aria-label="Scrivici"
 en: aria-label="Write to us"
+
+# ---------- home: testo per chi legge senza grafica (H1 e riassunto) ----------
+it: Punto Due Studio: agenzia di siti web, e-commerce, social media, agenti AI e video 3D
+en: Punto Due Studio: web agency for websites, e-commerce, social media, AI agents and 3D video
+it: Punto Due Studio è un'agenzia digitale fondata da due fratelli, Manuel e Nicolas Di Paolo. Progettiamo siti web, e-commerce e app, gestiamo i social media, realizziamo video 3D dei prodotti e costruiamo agenti AI e automazioni per aziende e professionisti in Italia e a livello internazionale. I siti partono da 200 € al mese, online in 2 settimane dai contenuti, con contratto di 6 o 12 mesi senza rinnovo automatico. Il sito è disponibile in italiano, inglese e tedesco. Per iniziare scrivi a projects@puntoduestudio.it o su WhatsApp.
+en: Punto Due Studio is a digital agency founded by two brothers, Manuel and Nicolas Di Paolo. We design and build websites, e-commerce and apps, manage social media, produce 3D product videos and build AI agents and automations for businesses and professionals in Italy and internationally. Websites start at €200 per month, live within 2 weeks of receiving the content, on a 6 or 12 month contract that never renews automatically. The site is available in Italian, English and German. To get started, write to projects@puntoduestudio.it or on WhatsApp.
+it: <link rel="alternate" type="text/markdown" href="https://puntoduestudio.it/index.md" />
+en: <link rel="alternate" type="text/markdown" href="https://puntoduestudio.it/en/index.md" />

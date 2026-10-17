@@ -766,8 +766,8 @@ it: 'Manuel · web design'
 de: 'Manuel · Webdesign'
 it: 'Nicolas · social media'
 de: 'Nicolas · Social Media'
-it: Agenzia siti web, e-commerce e social — Punto Due Studio
-de: Webagentur: Websites, Shops, Social Media — Punto Due Studio
+it: Punto Due Studio — Agenzia siti web, e-commerce e social
+de: Punto Due Studio — Webagentur: Websites, Shops, Social Media
 it: <meta property="og:url" content="https://puntoduestudio.it/" />
 de: <meta property="og:url" content="https://puntoduestudio.it/de/" />
 it: >Domande frequenti</a>
@@ -1229,3 +1229,11 @@ it: Vai al contenuto
 de: Zum Inhalt springen
 it: aria-label="Scrivici"
 de: aria-label="Schreiben Sie uns"
+
+# ---------- home: testo per chi legge senza grafica (H1 e riassunto) ----------
+it: Punto Due Studio: agenzia di siti web, e-commerce, social media, agenti AI e video 3D
+de: Punto Due Studio: Webagentur für Websites, E-Commerce, Social Media, KI-Agenten und 3D-Videos
+it: Punto Due Studio è un'agenzia digitale fondata da due fratelli, Manuel e Nicolas Di Paolo. Progettiamo siti web, e-commerce e app, gestiamo i social media, realizziamo video 3D dei prodotti e costruiamo agenti AI e automazioni per aziende e professionisti in Italia e a livello internazionale. I siti partono da 200 € al mese, online in 2 settimane dai contenuti, con contratto di 6 o 12 mesi senza rinnovo automatico. Il sito è disponibile in italiano, inglese e tedesco. Per iniziare scrivi a projects@puntoduestudio.it o su WhatsApp.
+de: Punto Due Studio ist eine digitale Agentur, gegründet von zwei Brüdern, Manuel und Nicolas Di Paolo. Wir entwerfen und entwickeln Websites, E-Commerce und Apps, betreuen Social Media, produzieren 3D-Produktvideos und bauen KI-Agenten und Automatisierungen für Unternehmen und Selbstständige in Italien und international. Websites starten bei 200 € pro Monat, online 2 Wochen nach Erhalt der Inhalte, mit einer Laufzeit von 6 oder 12 Monaten ohne automatische Verlängerung. Die Website gibt es auf Italienisch, Englisch und Deutsch. Zum Start schreiben Sie an projects@puntoduestudio.it oder per WhatsApp.
+it: <link rel="alternate" type="text/markdown" href="https://puntoduestudio.it/index.md" />
+de: <link rel="alternate" type="text/markdown" href="https://puntoduestudio.it/de/index.md" />
