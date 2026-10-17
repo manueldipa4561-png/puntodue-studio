@@ -29,7 +29,8 @@ const ld = {
   '@context': 'https://schema.org',
   '@graph': [studio, { '@type': 'WebSite', '@id': 'https://puntoduestudio.it/#website', url: 'https://puntoduestudio.it/', name: 'Punto Due Studio', inLanguage: ['it', 'en', 'de'], publisher: { '@id': 'https://puntoduestudio.it/#studio' } }],
 };
-const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify];
+// ogni icona è definita una sola volta (<symbol>) e la fascia la richiama con <use>: la fascia si ripete due volte e senza questo il codice della pagina raddoppiava
+const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield', path: '', img: '/higgsfield.png' }, siElevenlabs, siAstro, siThreedotjs, siGreensock, siGithub, siCaldotcom, siShopify].map((t) => ({ ...t, slug: t.title.toLowerCase().replace(/[^a-z0-9]/g, '') }));
 ---
 <!doctype html>
 <html lang="it">
@@ -41,13 +42,14 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
     <LangAuto />
-    <title>Agenzia siti web, e-commerce e social — Punto Due Studio</title>
+    <title>Punto Due Studio — Agenzia siti web, e-commerce e social</title>
     <meta name="description" content="Agenzia digitale per siti web, e-commerce, app, gestione social e agenti AI. Lavoriamo con aziende e professionisti in Italia e a livello internazionale." />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href="https://puntoduestudio.it/" />
+    <link rel="alternate" type="text/markdown" href="https://puntoduestudio.it/index.md" />
     <link rel="alternate" hreflang="it" href="https://puntoduestudio.it/" />
     <link rel="alternate" hreflang="en" href="https://puntoduestudio.it/en/" />
     <link rel="alternate" hreflang="de" href="https://puntoduestudio.it/de/" />
@@ -55,7 +57,7 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="it_IT" />
-    <meta property="og:title" content="Agenzia siti web, e-commerce e social — Punto Due Studio" />
+    <meta property="og:title" content="Punto Due Studio — Agenzia siti web, e-commerce e social" />
     <meta property="og:description" content="Siti, app, social e agenti AI per la tua attività." />
     <meta property="og:url" content="https://puntoduestudio.it/" />
     <meta property="og:site_name" content="Punto Due Studio" />
@@ -124,7 +126,8 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
 
     <main id="main">
       <section class="hero" id="top">
-        <h1 class="big pre" aria-label="Web.2"><span class="ch" aria-hidden="true"><span class="chi">W</span></span><span class="ch" aria-hidden="true"><span class="chi">e</span></span><span class="ch" aria-hidden="true"><span class="chi">b</span></span><span class="ch dot" aria-hidden="true"><span class="chi">.</span></span><span class="ch" aria-hidden="true"><span class="chi">2</span></span></h1>
+        <h1 class="big pre"><span class="ch" aria-hidden="true"><span class="chi">W</span></span><span class="ch" aria-hidden="true"><span class="chi">e</span></span><span class="ch" aria-hidden="true"><span class="chi">b</span></span><span class="ch dot" aria-hidden="true"><span class="chi">.</span></span><span class="ch" aria-hidden="true"><span class="chi">2</span></span><span class="sr">Punto Due Studio: agenzia di siti web, e-commerce, social media, agenti AI e video 3D</span></h1>
+        <p class="sr">Punto Due Studio è un'agenzia digitale fondata da due fratelli, Manuel e Nicolas Di Paolo. Progettiamo siti web, e-commerce e app, gestiamo i social media, realizziamo video 3D dei prodotti e costruiamo agenti AI e automazioni per aziende e professionisti in Italia e a livello internazionale. I siti partono da 200 € al mese, online in 2 settimane dai contenuti, con contratto di 6 o 12 mesi senza rinnovo automatico. Il sito è disponibile in italiano, inglese e tedesco. Per iniziare scrivi a projects@puntoduestudio.it o su WhatsApp.</p>
         <div class="hero-row pre">
           <p class="hero-sub">Siti, app, social e agenti AI per la tua attività.</p>
           <div class="cta hero-cta">
@@ -135,10 +138,11 @@ const tools = [siFigma, siClaude, siClaudecode, siDeepseek, { title: 'Higgsfield
       </section>
 
       <div class="stack">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">{tools.filter((t) => t.path).map((t) => <symbol id={`ic-${t.slug}`} viewBox="0 0 24 24" set:html={`<path d="${t.path}"/>`} />)}</svg>
         <span class="lab stack-lab">/stack</span>
         <div class="band" aria-hidden="true">
           <div class="track">
-            {[0, 1].map(() => tools.map((t) => <span class="chip">{t.path ? <svg viewBox="0 0 24 24" set:html={`<path d="${t.path}"/>`} /> : <img src={t.img} alt="" width="22" height="22" />}{t.title}</span>))}
+            {[0, 1].map(() => tools.map((t) => <span class="chip">{t.path ? <svg viewBox="0 0 24 24"><use href={`#ic-${t.slug}`} /></svg> : <img src={t.img} alt="" width="22" height="22" />}{t.title}</span>))}
           </div>
         </div>
       </div>

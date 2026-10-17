@@ -65,6 +65,7 @@ const navItems = [['web', '/web/'], ['social', '/social/'], ['motion', '/motion/
     <meta property="og:image:alt" content="Punto Due Studio" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={t.og} />
+    {!noindex && <link rel="alternate" type="text/markdown" href={SITE + (path.endsWith('/') ? path : path + '/') + 'index.md'} />}
     {noindex && <meta name="robots" content="noindex" />}
     {showLangs && <>
       {LANGS.map((l) => <link rel="alternate" hreflang={l} href={SITE + pathIn(l)} />)}

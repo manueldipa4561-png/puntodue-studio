@@ -63,6 +63,13 @@ Nei file `.txt` le righe vanno a coppie: `it: <testo italiano esatto>` seguita d
 - **Scelta della lingua:** `src/components/LangMenu.astro` (markup, una copia per lingua come gli altri componenti) + `initLangMenu()` in `src/scripts/ui.ts`. Pulsante con globo e sigla, pannello con i nomi nella propria lingua (niente bandiere), spunta sulla lingua attuale, etichetta «Dal tuo dispositivo» su quella rilevata (inglese «Predefinita» se il dispositivo parla un'altra lingua), tastiera completa (frecce, Home/End, Esc). Nel menu del telefono è la stessa lista, sempre aperta (`inline`). Dopo un cambio automatico fatto da `LangAuto` un avviso dice cosa è successo e permette di cambiare (`pd-auto` in sessionStorage). I testi del pannello sono nell'oggetto `T` del componente, non nel dizionario.
 - Le stringhe della testata, del menu e del piè di pagina di `Site.astro` sono nell'oggetto `T` del layout (non nel dizionario); quelle della home, che ha la propria testata, restano nel dizionario.
 
+## Per gli agenti AI (Markdown, llms.txt, 404)
+- `npm run build` crea anche `dist/<pagina>/index.md`, la versione Markdown di ogni pagina (`scripts/build-markdown.mjs`, solo il contenuto di `<main>`).
+- La funzione edge `netlify/edge-functions/markdown.mjs` (logica in `netlify/edge-lib/negotiate.mjs`) serve quel Markdown a chi manda `Accept: text/markdown`, aggiunge `Vary: Accept` a tutto l'HTML e risponde ai 404 con status 404 e corpo Markdown.
+- `public/llms.txt` dice agli agenti quando rivolgersi allo studio e come. Se cambiano prezzi, tempi o contatti nella FAQ, aggiornalo.
+- Il riassunto nascosto (`.sr`) sotto l'H1 della home è testo vero per chi legge senza grafica: tienilo allineato alla FAQ.
+- Prova in locale (serve la build): `npx netlify-cli dev --dir dist --port 8888 --offline`, poi `curl -i -H 'Accept: text/markdown' localhost:8888/`. Test: `npm run build && npm test`.
+
 ## Pubblicazione
 
 Netlify pubblica `main` da solo: non serve (e non va) toccare Netlify. Si lavora con branch e PR; il merge su `main` mette online.
