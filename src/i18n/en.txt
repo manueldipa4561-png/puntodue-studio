@@ -714,10 +714,10 @@ it: <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'
 en: <li><b>Animated copy and offer</b><span>Name, benefits, price and buy button.</span></li>
 it: <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
 en: <li><b>Ready to publish</b><span>The right format and length for every channel.</span></li>
-it: Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.
-en: In the video: SALMASTRO, a perfume with a brand we invented to show the service. Price and offer are examples.
-it: aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"
-en: aria-label="Sample 3D video: the SALMASTRO perfume on an LED billboard, a brand invented by Punto Due Studio"
+it: Nel video: ANEMO, un'auto elettrica con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.
+en: In the video: ANEMO, an electric car with a brand we invented to show the service. Price and offer are examples.
+it: aria-label="Video 3D di esempio: l'auto elettrica ANEMO in uno studio buio sotto un softbox, marchio inventato da Punto Due Studio"
+en: aria-label="Sample 3D video: the ANEMO electric car in a dark studio under a softbox, a brand invented by Punto Due Studio"
 it: <h2>Un video, ogni schermo.</h2>
 en: <h2>One video, every screen.</h2>
 it: <h2>Tre passi, nessun set.</h2>
@@ -930,8 +930,8 @@ it: { q: "Cosa c'è dentro il video?", a: "Il tuo prodotto in 3D, fedele a forma
 en: { q: "What’s in the video?", a: "Your product in 3D, faithful to shape, label and colors, with name, benefits, price and buy button animated." }
 it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e ti diciamo tempi e costi." }
 en: { q: "How much does it cost?", a: "The quote is free: send us the product and we’ll tell you timing and costs." }
-it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
-en: { q: "Is the sample video from a client?", a: "No. SALMASTRO is a brand we invented to show the service: price and offer are examples." }
+it: { q: "I video di esempio sono di clienti?", a: "No. ANEMO, FRIZZA, SCURO e BRACE sono marchi inventati da noi per mostrare il servizio: prezzi e offerte sono d'esempio." }
+en: { q: "Are the sample videos from clients?", a: "No. ANEMO, FRIZZA, SCURO and BRACE are brands we invented to show the service: prices and offers are examples." }
 
 # ---------- /motion ridisegnata: dati in apertura, formati, timeline ----------
 it: <li>3-5 giorni</li>
@@ -942,39 +942,47 @@ it: >Come funziona</a>
 en: >How it works</a>
 it: >Consegna in 3-5 giorni</span>
 en: >Delivered in 3–5 days</span>
-# ---------- /motion: tre spot 3D nei formati (prodotti inventati) ----------
-it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.
-en: Every format has its own framing, rhythm and copy. Here are three examples, animated live.
+# ---------- /motion: tre spot 3D nei formati, renderizzati in Blender (prodotti inventati) ----------
+it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi.
+en: Every format has its own framing, rhythm and copy. Here are three examples.
 it: <em>Sponsorizzato</em>
 en: <em>Sponsored</em>
-it: aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine"
-en: aria-label="Sample 9:16 story: the ONDA can dropping and spinning among bubbles"
-it: >Agrumi frizzanti</span>
-en: >Sparkling citrus</span>
+it: aria-label="Storia di esempio in 9:16: la lattina FRIZZA che fluttua tra fette di lime e cubetti di ghiaccio"
+en: aria-label="Sample 9:16 story: the FRIZZA can floating among lime slices and ice cubes"
+it: >Lime e zenzero</span>
+en: >Lime and ginger</span>
 it: >€1,90</span>
 en: >€1.90</span>
 it: >Scopri di più</span>
 en: >Learn more</span>
-it: aria-label="Post di esempio in 1:1: il vasetto NEVE con il tappo che si solleva"
-en: aria-label="Sample 1:1 post: the NEVE jar with its lid lifting"
-it: >Crema viso idratante</span>
-en: >Moisturising face cream</span>
-it: <s>€24,90</s> €19,90
-en: <s>€24.90</s> €19.90
+it: aria-label="Post di esempio in 1:1: il caffè SCURO accanto a un espresso, con i chicchi che cadono"
+en: aria-label="Sample 1:1 post: SCURO coffee next to an espresso, with beans falling"
+it: >Caffè in grani, tostatura scura</span>
+en: >Coffee beans, dark roast</span>
+it: <s>€14,90</s> €11,90
+en: <s>€14.90</s> €11.90
 it: >Solo questa settimana</span>
 en: >This week only</span>
 it: >Acquista ora</span>
 en: >Shop now</span>
-it: aria-label="Video di esempio in 16:9: la bottiglia d'olio ORO con una luce che scorre sul vetro"
-en: aria-label="Sample 16:9 video: the ORO olive oil bottle with light sweeping across the glass"
-it: >Olio extravergine d'oliva</span>
-en: >Extra virgin olive oil</span>
-it: >€12,90</span>
-en: >€12.90</span>
-it: >Spedizione gratuita</span>
-en: >Free shipping</span>
-it: >Acquista</span>
-en: >Buy now</span>
+it: aria-label="Video di esempio in 16:9: il doppio smash burger BRACE che si compone strato su strato tra le braci"
+en: aria-label="Sample 16:9 video: the BRACE double smash burger stacking itself layer by layer among embers"
+it: >Doppio smash burger</span>
+en: >Double smash burger</span>
+it: >€9,90</span>
+en: >€9.90</span>
+it: >Consegna gratuita</span>
+en: >Free delivery</span>
+it: >Ordina</span>
+en: >Order now</span>
+it: >da €54.900</span>
+en: >from €54,900</span>
+it: >Coupé elettrica</span>
+en: >Electric coupé</span>
+it: >Test drive su prenotazione</span>
+en: >Test drive by appointment</span>
+it: >Prenota</span>
+en: >Book now</span>
 it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
 en: Products, brands and prices are examples: we made them up to show the formats.
 

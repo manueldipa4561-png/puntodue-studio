@@ -718,10 +718,10 @@ it: <li><b>Testi e offerta animati</b><span>Nome, benefici, prezzo e pulsante d'
 de: <li><b>Animierte Texte und Aktionsangebot</b><span>Name, Vorteile, Preis und Kaufbutton.</span></li>
 it: <li><b>Pronto da pubblicare</b><span>Formati e durate giusti per ogni canale.</span></li>
 de: <li><b>Bereit zur Veröffentlichung</b><span>Die richtigen Formate und Längen für jeden Kanal.</span></li>
-it: Nel video: SALMASTRO, un profumo con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.
-de: Im Video: SALMASTRO, ein Parfum mit einer von uns erfundenen Marke, um den Service zu zeigen. Preis und Aktionsangebot sind Beispiele.
-it: aria-label="Video 3D di esempio: il profumo SALMASTRO su un cartellone LED, marchio inventato da Punto Due Studio"
-de: aria-label="3D-Beispielvideo: das Parfum SALMASTRO auf einer LED-Werbetafel, eine von Punto Due Studio erfundene Marke"
+it: Nel video: ANEMO, un'auto elettrica con marchio inventato da noi per mostrare il servizio. Prezzo e offerta sono d'esempio.
+de: Im Video: ANEMO, ein Elektroauto mit einer von uns erfundenen Marke, um den Service zu zeigen. Preis und Angebot sind Beispiele.
+it: aria-label="Video 3D di esempio: l'auto elettrica ANEMO in uno studio buio sotto un softbox, marchio inventato da Punto Due Studio"
+de: aria-label="3D-Beispielvideo: das Elektroauto ANEMO in einem dunklen Studio unter einer Softbox, eine von Punto Due Studio erfundene Marke"
 it: <h2>Un video, ogni schermo.</h2>
 de: <h2>Ein Video, jeder Bildschirm.</h2>
 it: <h2>Tre passi, nessun set.</h2>
@@ -962,8 +962,8 @@ it: { q: "Cosa c'è dentro il video?", a: "Il tuo prodotto in 3D, fedele a forma
 de: { q: "Was ist im Video zu sehen?", a: "Ihr Produkt in 3D, getreu in Form, Etikett und Farben, mit animiertem Namen, Vorteilen, Preis und Kaufbutton." }
 it: { q: "Quanto costa?", a: "Il preventivo è gratuito: mandaci il prodotto e ti diciamo tempi e costi." }
 de: { q: "Was kostet es?", a: "Das Angebot ist kostenlos: Schicken Sie uns das Produkt, und wir nennen Ihnen Zeitplan und Kosten." }
-it: { q: "Il video di esempio è di un cliente?", a: "No. SALMASTRO è un marchio inventato da noi per mostrare il servizio: prezzo e offerta sono d'esempio." }
-de: { q: "Stammt das Beispielvideo von einem Kunden?", a: "Nein. SALMASTRO ist eine von uns erfundene Marke, um die Leistung zu zeigen: Preis und Angebot sind Beispiele." }
+it: { q: "I video di esempio sono di clienti?", a: "No. ANEMO, FRIZZA, SCURO e BRACE sono marchi inventati da noi per mostrare il servizio: prezzi e offerte sono d'esempio." }
+de: { q: "Stammen die Beispielvideos von Kunden?", a: "Nein. ANEMO, FRIZZA, SCURO und BRACE sind von uns erfundene Marken, um die Leistung zu zeigen: Preise und Angebote sind Beispiele." }
 
 # ---------- /motion ridisegnata: dati in apertura, formati, timeline ----------
 it: <li>3-5 giorni</li>
@@ -974,43 +974,49 @@ it: >Come funziona</a>
 de: >So läuft es ab</a>
 it: >Consegna in 3-5 giorni</span>
 de: >Lieferung in 3–5 Tagen</span>
-# ---------- /motion: tre spot 3D nei formati (prodotti inventati) ----------
-it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi animati dal vivo.
-de: Jedes Format hat seinen eigenen Bildausschnitt, seinen Rhythmus und seine Texte. Hier drei live animierte Beispiele.
+# ---------- /motion: tre spot 3D nei formati, renderizzati in Blender (prodotti inventati) ----------
+it: Ogni formato ha la sua inquadratura, il suo ritmo e i suoi testi. Ecco tre esempi.
+de: Jedes Format hat seinen eigenen Bildausschnitt, seinen Rhythmus und seine Texte. Hier drei Beispiele.
 it: <em>Sponsorizzato</em>
 de: <em>Gesponsert</em>
-it: aria-label="Storia di esempio in 9:16: la lattina ONDA che cade e gira tra le bollicine"
-de: aria-label="Beispiel-Story im Format 9:16: die ONDA-Dose fällt und dreht sich zwischen Bläschen"
-it: >Agrumi frizzanti</span>
-de: >Spritzige Zitrusfrüchte</span>
+it: aria-label="Storia di esempio in 9:16: la lattina FRIZZA che fluttua tra fette di lime e cubetti di ghiaccio"
+de: aria-label="Beispiel-Story im Format 9:16: die FRIZZA-Dose schwebt zwischen Limettenscheiben und Eiswürfeln"
+it: >Lime e zenzero</span>
+de: >Limette und Ingwer</span>
 it: >€1,90</span>
 de: >1,90 €</span>
 it: >Scopri di più</span>
 de: >Mehr erfahren</span>
-it: aria-label="Post di esempio in 1:1: il vasetto NEVE con il tappo che si solleva"
-de: aria-label="Beispiel-Post im Format 1:1: der NEVE-Tiegel, dessen Deckel sich hebt"
-it: >Crema viso idratante</span>
-de: >Feuchtigkeitscreme fürs Gesicht</span>
-it: <s>€24,90</s> €19,90
-de: <s>24,90 €</s> 19,90 €
+it: aria-label="Post di esempio in 1:1: il caffè SCURO accanto a un espresso, con i chicchi che cadono"
+de: aria-label="Beispiel-Post im Format 1:1: der Kaffee SCURO neben einem Espresso, mit fallenden Bohnen"
+it: >Caffè in grani, tostatura scura</span>
+de: >Kaffeebohnen, dunkle Röstung</span>
+it: <s>€14,90</s> €11,90
+de: <s>14,90 €</s> 11,90 €
 it: >Solo questa settimana</span>
 de: >Nur diese Woche</span>
 it: >Acquista ora</span>
 de: >Jetzt kaufen</span>
-it: aria-label="Video di esempio in 16:9: la bottiglia d'olio ORO con una luce che scorre sul vetro"
-de: aria-label="Beispielvideo im Format 16:9: die ORO-Olivenölflasche, über deren Glas ein Licht gleitet"
-it: >Olio extravergine d'oliva</span>
-de: >Natives Olivenöl extra</span>
-it: >€12,90</span>
-de: >12,90 €</span>
-it: >Spedizione gratuita</span>
-de: >Kostenloser Versand</span>
-it: >Acquista</span>
-de: >Kaufen</span>
+it: aria-label="Video di esempio in 16:9: il doppio smash burger BRACE che si compone strato su strato tra le braci"
+de: aria-label="Beispielvideo im Format 16:9: der doppelte Smash-Burger BRACE baut sich Schicht für Schicht zwischen Glut auf"
+it: >Doppio smash burger</span>
+de: >Doppelter Smash-Burger</span>
+it: >€9,90</span>
+de: >9,90 €</span>
+it: >Consegna gratuita</span>
+de: >Kostenlose Lieferung</span>
+it: >Ordina</span>
+de: >Jetzt bestellen</span>
+it: >Coupé elettrica</span>
+de: >Elektro-Coupé</span>
+it: >Test drive su prenotazione</span>
+de: >Probefahrt nach Vereinbarung</span>
+it: >Prenota</span>
+de: >Jetzt buchen</span>
 it: Prodotti, marchi e prezzi sono d'esempio: li abbiamo inventati per mostrare i formati.
 de: Produkte, Marken und Preise sind Beispiele: Wir haben sie erfunden, um die Formate zu zeigen.
-it: >€59</span>
-de: >59 €</span>
+it: >da €54.900</span>
+de: >ab 54.900 €</span>
 
 # slashkern (/web, sezione /app)
 it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più slashkern, un'app in accesso anticipato: progetti brevi da finire con un assistente AI e tenere sulla propria pagina." active="web">
