@@ -39,6 +39,12 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# video e poster degli spot di /motion (nomi con -vN: per cambiarne uno, alza il numero)
+[[headers]]
+  for = "/spot/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # video e modello 3D della demo INNESTO (2 MB): la cartella media/ contiene solo file, nessuna pagina
 [[headers]]
   for = "/demo/innesto/media/*"
