@@ -4,10 +4,12 @@ import Sim from '../components/Sim.astro';
 import Chat from '../components/Chat.astro';
 import Bi from '../components/Bi.astro';
 const WA = `https://wa.me/393248423657?text=${encodeURIComponent('Ciao! Ho visto le vostre demo e vorrei parlarvi di un progetto.')}`;
+// le demo si aprono nella lingua della pagina (vedi public/demo/lang.js)
+const demoLang = Astro.url.pathname.match(/^\/(en|de)(\/|$)/)?.[1] ?? 'it';
 const demos = [
   { slug: 'hair', name: 'SEZIONE', kind: 'Hair studio', line: 'Il sito di un salone, per lei e per lui.', tags: ['Lei / Lui', 'WebGL', 'Tessera + QR'], next: ['Prenotazione con conferma su WhatsApp', 'Timbri aggiunti dallo staff scansionando il QR', 'Tessera salvabile nel Wallet del telefono', 'Promemoria su WhatsApp prima della visita'] },
   { slug: 'innesto', name: 'INNESTO', kind: 'Ristrutturazioni', line: 'Ristrutturazioni chiavi in mano: casa 3D, prima/dopo e stima in 4 domande.', tags: ['Casa 3D', 'Prima / Dopo', '3 pagine'], next: ['Preventivo guidato in 4 domande', 'Area cliente con avanzamento del cantiere', 'Coupon sopralluogo gratuito a tempo', 'Sconto referral per chi consiglia lo studio'] },
-  { slug: 'brace', name: 'BRACE', kind: 'Smokehouse e vini naturali', line: 'Brisket affumicato 14 ore, vini naturali e tavolo prenotato con conferma su WhatsApp.', tags: ['Fumo in WebGL', 'Timeline 14 ore', 'Tessera + QR'], next: ['Acconto online per tenere da parte il brisket', 'Tessera con QR: alla 6ª cena il brisket è offerto', 'Coupon a tempo per riempire martedì e mercoledì', 'Porta un amico: un calice offerto a entrambi'] },
+  { slug: 'tufo', name: 'TUFO', kind: 'Hotel sul mare', line: 'Un piccolo albergo sul porto di Procida, con la prenotazione diretta senza portali.', tags: ['Foto che si stringe', 'Galleria da trascinare', 'Prenotazione diretta'], next: ['Calendario collegato a Booking.com e Airbnb', 'Acconto online al momento della prenotazione', 'Check-in e indicazioni inviati su WhatsApp', 'Codice sconto per chi torna una seconda volta'] },
 ];
 const stats = [
   { t: 'Probabilità di vendere', a: { l: 'Nuovo contatto', v: 12.5, r: '5–20%' }, b: { l: 'Cliente già acquisito', v: 65, r: '60–70%' }, max: 100 },
@@ -207,11 +209,11 @@ const WORD = 'slashke<span class="rn">r</span>n';
         {demos.map((d, i) => (
           <article class="card">
             <div class="shot">
-              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.demo' : d.slug === 'innesto' ? 'innesto.demo' : 'brace.demo'}</span></div>
+              <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>{d.slug === 'hair' ? 'sezione.demo' : d.slug === 'innesto' ? 'innesto.demo' : 'tufo.demo'}</span></div>
               <div class="view" data-shot>
                 <img class="poster" src={`/previews/${d.slug}.webp`} width="960" height="600" alt={`${d.name}: ${d.line}`} loading="lazy" decoding="async" />
-                <iframe data-src={`/demo/${d.slug}/index.html`} title={`Anteprima ${d.name}`} scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
-                <a class="cover" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}><span>Apri la demo →</span></a>
+                <iframe data-src={`/demo/${d.slug}/index.html?lang=${demoLang}`} title={`Anteprima ${d.name}`} scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+                <a class="cover" href={`/demo/${d.slug}/index.html?lang=${demoLang}`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}><span>Apri la demo →</span></a>
               </div>
             </div>
             <div class="meta">
@@ -223,7 +225,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
                 <span class="lab">Prossime modifiche</span>
                 <ul>{d.next.map((n) => <li>{n}</li>)}</ul>
               </div>
-              <a class="lnk" href={`/demo/${d.slug}/index.html`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}>Apri la demo →</a>
+              <a class="lnk" href={`/demo/${d.slug}/index.html?lang=${demoLang}`} target="_blank" rel="noopener" aria-label={`Apri la demo ${d.name}`}>Apri la demo →</a>
             </div>
           </article>
         ))}
@@ -265,7 +267,7 @@ const WORD = 'slashke<span class="rn">r</span>n';
         <ol>
           <li>Amy Gallo, «The Value of Keeping the Right Customers», Harvard Business Review, ottobre 2014: aumentare la retention del 5% aumenta i profitti del 25–95%; acquisire un cliente costa 5–25 volte più che mantenerlo (dati di Fred Reichheld, Bain &amp; Company). <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">hbr.org</a></li>
           <li>P. Farris, N. Bendle, P. Pfeifer, D. Reibstein, <i>Marketing Metrics: The Definitive Guide to Measuring Marketing Performance</i>, Pearson, 2010: probabilità di vendita 5–20% a un nuovo contatto, 60–70% a un cliente esistente.</li>
-          <li>Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.</li>
+          <li>Le demo INNESTO, SEZIONE e TUFO sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.</li>
         </ol>
       </section>
 </Site>

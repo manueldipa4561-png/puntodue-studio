@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <script src="../lang.js"></script>
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#161513">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -28,7 +29,7 @@
     .pins{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
     .pin{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;will-change:transform}
     .pin[data-on]{opacity:1;pointer-events:auto}
-    .pin i{position:relative;width:14px;height:14px;border-radius:50%;background:#FFF8F3;box-shadow:0 0 0 4px var(--accent),0 6px 14px rgba(0,0,0,.45);transition:background .25s,box-shadow .25s}
+    .pin i{position:relative;width:14px;height:14px;border-radius:50%;background:#FFF8F3;box-shadow:0 0 0 4px var(--accent),0 6px 14px rgba(0,0,0,.45);transition:background .25s,box-shadow .25s,scale .25s var(--ease)}
     .pin i::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #E07A57;animation:ping 2.2s var(--ease) infinite}
     .pin[aria-pressed=true] i{background:var(--accent);box-shadow:0 0 0 4px #FFF8F3,0 6px 14px rgba(0,0,0,.45)}
     .pin span{position:absolute;left:36px;white-space:nowrap;font-family:var(--font-d);font-weight:600;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(22,21,19,.86);color:#fff;padding:6px 10px;border-radius:100px;opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s var(--ease);pointer-events:none}
@@ -36,27 +37,28 @@
     @keyframes ping{from{transform:scale(1);opacity:.9}to{transform:scale(2.3);opacity:0}}
     .stage-ui{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:3;pointer-events:none}
     .stage-ui>*{pointer-events:auto}
-    .hint{font-family:var(--font-d);font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(22,21,19,.78);color:var(--d-fg);padding:9px 14px;border-radius:100px}
-    .icon-btn{width:44px;height:44px;border-radius:100px;border:0;background:rgba(22,21,19,.78);color:var(--d-fg);cursor:pointer;display:flex;align-items:center;justify-content:center}
+    /* comandi sul modello: materiale scuro traslucido, testo più pieno */
+    .hint{font-family:var(--font-d);font-weight:700;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;background:var(--mat-dark);-webkit-backdrop-filter:var(--mat-blur);backdrop-filter:var(--mat-blur);box-shadow:var(--mat-edge);color:#fff;padding:9px 14px;border-radius:100px}
+    .icon-btn{width:44px;height:44px;border-radius:100px;border:0;background:var(--mat-dark);-webkit-backdrop-filter:var(--mat-blur);backdrop-filter:var(--mat-blur);box-shadow:var(--mat-edge);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:scale .3s var(--ease)}
     .icon-btn[hidden]{display:none}
     .icon-btn svg{width:18px;height:18px}
     .touch-gate{position:absolute;inset:0;z-index:2;border:0;background:transparent;cursor:pointer;display:none}
     .stage[data-touch]:not([data-active]) .touch-gate{display:block}
-    .loading{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--font-d);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(22,21,19,.78);padding:7px 12px;border-radius:100px}
+    .loading{position:absolute;top:14px;left:14px;z-index:3;font-family:var(--font-d);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--mat-dark);-webkit-backdrop-filter:var(--mat-blur);backdrop-filter:var(--mat-blur);box-shadow:var(--mat-edge);padding:7px 12px;border-radius:100px}
     .stage[data-ready] .loading{display:none}
     .progress-line{position:absolute;left:0;top:0;height:3px;background:#E07A57;width:0;z-index:3;transition:width .2s}
 
     .rooms{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
-    .room{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:var(--r-m);border:1.5px solid var(--d-line);background:transparent;cursor:pointer;text-align:left;transition:border-color .25s,background .25s}
+    .room{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:var(--r-m);border:1.5px solid var(--d-line);background:transparent;cursor:pointer;text-align:left;transition:border-color .25s,background .25s,scale .3s var(--ease)}
     .room:hover{border-color:rgba(237,231,221,.4)}
     .room b{font-family:var(--font-d);font-weight:700;font-size:1rem;white-space:nowrap}
     .room span{font-size:.8rem;color:var(--d-muted)}
     .room[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
     .room[aria-pressed=true] span{color:#FBE3D8}
     .room-card{margin-top:14px;border:1px solid var(--d-line);border-radius:var(--r-l);padding:20px 22px;background:#1D1B18;min-height:150px}
-    .room-card h2{font-size:1.4rem;font-stretch:108%;font-weight:800}
+    .room-card h2{font-size:1.4rem;font-stretch:108%;font-weight:800;letter-spacing:-.015em}
     .room-card p{color:var(--d-muted);font-size:.94rem;margin:8px 0 14px}
-    .room-card .price{font-family:var(--font-d);font-weight:800;font-size:clamp(1.5rem,2.6vw,2rem);font-stretch:112%}
+    .room-card .price{font-family:var(--font-d);font-weight:800;font-size:clamp(1.5rem,2.6vw,2rem);font-stretch:112%;letter-spacing:-.02em}
     .room-card small{display:block;color:var(--d-muted);font-size:.78rem;margin-top:4px}
 
     /* STIMA GUIDATA */
@@ -67,26 +69,31 @@
     .steps-bar i.on{background:var(--accent)}
     fieldset{border:0;display:grid;gap:14px;min-width:0}
     fieldset[hidden]{display:none}
-    legend{font-family:var(--font-d);font-weight:800;font-stretch:108%;font-size:clamp(1.35rem,2.4vw,1.8rem);margin-bottom:14px}
-    legend small{display:block;font-family:var(--font-b);font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-stretch:100%}
+    legend{font-family:var(--font-d);font-weight:800;font-stretch:108%;font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.15;letter-spacing:-.015em;margin-bottom:14px}
+    legend small{display:block;font-family:var(--font-b);font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-stretch:100%}
     .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .opt{position:relative}
     .opt input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
-    .opt span{display:flex;flex-direction:column;gap:3px;min-height:74px;justify-content:center;padding:14px 16px;border-radius:var(--r-m);border:1.5px solid var(--line);background:var(--paper);transition:border-color .2s,background .2s}
+    .opt span{display:flex;flex-direction:column;gap:3px;min-height:74px;justify-content:center;padding:14px 16px;border-radius:var(--r-m);border:1.5px solid var(--line);background:var(--paper);transition:border-color .2s,background .2s,scale .3s var(--ease)}
     .opt span b{font-family:var(--font-d);font-weight:700}
     .opt span em{font-style:normal;font-weight:400;color:var(--muted);font-size:.86rem}
     .opt input:checked+span{border-color:var(--accent);background:#FBEDE6;box-shadow:inset 0 0 0 1px var(--accent)}
     .opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
     .sqm{display:grid;gap:12px}
-    .sqm output{font-family:var(--font-d);font-weight:900;font-stretch:120%;font-size:clamp(2.6rem,6vw,4rem);line-height:1}
-    .sqm input[type=range]{width:100%;accent-color:var(--accent);height:44px}
+    .sqm output{font-family:var(--font-d);font-weight:900;font-stretch:120%;font-size:clamp(2.6rem,6vw,4rem);line-height:1;letter-spacing:-.03em}
+    .sqm input[type=range]{width:100%;accent-color:var(--accent);height:44px;border-radius:var(--r-m)}
     .sqm .scale{display:flex;justify-content:space-between;color:var(--muted);font-size:.84rem}
     .nav-steps{display:flex;gap:10px;margin-top:22px}
+    /* con JS le domande stanno nella stessa cella: entrano ed escono di lato senza far saltare i bottoni */
+    form[data-stacked]{display:grid;grid-template-columns:minmax(0,1fr)}
+    form[data-stacked] .steps-bar{grid-row:1}
+    form[data-stacked] fieldset{grid-area:2/1;align-self:start}
+    form[data-stacked] .nav-steps{grid-row:3}
     .nav-steps .btn{min-width:130px}
     .nav-steps [disabled]{opacity:.35;pointer-events:none}
 
     .result{position:sticky;top:96px;border-radius:var(--r-l);padding:clamp(24px,3vw,36px);background:var(--antracite);color:var(--d-fg);--s-muted:var(--d-muted)}
-    .result .range{font-family:var(--font-d);font-weight:900;font-stretch:115%;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1;margin:18px 0 8px}
+    .result .range{font-family:var(--font-d);font-weight:900;font-stretch:115%;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.04;letter-spacing:-.025em;margin:18px 0 8px}
     .result .sub{color:var(--d-muted);font-size:.94rem}
     .result dl{display:grid;grid-template-columns:1fr auto;gap:10px 16px;margin:22px 0;padding:18px 0;border-top:1px solid var(--d-line);border-bottom:1px solid var(--d-line);font-size:.94rem}
     .result dt{color:var(--d-muted)}
@@ -272,6 +279,7 @@
   <a class="primary" href="./index.html#contatto">Sopralluogo gratuito</a>
 </nav>
 
+<script src="./i18n.js"></script>
 <script src="./gsap.min.js"></script>
 <script src="./ScrollTrigger.min.js"></script>
 <script src="./site.js"></script>
@@ -280,18 +288,18 @@
 /* stanze: testi e costi di esempio, condivisi con il 3D */
 window.ROOMS = {
   /* view = [azimut, polare, distanza relativa]; at = punto della stanza nel modello (pin e centro della vista) */
-  casa:      {t:'Tutta la casa', d:'Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.', p:'700 – 1.100 €/m²', view:[1.0, 1.1, 1.0], at:[0, 0, 0]},
-  soggiorno: {t:'Soggiorno', d:'Pavimento in rovere, pareti a calce, nuovo impianto elettrico e luci, restauro delle finestre.', p:'450 – 750 €/m²', view:[1.5, 1.2, .62], at:[.15, -.3, .3]},
-  cucina:    {t:'Cucina', d:'Impianto idraulico ed elettrico, rivestimenti, cucina su misura con piano in pietra ed elettrodomestici.', p:'18.000 – 32.000 €', view:[1.05, 1.15, .58], at:[-.1, -.28, -.2]},
-  camera:    {t:'Camera', d:'Parquet, calce, armadio a muro, prese e punti luce nuovi, isolamento acustico del solaio.', p:'350 – 600 €/m²', view:[1.0, 1.0, .58], at:[-.25, .28, .25]},
-  bagno:     {t:'Bagno', d:'Demolizione, impianti, doccia a filo pavimento, sanitari sospesi, rivestimenti e mobile su misura.', p:'12.000 – 20.000 €', view:[1.72, 1.12, .55], at:[-.25, .26, -.47]}
+  casa:      {t:t('Tutta la casa'), d:t('Demolizioni, impianti, massetti, intonaci, pavimenti, bagno e cucina, serramenti restaurati.'), p:t('700 – 1.100 €/m²'), view:[1.0, 1.1, 1.0], at:[0, 0, 0]},
+  soggiorno: {t:t('Soggiorno'), d:t('Pavimento in rovere, pareti a calce, nuovo impianto elettrico e luci, restauro delle finestre.'), p:t('450 – 750 €/m²'), view:[1.5, 1.2, .62], at:[.15, -.3, .3]},
+  cucina:    {t:t('Cucina'), d:t('Impianto idraulico ed elettrico, rivestimenti, cucina su misura con piano in pietra ed elettrodomestici.'), p:t('18.000 – 32.000 €'), view:[1.05, 1.15, .58], at:[-.1, -.28, -.2]},
+  camera:    {t:t('Camera'), d:t('Parquet, calce, armadio a muro, prese e punti luce nuovi, isolamento acustico del solaio.'), p:t('350 – 600 €/m²'), view:[1.0, 1.0, .58], at:[-.25, .28, .25]},
+  bagno:     {t:t('Bagno'), d:t('Demolizione, impianti, doccia a filo pavimento, sanitari sospesi, rivestimenti e mobile su misura.'), p:t('12.000 – 20.000 €'), view:[1.72, 1.12, .55], at:[-.25, .26, -.47]}
 };
 (function(){
   var card = document.querySelector('[data-room-card]'), btns = document.querySelectorAll('[data-room]');
   btns.forEach(function(b){ b.addEventListener('click', function(){
     var r = ROOMS[b.dataset.room];
     btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-    card.innerHTML = '<h2>' + r.t + '</h2><p>' + r.d + '</p><div class="price">' + r.p + '</div><small>Costo di esempio, IVA esclusa. Il prezzo reale dipende dal sopralluogo.</small>';
+    card.innerHTML = '<h2>' + r.t + '</h2><p>' + r.d + '</p><div class="price">' + r.p + '</div><small>' + t('Costo di esempio, IVA esclusa. Il prezzo reale dipende dal sopralluogo.') + '</small>';
     window.dispatchEvent(new CustomEvent('innesto:room', {detail:b.dataset.room}));
   }); });
 })();
@@ -302,15 +310,16 @@ window.ROOMS = {
   var steps = f.querySelectorAll('fieldset'), bar = f.querySelectorAll('.steps-bar i');
   var prev = f.querySelector('[data-prev]'), next = f.querySelector('[data-next]'), cur = 0;
   var sqm = f.querySelector('#sqm'), out = f.querySelector('[data-sqm-out]');
-  var RATE = {casa:[700,1100,'Casa intera'], cucina:[1500,2400,'Cucina'], bagno:[1900,2900,'Bagno'], locale:[550,900,'Locale commerciale']};
+  var RATE = {casa:[700,1100,t('Casa intera')], cucina:[1500,2400,t('Cucina')], bagno:[1900,2900,t('Bagno')], locale:[550,900,t('Locale commerciale')]};
   var SIZE = {casa:[30,300,90], cucina:[4,40,12], bagno:[3,20,6], locale:[20,400,60]};
-  var FIN = {'0.85':'finiture essenziali','1':'finiture curate','1.3':'finiture su misura'};
-  var eur = function(n){ return (Math.round(n / 1000) * 1000).toLocaleString('it-IT') + ' €'; };
+  var FIN = {'0.85':t('finiture essenziali'),'1':t('finiture curate'),'1.3':t('finiture su misura')};
+  /* importi nel formato della lingua: 63.000 € in IT e DE, €63,000 in EN */
+  var L = window.demoLang, eur = function(n){ n = (Math.round(n / 1000) * 1000).toLocaleString(L === 'en' ? 'en-GB' : L === 'de' ? 'de-DE' : 'it-IT'); return L === 'en' ? '€' + n : n + '\u00a0€'; };
   /* la cifra scorre verso il nuovo valore; lo screen reader riceve solo il risultato */
   var shown = {lo:0, hi:0}, first = true, rangeEl = document.querySelector('[data-range]'), srEl = document.querySelector('[data-sr]');
-  var paint = function(){ rangeEl.textContent = eur(shown.lo) + ' – ' + eur(shown.hi); };
+  var paint = function(){ rangeEl.textContent = eur(shown.lo) + ' –\u2060\u00a0' + eur(shown.hi); }; /* se va a capo, il trattino apre la seconda riga */
   var setRange = function(lo, hi){
-    srEl.textContent = 'Stima: da ' + eur(lo) + ' a ' + eur(hi);
+    srEl.textContent = t('Stima: da {lo} a {hi}', {lo:eur(lo), hi:eur(hi)});
     if(first || !window.gsap || matchMedia('(prefers-reduced-motion:reduce)').matches){ first = false; shown.lo = lo; shown.hi = hi; paint(); return; }
     gsap.to(shown, {lo:lo, hi:hi, duration:.6, ease:'power2.out', overwrite:true, onUpdate:paint});
   };
@@ -321,25 +330,45 @@ window.ROOMS = {
     setRange(r[0] * m * k, r[1] * m * k);
     document.querySelector('[data-sub]').textContent = r[2] + ' · ' + m + ' m² · ' + FIN[val('fin')];
     var w = t === 'casa' ? Math.round(6 + m / 9) : t === 'locale' ? Math.round(5 + m / 12) : t === 'cucina' ? 5 : 4;
-    document.querySelector('[data-weeks]').textContent = w + '–' + (w + (t === 'casa' || t === 'locale' ? 4 : 2)) + ' settimane';
-    document.querySelector('[data-pratica]').textContent = t === 'casa' || t === 'locale' ? 'CILA inclusa' : 'Se serve, inclusa';
+    document.querySelector('[data-weeks]').textContent = window.t('{a}–{b} settimane', {a:w, b:w + (t === 'casa' || t === 'locale' ? 4 : 2)});
+    document.querySelector('[data-pratica]').textContent = window.t(t === 'casa' || t === 'locale' ? 'CILA inclusa' : 'Se serve, inclusa');
   };
   f.querySelectorAll('input[name=tipo]').forEach(function(i){ i.addEventListener('change', function(){
     var s = SIZE[i.value]; sqm.min = s[0]; sqm.max = s[1]; sqm.value = s[2];
     f.querySelector('[data-sqm-min]').textContent = s[0] + ' m²'; f.querySelector('[data-sqm-max]').textContent = s[1] + ' m²';
     calc(); }); });
   f.addEventListener('input', calc);
+  /* ogni domanda ha una molla sulla sua distanza dalla domanda attuale: avanti esce a sinistra ed entra da destra,
+     indietro fa il percorso inverso; un nuovo clic a metà ri-indirizza le molle dal punto in cui sono */
+  var IN = window.INNESTO, reduceS = IN && IN.reduce, moves = IN && [].map.call(steps, function(s, k){
+    s.hidden = false; s.inert = k !== 0;
+    var sp = IN.spring(function(p){
+      var a = Math.abs(p), hide = a >= .6 && k !== cur;
+      s.style.opacity = Math.max(0, 1 - a / .6).toFixed(3);
+      s.style.visibility = hide ? 'hidden' : '';
+      /* spostamento massimo ~19px (meno del margine della pagina): niente scroll orizzontale a metà transizione */
+      s.style.transform = reduceS || hide || a < .001 ? '' : 'translate3d(' + (Math.max(-.6, Math.min(.6, p)) * 32).toFixed(1) + 'px,0,0)';
+    }, .002);
+    sp.set(k);
+    return sp;
+  });
+  if(moves) f.setAttribute('data-stacked', '');
   var show = function(i){
     cur = Math.max(0, Math.min(3, i));
-    steps.forEach(function(s, k){ s.hidden = k !== cur; });
+    steps.forEach(function(s, k){
+      if(!moves){ s.hidden = k !== cur; return; }
+      s.inert = k !== cur;
+      if(k === cur) s.style.visibility = '';
+      moves[k].go(k - cur, {response:reduceS ? .22 : .42});
+    });
     bar.forEach(function(b, k){ b.classList.toggle('on', k <= cur); });
     prev.disabled = cur === 0;
-    next.innerHTML = cur === 3 ? 'Vedi il riepilogo <span class="arrow" aria-hidden="true">→</span>' : 'Avanti <span class="arrow" aria-hidden="true">→</span>';
+    next.innerHTML = t(cur === 3 ? 'Vedi il riepilogo' : 'Avanti') + ' <span class="arrow" aria-hidden="true">→</span>';
     var first = steps[cur].querySelector('input:checked') || steps[cur].querySelector('input'); first && first.focus({preventScroll:true});
   };
   prev.addEventListener('click', function(){ show(cur - 1); });
   next.addEventListener('click', function(){
-    if(cur === 3){ document.querySelector('.result').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    if(cur === 3){ document.querySelector('.result').scrollIntoView({behavior:reduceS ? 'auto' : 'smooth', block:'center'}); return; }
     show(cur + 1);
   });
   calc();
@@ -355,7 +384,7 @@ const stage = document.querySelector('[data-stage]');
 const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 const conn = navigator.connection, save = conn && (conn.saveData || /2g/.test(conn.effectiveType || ''));
 const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch(e){ return false; } })();
-const staticView = () => { stage.querySelector('[data-loading]')?.remove(); stage.querySelector('[data-progress]')?.remove(); stage.querySelector('[data-hint]').textContent = 'Vista statica'; };
+const staticView = () => { stage.querySelector('[data-loading]')?.remove(); stage.querySelector('[data-progress]')?.remove(); stage.querySelector('[data-hint]').textContent = window.t('Vista statica'); };
 
 if(!reduce && !save && hasGL){
   const io = new IntersectionObserver((en) => { if(en[0].isIntersecting){ io.disconnect(); boot().catch((e) => { console.warn('3D non disponibile', e); staticView(); }); } }, {rootMargin:'200px'});
@@ -420,7 +449,10 @@ async function boot(){
 
   /* distanza che fa entrare tutta la casa nell'inquadratura, in base alla forma del riquadro */
   const radius = size.length() / 2;
-  let R = 4, room = 'casa', userMoved = false, tween;
+  let R = 4, room = 'casa', userMoved = false;
+  /* volo della camera: una molla per ogni grandezza (azimut, polare, distanza, punto guardato).
+     Un nuovo clic a metà volo ri-indirizza le molle mantenendo la velocità: niente frenata secca */
+  const cam = window.INNESTO.spring((x) => { controls.target.set(x[3], x[4], x[5]); camera.position.setFromSphericalCoords(x[2], x[1], x[0]).add(controls.target); }, 1e-4);
   const fit = () => {
     const vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
     R = radius * .9 / Math.sin(Math.min(vf, hf) / 2);
@@ -430,7 +462,7 @@ async function boot(){
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setPixelRatio(dpr()); renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix(); fit();
-    if(room === 'casa' && !userMoved && !(tween && tween.isActive())){
+    if(room === 'casa' && !userMoved && !cam.moving){
       const [az, pol, d] = ROOMS.casa.view; camera.position.setFromSphericalCoords(R * d, pol, az);
     }
   };
@@ -483,22 +515,21 @@ async function boot(){
   /* su touch la rotazione si attiva con un tocco, così lo scroll della pagina resta libero */
   const hint = stage.querySelector('[data-hint]'), reset = stage.querySelector('[data-reset]');
   if(touch){
-    stage.setAttribute('data-touch', ''); controls.enabled = false; hint.textContent = 'Tocca per ruotare';
-    stage.querySelector('[data-gate]').addEventListener('click', () => { controls.enabled = true; stage.setAttribute('data-active', ''); hint.textContent = 'Trascina per ruotare'; });
+    stage.setAttribute('data-touch', ''); controls.enabled = false; hint.textContent = window.t('Tocca per ruotare');
+    stage.querySelector('[data-gate]').addEventListener('click', () => { controls.enabled = true; stage.setAttribute('data-active', ''); hint.textContent = window.t('Trascina per ruotare'); });
   }
-  controls.addEventListener('start', () => { controls.autoRotate = false; userMoved = true; reset.hidden = false; tween && tween.kill(); });
+  /* afferrare il modello ferma il volo dove si trova */
+  controls.addEventListener('start', () => { controls.autoRotate = false; userMoved = true; reset.hidden = false; cam.stop(); });
 
   const goTo = (key) => {
     const [az, pol, dist] = ROOMS[key].view, at = new THREE.Vector3(...ROOMS[key].at);
     const sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
     let dAz = az - sph.theta; dAz = Math.atan2(Math.sin(dAz), Math.cos(dAz));
-    const cur = {az:sph.theta, pol:sph.phi, r:sph.radius, tx:controls.target.x, ty:controls.target.y, tz:controls.target.z};
     room = key; controls.autoRotate = false; reset.hidden = key === 'casa'; if(key === 'casa') userMoved = false;
     pins.forEach((q) => q.el.setAttribute('aria-pressed', q.key === key ? 'true' : 'false'));
-    tween && tween.kill();
-    tween = gsap.to(cur, {az:sph.theta + dAz, pol, r:R * dist, tx:at.x, ty:at.y, tz:at.z, duration:1.3, ease:'power3.inOut',
-      onUpdate:() => { controls.target.set(cur.tx, cur.ty, cur.tz); camera.position.setFromSphericalCoords(cur.r, cur.pol, cur.az).add(controls.target); },
-      onComplete:() => { if(key === 'casa') controls.autoRotate = true; }});
+    /* parte dalla posizione reale della camera (anche se l'utente l'ha appena ruotata) */
+    cam.go([sph.theta + dAz, pol, R * dist, at.x, at.y, at.z], {from:[sph.theta, sph.phi, sph.radius, controls.target.x, controls.target.y, controls.target.z], response:.85,
+      done:() => { if(key === 'casa' && room === 'casa') controls.autoRotate = true; }});
     if(key !== 'casa') glow.position.set(at.x, at.y + .14, at.z);
     gsap.fromTo(glow, {intensity:glow.intensity}, {intensity:key === 'casa' ? 0 : .9, duration:.9, delay:key === 'casa' ? 0 : .6, ease:'power2.out', overwrite:true});
   };

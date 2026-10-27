@@ -24,7 +24,7 @@
   /* ---------- WebGL smoke (transparent layer over the real photo, so the photo stays sharp) ---------- */
   (function smoke() {
     const cv = $('#smoke'), hero = $('.hero');
-    if (reduce || !cv || !hero) return;
+    if (!cv || !hero) return;
     const gl = cv.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
     if (!gl) return;
     const coarse = matchMedia('(pointer: coarse)').matches || innerWidth < 760;
@@ -74,6 +74,16 @@ void main(){
       if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; gl.viewport(0, 0, w, h); }
       gl.uniform2f(U.r, w, h);
     };
+    /* Reduced motion: one still frame of smoke. No drift, no pointer response. */
+    if (reduce) {
+      new ResizeObserver(() => {
+        size();
+        gl.uniform1f(U.t, 9); gl.uniform1f(U.intro, 0); gl.uniform2f(U.m, .7, .45); gl.uniform1f(U.ms, 0);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        cv.classList.add('on');
+      }).observe(cv);
+      return;
+    }
     new ResizeObserver(size).observe(cv);
     size();
 
@@ -168,7 +178,8 @@ void main(){
       mine = 'BR-' + (1000 + Math.floor(Math.random() * 9000));
       cells[SOLD].classList.add('mine');
       left.textContent = pad(TOTAL - SOLD - 1);
-      if (hasGsap && !reduce) gsap.fromTo(left, { scale: 1.25 }, { scale: 1, duration: .5, ease: 'back.out(2)' });
+      /* a click carries no momentum: settle without overshoot */
+      if (hasGsap && !reduce) gsap.fromTo(left, { scale: 1.2 }, { scale: 1, duration: .45, ease: 'power3.out' });
       res.replaceChildren(
         'Porzione da ' + g + ' g tenuta da parte. Codice ',
         Object.assign(document.createElement('b'), { textContent: mine }),
@@ -183,21 +194,41 @@ void main(){
     const grid = $('#dishes'), chips = $$('.chip'), count = $('#fcount');
     if (!grid) return;
     const items = $$('.dish', grid);
-    let tl = null;
+    let tl = null, cur = 'all';
     chips.forEach(c => c.addEventListener('click', () => {
       const f = c.dataset.f;
       if (c.getAttribute('aria-pressed') === 'true') return;
       chips.forEach(x => x.setAttribute('aria-pressed', x === c));
-      if (tl) { tl.progress(1).kill(); tl = null; } /* finish a running flip first, or items stay absolute */
-      const state = window.Flip && !reduce ? Flip.getState(items) : null;
+      /* Interruptible: getState records where moving cards are on screen right now (mid-flight included),
+         then the running flip is dropped without jumping to its end. getState resets cards caught mid-exit,
+         so their live box is noted first and, if they come back, they re-enter from exactly there. */
+      const exiting = new Map();
+      if (tl) items.forEach(el => {
+        if (cur === 'all' || el.dataset.cat === cur) return; /* only cards the previous filter sent away */
+        const r = el.getBoundingClientRect();
+        if (r.width) exiting.set(el, { r, o: +getComputedStyle(el).opacity });
+      });
+      cur = f;
+      const state = window.Flip && !reduce ? Flip.getState(items, { props: 'opacity' }) : null;
+      if (tl) { tl.revert(); tl = null; }
       let n = 0;
       items.forEach(el => { const on = f === 'all' || el.dataset.cat === f; el.style.display = on ? '' : 'none'; n += on; });
       grid.classList.toggle('all', f === 'all');
       count.textContent = n + (n === 1 ? ' piatto' : ' piatti');
+      exiting.forEach((e, el) => { /* offset from its final box (measured now, in flow) back to where it was */
+        const b = el.getBoundingClientRect();
+        if (!b.width) { exiting.delete(el); return; }
+        e.dx = e.r.x + e.r.width / 2 - b.x - b.width / 2; e.dy = e.r.y + e.r.height / 2 - b.y - b.height / 2; e.s = e.r.width / b.width; /* centre to centre: scale is centred */
+      });
       if (state) tl = Flip.from(state, {
-        duration: .55, ease: 'power2.inOut', absolute: true, nested: true,
-        onEnter: els => gsap.fromTo(els, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .45, delay: .1 }),
-        onLeave: els => gsap.to(els, { opacity: 0, scale: .94, duration: .3 }),
+        duration: .5, ease: 'power3.out', absolute: true, nested: true,
+        onEnter: els => els.reduce((t, el) => {
+          const e = exiting.get(el);
+          /* Flip places absolute cards with its own x/y, so the offset back to the old box is relative to that */
+          return e ? t.from(el, { x: '+=' + e.dx, y: '+=' + e.dy, opacity: e.o, scale: e.s, duration: .5, ease: 'power3.out' }, 0)
+            : t.fromTo(el, { opacity: 0, scale: .94 }, { opacity: 1, scale: 1, duration: .4, ease: 'power2.out' }, 0);
+        }, gsap.timeline()),
+        onLeave: els => gsap.to(els, { opacity: 0, scale: .94, duration: .3, ease: 'power2.out' }),
         onComplete: () => { gsap.set(items, { clearProps: 'opacity,scale,transform' }); tl = null; }
       });
     }));
@@ -208,20 +239,20 @@ void main(){
     gsap.fromTo('#roomImg', { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: '.room', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
-  /* ---------- club card: 3D tilt follows the pointer ---------- */
+  /* ---------- club card: 3D tilt follows the pointer through springs ---------- */
   (function tilt() {
     const cell = $('.c-club'), t = $('#tilt');
-    if (!cell || !t || reduce || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (!cell || !t || reduce || !window.BRACE || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     const card = $('.mcard', t);
+    /* Independent X / Y springs, critically damped, always from the live angle: no jump on enter, no snap on leave. */
+    const S = (prop, value, unit) => BRACE.spring(v => card.style.setProperty(prop, v.toFixed(2) + unit), { value, response: .35 });
+    const rx = S('--rx', 8, 'deg'), ry = S('--ry', -14, 'deg'), gx = S('--gx', 30, '%'), gy = S('--gy', 20, '%');
     cell.addEventListener('pointermove', e => {
       const b = cell.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
       t.classList.add('live');
-      card.style.setProperty('--ry', ((x - .5) * 26).toFixed(2) + 'deg');
-      card.style.setProperty('--rx', ((.5 - y) * 18).toFixed(2) + 'deg');
-      card.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
-      card.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      ry.to((x - .5) * 26); rx.to((.5 - y) * 18); gx.to(x * 100); gy.to(y * 100);
     });
-    cell.addEventListener('pointerleave', () => { t.classList.remove('live'); ['--rx', '--ry', '--gx', '--gy'].forEach(p => card.style.removeProperty(p)); });
+    cell.addEventListener('pointerleave', () => { t.classList.remove('live'); rx.to(8); ry.to(-14); gx.to(30); gy.to(20); });
   })();
 
   /* ---------- coupon countdown (to Wednesday 23:59) ---------- */

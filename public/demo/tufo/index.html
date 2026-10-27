@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F2C7BF">
+<title>TUFO, piccolo albergo sul porto di Procida</title>
+<meta name="description" content="Nove camere sulla Marina Corricella di Procida, colazione in terrazza fino a mezzogiorno e prenotazione diretta. Concept demo di Punto Due Studio.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="../lang.js"></script>
+<link rel="preload" as="font" type="font/woff2" href="fonts/archivo.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/geist.woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero-m-768.webp" media="(max-width: 700px)" imagesrcset="img/hero-m-640.webp 640w, img/hero-m-768.webp 768w, img/hero-m-960.webp 960w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-1600.webp" media="(min-width: 701px)" imagesrcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
+<style>
+/* Font serviti dal sito, licenza SIL OFL: Archivo (variabile, larghezza 62-125%) e Geist */
+@font-face{font-family:'Archivo';src:url(fonts/archivo.woff2) format('woff2');font-weight:300 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Geist';src:url(fonts/geist.woff2) format('woff2');font-weight:100 900;font-display:swap}
+
+/* Palette: rosa delle case di Procida e blu cobalto delle persiane. Un solo cambio di colore: la parte blu in fondo. */
+:root{
+  --pink:#F2C7BF; --pink-2:#E9B5AB; --ink:#1E2C8C; --ink-2:#17227A; --on-photo:#FFF4F1;
+  --gut:clamp(16px,4vw,40px); --hd:72px;
+  --r-photo:20px; --r-field:14px; /* forme: bottoni a pillola, foto 20px, campi 14px */
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:var(--hd)}
+body{margin:0;background:var(--pink);color:var(--ink);font:400 1rem/1.55 Geist,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+
+/* Titoli: Archivo stretto e nero, maiuscolo. Interlinea stretta e tracking leggermente negativo, più stretto quando cresce. */
+.d{font-family:Archivo,'Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-.004em;margin:0;text-wrap:balance}
+h2.d{font-size:clamp(2.6rem,7.4vw,6.2rem)}
+.lede{font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.5;max-width:46ch;margin:0}
+.eyebrow{font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px}
+
+/* Bottoni: risposta immediata alla pressione */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border:0;border-radius:999px;background:var(--ink);color:var(--pink);font-weight:500;font-size:.95rem;letter-spacing:.005em;white-space:nowrap;cursor:pointer;transition:transform .1s ease-out,background-color .2s}
+.btn:active{transform:scale(.97)}
+@media (hover:hover){.btn:hover{background:var(--ink-2)}}
+.btn.ghost{background:none;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+@media (hover:hover){.btn.ghost:hover{background:var(--ink);color:var(--pink)}}
+.cta{margin-top:30px}
+
+/* Header: livello traslucido che compare con lo scroll, sfuma nel contenuto invece di una riga */
+.hd{position:fixed;inset:0 0 auto;z-index:20;height:var(--hd);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut);transition:color .35s}
+.hd::before{content:"";position:absolute;inset:0 0 -18px;z-index:-1;background:color-mix(in srgb,var(--pink) 74%,transparent);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);-webkit-mask:linear-gradient(#000 calc(100% - 18px),transparent);mask:linear-gradient(#000 calc(100% - 18px),transparent);pointer-events:none;transition:background-color .35s}
+.hd nav{display:flex;gap:26px;font-size:.92rem;font-weight:500}
+.hd nav a{padding:10px 0;transition:opacity .15s}
+.hd nav a:active{opacity:.55}
+.mark{font-size:2.3rem;line-height:1;letter-spacing:.01em;justify-self:center}
+.hd-r{justify-self:end}
+.hd .btn{min-height:40px;padding:0 18px}
+.on-blu .hd{color:var(--pink)}
+.on-blu .hd::before{background:color-mix(in srgb,var(--ink) 70%,transparent)}
+.on-blu .hd .btn{background:var(--pink);color:var(--ink)}
+@media (max-width:820px){.hd{grid-template-columns:1fr auto}.hd nav{display:none}.mark{justify-self:start}}
+
+/* Hero: la foto del porto dentro una cornice rosa che si stringe in una finestra mentre scorri */
+.hero{padding:var(--hd) var(--gut) var(--gut)}
+.frame{position:relative;height:calc(100svh - var(--hd) - var(--gut));min-height:560px;max-height:1100px;display:grid;align-content:end;color:var(--on-photo)}
+.media{position:absolute;inset:0;overflow:hidden;border-radius:6px;clip-path:inset(0 round 6px);background:var(--pink-2)}
+.media img{width:100%;height:100%;object-fit:cover}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgb(16 22 80 / .62),rgb(16 22 80 / .18) 46%,transparent 70%)}
+.hero-in{position:relative;display:grid;gap:22px 40px;padding:clamp(20px,3.4vw,44px);align-items:end}
+.hero h1{font-size:clamp(3.3rem,9vw,8.8rem);max-width:7.2em;margin-bottom:6px}
+.hero .lede{color:rgb(255 244 241 / .9);max-width:36ch}
+.hero .bar{margin-top:6px}
+@media (min-width:1080px){.hero-in{grid-template-columns:1fr auto}.hero h1{grid-column:1/-1}.hero .bar{margin-top:0}}
+
+/* Barra date: materiale rosa sopra la foto */
+.bar{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgb(30 44 140 / .14);border-radius:24px;overflow:hidden;color:var(--ink);box-shadow:0 24px 60px rgb(16 22 80 / .28);width:100%}
+.bar label,.bar .go{background:color-mix(in srgb,var(--pink) 90%,transparent);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%)}
+.bar label{display:grid;gap:2px;padding:12px 18px;font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.bar input,.bar select{border:0;background:none;padding:0;font-size:1rem;font-weight:500;letter-spacing:0;text-transform:none;min-height:28px;width:100%;cursor:pointer}
+.bar .go{display:grid;place-items:center;padding:8px}
+.bar .btn{width:100%}
+@media (max-width:699px){.bar label:nth-child(3),.bar .go{grid-column:1/-1}}
+@media (min-width:700px){.bar{grid-template-columns:minmax(158px,1fr) minmax(158px,1fr) minmax(110px,.7fr) auto;border-radius:999px;width:auto}.bar label{padding:12px 22px}.bar label:first-child{padding-left:28px}.bar .go{padding:8px 8px 8px 4px}}
+
+/* Manifesto */
+.manifesto{padding:clamp(96px,16vw,200px) var(--gut);display:grid;justify-items:center;gap:36px;text-align:center}
+.manifesto .d{font-size:clamp(3rem,10vw,9rem);max-width:12ch}
+.manifesto .lede{margin-inline:auto}
+
+/* Colazione: foto grande e testo affiancati */
+.colazione{display:grid;gap:clamp(28px,4vw,64px);padding:0 var(--gut) clamp(96px,14vw,180px);align-items:center}
+.colazione figure{margin:0;border-radius:var(--r-photo);overflow:hidden;aspect-ratio:3/2;background:var(--pink-2)}
+.colazione figure img{width:100%;height:100%;object-fit:cover}
+.colazione .d{margin-bottom:22px}
+@media (min-width:900px){.colazione{grid-template-columns:7fr 5fr}}
+
+/* L'isola: striscia di foto da trascinare */
+.isola{padding-bottom:clamp(110px,15vw,200px)}
+.i-head{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:0 var(--gut) 34px}
+.i-nav{display:flex;gap:10px;flex:none}
+.i-nav button{width:52px;height:52px;border-radius:50%;border:1.5px solid currentColor;background:none;font-size:1.2rem;cursor:pointer;transition:transform .1s ease-out,background-color .2s,color .2s}
+.i-nav button:active{transform:scale(.94)}
+@media (hover:hover){.i-nav button:hover{background:var(--ink);color:var(--pink)}}
+.strip{display:flex;gap:clamp(12px,1.6vw,20px);overflow-x:auto;padding:0 var(--gut);scroll-padding-inline:var(--gut);scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y}
+.strip::-webkit-scrollbar{display:none}
+.strip.drag{scroll-snap-type:none;cursor:grabbing;user-select:none}
+.strip figure{flex:0 0 clamp(250px,30vw,420px);margin:0;scroll-snap-align:start}
+.strip .ph{border-radius:var(--r-photo);overflow:hidden;aspect-ratio:4/5;background:var(--pink-2)}
+.strip img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.strip figcaption{font-size:.9rem;font-weight:500;padding-top:12px}
+.track{display:flex;gap:inherit;will-change:transform}
+.i-cta{padding:clamp(28px,4vw,44px) var(--gut) 0}
+
+/* Parte blu: le camere, la prenotazione e il piede salgono come un foglio */
+.blu{background:var(--ink);color:var(--pink);border-radius:clamp(28px,4vw,48px) clamp(28px,4vw,48px) 0 0;position:relative}
+.camere{padding:clamp(80px,11vw,150px) var(--gut) clamp(90px,12vw,160px)}
+.camere h2{max-width:12ch;margin-bottom:clamp(40px,6vw,80px)}
+.rooms{display:grid;gap:clamp(28px,3vw,40px)}
+.room{display:grid;gap:18px;transition:transform .12s ease-out}
+.room:active{transform:scale(.985)}
+.room .ph{border-radius:var(--r-photo);overflow:hidden;aspect-ratio:4/5;background:var(--ink-2)}
+.room img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+@media (hover:hover){.room:hover img{transform:scale(1.035)}}
+.room h3{font-size:clamp(2rem,3.6vw,3.2rem)}
+.room p{margin:6px 0 0;max-width:40ch;color:rgb(242 199 191 / .82)}
+.room .price{color:var(--pink);font-weight:500;margin-top:14px}
+.room .r-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:44px;padding:0 18px;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgb(242 199 191 / .6);font-size:.92rem;font-weight:500;transition:background-color .2s,color .2s}
+@media (hover:hover){.room:hover .r-cta{background:var(--pink);color:var(--ink)}}
+@media (min-width:900px){
+  .rooms{grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;align-items:start}
+  .room.big{grid-row:span 2}
+  .room.big .ph{aspect-ratio:1/1}
+  .room:not(.big){grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:24px}
+}
+
+/* Prenota */
+.prenota{display:grid;gap:clamp(36px,5vw,72px);padding:0 var(--gut) clamp(90px,12vw,150px);align-items:start}
+.prenota .d{margin-bottom:22px}
+.prenota .lede{color:rgb(242 199 191 / .86)}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
+.book label{display:grid;gap:8px;font-size:.85rem;font-weight:500}
+.book input,.book select{min-height:52px;padding:0 16px;border-radius:var(--r-field);border:1.5px solid rgb(242 199 191 / .45);background:rgb(242 199 191 / .08);color:var(--pink);color-scheme:dark;transition:border-color .2s,background-color .2s}
+.book input:focus,.book select:focus{outline:none;border-color:var(--pink);background:rgb(242 199 191 / .14)}
+.book select option{color:#111}
+.book .wide{grid-column:1/-1}
+.book .btn{background:var(--pink);color:var(--ink);min-height:54px;font-size:1rem}
+@media (hover:hover){.book .btn:hover{background:#F7D6CF}}
+.msg{grid-column:1/-1;margin:4px 0 0;padding:16px 18px;border-radius:var(--r-field);background:rgb(242 199 191 / .12);font-size:.95rem}
+@media (min-width:900px){.prenota{grid-template-columns:5fr 6fr}}
+
+/* Piede */
+.ft{padding:0 var(--gut) calc(var(--gut) + env(safe-area-inset-bottom));overflow:hidden}
+.ft-mark{font-size:clamp(7rem,33vw,30rem);line-height:.78;letter-spacing:-.01em;margin:0 0 28px -.02em;color:var(--pink)}
+.ft-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;padding-top:22px;border-top:1px solid rgb(242 199 191 / .3);font-size:.88rem;color:rgb(242 199 191 / .8)}
+.ft-row p{margin:0}
+
+/* Timbro "Prenota": gira con lo scroll, non da solo */
+.stamp{position:fixed;right:max(var(--gut),env(safe-area-inset-right));bottom:calc(var(--gut) + env(safe-area-inset-bottom));z-index:19;width:92px;height:92px;border-radius:50%;background:var(--ink);color:var(--pink);display:grid;place-items:center;box-shadow:0 14px 40px rgb(16 22 80 / .3);transition:transform .1s ease-out,background-color .35s,color .35s}
+.stamp:active{transform:scale(.94)}
+.stamp svg{position:absolute;inset:0;width:100%;height:100%}
+.stamp text{font:600 11.5px/1 Geist,sans-serif;letter-spacing:.2em;fill:currentColor}
+.stamp span{font-size:1.4rem}
+.on-blu .stamp{background:var(--pink);color:var(--ink)}
+.stamp-wrap{transition:opacity .3s,visibility .3s} /* solo opacità: una trasformazione qui sposterebbe il timbro fisso */
+.at-book .stamp-wrap{opacity:0;visibility:hidden}
+@media (max-width:700px){.stamp-wrap{display:none}} /* su telefono c'è già "Prenota" nell'header, il timbro coprirebbe le foto */
+@media (max-width:899px){.room:not(.big) .ph{aspect-ratio:3/2}}
+
+/* Barra "Prenota" su telefono: sale dopo la foto d'apertura, sparisce sopra il modulo e il piede */
+.mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:19;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 20px;border-radius:999px;background:color-mix(in srgb,var(--ink) 88%,transparent);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);color:var(--pink);box-shadow:0 18px 44px rgb(16 22 80 / .32);transform:translateY(calc(100% + 28px));visibility:hidden;transition:transform .45s var(--ease),visibility 0s .45s,background-color .35s,color .35s}
+.mbar p{margin:0;display:grid;line-height:1.25}
+.mbar b{font-weight:600;font-size:.98rem}
+.mbar small{font-size:.76rem;opacity:.8}
+.mbar .btn{background:var(--pink);color:var(--ink)}
+.past-hero:not(.at-book) .mbar{transform:none;visibility:visible;transition:transform .45s var(--ease),visibility 0s,background-color .35s,color .35s}
+.on-blu .mbar{background:color-mix(in srgb,var(--pink) 90%,transparent);color:var(--ink)}
+.on-blu .mbar .btn{background:var(--ink);color:var(--pink)}
+@media (min-width:701px){.mbar{display:none}}
+
+/* Movimento guidato dallo scroll, solo CSS, solo se il browser lo supporta e se l'utente non lo riduce */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:scroll()){
+    .hd::before{animation:fade-in linear both;animation-timeline:scroll(root);animation-range:0 120px}
+    .media{animation:window linear both;animation-timeline:scroll(root);animation-range:0 85svh}
+    .media img{animation:settle linear both;animation-timeline:scroll(root);animation-range:0 85svh}
+    .stamp{animation:stamp-in linear both;animation-timeline:scroll(root);animation-range:40svh 80svh}
+    .stamp svg{animation:spin linear both;animation-timeline:scroll(root)}
+    .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  }
+}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes window{to{clip-path:inset(7% 6% 0 6% round var(--r-photo))}}
+@keyframes settle{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes stamp-in{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+@keyframes spin{to{rotate:1turn}}
+@keyframes rise{from{opacity:0;translate:0 36px}to{opacity:1;translate:0 0}}
+
+/* Preferenze di sistema */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.01ms!important}}
+@media (prefers-reduced-transparency:reduce){
+  .hd::before{background:var(--pink);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .on-blu .hd::before{background:var(--ink)}
+  .bar label,.bar .go{background:var(--pink);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .mbar{background:var(--ink);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .on-blu .mbar{background:var(--pink)}
+}
+@media (prefers-contrast:more){
+  .hd::before{background:var(--pink);-webkit-mask:none;mask:none;border-bottom:1.5px solid var(--ink)}
+  .on-blu .hd::before{background:var(--ink);border-color:var(--pink)}
+  .room p,.prenota .lede,.ft-row{color:var(--pink)}
+  .book input,.book select{border-color:var(--pink)}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <nav aria-label="Sezioni">
+    <a href="#colazione">Colazione</a>
+    <a href="#isola">L'isola</a>
+    <a href="#camere">Camere</a>
+  </nav>
+  <a class="mark d" href="#top" aria-label="TUFO, torna su">Tufo</a>
+  <div class="hd-r"><a class="btn" href="#prenota">Prenota</a></div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="frame">
+      <div class="media">
+        <picture>
+          <source media="(max-width: 700px)" srcset="img/hero-m-640.webp 640w, img/hero-m-768.webp 768w, img/hero-m-960.webp 960w" sizes="100vw" width="960" height="1200">
+          <img src="img/hero-1600.webp" srcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" sizes="100vw" width="1600" height="900" alt="La facciata rosa dell'albergo sul porto, con le persiane blu e le barche dei pescatori davanti" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+      <div class="hero-in">
+        <h1 class="d">Il porto sotto la finestra.</h1>
+        <p class="lede">Nove camere sulla Marina Corricella, a Procida, con le barche sotto il balcone.</p>
+        <form class="bar" id="quick" aria-label="Cerca disponibilità">
+          <label>Arrivo<input type="date" name="in" required></label>
+          <label>Partenza<input type="date" name="out" required></label>
+          <label>Ospiti<select name="g"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+          <div class="go"><button class="btn" type="submit">Verifica disponibilità</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <p class="d rise">Qui la sveglia la suonano i pescatori.</p>
+    <p class="lede rise">TUFO è una casa del Settecento sulla Marina Corricella, con nove camere e una terrazza sul porto. Il mare è a dodici gradini dalla porta.</p>
+    <a class="btn rise" href="#prenota">Prenota e risparmi il 10%</a>
+  </section>
+
+  <section class="colazione" id="colazione">
+    <figure class="rise"><img src="img/colazione-1600.webp" srcset="img/colazione-800.webp 800w, img/colazione-1600.webp 1600w" sizes="(min-width: 900px) 58vw, 100vw" width="1600" height="1067" alt="Caffè, brioche e frutta su un tavolo di maioliche in terrazza, con il porto dietro" loading="lazy" decoding="async"></figure>
+    <div class="rise">
+      <p class="eyebrow">Tutti i giorni, 8:00 - 12:00</p>
+      <h2 class="d">Colazione in terrazza fino a mezzogiorno.</h2>
+      <p class="lede">Pane e dolci arrivano dal forno del paese, il caffè lo prepariamo quando scendi. Si mangia sopra le barche e nessuno ti mette fretta.</p>
+      <a class="btn ghost cta" href="#camere">Vedi le camere <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <section class="isola" id="isola" aria-labelledby="isola-t">
+    <div class="i-head">
+      <h2 class="d" id="isola-t">L'isola si gira a piedi.</h2>
+      <div class="i-nav"><button type="button" data-dir="-1" aria-label="Foto precedente">&larr;</button><button type="button" data-dir="1" aria-label="Foto successiva">&rarr;</button></div>
+    </div>
+    <div class="strip" tabindex="0" aria-label="Foto di Procida, scorri in orizzontale">
+      <div class="track">
+        <figure><div class="ph"><img src="img/scaletta-960.webp" srcset="img/scaletta-480.webp 480w, img/scaletta-960.webp 960w" sizes="(min-width: 1400px) 420px, (min-width: 834px) 30vw, 250px" width="960" height="1200" alt="Una scaletta di ferro che scende dagli scogli nell'acqua limpida" loading="lazy" decoding="async"></div><figcaption>La scaletta sugli scogli, a due minuti</figcaption></figure>
+        <figure><div class="ph"><img src="img/vicoli-960.webp" srcset="img/vicoli-480.webp 480w, img/vicoli-960.webp 960w" sizes="(min-width: 1400px) 420px, (min-width: 834px) 30vw, 250px" width="960" height="1200" alt="Gradini di pietra in un vicolo tra muri pastello e panni stesi" loading="lazy" decoding="async"></div><figcaption>I vicoli dietro il porto</figcaption></figure>
+        <figure><div class="ph"><img src="img/barca-960.webp" srcset="img/barca-480.webp 480w, img/barca-960.webp 960w" sizes="(min-width: 1400px) 420px, (min-width: 834px) 30vw, 250px" width="960" height="1200" alt="Una barca di legno dei pescatori ormeggiata nel porto" loading="lazy" decoding="async"></div><figcaption>Le barche della Corricella</figcaption></figure>
+        <figure><div class="ph"><img src="img/colazione-800.webp" sizes="(min-width: 1400px) 420px, (min-width: 834px) 30vw, 250px" width="800" height="533" alt="La terrazza dell'albergo apparecchiata per la colazione" loading="lazy" decoding="async"></div><figcaption>La terrazza alle otto</figcaption></figure>
+        <figure><div class="ph"><img src="img/mare-960.webp" srcset="img/mare-480.webp 480w, img/mare-960.webp 960w" sizes="(min-width: 1400px) 420px, (min-width: 834px) 30vw, 250px" width="960" height="1200" alt="La Camera Mare con la finestra aperta sull'acqua" loading="lazy" decoding="async"></div><figcaption>La vista dalla Camera Mare</figcaption></figure>
+      </div>
+    </div>
+    <div class="i-cta"><a class="btn" href="#prenota">Prenota il soggiorno</a></div>
+  </section>
+</main>
+
+<div class="blu">
+  <section class="camere" id="camere">
+    <h2 class="d rise">Scegli da dove guardare il porto.</h2>
+    <div class="rooms">
+      <a class="room big rise" href="#prenota" data-room="1">
+        <div class="ph"><img src="img/terrazza-1200.webp" srcset="img/terrazza-640.webp 640w, img/terrazza-1200.webp 1200w" sizes="(min-width: 900px) 52vw, 100vw" width="1200" height="1500" alt="La Suite Terrazza aperta su una terrazza privata con due sedie e il mare" loading="lazy" decoding="async"></div>
+        <div><h3 class="d">Suite Terrazza</h3><p>La più grande, con una terrazza privata e due sdraio sopra il porto.</p><p class="price">da 240 € a notte</p><span class="r-cta">Prenota questa camera <span aria-hidden="true">&rarr;</span></span></div>
+      </a>
+      <a class="room rise" href="#prenota" data-room="2">
+        <div class="ph"><img src="img/mare-960.webp" srcset="img/mare-480.webp 480w, img/mare-960.webp 960w" sizes="(min-width: 900px) 20vw, 100vw" width="960" height="1200" alt="La Camera Mare, con il soffitto a volta e il pavimento in maiolica" loading="lazy" decoding="async"></div>
+        <div><h3 class="d">Camera Mare</h3><p>Soffitto a volta, pavimento in maiolica e la finestra sull'acqua.</p><p class="price">da 180 € a notte</p><span class="r-cta">Prenota questa camera <span aria-hidden="true">&rarr;</span></span></div>
+      </a>
+      <a class="room rise" href="#prenota" data-room="3">
+        <div class="ph"><img src="img/vicolo-960.webp" srcset="img/vicolo-480.webp 480w, img/vicolo-960.webp 960w" sizes="(min-width: 900px) 20vw, 100vw" width="960" height="1200" alt="La Camera Vicolo, con il muro rosa e la finestra ad arco sul vicolo" loading="lazy" decoding="async"></div>
+        <div><h3 class="d">Camera Vicolo</h3><p>Più piccola e fresca, sul vicolo dietro il porto. Il mare è a venti passi.</p><p class="price">da 120 € a notte</p><span class="r-cta">Prenota questa camera <span aria-hidden="true">&rarr;</span></span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="prenota" id="prenota">
+    <div class="rise">
+      <h2 class="d">Prenota diretto.</h2>
+      <p class="lede">Sul sito paghi il 10% in meno che sui portali e puoi cancellare gratis fino a sette giorni prima dell'arrivo.</p>
+    </div>
+    <form class="book" id="book" aria-label="Prenota una camera">
+      <label>Arrivo<input type="date" name="in" required></label>
+      <label>Partenza<input type="date" name="out" required></label>
+      <label>Ospiti<select name="g"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+      <label>Camera<select name="room"><option>Qualsiasi</option><option>Suite Terrazza</option><option>Camera Mare</option><option>Camera Vicolo</option></select></label>
+      <button class="btn wide" type="submit">Verifica disponibilità</button>
+      <p class="msg" role="status" aria-live="polite" hidden></p>
+    </form>
+  </section>
+
+  <footer class="ft">
+    <p class="ft-mark d" aria-hidden="true">Tufo</p>
+    <div class="ft-row">
+      <p>Piccolo albergo sul porto, Marina Corricella, Procida.</p>
+      <p>Demo di Punto Due Studio: albergo, prezzi e foto sono di fantasia.</p>
+    </div>
+  </footer>
+</div>
+
+<div class="stamp-wrap"><a class="stamp" href="#prenota" aria-label="Prenota">
+  <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="ring" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs><text><textPath href="#ring">PRENOTA · TUFO · PROCIDA · </textPath></text></svg>
+  <span aria-hidden="true">&rarr;</span>
+</a></div>
+
+<div class="mbar">
+  <p><b>Da 120 € a notte</b><small>Cancelli gratis fino a 7 giorni prima</small></p>
+  <a class="btn" href="#prenota">Prenota</a>
+</div>
+
+<script src="i18n.js"></script>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  document.addEventListener('touchstart', () => {}, { passive: true }); // :active anche su iOS
+
+  /* Date: di default fra tre settimane, tre notti; la partenza non può precedere l'arrivo */
+  const iso = (base, days) => { const t = new Date(base); t.setDate(t.getDate() + days); return t.toISOString().slice(0, 10); };
+  const today = new Date();
+  for (const f of $$('form')) {
+    f.in.min = iso(today, 0); f.in.value = iso(today, 21);
+    f.out.min = iso(today, 1); f.out.value = iso(today, 24);
+    f.in.addEventListener('change', () => {
+      f.out.min = iso(f.in.value, 1);
+      if (f.out.value <= f.in.value) f.out.value = iso(f.in.value, 2);
+    });
+  }
+  const book = $('#book'), msg = $('.msg', book);
+  const answer = () => {
+    const n = Math.round((new Date(book.out.value) - new Date(book.in.value)) / 864e5);
+    const room = book.room.selectedIndex ? book.room.value : t('una camera');
+    const g = book.g.value;
+    msg.textContent = t('Demo: {room}, {n} {notti}, {g} {ospiti}. Sul sito vero qui compaiono le camere libere e il prezzo; non è stata inviata nessuna richiesta.',
+      { room, n, notti: t(n === 1 ? 'notte' : 'notti'), g, ospiti: t(g === '1' ? 'ospite' : 'ospiti') });
+    msg.hidden = false;
+  };
+  book.addEventListener('submit', e => { e.preventDefault(); answer(); });
+  $('#quick').addEventListener('submit', e => {
+    e.preventDefault();
+    const q = e.target;
+    book.in.value = q.in.value; book.out.value = q.out.value; book.g.value = q.g.value;
+    $('#prenota').scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+    answer();
+  });
+  for (const a of $$('[data-room]')) a.addEventListener('click', () => { book.room.selectedIndex = +a.dataset.room; });
+
+  /* Header e timbro diventano rosa sopra la parte blu */
+  let io;
+  const watch = () => {
+    io?.disconnect();
+    io = new IntersectionObserver(([e]) => document.documentElement.classList.toggle('on-blu', e.isIntersecting),
+      { rootMargin: `-36px 0px -${Math.max(0, innerHeight - 37)}px 0px` });
+    io.observe($('.blu'));
+  };
+  watch(); addEventListener('resize', watch, { passive: true });
+  /* Timbro e barra "Prenota" spariscono sopra le camere (hanno i loro bottoni), il modulo e il piede; la barra sale solo dopo la foto d'apertura */
+  const seen = new Set();
+  const bookIo = new IntersectionObserver(es => {
+    for (const e of es) e.isIntersecting ? seen.add(e.target) : seen.delete(e.target);
+    document.documentElement.classList.toggle('at-book', seen.size > 0);
+  }, { threshold: 0.15 });
+  for (const el of $$('#camere, #prenota, .ft')) bookIo.observe(el);
+  new IntersectionObserver(([e]) => document.documentElement.classList.toggle('past-hero', e.intersectionRatio < 0.2), { threshold: 0.2 })
+    .observe($('.hero'));
+
+  /* Striscia dell'isola: il mouse la trascina 1:1, al rilascio prosegue con la velocità del gesto,
+     si posa sulla foto più vicina al punto di arrivo con una molla e resiste ai bordi.
+     Touch e trackpad usano lo scroll nativo, che ha già inerzia e snap. */
+  const strip = $('.strip'), track = $('.track', strip);
+  const spring = (from, to, v0, damping, set, done) => {
+    if (reduce.matches) { set(to); done && done(); return () => {}; }
+    const response = 0.42, k = (2 * Math.PI / response) ** 2, c = 4 * Math.PI * damping / response;
+    let x = from - to, v = v0, last = performance.now(), id;
+    const step = now => {
+      const dt = Math.min(0.032, (now - last) / 1000); last = now;
+      for (let i = 0; i < 4; i++) { const h = dt / 4; v += (-k * x - c * v) * h; x += v * h; }
+      if (Math.abs(x) < 0.4 && Math.abs(v) < 8) { set(to); done && done(); return; }
+      set(to + x); id = requestAnimationFrame(step);
+    };
+    id = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(id);
+  };
+  const project = v => (v / 1000) * 0.998 / (1 - 0.998); // proiezione dell'inerzia (Apple, WWDC 2018)
+  const rubber = (o, dim) => (o * dim * 0.55) / (dim + 0.55 * Math.abs(o));
+  const snaps = () => { const first = track.children[0].offsetLeft, max = strip.scrollWidth - strip.clientWidth; return [...track.children].map(f => Math.min(max, f.offsetLeft - first)); };
+  const nearest = x => snaps().reduce((a, b) => Math.abs(b - x) < Math.abs(a - x) ? b : a);
+  let stop = () => {}, stopEdge = () => {}, edge = 0;
+  const setEdge = o => { edge = o; track.style.transform = o ? `translate3d(${o}px,0,0)` : ''; };
+  const glide = (to, v = 0, damping = 1) => {
+    stop(); strip.classList.add('drag');
+    stop = spring(strip.scrollLeft, to, v, damping, x => { strip.scrollLeft = x; }, () => strip.classList.remove('drag'));
+  };
+  let drag = null;
+  strip.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    stop(); stopEdge();
+    drag = { x: e.clientX, left: strip.scrollLeft, moved: false, hist: [[e.timeStamp, e.clientX]] };
+  });
+  strip.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) { if (Math.abs(dx) < 6) return; drag.moved = true; strip.setPointerCapture(e.pointerId); strip.classList.add('drag'); }
+    const max = strip.scrollWidth - strip.clientWidth, raw = drag.left - dx;
+    strip.scrollLeft = Math.max(0, Math.min(max, raw));
+    setEdge(raw < 0 ? rubber(-raw, strip.clientWidth) : raw > max ? -rubber(raw - max, strip.clientWidth) : 0);
+    drag.hist.push([e.timeStamp, e.clientX]); if (drag.hist.length > 6) drag.hist.shift();
+  });
+  const release = e => {
+    if (!drag) return;
+    const d = drag; drag = null;
+    if (!d.moved) return;
+    const [a, b] = [d.hist[0], d.hist[d.hist.length - 1]];
+    const v = e.timeStamp - b[0] < 80 && b[0] > a[0] ? -(b[1] - a[1]) / (b[0] - a[0]) * 1000 : 0; // px/s nel verso dello scroll
+    if (edge) stopEdge = spring(edge, 0, 0, 1, setEdge);
+    glide(nearest(strip.scrollLeft + project(v)), v, Math.abs(v) > 600 ? 0.8 : 1);
+  };
+  strip.addEventListener('pointerup', release);
+  strip.addEventListener('pointercancel', release);
+  strip.addEventListener('click', e => { if (strip.classList.contains('drag')) e.preventDefault(); }, true);
+  for (const btn of $$('.i-nav button')) btn.addEventListener('click', () => {
+    const s = snaps(), cur = strip.scrollLeft, dir = +btn.dataset.dir;
+    const next = dir > 0 ? s.find(x => x > cur + 4) ?? s[s.length - 1] : [...s].reverse().find(x => x < cur - 4) ?? 0;
+    glide(next);
+  });
+})();
+</script>
+</body>
+</html>

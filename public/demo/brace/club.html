@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="brace.css">
 <style>
 .top{padding-top:clamp(120px,16vw,200px);padding-bottom:clamp(40px,5vw,64px)}
-.top h1{font-size:clamp(4.4rem,13vw,11rem)}
+.top h1{font-size:clamp(4.4rem,13vw,11rem);letter-spacing:-.015em}
 .inv{display:none;margin-top:24px;padding:14px 18px;border-radius:var(--r);background:var(--blue);color:#fff;max-width:60ch}
 .inv.on{display:block}
 .stage{display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:clamp(32px,6vw,96px);align-items:center}
@@ -23,22 +23,26 @@
 .row{display:flex;flex-wrap:wrap;gap:10px}
 .stat{min-height:1.4em;margin:0;font-size:.93rem}
 .cardcol{display:flex;flex-direction:column;align-items:center;gap:22px}
-.tilt{perspective:1100px;width:min(100%,460px)}
-.c3{transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--ease)}
-.flip{position:relative;aspect-ratio:1.586;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.3,.4,1)}
+/* tilt and flip are driven by springs in JS (interruptible, velocity-aware), not CSS transitions.
+   Horizontal drag turns the card; vertical drag still scrolls the page. */
+.tilt{perspective:1100px;width:min(100%,460px);touch-action:pan-y;-webkit-user-select:none;user-select:none}
+@media (prefers-reduced-motion:no-preference){.tilt{cursor:grab}.tilt.drag{cursor:grabbing}}
+.c3{transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.flip{position:relative;aspect-ratio:1.586;transform-style:preserve-3d}
 .flip.back{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:clamp(18px,4.5%,26px);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.25)}
 .front{background:radial-gradient(120% 90% at 85% 10%,#3D5BFF 0%,#1B2A99 45%,#0B0F2A 100%);color:#fff}
 .front::after{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.26),transparent 60%);pointer-events:none}
-.back{transform:rotateY(180deg);background:var(--bone);color:var(--soot);align-items:center;justify-content:center;gap:10px}
+.face.back{transform:rotateY(180deg);background:var(--bone);color:var(--soot);align-items:center;justify-content:center;gap:10px}
 .ct{display:flex;justify-content:space-between;align-items:center;font-family:var(--d);font-weight:900;font-size:clamp(1.6rem,4.4vw,2.2rem);letter-spacing:.02em}
 .ct small{font-family:var(--m);font-weight:400;font-size:.72rem;letter-spacing:.12em;opacity:.8}
 .dots{display:flex;gap:clamp(6px,1.6vw,10px)}
 .dots i{width:clamp(26px,7vw,36px);aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
 .dots i.on{background:#fff;border-color:#fff}
 .dots i.gift{border-style:dashed}
-.dots i.pop{animation:pop .5s var(--ease)}
-@keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+/* the stamp presses down onto the card and settles, no rebound (a click carries no momentum) */
+.dots i.pop{animation:pop .35s var(--ease)}
+@keyframes pop{0%{transform:scale(1.5);opacity:0}100%{transform:scale(1);opacity:1}}
 .cb{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--m);font-size:.82rem}
 .cb .nm{font-family:var(--b);font-weight:600;font-size:1.05rem}
 .cb .nm.ph{opacity:.6}
@@ -48,6 +52,13 @@
 .cap{font-family:var(--m);font-size:.74rem;color:#4A4F55}
 .ctl{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 @media (max-width:900px){.stage{grid-template-columns:1fr}.cardcol{order:-1}}
+/* reduced motion: the card does not turn, the two faces cross-fade */
+@media (prefers-reduced-motion:reduce){
+  .flip.back,.face.back{transform:none}
+  .face{transition:opacity .25s ease}
+  .face.back,.flip.back .front{opacity:0}
+  .flip.back .face.back{opacity:1}
+}
 
 .perks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
 .pk{background:var(--ash);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px}
@@ -55,11 +66,6 @@
 .pk h3{margin:0;font-size:1.05rem;font-weight:600}
 .pk p{margin:0;color:var(--smoke);font-size:.92rem}
 .pk .act{margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:12px}
-.sw{position:relative;flex:none;width:52px;height:30px;border-radius:var(--pill);border:0;background:#3A3E44;cursor:pointer;transition:background .25s}
-.sw::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--bone);transition:transform .25s var(--ease)}
-.sw[aria-pressed="true"]{background:var(--blue)}
-.sw[aria-pressed="true"]::after{transform:translateX(22px)}
-.sw::before{content:"";position:absolute;inset:-8px}
 @media (max-width:1000px){.perks{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.perks{grid-template-columns:1fr}}
 
@@ -68,7 +74,7 @@
 .crew figure img{width:100%;height:100%;object-fit:cover}
 @media (max-width:900px){.crew{grid-template-columns:1fr}}
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px);margin-top:40px}
-.why h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:2rem;line-height:.95;margin:0 0 12px}
+.why h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:2rem;line-height:.95;letter-spacing:.01em;margin:0 0 12px}
 .why p{margin:0;color:var(--smoke)}
 @media (max-width:900px){.why{grid-template-columns:1fr}}
 .sec{padding-top:clamp(88px,11vw,150px)}
@@ -276,26 +282,82 @@ document.addEventListener('DOMContentLoaded', () => {
     try { await navigator.clipboard.writeText(link); toast('Invito copiato'); } catch (e) { toast('Copia non disponibile su questo browser'); }
   });
 
-  /* flip + tilt */
-  const flip = $('#flip'), fl = $('#fl');
-  function setFlip(b) {
+  /* flip + tilt. With motion on, both run on springs: the card can be grabbed mid-turn, dragged 1:1,
+     thrown (momentum projection picks the face) and reversed at any instant. Reduced motion: faces cross-fade. */
+  const flip = $('#flip'), fl = $('#fl'), tilt = $('#tilt'), c3 = $('#c3'), front = $('#front');
+  const B = window.BRACE, springs = !reduce && !!(B && B.spring);
+  const ang = springs && B.spring(v => { flip.style.transform = 'rotateY(' + v.toFixed(2) + 'deg)'; }, { response: .5 });
+  const isBack = a => Math.round(a / 180) % 2 !== 0;
+  const norm = () => { if (ang && !ang.moving) ang.set(((ang.value % 360) + 360) % 360); };
+  let drag = null, tiltRest = () => {};
+  function label(b) {
     flip.classList.toggle('back', b);
     fl.setAttribute('aria-pressed', b);
     fl.textContent = b ? 'Mostra il fronte' : 'Mostra il QR';
     $('#backf').setAttribute('aria-hidden', !b);
     $('#front').setAttribute('aria-hidden', b);
   }
+  function setFlip(b) {
+    label(b);
+    if (!ang) return;
+    norm();
+    /* nearest angle showing the asked face, from where the card is now: to the QR turns forward, back to the front returns the way it came */
+    const a = ang.value;
+    ang.to(b ? Math.round((a - 180) / 360 + 1e-6) * 360 + 180 : Math.round(a / 360 - 1e-6) * 360);
+  }
   fl.addEventListener('click', () => setFlip(!flip.classList.contains('back')));
-  const tilt = $('#tilt'), c3 = $('#c3'), front = $('#front');
-  if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+
+  if (springs && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const S = (el, prop, value, unit) => B.spring(v => el.style.setProperty(prop, v.toFixed(2) + unit), { value, response: .35 });
+    const rx = S(c3, '--rx', 0, 'deg'), ry = S(c3, '--ry', 0, 'deg'), gx = S(front, '--gx', 30, '%'), gy = S(front, '--gy', 20, '%');
+    tiltRest = () => { rx.to(0); ry.to(0); gx.to(30); gy.to(20); };
     tilt.addEventListener('pointermove', e => {
+      if (drag && drag.on) return;
       const b = tilt.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
-      c3.style.setProperty('--ry', ((x - .5) * 24).toFixed(2) + 'deg');
-      c3.style.setProperty('--rx', ((.5 - y) * 16).toFixed(2) + 'deg');
-      front.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
-      front.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      ry.to((x - .5) * 24); rx.to((.5 - y) * 16); gx.to(x * 100); gy.to(y * 100);
     });
-    tilt.addEventListener('pointerleave', () => { c3.style.removeProperty('--rx'); c3.style.removeProperty('--ry'); });
+    tilt.addEventListener('pointerleave', () => { if (!(drag && drag.on)) tiltRest(); });
+  }
+
+  if (ang) {
+    ang.set(0); /* inline angle from the start, so the .back class never paints a frame of its own */
+    tilt.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      norm();
+      const caught = ang.moving;
+      if (caught) ang.set(ang.value); /* a touch catches the card mid-turn */
+      drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, a0: ang.value, w: tilt.offsetWidth, on: false, caught, h: [] };
+    });
+    tilt.addEventListener('pointermove', e => {
+      if (!drag || e.pointerId !== drag.id) return;
+      if (!drag.on) {
+        const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+        if (Math.hypot(dx, dy) < 10) return; /* hysteresis before committing to a direction */
+        if (Math.abs(dy) > Math.abs(dx)) return end(e); /* vertical: it's a scroll */
+        drag.on = true; drag.x0 = e.clientX; /* track from here, so the card doesn't jump 10 px */
+        tilt.setPointerCapture(e.pointerId); tilt.classList.add('drag'); tiltRest();
+      }
+      let d = (e.clientX - drag.x0) * 180 / drag.w; /* one card width = half a turn */
+      if (Math.abs(d) > 180) d = Math.sign(d) * (180 + B.rubberband(Math.abs(d) - 180, 180));
+      ang.set(drag.a0 + d);
+      drag.h.push([e.clientX, e.timeStamp]);
+      while (drag.h.length > 2 && e.timeStamp - drag.h[0][1] > 100) drag.h.shift();
+    });
+    function end(e) {
+      const d = drag; drag = null;
+      if (!d) return;
+      tilt.classList.remove('drag');
+      if (!d.on && !d.caught) return; /* a plain tap on a resting card does nothing */
+      const h = d.h, last = h[h.length - 1];
+      const v = d.on && e.type === 'pointerup' && h.length > 1 && e.timeStamp - last[1] < 80
+        ? (last[0] - h[0][0]) / ((last[1] - h[0][1]) / 1000) * 180 / d.w : 0; /* deg/s at release */
+      const lo = Math.ceil((d.a0 - 180) / 180 - .05) * 180, hi = Math.floor((d.a0 + 180) / 180 + .05) * 180; /* one flip either way */
+      const t = Math.max(lo, Math.min(hi, Math.round((ang.value + B.project(v)) / 180) * 180));
+      label(isBack(t));
+      ang.to(t, { velocity: v, damping: Math.abs(v) > 300 ? .8 : 1, response: .45 }); /* bounce only after a flick */
+    }
+    tilt.addEventListener('pointerup', end);
+    tilt.addEventListener('pointercancel', end);
   }
   render();
 });
