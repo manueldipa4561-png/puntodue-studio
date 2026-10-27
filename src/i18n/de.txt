@@ -532,10 +532,10 @@ it: Simulazione illustrativa: mostra come si collegano le automazioni. Messaggi 
 de: Illustrative Simulation: Sie zeigt, wie die Automatisierungen zusammenhängen. Nachrichten und Uhrzeiten sind Beispiele.
 
 # ---------- /info ----------
-it: 'Guida il reparto web design: siti, e-commerce e app, dal progetto al browser.'
-de: 'Leitet den Bereich Webdesign: Websites, E-Commerce und Apps, vom Entwurf bis zum Browser.'
-it: 'Guida i social: strategia, contenuti e community per il tuo profilo.'
-de: 'Leitet den Bereich Social Media: Strategie, Inhalte und Community für Ihr Profil.'
+it: 'Lavora su ogni servizio dello studio: siti, e-commerce, app, social, video 3D e agenti AI.'
+de: 'Arbeitet an jedem Angebot des Studios: Websites, E-Commerce, Apps, Social Media, 3D-Videos und KI-Agenten.'
+it: 'Co-fondatore'
+de: 'Mitgründer'
 it: t: 'Un sito', p: 'un sito'
 de: t: 'Eine Website', p: 'eine Website'
 it: t: 'E-commerce', p: 'un e-commerce'
@@ -582,8 +582,8 @@ it: placeholder="Ad esempio: vorrei partire entro un mese"
 de: placeholder="Zum Beispiel: Ich möchte innerhalb eines Monats starten"
 it: aria-label="Anteprima del messaggio"
 de: aria-label="Nachrichtenvorschau"
-it: >Scrivi a Manuel · web design<
-de: >Nachricht an Manuel · Webdesign<
+it: >Scrivi a Manuel<
+de: >Nachricht an Manuel<
 it: <small>ora</small>
 de: <small>jetzt</small>
 it: aria-label="A chi scrivere"
@@ -630,8 +630,8 @@ it: t: 'Prezzi e tempi', q: [
 de: t: 'Preise und Zeitrahmen', q: [
 it: t: 'Modalità di lavoro', q: [
 de: t: 'Arbeitsweise', q: [
-it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. L\'area web è diretta da Manuel Di Paolo, l\'area social da Nicolas Di Paolo.']
-de: ['Was macht Punto Due Studio?', 'Punto Due Studio ist eine digitale Agentur, die Websites, Online-Shops und Apps entwirft und entwickelt und die Social-Media-Betreuung für Unternehmen und Selbstständige aller Branchen in Italien und international übernimmt. Der Bereich Web wird von Manuel Di Paolo geleitet, der Bereich Social von Nicolas Di Paolo.']
+it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. Lo studio è dei fratelli Manuel e Nicolas Di Paolo, che lavorano entrambi su ogni servizio.']
+de: ['Was macht Punto Due Studio?', 'Punto Due Studio ist eine digitale Agentur, die Websites, Online-Shops und Apps entwirft und entwickelt und die Social-Media-Betreuung für Unternehmen und Selbstständige aller Branchen in Italien und international übernimmt. Das Studio gehört den Brüdern Manuel und Nicolas Di Paolo, die beide an jedem Angebot arbeiten.']
 it: ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
 de: ['Erstellen Sie Websites für Restaurants, Friseursalons und Bauunternehmen?', 'Ja. Im Bereich /web finden Sie drei Demoprojekte: BRACE für die Gastronomie, SEZIONE für Friseursalons und INNESTO für Renovierungen. Jede Website ist auf die wichtigste Handlung des Endkunden ausgerichtet: buchen, Preise ansehen oder ein Angebot anfragen.']
 it: ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.']
@@ -656,8 +656,8 @@ it: ['Il sito e il dominio restano di proprietà del cliente?', 'Sì. Dominio, a
 de: ['Gehören Website und Domain dem Kunden?', 'Ja. Domain, Konten und Inhalte laufen auf den Namen des Kunden und bleiben sein Eigentum; Punto Due Studio richtet sie ein und verwaltet sie. Domain und Hosting sind in der Gebühr nicht enthalten: Eine .it-Domain kostet etwa 12 € zzgl. MwSt. pro Jahr.']
 it: ['In quale zona operate?', 'Lo studio lavora con clienti in Italia e a livello internazionale, a distanza tramite videochiamate e WhatsApp.']
 de: ['In welcher Region sind Sie tätig?', 'Das Studio arbeitet mit Kunden in Italien und international, aus der Ferne per Videoanruf und WhatsApp.']
-it: ['Come si contatta lo studio?', 'Per i siti web: Manuel Di Paolo, WhatsApp +39 324 842 3657. Per i social: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.']
-de: ['Wie erreicht man das Studio?', 'Für Websites: Manuel Di Paolo, WhatsApp +39 324 842 3657. Für Social Media: Nicolas Di Paolo, WhatsApp +39 324 816 5947. Per E-Mail: projects@puntoduestudio.it für neue Projekte und care@puntoduestudio.it für den Kundenservice.']
+it: ['Come si contatta lo studio?', 'Su WhatsApp, per qualsiasi servizio: Manuel Di Paolo, +39 324 842 3657, o Nicolas Di Paolo, +39 324 816 5947. Via email: projects@puntoduestudio.it per nuovi progetti e care@puntoduestudio.it per l\'assistenza.']
+de: ['Wie erreicht man das Studio?', 'Per WhatsApp, für jedes Angebot: Manuel Di Paolo, +39 324 842 3657, oder Nicolas Di Paolo, +39 324 816 5947. Per E-Mail: projects@puntoduestudio.it für neue Projekte und care@puntoduestudio.it für den Kundenservice.']
 it: knowsAbout: ['Siti web', 'E-commerce', 'App web', 'Gestione social media', 'Automazioni WhatsApp']
 de: knowsAbout: ['Websites', 'E-Commerce', 'Web-Apps', 'Social-Media-Betreuung', 'WhatsApp-Automatisierung']
 it: url: 'https://puntoduestudio.it/faq/'
@@ -762,10 +762,6 @@ it: t: 'Referral'
 de: t: 'Empfehlung'
 
 # ---------- dati strutturati della home ----------
-it: 'Manuel · web design'
-de: 'Manuel · Webdesign'
-it: 'Nicolas · social media'
-de: 'Nicolas · Social Media'
 it: Punto Due Studio — Agenzia siti web, e-commerce e social
 de: Punto Due Studio — Webagentur: Websites, Shops, Social Media
 it: <meta property="og:url" content="https://puntoduestudio.it/" />

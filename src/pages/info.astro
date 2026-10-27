@@ -2,8 +2,8 @@
 import Site from '../layouts/Site.astro';
 import Chat from '../components/Chat.astro';
 const people = [
-  { k: 'manuel', name: 'Manuel Di Paolo', ini: 'MD', role: 'Web design', line: 'Guida il reparto web design: siti, e-commerce e app, dal progetto al browser.', num: '393248423657', tel: '+39 324 842 3657' },
-  { k: 'nicolas', name: 'Nicolas Di Paolo', ini: 'ND', role: 'Social media management', line: 'Guida i social: strategia, contenuti e community per il tuo profilo.', num: '393248165947', tel: '+39 324 816 5947' },
+  { k: 'manuel', name: 'Manuel Di Paolo', ini: 'MD', role: 'Co-fondatore', line: 'Lavora su ogni servizio dello studio: siti, e-commerce, app, social, video 3D e agenti AI.', num: '393248423657', tel: '+39 324 842 3657' },
+  { k: 'nicolas', name: 'Nicolas Di Paolo', ini: 'ND', role: 'Co-fondatore', line: 'Lavora su ogni servizio dello studio: siti, e-commerce, app, social, video 3D e agenti AI.', num: '393248165947', tel: '+39 324 816 5947' },
 ];
 const needs = [
   { k: 'sito', t: 'Un sito', p: 'un sito' },
@@ -46,7 +46,7 @@ const needs = [
     <div class="chatwin" aria-label="Anteprima del messaggio">
       <div class="cw-h">
         <svg viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="lensH"><circle cx="37" cy="50" r="27" /></clipPath></defs><circle cx="37" cy="50" r="27" fill="#fff" /><circle cx="63" cy="50" r="27" fill="#FFE000" /><circle cx="63" cy="50" r="27" fill="#0034D6" clip-path="url(#lensH)" /></svg>
-        <div><b>Punto Due Studio</b><small id="toWho">Scrivi a Manuel · web design</small></div>
+        <div><b>Punto Due Studio</b><small id="toWho">Scrivi a Manuel</small></div>
       </div>
       <div class="cw-b" id="thread" aria-live="polite">
         <div class="m me" id="preview"><p id="previewText"></p><small>ora</small></div>
@@ -148,7 +148,7 @@ const needs = [
 <script>
   const $ = (id: string) => document.getElementById(id)!;
   const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const NUMS: Record<string, [string, string]> = { manuel: ['393248423657', 'Manuel · web design'], nicolas: ['393248165947', 'Nicolas · social media'] };
+  const NUMS: Record<string, [string, string]> = { manuel: ['393248423657', 'Manuel'], nicolas: ['393248165947', 'Nicolas'] };
   let mode = 'az', who = 'manuel', manual = false;
 
   const val = (id: string) => (($(id) as HTMLInputElement).value || '').trim();
