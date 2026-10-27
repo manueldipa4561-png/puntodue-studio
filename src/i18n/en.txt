@@ -140,22 +140,24 @@ it: 'Coupon sopralluogo gratuito a tempo'
 en: 'Time-limited free site visit coupon'
 it: 'Sconto referral per chi consiglia lo studio'
 en: 'Referral discount for anyone who recommends the studio'
-it: 'Smokehouse e vini naturali'
-en: 'Smokehouse and natural wines'
-it: 'Brisket affumicato 14 ore, vini naturali e tavolo prenotato con conferma su WhatsApp.'
-en: '14-hour smoked brisket, natural wines and table bookings confirmed on WhatsApp.'
-it: 'Fumo in WebGL'
-en: 'WebGL smoke'
-it: 'Timeline 14 ore'
-en: '14-hour timeline'
-it: 'Acconto online per tenere da parte il brisket'
-en: 'Online deposit to save a portion of brisket'
-it: 'Tessera con QR: alla 6ª cena il brisket è offerto'
-en: 'QR loyalty card: brisket on the house at the 6th dinner'
-it: 'Coupon a tempo per riempire martedì e mercoledì'
-en: 'Time-limited coupons to fill Tuesdays and Wednesdays'
-it: 'Porta un amico: un calice offerto a entrambi'
-en: 'Bring a friend: a glass of wine on us for both'
+it: 'Hotel sul mare'
+en: 'Seaside hotel'
+it: 'Un piccolo albergo sul porto di Procida, con la prenotazione diretta senza portali.'
+en: 'A small hotel on the harbour of Procida, with direct booking and no portals.'
+it: 'Foto che si stringe'
+en: 'Shrinking photo frame'
+it: 'Galleria da trascinare'
+en: 'Drag gallery'
+it: 'Prenotazione diretta'
+en: 'Direct booking'
+it: 'Calendario collegato a Booking.com e Airbnb'
+en: 'Calendar linked to Booking.com and Airbnb'
+it: 'Acconto online al momento della prenotazione'
+en: 'Online deposit at the time of booking'
+it: 'Check-in e indicazioni inviati su WhatsApp'
+en: 'Check-in details and directions sent on WhatsApp'
+it: 'Codice sconto per chi torna una seconda volta'
+en: 'Discount code for guests who come back'
 it: 'Probabilità di vendere'
 en: 'Chance of making a sale'
 it: 'Nuovo contatto'
@@ -199,7 +201,7 @@ en: aria-label="In short"
 it: <h1>Nuovo link.</h1>
 en: <h1>New link.</h1>
 it: Tre siti da aprire e toccare con mano. Un click e sei dentro.
-en: Three websites to open and try for yourself. One click and you’re in. The demos are in Italian, made for Italian businesses.
+en: Three websites to open and try for yourself. One click and you’re in.
 it: aria-label="Demo"
 en: aria-label="Demos"
 it: `Anteprima ${d.name}`
@@ -628,8 +630,8 @@ it: t: 'Modalità di lavoro', q: [
 en: t: 'How we work', q: [
 it: ['Di cosa si occupa Punto Due Studio?', 'Punto Due Studio è un\'agenzia digitale che progetta e sviluppa siti web, e-commerce e app, e cura la gestione dei social media per aziende e professionisti di ogni settore, in Italia e a livello internazionale. Lo studio è dei fratelli Manuel e Nicolas Di Paolo, che lavorano entrambi su ogni servizio.']
 en: ['What does Punto Due Studio do?', 'Punto Due Studio is a digital agency that designs and develops websites, e-commerce stores and apps, and manages social media for companies and professionals in every sector, in Italy and internationally. The studio belongs to the brothers Manuel and Nicolas Di Paolo, who both work on every service.']
-it: ['Realizzate siti per ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: BRACE per la ristorazione, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
-en: ['Do you build websites for restaurants, salons and construction companies?', 'Yes. The /web section features three demo projects: BRACE for restaurants, SEZIONE for salons and INNESTO for renovations. Each website is designed around the end customer’s main action: booking, checking prices or requesting a quote.']
+it: ['Realizzate siti per hotel, ristoranti, saloni e imprese edili?', 'Sì. Nella sezione /web sono disponibili tre progetti dimostrativi: TUFO per gli hotel, SEZIONE per i saloni e INNESTO per le ristrutturazioni. Ogni sito è progettato attorno all\'azione principale del cliente finale: prenotare, consultare i prezzi o richiedere un preventivo.']
+en: ['Do you build websites for hotels, restaurants, salons and construction companies?', 'Yes. The /web section features three demo projects: TUFO for hotels, SEZIONE for salons and INNESTO for renovations. Each website is designed around the end customer’s main action: booking, checking prices or requesting a quote.']
 it: ['Cosa comprende la realizzazione di un sito?', 'Il servizio comprende un design su misura ottimizzato per smartphone, tempi di caricamento ridotti, prenotazione online e informativa privacy e cookie. Su richiesta si possono integrare shop online, acconti e strumenti di fidelizzazione, come tessera fedeltà e promemoria via WhatsApp.']
 en: ['What does a website project include?', 'The service includes a custom design optimised for smartphones, fast loading times, online booking and a privacy and cookie policy. On request, we can add an online shop, deposits and loyalty tools such as a loyalty card and WhatsApp reminders.']
 it: ['Gestite anche Instagram e TikTok?', 'Sì. Il servizio prevede un piano editoriale mensile con 8 post, 4 reel e storie, oltre a un report mensile con l\'andamento del profilo e i clic sul pulsante di prenotazione. Su richiesta sono disponibili anche riprese in sede.']
@@ -989,8 +991,8 @@ en: Products, brands and prices are examples: we made them up to show the format
 # slashkern (/web, sezione /app)
 it: <Site title="Siti web e app: lavori e demo — Punto Due Studio" description="Tre demo di siti complete e cliccabili, più slashkern, un'app in accesso anticipato: progetti brevi da finire con un assistente AI e tenere sulla propria pagina." active="web">
 en: <Site title="Websites and apps: work and demos — Punto Due Studio" description="Three complete, clickable website demos, plus slashkern, an early-access app: short projects you finish with an AI assistant and keep on your own page." active="web">
-it: Le demo INNESTO, SEZIONE e BRACE sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
-en: The INNESTO, SEZIONE and BRACE demos are concepts built by Punto Due Studio; names and businesses are fictional. slashkern is an independent project in early access, not open yet: in the preview the clients are fictional and the numbers are examples.
+it: Le demo INNESTO, SEZIONE e TUFO sono concept realizzati da Punto Due Studio; i nomi e le attività sono fittizi. slashkern è un progetto indipendente in accesso anticipato, non ancora aperto: nell'anteprima i clienti sono fittizi e i numeri d'esempio.
+en: The INNESTO, SEZIONE and TUFO demos are concepts built by Punto Due Studio; names and businesses are fictional. slashkern is an independent project in early access, not open yet: in the preview the clients are fictional and the numbers are examples.
 it: aria-label="L'app slashkern: schermata di apertura"
 en: aria-label="The slashkern app: opening screen"
 it: <a href="/privacy/">Privacy</a>

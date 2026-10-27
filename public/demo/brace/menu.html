@@ -12,13 +12,19 @@
 <link rel="stylesheet" href="brace.css">
 <style>
 .top{padding-top:clamp(120px,16vw,200px);padding-bottom:clamp(32px,4vw,56px)}
-.top h1{font-size:clamp(4.4rem,13vw,11rem)}
-.bar{position:sticky;top:68px;z-index:40;background:rgba(13,14,16,.94);border-bottom:1px solid var(--line)}
-@supports (backdrop-filter:blur(1px)){.bar{background:rgba(13,14,16,.78);backdrop-filter:blur(14px)}}
+.top h1{font-size:clamp(4.4rem,13vw,11rem);letter-spacing:-.015em}
+/* sticky bar: same dark material as the header, edge fade instead of a divider.
+   While stuck it becomes the bottom edge of the chrome, so the header's own fade steps aside. */
+.bar{position:sticky;top:68px;z-index:40;background:rgba(13,14,16,.94)}
+.bar-stuck .hd::after{opacity:0}
+.bar::after{content:"";position:absolute;inset:100% 0 auto;height:20px;background:linear-gradient(rgba(13,14,16,.5),rgba(13,14,16,0));pointer-events:none}
+@supports (backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px)){.bar{background:rgba(13,14,16,.62);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%)}}
+@media (prefers-reduced-transparency:reduce){.bar{background:var(--soot);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@media (prefers-contrast:more){.bar{background:var(--soot);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 1px 0 var(--line)}.bar::after{display:none}}
 .bar .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
-.cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.cats{display:flex;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;flex:1;min-width:0}
 .cats::-webkit-scrollbar{display:none}
-.cats a{flex:none;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:var(--pill);color:var(--smoke);font-size:.93rem;transition:color .2s,background .2s}
+.cats a{flex:none;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:var(--pill);color:var(--on-glass);font-weight:500;letter-spacing:.01em;font-size:.93rem}
 .cats a:hover{color:var(--bone)}
 .cats a.on{background:var(--ash2);color:var(--bone)}
 .flt{display:flex;gap:8px;flex:none}
@@ -34,7 +40,7 @@
 .items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .it{background:var(--ash);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-content:start}
 .it[hidden]{display:none}
-.it h3{margin:0;font-size:1.05rem;font-weight:600}
+.it h3{margin:0;font-size:1.05rem;font-weight:600;letter-spacing:-.008em}
 .it .pr{font-family:var(--m);font-size:1rem;text-align:right;white-space:nowrap}
 .it p{margin:0;color:var(--smoke);font-size:.92rem;grid-column:1/-1}
 .it .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -208,10 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const cur = a.getAttribute('href') === '#' + e.target.id;
       a.classList.toggle('on', cur);
       if (cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
-      if (cur && a.parentElement.scrollWidth > a.parentElement.clientWidth) a.parentElement.scrollTo({ left: a.offsetLeft - 16, behavior: 'smooth' });
+      if (cur && a.parentElement.scrollWidth > a.parentElement.clientWidth) a.parentElement.scrollTo({ left: a.offsetLeft - 16, behavior: window.BRACE && BRACE.reduce ? 'auto' : 'smooth' });
     });
   }), { rootMargin: '-45% 0px -50% 0px' });
   document.querySelectorAll('.cat, .allerg').forEach(s => io.observe(s));
+  /* bar stuck under the header: one edge fade for the whole chrome, not two */
+  new IntersectionObserver(([e]) => document.documentElement.classList.toggle('bar-stuck', e.intersectionRatio < 1 && e.boundingClientRect.top < 80),
+    { rootMargin: '-69px 0px 0px 0px', threshold: 1 }).observe(document.querySelector('.bar'));
 });
 </script>
 </body>

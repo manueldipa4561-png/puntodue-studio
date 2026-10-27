@@ -24,7 +24,7 @@
 #smoke.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(13,14,16,.88) 0%,rgba(13,14,16,.55) 38%,rgba(13,14,16,0) 66%),linear-gradient(0deg,var(--soot) 0%,rgba(13,14,16,0) 30%)}
 .hero-in{position:relative;z-index:3;width:100%;padding-bottom:clamp(48px,9vh,110px);padding-top:120px}
-.hero h1{font-size:clamp(3.9rem,10vw,10rem)}
+.hero h1{font-size:clamp(3.9rem,10vw,10rem);letter-spacing:-.015em}
 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em;white-space:nowrap}
 .ln>span{display:block}
 .hero-sub{max-width:34ch;margin:26px 0 0;font-size:clamp(1.05rem,1.35vw,1.2rem);color:#C9CDD2}
@@ -52,7 +52,7 @@ section{position:relative}
 .prog{height:2px;margin:28px 0 30px;position:relative}
 .prog i{position:absolute;inset:0;background:var(--blue);transform-origin:0 50%;transform:scaleX(0)}
 .stages{list-style:none;margin:0;padding:0;display:grid}
-.stg h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,3.4vw,3rem);line-height:.95;margin:8px 0 12px}
+.stg h3{font-family:var(--d);font-weight:800;text-transform:uppercase;font-size:clamp(2rem,3.4vw,3rem);line-height:.95;letter-spacing:.01em;margin:8px 0 12px}
 .stg p{margin:0;color:var(--smoke);max-width:40ch}
 /* fallback: plain list (no JS, reduced motion) */
 .cook-media img+img{display:none}
@@ -97,20 +97,15 @@ section{position:relative}
 .opt input:focus-visible+span{outline:2px solid var(--blue-hi);outline-offset:3px}
 .sw-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;margin-bottom:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sw-row span{font-size:.93rem;color:var(--smoke)}
-.sw{position:relative;flex:none;width:52px;height:30px;border-radius:var(--pill);border:0;background:#3A3E44;cursor:pointer;transition:background .25s}
-.sw::after{content:"";position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--bone);transition:transform .25s var(--ease)}
-.sw[aria-pressed="true"]{background:var(--blue)}
-.sw[aria-pressed="true"]::after{transform:translateX(22px)}
-.sw::before{content:"";position:absolute;inset:-8px}
 .res{margin:16px 0 0;min-height:1.5em;font-size:.95rem}
 .res b{color:var(--blue-hi);font-family:var(--m);font-weight:500}
 @media (max-width:900px){.today{grid-template-columns:1fr}.slots{grid-template-columns:repeat(10,1fr)}}
 
 /* ---------- menu ---------- */
 .menu-top{display:flex;flex-direction:column;gap:28px;margin-bottom:40px}
-.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--gut)*-1);padding:2px var(--gut)}
+.chips{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 calc(var(--gut)*-1);padding:2px var(--gut)}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;min-height:44px;padding:0 18px;border-radius:var(--pill);border:1px solid rgba(236,237,234,.28);background:transparent;cursor:pointer;font-size:.95rem;transition:background .2s,color .2s,border-color .2s}
+.chip{flex:none;min-height:44px;padding:0 18px;border-radius:var(--pill);border:1px solid rgba(236,237,234,.28);background:transparent;cursor:pointer;font-size:.95rem}
 .chip:hover{border-color:var(--bone)}
 .chip[aria-pressed="true"]{background:var(--bone);color:var(--soot);border-color:var(--bone)}
 .dishes{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,20px)}
@@ -122,7 +117,7 @@ section{position:relative}
 .dishes.all .dish.wide{grid-column:span 2}
 .dishes.all .dish.wide figure{aspect-ratio:2/1}
 .dish-b{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.dish h3{margin:0;font-size:1.08rem;font-weight:600;line-height:1.25}
+.dish h3{margin:0;font-size:1.08rem;font-weight:600;line-height:1.25;letter-spacing:-.008em}
 .dish p{margin:0;color:var(--smoke);font-size:.92rem}
 .dish-f{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:8px;font-family:var(--m);font-size:.84rem;color:var(--smoke)}
 .dish-f b{font-weight:500;color:var(--bone);font-size:1rem}
@@ -165,7 +160,7 @@ section{position:relative}
 /* ---------- club / iniziative (bento) ---------- */
 .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:clamp(12px,1.4vw,18px);margin-top:48px}
 .cell{border-radius:var(--r);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-height:260px}
-.cell h3{font-family:var(--d);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,2.8vw,2.6rem);line-height:.92;margin:0}
+.cell h3{font-family:var(--d);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,2.8vw,2.6rem);line-height:.92;letter-spacing:.01em;margin:0}
 .cell p{margin:0;font-size:.97rem;max-width:40ch}
 .cell .act{margin-top:auto;padding-top:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .c-club{grid-column:span 2;grid-row:span 2;background:var(--ash);border:1px solid var(--line)}
@@ -182,7 +177,7 @@ section{position:relative}
 .c-save{background:var(--ash2)}
 .c-save p{color:var(--smoke)}
 .tilt{perspective:900px;margin:auto 0 8px;display:flex;justify-content:center;padding:18px 0}
-.mcard{width:min(100%,380px);aspect-ratio:1.586;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(120% 90% at 85% 10%,#3D5BFF 0%,#1B2A99 45%,#0B0F2A 100%);color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.25);transform-style:preserve-3d;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-14deg));transition:transform .5s var(--ease);position:relative}
+.mcard{width:min(100%,380px);aspect-ratio:1.586;border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(120% 90% at 85% 10%,#3D5BFF 0%,#1B2A99 45%,#0B0F2A 100%);color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.25);transform-style:preserve-3d;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-14deg));position:relative}
 .mcard::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(60% 50% at var(--gx,30%) var(--gy,20%),rgba(255,255,255,.28),transparent 60%);pointer-events:none}
 .mcard .t{display:flex;justify-content:space-between;align-items:center;font-family:var(--d);font-weight:900;font-size:1.6rem;letter-spacing:.02em}
 .mcard .t small{font-family:var(--m);font-weight:400;font-size:.7rem;letter-spacing:.1em;opacity:.8}
@@ -190,8 +185,10 @@ section{position:relative}
 .mcard .st i{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
 .mcard .st i.f{background:#fff;border-color:#fff}
 .mcard .b{display:flex;justify-content:space-between;font-family:var(--m);font-size:.78rem;opacity:.9}
-@media (prefers-reduced-motion:no-preference){.tilt:not(.live) .mcard{animation:float 6s ease-in-out infinite}}
-@keyframes float{50%{transform:rotateX(4deg) rotateY(-6deg) translateY(-6px)}}
+/* idle float rides on the individual translate/rotate properties, so it composes with the spring-driven tilt;
+   hovering pauses it in place instead of snapping it away */
+@media (prefers-reduced-motion:no-preference){.tilt .mcard{animation:float 6s ease-in-out infinite}.tilt.live .mcard{animation-play-state:paused}}
+@keyframes float{50%{translate:0 -6px;rotate:-1 2 0 9deg}}
 .ex{margin-top:18px}
 @media (max-width:1100px){.bento{grid-template-columns:repeat(2,1fr)}.c-club,.c-slow{grid-column:span 2}.c-club{grid-row:auto}}
 @media (max-width:640px){.bento{grid-template-columns:1fr}.c-club,.c-slow{grid-column:auto}.cell{min-height:0}}
@@ -238,6 +235,7 @@ section{position:relative}
 .hrs .today-row{color:var(--blue-hi)}
 .where .act{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 @media (max-width:900px){.where{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.dish:hover img{transform:none}}
 </style>
 <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1013794909284091af82872b6126a728"}'></script>

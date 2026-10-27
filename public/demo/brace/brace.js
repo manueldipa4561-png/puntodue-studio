@@ -1,4 +1,4 @@
-/* BRACE shared: open-now status, header state, mobile dock, toast, copy, reveals. */
+/* BRACE shared: open-now status, spring helpers, header state, mobile dock, toast, copy, reveals. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -29,7 +29,35 @@
     el.classList.toggle('open', st.open);
     ($('span', el) || el).textContent = st.text;
   });
-  window.BRACE = { status, reduce };
+
+  /* Spring with Apple's two designer parameters: damping ratio (1 = no overshoot) and response (s).
+     Always integrates from the live value and velocity, so a new target mid-flight never jumps. */
+  function spring(onUpdate, { value = 0, response = .4, damping = 1 } = {}) {
+    let x = value, v = 0, target = value, k = 0, c = 0, raf = 0, last = 0;
+    const tune = (r, d) => { k = (2 * Math.PI / r) ** 2; c = 4 * Math.PI * d / r; };
+    const step = now => {
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      for (let i = 0; i < 4; i++) { const h = dt / 4; v += (-k * (x - target) - c * v) * h; x += v * h; }
+      if (Math.abs(v) < .5 && Math.abs(x - target) < .05) { x = target; v = 0; raf = 0; } else raf = requestAnimationFrame(step);
+      onUpdate(x);
+    };
+    return {
+      get value() { return x; }, get target() { return target; }, get moving() { return !!raf; },
+      to(t, o = {}) {
+        target = t; tune(o.response || response, o.damping || damping);
+        if (o.velocity != null) v = o.velocity;
+        if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); }
+      },
+      set(val) { cancelAnimationFrame(raf); raf = 0; x = target = val; v = 0; onUpdate(x); }
+    };
+  }
+  /* Where a flick comes to rest (Apple's projection, deceleration 0.998 = scroll feel). */
+  const project = (vel, d = .998) => (vel / 1000) * d / (1 - d);
+  /* Progressive resistance past a boundary. */
+  const rubberband = (over, dim, c = .55) => (over * dim * c) / (dim + c * Math.abs(over));
+  window.BRACE = { status, reduce, spring, project, rubberband };
+  /* iOS only paints :active when a touch listener exists; press feedback depends on it. */
+  document.addEventListener('touchstart', () => {}, { passive: true });
 
   /* Header background once the page leaves the top. */
   const hd = $('.hd');
